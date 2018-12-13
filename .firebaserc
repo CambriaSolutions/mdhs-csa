@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "mdhs-csa"
+    "prod": "mdhs-csa",
+    "dev": "mdhs-csa-dev"
   }
 }
