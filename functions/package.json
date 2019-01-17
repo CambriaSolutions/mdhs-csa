@@ -7,6 +7,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "deploy-dev": "firebase deploy --only functions --project dev",
+    "deploy-dev-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
     "deploy-prod": "firebase deploy --only functions --project prod",
     "logs": "firebase functions:log"
   },

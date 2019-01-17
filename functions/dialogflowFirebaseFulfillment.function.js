@@ -9,6 +9,10 @@ const {
   comptsValidateName,
   comptsPhoneNumber,
   comptsCaseNumber,
+  comptsCollectIssue,
+  comptsSummarizeIssue,
+  comptsReviseIssue,
+  comptsSumbitIssue,
 } = require('./complaints.js')
 
 const runtimeOpts = {
@@ -81,6 +85,10 @@ exports = module.exports = functions
     intentMap.set('compts-name', comptsValidateName)
     intentMap.set('compts-phone-number', comptsPhoneNumber)
     intentMap.set('compts-case-number', comptsCaseNumber)
+    intentMap.set('compts-collect-issue', comptsCollectIssue)
+    intentMap.set('compts-summarize-issue', comptsSummarizeIssue)
+    intentMap.set('compts-revise-issue', comptsReviseIssue)
+    intentMap.set('compts-submit-issue', comptsSumbitIssue)
 
     agent.handleRequest(intentMap)
   })
