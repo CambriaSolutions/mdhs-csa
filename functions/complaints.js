@@ -33,6 +33,24 @@ exports.comptsValidateName = async agent => {
         name: 'waiting-compts-phone-number',
         lifespan: 2,
       })
+      await agent.context.set({
+        name: 'userInfo',
+        lifespan: 100,
+        parameters: { firstName: firstName, lastName: lastName },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `Sorry, I didn't catch that. What's your first and last name?`
+      )
+      await agent.add(new Suggestion('John Doe'))
+      await agent.context.set({
+        name: 'waiting-compts-name',
+        lifespan: 2,
+      })
     } catch (err) {
       console.error(err)
     }
@@ -52,6 +70,10 @@ exports.comptsPhoneNumber = async agent => {
       await agent.context.set({
         name: 'waiting-compts-case-number',
         lifespan: 2,
+      })
+      await agent.context.set({
+        name: 'userInfo',
+        parameters: { phoneNumber: formattedPhone },
       })
     } catch (err) {
       console.error(err)
@@ -83,7 +105,11 @@ exports.comptsCaseNumber = async agent => {
     )
     await agent.context.set({
       name: 'waiting-compts-collect-issue',
-      lifespan: 5,
+      lifespan: 10,
+    })
+    await agent.context.set({
+      name: 'userInfo',
+      parameters: { caseNumber: caseNumber },
     })
   } catch (err) {
     console.error(err)
@@ -117,7 +143,7 @@ exports.comptsCollectIssue = async agent => {
     })
     await agent.context.set({
       name: 'waiting-compts-summarize-issue',
-      lifespan: 1,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -127,30 +153,41 @@ exports.comptsCollectIssue = async agent => {
 exports.comptsSummarizeIssue = async agent => {
   const rawComplaints = agent.context.get('complaints').parameters.complaints
   const filteredComplaints = rawComplaints.join(' ')
+  const userInfo = agent.context.get('userinfo').parameters
+  const firstName = userInfo.firstName
+  const lastName = userInfo.lastName
+  const caseNumber = userInfo.caseNumber
+  const phoneNumber = userInfo.phoneNumber
 
   if (filteredComplaints) {
-    await agent.add(`Here's what I've got.`)
-    await agent.add(
-      new Card({
-        title: 'Placeholder',
-        text: `${filteredComplaints}`,
+    try {
+      await agent.add(`Here's what I've got.`)
+      await agent.add(
+        new Card({
+          title: `New Complaint`,
+          text: `Full Name: ${firstName} ${lastName}
+          Phone Number: ${phoneNumber}
+          Case Number: ${caseNumber}
+          Message: ${filteredComplaints}`,
+        })
+      )
+      await agent.add(new Suggestion(`Revise`))
+      await agent.add(new Suggestion(`Submit`))
+      await agent.context.set({
+        name: 'waiting-compts-submit-issue',
+        lifespan: 2,
       })
-    )
-    await agent.add(new Suggestion(`Revise`))
-    await agent.add(new Suggestion(`Submit`))
-    await agent.context.set({
-      name: 'waiting-compts-submit-issue',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-compts-revise-issue',
-      lifespan: 2,
-    })
+      await agent.context.set({
+        name: 'waiting-compts-revise-issue',
+        lifespan: 2,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
 exports.comptsReviseIssue = async agent => {
-  const complaintCollection = []
   try {
     await agent.add(
       `Let's start over. Please describe your issue. You can use as many messages as
@@ -163,7 +200,7 @@ exports.comptsReviseIssue = async agent => {
     await agent.context.set({
       name: 'complaints',
       lifespan: 2,
-      parameters: { complaints: complaintCollection },
+      parameters: { complaints: [] },
     })
   } catch (err) {
     console.error(err)
@@ -175,13 +212,17 @@ exports.comptsSumbitIssue = async agent => {
   const filteredComplaints = rawComplaints.join(' ')
 
   //TODO: send complaint data to service desk api
-  await agent.add(
-    new Card({
-      title: 'Confirmation ID',
-      text: `${filteredComplaints}`,
-    })
-  )
-  await agent.add(
-    `Thanks, your request has been submitted! Is there anything else I can help you with?`
-  )
+  try {
+    await agent.add(
+      new Card({
+        title: 'Confirmation ID',
+        text: `${filteredComplaints}`,
+      })
+    )
+    await agent.add(
+      `Thanks, your request has been submitted! Is there anything else I can help you with?`
+    )
+  } catch (err) {
+    console.log(err)
+  }
 }
