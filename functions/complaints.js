@@ -238,6 +238,6 @@ exports.comptsSumbitIssue = async agent => {
       `Thanks, your request has been submitted! Is there anything else I can help you with?`
     )
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
