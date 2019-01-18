@@ -34,7 +34,7 @@ exports.comptsValidateName = async agent => {
         lifespan: 2,
       })
       await agent.context.set({
-        name: 'userInfo',
+        name: 'userinfo',
         lifespan: 100,
         parameters: { firstName: firstName, lastName: lastName },
       })
@@ -72,7 +72,7 @@ exports.comptsPhoneNumber = async agent => {
         lifespan: 2,
       })
       await agent.context.set({
-        name: 'userInfo',
+        name: 'userinfo',
         parameters: { phoneNumber: formattedPhone },
       })
     } catch (err) {
@@ -108,7 +108,7 @@ exports.comptsCaseNumber = async agent => {
       lifespan: 10,
     })
     await agent.context.set({
-      name: 'userInfo',
+      name: 'userinfo',
       parameters: { caseNumber: caseNumber },
     })
   } catch (err) {
@@ -153,13 +153,19 @@ exports.comptsCollectIssue = async agent => {
 exports.comptsSummarizeIssue = async agent => {
   const rawComplaints = agent.context.get('complaints').parameters.complaints
   const filteredComplaints = rawComplaints.join(' ')
-  const userInfo = agent.context.get('userinfo').parameters
-  const firstName = userInfo.firstName
-  const lastName = userInfo.lastName
-  const caseNumber = userInfo.caseNumber
-  const phoneNumber = userInfo.phoneNumber
+  const userinfo = agent.context.get('userinfo').parameters
+  const firstName = userinfo.firstName
+  const lastName = userinfo.lastName
+  const caseNumber = userinfo.caseNumber
+  const phoneNumber = userinfo.phoneNumber
 
-  if (filteredComplaints) {
+  if (
+    filteredComplaints &&
+    firstName &&
+    lastName &&
+    caseNumber &&
+    phoneNumber
+  ) {
     try {
       await agent.add(`Here's what I've got.`)
       await agent.add(
@@ -211,12 +217,21 @@ exports.comptsSumbitIssue = async agent => {
   const rawComplaints = agent.context.get('complaints').parameters.complaints
   const filteredComplaints = rawComplaints.join(' ')
 
+  const userinfo = agent.context.get('userinfo').parameters
+  const firstName = userinfo.firstName
+  const lastName = userinfo.lastName
+  const caseNumber = userinfo.caseNumber
+  const phoneNumber = userinfo.phoneNumber
+
   //TODO: send complaint data to service desk api
   try {
     await agent.add(
       new Card({
-        title: 'Confirmation ID',
-        text: `${filteredComplaints}`,
+        title: `New Complaint`,
+        text: `Full Name: ${firstName} ${lastName}
+        Phone Number: ${phoneNumber}
+        Case Number: ${caseNumber}
+        Message: ${filteredComplaints}`,
       })
     )
     await agent.add(
