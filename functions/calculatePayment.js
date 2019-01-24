@@ -4,8 +4,8 @@ const isNumber = require('lodash/isNumber')
 // any cadence to monthly. For example:
 // Income: 1,000
 // Cadence: biweekly
-// Multiplier: 2 (paid twice a week)
-// Monthly Income: 2,000
+// Multiplier: 24 (24 payments in a year)
+// Annual Income: 24,000
 const getIncomeMultiplier = cadence => {
   // We can only collect income in one of the below cadences
   const allowedCadences = ['biweekly', 'monthly', 'annual']
@@ -17,11 +17,11 @@ const getIncomeMultiplier = cadence => {
 
   switch (cadence) {
     case 'biweekly':
-      return 2
+      return 24
     case 'monthly':
-      return 1
+      return 12
     case 'annual':
-      return 0.083
+      return 1
     default:
       return null
   }
@@ -35,6 +35,9 @@ const getSupportBracket = numChildren => {
   }
   if (numChildren < 1) {
     throw new Error('Must have at least 1 child for estimation')
+  }
+  if (numChildren % 1 !== 0) {
+    throw new Error('Number of children must be a whole integer')
   }
   const pctBrackets = {
     1: 0.14,
@@ -50,6 +53,8 @@ const getSupportBracket = numChildren => {
   return percentage
 }
 
+// Simple child support estimation based on annual income,
+// number of children, and arrears payments
 exports.calculatePayment = ({
   income,
   cadence,
@@ -86,6 +91,7 @@ exports.calculatePayment = ({
     monthlyArrears = monthlyPayment * arrearsPct
   }
 
-  const totalPayment = monthlyPayment + monthlyArrears
+  // Only return whole numbers
+  const totalPayment = Math.round(monthlyPayment + monthlyArrears)
   return totalPayment
 }
