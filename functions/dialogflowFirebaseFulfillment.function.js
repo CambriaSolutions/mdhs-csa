@@ -3,7 +3,18 @@ const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
 const { pmtRoot } = require('./payments.js')
-const { apptsRoot } = require('./appointments.js')
+
+// Appointments intents
+const {
+  apptsRoot,
+  apptsSchedule,
+  apptsNoContacted,
+  apptsYesContacted,
+  apptsOfficeLocations,
+  apptsGuidelines,
+} = require('./appointments.js')
+
+// Complaints intents
 const {
   comptsRoot,
   comptsValidateName,
@@ -78,7 +89,14 @@ exports = module.exports = functions
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
     intentMap.set('pmt-root', pmtRoot)
+
+    // Appointment intents
     intentMap.set('appts-root', apptsRoot)
+    intentMap.set('appts-schedule', apptsSchedule)
+    intentMap.set('appts-no-contacted', apptsNoContacted)
+    intentMap.set('appts-yes-contacted', apptsYesContacted)
+    intentMap.set('appts-office-locations', apptsOfficeLocations)
+    intentMap.set('appts-guidelines', apptsGuidelines)
 
     // Complaints intents
     intentMap.set('compts-root', comptsRoot)

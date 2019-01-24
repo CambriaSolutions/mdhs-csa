@@ -51,7 +51,6 @@ exports.comptsValidateName = async agent => {
         name: 'waiting-compts-name',
         lifespan: 2,
       })
-
     } catch (err) {
       console.error(err)
     }
@@ -76,7 +75,6 @@ exports.comptsPhoneNumber = async agent => {
         name: 'userinfo',
         parameters: { phoneNumber: formattedPhone },
       })
-
     } catch (err) {
       console.error(err)
     }
@@ -112,7 +110,6 @@ exports.comptsCaseNumber = async agent => {
     await agent.context.set({
       name: 'userinfo',
       parameters: { caseNumber: caseNumber },
-
     })
   } catch (err) {
     console.error(err)
@@ -147,7 +144,6 @@ exports.comptsCollectIssue = async agent => {
     await agent.context.set({
       name: 'waiting-compts-summarize-issue',
       lifespan: 3,
-
     })
   } catch (err) {
     console.error(err)
@@ -194,7 +190,6 @@ exports.comptsSummarizeIssue = async agent => {
     } catch (err) {
       console.error(err)
     }
-
   }
 }
 
@@ -221,7 +216,6 @@ exports.comptsReviseIssue = async agent => {
 exports.comptsSumbitIssue = async agent => {
   const rawComplaints = agent.context.get('complaints').parameters.complaints
   const filteredComplaints = rawComplaints.join(' ')
-
   const userinfo = agent.context.get('userinfo').parameters
   const firstName = userinfo.firstName
   const lastName = userinfo.lastName
@@ -245,5 +239,4 @@ exports.comptsSumbitIssue = async agent => {
   } catch (err) {
     console.error(err)
   }
-
 }
