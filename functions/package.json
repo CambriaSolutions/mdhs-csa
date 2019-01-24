@@ -9,7 +9,8 @@
     "deploy-dev": "firebase deploy --only functions --project dev",
     "deploy-dev-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
     "deploy-prod": "firebase deploy --only functions --project prod",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "test": "jest"
   },
   "dependencies": {
     "actions-on-google": "^2.5.0",
@@ -26,5 +27,8 @@
   "engines": {
     "node": "8"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
