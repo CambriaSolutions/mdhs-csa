@@ -36,6 +36,9 @@ const getSupportBracket = numChildren => {
   if (numChildren < 1) {
     throw new Error('Must have at least 1 child for estimation')
   }
+  if (numChildren % 1 !== 0) {
+    throw new Error('Number of children must be a whole integer')
+  }
   const pctBrackets = {
     1: 0.14,
     2: 0.2,

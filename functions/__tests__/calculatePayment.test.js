@@ -7,6 +7,18 @@ describe('Payment Estimator', () => {
     }).toThrow()
   })
 
+  test('Should throw an error if partial children are used', () => {
+    expect(() => {
+      const opts = {
+        income: 50000,
+        cadence: 'annual',
+        numChildren: 1.5,
+        includeArrears: false,
+      }
+      calculatePayment(opts)
+    }).toThrow()
+  })
+
   test('Should calculate correctly for annual income', () => {
     const opts = {
       income: 50000,
