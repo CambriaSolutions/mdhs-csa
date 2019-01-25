@@ -1,8 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
-const {
-  getIncomeMultiplier,
-  getSupportBracket,
-} = require('./calculatePayment.js')
+const isNumber = require('lodash/isNumber')
+const { calculatePayment } = require('./calculatePayment.js')
 
 exports.pmtRoot = async agent => {
   try {
@@ -52,30 +50,72 @@ exports.pmtUnknownIncome = async agent => {
 }
 
 exports.pmtHandleTimeframe = async agent => {
+  // This intent uses entities to handle varitations of the allowed candences below
   const cadence = agent.parameters.cadence
-  const incomeMultiplier = getIncomeMultiplier(cadence)
-  try {
-    await agent.add(
-      `How much do you make per [time period] after taxes and other deductions are taken out of your pay?`
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-earnings',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'payment-factors',
-      lifespan: 100,
-      parameters: { incomeMultiplier },
-    })
-  } catch (err) {
-    console.log(err)
+  const allowedCadences = ['biweekly', 'monthly', 'annual']
+
+  if (!allowedCadences.includes(cadence)) {
+    try {
+      await agent.add(
+        `${cadence} is not an allowed cadence for estimating payments, please choose from bi-weekly, monthly, or annual.`
+      )
+      await agent.add(new Suggestion(`I don't know my income`))
+      await agent.add(new Suggestion(`Bi-Weekly`))
+      await agent.add(new Suggestion(`Monthly`))
+      await agent.add(new Suggestion(`Annual`))
+      await agent.context.set({
+        name: 'waiting-pmt-handle-timeframe',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-pmt-unknown-income',
+        lifespan: 2,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    let preppedCadence
+    switch (cadence) {
+      case 'biweekly':
+        preppedCadence = 'two weeks'
+      case 'monthly':
+        preppedCadence = 'month'
+      case 'annual':
+        preppedCadence = 'year'
+    }
+    try {
+      await agent.add(
+        `How much do you make every ${preppedCadence} after taxes and other deductions are taken out of your pay?`
+      )
+      await agent.context.set({
+        name: 'waiting-pmt-income',
+        lifespan: 2,
+      })
+      await agent.context.set({
+        name: 'payment-factors',
+        lifespan: 100,
+        parameters: { cadence },
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
-exports.pmtEarnings = async agent => {
-  const earnings = agent.parameters.earnings
+exports.pmtIncome = async agent => {
+  const income = agent.parameters.income
 
-  // TODO: validate earnings
+  if (!isNumber(income) || income === 0) {
+    await agent.add(
+      `I didn't catch that as a number, how much do you make after taxes and other deductions are taken out of your pay?`
+    )
+    await agent.context.set({
+      name: 'waiting-pmt-num-children',
+      lifespan: 2,
+    })
+  }
+
   try {
     await agent.add(
       `Just a few more questions about your children. First, how many children do you have?`
@@ -86,7 +126,7 @@ exports.pmtEarnings = async agent => {
     })
     await agent.context.set({
       name: 'payment-factors',
-      parameters: { earnings },
+      parameters: { income },
     })
   } catch (err) {
     console.log(err)
@@ -95,19 +135,65 @@ exports.pmtEarnings = async agent => {
 
 exports.pmtNumChildren = async agent => {
   const numChildren = agent.parameters.numChildren
-  const supportBracket = getSupportBracket(numChildren)
-  // TODO: validate earnings
-  try {
-    await agent.add(`How many mothers are there for your children?`)
+
+  if (!isNumber(numChildren)) {
+    await agent.add(
+      `Please provide the number of children to continue with the estimation?`
+    )
     await agent.context.set({
-      name: 'waiting-pmt-num-mothers',
+      name: 'waiting-pmt-num-children',
       lifespan: 2,
     })
+  } else if (numChildren < 1) {
+    await agent.add(
+      `You must have at least one child to provide and estimate for support obligations. How many children do you have?`
+    )
     await agent.context.set({
-      name: 'payment-factors',
-      parameters: { supportBracket },
+      name: 'waiting-pmt-num-children',
+      lifespan: 2,
     })
-  } catch (err) {
-    console.log(err)
+  } else if (numChildren % 1 !== 0) {
+    await agent.add(`Please revise the number of children as a whole number.`)
+    await agent.context.set({
+      name: 'waiting-pmt-num-children',
+      lifespan: 2,
+    })
+  } else {
+    try {
+      await agent.add(`How many mothers are there for your children?`)
+      await agent.context.set({
+        name: 'waiting-pmt-num-mothers',
+        lifespan: 2,
+      })
+      await agent.context.set({
+        name: 'payment-factors',
+        parameters: { numChildren },
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+exports.pmtNumMothers = async agent => {
+  const paymentFactors = await agent.context.get('payment-factors').parameters
+  const calculatedPayment = calculatePayment(paymentFactors)
+  if (paymentFactors) {
+    try {
+      await agent.add(
+        `Based on the information you provided, your support obligation will be $${calculatedPayment}`
+      )
+      await agent.add(
+        `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
+      )
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    try {
+      await agent.add(`Something went wrong, lets start over.`)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

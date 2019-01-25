@@ -8,8 +8,9 @@ const {
   pmtTimeframe,
   pmtUnknownIncome,
   pmtHandleTimeframe,
-  pmtEarnings,
+  pmtIncome,
   pmtNumChildren,
+  pmtNumMothers,
 } = require('./payments.js')
 
 // Appointments intents
@@ -102,8 +103,9 @@ exports = module.exports = functions
     intentMap.set('pmt-timeframe', pmtTimeframe)
     intentMap.set('pmt-unknown-income', pmtUnknownIncome)
     intentMap.set('pmt-handle-timeframe', pmtHandleTimeframe)
-    intentMap.set('pmt-earnings', pmtEarnings)
+    intentMap.set('pmt-income', pmtIncome)
     intentMap.set('pmt-num-children', pmtNumChildren)
+    intentMap.set('pmt-num-mothers', pmtNumMothers)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
