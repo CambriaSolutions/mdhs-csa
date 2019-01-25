@@ -6,7 +6,7 @@ const isNumber = require('lodash/isNumber')
 // Cadence: biweekly
 // Multiplier: 24 (24 payments in a year)
 // Annual Income: 24,000
-const getIncomeMultiplier = cadence => {
+exports.getIncomeMultiplier = cadence => {
   // We can only collect income in one of the below cadences
   const allowedCadences = ['biweekly', 'monthly', 'annual']
   if (!allowedCadences.includes(cadence)) {
@@ -29,7 +29,7 @@ const getIncomeMultiplier = cadence => {
 
 // Determine what percentage of annual income is required to be
 // contributed toward child support payments
-const getSupportBracket = numChildren => {
+exports.getSupportBracket = numChildren => {
   if (!isNumber(numChildren)) {
     throw new Error('numChildren must be a number for estimation')
   }
