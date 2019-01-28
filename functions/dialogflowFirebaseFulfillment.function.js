@@ -2,7 +2,16 @@ const functions = require('firebase-functions')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
-const { pmtRoot } = require('./payments.js')
+// Payments intents
+const {
+  pmtRoot,
+  pmtTimeframe,
+  pmtUnknownIncome,
+  pmtHandleTimeframe,
+  pmtIncome,
+  pmtNumChildren,
+  pmtNumMothers,
+} = require('./payments.js')
 
 // Appointments intents
 const {
@@ -88,7 +97,15 @@ exports = module.exports = functions
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
+
+    // Payments intents
     intentMap.set('pmt-root', pmtRoot)
+    intentMap.set('pmt-timeframe', pmtTimeframe)
+    intentMap.set('pmt-unknown-income', pmtUnknownIncome)
+    intentMap.set('pmt-handle-timeframe', pmtHandleTimeframe)
+    intentMap.set('pmt-income', pmtIncome)
+    intentMap.set('pmt-num-children', pmtNumChildren)
+    intentMap.set('pmt-num-mothers', pmtNumMothers)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
