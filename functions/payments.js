@@ -54,7 +54,7 @@ exports.pmtUnknownIncome = async agent => {
 
 // User has provided a timeframe with which they will proceed with calculations
 exports.pmtHandleTimeframe = async agent => {
-  // This intent uses entities to handle varitations of the allowed candences below
+  // This intent uses entities to handle variations of the allowed candences below
   const cadence = agent.parameters.cadence
   const allowedCadences = ['biweekly', 'monthly', 'annual']
 
@@ -143,6 +143,7 @@ exports.pmtIncome = async agent => {
   }
 }
 
+// The user has provided the number of children
 exports.pmtNumChildren = async agent => {
   const numChildren = agent.parameters.numChildren
 
@@ -208,7 +209,8 @@ exports.pmtNumChildren = async agent => {
   }
 }
 
-// The user has provided all information needed to calculate monthly support obligations
+// The user has provided the number of mothers, giving us all the
+// information needed to calculate monthly support obligations
 exports.pmtNumMothers = async agent => {
   // Retrieve payment information from context
   const paymentFactors = await agent.context.get('payment-factors').parameters
