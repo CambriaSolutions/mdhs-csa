@@ -2,6 +2,7 @@ const { Suggestion } = require('dialogflow-fulfillment')
 const isNumber = require('lodash/isNumber')
 const { calculatePayment } = require('./calculatePayment.js')
 
+// User has opted into determining child support payments
 exports.pmtRoot = async agent => {
   try {
     await agent.add(
@@ -17,6 +18,7 @@ exports.pmtRoot = async agent => {
   }
 }
 
+// User has consented to the payment being an estimate only
 exports.pmtTimeframe = async agent => {
   try {
     await agent.add(
@@ -39,6 +41,7 @@ exports.pmtTimeframe = async agent => {
   }
 }
 
+// User has replied that they do not know their income
 exports.pmtUnknownIncome = async agent => {
   try {
     await agent.add(
@@ -49,11 +52,13 @@ exports.pmtUnknownIncome = async agent => {
   }
 }
 
+// User has provided a timeframe with which they will proceed with calculations
 exports.pmtHandleTimeframe = async agent => {
   // This intent uses entities to handle varitations of the allowed candences below
   const cadence = agent.parameters.cadence
   const allowedCadences = ['biweekly', 'monthly', 'annual']
 
+  // The user has provided an invalid cadence
   if (!allowedCadences.includes(cadence)) {
     try {
       await agent.add(
@@ -75,14 +80,14 @@ exports.pmtHandleTimeframe = async agent => {
       console.log(err)
     }
   } else {
+    // Prep the cadence to be conversational language
     let preppedCadence
-    switch (cadence) {
-      case 'biweekly':
-        preppedCadence = 'two weeks'
-      case 'monthly':
-        preppedCadence = 'month'
-      case 'annual':
-        preppedCadence = 'year'
+    if (cadence === 'biweekly') {
+      preppedCadence = 'two weeks'
+    } else if (cadence === 'monthly') {
+      preppedCadence = 'month'
+    } else if (cadence === 'annual') {
+      preppedCadence = 'year'
     }
     try {
       await agent.add(
@@ -92,6 +97,8 @@ exports.pmtHandleTimeframe = async agent => {
         name: 'waiting-pmt-income',
         lifespan: 2,
       })
+
+      // Set up a context to collect all payment factors needed for calculation
       await agent.context.set({
         name: 'payment-factors',
         lifespan: 100,
@@ -103,6 +110,7 @@ exports.pmtHandleTimeframe = async agent => {
   }
 }
 
+// User has provided how much they make per timeframe
 exports.pmtIncome = async agent => {
   const income = agent.parameters.income
 
@@ -111,7 +119,7 @@ exports.pmtIncome = async agent => {
       `I didn't catch that as a number, how much do you make after taxes and other deductions are taken out of your pay?`
     )
     await agent.context.set({
-      name: 'waiting-pmt-num-children',
+      name: 'waiting-pmt-income',
       lifespan: 2,
     })
   }
@@ -124,6 +132,8 @@ exports.pmtIncome = async agent => {
       name: 'waiting-pmt-num-children',
       lifespan: 2,
     })
+
+    // Save income in context
     await agent.context.set({
       name: 'payment-factors',
       parameters: { income },
@@ -138,7 +148,7 @@ exports.pmtNumChildren = async agent => {
 
   if (!isNumber(numChildren)) {
     await agent.add(
-      `Please provide the number of children to continue with the estimation?`
+      `Please provide the number, as a whole number, of children to continue with the estimation.`
     )
     await agent.context.set({
       name: 'waiting-pmt-num-children',
@@ -158,6 +168,27 @@ exports.pmtNumChildren = async agent => {
       name: 'waiting-pmt-num-children',
       lifespan: 2,
     })
+  } else if (numChildren === 1) {
+    // We have enough information to calculate support obligations.
+    // Retrieve the factors from context, and set numChildren as 1 prior to calculations
+    const paymentFactors = await agent.context.get('payment-factors').parameters
+    paymentFactors.numChildren = 1
+    // per
+    const calculatedPayment = calculatePayment(paymentFactors)
+    try {
+      await agent.add(
+        `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
+      )
+      await agent.add(
+        `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
+      )
+      await agent.context.set({
+        name: 'waiting-pmt-num-children',
+        lifespan: 0,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   } else {
     try {
       await agent.add(`How many mothers are there for your children?`)
@@ -165,6 +196,8 @@ exports.pmtNumChildren = async agent => {
         name: 'waiting-pmt-num-mothers',
         lifespan: 2,
       })
+
+      // Save number of children in context
       await agent.context.set({
         name: 'payment-factors',
         parameters: { numChildren },
@@ -175,23 +208,33 @@ exports.pmtNumChildren = async agent => {
   }
 }
 
+// The user has provided all information needed to calculate monthly support obligations
 exports.pmtNumMothers = async agent => {
+  // Retrieve payment information from context
   const paymentFactors = await agent.context.get('payment-factors').parameters
+  // Calculate the support obligation
   const calculatedPayment = calculatePayment(paymentFactors)
   if (paymentFactors) {
     try {
       await agent.add(
-        `Based on the information you provided, your support obligation will be $${calculatedPayment}`
+        `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
       )
       await agent.add(
         `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
       )
+      // Clear out the payment factors context
+      await agent.context.set({
+        name: 'payment-factors',
+        lifespan: 0,
+      })
     } catch (err) {
       console.log(err)
     }
   } else {
     try {
-      await agent.add(`Something went wrong, lets start over.`)
+      await agent.add(
+        `Something went wrong, please try again, or call [number] for immediate support.`
+      )
     } catch (err) {
       console.log(err)
     }
