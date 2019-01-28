@@ -11,7 +11,7 @@ exports.pmtRoot = async agent => {
     await agent.add(new Suggestion('I Understand'))
     await agent.context.set({
       name: 'waiting-pmt-timeframe',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.log(err)
@@ -34,7 +34,7 @@ exports.pmtTimeframe = async agent => {
     })
     await agent.context.set({
       name: 'waiting-pmt-unknown-income',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.log(err)
@@ -74,7 +74,7 @@ exports.pmtHandleTimeframe = async agent => {
       })
       await agent.context.set({
         name: 'waiting-pmt-unknown-income',
-        lifespan: 2,
+        lifespan: 3,
       })
     } catch (err) {
       console.log(err)
@@ -95,7 +95,7 @@ exports.pmtHandleTimeframe = async agent => {
       )
       await agent.context.set({
         name: 'waiting-pmt-income',
-        lifespan: 2,
+        lifespan: 3,
       })
 
       // Set up a context to collect all payment factors needed for calculation
@@ -120,7 +120,7 @@ exports.pmtIncome = async agent => {
     )
     await agent.context.set({
       name: 'waiting-pmt-income',
-      lifespan: 2,
+      lifespan: 3,
     })
   }
 
@@ -130,7 +130,7 @@ exports.pmtIncome = async agent => {
     )
     await agent.context.set({
       name: 'waiting-pmt-num-children',
-      lifespan: 2,
+      lifespan: 3,
     })
 
     // Save income in context
@@ -152,7 +152,7 @@ exports.pmtNumChildren = async agent => {
     )
     await agent.context.set({
       name: 'waiting-pmt-num-children',
-      lifespan: 2,
+      lifespan: 3,
     })
   } else if (numChildren < 1) {
     await agent.add(
@@ -160,13 +160,13 @@ exports.pmtNumChildren = async agent => {
     )
     await agent.context.set({
       name: 'waiting-pmt-num-children',
-      lifespan: 2,
+      lifespan: 3,
     })
   } else if (numChildren % 1 !== 0) {
     await agent.add(`Please revise the number of children as a whole number.`)
     await agent.context.set({
       name: 'waiting-pmt-num-children',
-      lifespan: 2,
+      lifespan: 3,
     })
   } else if (numChildren === 1) {
     // We have enough information to calculate support obligations.
@@ -194,7 +194,7 @@ exports.pmtNumChildren = async agent => {
       await agent.add(`How many mothers are there for your children?`)
       await agent.context.set({
         name: 'waiting-pmt-num-mothers',
-        lifespan: 2,
+        lifespan: 3,
       })
 
       // Save number of children in context
@@ -233,7 +233,7 @@ exports.pmtNumMothers = async agent => {
   } else {
     try {
       await agent.add(
-        `Something went wrong, please try again, or call [number] for immediate support.`
+        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
       )
     } catch (err) {
       console.log(err)
