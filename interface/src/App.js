@@ -7,6 +7,9 @@ const dfWebhookOptions = {
   textUrl: 'https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest',
 }
 
+const policyText =
+  'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
+
 class App extends Component {
   render() {
     return (
@@ -18,6 +21,7 @@ class App extends Component {
         clientOptions={dfWebhookOptions}
         fullscreen={false}
         initialActive={false}
+        policyText={policyText}
       />
     )
   }
