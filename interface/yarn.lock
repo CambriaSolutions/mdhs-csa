@@ -778,10 +778,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cambriasolutions/chatframe@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.10.1.tgz#cd9d84ee29a58c20a6d2dc23fd8dd12fbfb94718"
-  integrity sha512-6CdXHTAnk//2ByXLjJSXOrGtK/36lgsD99d1m9Fnufq54932eMKZjl0UIikyCm3HCPf1UlUPtBH6mEH3gj3/bA==
+"@cambriasolutions/chatframe@^1.10.2":
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.10.2.tgz#60dd13faffed5ac03a166875ba2b4e03fd365c5e"
+  integrity sha512-sUSAHOjrRL/09atfNt3HMJRtcarBcj00jQURNeEBQsRRJrn5L/LgEy2sdrOkMQ/SHznlKQk/sRR6JvCkQ5mzwg==
   dependencies:
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
