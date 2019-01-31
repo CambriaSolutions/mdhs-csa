@@ -1,6 +1,7 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const isNumber = require('lodash/isNumber')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.comptsRoot = async agent => {
   try {
@@ -229,9 +230,10 @@ exports.comptsSumbitIssue = async agent => {
 
   //TODO: send complaint data to service desk api
   try {
-    await agent.add(
-      `Thanks, your request has been submitted! Is there anything else I can help you with?`
-    )
+    await agent.add(`Thanks, your request has been submitted!`)
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }

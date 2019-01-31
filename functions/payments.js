@@ -1,6 +1,7 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const isNumber = require('lodash/isNumber')
 const { calculatePayment } = require('./calculatePayment.js')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 // User has opted into determining child support payments
 exports.pmtRoot = async agent => {
@@ -194,6 +195,9 @@ exports.pmtNumChildren = async agent => {
         name: 'waiting-pmt-num-children',
         lifespan: 0,
       })
+
+      // Ask the user if they need anything else, set appropriate contexts
+      await handleEndConversation(agent)
     } catch (err) {
       console.error(err)
       await agent.add(
@@ -238,11 +242,15 @@ exports.pmtNumMothers = async agent => {
     await agent.add(
       `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
     )
+
     // Clear out the payment factors context
     await agent.context.set({
       name: 'payment-factors',
       lifespan: 0,
     })
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
     await agent.add(

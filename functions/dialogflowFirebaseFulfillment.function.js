@@ -81,6 +81,17 @@ exports = module.exports = functions
         console.error(err)
       }
     }
+
+    const restartConversation = async agent => {
+      try {
+        await agent.add(`What can I help you with?`)
+        await agent.add(new Suggestion('Appointments'))
+        await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Complaints'))
+      } catch (err) {
+        console.error(err)
+      }
+    }
     // Should we add the suggestions from yes-child-support?
     const notChildSupport = async agent => {
       try {
@@ -88,6 +99,10 @@ exports = module.exports = functions
           `Sorry, I'm still learning to help with other issues. 
           Is there anything else I can help with?`
         )
+        await agent.add(`I can help you with these topics.`)
+        await agent.add(new Suggestion('Appointments'))
+        await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Complaints'))
       } catch (err) {
         console.error(err)
       }
@@ -95,6 +110,7 @@ exports = module.exports = functions
 
     let intentMap = new Map()
     intentMap.set('Default Welcome Intent', welcome)
+    intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
 
