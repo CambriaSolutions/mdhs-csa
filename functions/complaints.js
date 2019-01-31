@@ -1,5 +1,6 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
+const isNumber = require('lodash/isNumber')
 
 exports.comptsRoot = async agent => {
   try {
@@ -7,7 +8,6 @@ exports.comptsRoot = async agent => {
       `Got it. I have a few questions to make sure your request gets 
       to the right place. What's your first and last name?`
     )
-    await agent.add(new Suggestion('John Doe'))
     await agent.context.set({
       name: 'waiting-compts-name',
       lifespan: 2,
@@ -28,7 +28,6 @@ exports.comptsValidateName = async agent => {
         `Thanks. What is your phone number
           so we can reach out to you with a solution?`
       )
-      await agent.add(new Suggestion('9163264446'))
       await agent.context.set({
         name: 'waiting-compts-phone-number',
         lifespan: 2,
@@ -46,7 +45,6 @@ exports.comptsValidateName = async agent => {
       await agent.add(
         `Sorry, I didn't catch that. What's your first and last name?`
       )
-      await agent.add(new Suggestion('John Doe'))
       await agent.context.set({
         name: 'waiting-compts-name',
         lifespan: 2,
@@ -66,7 +64,6 @@ exports.comptsPhoneNumber = async agent => {
   if (isValid) {
     try {
       await agent.add(`What is your case number?`)
-      await agent.add(new Suggestion('123456'))
       await agent.context.set({
         name: 'waiting-compts-case-number',
         lifespan: 2,
@@ -97,6 +94,15 @@ exports.comptsPhoneNumber = async agent => {
 exports.comptsCaseNumber = async agent => {
   const caseNumber = agent.parameters.caseNumber
 
+  if (!isNumber(caseNumber) || caseNumber === 0) {
+    await agent.add(
+      `I didn't catch that as a number, what is your case number?`
+    )
+    await agent.context.set({
+      name: 'waiting-compts-case-number',
+      lifespan: 3,
+    })
+  }
   // TODO: save data to db
   try {
     await agent.add(
@@ -131,7 +137,6 @@ exports.comptsCollectIssue = async agent => {
     await agent.add(
       `Feel free to add to your issue, or click or say "I'm done"`
     )
-    await agent.add(new Suggestion(`I'm Done`))
     await agent.context.set({
       name: 'complaints',
       lifespan: 2,
@@ -214,25 +219,16 @@ exports.comptsReviseIssue = async agent => {
 }
 
 exports.comptsSumbitIssue = async agent => {
-  const rawComplaints = agent.context.get('complaints').parameters.complaints
-  const filteredComplaints = rawComplaints.join(' ')
-  const userinfo = agent.context.get('userinfo').parameters
-  const firstName = userinfo.firstName
-  const lastName = userinfo.lastName
-  const caseNumber = userinfo.caseNumber
-  const phoneNumber = userinfo.phoneNumber
+  // const rawComplaints = agent.context.get('complaints').parameters.complaints
+  // const filteredComplaints = rawComplaints.join(' ')
+  // const userinfo = agent.context.get('userinfo').parameters
+  // const firstName = userinfo.firstName
+  // const lastName = userinfo.lastName
+  // const caseNumber = userinfo.caseNumber
+  // const phoneNumber = userinfo.phoneNumber
 
   //TODO: send complaint data to service desk api
   try {
-    await agent.add(
-      new Card({
-        title: `New Complaint`,
-        text: `Full Name: ${firstName} ${lastName}
-        Phone Number: ${phoneNumber}
-        Case Number: ${caseNumber}
-        Message: ${filteredComplaints}`,
-      })
-    )
     await agent.add(
       `Thanks, your request has been submitted! Is there anything else I can help you with?`
     )

@@ -52,7 +52,7 @@ exports.apptsYesContacted = async agent => {
       For more information about appointments, go to [url].`
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at [phone number].`
+      `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
   } catch (err) {
     console.log(err)
@@ -66,7 +66,7 @@ exports.apptsNoContacted = async agent => {
       For more information about appointments, go to [url].`
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at [phone number].`
+      `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
   } catch (err) {
     console.log(err)
@@ -90,7 +90,7 @@ exports.apptsGuidelines = async agent => {
       For more information about appointments, go to [url].`
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at [phone number].`
+      `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
   } catch (err) {
     console.log(err)

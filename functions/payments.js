@@ -215,8 +215,20 @@ exports.pmtNumMothers = async agent => {
   // Retrieve payment information from context
   const paymentFactors = await agent.context.get('payment-factors').parameters
   // Calculate the support obligation
-  const calculatedPayment = calculatePayment(paymentFactors)
-  if (paymentFactors) {
+  try {
+    const calculatedPayment = await calculatePayment(paymentFactors)
+    return calculatedPayment
+  } catch (err) {
+    await agent.add(
+      `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
+    )
+    await agent.add(new Suggestion('Start Over'))
+    await agent.context.set({
+      name: 'waiting-pmt-timeframe',
+      lifespan: 3,
+    })
+  }
+  if (calculatedPayment) {
     try {
       await agent.add(
         `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
@@ -237,6 +249,11 @@ exports.pmtNumMothers = async agent => {
       await agent.add(
         `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
       )
+      await agent.add(new Suggestion('Start Over'))
+      await agent.context.set({
+        name: 'waiting-pmt-timeframe',
+        lifespan: 3,
+      })
     } catch (err) {
       console.log(err)
     }
