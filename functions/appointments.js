@@ -83,7 +83,7 @@ exports.apptsNoContacted = async agent => {
 exports.apptsOfficeLocations = async agent => {
   try {
     await agent.add(
-      `Sorry, I'm still getting trained on located offices, check back soon!`
+      `Sorry, I'm still getting trained on locating offices, check back soon!`
     )
     await agent.add(`Can I help you with some of the things I know?`)
     await agent.add(new Suggestion('Appointments'))
