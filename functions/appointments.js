@@ -1,4 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.apptsRoot = async agent => {
   try {
@@ -54,6 +55,9 @@ exports.apptsYesContacted = async agent => {
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }
@@ -68,6 +72,9 @@ exports.apptsNoContacted = async agent => {
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }
@@ -76,8 +83,12 @@ exports.apptsNoContacted = async agent => {
 exports.apptsOfficeLocations = async agent => {
   try {
     await agent.add(
-      `I'm still getting trained on located offices, check back soon!`
+      `Sorry, I'm still getting trained on locating offices, check back soon!`
     )
+    await agent.add(`Can I help you with some of the things I know?`)
+    await agent.add(new Suggestion('Appointments'))
+    await agent.add(new Suggestion('Payments'))
+    await agent.add(new Suggestion('Complaints'))
   } catch (err) {
     console.log(err)
   }
@@ -92,6 +103,9 @@ exports.apptsGuidelines = async agent => {
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }

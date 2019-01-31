@@ -1,6 +1,7 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const isNumber = require('lodash/isNumber')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.comptsRoot = async agent => {
   try {
@@ -102,23 +103,24 @@ exports.comptsCaseNumber = async agent => {
       name: 'waiting-compts-case-number',
       lifespan: 3,
     })
-  }
-  // TODO: save data to db
-  try {
-    await agent.add(
-      `Please describe your issue. You can use as many messages as
-        you like - just click the "I'm Done" button when you are finished.`
-    )
-    await agent.context.set({
-      name: 'waiting-compts-collect-issue',
-      lifespan: 10,
-    })
-    await agent.context.set({
-      name: 'userinfo',
-      parameters: { caseNumber: caseNumber },
-    })
-  } catch (err) {
-    console.error(err)
+  } else {
+    // TODO: save data to db
+    try {
+      await agent.add(
+        `Please describe your issue. You can use as many messages as
+          you like - just click the "I'm Done" button when you are finished.`
+      )
+      await agent.context.set({
+        name: 'waiting-compts-collect-issue',
+        lifespan: 10,
+      })
+      await agent.context.set({
+        name: 'userinfo',
+        parameters: { caseNumber: caseNumber },
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -229,9 +231,10 @@ exports.comptsSumbitIssue = async agent => {
 
   //TODO: send complaint data to service desk api
   try {
-    await agent.add(
-      `Thanks, your request has been submitted! Is there anything else I can help you with?`
-    )
+    await agent.add(`Thanks, your request has been submitted!`)
+
+    // Ask the user if they need anything else, set appropriate contexts
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
