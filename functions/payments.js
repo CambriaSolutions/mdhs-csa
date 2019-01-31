@@ -174,8 +174,21 @@ exports.pmtNumChildren = async agent => {
     // Retrieve the factors from context, and set numChildren as 1 prior to calculations
     const paymentFactors = await agent.context.get('payment-factors').parameters
     paymentFactors.numChildren = 1
-    // per
-    const calculatedPayment = calculatePayment(paymentFactors)
+
+    // Calculate the support obligation
+    try {
+      const calculatedPayment = await calculatePayment(paymentFactors)
+      return calculatedPayment
+    } catch (err) {
+      await agent.add(
+        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
+      )
+      await agent.add(new Suggestion('Start Over'))
+      await agent.context.set({
+        name: 'waiting-pmt-timeframe',
+        lifespan: 3,
+      })
+    }
     try {
       await agent.add(
         `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
@@ -183,6 +196,12 @@ exports.pmtNumChildren = async agent => {
       await agent.add(
         `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
       )
+      // Clear out the payment factors context
+      await agent.context.set({
+        name: 'payment-factors',
+        lifespan: 0,
+      })
+      // Remove the context for the next intent, needed if they have more than 1 mother
       await agent.context.set({
         name: 'waiting-pmt-num-children',
         lifespan: 0,
