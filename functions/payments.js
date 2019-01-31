@@ -14,7 +14,7 @@ exports.pmtRoot = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -37,7 +37,7 @@ exports.pmtTimeframe = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -48,7 +48,7 @@ exports.pmtUnknownIncome = async agent => {
       `You can find your income statement on documents like a paystub or W-2 form. I can only estimate your child support payments if you know your income.`
     )
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -77,7 +77,7 @@ exports.pmtHandleTimeframe = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   } else {
     // Prep the cadence to be conversational language
@@ -105,7 +105,7 @@ exports.pmtHandleTimeframe = async agent => {
         parameters: { cadence },
       })
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -139,7 +139,7 @@ exports.pmtIncome = async agent => {
       parameters: { income },
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -195,6 +195,7 @@ exports.pmtNumChildren = async agent => {
         lifespan: 0,
       })
     } catch (err) {
+      console.error(err)
       await agent.add(
         `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
       )
@@ -218,7 +219,7 @@ exports.pmtNumChildren = async agent => {
         parameters: { numChildren },
       })
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -243,6 +244,7 @@ exports.pmtNumMothers = async agent => {
       lifespan: 0,
     })
   } catch (err) {
+    console.error(err)
     await agent.add(
       `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
     )
