@@ -178,18 +178,6 @@ exports.pmtNumChildren = async agent => {
     // Calculate the support obligation
     try {
       const calculatedPayment = await calculatePayment(paymentFactors)
-      return calculatedPayment
-    } catch (err) {
-      await agent.add(
-        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
-      )
-      await agent.add(new Suggestion('Recalculate'))
-      await agent.context.set({
-        name: 'waiting-pmt-timeframe',
-        lifespan: 3,
-      })
-    }
-    try {
       await agent.add(
         `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
       )
@@ -207,7 +195,14 @@ exports.pmtNumChildren = async agent => {
         lifespan: 0,
       })
     } catch (err) {
-      console.log(err)
+      await agent.add(
+        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
+      )
+      await agent.add(new Suggestion('Recalculate'))
+      await agent.context.set({
+        name: 'waiting-pmt-timeframe',
+        lifespan: 3,
+      })
     }
   } else {
     try {
@@ -236,7 +231,17 @@ exports.pmtNumMothers = async agent => {
   // Calculate the support obligation
   try {
     const calculatedPayment = await calculatePayment(paymentFactors)
-    return calculatedPayment
+    await agent.add(
+      `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
+    )
+    await agent.add(
+      `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
+    )
+    // Clear out the payment factors context
+    await agent.context.set({
+      name: 'payment-factors',
+      lifespan: 0,
+    })
   } catch (err) {
     await agent.add(
       `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
@@ -246,35 +251,5 @@ exports.pmtNumMothers = async agent => {
       name: 'waiting-pmt-timeframe',
       lifespan: 3,
     })
-  }
-  if (calculatedPayment) {
-    try {
-      await agent.add(
-        `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
-      )
-      await agent.add(
-        `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
-      )
-      // Clear out the payment factors context
-      await agent.context.set({
-        name: 'payment-factors',
-        lifespan: 0,
-      })
-    } catch (err) {
-      console.log(err)
-    }
-  } else {
-    try {
-      await agent.add(
-        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
-      )
-      await agent.add(new Suggestion('Recalculate'))
-      await agent.context.set({
-        name: 'waiting-pmt-timeframe',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.log(err)
-    }
   }
 }
