@@ -103,23 +103,24 @@ exports.comptsCaseNumber = async agent => {
       name: 'waiting-compts-case-number',
       lifespan: 3,
     })
-  }
-  // TODO: save data to db
-  try {
-    await agent.add(
-      `Please describe your issue. You can use as many messages as
-        you like - just click the "I'm Done" button when you are finished.`
-    )
-    await agent.context.set({
-      name: 'waiting-compts-collect-issue',
-      lifespan: 10,
-    })
-    await agent.context.set({
-      name: 'userinfo',
-      parameters: { caseNumber: caseNumber },
-    })
-  } catch (err) {
-    console.error(err)
+  } else {
+    // TODO: save data to db
+    try {
+      await agent.add(
+        `Please describe your issue. You can use as many messages as
+          you like - just click the "I'm Done" button when you are finished.`
+      )
+      await agent.context.set({
+        name: 'waiting-compts-collect-issue',
+        lifespan: 10,
+      })
+      await agent.context.set({
+        name: 'userinfo',
+        parameters: { caseNumber: caseNumber },
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
