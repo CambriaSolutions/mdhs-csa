@@ -7,7 +7,6 @@ exports.comptsRoot = async agent => {
       `Got it. I have a few questions to make sure your request gets 
       to the right place. What's your first and last name?`
     )
-    await agent.add(new Suggestion('John Doe'))
     await agent.context.set({
       name: 'waiting-compts-name',
       lifespan: 2,
@@ -28,7 +27,6 @@ exports.comptsValidateName = async agent => {
         `Thanks. What is your phone number
           so we can reach out to you with a solution?`
       )
-      await agent.add(new Suggestion('9163264446'))
       await agent.context.set({
         name: 'waiting-compts-phone-number',
         lifespan: 2,
@@ -46,7 +44,6 @@ exports.comptsValidateName = async agent => {
       await agent.add(
         `Sorry, I didn't catch that. What's your first and last name?`
       )
-      await agent.add(new Suggestion('John Doe'))
       await agent.context.set({
         name: 'waiting-compts-name',
         lifespan: 2,
@@ -66,7 +63,6 @@ exports.comptsPhoneNumber = async agent => {
   if (isValid) {
     try {
       await agent.add(`What is your case number?`)
-      await agent.add(new Suggestion('123456'))
       await agent.context.set({
         name: 'waiting-compts-case-number',
         lifespan: 2,
