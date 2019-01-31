@@ -183,7 +183,7 @@ exports.pmtNumChildren = async agent => {
       await agent.add(
         `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
       )
-      await agent.add(new Suggestion('Start Over'))
+      await agent.add(new Suggestion('Recalculate'))
       await agent.context.set({
         name: 'waiting-pmt-timeframe',
         lifespan: 3,
@@ -241,7 +241,7 @@ exports.pmtNumMothers = async agent => {
     await agent.add(
       `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
     )
-    await agent.add(new Suggestion('Start Over'))
+    await agent.add(new Suggestion('Recalculate'))
     await agent.context.set({
       name: 'waiting-pmt-timeframe',
       lifespan: 3,
@@ -268,7 +268,7 @@ exports.pmtNumMothers = async agent => {
       await agent.add(
         `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
       )
-      await agent.add(new Suggestion('Start Over'))
+      await agent.add(new Suggestion('Recalculate'))
       await agent.context.set({
         name: 'waiting-pmt-timeframe',
         lifespan: 3,
