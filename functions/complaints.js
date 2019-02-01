@@ -139,6 +139,7 @@ exports.comptsCollectIssue = async agent => {
     await agent.add(
       `Feel free to add to your issue, or click or say "I'm done"`
     )
+    await agent.add(new Suggestion(`I'm done`))
     await agent.context.set({
       name: 'complaints',
       lifespan: 2,
