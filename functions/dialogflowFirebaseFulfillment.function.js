@@ -35,6 +35,9 @@ const {
   comptsSumbitIssue,
 } = require('./complaints.js')
 
+// Map intents
+const { mapRoot } = require('./map.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -140,6 +143,9 @@ exports = module.exports = functions
     intentMap.set('compts-summarize-issue', comptsSummarizeIssue)
     intentMap.set('compts-revise-issue', comptsReviseIssue)
     intentMap.set('compts-submit-issue', comptsSumbitIssue)
+
+    // Map intents
+    intentMap.set('map-root', mapRoot)
 
     agent.handleRequest(intentMap)
   })
