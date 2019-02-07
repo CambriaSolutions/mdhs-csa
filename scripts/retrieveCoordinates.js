@@ -2,7 +2,9 @@ require('dotenv').config()
 const URL = require('url').URL
 const fetch = require('node-fetch')
 const fs = require('fs')
+const mapsKey = process.env.GOOGLE_MAPS_KEY
 
+// Create an array of locations to send to the geocode api
 const locations = [
   '108 S. Whitworth Ave Brookhaven, MS 39601',
   '157 Issaquena Ave Clarksdale, MS 38614',
@@ -31,10 +33,10 @@ const locations = [
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
 
-const logAddress = async address => {
-  const apiKey = process.env.GOOGLE_MAPS_KEY
+// Send the address to the geocode api to return the latitude, longitude and placeId
+const retrieveCoordinates = async address => {
   const url = new URL('https://maps.googleapis.com/maps/api/geocode/json'),
-    params = { address: address, key: apiKey }
+    params = { address: address, key: mapsKey }
 
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
@@ -51,7 +53,7 @@ const logAddress = async address => {
       address,
       lat: geoCode.lat,
       long: geoCode.long,
-      placeId: placeId,
+      placeId,
     }
     return result
   } else {
@@ -59,14 +61,22 @@ const logAddress = async address => {
   }
 }
 
+// Map through the array of locations to send each to the geocode api
 let requests = locations.map(location => {
-  return logAddress(location)
+  return retrieveCoordinates(location)
 })
 
+// Send each request to the geocode api and create a file with the results inside
+// the functions directory. We will use these to populate the custom payload for the
+// map intent fulfillment
 Promise.all(requests).then(responses => {
   console.log(responses)
-  fs.writeFile('geoInfo.json', JSON.stringify(responses), function(err) {
-    if (err) throw err
-    console.log('Saved!')
-  })
+  fs.writeFile(
+    '../functions/coordinates.json',
+    JSON.stringify(responses),
+    err => {
+      if (err) throw err
+      console.log('Saved!')
+    }
+  )
 })
