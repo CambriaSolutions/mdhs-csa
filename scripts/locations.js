@@ -44,13 +44,13 @@ const logAddress = async address => {
   if (json.results.length !== 0) {
     const geoCode = {
       lat: json.results[0].geometry.location.lat,
-      long: json.results[0].geometry.location.lng,
+      lng: json.results[0].geometry.location.lng,
     }
     const placeId = json.results[0].place_id
     const result = {
       address,
       lat: geoCode.lat,
-      long: geoCode.long,
+      lng: geoCode.lng,
       placeId: placeId,
     }
     return result
@@ -65,8 +65,12 @@ let requests = locations.map(location => {
 
 Promise.all(requests).then(responses => {
   console.log(responses)
-  fs.writeFile('geoInfo.json', JSON.stringify(responses), function(err) {
-    if (err) throw err
-    console.log('Saved!')
-  })
+  fs.writeFile(
+    '../functions/coordinates.json',
+    JSON.stringify(responses),
+    function(err) {
+      if (err) throw err
+      console.log('Saved!')
+    }
+  )
 })
