@@ -2,12 +2,16 @@ const { Payload } = require('dialogflow-fulfillment')
 const { locations } = require('./geoInfo.js')
 
 exports.mapRoot = async agent => {
+  const mapPayload = JSON.stringify(locations)
+  await agent.add(`Here is an interactive map of all of our locations!`)
   await agent.add(
     new Payload(
       agent.UNSPECIFIED,
-      { mapPayload: locations },
-      { sendAsMessage: true, rawPayload: true }
+      { mapPayload },
+      {
+        sendAsMessage: true,
+        rawPayload: true,
+      }
     )
   )
-  await agent.add(`Here is an interactive map of all of our locations!`)
 }
