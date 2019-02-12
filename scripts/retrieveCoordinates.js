@@ -46,13 +46,13 @@ const retrieveCoordinates = async address => {
   if (json.results.length !== 0) {
     const geoCode = {
       lat: json.results[0].geometry.location.lat,
-      long: json.results[0].geometry.location.lng,
+      lng: json.results[0].geometry.location.lng,
     }
     const placeId = json.results[0].place_id
     const result = {
       address,
       lat: geoCode.lat,
-      long: geoCode.long,
+      lng: geoCode.lng,
       placeId,
     }
     return result
