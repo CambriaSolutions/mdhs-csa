@@ -15,7 +15,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy-dev": "firebase deploy --only hosting --project dev",
-    "deploy-prod": "firebase deploy --only hosting --project prod"
+    "deploy-prod": "firebase deploy --only hosting --project prod",
+    "deploy-stage": "firebase deploy --only hosting --project stage"
   },
   "eslintConfig": {
     "extends": "react-app"
