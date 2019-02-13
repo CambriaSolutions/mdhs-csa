@@ -1,5 +1,6 @@
 {
   "projects": {
+    "stage": "mdhs-csa-stage",
     "prod": "mdhs-csa",
     "dev": "mdhs-csa-dev"
   }

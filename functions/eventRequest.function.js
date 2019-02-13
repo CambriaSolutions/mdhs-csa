@@ -1,5 +1,6 @@
 const functions = require('firebase-functions')
-const projectId = 'mdhs-csa-dev' //https://dialogflow.com/docs/agents#settings
+const admin = require('firebase-admin')
+const projectId = admin.instanceId().app.options.projectId //https://firebase.google.com/docs/reference/admin/node/admin.instanceId
 const languageCode = 'en-US'
 
 // Instantiate a DialogFlow client.
