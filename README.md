@@ -51,3 +51,11 @@ textUrl: 'https://us-central1-mdhs-csa-ENVIRONMENT.cloudfunctions.net/textReques
 - `initialActive` describes whether or not the window is open and active on page load
 - `policyText` can be any string
 - `googleMapsKey` a valid [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) key, should be stored in a .env file
+- `centerCoordinates` is an object containing coordinates for the map payload to center on:
+
+```
+const centerCoordinates = {
+  lat: 32.777025,
+  lng: -89.543724,
+}
+```
