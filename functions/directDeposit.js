@@ -181,3 +181,33 @@ exports.dirDepLength = async agent => {
     console.error(err)
   }
 }
+
+exports.dirDepAccountTerm = async agent => {
+  try {
+    await agent.add(
+      `Your Direct Deposit will remain in full force and effect until the agency, DCSE - Direct Deposit Unit has recieved written notice to terminate this authority and until DCSE and the Financial Institution have been afforded a reasonable time to act on it.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.dirDepTakeEffect = async agent => {
+  try {
+    await agent.add(
+      `For either an intial direct deposit request or a change direct deposit request, it generally takes about 2 weeks or 14 calendar days from when a correctly completed authorization agreement is recieved by MDHS-DCSE Direct Deposit staff for processing to be complete.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.dirDepExtraFunds = async agent => {
+  try {
+    await agent.add(
+      `By signing the Authorization Agreement for Direct Deposit, you have given DCSE permission to recover the money from future child support payments.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}

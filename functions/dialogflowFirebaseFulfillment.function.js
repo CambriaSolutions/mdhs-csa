@@ -49,7 +49,9 @@ const {
   dirDepStop,
   dirDepChecking,
   dirDepSavings,
-  dirDepLength,
+  dirDepAccountTerm,
+  dirDepTakeEffect,
+  dirDepExtraFunds,
 } = require('./directDeposit.js')
 
 const runtimeOpts = {
@@ -171,7 +173,9 @@ exports = module.exports = functions
     intentMap.set('dirDep-stop', dirDepStop)
     intentMap.set('dirDep-checking', dirDepChecking)
     intentMap.set('dirDep-savings', dirDepSavings)
-    intentMap.set('dirDep-length', dirDepLength)
+    intentMap.set('dirDep-account-term', dirDepAccountTerm)
+    intentMap.set('dirDep-take-effect', dirDepTakeEffect)
+    intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
 
     agent.handleRequest(intentMap)
   })
