@@ -31,6 +31,7 @@ with pins of locations. The Geocoding API request has two required parameters.
     initialActive={false}
     policyText={privacyPolicy}
     googleMapsKey={googleMapsKey}
+    centerCoordinates={centerCoordinates}
   />
 ```
 
