@@ -44,6 +44,12 @@ const {
   dirDepConfirmForm,
   dirDepShowForm,
   dirDepLearnMore,
+  dirDepChange,
+  dirDepStart,
+  dirDepStop,
+  dirDepChecking,
+  dirDepSavings,
+  dirDepLength,
 } = require('./directDeposit.js')
 
 const runtimeOpts = {
@@ -160,6 +166,12 @@ exports = module.exports = functions
     intentMap.set('dirDep-confirm-form', dirDepConfirmForm)
     intentMap.set('dirDep-show-form', dirDepShowForm)
     intentMap.set('dirDep-learn-more', dirDepLearnMore)
+    intentMap.set('dirDep-change', dirDepChange)
+    intentMap.set('dirDep-start', dirDepStart)
+    intentMap.set('dirDep-stop', dirDepStop)
+    intentMap.set('dirDep-checking', dirDepChecking)
+    intentMap.set('dirDep-savings', dirDepSavings)
+    intentMap.set('dirDep-length', dirDepLength)
 
     agent.handleRequest(intentMap)
   })
