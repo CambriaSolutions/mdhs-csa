@@ -19,7 +19,6 @@ const centerCoordinates = {
 
 class App extends Component {
   render() {
-    console.log(process.env)
     return (
       <Chatframe
         primaryColor='#3bafbf'
