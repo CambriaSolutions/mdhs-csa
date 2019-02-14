@@ -38,6 +38,14 @@ const {
 // Map intents
 const { mapRoot } = require('./map.js')
 
+// Direct deposit intents
+const {
+  dirDepRoot,
+  dirDepConfirmForm,
+  dirDepShowForm,
+  dirDepLearnMore,
+} = require('./directDeposit.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -146,6 +154,12 @@ exports = module.exports = functions
 
     // Map intents
     intentMap.set('map-root', mapRoot)
+
+    // Direct deposit intents
+    intentMap.set('dirDep-root', dirDepRoot)
+    intentMap.set('dirDep-confirm-form', dirDepConfirmForm)
+    intentMap.set('dirDep-show-form', dirDepShowForm)
+    intentMap.set('dirDep-learn-more', dirDepLearnMore)
 
     agent.handleRequest(intentMap)
   })
