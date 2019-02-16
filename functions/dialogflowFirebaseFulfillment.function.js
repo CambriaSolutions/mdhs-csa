@@ -29,6 +29,7 @@ const {
   comptsValidateName,
   comptsPhoneNumber,
   comptsCaseNumber,
+  comptsEmail,
   comptsCollectIssue,
   comptsSummarizeIssue,
   comptsReviseIssue,
@@ -138,6 +139,7 @@ exports = module.exports = functions
     intentMap.set('compts-root', comptsRoot)
     intentMap.set('compts-name', comptsValidateName)
     intentMap.set('compts-phone-number', comptsPhoneNumber)
+    intentMap.set('compts-email', comptsEmail)
     intentMap.set('compts-case-number', comptsCaseNumber)
     intentMap.set('compts-collect-issue', comptsCollectIssue)
     intentMap.set('compts-summarize-issue', comptsSummarizeIssue)
