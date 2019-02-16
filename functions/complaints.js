@@ -64,9 +64,9 @@ exports.comptsPhoneNumber = async agent => {
   // TODO: save data to db
   if (isValid) {
     try {
-      await agent.add(`What is your case number?`)
+      await agent.add(`What is your email address?`)
       await agent.context.set({
-        name: 'waiting-compts-case-number',
+        name: 'waiting-compts-email',
         lifespan: 2,
       })
       await agent.context.set({
@@ -84,6 +84,40 @@ exports.comptsPhoneNumber = async agent => {
       `)
       await agent.context.set({
         name: 'waiting-compts-phone-number',
+        lifespan: 2,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+exports.comptsEmail = async agent => {
+  const email = agent.parameters.email
+  const isValid = validator.isEmail(email)
+
+  if (isValid) {
+    try {
+      await agent.add(`Thanks, what is your case number?`)
+      await agent.context.set({
+        name: 'waiting-compts-case-number',
+        lifespan: 2,
+      })
+      await agent.context.set({
+        name: 'userinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(`
+      I didn't recognize that as an email address, 
+      could you say that again?
+      `)
+      await agent.context.set({
+        name: 'waiting-compts-email',
         lifespan: 2,
       })
     } catch (err) {
@@ -166,6 +200,7 @@ exports.comptsSummarizeIssue = async agent => {
   const lastName = userinfo.lastName
   const caseNumber = userinfo.caseNumber
   const phoneNumber = userinfo.phoneNumber
+  const email = userinfo.email
 
   if (
     filteredComplaints &&
@@ -181,6 +216,7 @@ exports.comptsSummarizeIssue = async agent => {
           title: `New Complaint`,
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
+          Email: ${email}
           Case Number: ${caseNumber}
           Message: ${filteredComplaints}`,
         })
