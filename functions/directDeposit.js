@@ -43,8 +43,9 @@ exports.dirDepConfirmForm = async agent => {
 
 exports.dirDepShowForm = async agent => {
   try {
+    await agent.add(`Here is the link to the direct deposit form [url].`)
     await agent.add(
-      `Here is the link to the direct deposit form [url], let me know if you have any questions!`
+      `In the event you cannot or do not want to download the form, please contact customer service at < > and our Mail Room will send you a copy.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -150,7 +151,10 @@ exports.dirDepSavings = async agent => {
       `You must submit a current letter from your bank, savings and loan or credit union (on bank letterhead) which includes the name of the account holder and account and routing bank numbers with this agreement.`
     )
     await agent.add(
-      `Make sure that the accounting and routing numbers are identifable and clearly visible on the document to prevent process delays. If the account and/or routing bank numbers are not idenfiable, the authorization agreement will not be processed!`
+      `Make sure that the accounting and routing numbers are identifable and clearly visible on the instrument to prevent process delays. If the account and/or routing bank numbes are not idenfiable, the authorization agreement will not be processed!`
+    )
+    await agent.add(
+      `Finally, don't forget, you MUST send the form to the proper location!!! Send to MDHS Child Support Enforcement Direct Deposit Unit PO Box 352 Jackson MS 39205-0352.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -164,19 +168,12 @@ exports.dirDepChecking = async agent => {
       `You must submit a preprinted voided blank check, deposit slip, or current letter from your bank (on bank letterhead) that includes your account and routing bank numbers with this agreement.`
     )
     await agent.add(
-      `Make sure that the accounting and routing numbers are identifable and clearly visible on the document to prevent process delays. If the account and/or routing bank numbers are not idenfiable, the authorization agreement will not be processed!`
+      `Make sure that the accounting and routing numbers are identifable and clearly visible on the instrument to prevent process delays. If the account and/or routing bank numbes are not idenfiable, the authorization agreement will not be processed!`
+    )
+    await agent.add(
+      `Finally, don't forget, you MUST send the form to the proper location!!! Send to MDHS Child Support Enforcement Direct Deposit Unit PO Box 352 Jackson MS 39205-0352.`
     )
     await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.dirDepLength = async agent => {
-  try {
-    await agent.add(
-      `Your Direct Deposit will remain in full force and effect until the agency, DCSE - Direct Deposit Unit has recieved written notice to terminate thi authority and intil DCSE and the Financial Institution have been afforded a reasonable time to act on it.`
-    )
   } catch (err) {
     console.error(err)
   }
