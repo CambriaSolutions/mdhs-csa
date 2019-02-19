@@ -13,6 +13,9 @@ const {
   pmtNumMothers,
 } = require('./payments.js')
 
+// Payment methods intents
+const { pmtMethodsRoot, pmtMethodsCustodial } = require('./paymentMethods.js')
+
 // Appointments intents
 const {
   apptsRoot,
@@ -142,6 +145,10 @@ exports = module.exports = functions
     intentMap.set('pmt-income', pmtIncome)
     intentMap.set('pmt-num-children', pmtNumChildren)
     intentMap.set('pmt-num-mothers', pmtNumMothers)
+
+    // Payment methods intents
+    intentMap.set('pmtMethods-root', pmtMethodsRoot)
+    intentMap.set('pmtMethods-custodial', pmtMethodsCustodial)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
