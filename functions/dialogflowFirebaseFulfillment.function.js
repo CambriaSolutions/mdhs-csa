@@ -37,7 +37,7 @@ const {
 } = require('./complaints.js')
 
 // Map intents
-const { mapRoot } = require('./map.js')
+const { mapRoot, mapDeliverMap } = require('./map.js')
 
 // Direct deposit intents
 const {
@@ -164,6 +164,7 @@ exports = module.exports = functions
 
     // Map intents
     intentMap.set('map-root', mapRoot)
+    intentMap.set('map-deliver-map', mapDeliverMap)
 
     // Direct deposit intents
     intentMap.set('dirDep-root', dirDepRoot)
