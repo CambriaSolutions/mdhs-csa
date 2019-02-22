@@ -6,9 +6,6 @@ exports.mapRoot = async agent => {
     await agent.add(
       `I can help located the nearest child support office to you, what is your address?`
     )
-    await agent.add(new Suggestion('Jackson'))
-    await agent.add(new Suggestion('510 George St Jackson'))
-    await agent.add(new Suggestion('718 E Fifteenth St, Yazoo City'))
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
       lifespan: 2,
