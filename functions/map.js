@@ -17,9 +17,23 @@ exports.mapRoot = async agent => {
 
 exports.mapDeliverMap = async agent => {
   try {
-    const userAddress = agent.parameters.userAddress
-    const userCity = agent.parameters.userCity
-    const currentLocation = { userAddress, userCity }
+    let userAddress = ''
+    let userCity = ''
+    let userZip = ''
+    if (agent.parameters.userAddress) {
+      userAddress = agent.parameters.userAddress.toLowerCase()
+    }
+    if (agent.parameters.userCity) {
+      userCity = agent.parameters.userCity.toLowerCase()
+    }
+    if (agent.parameters.userZip) {
+      userZip = agent.parameters.userZip.toLowerCase()
+    }
+    let userLocation = `${userAddress} ${userCity} ${userZip}`
+    if (!userLocation.includes('ms') && !userLocation.includes('mississippi')) {
+      userLocation += 'ms'
+    }
+    const currentLocation = { userLocation }
     const mapInfo = [currentLocation, locations]
     const mapPayload = JSON.stringify(mapInfo)
     await agent.add(`Here is an interactive map of all of our locations!`)
