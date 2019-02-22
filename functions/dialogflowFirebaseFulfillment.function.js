@@ -55,6 +55,14 @@ const {
   dirDepExtraFunds,
 } = require('./directDeposit.js')
 
+// IWO intents
+const {
+  iwoRoot,
+  iwoAnotherFamily,
+  iwoArrears,
+  iwoCalculateArrears,
+} = require('./incomeWitholding.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
