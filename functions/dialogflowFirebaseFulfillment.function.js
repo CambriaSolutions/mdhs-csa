@@ -59,7 +59,8 @@ const {
 const {
   iwoRoot,
   iwoAnotherFamily,
-  iwoArrears,
+  iwoIsSupporting,
+  iwoInArrears,
   iwoCalculateArrears,
 } = require('./incomeWitholding.js')
 
@@ -150,6 +151,12 @@ exports = module.exports = functions
     intentMap.set('pmt-income', pmtIncome)
     intentMap.set('pmt-num-children', pmtNumChildren)
     intentMap.set('pmt-num-mothers', pmtNumMothers)
+
+    // IWO intents
+    intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-another-family', iwoAnotherFamily)
+    intentMap.set('iwo-is-supporting', iwoIsSupporting)
+    intentMap.set('iwo-in-arrears', iwoInArrears)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)

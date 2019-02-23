@@ -9,6 +9,8 @@ exports.iwoRoot = async agent => {
     await agent.add(
       `Would you like assistance working through the CCPA guidelines to determine how much to withhold?`
     )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
     await agent.context.set({
       name: 'waiting-iwo-another-family',
       lifespan: 2,
@@ -26,7 +28,7 @@ exports.iwoAnotherFamily = async agent => {
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
-      name: 'waiting-iwo-arrears',
+      name: 'waiting-iwo-is-supporting',
       lifespan: 2,
     })
   } catch (error) {
@@ -43,7 +45,7 @@ exports.iwoIsSupporting = async agent => {
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
-      name: 'waiting-iwo-percent',
+      name: 'waiting-iwo-in-arrears',
       lifespan: 2,
     })
     // Save isSupporting in context
