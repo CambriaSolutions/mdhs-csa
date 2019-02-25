@@ -58,7 +58,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
-  iwoAnotherFamily,
+  iwoWantsAssistance,
   iwoIsSupporting,
   iwoInArrears,
   iwoCalculateArrears,
@@ -154,7 +154,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
-    intentMap.set('iwo-another-family', iwoAnotherFamily)
+    intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
     intentMap.set('iwo-in-arrears', iwoInArrears)
 

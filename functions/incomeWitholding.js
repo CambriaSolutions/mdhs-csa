@@ -12,7 +12,7 @@ exports.iwoRoot = async agent => {
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
-      name: 'waiting-iwo-another-family',
+      name: 'waiting-iwo-wants-assistance',
       lifespan: 2,
     })
   } catch (error) {
@@ -20,7 +20,7 @@ exports.iwoRoot = async agent => {
   }
 }
 
-exports.iwoAnotherFamily = async agent => {
+exports.iwoWantsAssistance = async agent => {
   try {
     await agent.add(
       `Is your employee supporting another family other than the one in the IWO?`
