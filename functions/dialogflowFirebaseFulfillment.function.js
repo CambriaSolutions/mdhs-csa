@@ -37,7 +37,23 @@ const {
 } = require('./complaints.js')
 
 // Map intents
-const { mapRoot } = require('./map.js')
+const { mapRoot, mapDeliverMap } = require('./map.js')
+
+// Direct deposit intents
+const {
+  dirDepRoot,
+  dirDepConfirmForm,
+  dirDepShowForm,
+  dirDepLearnMore,
+  dirDepChange,
+  dirDepStart,
+  dirDepStop,
+  dirDepChecking,
+  dirDepSavings,
+  dirDepAccountTerm,
+  dirDepTakeEffect,
+  dirDepExtraFunds,
+} = require('./directDeposit.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -148,6 +164,21 @@ exports = module.exports = functions
 
     // Map intents
     intentMap.set('map-root', mapRoot)
+    intentMap.set('map-deliver-map', mapDeliverMap)
+
+    // Direct deposit intents
+    intentMap.set('dirDep-root', dirDepRoot)
+    intentMap.set('dirDep-confirm-form', dirDepConfirmForm)
+    intentMap.set('dirDep-show-form', dirDepShowForm)
+    intentMap.set('dirDep-learn-more', dirDepLearnMore)
+    intentMap.set('dirDep-change', dirDepChange)
+    intentMap.set('dirDep-start', dirDepStart)
+    intentMap.set('dirDep-stop', dirDepStop)
+    intentMap.set('dirDep-checking', dirDepChecking)
+    intentMap.set('dirDep-savings', dirDepSavings)
+    intentMap.set('dirDep-account-term', dirDepAccountTerm)
+    intentMap.set('dirDep-take-effect', dirDepTakeEffect)
+    intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
 
     agent.handleRequest(intentMap)
   })
