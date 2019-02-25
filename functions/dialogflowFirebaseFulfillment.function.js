@@ -62,6 +62,8 @@ const {
   iwoIsSupporting,
   iwoInArrears,
   iwoCalculateArrears,
+  iwoConfirmEstimate,
+  iwoRequestDisposibleIncome,
 } = require('./incomeWitholding.js')
 
 const runtimeOpts = {
@@ -157,6 +159,8 @@ exports = module.exports = functions
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
     intentMap.set('iwo-in-arrears', iwoInArrears)
+    intentMap.set('iwo-confirm-estimate', iwoConfirmEstimate)
+    intentMap.set('iwo-request-disposible-income', iwoRequestDisposibleIncome)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
