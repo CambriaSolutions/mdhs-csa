@@ -19,12 +19,16 @@ exports.iwoRoot = async agent => {
       name: 'waiting-iwo-wants-assistance',
       lifespan: 2,
     })
+    await agent.context.set({
+      name: 'waiting-iwo-no-assistance',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
 }
 
-exports.iwoNoHelp = async agent => {
+exports.iwoNoAssistance = async agent => {
   try {
     await agent.add(`I'm sorry I couldn't help more.`)
     await handleEndConversation(agent)
@@ -85,6 +89,10 @@ exports.iwoInArrears = async agent => {
     await agent.add(new Suggestion('No'))
     await agent.context.set({
       name: 'waiting-iwo-confirm-estimate',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-iwo-no-assistance',
       lifespan: 2,
     })
 

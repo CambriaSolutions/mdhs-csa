@@ -10,7 +10,7 @@ const {
   pmtHandleTimeframe,
   pmtIncome,
   pmtNumChildren,
-  pmtNumMothers
+  pmtNumMothers,
 } = require('./payments.js')
 
 // Payment methods intents
@@ -23,7 +23,7 @@ const {
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
-  pmtMethodsMoneygram
+  pmtMethodsMoneygram,
 } = require('./paymentMethods.js')
 
 // Appointments intents
@@ -33,7 +33,7 @@ const {
   apptsNoContacted,
   apptsYesContacted,
   apptsOfficeLocations,
-  apptsGuidelines
+  apptsGuidelines,
 } = require('./appointments.js')
 
 // Complaints intents
@@ -46,7 +46,7 @@ const {
   comptsCollectIssue,
   comptsSummarizeIssue,
   comptsReviseIssue,
-  comptsSumbitIssue
+  comptsSumbitIssue,
 } = require('./complaints.js')
 
 // Map intents
@@ -65,13 +65,14 @@ const {
   dirDepSavings,
   dirDepAccountTerm,
   dirDepTakeEffect,
-  dirDepExtraFunds
+  dirDepExtraFunds,
 } = require('./directDeposit.js')
 
 // IWO intents
 const {
   iwoRoot,
   iwoWantsAssistance,
+  iwoNoAssistance,
   iwoIsSupporting,
   iwoInArrears,
   iwoConfirmEstimate,
@@ -89,7 +90,7 @@ const {
 
 const runtimeOpts = {
   timeoutSeconds: 300,
-  memory: '2GB'
+  memory: '2GB',
 }
 
 // const admin = require('firebase-admin')
@@ -112,11 +113,11 @@ exports = module.exports = functions
         await agent.add(new Suggestion('No'))
         await agent.context.set({
           name: 'waiting-not-child-support',
-          lifespan: 2
+          lifespan: 2,
         })
         await agent.context.set({
           name: 'waiting-yes-child-support',
-          lifespan: 2
+          lifespan: 2,
         })
       } catch (err) {
         console.error(err)
@@ -178,6 +179,7 @@ exports = module.exports = functions
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
+    intentMap.set('iwo-no-assistance', iwoNoAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
     intentMap.set('iwo-in-arrears', iwoInArrears)
     intentMap.set('iwo-confirm-estimate', iwoConfirmEstimate)
@@ -202,7 +204,6 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
-
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
