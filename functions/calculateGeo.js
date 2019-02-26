@@ -36,8 +36,8 @@ exports.getNearestThreeLocations = (currentCoordinates, locations) => {
       return {
         lat: place.lat,
         lng: place.lng,
-        street: place.addressComponents['street'],
-        city: place.addressComponents['city'],
+        street: place.addressComponents.street,
+        city: place.addressComponents.city,
         placeId: place.placeId,
         distance: distanceMiles,
       }
