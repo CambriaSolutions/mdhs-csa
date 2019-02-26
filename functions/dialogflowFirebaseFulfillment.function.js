@@ -10,7 +10,7 @@ const {
   pmtHandleTimeframe,
   pmtIncome,
   pmtNumChildren,
-  pmtNumMothers
+  pmtNumMothers,
 } = require('./payments.js')
 
 // Payment methods intents
@@ -23,7 +23,7 @@ const {
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
-  pmtMethodsMoneygram
+  pmtMethodsMoneygram,
 } = require('./paymentMethods.js')
 
 // Appointments intents
@@ -33,7 +33,7 @@ const {
   apptsNoContacted,
   apptsYesContacted,
   apptsOfficeLocations,
-  apptsGuidelines
+  apptsGuidelines,
 } = require('./appointments.js')
 
 // Complaints intents
@@ -46,7 +46,7 @@ const {
   comptsCollectIssue,
   comptsSummarizeIssue,
   comptsReviseIssue,
-  comptsSumbitIssue
+  comptsSumbitIssue,
 } = require('./complaints.js')
 
 // Map intents
@@ -65,12 +65,32 @@ const {
   dirDepSavings,
   dirDepAccountTerm,
   dirDepTakeEffect,
-  dirDepExtraFunds
+  dirDepExtraFunds,
 } = require('./directDeposit.js')
+
+// IWO intents
+const {
+  iwoRoot,
+  iwoWantsAssistance,
+  iwoNoAssistance,
+  iwoIsSupporting,
+  iwoInArrears,
+  iwoConfirmEstimate,
+  iwoRequestDisposableIncome,
+  iwoDefineDisposableIncome,
+  iwoDisposableIncome,
+  iwoWhereToSubmit,
+  iwoAdministrativeFee,
+  iwoOtherGarnishments,
+  iwoOtherState,
+  iwoInsuranceCoverage,
+  iwoNotAnEmployee,
+  iwoFireEmployee,
+} = require('./incomeWitholding.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
-  memory: '2GB'
+  memory: '2GB',
 }
 
 // const admin = require('firebase-admin')
@@ -93,11 +113,11 @@ exports = module.exports = functions
         await agent.add(new Suggestion('No'))
         await agent.context.set({
           name: 'waiting-not-child-support',
-          lifespan: 2
+          lifespan: 2,
         })
         await agent.context.set({
           name: 'waiting-yes-child-support',
-          lifespan: 2
+          lifespan: 2,
         })
       } catch (err) {
         console.error(err)
@@ -155,6 +175,24 @@ exports = module.exports = functions
     intentMap.set('pmt-income', pmtIncome)
     intentMap.set('pmt-num-children', pmtNumChildren)
     intentMap.set('pmt-num-mothers', pmtNumMothers)
+
+    // IWO intents
+    intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
+    intentMap.set('iwo-no-assistance', iwoNoAssistance)
+    intentMap.set('iwo-is-supporting', iwoIsSupporting)
+    intentMap.set('iwo-in-arrears', iwoInArrears)
+    intentMap.set('iwo-confirm-estimate', iwoConfirmEstimate)
+    intentMap.set('iwo-request-disposable-income', iwoRequestDisposableIncome)
+    intentMap.set('iwo-define-disposable-income', iwoDefineDisposableIncome)
+    intentMap.set('iwo-disposable-income', iwoDisposableIncome)
+    intentMap.set('iwo-where-to-submit', iwoWhereToSubmit)
+    intentMap.set('iwo-administrative-fee', iwoAdministrativeFee)
+    intentMap.set('iwo-other-garnishments', iwoOtherGarnishments)
+    intentMap.set('iwo-other-state', iwoOtherState)
+    intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
+    intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
+    intentMap.set('iwo-fire-employee', iwoFireEmployee)
 
     // Payment methods intents
     intentMap.set('pmtMethods-root', pmtMethodsRoot)
