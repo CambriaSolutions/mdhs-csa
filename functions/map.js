@@ -1,4 +1,5 @@
 const { Payload } = require('dialogflow-fulfillment')
+const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const locations = require('./coordinates.js')
 
 exports.mapRoot = async agent => {
@@ -34,7 +35,9 @@ exports.mapDeliverMap = async agent => {
       userLocation += 'ms'
     }
     const currentLocation = { userLocation }
-    const mapInfo = [currentLocation, locations]
+    const currentGeocode = await getGeocode(currentLocation)
+    const nearestLocations = getNearestThreeLocations(currentGeocode, locations)
+    const mapInfo = { locations, currentGeocode, nearestLocations }
     const mapPayload = JSON.stringify(mapInfo)
     await agent.add(`Here is an interactive map of all of our locations!`)
     await agent.add(
