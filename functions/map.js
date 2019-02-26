@@ -1,5 +1,5 @@
 const { Payload } = require('dialogflow-fulfillment')
-const { locations } = require('./geoInfo.js')
+const locations = require('./coordinates.js')
 
 exports.mapRoot = async agent => {
   const mapPayload = JSON.stringify(locations)

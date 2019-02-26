@@ -48,9 +48,26 @@ const retrieveCoordinates = async address => {
       lng: json.results[0].geometry.location.lng,
     }
     const placeId = json.results[0].place_id
-    const formattedAddress = json.results[0].formatted_address
+    const unformattedAddressComponents = json.results[0].address_components
+    const addressComponents = {}
+    const streetComponents = []
+
+    // Only include components for street name and city
+    unformattedAddressComponents.forEach(component => {
+      if (component.types.indexOf('route') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('street_number') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('locality') !== -1) {
+        addressComponents['city'] = component.long_name
+      }
+    })
+    addressComponents['street'] = streetComponents.join(' ')
+
     const result = {
-      formattedAddress,
+      addressComponents,
       lat: geoCode.lat,
       lng: geoCode.lng,
       placeId,
