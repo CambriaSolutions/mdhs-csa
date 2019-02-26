@@ -1,6 +1,6 @@
 const { Payload } = require('dialogflow-fulfillment')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
-const locations = require('./coordinates.js')
+const locations = require('./coordinates.json')
 
 exports.mapRoot = async agent => {
   try {

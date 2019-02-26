@@ -61,10 +61,10 @@ const retrieveCoordinates = async address => {
         streetComponents.push(component.long_name)
       }
       if (component.types.indexOf('locality') !== -1) {
-        addressComponents['city'] = component.long_name
+        addressComponents.city = component.long_name
       }
     })
-    addressComponents['street'] = streetComponents.join(' ')
+    addressComponents.street = streetComponents.join(' ')
 
     const result = {
       addressComponents,
