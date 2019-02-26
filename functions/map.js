@@ -1,4 +1,4 @@
-const { Suggestion, Payload } = require('dialogflow-fulfillment')
+const { Payload } = require('dialogflow-fulfillment')
 const { locations } = require('./geoInfo.js')
 
 exports.mapRoot = async agent => {
@@ -10,7 +10,6 @@ exports.mapRoot = async agent => {
       name: 'waiting-maps-deliver-map',
       lifespan: 2,
     })
-    await agent.add(new Suggestion('718 E Fifteenth St, Yazoo City'))
   } catch (error) {
     console.error(error)
   }
