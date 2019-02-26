@@ -10,8 +10,21 @@ const {
   pmtHandleTimeframe,
   pmtIncome,
   pmtNumChildren,
-  pmtNumMothers,
+  pmtNumMothers
 } = require('./payments.js')
+
+// Payment methods intents
+const {
+  pmtMethodsRoot,
+  pmtMethodsCustodial,
+  pmtMethodsNonCustodial,
+  pmtMethodsEmployer,
+  pmtMethodsNone,
+  pmtMethodsCheckOrMoneyOrder,
+  pmtMethodsCash,
+  pmtMethodsEcheckDebit,
+  pmtMethodsMoneygram
+} = require('./paymentMethods.js')
 
 // Appointments intents
 const {
@@ -20,7 +33,7 @@ const {
   apptsNoContacted,
   apptsYesContacted,
   apptsOfficeLocations,
-  apptsGuidelines,
+  apptsGuidelines
 } = require('./appointments.js')
 
 // Complaints intents
@@ -33,7 +46,7 @@ const {
   comptsCollectIssue,
   comptsSummarizeIssue,
   comptsReviseIssue,
-  comptsSumbitIssue,
+  comptsSumbitIssue
 } = require('./complaints.js')
 
 // Map intents
@@ -52,7 +65,7 @@ const {
   dirDepSavings,
   dirDepAccountTerm,
   dirDepTakeEffect,
-  dirDepExtraFunds,
+  dirDepExtraFunds
 } = require('./directDeposit.js')
 
 // IWO intents
@@ -76,7 +89,7 @@ const {
 
 const runtimeOpts = {
   timeoutSeconds: 300,
-  memory: '2GB',
+  memory: '2GB'
 }
 
 // const admin = require('firebase-admin')
@@ -99,11 +112,11 @@ exports = module.exports = functions
         await agent.add(new Suggestion('No'))
         await agent.context.set({
           name: 'waiting-not-child-support',
-          lifespan: 2,
+          lifespan: 2
         })
         await agent.context.set({
           name: 'waiting-yes-child-support',
-          lifespan: 2,
+          lifespan: 2
         })
       } catch (err) {
         console.error(err)
@@ -178,6 +191,18 @@ exports = module.exports = functions
     intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
     intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
     intentMap.set('iwo-fire-employee', iwoFireEmployee)
+
+    // Payment methods intents
+    intentMap.set('pmtMethods-root', pmtMethodsRoot)
+    intentMap.set('pmtMethods-custodial', pmtMethodsCustodial)
+    intentMap.set('pmtMethods-nonCustodial', pmtMethodsNonCustodial)
+    intentMap.set('pmtMethods-employer', pmtMethodsEmployer)
+    intentMap.set('pmtMethods-none', pmtMethodsNone)
+    intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
+    intentMap.set('pmtMethods-cash', pmtMethodsCash)
+    intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
+    intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
+
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
