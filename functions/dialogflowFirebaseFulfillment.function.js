@@ -61,9 +61,17 @@ const {
   iwoWantsAssistance,
   iwoIsSupporting,
   iwoInArrears,
-  iwoCalculateArrears,
   iwoConfirmEstimate,
-  iwoRequestDisposibleIncome,
+  iwoRequestDisposableIncome,
+  iwoDefineDisposableIncome,
+  iwoDisposableIncome,
+  iwoWhereToSubmit,
+  iwoAdministrativeFee,
+  iwoOtherGarnishments,
+  iwoOtherState,
+  iwoInsuranceCoverage,
+  iwoNotAnEmployee,
+  iwoFireEmployee,
 } = require('./incomeWitholding.js')
 
 const runtimeOpts = {
@@ -160,7 +168,16 @@ exports = module.exports = functions
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
     intentMap.set('iwo-in-arrears', iwoInArrears)
     intentMap.set('iwo-confirm-estimate', iwoConfirmEstimate)
-    intentMap.set('iwo-request-disposible-income', iwoRequestDisposibleIncome)
+    intentMap.set('iwo-request-disposable-income', iwoRequestDisposableIncome)
+    intentMap.set('iwo-define-disposable-income', iwoDefineDisposableIncome)
+    intentMap.set('iwo-disposable-income', iwoDisposableIncome)
+    intentMap.set('iwo-where-to-submit', iwoWhereToSubmit)
+    intentMap.set('iwo-administrative-fee', iwoAdministrativeFee)
+    intentMap.set('iwo-other-garnishments', iwoOtherGarnishments)
+    intentMap.set('iwo-other-state', iwoOtherState)
+    intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
+    intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
+    intentMap.set('iwo-fire-employee', iwoFireEmployee)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)

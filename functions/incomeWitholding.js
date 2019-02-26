@@ -1,5 +1,9 @@
 const { Suggestion } = require('dialogflow-fulfillment')
-const { calculatePercentage } = require('./globalFunctions.js')
+const {
+  calculatePercentage,
+  handleEndConversation,
+} = require('./globalFunctions.js')
+// const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.iwoRoot = async agent => {
   try {
@@ -15,11 +19,19 @@ exports.iwoRoot = async agent => {
       name: 'waiting-iwo-wants-assistance',
       lifespan: 2,
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 }
 
+exports.iwoNoHelp = async agent => {
+  try {
+    await agent.add(`I'm sorry I couldn't help more.`)
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
 exports.iwoWantsAssistance = async agent => {
   try {
     await agent.add(
@@ -31,17 +43,15 @@ exports.iwoWantsAssistance = async agent => {
       name: 'waiting-iwo-is-supporting',
       lifespan: 2,
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 }
 
 exports.iwoIsSupporting = async agent => {
   const isSupporting = agent.parameters.isSupporting.toLowerCase() === 'yes'
   try {
-    await agent.add(
-      `Is your employee supporting another family other than the one in the IWO?`
-    )
+    await agent.add(`Is your employee in arrears greater than 12 weeks?`)
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
@@ -54,8 +64,8 @@ exports.iwoIsSupporting = async agent => {
       parameters: { isSupporting },
       lifespan: 100,
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 }
 
@@ -71,6 +81,8 @@ exports.iwoInArrears = async agent => {
     await agent.add(
       `Would you like assistance estimating the withholding amount?`
     )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
     await agent.context.set({
       name: 'waiting-iwo-confirm-estimate',
       lifespan: 2,
@@ -81,45 +93,151 @@ exports.iwoInArrears = async agent => {
       name: 'iwo-factors',
       parameters: { percentage },
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 }
 
 exports.iwoConfirmEstimate = async agent => {
-  await agent.add(
-    `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call 1-877-882-4916.`
-  )
-  await agent.add(new Suggestion('I Understand'))
-  await agent.context.set({
-    name: 'waiting-iwo-estimate',
-    lifespan: 2,
-  })
+  try {
+    await agent.add(
+      `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call 1-877-882-4916.`
+    )
+    await agent.add(new Suggestion('I Understand'))
+    await agent.context.set({
+      name: 'waiting-iwo-request-disposable-income',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
 }
 
-exports.iwoRequestDisposibleIncome = async agent => {
-  await agent.add(`What is the employee's disposible income?`)
-  await agent.add(new Suggestion('I Understand'))
-  await agent.context.set({
-    name: 'waiting-iwo-disposible-income',
-    lifespan: 2,
-  })
-  await agent.context.set({
-    name: 'waiting-iwo-define-disposible-income',
-    lifespan: 2,
-  })
+exports.iwoRequestDisposableIncome = async agent => {
+  try {
+    await agent.add(`What is the employee's disposable income?`)
+    await agent.add(new Suggestion('Disposible Income Definition'))
+    await agent.context.set({
+      name: 'waiting-iwo-disposable-income',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-iwo-define-disposable-income',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
 }
 
-exports.iwoDefineDisposibleIncome = async agent => {
-  await agent.add(
-    `Disposable income = gross pay - mandatory deductions such as Federal, state and local taxes, unemployment insurance, workers' compensation insurance, state employee retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
-  )
-  await agent.add(
-    `Note: disposable income is not necessarily the same as net pay. For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
-  )
-  await agent.add(`What is the employee's disposible income?`)
-  await agent.context.set({
-    name: 'waiting-iwo-disposible-income',
-    lifespan: 2,
-  })
+exports.iwoDefineDisposableIncome = async agent => {
+  try {
+    await agent.add(
+      `Disposable income = gross pay - mandatory deductions such as Federal, state and local taxes, unemployment insurance, workers' compensation insurance, state employee retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
+    )
+    await agent.add(
+      `Note: disposable income is not necessarily the same as net pay. For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+    )
+    await agent.add(`What is the employee's disposable income?`)
+    await agent.context.set({
+      name: 'waiting-iwo-disposable-income',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoDisposableIncome = async agent => {
+  const disposableIncome = agent.parameters.disposableIncome
+  const percentToWithhold = await agent.context.get('iwo-factors').parameters
+    .percentage
+  const amountToWithhold = (
+    (percentToWithhold / 100) *
+    disposableIncome
+  ).toFixed(2)
+  if (amountToWithhold) {
+    try {
+      await agent.add(
+        `The amount to withhold is approximately $${amountToWithhold}`
+      )
+      await handleEndConversation(agent)
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    await agent.add(
+      `I'm sorry, something went wrong, please try again or contact 1-877-882-4916 for further assistance.`
+    )
+  }
+}
+
+exports.iwoWhereToSubmit = async agent => {
+  try {
+    await agent.add(
+      `You are required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoAdministrativeFee = async agent => {
+  try {
+    await agent.add(
+      `Yes, the administrative fee is included in the payment specified on the IWO.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoOtherGarnishments = async agent => {
+  try {
+    await agent.add(
+      `Child support payments take precendence over all other garnishments.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoOtherState = async agent => {
+  try {
+    await agent.add(
+      `Please contact DHS customer support at 1-877-882-4916 to help with this request.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoInsuranceCoverage = async agent => {
+  try {
+    await agent.add(
+      `If ordered within the IWO, Mississippi CSE only enforces medical insurance payments for children on the IWO.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoNotAnEmployee = async agent => {
+  try {
+    await agent.add(
+      `Per the IWO, the employer is required to respond with employment history to the State Dispersement Unit.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoFireEmployee = async agent => {
+  try {
+    await agent.add(
+      `Per MS state law, if you were to fire an employee due to a garnishment, you are subject to a fine. (Page 4 of IWO - anti discrimination section).`
+    )
+  } catch (err) {
+    console.error(err)
+  }
 }
