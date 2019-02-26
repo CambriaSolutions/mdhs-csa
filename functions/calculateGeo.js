@@ -1,7 +1,7 @@
+require('dotenv').config()
 const URL = require('url').URL
 const fetch = require('node-fetch')
 const geolib = require('geolib')
-require('dotenv').config()
 
 exports.getGeocode = async address => {
   const apiKey = process.env.GOOGLE_MAPS_KEY
