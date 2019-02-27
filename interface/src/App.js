@@ -10,11 +10,12 @@ const dfWebhookOptions = {
 const policyText =
   'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
 
-const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
-
-const centerCoordinates = {
-  lat: 32.777025,
-  lng: -89.543724,
+export const mapConfig = {
+  googleMapsKey: process.env.GOOGLE_MAPS_KEY,
+  centerCoordinates: {
+    lat: 32.777025,
+    lng: -89.543724,
+  },
 }
 
 class App extends Component {
@@ -29,8 +30,7 @@ class App extends Component {
         fullscreen={false}
         initialActive={false}
         policyText={policyText}
-        googleMapsKey={googleMapsKey}
-        centerCoordinates={centerCoordinates}
+        mapConfig={mapConfig}
       />
     )
   }
