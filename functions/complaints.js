@@ -26,8 +26,7 @@ exports.comptsValidateName = async agent => {
   if (firstName && lastName) {
     try {
       await agent.add(
-        `Thanks. What is your phone number
-          so we can reach out to you with a solution?`
+        `Thanks. What is your phone number so we can reach out to you with a solution?`
       )
       await agent.context.set({
         name: 'waiting-compts-phone-number',
@@ -55,6 +54,10 @@ exports.comptsValidateName = async agent => {
     }
   }
 }
+
+// Add email request...
+// 1. Stage environment intent & webhook
+// 2. Dev environment intent & webhook
 
 exports.comptsPhoneNumber = async agent => {
   const phoneNumber = agent.parameters.phoneNumber
