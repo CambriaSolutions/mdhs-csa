@@ -11,7 +11,7 @@ const policyText =
   'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
 
 export const mapConfig = {
-  googleMapsKey: process.env.GOOGLE_MAPS_KEY,
+  googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
   centerCoordinates: {
     lat: 32.777025,
     lng: -89.543724,
