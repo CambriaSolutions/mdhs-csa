@@ -1,16 +1,15 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.eppiRoot = async agent => {
   try {
     await agent.add(
       `Sure, I can help with the following topics regarding your payment card.`
     )
+    await agent.add(new Suggestion('Replace, Report Stolen, Lost or Fraud'))
     await agent.add(new Suggestion('Get EPPICard'))
     await agent.add(new Suggestion('Activate'))
     await agent.add(new Suggestion('Fees'))
     await agent.add(new Suggestion('Set Up Notifications'))
-    await agent.add(new Suggestion('Replace, Report Stolen, Lost or Fraud'))
     await agent.add(new Suggestion('FAQ'))
   } catch (err) {
     console.log(err)
@@ -20,13 +19,13 @@ exports.eppiRoot = async agent => {
 exports.eppiGetCard = async agent => {
   try {
     await agent.add(
-      `The default payment method for all Child Support cases is the EPPI Card. To activate the EPPI Card,  you can either call 1-877-882-4916 or visit a local child support office.`
+      `The default payment method for all Child Support cases is the EPPI Card. To activate the EPPI Card, you can either call 1-877-882-4916 or visit a local Child Support office.`
     )
     await agent.add(
       `If you are receiving payments by paper check, you can change it to the EPPI Card.`
     )
     await agent.add(
-      `To learn more about EPPI Cards, click here to visit the EPPI Card website. Here or call their support line at 1-866-461-4095.`
+      `To learn more about EPPI Cards, [click here] to visit the EPPI Card website or call their support line at 1-866-461-4095.`
     )
   } catch (err) {
     console.log(err)
@@ -88,7 +87,7 @@ exports.eppiReplaceReport = async agent => {
 exports.eppiFAQ = async agent => {
   try {
     await agent.add(
-      `Sure, I can help answer general quesitons you might have about the EPPI Card. What is your qeustion?`
+      `Sure, I can help answer general questions you might have about the EPPI Card. What is your question?`
     )
   } catch (err) {
     console.log(err)
@@ -123,7 +122,7 @@ exports.eppiUseCard = async agent => {
 exports.eppiWithdrawCash = async agent => {
   try {
     await agent.add(
-      `You are allowed a total of three (3) free ATM cash withdrawals each calendar month at "in-network" ATM's. Each month you are allowed unlimted cash withdrawals at MasterCard member Bank teller windows. When using your card at an ATM, insert the card and enter your PIN. Press either the checking or saving button on the ATM. Select "Cash Withdrawal." Enter the amount of cash needed and press "enter".`
+      `You are allowed a total of three (3) free ATM cash withdrawals each calendar month at "in-network" ATM's. Each month you are allowed unlimted cash withdrawals at MasterCard member bank teller windows.`
     )
   } catch (err) {
     console.log(err)
