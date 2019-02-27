@@ -67,6 +67,7 @@ const {
   dirDepAccountTerm,
   dirDepTakeEffect,
   dirDepExtraFunds,
+  dirDepPaymentClosedAccount,
 } = require('./directDeposit.js')
 
 // IWO intents
@@ -243,6 +244,7 @@ exports = module.exports = functions
     intentMap.set('dirDep-account-term', dirDepAccountTerm)
     intentMap.set('dirDep-take-effect', dirDepTakeEffect)
     intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
+    intentMap.set('dirDep-payment-closed-account', dirDepPaymentClosedAccount)
 
     agent.handleRequest(intentMap)
   })
