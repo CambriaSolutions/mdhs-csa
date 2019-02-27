@@ -36,18 +36,19 @@ const {
   apptsGuidelines,
 } = require('./appointments.js')
 
-// Complaints intents
+// Support intents
 const {
-  comptsRoot,
-  comptsValidateName,
-  comptsPhoneNumber,
-  comptsCaseNumber,
-  comptsEmail,
-  comptsCollectIssue,
-  comptsSummarizeIssue,
-  comptsReviseIssue,
-  comptsSumbitIssue,
-} = require('./complaints.js')
+  supportRoot,
+  supportValidateName,
+  supportPhoneNumber,
+  supportCaseNumber,
+  supportNoCaseNumber,
+  supportEmail,
+  supportCollectIssue,
+  supportSummarizeIssue,
+  supportReviseIssue,
+  supportSumbitIssue,
+} = require('./support.js')
 
 // Map intents
 const { mapRoot, mapDeliverMap } = require('./map.js')
@@ -129,7 +130,7 @@ exports = module.exports = functions
         await agent.add(`What can I help you with today?`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
@@ -140,12 +141,12 @@ exports = module.exports = functions
         await agent.add(`What can I help you with?`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
     }
-    // Should we add the suggestions from yes-child-support?
+
     const notChildSupport = async agent => {
       try {
         await agent.add(
@@ -155,7 +156,7 @@ exports = module.exports = functions
         await agent.add(`I can help you with these topics.`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
@@ -213,16 +214,17 @@ exports = module.exports = functions
     intentMap.set('appts-office-locations', apptsOfficeLocations)
     intentMap.set('appts-guidelines', apptsGuidelines)
 
-    // Complaints intents
-    intentMap.set('compts-root', comptsRoot)
-    intentMap.set('compts-name', comptsValidateName)
-    intentMap.set('compts-phone-number', comptsPhoneNumber)
-    intentMap.set('compts-email', comptsEmail)
-    intentMap.set('compts-case-number', comptsCaseNumber)
-    intentMap.set('compts-collect-issue', comptsCollectIssue)
-    intentMap.set('compts-summarize-issue', comptsSummarizeIssue)
-    intentMap.set('compts-revise-issue', comptsReviseIssue)
-    intentMap.set('compts-submit-issue', comptsSumbitIssue)
+    // Support intents
+    intentMap.set('support-root', supportRoot)
+    intentMap.set('support-name', supportValidateName)
+    intentMap.set('support-phone-number', supportPhoneNumber)
+    intentMap.set('support-email', supportEmail)
+    intentMap.set('support-case-number', supportCaseNumber)
+    intentMap.set('support-no-case-number', supportNoCaseNumber)
+    intentMap.set('support-collect-issue', supportCollectIssue)
+    intentMap.set('support-summarize-issue', supportSummarizeIssue)
+    intentMap.set('support-revise-issue', supportReviseIssue)
+    intentMap.set('support-submit-issue', supportSumbitIssue)
 
     // Map intents
     intentMap.set('map-root', mapRoot)
