@@ -70,6 +70,23 @@ const {
   dirDepPaymentClosedAccount,
 } = require('./directDeposit.js')
 
+// EppiCard intents
+const {
+  eppiRoot,
+  eppiGetCard,
+  eppiActivateCard,
+  eppiFees,
+  eppiNotifications,
+  eppiReplaceReport,
+  eppiFAQ,
+  eppiPaymentHistory,
+  eppiUseCard,
+  eppiWithdrawCash,
+  eppiSurcharge,
+  eppiLearnMore,
+  eppiBalanceDenial,
+} = require('./eppiCard.js')
+
 // IWO intents
 const {
   iwoRoot,
@@ -245,6 +262,21 @@ exports = module.exports = functions
     intentMap.set('dirDep-take-effect', dirDepTakeEffect)
     intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
     intentMap.set('dirDep-payment-closed-account', dirDepPaymentClosedAccount)
+
+    // EppiCard intents
+    intentMap.set('eppi-root', eppiRoot)
+    intentMap.set('eppi-get-card', eppiGetCard)
+    intentMap.set('eppi-activate-card', eppiActivateCard)
+    intentMap.set('eppi-fees', eppiFees)
+    intentMap.set('eppi-notifications', eppiNotifications)
+    intentMap.set('eppi-replace-report', eppiReplaceReport)
+    intentMap.set('eppi-faq', eppiFAQ)
+    intentMap.set('eppi-payment-history', eppiPaymentHistory)
+    intentMap.set('eppi-use-card', eppiUseCard)
+    intentMap.set('eppi-withdraw-cash', eppiWithdrawCash)
+    intentMap.set('eppi-surcharge', eppiSurcharge)
+    intentMap.set('eppi-learn-more', eppiLearnMore)
+    intentMap.set('eppi-balance-denial', eppiBalanceDenial)
 
     agent.handleRequest(intentMap)
   })
