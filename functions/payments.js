@@ -127,7 +127,7 @@ exports.pmtIncome = async agent => {
 
   try {
     await agent.add(
-      `Just a few more questions about your children. First, how many children do you have?`
+      `On this order, how many children are you financially responsible for?`
     )
     await agent.context.set({
       name: 'waiting-pmt-num-children',
