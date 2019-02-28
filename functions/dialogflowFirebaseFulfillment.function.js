@@ -2,16 +2,23 @@ const functions = require('firebase-functions')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
-// Payments intents
+// General payment intents
 const {
-  pmtRoot,
-  pmtTimeframe,
-  pmtUnknownIncome,
-  pmtHandleTimeframe,
-  pmtIncome,
-  pmtNumChildren,
-  pmtNumMothers,
-} = require('./payments.js')
+  pmtsGeneralRoot,
+  pmtsGeneralReceivePayments,
+  pmtsGeneralMakePayments,
+} = require('./paymentsGeneral.js')
+
+// Payment calculator intents
+const {
+  pmtCalcRoot,
+  pmtCalcTimeframe,
+  pmtCalcUnknownIncome,
+  pmtCalcHandleTimeframe,
+  pmtCalcIncome,
+  pmtCalcNumChildren,
+  pmtCalcNumMothers,
+} = require('./paymentsCalculator.js')
 
 // Payment methods intents
 const {
@@ -186,14 +193,14 @@ exports = module.exports = functions
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
 
-    // Payments intents
-    intentMap.set('pmt-root', pmtRoot)
-    intentMap.set('pmt-timeframe', pmtTimeframe)
-    intentMap.set('pmt-unknown-income', pmtUnknownIncome)
-    intentMap.set('pmt-handle-timeframe', pmtHandleTimeframe)
-    intentMap.set('pmt-income', pmtIncome)
-    intentMap.set('pmt-num-children', pmtNumChildren)
-    intentMap.set('pmt-num-mothers', pmtNumMothers)
+    // Payment calculation intents
+    intentMap.set('pmt-calc-root', pmtCalcRoot)
+    intentMap.set('pmt-calc-timeframe', pmtCalcTimeframe)
+    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
+    intentMap.set('pmt-calc-handle-timeframe', pmtCalcHandleTimeframe)
+    intentMap.set('pmt-calc-income', pmtCalcIncome)
+    intentMap.set('pmt-calc-num-children', pmtCalcNumChildren)
+    intentMap.set('pmt-calc-num-mothers', pmtCalcNumMothers)
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
@@ -212,6 +219,11 @@ exports = module.exports = functions
     intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
     intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
     intentMap.set('iwo-fire-employee', iwoFireEmployee)
+
+    // General payment intents
+    intentMap.set('pmts-general-root', pmtsGeneralRoot)
+    intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
+    intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
 
     // Payment methods intents
     intentMap.set('pmtMethods-root', pmtMethodsRoot)

@@ -12,19 +12,19 @@ exports.pmtMethodsRoot = async agent => {
     await agent.add(new Suggestion('None of These'))
     await agent.context.set({
       name: 'waiting-pmtMethods-custodial',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-nonCustodial',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-employer',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-none',
-      lifespan: 2
+      lifespan: 2,
     })
   } catch (err) {
     console.log(err)
@@ -46,7 +46,7 @@ exports.pmtMethodsCustodial = async agent => {
 exports.pmtMethodsNonCustodial = async agent => {
   try {
     await agent.add(
-      `Non-custodial parents have a variety of methods to make payments. Talk to your employer about a payrol deduction, or select one of the following to learn more.`
+      `Non-custodial parents have a variety of methods to make payments. Talk to your employer about a payroll deduction, or select one of the following to learn more.`
     )
     await agent.add(new Suggestion('Check or Money Order'))
     await agent.add(new Suggestion('Cash'))
@@ -54,19 +54,19 @@ exports.pmtMethodsNonCustodial = async agent => {
     await agent.add(new Suggestion('Moneygram'))
     await agent.context.set({
       name: 'waiting-pmtMethods-checkOrMoneyOrder',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-cash',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-eCheckDebit',
-      lifespan: 2
+      lifespan: 2,
     })
     await agent.context.set({
       name: 'waiting-pmtMethods-moneygram',
-      lifespan: 2
+      lifespan: 2,
     })
   } catch (err) {
     console.log(err)
@@ -82,7 +82,7 @@ exports.pmtMethodsEmployer = async agent => {
       new Card({
         title: 'iPayOnline',
         buttonText: 'Click here',
-        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/'
+        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/',
       })
     )
     await handleEndConversation(agent)
@@ -126,7 +126,7 @@ exports.pmtMethodsCash = async agent => {
       new Card({
         title: 'PayNearMe',
         buttonText: 'Click here',
-        buttonUrl: 'http://paynearme.com/mississippi'
+        buttonUrl: 'http://paynearme.com/mississippi',
       })
     )
     await handleEndConversation(agent)
@@ -144,7 +144,7 @@ exports.pmtMethodsEcheckDebit = async agent => {
       new Card({
         title: 'iPayOnline',
         buttonText: 'Click here',
-        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/'
+        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/',
       })
     )
     await handleEndConversation(agent)
@@ -162,7 +162,7 @@ exports.pmtMethodsMoneygram = async agent => {
       new Card({
         title: 'MoneyGram',
         buttonText: 'Click here',
-        buttonUrl: 'www.MoneyGram.com/BillPayLocations'
+        buttonUrl: 'www.MoneyGram.com/BillPayLocations',
       })
     )
     await agent.add(
@@ -173,7 +173,7 @@ exports.pmtMethodsMoneygram = async agent => {
         title: 'Quick Reference Guide',
         buttonText: 'Click here',
         buttonUrl:
-          'http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf'
+          'http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf',
       })
     )
     await handleEndConversation(agent)

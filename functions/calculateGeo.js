@@ -5,6 +5,7 @@ const geolib = require('geolib')
 
 exports.getGeocode = async address => {
   const apiKey = process.env.GOOGLE_MAPS_KEY
+
   const url = new URL('https://maps.googleapis.com/maps/api/geocode/json'),
     params = {
       address: address.userLocation,
