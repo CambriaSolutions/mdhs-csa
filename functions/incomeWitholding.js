@@ -1,4 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Card } = require('dialogflow-fulfillment')
 const {
   calculatePercentage,
   handleEndConversation,
@@ -142,8 +142,15 @@ exports.iwoDefineDisposableIncome = async agent => {
     await agent.add(
       `Disposable income = gross pay - mandatory deductions such as Federal, state and local taxes, unemployment insurance, workers' compensation insurance, state employee retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
     )
+
     await agent.add(
-      `Note: disposable income is not necessarily the same as net pay. For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+      new Card({
+        title: 'Disposable income is not necessarily the same as net pay.',
+        buttonText:
+          'For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.',
+        buttonUrl:
+          'https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice',
+      })
     )
     await agent.add(`What is the employee's disposable income?`)
     await agent.context.set({
