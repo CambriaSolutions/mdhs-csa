@@ -1,0 +1,84 @@
+[
+  {
+    "id": "474eaae4-9f27-46e1-900c-1b8a6227d9eb",
+    "data": [
+      {
+        "text": "i believe so",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878971
+  },
+  {
+    "id": "ef9c4139-18d6-427c-8a96-ac7a99421c28",
+    "data": [
+      {
+        "text": "yup",
+        "alias": "wantsAssistance",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878938
+  },
+  {
+    "id": "3ecdbf23-6f62-4720-8574-2ecf730e2f31",
+    "data": [
+      {
+        "text": "sure",
+        "alias": "wantsAssistance",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878938
+  },
+  {
+    "id": "066a25ff-9297-410b-94f4-1982048ce7d3",
+    "data": [
+      {
+        "text": "i think so",
+        "alias": "wantsAssistance",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878938
+  },
+  {
+    "id": "5917e3dd-a545-4943-a666-22991ed69989",
+    "data": [
+      {
+        "text": "correct",
+        "alias": "wantsAssistance",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878938
+  },
+  {
+    "id": "29ff99e3-6b02-4b2e-bc71-85a03d8dba0a",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "wantsAssistance",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550878938
+  }
+]

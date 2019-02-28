@@ -1,0 +1,45 @@
+{
+  "id": "152d4cc7-5a95-44cd-817f-a4fb79ab2bf5",
+  "name": "iwo-not-an-employee",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "ecc537d0-9482-4304-a881-8bb31b622611",
+          "required": false,
+          "dataType": "@guardianship",
+          "name": "guardianship",
+          "value": "$guardianship",
+          "isList": false
+        },
+        {
+          "id": "8513cad4-13e7-4d64-9707-82e9818b46f2",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551133403,
+  "fallbackIntent": false,
+  "events": []
+}

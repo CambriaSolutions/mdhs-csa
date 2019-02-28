@@ -1,0 +1,38 @@
+[
+  {
+    "id": "2342b7fa-1d55-4188-a6b6-5e52173d79e9",
+    "data": [
+      {
+        "text": "how many withdrawals",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222476
+  },
+  {
+    "id": "116c52c6-9b40-464f-a29c-8becd674c673",
+    "data": [
+      {
+        "text": "how do i withdraw cash",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222476
+  },
+  {
+    "id": "ad4ec2ad-4234-450f-9171-4489cd049425",
+    "data": [
+      {
+        "text": "how do i get cash at an ATM or bank",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222476
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "616bb2eb-2a32-4202-9571-359b673046f6",
+    "data": [
+      {
+        "text": "debit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550169433
+  },
+  {
+    "id": "7ea90429-11b1-47ec-89b9-9633f237ad1d",
+    "data": [
+      {
+        "text": "checking",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550169433
+  }
+]

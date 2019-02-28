@@ -1,0 +1,41 @@
+{
+  "id": "e2fb5e41-3325-4451-b461-208883967b5b",
+  "name": "support-submit-issue",
+  "auto": true,
+  "contexts": [
+    "waiting-compts-submit-issue"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-compts-submit-issue",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-compts-revise-issue",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294967,
+  "fallbackIntent": false,
+  "events": []
+}

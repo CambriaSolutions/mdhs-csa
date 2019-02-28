@@ -1,0 +1,30 @@
+{
+  "id": "59b8abc3-b4e8-4d27-80d4-6a3a96440abf",
+  "name": "eppi-learn-more",
+  "auto": true,
+  "contexts": [
+    "waiting-eppi-faq"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551377448,
+  "fallbackIntent": false,
+  "events": []
+}

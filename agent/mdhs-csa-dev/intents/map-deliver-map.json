@@ -1,0 +1,73 @@
+{
+  "id": "de8a1f8c-6eb2-4d9f-939b-474a5d691b1c",
+  "name": "map-deliver-map",
+  "auto": true,
+  "contexts": [
+    "waiting-maps-deliver-map"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-maps-deliver-map",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "6e2e82de-9b9e-4017-a1c3-8d98085c9d70",
+          "required": false,
+          "dataType": "@sys.address",
+          "name": "userAddress",
+          "value": "$userAddress",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the street name?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "d44175b2-a0d7-4196-8393-7bca2aef59c7",
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "userCity",
+          "value": "$userCity",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the city?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "89333d90-e075-4b5e-a592-94d3efd69402",
+          "required": false,
+          "dataType": "@sys.zip-code",
+          "name": "userZip",
+          "value": "$userZip",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551124411,
+  "fallbackIntent": false,
+  "events": []
+}

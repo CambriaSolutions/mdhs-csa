@@ -1,0 +1,38 @@
+[
+  {
+    "id": "a94daac2-ffdd-4af3-89c0-05d23dccf8f9",
+    "data": [
+      {
+        "text": "what are the guidelines for appointments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1548968663
+  },
+  {
+    "id": "051b90ec-adbb-4e64-872e-0c41b4dee389",
+    "data": [
+      {
+        "text": "guidelines regarding appointments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548283376
+  },
+  {
+    "id": "653a1c24-5a6c-4f83-a7ac-23ae6903e5e0",
+    "data": [
+      {
+        "text": "appointment guidelines",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548283376
+  }
+]
