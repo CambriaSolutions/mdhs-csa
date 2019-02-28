@@ -5,7 +5,7 @@ const locations = require('./coordinates.json')
 exports.mapRoot = async agent => {
   try {
     await agent.add(
-      `I can help located the nearest child support office to you, what is your address?`
+      `I can help locate the nearest Child Support office to you, what is your address?`
     )
     await agent.context.set({
       name: 'waiting-maps-deliver-map',

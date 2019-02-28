@@ -1,9 +1,8 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Card } = require('dialogflow-fulfillment')
 const {
   calculatePercentage,
   handleEndConversation,
 } = require('./globalFunctions.js')
-// const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.iwoRoot = async agent => {
   try {
@@ -30,7 +29,6 @@ exports.iwoRoot = async agent => {
 
 exports.iwoNoAssistance = async agent => {
   try {
-    await agent.add(`I'm sorry I couldn't help more.`)
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -80,7 +78,7 @@ exports.iwoInArrears = async agent => {
   const percentage = calculatePercentage(isSupporting, inArrears)
   try {
     await agent.add(
-      `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's?`
+      `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's.`
     )
     await agent.add(
       `Would you like assistance estimating the withholding amount?`
@@ -124,7 +122,7 @@ exports.iwoConfirmEstimate = async agent => {
 exports.iwoRequestDisposableIncome = async agent => {
   try {
     await agent.add(`What is the employee's disposable income?`)
-    await agent.add(new Suggestion('Disposible Income Definition'))
+    await agent.add(new Suggestion('Disposable Income Definition'))
     await agent.context.set({
       name: 'waiting-iwo-disposable-income',
       lifespan: 2,
@@ -143,8 +141,16 @@ exports.iwoDefineDisposableIncome = async agent => {
     await agent.add(
       `Disposable income = gross pay - mandatory deductions such as Federal, state and local taxes, unemployment insurance, workers' compensation insurance, state employee retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
     )
+
     await agent.add(
-      `Note: disposable income is not necessarily the same as net pay. For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+      new Card({
+        title: 'Disposable income is not necessarily the same as net pay.',
+        text:
+          'For more detailed information, click the link to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.',
+        buttonText: 'Click Here',
+        buttonUrl:
+          'https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice',
+      })
     )
     await agent.add(`What is the employee's disposable income?`)
     await agent.context.set({
@@ -183,7 +189,7 @@ exports.iwoDisposableIncome = async agent => {
 exports.iwoWhereToSubmit = async agent => {
   try {
     await agent.add(
-      `You are required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
+      `The employer is required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
     )
   } catch (err) {
     console.error(err)
@@ -203,7 +209,7 @@ exports.iwoAdministrativeFee = async agent => {
 exports.iwoOtherGarnishments = async agent => {
   try {
     await agent.add(
-      `Child support payments take precendence over all other garnishments.`
+      `Child Support payments take precedence over all other garnishments.`
     )
   } catch (err) {
     console.error(err)
