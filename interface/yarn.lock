@@ -881,12 +881,12 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cambriasolutions/chatframe@^1.13.1":
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.13.1.tgz#a47e7f6653af060d56a6461dd6dd66af3dfef701"
-  integrity sha512-r5OnFT1oHI0aq8omznlS5/DPzSdLKiwhvxZ1is4WyJJfbowIVmtat2Cz0kTFu1I+xI93pOAItRBgH6pCQ+E+Lw==
+"@cambriasolutions/chatframe@^1.13.2":
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.13.2.tgz#8ddb588a941047d5fcb3e3f616a0f24c72c695a7"
+  integrity sha512-ABxPq2oFdWlwcR17oIH51YY/WcAsCGopVRPv2IL+RNa6UTkcv1eaW9uNEKNJnFVj2kI/4gii06s6Q3OB64/v2g==
   dependencies:
-    "@material-ui/core" "^3.6.2"
+    "@material-ui/core" "^3.9.2"
     "@material-ui/icons" "^3.0.1"
     date-fns "^2.0.0-alpha.26"
     dotenv "^6.2.0"
@@ -927,10 +927,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
-"@material-ui/core@^3.6.2":
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.1.tgz#994fa54f0936092556d231d1055b8f76b12be06e"
-  integrity sha512-26GtjuwxPPfSsUnYrTOC8zuCuhWPVhc4SsUSFTZq0n1QvpGi9UEZRFe8yp6FykQE+PmqyyY+eWdrfiXKSUKZ0w==
+"@material-ui/core@^3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.2.tgz#41ed1a470e981d199829eb5d9317a671c66a6f7d"
+  integrity sha512-aukR3mSH3g115St2OnqoeMRtmxzxxx+Mch7pFKRV3Tz3URExBlZwOolimjxKZpG4LGec8HlhREawafLsDzjVWQ==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@material-ui/system" "^3.0.0-alpha.0"
