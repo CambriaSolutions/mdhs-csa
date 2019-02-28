@@ -1,4 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Card } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.dirDepRoot = async agent => {
@@ -43,7 +43,15 @@ exports.dirDepConfirmForm = async agent => {
 
 exports.dirDepShowForm = async agent => {
   try {
-    await agent.add(`Here is the link to the direct deposit form [url].`)
+    await agent.add(
+      new Card({
+        title: `Authorization Agreement for Direct Deposit`,
+        text: `Here is the link to the direct deposit form.`,
+        buttonText: 'Direct Deposit Form',
+        buttonUrl:
+          'http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf',
+      })
+    )
     await agent.add(
       `In the event you cannot or do not want to download the form, please contact customer service at [phone number] and our Mail Room will send you a copy.`
     )
@@ -151,10 +159,10 @@ exports.dirDepSavings = async agent => {
       `You must submit a current letter from your bank, savings and loan or credit union (on bank letterhead) which includes the name of the account holder and account and routing bank numbers with this agreement.`
     )
     await agent.add(
-      `Make sure that the accounting and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
+      `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
-      `Finally, don't forget, you MUST send the form to the proper location!!! Send to MDHS Child Support Enforcement Direct Deposit Unit PO Box 352 Jackson MS 39205-0352.`
+      `Finally, don't forget, you MUST send the form to the proper location! Send to MDHS Child Support Enforcement Direct Deposit Unit, PO Box 352, Jackson, MS 39205-0352.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -168,10 +176,10 @@ exports.dirDepChecking = async agent => {
       `You must submit a preprinted voided blank check, deposit slip, or current letter from your bank (on bank letterhead) that includes your account and routing bank numbers with this agreement.`
     )
     await agent.add(
-      `Make sure that the accounting and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
+      `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
-      `Finally, don't forget, you MUST send the form to the proper location!!! Send to MDHS Child Support Enforcement Direct Deposit Unit PO Box 352 Jackson MS 39205-0352.`
+      `Finally, don't forget, you MUST send the form to the proper location! Send to MDHS Child Support Enforcement Direct Deposit Unit, PO Box 352, Jackson, MS 39205-0352.`
     )
     await handleEndConversation(agent)
   } catch (err) {

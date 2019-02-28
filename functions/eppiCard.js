@@ -11,6 +11,30 @@ exports.eppiRoot = async agent => {
     await agent.add(new Suggestion('Fees'))
     await agent.add(new Suggestion('Set Up Notifications'))
     await agent.add(new Suggestion('FAQ'))
+    await agent.context.set({
+      name: 'waiting-eppi-get-card',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-activate',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-replace-report',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-fees',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-notifications',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-faq',
+      lifespan: 2,
+    })
   } catch (err) {
     console.log(err)
   }
@@ -122,7 +146,7 @@ exports.eppiUseCard = async agent => {
 exports.eppiWithdrawCash = async agent => {
   try {
     await agent.add(
-      `You are allowed a total of three (3) free ATM cash withdrawals each calendar month at "in-network" ATM's. Each month you are allowed unlimted cash withdrawals at MasterCard member bank teller windows.`
+      `You are allowed a total of three (3) free ATM cash withdrawals each calendar month at "in-network" ATMs. Each month you are allowed unlimited cash withdrawals at MasterCard member bank teller windows.`
     )
   } catch (err) {
     console.log(err)
@@ -132,7 +156,7 @@ exports.eppiWithdrawCash = async agent => {
 exports.eppiSurcharge = async agent => {
   try {
     await agent.add(
-      `The easisest way to avoid surcharges is to use "In-network" banks. "In-network" is defined as Hancock  Bank, Regions Bank, or Trustmark Bank ATM locations. Each month you are allowed unlimted cash withdrawals at MasterCard member Bank teller windows. Bank ATMS outside of these "in-network" bank ATM's may apply a surcharge. Always read ATM messages carefully to determine if a bank ATM is applying fees to the transaction.`
+      `The easisest way to avoid surcharges is to use "In-network" banks. "In-network" is defined as Hancock Bank, Regions Bank, or Trustmark Bank ATM locations. Each month you are allowed unlimited cash withdrawals at MasterCard member Bank teller windows. Bank ATMs outside of these "in-network" bank ATMs may apply a surcharge. Always read ATM messages carefully to determine if a bank ATM is applying fees to the transaction.`
     )
   } catch (err) {
     console.log(err)

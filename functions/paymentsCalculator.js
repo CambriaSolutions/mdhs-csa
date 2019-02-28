@@ -90,9 +90,6 @@ exports.pmtCalcHandleTimeframe = async agent => {
       preppedCadence = 'year'
     }
     try {
-      await agent.add(
-        `Please estimate how much you make every ${preppedCadence} after taxes and other deductions are taken out of your pay.`
-      )
       await agent.add(`Deductions include: 
       1. Federal and state taxes
       2. Other existing child support payments
@@ -101,6 +98,9 @@ exports.pmtCalcHandleTimeframe = async agent => {
       `)
       await agent.add(
         `Other deductions may apply. To get an even more accurate estimate, please call 1-877-882-4916 or visit a local child support office.`
+      )
+      await agent.add(
+        `Please estimate how much you make every ${preppedCadence} after taxes and other deductions are taken out of your pay.`
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-income',
