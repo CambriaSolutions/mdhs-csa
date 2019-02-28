@@ -1,0 +1,27 @@
+[
+  {
+    "value": "biweekly",
+    "synonyms": [
+      "biweekly",
+      "Bi-Weekly",
+      "every two weeks",
+      "bi weekly"
+    ]
+  },
+  {
+    "value": "monthly",
+    "synonyms": [
+      "monthly",
+      "every month",
+      "once a month"
+    ]
+  },
+  {
+    "value": "annual",
+    "synonyms": [
+      "annual",
+      "year",
+      "every year"
+    ]
+  }
+]

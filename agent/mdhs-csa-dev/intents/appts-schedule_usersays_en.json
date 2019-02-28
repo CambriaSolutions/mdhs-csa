@@ -1,0 +1,38 @@
+[
+  {
+    "id": "e624b7a0-71fc-47c9-a8da-a7123e28d6d3",
+    "data": [
+      {
+        "text": "i want to make an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272440
+  },
+  {
+    "id": "9d7ebd40-9d37-4cc0-bb8f-ad59b9a0cf00",
+    "data": [
+      {
+        "text": "i\u0027d like to make an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272440
+  },
+  {
+    "id": "4a2dfcb4-1337-4320-b1f9-ca85870246a1",
+    "data": [
+      {
+        "text": "schedule an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272440
+  }
+]

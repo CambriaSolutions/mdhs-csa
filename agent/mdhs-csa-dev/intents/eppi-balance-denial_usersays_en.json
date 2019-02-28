@@ -1,0 +1,38 @@
+[
+  {
+    "id": "9890d2c4-f41c-42b5-89f4-81d920100b49",
+    "data": [
+      {
+        "text": "am i charged for card denials",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222778
+  },
+  {
+    "id": "86032990-bb80-4dee-b520-313691194a8c",
+    "data": [
+      {
+        "text": "am i charged for account balance denials",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222778
+  },
+  {
+    "id": "057f4f0e-a76d-47e4-8091-0983f99ed4dd",
+    "data": [
+      {
+        "text": "what about atm balance denials",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222778
+  }
+]

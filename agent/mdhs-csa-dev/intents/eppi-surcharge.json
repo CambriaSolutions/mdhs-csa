@@ -1,0 +1,28 @@
+{
+  "id": "6dc03ac5-5f6c-45ac-b0db-6af8b67fea95",
+  "name": "eppi-surcharge",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551222564,
+  "fallbackIntent": false,
+  "events": []
+}

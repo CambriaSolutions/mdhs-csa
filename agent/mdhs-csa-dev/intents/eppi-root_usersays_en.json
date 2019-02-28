@@ -1,0 +1,50 @@
+[
+  {
+    "id": "15311624-069f-4391-867c-e45d53886280",
+    "data": [
+      {
+        "text": "who do i contact about my card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551225882
+  },
+  {
+    "id": "5e47dd5f-0b9b-42d8-aa92-4f6319c81797",
+    "data": [
+      {
+        "text": "who do i call about my payment card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551221797
+  },
+  {
+    "id": "0ba99788-3e5d-4579-948e-5002c0de41ea",
+    "data": [
+      {
+        "text": "eppi card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551221797
+  },
+  {
+    "id": "9dee060a-d01c-4b79-bf55-8dea982bdbaa",
+    "data": [
+      {
+        "text": "who do i contact using the eppicard",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551221797
+  }
+]

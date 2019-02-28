@@ -1,0 +1,51 @@
+{
+  "id": "43bcbeaa-9ede-4b01-ab65-4ee670b2ce3b",
+  "name": "support-case-number",
+  "auto": true,
+  "contexts": [
+    "waiting-compts-case-number"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-compts-case-number",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "73ee1dd5-abab-49c4-8122-aef6f69ebc27",
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "caseNumber",
+          "value": "$caseNumber",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I didn\u0027t recognize that as a case number, could you say that again?"
+            }
+          ],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294878,
+  "fallbackIntent": false,
+  "events": []
+}

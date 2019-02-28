@@ -1,0 +1,74 @@
+[
+  {
+    "id": "3b70274e-6660-46f5-a527-58c92a73d1a8",
+    "data": [
+      {
+        "text": "i was not",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548970384
+  },
+  {
+    "id": "a6ecc8e6-5cd6-4cb1-be4d-0276ab75ae65",
+    "data": [
+      {
+        "text": "i wasnt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548970384
+  },
+  {
+    "id": "3d148b42-5c7e-4de3-bf32-0f46312f07ed",
+    "data": [
+      {
+        "text": "i dont think so",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548703630
+  },
+  {
+    "id": "9368079a-6968-4086-872d-de531be23432",
+    "data": [
+      {
+        "text": "nobody contacted me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272100
+  },
+  {
+    "id": "5569fe1b-19fc-4fc4-a156-d6e7e0d0c79d",
+    "data": [
+      {
+        "text": "i did not",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272100
+  },
+  {
+    "id": "7ce51644-f76c-4301-a3bf-7bb5c888be32",
+    "data": [
+      {
+        "text": "no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272100
+  }
+]

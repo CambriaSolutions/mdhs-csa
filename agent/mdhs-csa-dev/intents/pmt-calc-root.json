@@ -1,0 +1,28 @@
+{
+  "id": "20ae3290-cae6-472e-b311-05d0739ea1be",
+  "name": "pmt-calc-root",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551311636,
+  "fallbackIntent": false,
+  "events": []
+}

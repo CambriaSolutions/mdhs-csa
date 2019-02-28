@@ -1,0 +1,28 @@
+{
+  "id": "8dc41dfd-c452-4434-b3a6-c11e856ed766",
+  "name": "iwo-other-state",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551130245,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1e7f1a10-a0b2-4dfd-a027-f7d2a33ab72a",
+  "name": "eppi-fees",
+  "auto": true,
+  "contexts": [
+    "waiting-eppi-fees"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551377369,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "e88e2b2f-b9aa-4160-a4a5-5a8a03d4ed03",
+    "data": [
+      {
+        "text": "i am ",
+        "userDefined": false
+      },
+      {
+        "text": "not",
+        "alias": "inArrears",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550882353
+  },
+  {
+    "id": "4206093d-7fb4-44fc-befb-f0e1074f1c42",
+    "data": [
+      {
+        "text": "nope",
+        "alias": "inArrears",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550882353
+  },
+  {
+    "id": "403b82ee-0f41-4a0d-b203-33f66bfabc4d",
+    "data": [
+      {
+        "text": "no",
+        "alias": "inArrears",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550882353
+  },
+  {
+    "id": "c5537541-eb4a-458e-a8f6-5d44d6a384ac",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "inArrears",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550882353
+  }
+]

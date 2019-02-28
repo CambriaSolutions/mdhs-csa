@@ -1,0 +1,84 @@
+[
+  {
+    "id": "bbabfa8b-5194-4bba-b405-8df50d6bf935",
+    "data": [
+      {
+        "text": "123",
+        "alias": "caseNumber",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548976400
+  },
+  {
+    "id": "c700fb03-a431-4e2c-b015-bd90f285b854",
+    "data": [
+      {
+        "text": "its ",
+        "userDefined": false
+      },
+      {
+        "text": "098765",
+        "alias": "caseNumber",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548976400
+  },
+  {
+    "id": "4dc813c2-a822-426e-9be0-38fc268bdfc3",
+    "data": [
+      {
+        "text": "my case number is ",
+        "userDefined": false
+      },
+      {
+        "text": "556677",
+        "alias": "caseNumber",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548976400
+  },
+  {
+    "id": "b795c2b7-10dc-48e5-a082-e0afe8507c48",
+    "data": [
+      {
+        "text": "my number is ",
+        "userDefined": false
+      },
+      {
+        "text": "123456",
+        "alias": "caseNumber",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548976400
+  },
+  {
+    "id": "029857fa-97d5-4860-a805-68dfede50bdb",
+    "data": [
+      {
+        "text": "123456",
+        "alias": "caseNumber",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548976400
+  }
+]

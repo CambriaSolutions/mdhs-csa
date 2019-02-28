@@ -1,0 +1,28 @@
+{
+  "id": "4f0449dc-f836-4e99-a2ba-c0d7111212de",
+  "name": "eppi-use-card",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551222398,
+  "fallbackIntent": false,
+  "events": []
+}

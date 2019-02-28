@@ -1,0 +1,28 @@
+{
+  "id": "f9d78d92-0095-4da7-88c2-84ea875d9ca4",
+  "name": "pmts-general-receive-payments",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551315105,
+  "fallbackIntent": false,
+  "events": []
+}
