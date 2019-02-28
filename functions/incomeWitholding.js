@@ -3,7 +3,6 @@ const {
   calculatePercentage,
   handleEndConversation,
 } = require('./globalFunctions.js')
-const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.iwoRoot = async agent => {
   try {
