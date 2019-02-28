@@ -50,6 +50,7 @@ exports.pmtCalcUnknownIncome = async agent => {
     await agent.add(
       `You can find your income statement on documents like a paystub or W-2 form. I can only estimate your child support payments if you know your income.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -188,7 +189,7 @@ exports.pmtCalcNumChildren = async agent => {
     try {
       const calculatedPayment = await calculatePayment(paymentFactors)
       await agent.add(
-        `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}`
+        `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}.`
       )
       await agent.add(
         `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
