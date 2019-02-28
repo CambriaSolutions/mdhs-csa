@@ -30,7 +30,6 @@ exports.iwoRoot = async agent => {
 
 exports.iwoNoAssistance = async agent => {
   try {
-    await agent.add(`I'm sorry I couldn't help more.`)
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -183,7 +182,7 @@ exports.iwoDisposableIncome = async agent => {
 exports.iwoWhereToSubmit = async agent => {
   try {
     await agent.add(
-      `You are required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
+      `The employer is required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
     )
   } catch (err) {
     console.error(err)
@@ -203,7 +202,7 @@ exports.iwoAdministrativeFee = async agent => {
 exports.iwoOtherGarnishments = async agent => {
   try {
     await agent.add(
-      `Child support payments take precendence over all other garnishments.`
+      `Child Support payments take precedence over all other garnishments.`
     )
   } catch (err) {
     console.error(err)
