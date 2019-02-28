@@ -3,7 +3,7 @@ const {
   calculatePercentage,
   handleEndConversation,
 } = require('./globalFunctions.js')
-// const { handleEndConversation } = require('./globalFunctions.js')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.iwoRoot = async agent => {
   try {
@@ -79,7 +79,7 @@ exports.iwoInArrears = async agent => {
   const percentage = calculatePercentage(isSupporting, inArrears)
   try {
     await agent.add(
-      `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's?`
+      `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's.`
     )
     await agent.add(
       `Would you like assistance estimating the withholding amount?`
@@ -146,8 +146,9 @@ exports.iwoDefineDisposableIncome = async agent => {
     await agent.add(
       new Card({
         title: 'Disposable income is not necessarily the same as net pay.',
-        buttonText:
-          'For more detailed information, click here to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.',
+        text:
+          'For more detailed information, click the link to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.',
+        buttonText: 'Click Here',
         buttonUrl:
           'https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice',
       })
