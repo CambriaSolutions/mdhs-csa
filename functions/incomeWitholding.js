@@ -123,7 +123,7 @@ exports.iwoConfirmEstimate = async agent => {
 exports.iwoRequestDisposableIncome = async agent => {
   try {
     await agent.add(`What is the employee's disposable income?`)
-    await agent.add(new Suggestion('Disposible Income Definition'))
+    await agent.add(new Suggestion('Disposable Income Definition'))
     await agent.context.set({
       name: 'waiting-iwo-disposable-income',
       lifespan: 2,
