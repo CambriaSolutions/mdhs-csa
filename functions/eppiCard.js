@@ -49,7 +49,12 @@ exports.eppiGetCard = async agent => {
       `If you are receiving payments by paper check, you can change it to the EPPI Card.`
     )
     await agent.add(
-      `To learn more about EPPI Cards, [click here] to visit the EPPI Card website or call their support line at 1-866-461-4095.`
+      new Card({
+        title: `EPPICards`,
+        text: `To learn more about EPPICards, click the link to visit the EPPICard website or call their support line at 1-866-461-4095.`,
+        buttonText: 'Click Here',
+        buttonUrl: 'https://www.eppicard.com/',
+      })
     )
   } catch (err) {
     console.log(err)

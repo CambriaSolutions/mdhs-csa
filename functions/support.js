@@ -202,7 +202,7 @@ exports.supportCollectIssue = async agent => {
     await agent.add(new Suggestion(`I'm done`))
     await agent.context.set({
       name: 'complaints',
-      lifespan: 2,
+      lifespan: 5,
       parameters: { complaints: complaintCollection },
     })
     await agent.context.set({
@@ -277,7 +277,7 @@ exports.supportReviseIssue = async agent => {
     })
     await agent.context.set({
       name: 'complaints',
-      lifespan: 2,
+      lifespan: 5,
       parameters: { complaints: [] },
     })
   } catch (err) {
