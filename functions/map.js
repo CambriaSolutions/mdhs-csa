@@ -32,7 +32,7 @@ exports.mapDeliverMap = async agent => {
     }
     let userLocation = `${userAddress} ${userCity} ${userZip}`
     if (!userLocation.includes('ms') && !userLocation.includes('mississippi')) {
-      userLocation += 'ms'
+      userLocation += ' ms'
     }
     const currentLocation = { userLocation }
     const currentGeocode = await getGeocode(currentLocation)
