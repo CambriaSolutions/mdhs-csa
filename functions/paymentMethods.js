@@ -35,7 +35,12 @@ exports.pmtMethodsCustodial = async agent => {
   try {
     await agent.add(`Payments for custodial parents go through EPPICard.`)
     await agent.add(
-      `Visit their website here [url] for call their support line at 1-866-461-4095.`
+      new Card({
+        title: `Click the link to access the EPPICard website`,
+        text: `Visit their website or call their support line at 1-866-461-4095`,
+        buttonText: 'EPPICard website',
+        buttonUrl: 'https://www.eppicard.com/',
+      })
     )
     await handleEndConversation(agent)
   } catch (err) {

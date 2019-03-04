@@ -3,9 +3,8 @@ import Chatframe from '@cambriasolutions/chatframe'
 import './App.css'
 
 const dfWebhookOptions = {
-  eventUrl:
-    'https://us-central1-mdhs-csa-stage.cloudfunctions.net/eventRequest',
-  textUrl: 'https://us-central1-mdhs-csa-stage.cloudfunctions.net/textRequest',
+  eventUrl: 'https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest',
+  textUrl: 'https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest',
 }
 
 const policyText =

@@ -28,12 +28,17 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      userZip = agent.parameters.userZip.toLowerCase()
+      userZip = agent.parameters.userZip
     }
     let userLocation = `${userAddress} ${userCity} ${userZip}`
-    if (!userLocation.includes('ms') && !userLocation.includes('mississippi')) {
+
+    if (
+      !userLocation.includes(' ms') ||
+      !userLocation.includes(' mississippi')
+    ) {
       userLocation += ' ms'
     }
+
     const currentLocation = { userLocation }
     const currentGeocode = await getGeocode(currentLocation)
     const nearestLocations = getNearestThreeLocations(currentGeocode, locations)
