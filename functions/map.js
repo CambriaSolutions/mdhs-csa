@@ -28,7 +28,7 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      userZip = agent.parameters.userZip.toLowerCase()
+      userZip = agent.parameters.userZip
     }
     let userLocation = `${userAddress} ${userCity} ${userZip}`
 
