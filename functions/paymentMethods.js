@@ -167,7 +167,7 @@ exports.pmtMethodsMoneygram = async agent => {
       new Card({
         title: 'MoneyGram',
         buttonText: 'Click here',
-        buttonUrl: 'www.MoneyGram.com/BillPayLocations',
+        buttonUrl: 'http://www.MoneyGram.com/BillPayLocations',
       })
     )
     await agent.add(
