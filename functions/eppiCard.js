@@ -5,12 +5,12 @@ exports.eppiRoot = async agent => {
     await agent.add(
       `Sure, I can help with the following topics regarding your payment card.`
     )
-    await agent.add(new Suggestion('Replace, Report Stolen, Lost or Fraud'))
     await agent.add(new Suggestion('Get EPPICard'))
     await agent.add(new Suggestion('Activate'))
     await agent.add(new Suggestion('Fees'))
     await agent.add(new Suggestion('Set Up Notifications'))
     await agent.add(new Suggestion('FAQ'))
+    await agent.add(new Suggestion('Replace, Report Stolen, Lost or Fraud'))
     await agent.context.set({
       name: 'waiting-eppi-get-card',
       lifespan: 2,
