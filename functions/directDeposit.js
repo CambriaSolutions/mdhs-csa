@@ -223,6 +223,63 @@ exports.dirDepPaymentClosedAccount = async agent => {
       `When the payment is returned or rejected by the financial institution, your payment will be reissued to an EPPICard.`
     )
     await agent.add(`Would you like to learn more about the EPPICard?`)
+    await agent.add(new Suggestion('Learn More'))
+    await agent.context.set({
+      name: 'waiting-dirDep-learn-more-eppicard',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-dirDep-no-learn-more-eppicard',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.dirDepLearnMoreEppiCard = async agent => {
+  try {
+    await agent.add(
+      `Sure, I can help with the following topics regarding your payment card.`
+    )
+    await agent.add(new Suggestion('Get EPPICard'))
+    await agent.add(new Suggestion('Activate'))
+    await agent.add(new Suggestion('Fees'))
+    await agent.add(new Suggestion('Set Up Notifications'))
+    await agent.add(new Suggestion('FAQ'))
+    await agent.add(new Suggestion('Replace, Report Stolen, Lost or Fraud'))
+    await agent.context.set({
+      name: 'waiting-eppi-get-card',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-activate',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-replace-report',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-fees',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-notifications',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-eppi-faq',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.dirDepNoLearnMoreEppiCard = async agent => {
+  try {
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }

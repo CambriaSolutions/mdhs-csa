@@ -104,7 +104,7 @@ exports.pmtCalcHandleTimeframe = async agent => {
         `Other deductions may apply. To get an even more accurate estimate, please call 1-877-882-4916 or visit a local child support office.`
       )
       await agent.add(
-        `How much do you make every ${preppedCadence} after taxes and other deductions are taken out of your pay.`
+        `How much do you make every ${preppedCadence} after taxes and other deductions are taken out of your pay?`
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-income',

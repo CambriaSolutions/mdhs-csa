@@ -100,7 +100,7 @@ exports.pmtMethodsNone = async agent => {
   try {
     await agent.add(
       `Sorry, I can only help with employers, custodial and non-custodial parents. 
-      Please call [number] for assistance.`
+      Please call 1-877-882-4916 for assistance.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -114,7 +114,7 @@ exports.pmtMethodsCheckOrMoneyOrder = async agent => {
       `Please mail to: MDHS/SDU, P.O. Box 23094, Jackson, MS 39225`
     )
     await agent.add(
-      `Make sure to include your Social Security Number AND Case Number `
+      `Make sure to include your Social Security Number AND Case Number.`
     )
     await handleEndConversation(agent)
   } catch (err) {

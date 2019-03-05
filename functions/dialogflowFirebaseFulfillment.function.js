@@ -75,6 +75,8 @@ const {
   dirDepTakeEffect,
   dirDepExtraFunds,
   dirDepPaymentClosedAccount,
+  dirDepLearnMoreEppiCard,
+  dirDepNoLearnMoreEppiCard,
 } = require('./directDeposit.js')
 
 // EppiCard intents
@@ -274,6 +276,8 @@ exports = module.exports = functions
     intentMap.set('dirDep-take-effect', dirDepTakeEffect)
     intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
     intentMap.set('dirDep-payment-closed-account', dirDepPaymentClosedAccount)
+    intentMap.set('dirDep-learn-more-eppicard', dirDepLearnMoreEppiCard)
+    intentMap.set('dirDep-no-learn-more-eppicard', dirDepNoLearnMoreEppiCard)
 
     // EppiCard intents
     intentMap.set('eppi-root', eppiRoot)
