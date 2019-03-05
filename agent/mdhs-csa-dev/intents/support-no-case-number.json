@@ -1,0 +1,50 @@
+{
+  "id": "20406bfe-0c3e-40d1-aed8-b289ab35d10f",
+  "name": "support-no-case-number",
+  "auto": true,
+  "contexts": [
+    "waiting-support-no-case-number"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-no-case-number",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-compts-case-number",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "4de00624-2144-4b2d-a686-d9d19c456539",
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "number",
+          "value": "$number",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551296561,
+  "fallbackIntent": false,
+  "events": []
+}

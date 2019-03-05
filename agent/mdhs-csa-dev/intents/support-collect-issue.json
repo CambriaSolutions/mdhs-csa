@@ -1,0 +1,45 @@
+{
+  "id": "aad967eb-218d-46d8-a9dd-0475e0e621e5",
+  "name": "support-collect-issue",
+  "auto": true,
+  "contexts": [
+    "waiting-compts-collect-issue"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-compts-collect-issue",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "3fe2f05a-515a-4f54-a1da-bd0719206bf4",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "complaint",
+          "value": "$complaint",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294892,
+  "fallbackIntent": false,
+  "events": []
+}

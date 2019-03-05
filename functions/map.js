@@ -1,10 +1,11 @@
 const { Payload } = require('dialogflow-fulfillment')
-const { locations } = require('./geoInfo.js')
+const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
+const locations = require('./coordinates.json')
 
 exports.mapRoot = async agent => {
   try {
     await agent.add(
-      `I can help located the nearest child support office to you, what is your address?`
+      `I can help locate the nearest Child Support office to you, what is your address?`
     )
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
@@ -27,14 +28,21 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      userZip = agent.parameters.userZip.toLowerCase()
+      userZip = agent.parameters.userZip
     }
     let userLocation = `${userAddress} ${userCity} ${userZip}`
-    if (!userLocation.includes('ms') && !userLocation.includes('mississippi')) {
-      userLocation += 'ms'
+
+    if (
+      !userLocation.includes(' ms') ||
+      !userLocation.includes(' mississippi')
+    ) {
+      userLocation += ' ms'
     }
+
     const currentLocation = { userLocation }
-    const mapInfo = [currentLocation, locations]
+    const currentGeocode = await getGeocode(currentLocation)
+    const nearestLocations = getNearestThreeLocations(currentGeocode, locations)
+    const mapInfo = { locations, currentGeocode, nearestLocations }
     const mapPayload = JSON.stringify(mapInfo)
     await agent.add(`Here is an interactive map of all of our locations!`)
     await agent.add(

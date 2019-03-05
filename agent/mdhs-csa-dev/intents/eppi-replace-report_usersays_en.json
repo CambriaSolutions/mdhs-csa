@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fe41b624-7979-4af9-8cba-f2fd8800811a",
+    "data": [
+      {
+        "text": "i need to report my card stolen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222104
+  },
+  {
+    "id": "079bed15-25d3-426a-be98-72b262f7ebf0",
+    "data": [
+      {
+        "text": "replace my card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222104
+  },
+  {
+    "id": "53988968-23fc-43b9-ac31-38e16fe414e8",
+    "data": [
+      {
+        "text": "replace, report stolen, lost or fraud",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222104
+  }
+]

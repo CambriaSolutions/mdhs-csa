@@ -2,16 +2,36 @@ const functions = require('firebase-functions')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
-// Payments intents
+// General payment intents
 const {
-  pmtRoot,
-  pmtTimeframe,
-  pmtUnknownIncome,
-  pmtHandleTimeframe,
-  pmtIncome,
-  pmtNumChildren,
-  pmtNumMothers,
-} = require('./payments.js')
+  pmtsGeneralRoot,
+  pmtsGeneralReceivePayments,
+  pmtsGeneralMakePayments,
+} = require('./paymentsGeneral.js')
+
+// Payment calculator intents
+const {
+  pmtCalcRoot,
+  pmtCalcTimeframe,
+  pmtCalcUnknownIncome,
+  pmtCalcHandleTimeframe,
+  pmtCalcIncome,
+  pmtCalcNumChildren,
+  pmtCalcNumMothers,
+} = require('./paymentsCalculator.js')
+
+// Payment methods intents
+const {
+  pmtMethodsRoot,
+  pmtMethodsCustodial,
+  pmtMethodsNonCustodial,
+  pmtMethodsEmployer,
+  pmtMethodsNone,
+  pmtMethodsCheckOrMoneyOrder,
+  pmtMethodsCash,
+  pmtMethodsEcheckDebit,
+  pmtMethodsMoneygram,
+} = require('./paymentMethods.js')
 
 // Appointments intents
 const {
@@ -23,18 +43,19 @@ const {
   apptsGuidelines,
 } = require('./appointments.js')
 
-// Complaints intents
+// Support intents
 const {
-  comptsRoot,
-  comptsValidateName,
-  comptsPhoneNumber,
-  comptsCaseNumber,
-  comptsEmail,
-  comptsCollectIssue,
-  comptsSummarizeIssue,
-  comptsReviseIssue,
-  comptsSumbitIssue,
-} = require('./complaints.js')
+  supportRoot,
+  supportValidateName,
+  supportPhoneNumber,
+  supportCaseNumber,
+  supportNoCaseNumber,
+  supportEmail,
+  supportCollectIssue,
+  supportSummarizeIssue,
+  supportReviseIssue,
+  supportSumbitIssue,
+} = require('./support.js')
 
 // Map intents
 const { mapRoot, mapDeliverMap } = require('./map.js')
@@ -53,7 +74,45 @@ const {
   dirDepAccountTerm,
   dirDepTakeEffect,
   dirDepExtraFunds,
+  dirDepPaymentClosedAccount,
 } = require('./directDeposit.js')
+
+// EppiCard intents
+const {
+  eppiRoot,
+  eppiGetCard,
+  eppiActivateCard,
+  eppiFees,
+  eppiNotifications,
+  eppiReplaceReport,
+  eppiFAQ,
+  eppiPaymentHistory,
+  eppiUseCard,
+  eppiWithdrawCash,
+  eppiSurcharge,
+  eppiLearnMore,
+  eppiBalanceDenial,
+} = require('./eppiCard.js')
+
+// IWO intents
+const {
+  iwoRoot,
+  iwoWantsAssistance,
+  iwoNoAssistance,
+  iwoIsSupporting,
+  iwoInArrears,
+  iwoConfirmEstimate,
+  iwoRequestDisposableIncome,
+  iwoDefineDisposableIncome,
+  iwoDisposableIncome,
+  iwoWhereToSubmit,
+  iwoAdministrativeFee,
+  iwoOtherGarnishments,
+  iwoOtherState,
+  iwoInsuranceCoverage,
+  iwoNotAnEmployee,
+  iwoFireEmployee,
+} = require('./incomeWitholding.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -96,7 +155,7 @@ exports = module.exports = functions
         await agent.add(`What can I help you with today?`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
@@ -107,12 +166,12 @@ exports = module.exports = functions
         await agent.add(`What can I help you with?`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
     }
-    // Should we add the suggestions from yes-child-support?
+
     const notChildSupport = async agent => {
       try {
         await agent.add(
@@ -122,7 +181,7 @@ exports = module.exports = functions
         await agent.add(`I can help you with these topics.`)
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Complaints'))
+        await agent.add(new Suggestion('Support'))
       } catch (err) {
         console.error(err)
       }
@@ -134,14 +193,48 @@ exports = module.exports = functions
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
 
-    // Payments intents
-    intentMap.set('pmt-root', pmtRoot)
-    intentMap.set('pmt-timeframe', pmtTimeframe)
-    intentMap.set('pmt-unknown-income', pmtUnknownIncome)
-    intentMap.set('pmt-handle-timeframe', pmtHandleTimeframe)
-    intentMap.set('pmt-income', pmtIncome)
-    intentMap.set('pmt-num-children', pmtNumChildren)
-    intentMap.set('pmt-num-mothers', pmtNumMothers)
+    // Payment calculation intents
+    intentMap.set('pmt-calc-root', pmtCalcRoot)
+    intentMap.set('pmt-calc-timeframe', pmtCalcTimeframe)
+    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
+    intentMap.set('pmt-calc-handle-timeframe', pmtCalcHandleTimeframe)
+    intentMap.set('pmt-calc-income', pmtCalcIncome)
+    intentMap.set('pmt-calc-num-children', pmtCalcNumChildren)
+    intentMap.set('pmt-calc-num-mothers', pmtCalcNumMothers)
+
+    // IWO intents
+    intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
+    intentMap.set('iwo-no-assistance', iwoNoAssistance)
+    intentMap.set('iwo-is-supporting', iwoIsSupporting)
+    intentMap.set('iwo-in-arrears', iwoInArrears)
+    intentMap.set('iwo-confirm-estimate', iwoConfirmEstimate)
+    intentMap.set('iwo-request-disposable-income', iwoRequestDisposableIncome)
+    intentMap.set('iwo-define-disposable-income', iwoDefineDisposableIncome)
+    intentMap.set('iwo-disposable-income', iwoDisposableIncome)
+    intentMap.set('iwo-where-to-submit', iwoWhereToSubmit)
+    intentMap.set('iwo-administrative-fee', iwoAdministrativeFee)
+    intentMap.set('iwo-other-garnishments', iwoOtherGarnishments)
+    intentMap.set('iwo-other-state', iwoOtherState)
+    intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
+    intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
+    intentMap.set('iwo-fire-employee', iwoFireEmployee)
+
+    // General payment intents
+    intentMap.set('pmts-general-root', pmtsGeneralRoot)
+    intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
+    intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
+
+    // Payment methods intents
+    intentMap.set('pmtMethods-root', pmtMethodsRoot)
+    intentMap.set('pmtMethods-custodial', pmtMethodsCustodial)
+    intentMap.set('pmtMethods-nonCustodial', pmtMethodsNonCustodial)
+    intentMap.set('pmtMethods-employer', pmtMethodsEmployer)
+    intentMap.set('pmtMethods-none', pmtMethodsNone)
+    intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
+    intentMap.set('pmtMethods-cash', pmtMethodsCash)
+    intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
+    intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
@@ -151,16 +244,17 @@ exports = module.exports = functions
     intentMap.set('appts-office-locations', apptsOfficeLocations)
     intentMap.set('appts-guidelines', apptsGuidelines)
 
-    // Complaints intents
-    intentMap.set('compts-root', comptsRoot)
-    intentMap.set('compts-name', comptsValidateName)
-    intentMap.set('compts-phone-number', comptsPhoneNumber)
-    intentMap.set('compts-email', comptsEmail)
-    intentMap.set('compts-case-number', comptsCaseNumber)
-    intentMap.set('compts-collect-issue', comptsCollectIssue)
-    intentMap.set('compts-summarize-issue', comptsSummarizeIssue)
-    intentMap.set('compts-revise-issue', comptsReviseIssue)
-    intentMap.set('compts-submit-issue', comptsSumbitIssue)
+    // Support intents
+    intentMap.set('support-root', supportRoot)
+    intentMap.set('support-name', supportValidateName)
+    intentMap.set('support-phone-number', supportPhoneNumber)
+    intentMap.set('support-email', supportEmail)
+    intentMap.set('support-case-number', supportCaseNumber)
+    intentMap.set('support-no-case-number', supportNoCaseNumber)
+    intentMap.set('support-collect-issue', supportCollectIssue)
+    intentMap.set('support-summarize-issue', supportSummarizeIssue)
+    intentMap.set('support-revise-issue', supportReviseIssue)
+    intentMap.set('support-submit-issue', supportSumbitIssue)
 
     // Map intents
     intentMap.set('map-root', mapRoot)
@@ -179,6 +273,22 @@ exports = module.exports = functions
     intentMap.set('dirDep-account-term', dirDepAccountTerm)
     intentMap.set('dirDep-take-effect', dirDepTakeEffect)
     intentMap.set('dirDep-extra-funds', dirDepExtraFunds)
+    intentMap.set('dirDep-payment-closed-account', dirDepPaymentClosedAccount)
+
+    // EppiCard intents
+    intentMap.set('eppi-root', eppiRoot)
+    intentMap.set('eppi-get-card', eppiGetCard)
+    intentMap.set('eppi-activate-card', eppiActivateCard)
+    intentMap.set('eppi-fees', eppiFees)
+    intentMap.set('eppi-notifications', eppiNotifications)
+    intentMap.set('eppi-replace-report', eppiReplaceReport)
+    intentMap.set('eppi-faq', eppiFAQ)
+    intentMap.set('eppi-payment-history', eppiPaymentHistory)
+    intentMap.set('eppi-use-card', eppiUseCard)
+    intentMap.set('eppi-withdraw-cash', eppiWithdrawCash)
+    intentMap.set('eppi-surcharge', eppiSurcharge)
+    intentMap.set('eppi-learn-more', eppiLearnMore)
+    intentMap.set('eppi-balance-denial', eppiBalanceDenial)
 
     agent.handleRequest(intentMap)
   })

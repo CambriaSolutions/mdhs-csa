@@ -1,0 +1,28 @@
+{
+  "id": "85a43b03-d217-43be-9d7f-f845ce0307e1",
+  "name": "support-root",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294857,
+  "fallbackIntent": false,
+  "events": []
+}

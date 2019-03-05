@@ -1,0 +1,28 @@
+{
+  "id": "70e759e4-958a-4b10-a512-a3c8e29261f9",
+  "name": "eppi-withdraw-cash",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551222476,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "00fadd58-3d3a-4a8a-908e-b1a4ccea908d",
+    "data": [
+      {
+        "text": "Annual",
+        "alias": "cadence",
+        "meta": "@cadence",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548371848
+  },
+  {
+    "id": "580626fd-a586-4f9d-97ca-825d28d354fd",
+    "data": [
+      {
+        "text": "Monthly",
+        "alias": "cadence",
+        "meta": "@cadence",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548371848
+  },
+  {
+    "id": "135d213b-0e83-403f-a61e-1907070feeaa",
+    "data": [
+      {
+        "text": "Bi-Weekly",
+        "alias": "cadence",
+        "meta": "@cadence",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548371848
+  }
+]

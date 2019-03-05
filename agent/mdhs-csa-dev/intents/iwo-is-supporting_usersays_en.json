@@ -1,0 +1,44 @@
+[
+  {
+    "id": "7e0b67a0-3491-4acb-84b5-916c07eb7398",
+    "data": [
+      {
+        "text": "nope",
+        "alias": "isSupporting",
+        "meta": "@yes-no",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550881568
+  },
+  {
+    "id": "a22d28b6-013d-41e2-a010-a5bc12f6b111",
+    "data": [
+      {
+        "text": "no",
+        "alias": "isSupporting",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550881568
+  },
+  {
+    "id": "524d0f15-2e2d-46fe-941c-cd9e2c7ab88a",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "isSupporting",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550881568
+  }
+]

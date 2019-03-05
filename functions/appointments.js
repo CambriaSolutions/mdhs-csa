@@ -48,10 +48,7 @@ exports.apptsSchedule = async agent => {
 
 exports.apptsYesContacted = async agent => {
   try {
-    await agent.add(
-      `Plan to appear at the office listed in your summons.
-      For more information about appointments, go to [url].`
-    )
+    await agent.add(`Plan to appear at the office listed in your summons.`)
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`
     )
@@ -66,8 +63,7 @@ exports.apptsYesContacted = async agent => {
 exports.apptsNoContacted = async agent => {
   try {
     await agent.add(
-      `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.
-      For more information about appointments, go to [url].`
+      `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
     )
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`
@@ -97,8 +93,7 @@ exports.apptsOfficeLocations = async agent => {
 exports.apptsGuidelines = async agent => {
   try {
     await agent.add(
-      `You generally aren't required to schedule an appointment on your own. If you need to visit us, will receive a notice to appear at a District office.
-      For more information about appointments, go to [url].`
+      `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
     )
     await agent.add(
       `If you have urgent questions, you can contact support at 1-877-882-4916.`

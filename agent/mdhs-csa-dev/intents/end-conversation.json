@@ -1,0 +1,41 @@
+{
+  "id": "183cd01c-dd5b-47a5-a4cf-35c145c733e7",
+  "name": "end-conversation",
+  "auto": true,
+  "contexts": [
+    "waiting-end-conversation"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-end-conversation",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-restart-conversation",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Thanks, have a great day! To start over just say hello!"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1548974878,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,28 @@
+{
+  "id": "a7687297-4e45-43d8-98d7-3c23dbe2a473",
+  "name": "map-use-geolocation",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551215796,
+  "fallbackIntent": false,
+  "events": []
+}

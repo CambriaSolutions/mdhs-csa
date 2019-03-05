@@ -1,0 +1,45 @@
+{
+  "id": "0684b6d3-a8cd-40e8-82f8-6c4f6b63aaac",
+  "name": "support-email",
+  "auto": true,
+  "contexts": [
+    "waiting-compts-email"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-compts-email",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "c62a53e4-f183-480e-b837-65ec285625b4",
+          "required": false,
+          "dataType": "@sys.email",
+          "name": "email",
+          "value": "$email",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294905,
+  "fallbackIntent": false,
+  "events": []
+}

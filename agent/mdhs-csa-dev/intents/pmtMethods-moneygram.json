@@ -1,0 +1,30 @@
+{
+  "id": "32d071f8-f97b-4861-a7c1-eb7111e02c4c",
+  "name": "pmtMethods-moneygram",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-moneygram"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1550689438,
+  "fallbackIntent": false,
+  "events": []
+}

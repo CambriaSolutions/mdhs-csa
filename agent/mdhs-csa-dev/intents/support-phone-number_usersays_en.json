@@ -1,0 +1,34 @@
+[
+  {
+    "id": "d83355c5-ab2a-4ee2-a9c4-e21be08d98af",
+    "data": [
+      {
+        "text": "my phone number is ",
+        "userDefined": false
+      },
+      {
+        "text": "9167990766",
+        "alias": "phoneNumber",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1547593453
+  },
+  {
+    "id": "d39a0ec0-83a5-4cde-8538-efb76a949f99",
+    "data": [
+      {
+        "text": "9167990766",
+        "alias": "phoneNumber",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1547593453
+  }
+]

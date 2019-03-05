@@ -27,7 +27,6 @@ const locations = [
   '1122 E Main St, Suite 1 Philadelphia, MS 39328',
   '950 E County Line Road, Suite #G Ridgeland, MS 39157',
   '600 Russell St, Suite 110 Starkville, MS 39759',
-  '600 Russell St, Suite 110  Starkville, MS 39759',
   '600 Main St, Suite #B Tupelo, MS 38804',
   '1507 Washington St, 1st Floor Vicksburg, MS 39180',
   '128 W. Jefferson St Yazoo City, MS 39194',
@@ -49,8 +48,26 @@ const retrieveCoordinates = async address => {
       lng: json.results[0].geometry.location.lng,
     }
     const placeId = json.results[0].place_id
+    const unformattedAddressComponents = json.results[0].address_components
+    const addressComponents = {}
+    const streetComponents = []
+
+    // Only include components for street name and city
+    unformattedAddressComponents.forEach(component => {
+      if (component.types.indexOf('route') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('street_number') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('locality') !== -1) {
+        addressComponents.city = component.long_name
+      }
+    })
+    addressComponents.street = streetComponents.join(' ')
+
     const result = {
-      address,
+      addressComponents,
       lat: geoCode.lat,
       lng: geoCode.lng,
       placeId,

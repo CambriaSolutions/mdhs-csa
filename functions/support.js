@@ -3,7 +3,7 @@ const validator = require('validator')
 const isNumber = require('lodash/isNumber')
 const { handleEndConversation } = require('./globalFunctions.js')
 
-exports.comptsRoot = async agent => {
+exports.supportRoot = async agent => {
   try {
     await agent.add(
       `Got it. I have a few questions to make sure your request gets 
@@ -18,7 +18,7 @@ exports.comptsRoot = async agent => {
   }
 }
 
-exports.comptsValidateName = async agent => {
+exports.supportValidateName = async agent => {
   const firstName = agent.parameters.firstName
   const lastName = agent.parameters.lastName
 
@@ -26,7 +26,7 @@ exports.comptsValidateName = async agent => {
   if (firstName && lastName) {
     try {
       await agent.add(
-        `Thanks. What is your phone number
+        `Thanks ${firstName}. What is your phone number
           so we can reach out to you with a solution?`
       )
       await agent.context.set({
@@ -56,7 +56,7 @@ exports.comptsValidateName = async agent => {
   }
 }
 
-exports.comptsPhoneNumber = async agent => {
+exports.supportPhoneNumber = async agent => {
   const phoneNumber = agent.parameters.phoneNumber
   const formattedPhone = `+1${phoneNumber}`
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
@@ -92,7 +92,7 @@ exports.comptsPhoneNumber = async agent => {
   }
 }
 
-exports.comptsEmail = async agent => {
+exports.supportEmail = async agent => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
 
@@ -101,6 +101,10 @@ exports.comptsEmail = async agent => {
       await agent.add(`Thanks, what is your case number?`)
       await agent.context.set({
         name: 'waiting-compts-case-number',
+        lifespan: 2,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-case-number',
         lifespan: 2,
       })
       await agent.context.set({
@@ -126,7 +130,7 @@ exports.comptsEmail = async agent => {
   }
 }
 
-exports.comptsCaseNumber = async agent => {
+exports.supportCaseNumber = async agent => {
   const caseNumber = agent.parameters.caseNumber
 
   if (!isNumber(caseNumber) || caseNumber === 0) {
@@ -141,7 +145,7 @@ exports.comptsCaseNumber = async agent => {
     // TODO: save data to db
     try {
       await agent.add(
-        `Please describe your issue. You can use as many messages as
+        `Please describe your issue or request. You can use as many messages as
           you like - just click the "I'm Done" button when you are finished.`
       )
       await agent.context.set({
@@ -158,7 +162,29 @@ exports.comptsCaseNumber = async agent => {
   }
 }
 
-exports.comptsCollectIssue = async agent => {
+exports.supportNoCaseNumber = async agent => {
+  const caseNumber = 'Unknown case number'
+
+  // TODO: save data to db
+  try {
+    await agent.add(
+      `Please describe your issue or request. You can use as many messages as
+          you like - just click the "I'm Done" button when you are finished.`
+    )
+    await agent.context.set({
+      name: 'waiting-compts-collect-issue',
+      lifespan: 10,
+    })
+    await agent.context.set({
+      name: 'userinfo',
+      parameters: { caseNumber: caseNumber },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportCollectIssue = async agent => {
   const complaint = agent.parameters.complaint
   const complaintsInContext = agent.context.get('complaints')
   let complaintCollection = []
@@ -176,7 +202,7 @@ exports.comptsCollectIssue = async agent => {
     await agent.add(new Suggestion(`I'm done`))
     await agent.context.set({
       name: 'complaints',
-      lifespan: 2,
+      lifespan: 5,
       parameters: { complaints: complaintCollection },
     })
     await agent.context.set({
@@ -192,7 +218,7 @@ exports.comptsCollectIssue = async agent => {
   }
 }
 
-exports.comptsSummarizeIssue = async agent => {
+exports.supportSummarizeIssue = async agent => {
   const rawComplaints = agent.context.get('complaints').parameters.complaints
   const filteredComplaints = rawComplaints.join(' ')
   const userinfo = agent.context.get('userinfo').parameters
@@ -210,10 +236,12 @@ exports.comptsSummarizeIssue = async agent => {
     phoneNumber
   ) {
     try {
-      await agent.add(`Here's what I've got.`)
+      await agent.add(
+        `Okay, I've put your request together. Here's what I've got.`
+      )
       await agent.add(
         new Card({
-          title: `New Complaint`,
+          title: `Support Request`,
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
@@ -237,7 +265,7 @@ exports.comptsSummarizeIssue = async agent => {
   }
 }
 
-exports.comptsReviseIssue = async agent => {
+exports.supportReviseIssue = async agent => {
   try {
     await agent.add(
       `Let's start over. Please describe your issue. You can use as many messages as
@@ -249,7 +277,7 @@ exports.comptsReviseIssue = async agent => {
     })
     await agent.context.set({
       name: 'complaints',
-      lifespan: 2,
+      lifespan: 5,
       parameters: { complaints: [] },
     })
   } catch (err) {
@@ -257,19 +285,29 @@ exports.comptsReviseIssue = async agent => {
   }
 }
 
-exports.comptsSumbitIssue = async agent => {
-  // const rawComplaints = agent.context.get('complaints').parameters.complaints
-  // const filteredComplaints = rawComplaints.join(' ')
-  // const userinfo = agent.context.get('userinfo').parameters
-  // const firstName = userinfo.firstName
-  // const lastName = userinfo.lastName
-  // const caseNumber = userinfo.caseNumber
-  // const phoneNumber = userinfo.phoneNumber
+exports.supportSumbitIssue = async agent => {
+  const rawComplaints = agent.context.get('complaints').parameters.complaints
+  const filteredComplaints = rawComplaints.join(' ')
+  const userinfo = agent.context.get('userinfo').parameters
+  const firstName = userinfo.firstName
+  const lastName = userinfo.lastName
+  const caseNumber = userinfo.caseNumber
+  const phoneNumber = userinfo.phoneNumber
+  const email = userinfo.email
 
   //TODO: send complaint data to service desk api
   try {
     await agent.add(`Thanks, your request has been submitted!`)
-
+    await agent.add(
+      new Card({
+        title: `Support Request: [Ticket #]`,
+        text: `Full Name: ${firstName} ${lastName}
+        Phone Number: ${phoneNumber}
+        Email: ${email}
+        Case Number: ${caseNumber}
+        Message: ${filteredComplaints}`,
+      })
+    )
     // Ask the user if they need anything else, set appropriate contexts
     await handleEndConversation(agent)
   } catch (err) {

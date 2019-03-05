@@ -1,0 +1,30 @@
+{
+  "id": "0dd67b3b-f393-4ba9-91a3-64c555273ddc",
+  "name": "pmtMethods-employer",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-employer"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1550621320,
+  "fallbackIntent": false,
+  "events": []
+}

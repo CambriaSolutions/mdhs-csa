@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0515ec4d-d236-4371-9c58-8dd440472a47",
+    "data": [
+      {
+        "text": "money gram",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550689438
+  },
+  {
+    "id": "76c1f66f-fd59-48d2-b45d-44067a30e7a3",
+    "data": [
+      {
+        "text": "Moneygram",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550636988
+  }
+]
