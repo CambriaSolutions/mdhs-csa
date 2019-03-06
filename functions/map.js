@@ -1,4 +1,5 @@
 const { Payload } = require('dialogflow-fulfillment')
+const validator = require('validator')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const locations = require('./coordinates.json')
 
@@ -29,33 +30,46 @@ exports.mapDeliverMap = async agent => {
     }
     if (agent.parameters.userZip) {
       userZip = agent.parameters.userZip
-    }
-    let userLocation = `${userAddress} ${userCity} ${userZip}`
+      const validZip = await validator.isPostalCode(`${userZip}`, 'US')
+      if (validZip || userCity || userAddress) {
+        let userLocation = `${userAddress} ${userCity} ${userZip}`
 
-    if (
-      !userLocation.includes(' ms') ||
-      !userLocation.includes(' mississippi')
-    ) {
-      userLocation += ' ms'
-    }
-
-    const currentLocation = { userLocation }
-    const currentGeocode = await getGeocode(currentLocation)
-    const nearestLocations = getNearestThreeLocations(currentGeocode, locations)
-    const mapInfo = { locations, currentGeocode, nearestLocations }
-    const mapPayload = JSON.stringify(mapInfo)
-    await agent.add(`Here is an interactive map of all of our locations!`)
-    await agent.add(
-      new Payload(
-        agent.UNSPECIFIED,
-        { mapPayload },
-        {
-          sendAsMessage: true,
-          rawPayload: true,
+        if (
+          !userLocation.includes(' ms') ||
+          !userLocation.includes(' mississippi')
+        ) {
+          userLocation += ' ms'
         }
-      )
-    )
+
+        const currentLocation = { userLocation }
+        const currentGeocode = await getGeocode(currentLocation)
+        const nearestLocations = getNearestThreeLocations(
+          currentGeocode,
+          locations
+        )
+        const mapInfo = { locations, currentGeocode, nearestLocations }
+        const mapPayload = JSON.stringify(mapInfo)
+        await agent.add(`Here is an interactive map of all of our locations!`)
+        await agent.add(
+          new Payload(
+            agent.UNSPECIFIED,
+            { mapPayload },
+            {
+              sendAsMessage: true,
+              rawPayload: true,
+            }
+          )
+        )
+      }
+    }
   } catch (error) {
     console.error(error)
+  }
+}
+
+function greet() {
+  return
+  {
+    message: 'hello'
   }
 }
