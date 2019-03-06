@@ -53,7 +53,7 @@ exports.dirDepShowForm = async agent => {
       })
     )
     await agent.add(
-      `In the event you cannot or do not want to download the form, please contact customer service at [phone number] and our Mail Room will send you a copy.`
+      `In the event you cannot or do not want to download the form, please contact customer service at 1-601-359-4500 and our Mail Room will send you a copy.`
     )
     await handleEndConversation(agent)
   } catch (err) {
