@@ -30,7 +30,6 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      console.log(validator.isPostalCode(`${userZip}`, 'US'))
       if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
         userZip = agent.parameters.userZip
       } else {
