@@ -30,13 +30,14 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      if (!validator.isPostalCode(`${userZip}`, 'US')) {
-        userZip = null
-      } else {
+      console.log(validator.isPostalCode(`${userZip}`, 'US'))
+      if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
         userZip = agent.parameters.userZip
+      } else {
+        userZip = ''
       }
     }
-    if (validZip || userCity || userAddress) {
+    if (userZip !== '' || userCity !== '' || userAddress !== '') {
       let userLocation = `${userAddress} ${userCity} ${userZip}`
 
       if (
