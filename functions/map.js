@@ -22,6 +22,7 @@ exports.mapDeliverMap = async agent => {
     let userAddress = ''
     let userCity = ''
     let userZip = ''
+
     if (agent.parameters.userAddress) {
       userAddress = agent.parameters.userAddress.toLowerCase()
     }
@@ -29,47 +30,51 @@ exports.mapDeliverMap = async agent => {
       userCity = agent.parameters.userCity.toLowerCase()
     }
     if (agent.parameters.userZip) {
-      userZip = agent.parameters.userZip
-      const validZip = await validator.isPostalCode(`${userZip}`, 'US')
-      if (validZip || userCity || userAddress) {
-        let userLocation = `${userAddress} ${userCity} ${userZip}`
-
-        if (
-          !userLocation.includes(' ms') ||
-          !userLocation.includes(' mississippi')
-        ) {
-          userLocation += ' ms'
-        }
-
-        const currentLocation = { userLocation }
-        const currentGeocode = await getGeocode(currentLocation)
-        const nearestLocations = getNearestThreeLocations(
-          currentGeocode,
-          locations
-        )
-        const mapInfo = { locations, currentGeocode, nearestLocations }
-        const mapPayload = JSON.stringify(mapInfo)
-        await agent.add(`Here is an interactive map of all of our locations!`)
-        await agent.add(
-          new Payload(
-            agent.UNSPECIFIED,
-            { mapPayload },
-            {
-              sendAsMessage: true,
-              rawPayload: true,
-            }
-          )
-        )
+      if (!validator.isPostalCode(`${userZip}`, 'US')) {
+        userZip = null
+      } else {
+        userZip = agent.parameters.userZip
       }
+    }
+    if (validZip || userCity || userAddress) {
+      let userLocation = `${userAddress} ${userCity} ${userZip}`
+
+      if (
+        !userLocation.includes(' ms') ||
+        !userLocation.includes(' mississippi')
+      ) {
+        userLocation += ' ms'
+      }
+
+      const currentLocation = { userLocation }
+      const currentGeocode = await getGeocode(currentLocation)
+      const nearestLocations = getNearestThreeLocations(
+        currentGeocode,
+        locations
+      )
+      const mapInfo = { locations, currentGeocode, nearestLocations }
+      const mapPayload = JSON.stringify(mapInfo)
+      await agent.add(`Here is an interactive map of all of our locations!`)
+      await agent.add(
+        new Payload(
+          agent.UNSPECIFIED,
+          { mapPayload },
+          {
+            sendAsMessage: true,
+            rawPayload: true,
+          }
+        )
+      )
+    } else {
+      await agent.add(
+        `Sorry, I couldn't find that address. Could you say that again?`
+      )
+      await agent.context.set({
+        name: 'waiting-maps-deliver-map',
+        lifespan: 2,
+      })
     }
   } catch (error) {
     console.error(error)
-  }
-}
-
-function greet() {
-  return
-  {
-    message: 'hello'
   }
 }
