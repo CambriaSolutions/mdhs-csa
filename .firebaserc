@@ -2,6 +2,7 @@
   "projects": {
     "stage": "mdhs-csa-stage",
     "prod": "mdhs-csa",
-    "dev": "mdhs-csa-dev"
+    "dev": "mdhs-csa-dev",
+    "dev-beta": "mdhs-csa-dev-beta"
   }
 }
