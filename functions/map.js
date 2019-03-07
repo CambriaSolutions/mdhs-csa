@@ -32,8 +32,6 @@ exports.mapDeliverMap = async agent => {
     if (agent.parameters.userZip) {
       if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
         userZip = agent.parameters.userZip
-      } else {
-        userZip = ''
       }
     }
     if (userZip !== '' || userCity !== '' || userAddress !== '') {
