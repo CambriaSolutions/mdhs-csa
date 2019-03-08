@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const { WebhookClient } = require('dialogflow-fulfillment')
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Card } = require('dialogflow-fulfillment')
 
 // General payment intents
 const {
@@ -189,11 +189,28 @@ exports = module.exports = functions
       }
     }
 
+    // Directs the user to Casey
+    const caseyHandoff = async agent => {
+      try {
+        await agent.add(
+          new Card({
+            title: `Policy Search`,
+            text: `Click the link to search the Child Support Policy Manual`,
+            buttonText: 'Click Here',
+            buttonUrl: 'https://mdhs-policysearch-dev.firebaseapp.com',
+          })
+        )
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
     let intentMap = new Map()
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
+    intentMap.set('casey-handoff', caseyHandoff)
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
