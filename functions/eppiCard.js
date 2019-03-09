@@ -43,10 +43,10 @@ exports.eppiRoot = async agent => {
 exports.eppiGetCard = async agent => {
   try {
     await agent.add(
-      `The default payment method for all Child Support cases is the EPPI Card. To activate the EPPI Card, you can either call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local Child Support office.`
+      `The default payment method for all Child Support cases is the EPPICard. To activate the EPPICard, you can either call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local Child Support office.`
     )
     await agent.add(
-      `If you are receiving payments by paper check, you can change it to the EPPI Card.`
+      `If you are receiving payments by paper check, you can change it to the EPPICard.`
     )
     await agent.add(
       `To learn more about EPPICards, <a href="https://www.eppicard.com/" target="_blank">click here</a> to visit the EPPICard website or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
@@ -98,7 +98,7 @@ exports.eppiNotifications = async agent => {
 exports.eppiReplaceReport = async agent => {
   try {
     await agent.add(
-      `To replace an EPPI Card, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at <a href="tel:+18664614095">1-866-461-4095</a>.`
+      `To replace an EPPICard, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
     await agent.add(
       `Remember, you are allowed five (5) calls per calendar month to the Mississippi EPPICard Customer Service at no cost. The sixth and subsequent calls per month cost $0.50. `
@@ -111,7 +111,7 @@ exports.eppiReplaceReport = async agent => {
 exports.eppiFAQ = async agent => {
   try {
     await agent.add(
-      `Sure, I can help answer general questions you might have about the EPPI Card. What is your question?`
+      `Sure, I can help answer general questions you might have about the EPPICard. What is your question?`
     )
   } catch (err) {
     console.log(err)
@@ -121,7 +121,7 @@ exports.eppiFAQ = async agent => {
 exports.eppiPaymentHistory = async agent => {
   try {
     await agent.add(
-      `To access your payments or transaction history, you will need to create an account through the EPPI Card website. Once you have an account, you can access transaction history. <a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICARD website.`
+      `To access your payments or transaction history, you will need to create an account through the EPPICard website. Once you have an account, you can access transaction history. <a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICARD website.`
     )
   } catch (err) {
     console.log(err)
