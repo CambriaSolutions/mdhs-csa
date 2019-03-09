@@ -143,7 +143,7 @@ exports.iwoDefineDisposableIncome = async agent => {
     )
 
     await agent.add(
-      `Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">Click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+      `Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
     )
     await agent.add(`What is the employee's disposable income?`)
     await agent.context.set({
