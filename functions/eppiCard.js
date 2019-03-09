@@ -1,4 +1,4 @@
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.eppiRoot = async agent => {
   try {
@@ -43,18 +43,13 @@ exports.eppiRoot = async agent => {
 exports.eppiGetCard = async agent => {
   try {
     await agent.add(
-      `The default payment method for all Child Support cases is the EPPI Card. To activate the EPPI Card, you can either call 1-877-882-4916 or visit a local Child Support office.`
+      `The default payment method for all Child Support cases is the EPPI Card. To activate the EPPI Card, you can either call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local Child Support office.`
     )
     await agent.add(
       `If you are receiving payments by paper check, you can change it to the EPPI Card.`
     )
     await agent.add(
-      new Card({
-        title: `EPPICards`,
-        text: `To learn more about EPPICards, click the link to visit the EPPICard website or call their support line at 1-866-461-4095.`,
-        buttonText: 'Click Here',
-        buttonUrl: 'https://www.eppicard.com/',
-      })
+      `To learn more about EPPICards, <a href="https://www.eppicard.com/" target="_blank">click here</a> to visit the EPPICard website or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
   } catch (err) {
     console.log(err)
@@ -64,7 +59,7 @@ exports.eppiGetCard = async agent => {
 exports.eppiActivateCard = async agent => {
   try {
     await agent.add(
-      `When you recieve your card, call 1-866-461-4095 to activate your card and create your PIN. You will need your card number, Social Security Number and Date of Birth to complete the activation process.`
+      `When you recieve your card, call <a href="tel:+1-866-461-4095">1-866-461-4095</a> to activate your card and create your PIN. You will need your card number, Social Security Number and Date of Birth to complete the activation process.`
     )
     await agent.add(`Remember to sign your name on the back of the card!`)
   } catch (err) {
@@ -90,7 +85,7 @@ exports.eppiFees = async agent => {
 exports.eppiNotifications = async agent => {
   try {
     await agent.add(
-      `You can register your mobile phone to receive deposit notifications and balance alerts at www.EPPICard.com or call 1-866-461-4095`
+      `You can register your mobile phone to receive deposit notifications and balance alerts at <a href="https://www.eppicard.com" target="_blank">www.EPPICard.com</a> or call <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
     await agent.add(
       `Remember, you are allowed five (5) calls per calendar month to the Mississippi EPPICard Customer Service at no cost. The sixth and subsequent calls per month cost $0.50.`
@@ -103,7 +98,7 @@ exports.eppiNotifications = async agent => {
 exports.eppiReplaceReport = async agent => {
   try {
     await agent.add(
-      `To replace an EPPI Card, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at 1-866-461-4095.`
+      `To replace an EPPI Card, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
     await agent.add(
       `Remember, you are allowed five (5) calls per calendar month to the Mississippi EPPICard Customer Service at no cost. The sixth and subsequent calls per month cost $0.50. `
@@ -126,12 +121,7 @@ exports.eppiFAQ = async agent => {
 exports.eppiPaymentHistory = async agent => {
   try {
     await agent.add(
-      new Card({
-        title: `Transaction History`,
-        text: `To access your payments or transaction history, you will need to create an account through the EPPI Card website. Once you have an account, you can access transaction history.`,
-        buttonText: 'Click here to access the EPPICARD website',
-        buttonUrl: 'https://www.eppicard.com/',
-      })
+      `To access your payments or transaction history, you will need to create an account through the EPPI Card website. Once you have an account, you can access transaction history. <a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICARD website.`
     )
   } catch (err) {
     console.log(err)
@@ -169,17 +159,7 @@ exports.eppiSurcharge = async agent => {
 }
 
 exports.eppiLearnMore = async agent => {
-  try {
-    await agent.add(
-      new Card({
-        title: `Click the link to access the EPPICard website`,
-        buttonText: 'EPPICard website',
-        buttonUrl: 'https://www.eppicard.com/',
-      })
-    )
-  } catch (err) {
-    console.log(err)
-  }
+  ;`<a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICard website.`
 }
 
 exports.eppiBalanceDenial = async agent => {
