@@ -1,4 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Card } = require('dialogflow-fulfillment')
 
 exports.eppiRoot = async agent => {
   try {
