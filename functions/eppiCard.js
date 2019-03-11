@@ -159,7 +159,13 @@ exports.eppiSurcharge = async agent => {
 }
 
 exports.eppiLearnMore = async agent => {
-  ;`<a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICard website.`
+  try {
+    await agent.add(
+      `Please <a href="https://www.eppicard.com/" target="_blank">click here</a> to access the EPPICard website.`
+    )
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 exports.eppiBalanceDenial = async agent => {
