@@ -10,7 +10,7 @@ exports.pmtCalcRoot = async agent => {
       'This estimator can help you determine payments based on a single case involving a single biological family. While each case is unique, I can help get you an estimate.'
     )
     await agent.add(
-      'If you need to know the exact amount you owe, please call 1-877-882-4916 or visit a local child support office.'
+      'If you need to know the exact amount you owe, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
     )
     await agent.add(new Suggestion('I Understand'))
     await agent.context.set({
@@ -101,7 +101,7 @@ exports.pmtCalcHandleTimeframe = async agent => {
       4. Social Security withholding
       `)
       await agent.add(
-        `Other deductions may apply. To get an even more accurate estimate, please call 1-877-882-4916 or visit a local child support office.`
+        `Other deductions may apply. To get an even more accurate estimate, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
       )
       await agent.add(
         `How much do you make every ${preppedCadence} after taxes and other deductions are taken out of your pay?`
@@ -195,7 +195,7 @@ exports.pmtCalcNumChildren = async agent => {
         `Based on the information you provided, your monthly support obligation will be $${calculatedPayment}.`
       )
       await agent.add(
-        `The information provided in this calculation is only an estimate. For more information, please call 1-877-882-4916 or visit a local child support office.`
+        `The information provided in this calculation is only an estimate. For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
       )
       // Clear out the payment factors context
       await agent.context.set({
@@ -213,7 +213,7 @@ exports.pmtCalcNumChildren = async agent => {
     } catch (err) {
       console.error(err)
       await agent.add(
-        `Something went wrong, please try again, or call 1-877-882-4916 for immediate support.`
+        `Something went wrong, please try again, or call <a href="tel:+18778824916">1-877-882-4916</a> for immediate support.`
       )
       await agent.add(new Suggestion('Recalculate'))
       await agent.context.set({

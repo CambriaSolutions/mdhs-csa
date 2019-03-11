@@ -50,7 +50,7 @@ exports.apptsYesContacted = async agent => {
   try {
     await agent.add(`Plan to appear at the office listed in your summons.`)
     await agent.add(
-      `If you have urgent questions, you can contact support at 1-877-882-4916.`
+      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
 
     // Ask the user if they need anything else, set appropriate contexts
@@ -66,7 +66,7 @@ exports.apptsNoContacted = async agent => {
       `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at 1-877-882-4916.`
+      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
 
     // Ask the user if they need anything else, set appropriate contexts
@@ -96,7 +96,7 @@ exports.apptsGuidelines = async agent => {
       `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at 1-877-882-4916.`
+      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
 
     // Ask the user if they need anything else, set appropriate contexts

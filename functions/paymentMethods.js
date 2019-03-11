@@ -1,4 +1,4 @@
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.pmtMethodsRoot = async agent => {
@@ -33,14 +33,8 @@ exports.pmtMethodsRoot = async agent => {
 
 exports.pmtMethodsCustodial = async agent => {
   try {
-    await agent.add(`Payments for custodial parents go through EPPICard.`)
     await agent.add(
-      new Card({
-        title: `Click the link to access the EPPICard website`,
-        text: `Visit their website or call their support line at 1-866-461-4095`,
-        buttonText: 'EPPICard website',
-        buttonUrl: 'https://www.eppicard.com/',
-      })
+      `Payments for custodial parents go through EPPICard. <a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICard website or or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -81,14 +75,7 @@ exports.pmtMethodsNonCustodial = async agent => {
 exports.pmtMethodsEmployer = async agent => {
   try {
     await agent.add(
-      `You can manage child support payments through iPayOnline. Click the link below to get started.`
-    )
-    await agent.add(
-      new Card({
-        title: 'iPayOnline',
-        buttonText: 'Click here',
-        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/',
-      })
+      `You can manage child support payments through iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -100,7 +87,7 @@ exports.pmtMethodsNone = async agent => {
   try {
     await agent.add(
       `Sorry, I can only help with employers, custodial and non-custodial parents. 
-      Please call 1-877-882-4916 for assistance.`
+      Please call <a href="tel:+18778824916">1-877-882-4916</a> for assistance.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -111,7 +98,10 @@ exports.pmtMethodsNone = async agent => {
 exports.pmtMethodsCheckOrMoneyOrder = async agent => {
   try {
     await agent.add(
-      `Please mail to: MDHS/SDU, P.O. Box 23094, Jackson, MS 39225`
+      `Please mail to:  
+      MDHS/SDU  
+      P.O. Box 23094  
+      Jackson, MS 39225  `
     )
     await agent.add(
       `Make sure to include your Social Security Number AND Case Number.`
@@ -125,14 +115,7 @@ exports.pmtMethodsCheckOrMoneyOrder = async agent => {
 exports.pmtMethodsCash = async agent => {
   try {
     await agent.add(
-      `You can pay MDHS Child Support with cash with PayNearMe. Click below to find the nearest location to you.`
-    )
-    await agent.add(
-      new Card({
-        title: 'PayNearMe',
-        buttonText: 'Click here',
-        buttonUrl: 'http://paynearme.com/mississippi',
-      })
+      `You can pay MDHS Child Support with cash with PayNearMe. <a href="http://paynearme.com/mississippi" target="_blank">Click here</a> to find the nearest location to you.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -143,14 +126,7 @@ exports.pmtMethodsCash = async agent => {
 exports.pmtMethodsEcheckDebit = async agent => {
   try {
     await agent.add(
-      `You can make payments online using Mississippi iPayOnline. Click the link below to get started.`
-    )
-    await agent.add(
-      new Card({
-        title: 'iPayOnline',
-        buttonText: 'Click here',
-        buttonUrl: 'https://ipayonline.mssdu.net/iPayOnline/',
-      })
+      `You can make payments online using Mississippi iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -161,25 +137,10 @@ exports.pmtMethodsEcheckDebit = async agent => {
 exports.pmtMethodsMoneygram = async agent => {
   try {
     await agent.add(
-      `All locations accept cash, and some locations accept pin-based cards. Click the link below to get started.`
+      `All locations accept cash, and some locations accept pin-based cards. <a href="http://www.MoneyGram.com/BillPayLocations" target="_blank">Click here</a> to get started.`
     )
     await agent.add(
-      new Card({
-        title: 'MoneyGram',
-        buttonText: 'Click here',
-        buttonUrl: 'http://www.MoneyGram.com/BillPayLocations',
-      })
-    )
-    await agent.add(
-      `If you have questions about MoneyGram, click the link below for the Quick Reference Guide.`
-    )
-    await agent.add(
-      new Card({
-        title: 'Quick Reference Guide',
-        buttonText: 'Click here',
-        buttonUrl:
-          'http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf',
-      })
+      `If you have questions about MoneyGram, <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf" target="_blank">Click here</a> for the Quick Reference Guide.`
     )
     await handleEndConversation(agent)
   } catch (err) {
