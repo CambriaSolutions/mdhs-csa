@@ -155,9 +155,12 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(`What can I help you with today?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Action Requests'))
+        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
       } catch (err) {
         console.error(err)
       }
@@ -166,9 +169,12 @@ exports = module.exports = functions
     const restartConversation = async agent => {
       try {
         await agent.add(`What can I help you with?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Action Requests'))
+        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
       } catch (err) {
         console.error(err)
       }
