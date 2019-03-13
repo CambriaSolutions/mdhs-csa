@@ -32,10 +32,22 @@ exports.supportRoot = async agent => {
 }
 
 exports.supportType = async agent => {
-  const supportType = agent.parameters.supportType
+  const supportType = agent.parameters.supportType.toLowerCase()
 
+  let formattedRequest
+  if (supportType === 'request contempt action') {
+    formattedRequest = 'request for a contempt action'
+  } else if (supportType === 'child support payment increase or decrease') {
+    formattedRequest = 'request to review your child support payments'
+  } else if (supportType === 'employer report lump sum notification') {
+    formattedRequest = 'lump sum notification'
+  } else if (supportType === 'add authorized user') {
+    formattedRequest = 'request to add an authorized user'
+  } else {
+    formattedRequest = 'request'
+  }
   await agent.add(
-    `Got it. I have a few questions to make sure your request gets
+    `Got it. I have a few questions to make sure your ${formattedRequest} gets
     to the right place. What's your first and last name?`
   )
 
@@ -162,21 +174,49 @@ exports.supportEmail = async agent => {
 }
 
 exports.supportCaseNumber = async agent => {
-  const caseNumber = agent.parameters.caseNumber
+  const rawResponse = agent.parameters.caseNumber
+  const parsedResponse = rawResponse.split(' ')
+  let caseNumber
+  parsedResponse.forEach(phrase => {
+    if (phrase.charAt(0) === '6') {
+      // If the phrase is a nine digit number,
+      // which starts with a six, may include hyphens,
+      // and may have a letter, then the case number is valid
+      if (phrase.replace(/\D/g, '').length === 9) {
+        caseNumber = phrase
+      }
+    }
+  })
 
-  if (!isNumber(caseNumber) || caseNumber === 0) {
+  // Retrieve what type of issue this is, and change the wording appropriately
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
+  let descriptionText
+  if (supportType === 'request contempt action') {
+    descriptionText =
+      'Please describe your request for assistance regarding your Request for Contempt Action.'
+  } else if (
+    supportType ===
+    'Please describe your request for review of your child support payments.'
+  ) {
+    descriptionText =
+      'Please describe your request for review of your child support payments.'
+  } else {
+    descriptionText = 'Please describe your issue or request.'
+  }
+
+  if (!caseNumber || caseNumber === 0) {
     await agent.add(
-      `I didn't catch that as a number, what is your case number?`
+      `I didn't catch that as a valid case number, case numbers always start with a 6, and may end with a letter of the alphabet.`
     )
+    await agent.add(`What is your case number?`)
     await agent.context.set({
       name: 'waiting-support-case-number',
       lifespan: 3,
     })
   } else {
-    // TODO: save data to db
     try {
       await agent.add(
-        `Please describe your issue or request. You can use as many messages as
+        `${descriptionText} You can use as many messages as
           you like - just click the "I'm Done" button when you are finished.`
       )
       await agent.context.set({
@@ -195,24 +235,25 @@ exports.supportCaseNumber = async agent => {
 
 exports.supportNoCaseNumber = async agent => {
   const caseNumber = 'Unknown case number'
-
-  // TODO: save data to db
-  try {
-    await agent.add(
-      `Please describe your issue or request. You can use as many messages as
+  const ticketinfo = agent.context.get('ticketinfo').parameters
+  if (ticketinfo)
+    // TODO: save data to db
+    try {
+      await agent.add(
+        `Please describe your issue or request. You can use as many messages as
           you like - just click the "I'm Done" button when you are finished.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 10,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      parameters: { caseNumber: caseNumber },
-    })
-  } catch (err) {
-    console.error(err)
-  }
+      )
+      await agent.context.set({
+        name: 'waiting-support-collect-issue',
+        lifespan: 10,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { caseNumber: caseNumber },
+      })
+    } catch (err) {
+      console.error(err)
+    }
 }
 
 exports.supportCollectIssue = async agent => {
@@ -258,6 +299,21 @@ exports.supportSummarizeIssue = async agent => {
   const caseNumber = ticketinfo.caseNumber
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
+  const supportType = ticketinfo.supportType
+  let employmentSubType = ticketinfo.employmentSubType
+
+  let cardTitle
+  if (supportType === 'child support payment increase or decrease') {
+    cardTitle = 'Order Review & Modification'
+  } else if (supportType === 'change of employment status') {
+    if (employmentSubType) {
+      cardTitle = `Change of Employment Status - ${employmentSubType}`
+    } else {
+      cardTitle = `Change of Employment Status`
+    }
+  } else {
+    cardTitle = supportType
+  }
 
   if (filteredRequests && firstName && lastName && caseNumber && phoneNumber) {
     try {
@@ -266,7 +322,7 @@ exports.supportSummarizeIssue = async agent => {
       )
       await agent.add(
         new Card({
-          title: `Support Request`,
+          title: `${cardTitle}`,
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
@@ -319,13 +375,14 @@ exports.supportSumbitIssue = async agent => {
   const caseNumber = ticketinfo.caseNumber
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
+  const supportType = ticketinfo.supportType
 
   //TODO: send ticket data to service desk api
   try {
     await agent.add(`Thanks, your request has been submitted!`)
     await agent.add(
       new Card({
-        title: `Support Request: [Ticket #]`,
+        title: `${supportType}: [Ticket #]`,
         text: `Full Name: ${firstName} ${lastName}
         Phone Number: ${phoneNumber}
         Email: ${email}
