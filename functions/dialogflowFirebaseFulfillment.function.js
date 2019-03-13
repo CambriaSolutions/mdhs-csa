@@ -46,7 +46,8 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportValidateName,
+  supportType,
+  supportCollectName,
   supportPhoneNumber,
   supportCaseNumber,
   supportNoCaseNumber,
@@ -203,7 +204,7 @@ exports = module.exports = functions
             title: `Policy Search`,
             text: `Click the link to search the Child Support Policy Manual`,
             buttonText: 'Click Here',
-            buttonUrl: 'https://mdhs-policysearch-dev.firebaseapp.com',
+            buttonUrl: 'https://mdhs-policysearch.firebaseapp.com',
           })
         )
       } catch (err) {
@@ -271,7 +272,8 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-name', supportValidateName)
+    intentMap.set('support-type', supportType)
+    intentMap.set('support-collect-name', supportCollectName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-email', supportEmail)
     intentMap.set('support-case-number', supportCaseNumber)
