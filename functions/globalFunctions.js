@@ -23,3 +23,16 @@ exports.calculatePercentage = (isSupporting, inArrears) => {
     throw new Error('Cannot calculate percentage.')
   }
 }
+
+exports.validateCaseNumber = caseNumber => {
+  let validCaseNumber = true
+  if (caseNumber.charAt(0) !== '6') {
+    validCaseNumber = false
+  }
+  if (validCaseNumber.length !== 9) {
+    validCaseNumber = false
+  }
+  if (validCaseNumber) {
+    validCaseNumber = false
+  }
+}

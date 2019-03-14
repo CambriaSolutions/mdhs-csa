@@ -1,7 +1,16 @@
-require('dotenv').config()
 const rp = require('request-promise')
 
-const sendToServiceDesk = async => {
+exports.sendToServiceDesk = async requestFieldValues => {
+  const {
+    supportType,
+    filteredRequests,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    caseNumber,
+  } = requestFieldValues
+
   const options = {
     method: 'POST',
     uri: 'https://mdhs-mis-aux.atlassian.net/rest/servicedeskapi/request',
@@ -14,15 +23,15 @@ const sendToServiceDesk = async => {
       serviceDeskId: 7,
       requestTypeId: 54,
       requestFieldValues: {
-        summary: 'test summary',
-        description: 'test Description',
+        summary: supportType,
+        description: filteredRequests,
         customfield_10109: { value: 'Test' },
-        customfield_10105: 'test Division',
-        customfield_10107: 'test <Firstname>',
-        customfield_10108: 'test <Lastname>',
+        customfield_10105: 'Child Support',
+        customfield_10107: firstName,
+        customfield_10108: lastName,
         customfield_10086: 9163264446,
-        customfield_10087: 'test <email>',
-        customfield_10106: 'test <Casenumber>',
+        customfield_10087: email,
+        customfield_10106: caseNumber,
         customfield_10084: {
           value: 'Chat Bot',
         },

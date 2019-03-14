@@ -2,6 +2,7 @@ const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const isNumber = require('lodash/isNumber')
 const { handleEndConversation } = require('./globalFunctions.js')
+const { sendToServiceDesk } = require('./postToServiceDesk.js')
 
 exports.supportRoot = async agent => {
   try {
@@ -50,6 +51,7 @@ exports.supportType = async agent => {
     `Got it. I have a few questions to make sure your ${formattedRequest} gets
     to the right place. What's your first and last name?`
   )
+  await agent.add(new Suggestion(`Chris Freeman`))
 
   await agent.context.set({
     name: 'waiting-support-collect-name',
@@ -73,6 +75,7 @@ exports.supportCollectName = async agent => {
         `Thanks ${firstName}. What is your phone number
           so we can reach out to you with a solution?`
       )
+      await agent.add(new Suggestion(`9167990766`))
       await agent.context.set({
         name: 'waiting-support-phone-number',
         lifespan: 2,
@@ -108,13 +111,15 @@ exports.supportPhoneNumber = async agent => {
   if (isValid) {
     try {
       await agent.add(`What is your email address?`)
+      await agent.add(new Suggestion(`cfreeman@cambriasolutions.com`))
+
       await agent.context.set({
         name: 'waiting-support-email',
         lifespan: 2,
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { phoneNumber: formattedPhone },
+        parameters: { phoneNumber: phoneNumber },
       })
     } catch (err) {
       console.error(err)
@@ -142,6 +147,8 @@ exports.supportEmail = async agent => {
   if (isValid) {
     try {
       await agent.add(`Thanks, what is your case number?`)
+      await agent.add(new Suggestion(`623456789`))
+
       await agent.context.set({
         name: 'waiting-support-case-number',
         lifespan: 2,
@@ -177,6 +184,7 @@ exports.supportCaseNumber = async agent => {
   const rawResponse = agent.parameters.caseNumber
   const parsedResponse = rawResponse.split(' ')
   let caseNumber
+
   parsedResponse.forEach(phrase => {
     if (phrase.charAt(0) === '6') {
       // If the phrase is a nine digit number,
@@ -187,6 +195,19 @@ exports.supportCaseNumber = async agent => {
       }
     }
   })
+
+  // let validCaseNumber
+  // parsedResponse.forEach(word => {
+  //   if (word.charAt(0) === '6'){
+  //     validCaseNumber = true
+  //   }
+  //   if(word.length === 9){
+  //     validCaseNumber = true
+  //   }
+  //   if(word.endsWith()){
+
+  //   }
+  // })
 
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = agent.context.get('ticketinfo').parameters.supportType
@@ -219,6 +240,8 @@ exports.supportCaseNumber = async agent => {
         `${descriptionText} You can use as many messages as
           you like - just click the "I'm Done" button when you are finished.`
       )
+      await agent.add(new Suggestion(`My issue`))
+
       await agent.context.set({
         name: 'waiting-support-collect-issue',
         lifespan: 10,
@@ -377,12 +400,25 @@ exports.supportSumbitIssue = async agent => {
   const email = ticketinfo.email
   const supportType = ticketinfo.supportType
 
+  const requestFieldValues = {
+    supportType,
+    filteredRequests,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    caseNumber,
+  }
+
+  const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
+  const ticketId = postToServiceDesk.issueId
+
   //TODO: send ticket data to service desk api
   try {
     await agent.add(`Thanks, your request has been submitted!`)
     await agent.add(
       new Card({
-        title: `${supportType}: [Ticket #]`,
+        title: `${supportType}: Ticket #${ticketId}`,
         text: `Full Name: ${firstName} ${lastName}
         Phone Number: ${phoneNumber}
         Email: ${email}
