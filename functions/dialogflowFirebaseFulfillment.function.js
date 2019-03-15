@@ -1,4 +1,5 @@
 const functions = require('firebase-functions')
+const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 
@@ -122,15 +123,18 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-// const admin = require('firebase-admin')
-// const db = admin.firestore()
-// const settings = { timestampsInSnapshots: true }
-// db.settings(settings)
-
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
     const agent = new WebhookClient({ request, response })
+
+    // Send request body to analytics function
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const welcome = async agent => {
       try {
