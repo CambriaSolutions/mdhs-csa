@@ -1,7 +1,10 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const isNumber = require('lodash/isNumber')
-const { handleEndConversation } = require('./globalFunctions.js')
+const {
+  handleEndConversation,
+  validateCaseNumber,
+} = require('./globalFunctions.js')
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
 
 exports.supportRoot = async agent => {
@@ -103,12 +106,13 @@ exports.supportCollectName = async agent => {
 }
 
 exports.supportPhoneNumber = async agent => {
-  const phoneNumber = agent.parameters.phoneNumber
-  const formattedPhone = `+1${phoneNumber}`
+  const phoneNumberResponse = agent.parameters.phoneNumber
+  const formattedPhone = `+1${phoneNumberResponse}`
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
 
   // TODO: save data to db
   if (isValid) {
+    const phoneNumber = parseInt(phoneNumberResponse)
     try {
       await agent.add(`What is your email address?`)
       await agent.add(new Suggestion(`cfreeman@cambriasolutions.com`))
@@ -181,33 +185,8 @@ exports.supportEmail = async agent => {
 }
 
 exports.supportCaseNumber = async agent => {
-  const rawResponse = agent.parameters.caseNumber
-  const parsedResponse = rawResponse.split(' ')
-  let caseNumber
-
-  parsedResponse.forEach(phrase => {
-    if (phrase.charAt(0) === '6') {
-      // If the phrase is a nine digit number,
-      // which starts with a six, may include hyphens,
-      // and may have a letter, then the case number is valid
-      if (phrase.replace(/\D/g, '').length === 9) {
-        caseNumber = phrase
-      }
-    }
-  })
-
-  // let validCaseNumber
-  // parsedResponse.forEach(word => {
-  //   if (word.charAt(0) === '6'){
-  //     validCaseNumber = true
-  //   }
-  //   if(word.length === 9){
-  //     validCaseNumber = true
-  //   }
-  //   if(word.endsWith()){
-
-  //   }
-  // })
+  const caseNumber = agent.parameters.caseNumber
+  const validCaseNumber = validateCaseNumber(caseNumber)
 
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = agent.context.get('ticketinfo').parameters.supportType
@@ -225,7 +204,7 @@ exports.supportCaseNumber = async agent => {
     descriptionText = 'Please describe your issue or request.'
   }
 
-  if (!caseNumber || caseNumber === 0) {
+  if (!validCaseNumber) {
     await agent.add(
       `I didn't catch that as a valid case number, case numbers always start with a 6, and may end with a letter of the alphabet.`
     )
@@ -323,7 +302,7 @@ exports.supportSummarizeIssue = async agent => {
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
   const supportType = ticketinfo.supportType
-  let employmentSubType = ticketinfo.employmentSubType
+  const employmentSubType = ticketinfo.employmentSubType
 
   let cardTitle
   if (supportType === 'child support payment increase or decrease') {
@@ -400,6 +379,7 @@ exports.supportSumbitIssue = async agent => {
   const email = ticketinfo.email
   const supportType = ticketinfo.supportType
 
+  // Prepare payload fields for service desk call
   const requestFieldValues = {
     supportType,
     filteredRequests,
@@ -410,25 +390,30 @@ exports.supportSumbitIssue = async agent => {
     caseNumber,
   }
 
+  // Send ticket data to service desk api
   const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
-  const ticketId = postToServiceDesk.issueId
-
-  //TODO: send ticket data to service desk api
-  try {
-    await agent.add(`Thanks, your request has been submitted!`)
-    await agent.add(
-      new Card({
-        title: `${supportType}: Ticket #${ticketId}`,
-        text: `Full Name: ${firstName} ${lastName}
-        Phone Number: ${phoneNumber}
-        Email: ${email}
-        Case Number: ${caseNumber}
-        Message: ${filteredRequests}`,
-      })
-    )
-    // Ask the user if they need anything else, set appropriate contexts
+  const issueKey = postToServiceDesk.issueKey
+  if (issueKey) {
+    try {
+      await agent.add(`Thanks, your request has been submitted!`)
+      await agent.add(
+        new Card({
+          title: `${supportType}: Issue #${issueKey}`,
+          text: `Full Name: ${firstName} ${lastName}
+          Phone Number: ${phoneNumber}
+          Email: ${email}
+          Case Number: ${caseNumber}
+          Message: ${filteredRequests}`,
+        })
+      )
+      // Ask the user if they need anything else, set appropriate contexts
+      await handleEndConversation(agent)
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    // handle service desk errors?
+    await agent.add(`Looks like something has gone wrong!`)
     await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
   }
 }

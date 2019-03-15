@@ -29,7 +29,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
         customfield_10105: 'Child Support',
         customfield_10107: firstName,
         customfield_10108: lastName,
-        customfield_10086: 9163264446,
+        customfield_10086: phoneNumber,
         customfield_10087: email,
         customfield_10106: caseNumber,
         customfield_10084: {
