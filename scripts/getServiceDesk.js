@@ -3,7 +3,7 @@ var request = require('request')
 
 var options = {
   method: 'GET',
-  url: 'https://mdhs-mis-aux.atlassian.net/rest/servicedeskapi/request',
+  url: process.env.SERVICE_DESK_URI,
   headers: {
     Accept: 'application/json',
     Authorization: process.env.SERVICE_DESK_KEY,

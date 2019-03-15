@@ -13,7 +13,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
 
   const options = {
     method: 'POST',
-    uri: 'https://mdhs-mis-aux.atlassian.net/rest/servicedeskapi/request',
+    uri: process.env.SERVICE_DESK_URI,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
