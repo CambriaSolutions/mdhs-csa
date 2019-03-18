@@ -32,8 +32,8 @@ exports.validateCaseNumber = caseNumber => {
   if (caseNumber.length !== 9) {
     validCaseNumber = false
   }
-  if (caseNumber.charAt(0) === '6' && caseNumber.charAt(9).match(/[a-z]/g)) {
-    validCaseNumber = true
+  if (caseNumber.charAt(9).match(/[a-z]/g) === null) {
+    validCaseNumber = false
   }
   return validCaseNumber
 }
