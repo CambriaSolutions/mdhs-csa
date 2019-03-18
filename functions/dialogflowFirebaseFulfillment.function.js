@@ -204,7 +204,7 @@ exports = module.exports = functions
     const caseyHandoff = async agent => {
       try {
         await agent.add(
-          `Click <a href="https://mdhs-policysearch.firebaseapp.com">Here</a> to search the Child Support Policy Manual`
+          `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
         )
       } catch (err) {
         console.error(err)
