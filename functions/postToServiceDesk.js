@@ -1,5 +1,16 @@
 const rp = require('request-promise')
 
+const serviceDeskFields = {
+  environment: 'customfield_10109',
+  division: 'customfield_10105',
+  reporterFirstName: 'customfield_10107',
+  reporterLastName: 'customfield_10108',
+  reporterPhoneNumber: 'customfield_10086',
+  reporterEmail: 'customfield_10087',
+  reporterCaseNumber: 'customfield_10106',
+  channel: 'customfield_10084',
+}
+
 exports.sendToServiceDesk = async requestFieldValues => {
   const {
     supportType,
@@ -10,6 +21,17 @@ exports.sendToServiceDesk = async requestFieldValues => {
     email,
     caseNumber,
   } = requestFieldValues
+
+  const {
+    environment,
+    division,
+    reporterFirstName,
+    reporterLastName,
+    reporterPhoneNumber,
+    reporterEmail,
+    reporterCaseNumber,
+    channel,
+  } = serviceDeskFields
 
   const options = {
     method: 'POST',
@@ -25,14 +47,14 @@ exports.sendToServiceDesk = async requestFieldValues => {
       requestFieldValues: {
         summary: supportType,
         description: filteredRequests,
-        customfield_10109: { value: 'Test' },
-        customfield_10105: 'Child Support',
-        customfield_10107: firstName,
-        customfield_10108: lastName,
-        customfield_10086: phoneNumber,
-        customfield_10087: email,
-        customfield_10106: caseNumber,
-        customfield_10084: {
+        [environment]: { value: 'Test' },
+        [division]: 'Child Support',
+        [reporterFirstName]: firstName,
+        [reporterLastName]: lastName,
+        [reporterPhoneNumber]: phoneNumber,
+        [reporterEmail]: email,
+        [reporterCaseNumber]: caseNumber,
+        [channel]: {
           value: 'Chat Bot',
         },
       },
