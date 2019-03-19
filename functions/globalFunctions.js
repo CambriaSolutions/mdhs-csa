@@ -54,3 +54,10 @@ exports.validateCaseNumber = caseNumber => {
   }
   return validCaseNumber
 }
+
+// Upper case the first letter of a string
+exports.toTitleCase = string => {
+  return string.replace(/\w\S*/g, text => {
+    return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
+  })
+}
