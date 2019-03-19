@@ -1,4 +1,5 @@
 const functions = require('firebase-functions')
+const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 
@@ -46,7 +47,8 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportValidateName,
+  supportType,
+  supportCollectName,
   supportPhoneNumber,
   supportCaseNumber,
   supportNoCaseNumber,
@@ -121,15 +123,18 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-// const admin = require('firebase-admin')
-// const db = admin.firestore()
-// const settings = { timestampsInSnapshots: true }
-// db.settings(settings)
-
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
     const agent = new WebhookClient({ request, response })
+
+    // Send request body to analytics function
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const welcome = async agent => {
       try {
@@ -155,9 +160,12 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(`What can I help you with today?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Action Requests'))
+        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
       } catch (err) {
         console.error(err)
       }
@@ -166,9 +174,12 @@ exports = module.exports = functions
     const restartConversation = async agent => {
       try {
         await agent.add(`What can I help you with?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Action Requests'))
+        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
       } catch (err) {
         console.error(err)
       }
@@ -193,12 +204,7 @@ exports = module.exports = functions
     const caseyHandoff = async agent => {
       try {
         await agent.add(
-          new Card({
-            title: `Policy Search`,
-            text: `Click the link to search the Child Support Policy Manual`,
-            buttonText: 'Click Here',
-            buttonUrl: 'https://mdhs-policysearch-dev.firebaseapp.com',
-          })
+          `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
         )
       } catch (err) {
         console.error(err)
@@ -265,7 +271,8 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-name', supportValidateName)
+    intentMap.set('support-type', supportType)
+    intentMap.set('support-collect-name', supportCollectName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-email', supportEmail)
     intentMap.set('support-case-number', supportCaseNumber)
