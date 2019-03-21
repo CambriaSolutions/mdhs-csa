@@ -13,7 +13,7 @@ const serviceDeskFields = {
 
 exports.sendToServiceDesk = async requestFieldValues => {
   const {
-    supportType,
+    supportSummary,
     filteredRequests,
     firstName,
     lastName,
@@ -45,7 +45,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
       serviceDeskId: 7,
       requestTypeId: 54,
       requestFieldValues: {
-        summary: supportType,
+        summary: supportSummary,
         description: filteredRequests,
         [environment]: { value: 'Test' },
         [division]: 'Child Support',

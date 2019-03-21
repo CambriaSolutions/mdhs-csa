@@ -4,6 +4,7 @@ const {
   handleEndConversation,
   validateCaseNumber,
   toTitleCase,
+  formatDescriptionText,
 } = require('./globalFunctions.js')
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
 
@@ -126,7 +127,7 @@ exports.supportEmploymentStatus = async agent => {
 }
 
 exports.supportHandleEmploymentStatus = async agent => {
-  const employmentStatus = agent.parameters.employmentStatus
+  const employmentStatus = toTitleCase(agent.parameters.employmentStatus)
   const supportType = `Change of Employment Status`
   try {
     await agent.add(`Got it. I have a few questions to make sure your request gets
@@ -149,6 +150,7 @@ exports.supportHandleEmploymentStatus = async agent => {
     console.error(err)
   }
 }
+
 exports.supportType = async agent => {
   const supportType = agent.parameters.supportType.toLowerCase()
 
@@ -158,9 +160,9 @@ exports.supportType = async agent => {
   } else if (supportType === 'child support increase or decrease') {
     formattedRequest = 'request to review your child support payments'
   } else if (supportType === 'employer report lump sum notification') {
-    formattedRequest = 'lump sum notification'
+    formattedRequest = 'reporting of a Lump Sum Notification'
   } else if (supportType === 'add authorized user') {
-    formattedRequest = 'request to add an authorized user'
+    formattedRequest = 'request to add an authorized user to your account'
   } else {
     formattedRequest = 'request'
   }
@@ -192,7 +194,7 @@ exports.supportCollectName = async agent => {
   if (firstName && lastName) {
     try {
       await agent.add(
-        `Thanks ${firstName}. What is your phone number
+        `Thanks, ${firstName}. What is your phone number
           so we can reach out to you with a solution?`
       )
       await agent.add(new Suggestion(`9167990766`))
@@ -225,12 +227,15 @@ exports.supportCollectName = async agent => {
 exports.supportPhoneNumber = async agent => {
   const phoneNumberResponse = agent.parameters.phoneNumber
   const formattedPhone = `+1${phoneNumberResponse}`
+  const firstName = agent.context.get('ticketinfo').parameters.firstName
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
 
   if (isValid) {
     const phoneNumber = parseInt(phoneNumberResponse)
     try {
-      await agent.add(`What is your email address?`)
+      await agent.add(
+        `Thanks, ${firstName}. What is your email address so that we can reach out to you with a solution?`
+      )
       await agent.add(new Suggestion(`cfreeman@cambriasolutions.com`))
 
       await agent.context.set({
@@ -262,27 +267,48 @@ exports.supportPhoneNumber = async agent => {
 
 exports.supportEmail = async agent => {
   const email = agent.parameters.email
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
   const isValid = validator.isEmail(email)
+  const isLumpSum = supportType.includes('lump')
 
   if (isValid) {
-    try {
-      await agent.add(`Thanks, what is your case number?`)
-      await agent.add(new Suggestion(`623456789`))
+    if (isLumpSum) {
+      try {
+        await agent.add(`What is the name of your company/employer?`)
+        await agent.add(new Suggestion(`Company`))
 
-      await agent.context.set({
-        name: 'waiting-support-case-number',
-        lifespan: 2,
-      })
-      await agent.context.set({
-        name: 'waiting-support-no-case-number',
-        lifespan: 2,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
+        await agent.context.set({
+          name: 'waiting-support-collect-company',
+          lifespan: 2,
+        })
+
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(`What is your case number?`)
+        await agent.add(new Suggestion(`623456789`))
+
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 2,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 2,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
   } else {
     try {
@@ -300,25 +326,35 @@ exports.supportEmail = async agent => {
   }
 }
 
+exports.supportCollectCompanyName = async agent => {
+  const companyName = toTitleCase(agent.parameters.companyName)
+
+  try {
+    await agent.add(
+      `What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like -- just click the "I'm Done" button when you're finished.`
+    )
+    await agent.add(new Suggestion(`My issue`))
+
+    await agent.context.set({
+      name: 'waiting-support-collect-issue',
+      lifespan: 10,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { companyName: companyName },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 exports.supportCaseNumber = async agent => {
   const caseNumber = agent.parameters.caseNumber
   const validCaseNumber = validateCaseNumber(caseNumber)
 
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = agent.context.get('ticketinfo').parameters.supportType
-  let descriptionText
-  if (supportType === 'request contempt action') {
-    descriptionText =
-      'Please describe your request for assistance regarding your Request for Contempt Action.'
-  } else if (
-    supportType ===
-    'Please describe your request for review of your child support payments.'
-  ) {
-    descriptionText =
-      'Please describe your request for review of your child support payments.'
-  } else {
-    descriptionText = 'Please describe your issue or request.'
-  }
+  const descriptionText = formatDescriptionText(supportType)
 
   if (!validCaseNumber) {
     await agent.add(
@@ -416,20 +452,23 @@ exports.supportSummarizeIssue = async agent => {
   const caseNumber = ticketinfo.caseNumber
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
-  const supportType = ticketinfo.supportType
+  const supportType = ticketinfo.supportType.toLowerCase()
+  const companyName = ticketinfo.companyName
   const employmentSubType = ticketinfo.employmentSubType
 
-  let cardTitle
-  if (supportType === 'child support payment increase or decrease') {
-    cardTitle = 'Order Review & Modification'
+  let supportSummary
+  if (supportType === 'child support increase or decrease') {
+    supportSummary = 'Order Review & Modification'
   } else if (supportType === 'change of employment status') {
     if (employmentSubType) {
-      cardTitle = `Change of Employment Status - ${employmentSubType}`
+      supportSummary = `Change of Employment Status - ${employmentSubType}`
     } else {
-      cardTitle = `Change of Employment Status`
+      supportSummary = `Change of Employment Status`
     }
+  } else if (supportType === 'inquiry') {
+    supportSummary = `Support Request`
   } else {
-    cardTitle = toTitleCase(supportType)
+    supportSummary = toTitleCase(supportType)
   }
 
   if (filteredRequests && firstName && lastName && caseNumber && phoneNumber) {
@@ -439,11 +478,15 @@ exports.supportSummarizeIssue = async agent => {
       )
       await agent.add(
         new Card({
-          title: `${cardTitle}`,
+          title: `${supportSummary}`,
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
-          Case Number: ${caseNumber}
+          ${
+            companyName
+              ? `Company: ${companyName}`
+              : `Case Number: ${caseNumber} `
+          }
           Message: ${filteredRequests}`,
         })
       )
@@ -459,7 +502,7 @@ exports.supportSummarizeIssue = async agent => {
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { cardTitle: cardTitle },
+        parameters: { supportSummary: supportSummary },
       })
     } catch (err) {
       console.error(err)
@@ -496,12 +539,12 @@ exports.supportSumbitIssue = async agent => {
   const caseNumber = ticketinfo.caseNumber
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
-  const supportType = ticketinfo.supportType
-  const cardTitle = ticketinfo.cardTitle
+  const companyName = ticketinfo.companyName
+  const supportSummary = ticketinfo.supportSummary
 
   // Prepare payload fields for service desk call
   const requestFieldValues = {
-    supportType,
+    supportSummary,
     filteredRequests,
     firstName,
     lastName,
@@ -515,14 +558,20 @@ exports.supportSumbitIssue = async agent => {
   const issueKey = postToServiceDesk.issueKey
   if (issueKey) {
     try {
-      await agent.add(`Thanks, your request has been submitted!`)
+      await agent.add(
+        `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
+      )
       await agent.add(
         new Card({
-          title: `${cardTitle}: Issue #${issueKey}`,
+          title: `${supportSummary}: Issue #${issueKey}`,
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
-          Case Number: ${caseNumber}
+          ${
+            companyName
+              ? `Company: ${companyName}`
+              : `Case Number: ${caseNumber} `
+          }
           Message: ${filteredRequests}`,
         })
       )

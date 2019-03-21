@@ -61,3 +61,35 @@ exports.toTitleCase = string => {
     return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
   })
 }
+
+// Format description text for Support Requests
+exports.formatDescriptionText = supportType => {
+  let descriptionText
+  if (supportType === 'request contempt action') {
+    descriptionText =
+      'Please describe your request for assistance regarding your Request for Contempt Action.'
+  } else if (supportType === 'child support increase or decrease') {
+    descriptionText =
+      'Please describe your request for review of your child support payments.'
+  } else if (supportType === 'change personal information') {
+    descriptionText =
+      'Please share with me the changes to your personal information. I can record changes that apply for the parent who pays or receives child support.'
+  } else if (supportType === 'request payment history or record') {
+    descriptionText =
+      'What do you need exactly regarding payment history or payment records?'
+  } else if (
+    supportType === 'information about the parent who pays child support'
+  ) {
+    descriptionText =
+      'What informaton do you want to share regarding the parent who pays child support?'
+  } else if (supportType === 'request case closure') {
+    descriptionText =
+      'What informaton do you want to share regarding your request for case closure?'
+  } else if (supportType === 'add authorized user') {
+    descriptionText =
+      'Please tell us the name and relationship of the person you are authorizing.'
+  } else {
+    descriptionText = 'Please describe your request.'
+  }
+  return descriptionText
+}

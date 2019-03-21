@@ -54,6 +54,7 @@ const {
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
   supportType,
+  supportCollectCompanyName,
   supportCollectName,
   supportPhoneNumber,
   supportCaseNumber,
@@ -287,6 +288,7 @@ exports = module.exports = functions
       supportHandleEmploymentStatus
     )
     intentMap.set('support-type', supportType)
+    intentMap.set('support-collect-company-name', supportCollectCompanyName)
     intentMap.set('support-collect-name', supportCollectName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-email', supportEmail)
