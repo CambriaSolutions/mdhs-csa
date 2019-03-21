@@ -19,19 +19,19 @@ exports.supportRoot = async agent => {
     await agent.add(new Suggestion(`General Support`))
     await agent.context.set({
       name: 'waiting-support-payments',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'waiting-support-requests',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'waiting-support-change',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'waiting-support-general',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -47,7 +47,7 @@ exports.supportPaymentsRoot = async agent => {
     await agent.add(new Suggestion(`Request Payment History`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -64,7 +64,7 @@ exports.supportRequestsRoot = async agent => {
     await agent.add(new Suggestion(`Add Authorized User`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -83,11 +83,11 @@ exports.supportChangeRoot = async agent => {
     )
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'waiting-support-employment-status',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -101,7 +101,7 @@ exports.supportGeneralRoot = async agent => {
     await agent.add(new Suggestion(`Inquiries`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -119,7 +119,7 @@ exports.supportEmploymentStatus = async agent => {
     await agent.add(new Suggestion(`Change of Employer`))
     await agent.context.set({
       name: 'waiting-support-handle-employment-status',
-      lifespan: 2,
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -136,7 +136,7 @@ exports.supportHandleEmploymentStatus = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-collect-name',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -175,7 +175,7 @@ exports.supportType = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-collect-name',
-      lifespan: 2,
+      lifespan: 3,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -200,7 +200,11 @@ exports.supportCollectName = async agent => {
       await agent.add(new Suggestion(`9167990766`))
       await agent.context.set({
         name: 'waiting-support-phone-number',
-        lifespan: 2,
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-phone-number',
+        lifespan: 3,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -216,11 +220,37 @@ exports.supportCollectName = async agent => {
       )
       await agent.context.set({
         name: 'waiting-support-name',
-        lifespan: 2,
+        lifespan: 3,
       })
     } catch (err) {
       console.error(err)
     }
+  }
+}
+
+exports.supportNoPhoneNumber = async agent => {
+  const phoneNumber = 'No Phone Number'
+  const firstName = agent.context.get('ticketinfo').parameters.firstName
+
+  try {
+    await agent.add(
+      `No problem, ${firstName}. What is your email address so that we can reach out to you with a solution?`
+    )
+
+    await agent.context.set({
+      name: 'waiting-support-email',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-no-email',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { phoneNumber: phoneNumber },
+    })
+  } catch (err) {
+    console.error(err)
   }
 }
 
@@ -240,7 +270,11 @@ exports.supportPhoneNumber = async agent => {
 
       await agent.context.set({
         name: 'waiting-support-email',
-        lifespan: 2,
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-email',
+        lifespan: 3,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -257,7 +291,7 @@ exports.supportPhoneNumber = async agent => {
       `)
       await agent.context.set({
         name: 'waiting-support-phone-number',
-        lifespan: 2,
+        lifespan: 3,
       })
     } catch (err) {
       console.error(err)
@@ -267,8 +301,8 @@ exports.supportPhoneNumber = async agent => {
 
 exports.supportEmail = async agent => {
   const email = agent.parameters.email
-  const supportType = agent.context.get('ticketinfo').parameters.supportType
   const isValid = validator.isEmail(email)
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
   const isLumpSum = supportType.includes('lump')
 
   if (isValid) {
@@ -279,7 +313,7 @@ exports.supportEmail = async agent => {
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
-          lifespan: 2,
+          lifespan: 3,
         })
 
         await agent.context.set({
@@ -296,11 +330,11 @@ exports.supportEmail = async agent => {
 
         await agent.context.set({
           name: 'waiting-support-case-number',
-          lifespan: 2,
+          lifespan: 3,
         })
         await agent.context.set({
           name: 'waiting-support-no-case-number',
-          lifespan: 2,
+          lifespan: 3,
         })
         await agent.context.set({
           name: 'ticketinfo',
@@ -318,7 +352,73 @@ exports.supportEmail = async agent => {
       `)
       await agent.context.set({
         name: 'waiting-support-email',
-        lifespan: 2,
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-email',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+exports.supportNoEmail = async agent => {
+  const email = 'No Email Provided'
+
+  try {
+    await agent.add(`What is your case number?`)
+    await agent.add(new Suggestion(`623456789`))
+    await agent.context.set({
+      name: 'waiting-support-case-number',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-no-case-number',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { email: email },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportNoCaseNumber = async agent => {
+  const email = 'No Email'
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
+  const isLumpSum = supportType.includes('lump')
+
+  if (isLumpSum) {
+    try {
+      await agent.add(`What is the name of your company/employer?`)
+      await agent.add(new Suggestion(`Company`))
+
+      await agent.context.set({
+        name: 'waiting-support-collect-company',
+        lifespan: 3,
+      })
+
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(`What is your case number?`)
+      await agent.context.set({
+        name: 'waiting-support-email',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
       })
     } catch (err) {
       console.error(err)
@@ -494,11 +594,11 @@ exports.supportSummarizeIssue = async agent => {
       await agent.add(new Suggestion(`Submit`))
       await agent.context.set({
         name: 'waiting-support-submit-issue',
-        lifespan: 2,
+        lifespan: 3,
       })
       await agent.context.set({
         name: 'waiting-support-revise-issue',
-        lifespan: 2,
+        lifespan: 3,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -575,6 +675,17 @@ exports.supportSumbitIssue = async agent => {
           Message: ${filteredRequests}`,
         })
       )
+
+      // Clear out context for ticket info
+      await agent.context.set({
+        name: 'requests',
+        lifespan: 0,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        lifespan: 0,
+      })
+
       // Ask the user if they need anything else, set appropriate contexts
       await handleEndConversation(agent)
     } catch (err) {
