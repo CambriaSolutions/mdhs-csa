@@ -1,7 +1,7 @@
 const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 
 // General payment intents
 const {
@@ -47,12 +47,21 @@ const {
 // Support intents
 const {
   supportRoot,
+  supportPaymentsRoot,
+  supportRequestsRoot,
+  supportChangeRoot,
+  supportGeneralRoot,
+  supportEmploymentStatus,
+  supportHandleEmploymentStatus,
   supportType,
+  supportCollectCompanyName,
   supportCollectName,
   supportPhoneNumber,
+  supportNoPhoneNumber,
   supportCaseNumber,
   supportNoCaseNumber,
   supportEmail,
+  supportNoEmail,
   supportCollectIssue,
   supportSummarizeIssue,
   supportReviseIssue,
@@ -163,9 +172,8 @@ exports = module.exports = functions
         await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Action Requests'))
-        await agent.add(new Suggestion('Policy Manual'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
         console.error(err)
       }
@@ -177,9 +185,8 @@ exports = module.exports = functions
         await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Action Requests'))
-        await agent.add(new Suggestion('Policy Manual'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
         console.error(err)
       }
@@ -192,9 +199,11 @@ exports = module.exports = functions
           Is there anything else I can help with?`
         )
         await agent.add(`I can help you with these topics.`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
         console.error(err)
       }
@@ -271,10 +280,22 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
+    intentMap.set('support-payments-root', supportPaymentsRoot)
+    intentMap.set('support-requests-root', supportRequestsRoot)
+    intentMap.set('support-change-root', supportChangeRoot)
+    intentMap.set('support-general-root', supportGeneralRoot)
+    intentMap.set('support-employment-status', supportEmploymentStatus)
+    intentMap.set(
+      'support-handle-employment-status',
+      supportHandleEmploymentStatus
+    )
     intentMap.set('support-type', supportType)
+    intentMap.set('support-collect-company-name', supportCollectCompanyName)
     intentMap.set('support-collect-name', supportCollectName)
     intentMap.set('support-phone-number', supportPhoneNumber)
+    intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
+    intentMap.set('support-no-email', supportNoEmail)
     intentMap.set('support-case-number', supportCaseNumber)
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)
