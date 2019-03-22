@@ -34,6 +34,16 @@ const {
   pmtMethodsMoneygram,
 } = require('./paymentMethods.js')
 
+// Open Child Support Case
+const {
+  openCSCRoot,
+  openCSCFullServices,
+  openCSCSelectForm,
+  openCSCLocationServices,
+  openCSCCollectionEmployer,
+  openCSCNoService,
+} = require('./openChildSupportCase.js')
+
 // Appointments intents
 const {
   apptsRoot,
@@ -260,6 +270,14 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
+
+    // Open a Child Support Case
+    intentMap.set('open-csc-root', openCSCRoot)
+    intentMap.set('open-csc-full-services', openCSCFullServices)
+    intentMap.set('open-csc-select-form', openCSCSelectForm)
+    intentMap.set('open-csc-location-services', openCSCLocationServices)
+    intentMap.set('open-csc-employer-payments', openCSCCollectionEmployer)
+    intentMap.set('open-csc-no-service', openCSCNoService)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
