@@ -431,7 +431,7 @@ exports.supportCollectCompanyName = async agent => {
 
   try {
     await agent.add(
-      `What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like -- just click the "I'm Done" button when you're finished.`
+      `What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like – just click the "I'm Done" button when you're finished.`
     )
     await agent.add(new Suggestion(`My issue`))
 
