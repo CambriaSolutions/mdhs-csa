@@ -33,6 +33,36 @@ exports.sendToServiceDesk = async requestFieldValues => {
     channel,
   } = serviceDeskFields
 
+  const requestFieldBody = {
+    summary: supportSummary,
+    description: filteredRequests,
+    [environment]: { value: 'Test' },
+    [division]: 'Child Support',
+    [reporterFirstName]: firstName,
+    [reporterLastName]: lastName,
+    [reporterPhoneNumber]: phoneNumber,
+    [reporterEmail]: email,
+    [reporterCaseNumber]: caseNumber,
+    [channel]: {
+      value: 'Chat Bot',
+    },
+  }
+
+  let requestObjecToDeliver
+  if (typeof phoneNumber !== 'number') {
+    requestObjecToDeliver = Object.keys(requestFieldBody).reduce(
+      (object, key) => {
+        if (key !== reporterPhoneNumber) {
+          object[key] = requestFieldBody[key]
+        }
+        return object
+      },
+      {}
+    )
+  } else {
+    requestObjecToDeliver = requestFieldBody
+  }
+
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -44,20 +74,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     body: {
       serviceDeskId: 7,
       requestTypeId: 54,
-      requestFieldValues: {
-        summary: supportSummary,
-        description: filteredRequests,
-        [environment]: { value: 'Test' },
-        [division]: 'Child Support',
-        [reporterFirstName]: firstName,
-        [reporterLastName]: lastName,
-        [reporterPhoneNumber]: phoneNumber,
-        [reporterEmail]: email,
-        [reporterCaseNumber]: caseNumber,
-        [channel]: {
-          value: 'Chat Bot',
-        },
-      },
+      requestFieldValues: requestObjecToDeliver,
     },
     json: true,
   }
