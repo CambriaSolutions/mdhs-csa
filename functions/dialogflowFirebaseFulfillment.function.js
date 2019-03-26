@@ -158,8 +158,7 @@ exports = module.exports = functions
     const welcome = async agent => {
       try {
         await agent.add(
-          `Hi, I'm Gen. I can help you with common child support requests. 
-          Are you here to get help with Child Support?`
+          `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
         )
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
@@ -205,8 +204,7 @@ exports = module.exports = functions
     const notChildSupport = async agent => {
       try {
         await agent.add(
-          `Sorry, I'm still learning to help with other issues. 
-          Is there anything else I can help with?`
+          `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
         )
         await agent.add(`I can help you with these topics.`)
         await agent.add(new Suggestion('Support'))

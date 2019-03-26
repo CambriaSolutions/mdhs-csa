@@ -286,8 +286,7 @@ exports.supportPhoneNumber = async agent => {
   } else {
     try {
       await agent.add(`
-      I didn't recognize that as a phone number, 
-      starting with area code, what is your phone number?
+      I didn't recognize that as a phone number, starting with area code, what is your phone number?
       `)
       await agent.context.set({
         name: 'waiting-support-phone-number',
@@ -347,8 +346,7 @@ exports.supportEmail = async agent => {
   } else {
     try {
       await agent.add(`
-      I didn't recognize that as an email address, 
-      could you say that again?
+      I didn't recognize that as an email address, could you say that again?
       `)
       await agent.context.set({
         name: 'waiting-support-email',
