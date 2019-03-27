@@ -132,7 +132,6 @@ exports.supportHandleEmploymentStatus = async agent => {
   try {
     await agent.add(`Got it. I have a few questions to make sure your request gets
     to the right place. What's your first and last name?`)
-    await agent.add(new Suggestion(`Chris Freeman`))
 
     await agent.context.set({
       name: 'waiting-support-collect-name',
@@ -171,7 +170,6 @@ exports.supportType = async agent => {
       `Got it. I have a few questions to make sure your ${formattedRequest} gets
       to the right place. What's your first and last name?`
     )
-    await agent.add(new Suggestion(`Chris Freeman`))
 
     await agent.context.set({
       name: 'waiting-support-collect-name',
@@ -197,7 +195,6 @@ exports.supportCollectName = async agent => {
         `Thanks, ${firstName}. What is your phone number
           so we can reach out to you with a solution?`
       )
-      await agent.add(new Suggestion(`9167990766`))
       await agent.context.set({
         name: 'waiting-support-phone-number',
         lifespan: 3,
@@ -266,7 +263,6 @@ exports.supportPhoneNumber = async agent => {
       await agent.add(
         `Thanks, ${firstName}. What is your email address so that we can reach out to you with a solution?`
       )
-      await agent.add(new Suggestion(`cfreeman@cambriasolutions.com`))
 
       await agent.context.set({
         name: 'waiting-support-email',
@@ -309,7 +305,6 @@ exports.supportEmail = async agent => {
     if (isLumpSum) {
       try {
         await agent.add(`What is the name of your company/employer?`)
-        await agent.add(new Suggestion(`Company`))
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
@@ -326,7 +321,6 @@ exports.supportEmail = async agent => {
     } else {
       try {
         await agent.add(`What is your case number?`)
-        await agent.add(new Suggestion(`623456789`))
 
         await agent.context.set({
           name: 'waiting-support-case-number',
@@ -369,7 +363,6 @@ exports.supportNoEmail = async agent => {
 
   try {
     await agent.add(`What is your case number?`)
-    await agent.add(new Suggestion(`623456789`))
     await agent.context.set({
       name: 'waiting-support-case-number',
       lifespan: 3,
@@ -395,7 +388,6 @@ exports.supportNoCaseNumber = async agent => {
   if (isLumpSum) {
     try {
       await agent.add(`What is the name of your company/employer?`)
-      await agent.add(new Suggestion(`Company`))
 
       await agent.context.set({
         name: 'waiting-support-collect-company',
@@ -433,7 +425,6 @@ exports.supportCollectCompanyName = async agent => {
     await agent.add(
       `What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like – just click the "I'm Done" button when you're finished.`
     )
-    await agent.add(new Suggestion(`My issue`))
 
     await agent.context.set({
       name: 'waiting-support-collect-issue',
@@ -471,8 +462,6 @@ exports.supportCaseNumber = async agent => {
         `${descriptionText} You can use as many messages as
           you like - just click the "I'm Done" button when you are finished.`
       )
-      await agent.add(new Suggestion(`My issue`))
-
       await agent.context.set({
         name: 'waiting-support-collect-issue',
         lifespan: 10,
