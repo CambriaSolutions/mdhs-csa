@@ -11,6 +11,7 @@ const serviceDeskFields = {
   reporterEmail: 'customfield_10087',
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
+  companyName: 'customfield_10111',
 }
 
 const firstName = 'test <Firstname>'
@@ -20,6 +21,7 @@ const phoneNumber = '9163264446'
 const email = 'test <email>'
 const supportSummary = 'test summary'
 const filteredRequests = 'test Description'
+const company = ''
 
 const {
   environment,
@@ -30,6 +32,7 @@ const {
   reporterEmail,
   reporterCaseNumber,
   channel,
+  companyName,
 } = serviceDeskFields
 
 const requestFieldBody = {
@@ -42,12 +45,11 @@ const requestFieldBody = {
   [reporterPhoneNumber]: phoneNumber,
   [reporterEmail]: email,
   [reporterCaseNumber]: caseNumber,
+  [companyName]: company,
   [channel]: {
     value: 'Chat Bot',
   },
 }
-
-console.log(requestFieldBody)
 
 let objectToDeliver
 if (typeof phoneNumber !== 'number') {
@@ -61,43 +63,29 @@ if (typeof phoneNumber !== 'number') {
   objectToDeliver = requestFieldBody
 }
 
-console.log(objectToDeliver)
-// const sendToServiceDesk = async fieldValues => {
-//   if (typeof fieldValues.customfield_10086 !== 'number') {
-//     delete fieldValues.customfield_10086
-//   }
+const sendToServiceDesk = async fieldValues => {
+  const options = {
+    method: 'POST',
+    uri: process.env.SERVICE_DESK_URI,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: process.env.SERVICE_DESK_KEY,
+    },
+    body: {
+      serviceDeskId: 7,
+      requestTypeId: 54,
+      requestFieldValues: fieldValues,
+    },
+    json: true,
+  }
 
-//   const options = {
-//     method: 'POST',
-//     uri: process.env.SERVICE_DESK_URI,
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//       Authorization: process.env.SERVICE_DESK_KEY,
-//     },
-//     body: {
-//       serviceDeskId: 7,
-//       requestTypeId: 54,
-//       requestFieldValues: fieldValues,
-//     },
-//     json: true,
-//   }
-
-//   // const serviceRequest = rp(options)
-//   //   .then(response => {
-//   //     return response
-//   //   })
-//   //   .catch(err => {
-//   //     return err
-//   //   })
-//   request(options, function(error, response, body) {
-//     if (error) throw new Error(error)
-//     console.log(
-//       'Response: ' + response.statusCode + ' ' + response.statusMessage
-//     )
-//     console.log(body)
-//   })
-
-//   //   return serviceRequest
-// }
-// sendToServiceDesk(fieldValues)
+  request(options, function(error, response, body) {
+    if (error) throw new Error(error)
+    console.log(
+      'Response: ' + response.statusCode + ' ' + response.statusMessage
+    )
+    console.log(body)
+  })
+}
+sendToServiceDesk(objectToDeliver)

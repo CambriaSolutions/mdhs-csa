@@ -9,6 +9,7 @@ const serviceDeskFields = {
   reporterEmail: 'customfield_10087',
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
+  companyName: 'customfield_10111',
 }
 
 exports.sendToServiceDesk = async requestFieldValues => {
@@ -20,6 +21,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     phoneNumber,
     email,
     caseNumber,
+    company,
   } = requestFieldValues
 
   const {
@@ -31,6 +33,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     reporterEmail,
     reporterCaseNumber,
     channel,
+    companyName,
   } = serviceDeskFields
 
   const requestFieldBody = {
@@ -43,6 +46,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [reporterPhoneNumber]: phoneNumber,
     [reporterEmail]: email,
     [reporterCaseNumber]: caseNumber,
+    [companyName]: company,
     [channel]: {
       value: 'Chat Bot',
     },
@@ -62,7 +66,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
   } else {
     requestObjecToDeliver = requestFieldBody
   }
-
+  console.log(requestObjecToDeliver)
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
