@@ -1,4 +1,5 @@
 const functions = require('firebase-functions')
+const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
@@ -33,6 +34,16 @@ const {
   pmtMethodsMoneygram,
 } = require('./paymentMethods.js')
 
+// Open Child Support Case
+const {
+  openCSCRoot,
+  openCSCFullServices,
+  openCSCSelectForm,
+  openCSCLocationServices,
+  openCSCCollectionEmployer,
+  openCSCNoService,
+} = require('./openChildSupportCase.js')
+
 // Appointments intents
 const {
   apptsRoot,
@@ -46,11 +57,21 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportValidateName,
+  supportPaymentsRoot,
+  supportRequestsRoot,
+  supportChangeRoot,
+  supportGeneralRoot,
+  supportEmploymentStatus,
+  supportHandleEmploymentStatus,
+  supportType,
+  supportCollectCompanyName,
+  supportCollectName,
   supportPhoneNumber,
+  supportNoPhoneNumber,
   supportCaseNumber,
   supportNoCaseNumber,
   supportEmail,
+  supportNoEmail,
   supportCollectIssue,
   supportSummarizeIssue,
   supportReviseIssue,
@@ -121,21 +142,23 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-// const admin = require('firebase-admin')
-// const db = admin.firestore()
-// const settings = { timestampsInSnapshots: true }
-// db.settings(settings)
-
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
     const agent = new WebhookClient({ request, response })
 
+    // Send request body to analytics function
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
+
     const welcome = async agent => {
       try {
         await agent.add(
-          `Hi, I'm Gen. I can help you with common child support requests. 
-          Are you here to get help with Child Support?`
+          `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
         )
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
@@ -155,9 +178,11 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(`What can I help you with today?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
         console.error(err)
       }
@@ -166,9 +191,11 @@ exports = module.exports = functions
     const restartConversation = async agent => {
       try {
         await agent.add(`What can I help you with?`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
         console.error(err)
       }
@@ -177,13 +204,25 @@ exports = module.exports = functions
     const notChildSupport = async agent => {
       try {
         await agent.add(
-          `Sorry, I'm still learning to help with other issues. 
-          Is there anything else I can help with?`
+          `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
         )
         await agent.add(`I can help you with these topics.`)
+        await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    // Directs the user to Casey
+    const caseyHandoff = async agent => {
+      try {
+        await agent.add(
+          `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+        )
       } catch (err) {
         console.error(err)
       }
@@ -194,6 +233,7 @@ exports = module.exports = functions
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
+    intentMap.set('casey-handoff', caseyHandoff)
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
@@ -238,6 +278,14 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
 
+    // Open a Child Support Case
+    intentMap.set('open-csc-root', openCSCRoot)
+    intentMap.set('open-csc-full-services', openCSCFullServices)
+    intentMap.set('open-csc-select-form', openCSCSelectForm)
+    intentMap.set('open-csc-location-services', openCSCLocationServices)
+    intentMap.set('open-csc-employer-payments', openCSCCollectionEmployer)
+    intentMap.set('open-csc-no-service', openCSCNoService)
+
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
     intentMap.set('appts-schedule', apptsSchedule)
@@ -248,9 +296,22 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-name', supportValidateName)
+    intentMap.set('support-payments-root', supportPaymentsRoot)
+    intentMap.set('support-requests-root', supportRequestsRoot)
+    intentMap.set('support-change-root', supportChangeRoot)
+    intentMap.set('support-general-root', supportGeneralRoot)
+    intentMap.set('support-employment-status', supportEmploymentStatus)
+    intentMap.set(
+      'support-handle-employment-status',
+      supportHandleEmploymentStatus
+    )
+    intentMap.set('support-type', supportType)
+    intentMap.set('support-collect-company-name', supportCollectCompanyName)
+    intentMap.set('support-collect-name', supportCollectName)
     intentMap.set('support-phone-number', supportPhoneNumber)
+    intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
+    intentMap.set('support-no-email', supportNoEmail)
     intentMap.set('support-case-number', supportCaseNumber)
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)

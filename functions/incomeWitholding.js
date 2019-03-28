@@ -1,4 +1,4 @@
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 const {
   calculatePercentage,
   handleEndConversation,
@@ -107,7 +107,7 @@ exports.iwoInArrears = async agent => {
 exports.iwoConfirmEstimate = async agent => {
   try {
     await agent.add(
-      `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call 1-877-882-4916.`
+      `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
     await agent.add(new Suggestion('I Understand'))
     await agent.context.set({
@@ -143,14 +143,7 @@ exports.iwoDefineDisposableIncome = async agent => {
     )
 
     await agent.add(
-      new Card({
-        title: 'Disposable income is not necessarily the same as net pay.',
-        text:
-          'For more detailed information, click the link to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.',
-        buttonText: 'Click Here',
-        buttonUrl:
-          'https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice',
-      })
+      `Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
     )
     await agent.add(`What is the employee's disposable income?`)
     await agent.context.set({
@@ -181,7 +174,7 @@ exports.iwoDisposableIncome = async agent => {
     }
   } else {
     await agent.add(
-      `I'm sorry, something went wrong, please try again or contact 1-877-882-4916 for further assistance.`
+      `I'm sorry, something went wrong, please try again or contact <a href="tel:+18778824916">1-877-882-4916</a> for further assistance.`
     )
   }
 }
@@ -219,7 +212,7 @@ exports.iwoOtherGarnishments = async agent => {
 exports.iwoOtherState = async agent => {
   try {
     await agent.add(
-      `Please contact DHS customer support at 1-877-882-4916 to help with this request.`
+      `Please contact DHS customer support at <a href="tel:+18778824916">1-877-882-4916</a> to help with this request.`
     )
   } catch (err) {
     console.error(err)
