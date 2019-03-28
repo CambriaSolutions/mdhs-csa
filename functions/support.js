@@ -11,7 +11,7 @@ const { sendToServiceDesk } = require('./postToServiceDesk.js')
 exports.supportRoot = async agent => {
   try {
     await agent.add(
-      `I can help you create a formal request to our support representatives. Which general area would you like to continue with?`
+      `I can help you create a support ticket. Which general area would you like to continue with?`
     )
     await agent.add(new Suggestion(`Payments`))
     await agent.add(new Suggestion(`Request`))
@@ -41,7 +41,7 @@ exports.supportRoot = async agent => {
 exports.supportPaymentsRoot = async agent => {
   try {
     await agent.add(
-      `Regarding payments, I can help with the following options. Select which you would like to continue with.`
+      `Regarding payments, I can help with the following options. Select which you would like to create a support ticket for.`
     )
     await agent.add(new Suggestion(`Child Support Increase or Decrease`))
     await agent.add(new Suggestion(`Request Payment History`))
@@ -57,7 +57,7 @@ exports.supportPaymentsRoot = async agent => {
 exports.supportRequestsRoot = async agent => {
   try {
     await agent.add(
-      `Please select what type of request you would like to create a ticket for.`
+      `Please select what type of request you would like to create a support ticket for.`
     )
     await agent.add(new Suggestion(`Request Contempt Action`))
     await agent.add(new Suggestion(`Request Case Closure`))
@@ -74,7 +74,7 @@ exports.supportRequestsRoot = async agent => {
 exports.supportChangeRoot = async agent => {
   try {
     await agent.add(
-      `Please select what type of change you would like to request.`
+      `Please select what type of change you would like to create a support ticket for.`
     )
     await agent.add(new Suggestion(`Change of Personal Information`))
     await agent.add(new Suggestion(`Change of Employment Status`))
@@ -282,8 +282,7 @@ exports.supportPhoneNumber = async agent => {
   } else {
     try {
       await agent.add(`
-      I didn't recognize that as a phone number, 
-      starting with area code, what is your phone number?
+      I didn't recognize that as a phone number, starting with area code, what is your phone number?
       `)
       await agent.context.set({
         name: 'waiting-support-phone-number',
@@ -341,8 +340,7 @@ exports.supportEmail = async agent => {
   } else {
     try {
       await agent.add(`
-      I didn't recognize that as an email address, 
-      could you say that again?
+      I didn't recognize that as an email address, could you say that again?
       `)
       await agent.context.set({
         name: 'waiting-support-email',
@@ -542,7 +540,7 @@ exports.supportSummarizeIssue = async agent => {
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
   const supportType = ticketinfo.supportType.toLowerCase()
-  const companyName = ticketinfo.companyName
+  const company = ticketinfo.companyName
   const employmentSubType = ticketinfo.employmentSubType
 
   let supportSummary
@@ -560,42 +558,37 @@ exports.supportSummarizeIssue = async agent => {
     supportSummary = toTitleCase(supportType)
   }
 
-  if (filteredRequests && firstName && lastName && caseNumber && phoneNumber) {
-    try {
-      await agent.add(
-        `Okay, I've put your request together. Here's what I've got.`
-      )
-      await agent.add(
-        new Card({
-          title: `${supportSummary}`,
-          text: `Full Name: ${firstName} ${lastName}
+  // Add check for summary items
+  try {
+    await agent.add(
+      `Okay, I've put your request together. Here's what I've got.`
+    )
+    await agent.add(
+      new Card({
+        title: `${supportSummary}`,
+        text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
-          ${
-            companyName
-              ? `Company: ${companyName}`
-              : `Case Number: ${caseNumber} `
-          }
+          ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
           Message: ${filteredRequests}`,
-        })
-      )
-      await agent.add(new Suggestion(`Revise`))
-      await agent.add(new Suggestion(`Submit`))
-      await agent.context.set({
-        name: 'waiting-support-submit-issue',
-        lifespan: 3,
       })
-      await agent.context.set({
-        name: 'waiting-support-revise-issue',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { supportSummary: supportSummary },
-      })
-    } catch (err) {
-      console.error(err)
-    }
+    )
+    await agent.add(new Suggestion(`Revise`))
+    await agent.add(new Suggestion(`Submit`))
+    await agent.context.set({
+      name: 'waiting-support-submit-issue',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-revise-issue',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { supportSummary: supportSummary },
+    })
+  } catch (err) {
+    console.error(err)
   }
 }
 
@@ -628,7 +621,7 @@ exports.supportSumbitIssue = async agent => {
   const caseNumber = ticketinfo.caseNumber
   const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
-  const companyName = ticketinfo.companyName
+  const company = ticketinfo.companyName
   const supportSummary = ticketinfo.supportSummary
 
   // Prepare payload fields for service desk call
@@ -640,6 +633,7 @@ exports.supportSumbitIssue = async agent => {
     phoneNumber,
     email,
     caseNumber,
+    company,
   }
 
   // Send ticket data to service desk api
@@ -656,11 +650,7 @@ exports.supportSumbitIssue = async agent => {
           text: `Full Name: ${firstName} ${lastName}
           Phone Number: ${phoneNumber}
           Email: ${email}
-          ${
-            companyName
-              ? `Company: ${companyName}`
-              : `Case Number: ${caseNumber} `
-          }
+          ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
           Message: ${filteredRequests}`,
         })
       )

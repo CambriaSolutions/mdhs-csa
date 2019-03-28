@@ -9,6 +9,7 @@ const serviceDeskFields = {
   reporterEmail: 'customfield_10087',
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
+  companyName: 'customfield_10111',
 }
 
 exports.sendToServiceDesk = async requestFieldValues => {
@@ -20,6 +21,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     phoneNumber,
     email,
     caseNumber,
+    company,
   } = requestFieldValues
 
   const {
@@ -31,8 +33,40 @@ exports.sendToServiceDesk = async requestFieldValues => {
     reporterEmail,
     reporterCaseNumber,
     channel,
+    companyName,
   } = serviceDeskFields
 
+  const requestFieldBody = {
+    summary: supportSummary,
+    description: filteredRequests,
+    [environment]: { value: 'Test' },
+    [division]: 'Child Support',
+    [reporterFirstName]: firstName,
+    [reporterLastName]: lastName,
+    [reporterPhoneNumber]: phoneNumber,
+    [reporterEmail]: email,
+    [reporterCaseNumber]: caseNumber,
+    [companyName]: company,
+    [channel]: {
+      value: 'Chat Bot',
+    },
+  }
+
+  let requestObjecToDeliver
+  if (typeof phoneNumber !== 'number') {
+    requestObjecToDeliver = Object.keys(requestFieldBody).reduce(
+      (object, key) => {
+        if (key !== reporterPhoneNumber) {
+          object[key] = requestFieldBody[key]
+        }
+        return object
+      },
+      {}
+    )
+  } else {
+    requestObjecToDeliver = requestFieldBody
+  }
+  console.log(requestObjecToDeliver)
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -44,20 +78,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     body: {
       serviceDeskId: 7,
       requestTypeId: 54,
-      requestFieldValues: {
-        summary: supportSummary,
-        description: filteredRequests,
-        [environment]: { value: 'Test' },
-        [division]: 'Child Support',
-        [reporterFirstName]: firstName,
-        [reporterLastName]: lastName,
-        [reporterPhoneNumber]: phoneNumber,
-        [reporterEmail]: email,
-        [reporterCaseNumber]: caseNumber,
-        [channel]: {
-          value: 'Chat Bot',
-        },
-      },
+      requestFieldValues: requestObjecToDeliver,
     },
     json: true,
   }
