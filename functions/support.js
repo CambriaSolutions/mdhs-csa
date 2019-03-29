@@ -453,6 +453,10 @@ exports.supportCaseNumber = async agent => {
       name: 'waiting-support-case-number',
       lifespan: 3,
     })
+    await agent.context.set({
+      name: 'waiting-support-no-case-number',
+      lifespan: 3,
+    })
   } else {
     try {
       await agent.add(
