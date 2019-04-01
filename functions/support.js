@@ -130,8 +130,9 @@ exports.supportHandleEmploymentStatus = async agent => {
   const employmentStatus = toTitleCase(agent.parameters.employmentStatus)
   const supportType = `Change of Employment Status`
   try {
-    await agent.add(`Got it. I have a few questions to make sure your request gets
-    to the right place. What's your first and last name?`)
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
 
     await agent.context.set({
       name: 'waiting-support-collect-name',
@@ -167,8 +168,7 @@ exports.supportType = async agent => {
   }
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your ${formattedRequest} gets
-      to the right place. What's your first and last name?`
+      `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your first and last name?`
     )
 
     await agent.context.set({
@@ -192,8 +192,7 @@ exports.supportCollectName = async agent => {
   if (firstName && lastName) {
     try {
       await agent.add(
-        `Thanks, ${firstName}. What is your phone number
-          so we can reach out to you with a solution?`
+        `Thanks, ${firstName}. What is your phone number so we can reach out to you with a solution?`
       )
       await agent.context.set({
         name: 'waiting-support-phone-number',
@@ -281,9 +280,9 @@ exports.supportPhoneNumber = async agent => {
     }
   } else {
     try {
-      await agent.add(`
-      I didn't recognize that as a phone number, starting with area code, what is your phone number?
-      `)
+      await agent.add(
+        `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+      )
       await agent.context.set({
         name: 'waiting-support-phone-number',
         lifespan: 3,
@@ -339,9 +338,9 @@ exports.supportEmail = async agent => {
     }
   } else {
     try {
-      await agent.add(`
-      I didn't recognize that as an email address, could you say that again?
-      `)
+      await agent.add(
+        `I didn't recognize that as an email address, could you say that again?`
+      )
       await agent.context.set({
         name: 'waiting-support-email',
         lifespan: 3,
@@ -447,7 +446,7 @@ exports.supportCaseNumber = async agent => {
 
   if (!validCaseNumber) {
     await agent.add(
-      `I didn't catch that as a valid case number, case numbers always start with a 6, and may end with a letter of the alphabet.`
+      `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
     )
     await agent.add(`What is your case number?`)
     await agent.context.set({
@@ -457,8 +456,7 @@ exports.supportCaseNumber = async agent => {
   } else {
     try {
       await agent.add(
-        `${descriptionText} You can use as many messages as
-          you like - just click the "I'm Done" button when you are finished.`
+        `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
       )
       await agent.context.set({
         name: 'waiting-support-collect-issue',
@@ -480,8 +478,7 @@ exports.supportNoCaseNumber = async agent => {
   if (ticketinfo)
     try {
       await agent.add(
-        `Please describe your issue or request. You can use as many messages as
-          you like - just click the "I'm Done" button when you are finished.`
+        `Please describe your issue or request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
       )
       await agent.context.set({
         name: 'waiting-support-collect-issue',
@@ -509,7 +506,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Feel free to add to your issue, or click or say "I'm done"`
+      `Feel free to add to your issue, or click or say "I'm done".`
     )
     await agent.add(new Suggestion(`I'm done`))
     await agent.context.set({
@@ -595,8 +592,7 @@ exports.supportSummarizeIssue = async agent => {
 exports.supportReviseIssue = async agent => {
   try {
     await agent.add(
-      `Let's start over. Please describe your issue. You can use as many messages as
-        you like - just click the "I'm Done" button when you are finished.`
+      `Let's start over. Please describe your issue. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
     )
     await agent.context.set({
       name: 'waiting-support-collect-issue',
