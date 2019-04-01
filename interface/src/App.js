@@ -22,8 +22,8 @@ class App extends Component {
   render() {
     return (
       <Chatframe
-        primaryColor='#3bafbf'
-        secondaryColor='#3bafbf'
+        primaryColor='#6497ad'
+        secondaryColor='#6497ad'
         title='Gen'
         client='Dialogflow'
         clientOptions={dfWebhookOptions}
