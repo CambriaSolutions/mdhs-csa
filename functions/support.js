@@ -318,7 +318,9 @@ exports.supportEmail = async agent => {
       }
     } else {
       try {
-        await agent.add(`What is your case number?`)
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
 
         await agent.context.set({
           name: 'waiting-support-case-number',
@@ -359,7 +361,9 @@ exports.supportNoEmail = async agent => {
   const email = 'No Email Provided'
 
   try {
-    await agent.add(`What is your case number?`)
+    await agent.add(
+      `What is your case number? Please do not provide your social security number.`
+    )
     await agent.context.set({
       name: 'waiting-support-case-number',
       lifespan: 3,
@@ -400,7 +404,9 @@ exports.supportNoCaseNumber = async agent => {
     }
   } else {
     try {
-      await agent.add(`What is your case number?`)
+      await agent.add(
+        `What is your case number? Please do not provide your social security number.`
+      )
       await agent.context.set({
         name: 'waiting-support-email',
         lifespan: 3,
@@ -642,9 +648,6 @@ exports.supportSumbitIssue = async agent => {
   if (issueKey) {
     try {
       await agent.add(
-        `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
-      )
-      await agent.add(
         new Card({
           title: `${supportSummary}: Issue #${issueKey}`,
           text: `Full Name: ${firstName} ${lastName}
@@ -654,7 +657,9 @@ exports.supportSumbitIssue = async agent => {
           Message: ${filteredRequests}`,
         })
       )
-
+      await agent.add(
+        `Thanks, your request has been submitted! Your issue number is **#${issueKey}**. A member of our team will reach out within 1-2 business days to validate your request.`
+      )
       // Clear out context for ticket info
       await agent.context.set({
         name: 'requests',
