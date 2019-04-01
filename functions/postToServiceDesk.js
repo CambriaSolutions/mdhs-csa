@@ -76,8 +76,8 @@ exports.sendToServiceDesk = async requestFieldValues => {
       Authorization: process.env.SERVICE_DESK_KEY,
     },
     body: {
-      serviceDeskId: 7,
-      requestTypeId: 54,
+      serviceDeskId: process.env.SERVICE_DESK_ID,
+      requestTypeId: process.env.REQUEST_TYPE_ID,
       requestFieldValues: requestObjecToDeliver,
     },
     json: true,
