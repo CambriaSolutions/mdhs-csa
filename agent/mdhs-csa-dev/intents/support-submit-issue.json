@@ -3,19 +3,19 @@
   "name": "support-submit-issue",
   "auto": true,
   "contexts": [
-    "waiting-compts-submit-issue"
+    "waiting-support-submit-issue"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-submit-issue",
+          "name": "waiting-support-submit-issue",
           "parameters": {},
           "lifespan": 0
         },
         {
-          "name": "waiting-compts-revise-issue",
+          "name": "waiting-support-revise-issue",
           "parameters": {},
           "lifespan": 0
         }

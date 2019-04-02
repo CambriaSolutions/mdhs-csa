@@ -3,19 +3,19 @@
   "name": "support-summarize-issue",
   "auto": true,
   "contexts": [
-    "waiting-compts-summarize-issue"
+    "waiting-support-summarize-issue"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-summarize-issue",
+          "name": "waiting-support-collect-issue",
           "parameters": {},
           "lifespan": 0
         },
         {
-          "name": "waiting-compts-collect-issue",
+          "name": "waiting-support-summarize-issue",
           "parameters": {},
           "lifespan": 0
         }

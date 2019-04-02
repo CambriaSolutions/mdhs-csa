@@ -1,0 +1,80 @@
+[
+  {
+    "id": "c1824fe0-c765-4816-8c57-28ecc71fa353",
+    "data": [
+      {
+        "text": "change of employer",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "eac973df-c387-479c-84a9-d131c3b4c2be",
+    "data": [
+      {
+        "text": "loss of employer",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e139c34e-c778-4632-9fa0-13e03cb3fdb9",
+    "data": [
+      {
+        "text": "add employer",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "580bcebe-a770-4210-b08a-44cd1dc10248",
+    "data": [
+      {
+        "text": "part time to full time",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "982166be-b30a-4505-8a3c-9829ff143dd6",
+    "data": [
+      {
+        "text": "full time to part time",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c225543c-9b37-4830-9223-865ab5793def",
+    "data": [
+      {
+        "text": "change of employment information",
+        "alias": "employmentStatus",
+        "meta": "@employmentStatus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

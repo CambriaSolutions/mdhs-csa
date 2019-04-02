@@ -3,14 +3,14 @@
   "name": "support-collect-issue",
   "auto": true,
   "contexts": [
-    "waiting-compts-collect-issue"
+    "waiting-support-collect-issue"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-collect-issue",
+          "name": "waiting-support-collect-issue",
           "parameters": {},
           "lifespan": 0
         }
@@ -20,8 +20,8 @@
           "id": "3fe2f05a-515a-4f54-a1da-bd0719206bf4",
           "required": false,
           "dataType": "@sys.any",
-          "name": "complaint",
-          "value": "$complaint",
+          "name": "request",
+          "value": "$request",
           "isList": false
         }
       ],

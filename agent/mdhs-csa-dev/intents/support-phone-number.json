@@ -3,14 +3,19 @@
   "name": "support-phone-number",
   "auto": true,
   "contexts": [
-    "waiting-compts-phone-number"
+    "waiting-support-phone-number"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-phone-number",
+          "name": "waiting-support-phone-number",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-no-phone-number",
           "parameters": {},
           "lifespan": 0
         }

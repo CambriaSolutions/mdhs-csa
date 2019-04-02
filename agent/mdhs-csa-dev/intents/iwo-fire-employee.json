@@ -19,7 +19,7 @@
       "speech": []
     }
   ],
-  "priority": 500000,
+  "priority": 250000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "lastUpdate": 1551131068,
