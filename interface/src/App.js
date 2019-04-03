@@ -8,7 +8,7 @@ const dfWebhookOptions = {
 }
 
 const policyText =
-  'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
+  'Please do not enter any personally identifiable information such as Social Security Number or Date of Birth.'
 
 export const mapConfig = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
