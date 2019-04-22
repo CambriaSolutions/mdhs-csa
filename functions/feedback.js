@@ -18,7 +18,25 @@ exports.feedbackRoot = async agent => {
 
 exports.feedbackNotHelpful = async agent => {
   try {
-    const feedback = JSON.stringify({ helpful: false })
+    const feedback = JSON.stringify({
+      helpful: false,
+      options: [
+        { value: 'Did not have the information I needed' },
+        {
+          value: "I wasn't able to have my questions answered",
+        },
+        {
+          value:
+            'I would prefer calling in or visiting the office to using Gen',
+        },
+        {
+          value: 'Was not easy conversing wtih Gen',
+        },
+        {
+          value: 'Was not easy to navigate',
+        },
+      ],
+    })
     await agent.add(`Why was Gen not helpful?`)
     await agent.add(
       new Payload(
@@ -41,9 +59,32 @@ exports.feedbackNotHelpful = async agent => {
 
 exports.feedbackHelpful = async agent => {
   try {
-    const feedback = JSON.stringify({ helpful: true })
-
-    await agent.add(`Why was Gen helpful?`)
+    const feedback = JSON.stringify({
+      helpful: true,
+      options: [
+        { value: 'Had the information I needed', checked: false },
+        {
+          value: 'I was able to answer my question(s)',
+          checked: false,
+        },
+        {
+          value: 'Was easy to ask for assistance',
+          checked: false,
+        },
+        {
+          value: 'I prefer using Gen to calling or visiting an office',
+          checked: false,
+        },
+        {
+          value: 'Was easy to navigate',
+          checked: false,
+        },
+        {
+          value: 'Easy to converse with Gen',
+          checked: false,
+        },
+      ],
+    })
     await agent.add(
       new Payload(
         agent.UNSPECIFIED,
