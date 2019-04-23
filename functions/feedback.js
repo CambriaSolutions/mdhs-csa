@@ -65,23 +65,18 @@ exports.feedbackHelpful = async agent => {
         { value: 'Had the information I needed' },
         {
           value: 'I was able to answer my question(s)',
-          checked: false,
         },
         {
           value: 'Was easy to ask for assistance',
-          checked: false,
         },
         {
           value: 'I prefer using Gen to calling or visiting an office',
-          checked: false,
         },
         {
           value: 'Was easy to navigate',
-          checked: false,
         },
         {
           value: 'Easy to converse with Gen',
-          checked: false,
         },
       ],
     })
