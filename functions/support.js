@@ -8,7 +8,7 @@ const {
 } = require('./globalFunctions.js')
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
 
-const handleNoCaseNumber = async (descriptionText, agent) => {
+const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
   try {
     await agent.add(
       `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
@@ -19,7 +19,7 @@ const handleNoCaseNumber = async (descriptionText, agent) => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { caseNumber: 'Unknown Case Number' },
+      parameters: { caseNumber },
     })
   } catch (err) {
     console.error(err)
@@ -427,7 +427,7 @@ exports.supportCaseNumber = async agent => {
   const descriptionText = formatDescriptionText(supportType)
 
   if (noCaseNumber && noCaseNumber !== '') {
-    await handleNoCaseNumber(descriptionText, agent)
+    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
   } else if (caseNumber && !validCaseNumber) {
     try {
       await agent.add(
@@ -447,17 +447,7 @@ exports.supportCaseNumber = async agent => {
     }
   } else {
     try {
-      await agent.add(
-        `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-      )
-      await agent.context.set({
-        name: 'waiting-support-collect-issue',
-        lifespan: 10,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { caseNumber: caseNumber },
-      })
+      await handleCaseNumber(descriptionText, agent, caseNumber)
     } catch (err) {
       console.error(err)
     }
@@ -469,7 +459,7 @@ exports.supportNoCaseNumber = async agent => {
   const supportType = agent.context.get('ticketinfo').parameters.supportType
   const descriptionText = formatDescriptionText(supportType)
   try {
-    await handleNoCaseNumber(descriptionText, agent)
+    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
   } catch (err) {
     console.error(err)
   }
