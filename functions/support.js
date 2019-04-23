@@ -8,6 +8,24 @@ const {
 } = require('./globalFunctions.js')
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
 
+const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
+  try {
+    await agent.add(
+      `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-issue',
+      lifespan: 10,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { caseNumber },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 exports.supportRoot = async agent => {
   try {
     await agent.add(
@@ -170,7 +188,6 @@ exports.supportType = async agent => {
     await agent.add(
       `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your first and last name?`
     )
-
     await agent.context.set({
       name: 'waiting-support-collect-name',
       lifespan: 3,
@@ -232,7 +249,6 @@ exports.supportNoPhoneNumber = async agent => {
     await agent.add(
       `No problem, ${firstName}. What is your email address so that we can reach out to you with a solution?`
     )
-
     await agent.context.set({
       name: 'waiting-support-email',
       lifespan: 3,
@@ -262,7 +278,6 @@ exports.supportPhoneNumber = async agent => {
       await agent.add(
         `Thanks, ${firstName}. What is your email address so that we can reach out to you with a solution?`
       )
-
       await agent.context.set({
         name: 'waiting-support-email',
         lifespan: 3,
@@ -381,46 +396,6 @@ exports.supportNoEmail = async agent => {
   }
 }
 
-exports.supportNoCaseNumber = async agent => {
-  const email = 'No Email'
-  const supportType = agent.context.get('ticketinfo').parameters.supportType
-  const isLumpSum = supportType.includes('lump')
-
-  if (isLumpSum) {
-    try {
-      await agent.add(`What is the name of your company/employer?`)
-
-      await agent.context.set({
-        name: 'waiting-support-collect-company',
-        lifespan: 3,
-      })
-
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  } else {
-    try {
-      await agent.add(
-        `What is your case number? Please do not provide your social security number.`
-      )
-      await agent.context.set({
-        name: 'waiting-support-email',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
-
 exports.supportCollectCompanyName = async agent => {
   const companyName = toTitleCase(agent.parameters.companyName)
 
@@ -444,38 +419,35 @@ exports.supportCollectCompanyName = async agent => {
 
 exports.supportCaseNumber = async agent => {
   const caseNumber = agent.parameters.caseNumber
+  const noCaseNumber = agent.parameters.noCaseNumber
   const validCaseNumber = validateCaseNumber(caseNumber)
 
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = agent.context.get('ticketinfo').parameters.supportType
   const descriptionText = formatDescriptionText(supportType)
 
-  if (!validCaseNumber) {
-    await agent.add(
-      `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
-    )
-    await agent.add(`What is your case number?`)
-    await agent.context.set({
-      name: 'waiting-support-case-number',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-no-case-number',
-      lifespan: 3,
-    })
-  } else {
+  if (noCaseNumber && noCaseNumber !== '') {
+    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
+  } else if (caseNumber && !validCaseNumber) {
     try {
       await agent.add(
-        `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+        `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
       )
+      await agent.add(`What is your case number?`)
       await agent.context.set({
-        name: 'waiting-support-collect-issue',
-        lifespan: 10,
+        name: 'waiting-support-case-number',
+        lifespan: 3,
       })
       await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { caseNumber: caseNumber },
+        name: 'waiting-support-no-case-number',
+        lifespan: 3,
       })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await handleCaseNumber(descriptionText, agent, caseNumber)
     } catch (err) {
       console.error(err)
     }
@@ -483,24 +455,14 @@ exports.supportCaseNumber = async agent => {
 }
 
 exports.supportNoCaseNumber = async agent => {
-  const caseNumber = 'Unknown case number'
-  const ticketinfo = agent.context.get('ticketinfo').parameters
-  if (ticketinfo)
-    try {
-      await agent.add(
-        `Please describe your issue or request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-      )
-      await agent.context.set({
-        name: 'waiting-support-collect-issue',
-        lifespan: 10,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { caseNumber: caseNumber },
-      })
-    } catch (err) {
-      console.error(err)
-    }
+  // Retrieve what type of issue this is, and change the wording appropriately
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
+  const descriptionText = formatDescriptionText(supportType)
+  try {
+    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 exports.supportCollectIssue = async agent => {

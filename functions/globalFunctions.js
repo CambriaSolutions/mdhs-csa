@@ -1,7 +1,7 @@
 exports.handleEndConversation = async agent => {
   await agent.add(`Can I help you with anything else?`)
   await agent.context.set({
-    name: 'waiting-end-conversation',
+    name: 'waiting-feedback-root',
     lifespan: 2,
   })
   await agent.context.set({
@@ -97,4 +97,9 @@ exports.formatDescriptionText = supportType => {
     descriptionText = 'Please describe your request.'
   }
   return descriptionText
+}
+
+// Format any number as currency, with prefixed $ sign, commas added per thousands & decimals fixed to 2
+exports.formatCurrency = num => {
+  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
