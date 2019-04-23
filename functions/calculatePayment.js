@@ -56,42 +56,51 @@ const getSupportBracket = numChildren => {
 // Simple child support estimation based on annual income,
 // number of children, and arrears payments
 exports.calculatePayment = ({
-  income,
+  numChildren,
+  incomeTerm,
+  grossIncome,
+  taxDeductions,
+  ssnDeductions,
+  retirementContributions,
+  otherChildSupport,
+  /*income,
   cadence,
   numChildren,
-  includeArrears,
+  includeArrears,*/
 }) => {
   // Get the percentage of income that should be paid per year
-  const bracketPct = getSupportBracket(numChildren)
+  //const bracketPct = getSupportBracket(numChildren)
 
   // Get the multiplier to adjust payment to a monthly cadence, e.g. if
   // user provided bi-weekly income, we need to multiply by 2 to get
   // monthly income
-  const cadenceMultiplier = getIncomeMultiplier(cadence)
+  /*const cadenceMultiplier = getIncomeMultiplier(cadence)
   if (cadenceMultiplier === null) {
     throw new Error(
       `There was a problem determining the multiplier for payment estimation`
     )
-  }
+  }*/
 
   // Convert income from provided cadence to annual
-  const annualIncome = income * cadenceMultiplier
+  //const annualIncome = income * cadenceMultiplier
 
   // Determine the annual child support contribution
-  const annualPayment = annualIncome * bracketPct
+  //const annualPayment = annualIncome * bracketPct
 
   // Convert annual to monthly payment
-  const monthlyPayment = annualPayment / 12
+  //const monthlyPayment = annualPayment / 12
 
   // If we want to include arrears payments, calculate them and add
   // to the total payment
-  let monthlyArrears = 0
+  /*let monthlyArrears = 0
   if (includeArrears) {
     const arrearsPct = 0.2
     monthlyArrears = monthlyPayment * arrearsPct
-  }
+  }*/
 
   // Only return whole numbers
-  const totalPayment = Math.round(monthlyPayment + monthlyArrears)
+  //const totalPayment = Math.round(monthlyPayment + monthlyArrears)
+  const totalPayment = Math.round(grossIncome - taxDeductions - ssnDeductions - retirementContributions - otherChildSupport)
+
   return totalPayment
 }
