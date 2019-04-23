@@ -30,7 +30,7 @@ exports.feedbackNotHelpful = async agent => {
             'I would prefer calling in or visiting the office to using Gen',
         },
         {
-          value: 'Was not easy conversing wtih Gen',
+          value: 'Was not easy conversing with Gen',
         },
         {
           value: 'Was not easy to navigate',
@@ -62,7 +62,7 @@ exports.feedbackHelpful = async agent => {
     const feedback = JSON.stringify({
       helpful: true,
       options: [
-        { value: 'Had the information I needed', checked: false },
+        { value: 'Had the information I needed' },
         {
           value: 'I was able to answer my question(s)',
           checked: false,
