@@ -137,6 +137,14 @@ const {
   iwoFireEmployee,
 } = require('./incomeWitholding.js')
 
+// Feedback
+const {
+  feedbackRoot,
+  feedbackHelpful,
+  feedbackNotHelpful,
+  feedbackComplete,
+} = require('./feedback.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -354,6 +362,12 @@ exports = module.exports = functions
     intentMap.set('eppi-surcharge', eppiSurcharge)
     intentMap.set('eppi-learn-more', eppiLearnMore)
     intentMap.set('eppi-balance-denial', eppiBalanceDenial)
+
+    // Feedback intents
+    intentMap.set('feedback-root', feedbackRoot)
+    intentMap.set('feedback-helpful', feedbackHelpful)
+    intentMap.set('feedback-not-helpful', feedbackNotHelpful)
+    intentMap.set('feedback-complete', feedbackComplete)
 
     agent.handleRequest(intentMap)
   })
