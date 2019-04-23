@@ -9,7 +9,7 @@ const locations = [
   '822 N Davis Ave Cleveland, MS 38732',
   '811 Main Street, Suite 18 Columbia, MS 39429',
   '610 S. Cass St Corinth, MS 38834',
-  '643 US Highway 1S Greenville, MS 38701',
+  '643 HWY 1, Greenville, MS 38701',
   '1400 Wooded Dr Grenada, MS 38901',
   '14231 Seaway Rd, Suite 5001 Gulfport, MS 39503',
   '5 Willow Bend Hattiesburg, MS 39402',
