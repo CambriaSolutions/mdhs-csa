@@ -37,7 +37,6 @@ exports.feedbackNotHelpful = async agent => {
         },
       ],
     })
-    await agent.add(`Why was Gen not helpful?`)
     await agent.add(
       new Payload(
         agent.UNSPECIFIED,
