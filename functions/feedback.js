@@ -26,6 +26,9 @@ exports.feedbackNotHelpful = async agent => {
           value: "I wasn't able to have my questions answered",
         },
         {
+          value: 'Was difficult requesting assistance',
+        },
+        {
           value:
             'I would prefer calling in or visiting the office to using Gen',
         },
