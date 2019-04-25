@@ -3,6 +3,9 @@ const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
 
+// Phone number testing
+const validator = require('validator')
+
 // General payment intents
 const {
   pmtsGeneralRoot,
@@ -155,11 +158,13 @@ exports = module.exports = functions
   .https.onRequest((request, response) => {
     const agent = new WebhookClient({ request, response })
 
+    console.log(request.body)
+
     // Send request body to analytics function
     req({
       method: 'POST',
       uri: process.env.ANALYTICS_URI,
-      body: request.body,
+      body: JSON.stringify(request.body),
       json: true,
     })
 
@@ -236,7 +241,23 @@ exports = module.exports = functions
       }
     }
 
+    const phoneNumberTest = async agent => {
+      const phoneNumberResponse = agent.parameters.phoneNumber
+      const formattedPhone = `+1${phoneNumberResponse}`
+      const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
+      try {
+        await agent.add(`phoneNumberResponse: ${phoneNumberResponse}`)
+        await agent.add(`formattedPhone: ${formattedPhone}`)
+        await agent.add(`isValid: ${isValid}`)
+      } catch (err) {
+        console.error(err)
+      }
+    }
     let intentMap = new Map()
+
+    // Phone number test
+    intentMap.set('testForPhone', phoneNumberTest)
+
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
