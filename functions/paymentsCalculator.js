@@ -127,7 +127,7 @@ exports.pmtCalcGrossIncome = async agent => {
     })
 
     await agent.add(
-      `What is your ${incomeTerm} <b>gross income</b>? This includes all income before any deductions are subtracted.`
+      `What is your ${incomeTerm} <strong>gross income</strong>? This includes all income before any deductions are subtracted.`
     )
     await agent.context.set({
       name: 'waiting-pmt-calc-tax-deductions',
@@ -147,9 +147,24 @@ exports.pmtCalcTaxDeductions = async agent => {
   try {
     const grossIncome = agent.parameters.grossIncome
 
-    if (!isNumber(grossIncome) || grossIncome === 0) {
+    if (!isNumber(grossIncome)) {
       await agent.add(
         `I didn't catch that as a number, how much do you make before taxes and other deductions are taken out of your pay?`
+      )
+      await agent.context.set({
+        name: 'waiting-pmt-calc-tax-deductions',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-pmt-calc-unknown-income',
+        lifespan: 3,
+      })
+    } else if (grossIncome <= 0) {
+      await agent.add(
+        `For the purposes of this calculation, you will need to provide a gross income.`
+      )
+      await agent.add(
+        `If you don't have any income, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office for assistance.`
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-tax-deductions',
@@ -167,10 +182,10 @@ exports.pmtCalcTaxDeductions = async agent => {
       })
 
       await agent.add(
-        'How much <b>federal and state taxes</b> are subtracted from your gross income?'
+        'How much <strong>federal and state taxes</strong> are subtracted from your gross income?'
       )
       await agent.context.set({
-        name: 'waiting-pmt-calc-ssn-deductions',
+        name: 'waiting-pmt-calc-ss-deductions',
         lifespan: 3,
       })
       await agent.context.set({
@@ -190,7 +205,7 @@ exports.pmtCalcUnknownTaxDeductions = async agent => {
       'Please provide an estimate of your federal and state taxes to continue with the estimation.'
     )
     await agent.context.set({
-      name: 'waiting-pmt-calc-ssn-deductions',
+      name: 'waiting-pmt-calc-ss-deductions',
       lifespan: 3,
     })
     await agent.context.set({
@@ -228,7 +243,7 @@ exports.pmtCalcUnknownDeductions = async agent => {
 }
 
 // User provided their tax deductions
-exports.pmtCalcSSNDeductions = async agent => {
+exports.pmtCalcSSDeductions = async agent => {
   try {
     // Save tax deductions in context
     const taxDeductions = agent.parameters.taxDeductions
@@ -245,7 +260,7 @@ exports.pmtCalcSSNDeductions = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-ssn-deductions',
+      name: 'waiting-pmt-calc-unknown-ss-deductions',
       lifespan: 3,
     })
   } catch (err) {
@@ -253,8 +268,8 @@ exports.pmtCalcSSNDeductions = async agent => {
   }
 }
 
-// User doesn't know how much is substracted for their SSN contributions
-exports.pmtCalcUnknownSSNDeductions = async agent => {
+// User doesn't know how much is substracted for their social security contributions
+exports.pmtCalcUnknownSSDeductions = async agent => {
   try {
     await agent.add(
       'Please provide an estimate of your social security contributions to continue with the estimation.'
@@ -275,15 +290,15 @@ exports.pmtCalcUnknownSSNDeductions = async agent => {
 // User provided their social security deductions
 exports.pmtCalcRetirementContributions = async agent => {
   try {
-    // Save ssn deductions in context
-    const ssnDeductions = agent.parameters.ssnDeductions
+    // Save social security deductions in context
+    const ssDeductions = agent.parameters.ssDeductions
     await agent.context.set({
       name: 'payment-factors',
-      parameters: { ssnDeductions },
+      parameters: { ssDeductions },
     })
 
     await agent.add(
-      'Does your employer require you to contribute to a <b>retirement account</b> in which you may not opt out?'
+      'Does your employer require you to contribute to a <strong>retirement account</strong> in which you may not opt out?'
     )
     await agent.add(new Suggestion(`Yes`))
     await agent.add(new Suggestion(`No`))
@@ -319,7 +334,7 @@ exports.pmtCalcRetirementContributionsAmount = async agent => {
   }
 }
 
-// User doesn't know how much is substracted for their SSN contributions
+// User doesn't know how much is substracted for their social security contributions
 exports.pmtCalcUnknownRetirementContributions = async agent => {
   try {
     await agent.add(
@@ -358,7 +373,7 @@ const existingChildSupport = async (agent, retirementContributions) => {
     })
 
     await agent.add(
-      `Do you have any <b>existing monthly child support</b> order(s) for other children?`
+      `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
     )
     await agent.add(new Suggestion(`Yes`))
     await agent.add(new Suggestion(`No`))
@@ -398,7 +413,7 @@ exports.pmtCalcChildSupportAmount = async agent => {
   }
 }
 
-// User doesn't know how much is substracted for their SSN contributions
+// User doesn't know how much is substracted for their social security contributions
 exports.pmtCalcUnknownOtherChildSupport = async agent => {
   try {
     await agent.add(

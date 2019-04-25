@@ -20,8 +20,8 @@ const {
   pmtCalcGrossIncome,
   pmtCalcTaxDeductions,
   pmtCalcUnknownTaxDeductions,
-  pmtCalcSSNDeductions,
-  pmtCalcUnknownSSNDeductions,
+  pmtCalcSSDeductions,
+  pmtCalcUnknownSSDeductions,
   pmtCalcRetirementContributions,
   pmtCalcRetirementContributionsAmount,
   pmtCalcUnknownRetirementContributions,
@@ -270,11 +270,8 @@ exports = module.exports = functions
       'pmt-calc-unknown-tax-deductions',
       pmtCalcUnknownTaxDeductions
     )
-    intentMap.set('pmt-calc-ssn-deductions', pmtCalcSSNDeductions)
-    intentMap.set(
-      'pmt-calc-unknown-ssn-deductions',
-      pmtCalcUnknownSSNDeductions
-    )
+    intentMap.set('pmt-calc-ss-deductions', pmtCalcSSDeductions)
+    intentMap.set('pmt-calc-unknown-ss-deductions', pmtCalcUnknownSSDeductions)
     intentMap.set(
       'pmt-calc-retirement-contributions',
       pmtCalcRetirementContributions
