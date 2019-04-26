@@ -30,13 +30,15 @@ with pins of locations. The Geocoding API request has two required parameters.
     fullscreen={false}
     initialActive={false}
     policyText={privacyPolicy}
-    googleMapsKey={googleMapsKey}
-    centerCoordinates={centerCoordinates}
+    mapConfig={mapConfig}
+    activationText={activationText}
+    feedbackUrl={feedbackUrl}
   />
 ```
 
 - `primaryColor` can be any hex or material-ui color (e.g. 'blue', 'red', 'yellow', 'cyan')
 - `secondaryColor` can be any hex or material-ui color (e.g. 'blue', 'red', 'yellow', 'cyan')
+- `headerColor` can be any hex or material-ui color (e.g. 'blue', 'red', 'yellow', 'cyan')
 - `title` can be any string
 - `client` can only currently be 'dialogflow'
 - `clientOptions` is an object containing URLs for fulfillment APIs:
@@ -53,10 +55,26 @@ textUrl: 'https://us-central1-mdhs-csa-ENVIRONMENT.cloudfunctions.net/textReques
 - `policyText` can be any string
 - `googleMapsKey` a valid [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) key, should be stored in a .env file
 - `centerCoordinates` is an object containing coordinates for the map payload to center on:
-
 ```
-const centerCoordinates = {
-  lat: 32.777025,
-  lng: -89.543724,
+
+{
+googleMapsKey: process.env.GOOGLE_MAPS_KEY
+centerCoordinates: {
+  lat: latitude,
+  lng: longitude,
 }
+}
+```
+```
+
+- `feedbackUrl` a URL string of the endpoint to send feedback data to analytics
+
+```feedbackUrl =
+  'https://us-central1-webchat-analytics.cloudfunctions.net/storeFeedback'
+```
+
+- `activationText` a string message to call out action
+
+```activationText = 'Talk to Gen'
+
 ```
