@@ -9,7 +9,7 @@ const dfWebhookOptions = {
 }
 
 const policyText =
-  'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
+  'Please do not enter any personally identifiable information such as SSN or Date of Birth.'
 
 const feedbackUrl =
   'https://us-central1-webchat-analytics.cloudfunctions.net/storeFeedback'
