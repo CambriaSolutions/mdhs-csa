@@ -1,6 +1,9 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const isNumber = require('lodash/isNumber')
-const { calculatePayment } = require('./calculatePayment.js')
+const {
+  validateIncomeAndDeductions,
+  calculatePayment,
+} = require('./calculatePayment.js')
 const {
   handleEndConversation,
   formatCurrency,
@@ -121,10 +124,6 @@ exports.pmtCalcGrossIncome = async agent => {
   try {
     // Save income term in context
     const incomeTerm = agent.parameters.incomeTerm
-    await agent.context.set({
-      name: 'payment-factors',
-      parameters: { incomeTerm },
-    })
 
     await agent.add(
       `What is your ${incomeTerm} <strong>gross income</strong>? This includes all income before any deductions are subtracted.`
@@ -136,6 +135,12 @@ exports.pmtCalcGrossIncome = async agent => {
     await agent.context.set({
       name: 'waiting-pmt-calc-unknown-income',
       lifespan: 3,
+    })
+
+    // Keep log of payment factors
+    await agent.context.set({
+      name: 'payment-factors',
+      parameters: { incomeTerm },
     })
   } catch (err) {
     console.error(err)
@@ -247,22 +252,31 @@ exports.pmtCalcSSDeductions = async agent => {
   try {
     // Save tax deductions in context
     const taxDeductions = agent.parameters.taxDeductions
-    await agent.context.set({
-      name: 'payment-factors',
-      parameters: { taxDeductions },
-    })
 
-    await agent.add(
-      'How much is subtracted from your gross income for social security contributions?'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-retirement-contributions',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-ss-deductions',
-      lifespan: 3,
-    })
+    let paymentFactors = await agent.context.get('payment-factors').parameters
+    paymentFactors.taxDeductions = taxDeductions
+    // Validate that income is higher than deductions
+    if (await validateIncomeAndDeductions(paymentFactors)) {
+      await agent.add(
+        'How much is subtracted from your gross income for social security contributions?'
+      )
+      await agent.context.set({
+        name: 'waiting-pmt-calc-retirement-contributions',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-pmt-calc-unknown-ss-deductions',
+        lifespan: 3,
+      })
+
+      // Keep log of payment factors
+      await agent.context.set({
+        name: 'payment-factors',
+        parameters: { taxDeductions },
+      })
+    } else {
+      await invalidDeductions(agent)
+    }
   } catch (err) {
     console.error(err)
   }
@@ -287,29 +301,59 @@ exports.pmtCalcUnknownSSDeductions = async agent => {
   }
 }
 
+const invalidDeductions = async agent => {
+  await agent.add(
+    'Your deductions exceed your gross income, please start over with updated values.'
+  )
+  await agent.add(
+    'For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
+  )
+  await agent.add(new Suggestion(`Start over`))
+  // Clear out the payment factors context
+  await agent.context.set({
+    name: 'payment-factors',
+    lifespan: 0,
+  })
+  // Keep option to recalculate payment open
+  await agent.context.set({
+    name: 'waiting-pmt-calc-restart',
+    lifespan: 2,
+  })
+  await handleEndConversation(agent)
+}
+
 // User provided their social security deductions
 exports.pmtCalcRetirementContributions = async agent => {
   try {
     // Save social security deductions in context
     const ssDeductions = agent.parameters.ssDeductions
-    await agent.context.set({
-      name: 'payment-factors',
-      parameters: { ssDeductions },
-    })
 
-    await agent.add(
-      'Does your employer require you to contribute to a <strong>retirement account</strong> in which you may not opt out?'
-    )
-    await agent.add(new Suggestion(`Yes`))
-    await agent.add(new Suggestion(`No`))
-    await agent.context.set({
-      name: 'waiting-pmt-calc-retirement-contributions-amount',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-child-support-no-retirement',
-      lifespan: 3,
-    })
+    let paymentFactors = await agent.context.get('payment-factors').parameters
+    paymentFactors.ssDeductions = ssDeductions
+    // Validate that income is higher than deductions
+    if (await validateIncomeAndDeductions(paymentFactors)) {
+      await agent.add(
+        'Does your employer require you to contribute to a <strong>retirement account</strong> in which you may not opt out?'
+      )
+      await agent.add(new Suggestion(`Yes`))
+      await agent.add(new Suggestion(`No`))
+      await agent.context.set({
+        name: 'waiting-pmt-calc-retirement-contributions-amount',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-pmt-calc-child-support-no-retirement',
+        lifespan: 3,
+      })
+
+      // Keep log of payment factors
+      await agent.context.set({
+        name: 'payment-factors',
+        parameters: { ssDeductions },
+      })
+    } else {
+      await invalidDeductions(agent)
+    }
   } catch (err) {
     console.error(err)
   }
@@ -366,25 +410,32 @@ exports.pmtCalcChildSupportNoRetirement = async agent => {
 
 const existingChildSupport = async (agent, retirementContributions) => {
   try {
-    // Save retirement contributions in context
-    await agent.context.set({
-      name: 'payment-factors',
-      parameters: { retirementContributions },
-    })
+    let paymentFactors = await agent.context.get('payment-factors').parameters
+    paymentFactors.retirementContributions = retirementContributions
+    // Validate that income is higher than deductions & contributions
+    if (await validateIncomeAndDeductions(paymentFactors)) {
+      await agent.add(
+        `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
+      )
+      await agent.add(new Suggestion(`Yes`))
+      await agent.add(new Suggestion(`No`))
+      await agent.context.set({
+        name: 'waiting-pmt-calc-child-support-amount',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-pmt-calc-final-estimation-no-other-children',
+        lifespan: 3,
+      })
 
-    await agent.add(
-      `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
-    )
-    await agent.add(new Suggestion(`Yes`))
-    await agent.add(new Suggestion(`No`))
-    await agent.context.set({
-      name: 'waiting-pmt-calc-child-support-amount',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-final-estimation-no-other-children',
-      lifespan: 3,
-    })
+      // Save retirement contributions in context
+      await agent.context.set({
+        name: 'payment-factors',
+        parameters: { retirementContributions },
+      })
+    } else {
+      await invalidDeductions(agent)
+    }
   } catch (err) {
     console.error(err)
   }
@@ -448,29 +499,34 @@ exports.pmtCalcFinalEstimationNoOtherChildren = async agent => {
 
 const finalPaymentCalculation = async (agent, paymentFactors) => {
   try {
-    const calculatedPayment = await calculatePayment(paymentFactors)
+    // Validate that income is higher than deductions
+    if (await validateIncomeAndDeductions(paymentFactors)) {
+      const calculatedPayment = await calculatePayment(paymentFactors)
 
-    await agent.add(
-      `Based on the information you provided, your support obligation will be ${formatCurrency(
-        calculatedPayment
-      )} monthly.`
-    )
-    await agent.add(
-      `The information provided in this calculation is only an estimate. For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
-    )
+      await agent.add(
+        `Based on the information you provided, your support obligation will be <strong>${formatCurrency(
+          calculatedPayment
+        )}</strong> monthly.`
+      )
+      await agent.add(
+        `The information provided in this calculation is only an estimate. For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
+      )
 
-    // Clear out the payment factors context
-    await agent.context.set({
-      name: 'payment-factors',
-      lifespan: 0,
-    })
-    // Keep option to recalculate payment open
-    await agent.context.set({
-      name: 'waiting-pmt-calc-restart',
-      lifespan: 2,
-    })
-    // Ask the user if they need anything else, set appropriate contexts
-    await handleEndConversation(agent)
+      // Clear out the payment factors context
+      await agent.context.set({
+        name: 'payment-factors',
+        lifespan: 0,
+      })
+      // Keep option to recalculate payment open
+      await agent.context.set({
+        name: 'waiting-pmt-calc-restart',
+        lifespan: 2,
+      })
+      // Ask the user if they need anything else, set appropriate contexts
+      await handleEndConversation(agent)
+    } else {
+      await invalidDeductions(agent)
+    }
   } catch (err) {
     console.error(err)
     await agent.add(
