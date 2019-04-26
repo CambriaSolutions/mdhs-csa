@@ -55,6 +55,30 @@ const getSupportBracket = numChildren => {
   return percentage
 }
 
+// Validate that deductions aren't higher than the income before estimating child support obligations
+exports.validateIncomeAndDeductions = ({
+  incomeTerm,
+  grossIncome,
+  taxDeductions = 0,
+  ssDeductions = 0,
+  retirementContributions = 0,
+  otherChildSupport = 0,
+}) => {
+  const cadenceMultiplier = getIncomeMultiplier(incomeTerm)
+
+  // Convert income from provided cadence to annual
+  const annualIncome = grossIncome * cadenceMultiplier
+
+  return (
+    annualIncome -
+      taxDeductions -
+      ssDeductions -
+      retirementContributions -
+      otherChildSupport >
+    0
+  )
+}
+
 // Simple child support estimation based on annual income,
 // number of children, and arrears payments
 exports.calculatePayment = ({
