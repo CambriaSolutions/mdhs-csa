@@ -177,7 +177,7 @@ exports = module.exports = functions
     req({
       method: 'POST',
       uri: process.env.ANALYTICS_URI,
-      body: JSON.stringify(request.body),
+      body: request.body,
       json: true,
     })
 
@@ -255,6 +255,7 @@ exports = module.exports = functions
     }
 
     let intentMap = new Map()
+
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
