@@ -16,12 +16,25 @@ const {
 // Payment calculator intents
 const {
   pmtCalcRoot,
-  pmtCalcTimeframe,
-  pmtCalcUnknownIncome,
-  pmtCalcHandleTimeframe,
-  pmtCalcIncome,
+  pmtCalcRootRestart,
   pmtCalcNumChildren,
-  pmtCalcNumMothers,
+  pmtCalcIncomeTerm,
+  pmtCalcUnknownIncome,
+  pmtCalcGrossIncome,
+  pmtCalcTaxDeductions,
+  pmtCalcUnknownTaxDeductions,
+  pmtCalcSSDeductions,
+  pmtCalcUnknownSSDeductions,
+  pmtCalcRetirementContributions,
+  pmtCalcRetirementContributionsAmount,
+  pmtCalcUnknownRetirementContributions,
+  pmtCalcChildSupport,
+  pmtCalcChildSupportNoRetirement,
+  pmtCalcChildSupportAmount,
+  pmtCalcUnknownOtherChildSupport,
+  pmtCalcUnknownDeductions,
+  pmtCalcFinalEstimation,
+  pmtCalcFinalEstimationNoOtherChildren,
 } = require('./paymentsCalculator.js')
 
 // Payment methods intents
@@ -158,7 +171,10 @@ exports = module.exports = functions
   .https.onRequest((request, response) => {
     const agent = new WebhookClient({ request, response })
 
-    console.log(request.body)
+    console.log(
+      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    )
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     // Send request body to analytics function
     req({
@@ -266,12 +282,46 @@ exports = module.exports = functions
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
-    intentMap.set('pmt-calc-timeframe', pmtCalcTimeframe)
-    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
-    intentMap.set('pmt-calc-handle-timeframe', pmtCalcHandleTimeframe)
-    intentMap.set('pmt-calc-income', pmtCalcIncome)
+    intentMap.set('pmt-calc-restart', pmtCalcRootRestart)
     intentMap.set('pmt-calc-num-children', pmtCalcNumChildren)
-    intentMap.set('pmt-calc-num-mothers', pmtCalcNumMothers)
+    intentMap.set('pmt-calc-income-term', pmtCalcIncomeTerm)
+    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
+    intentMap.set('pmt-calc-gross-income', pmtCalcGrossIncome)
+    intentMap.set('pmt-calc-tax-deductions', pmtCalcTaxDeductions)
+    intentMap.set(
+      'pmt-calc-unknown-tax-deductions',
+      pmtCalcUnknownTaxDeductions
+    )
+    intentMap.set('pmt-calc-ss-deductions', pmtCalcSSDeductions)
+    intentMap.set('pmt-calc-unknown-ss-deductions', pmtCalcUnknownSSDeductions)
+    intentMap.set(
+      'pmt-calc-retirement-contributions',
+      pmtCalcRetirementContributions
+    )
+    intentMap.set(
+      'pmt-calc-retirement-contributions-amount',
+      pmtCalcRetirementContributionsAmount
+    )
+    intentMap.set(
+      'pmt-calc-unknown-retirement-contributions',
+      pmtCalcUnknownRetirementContributions
+    )
+    intentMap.set('pmt-calc-child-support', pmtCalcChildSupport)
+    intentMap.set(
+      'pmt-calc-child-support-no-retirement',
+      pmtCalcChildSupportNoRetirement
+    )
+    intentMap.set('pmt-calc-child-support-amount', pmtCalcChildSupportAmount)
+    intentMap.set(
+      'pmt-calc-unknown-other-child-support',
+      pmtCalcUnknownOtherChildSupport
+    )
+    intentMap.set('pmt-calc-unknown-deductions', pmtCalcUnknownDeductions)
+    intentMap.set('pmt-calc-final-estimation', pmtCalcFinalEstimation)
+    intentMap.set(
+      'pmt-calc-final-estimation-no-other-children',
+      pmtCalcFinalEstimationNoOtherChildren
+    )
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)

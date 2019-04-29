@@ -881,7 +881,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cambriasolutions/chatframe@^1.17.2":
+"@cambriasolutions/chatframe@^1.17,2":
   version "1.17.2"
   resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.17.2.tgz#6ce7dab061570b4ffaf4ce984bcdc4c2772dad6b"
   integrity sha512-n05ezn2hpNuKVrwxZNaiBEGjtC9AG+G862ysKizTMpoV3VsMNY5/228yQ8FCE0HaXa5TN/6+bV2KAvNdsbOXdA==
