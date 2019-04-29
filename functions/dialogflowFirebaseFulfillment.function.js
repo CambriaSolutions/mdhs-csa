@@ -177,7 +177,7 @@ exports = module.exports = functions
     req({
       method: 'POST',
       uri: process.env.ANALYTICS_URI,
-      body: JSON.stringify(request.body),
+      body: request.body,
       json: true,
     })
 
