@@ -12,7 +12,7 @@ exports.getGeocode = async address => {
 
   const url = new URL('https://maps.googleapis.com/maps/api/geocode/json'),
     params = {
-      address: address,
+      address,
       key: apiKey,
     }
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
