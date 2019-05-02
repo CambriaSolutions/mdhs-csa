@@ -203,12 +203,10 @@ exports = module.exports = functions
 
     const yesChildSupport = async agent => {
       try {
-        await agent.add(`What can I help you with today?`)
-        await agent.add(new Suggestion('Support'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(
+          `While protecting personal information is important, please do not enter SSN or DOB in Gen at any time.`
+        )
+        await agent.add(new Suggestion('I Acknowledge'))
       } catch (err) {
         console.error(err)
       }
@@ -220,6 +218,21 @@ exports = module.exports = functions
         await agent.add(new Suggestion('Support'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Employer'))
+        await agent.add(new Suggestion('Opening a Child Support Case'))
+        await agent.add(new Suggestion('Policy Manual'))
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const acknowledgePrivacyStatement = async agent => {
+      try {
+        await agent.add(`What can I help you with?`)
+        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Appointments'))
+        await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Employer'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
         await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
@@ -257,6 +270,7 @@ exports = module.exports = functions
     let intentMap = new Map()
 
     intentMap.set('Default Welcome Intent', welcome)
+    intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
