@@ -4,11 +4,15 @@ const fetch = require('node-fetch')
 const geolib = require('geolib')
 
 exports.getGeocode = async address => {
+  if (!address) {
+    return
+  }
+
   const apiKey = process.env.GOOGLE_MAPS_KEY
 
   const url = new URL('https://maps.googleapis.com/maps/api/geocode/json'),
     params = {
-      address: address.userLocation,
+      address,
       key: apiKey,
     }
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
