@@ -52,9 +52,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
     },
   }
 
-  let requestObjecToDeliver
+  let requestObjectToDeliver
   if (typeof phoneNumber !== 'number') {
-    requestObjecToDeliver = Object.keys(requestFieldBody).reduce(
+    requestObjectToDeliver = Object.keys(requestFieldBody).reduce(
       (object, key) => {
         if (key !== reporterPhoneNumber) {
           object[key] = requestFieldBody[key]
@@ -64,9 +64,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
       {}
     )
   } else {
-    requestObjecToDeliver = requestFieldBody
+    requestObjectToDeliver = requestFieldBody
   }
-  console.log(requestObjecToDeliver)
+  console.log(requestObjectToDeliver)
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -78,7 +78,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     body: {
       serviceDeskId: process.env.SERVICE_DESK_ID,
       requestTypeId: process.env.REQUEST_TYPE_ID,
-      requestFieldValues: requestObjecToDeliver,
+      requestFieldValues: requestObjectToDeliver,
     },
     json: true,
   }

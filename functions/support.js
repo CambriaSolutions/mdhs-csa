@@ -591,10 +591,12 @@ exports.supportSumbitIssue = async agent => {
   const firstName = ticketinfo.firstName
   const lastName = ticketinfo.lastName
   const caseNumber = ticketinfo.caseNumber
-  const phoneNumber = ticketinfo.phoneNumber
+  const phoneNumberToDisplay = ticketinfo.phoneNumber
   const email = ticketinfo.email
   const company = ticketinfo.companyName
   const supportSummary = ticketinfo.supportSummary
+  const preppedPhoneNumber = phoneNumberToDisplay.replace(/\D/g, '')
+  const phoneNumber = parseInt(preppedPhoneNumber)
 
   // Prepare payload fields for service desk call
   const requestFieldValues = {
@@ -617,7 +619,7 @@ exports.supportSumbitIssue = async agent => {
         new Card({
           title: `${supportSummary}: Issue #${issueKey}`,
           text: `Full Name: ${firstName} ${lastName}
-          Phone Number: ${phoneNumber}
+          Phone Number: ${phoneNumberToDisplay}
           Email: ${email}
           ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
           Message: ${filteredRequests}`,
