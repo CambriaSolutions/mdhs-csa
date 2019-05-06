@@ -86,4 +86,43 @@ describe('Payment Estimator', () => {
     }
     expect(calculatePayment(opts)).toBe(1408)
   })
+
+  test('Should calculate correctly for monthly income', () => {
+    const opts = {
+      numChildren: 1,
+      incomeTerm: 'monthly',
+      grossIncome: 1200,
+      taxDeductions: 100,
+      ssDeductions: 100,
+      retirementContributions: 50,
+      otherChildSupport: 200,
+    }
+    expect(calculatePayment(opts)).toBe(105)
+  })
+
+  test('Should calculate correctly for weekly income', () => {
+    const opts = {
+      numChildren: 2,
+      incomeTerm: 'weekly',
+      grossIncome: 1384.62,
+      taxDeductions: 100,
+      ssDeductions: 100,
+      retirementContributions: 50,
+      otherChildSupport: 100,
+    }
+    expect(calculatePayment(opts)).toBe(897)
+  })
+
+  test('Should calculate correctly for biweekly income', () => {
+    const opts = {
+      numChildren: 5,
+      incomeTerm: 'biweekly',
+      grossIncome: 2769.23,
+      taxDeductions: 100,
+      ssDeductions: 100,
+      retirementContributions: 50,
+      otherChildSupport: 100,
+    }
+    expect(calculatePayment(opts)).toBe(1363)
+  })
 })
