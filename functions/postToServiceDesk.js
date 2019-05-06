@@ -66,7 +66,6 @@ exports.sendToServiceDesk = async requestFieldValues => {
   } else {
     requestObjectToDeliver = requestFieldBody
   }
-  console.log(requestObjectToDeliver)
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -88,6 +87,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
       return response
     })
     .catch(err => {
+      console.log(requestObjectToDeliver)
       return err
     })
 
