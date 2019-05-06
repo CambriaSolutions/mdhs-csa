@@ -48,7 +48,7 @@ exports.apptsSchedule = async agent => {
 
 exports.apptsYesContacted = async agent => {
   try {
-    await agent.add(`Plan to appear at the office listed in your summons.`)
+    await agent.add(`Plan to appear at the office listed in your notice.`)
     await agent.add(
       `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
     )

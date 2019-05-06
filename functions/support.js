@@ -1,5 +1,6 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
+const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
 const {
   handleEndConversation,
   validateCaseNumber,
@@ -273,7 +274,10 @@ exports.supportPhoneNumber = async agent => {
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
 
   if (isValid) {
-    const phoneNumber = parseInt(phoneNumberResponse)
+    const phoneNumber = parsePhoneNumberFromString(
+      formattedPhone
+    ).formatNational()
+
     try {
       await agent.add(
         `Thanks, ${firstName}. What is your email address so that we can reach out to you with a solution?`
@@ -288,7 +292,7 @@ exports.supportPhoneNumber = async agent => {
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { phoneNumber: phoneNumber },
+        parameters: { phoneNumber },
       })
     } catch (err) {
       console.error(err)

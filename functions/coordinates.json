@@ -19,15 +19,6 @@
   },
   {
     "addressComponents": {
-      "city": "Greenville",
-      "street": "643 HWY 1"
-    },
-    "lat": 33.41683270000001,
-    "lng": -91.037555,
-    "placeId": "EiM2NDMgTVMtMSwgR3JlZW52aWxsZSwgTVMgMzg3MDMsIFVTQSIbEhkKFAoSCQN2mjo_7SuGEe_JTFBpKHNkEIMF"
-  },
-  {
-    "addressComponents": {
       "city": "Cleveland",
       "street": "822 North Davis Avenue"
     },
@@ -53,11 +44,11 @@
   {
     "addressComponents": {
       "city": "Greenville",
-      "street": "2309 Mississippi 1"
+      "street": "643 Mississippi 1"
     },
-    "lat": 33.3555447,
-    "lng": -91.04200370000001,
-    "placeId": "ChIJk1uDgOjtK4YRd8vfBqXZsoo"
+    "lat": 33.41683270000001,
+    "lng": -91.037555,
+    "placeId": "EiM2NDMgTVMtMSwgR3JlZW52aWxsZSwgTVMgMzg3MDMsIFVTQSIbEhkKFAoSCQN2mjo_7SuGEe_JTFBpKHNkEIMF"
   },
   {
     "addressComponents": { "city": "Grenada", "street": "1400 Wooded Drive" },
