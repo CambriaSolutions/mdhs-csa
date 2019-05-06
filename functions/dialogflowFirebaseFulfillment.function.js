@@ -257,6 +257,7 @@ exports = module.exports = functions
         await agent.add(new Suggestion('Common Requests'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Employer'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
         await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
