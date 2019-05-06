@@ -103,18 +103,18 @@ exports.calculatePayment = ({
     )
   }
 
-  // Convert income from provided cadence to annual
-  const annualIncome = grossIncome * cadenceMultiplier
-
-  const annualAdjustedGrossIncome =
-    annualIncome -
+  const adjustedGrossIncome =
+    grossIncome -
     taxDeductions -
     ssDeductions -
     retirementContributions -
     otherChildSupport
 
+  // Convert adjusted gross income from provided cadence to annual
+  const annualAdjustedIncome = adjustedGrossIncome * cadenceMultiplier
+
   // Determine the annual child support contribution
-  const annualPayment = annualAdjustedGrossIncome * bracketPct
+  const annualPayment = annualAdjustedIncome * bracketPct
 
   // Convert annual to monthly payment
   const monthlyPayment = annualPayment / 12

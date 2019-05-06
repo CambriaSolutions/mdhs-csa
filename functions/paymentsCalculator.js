@@ -286,7 +286,7 @@ exports.pmtCalcSSDeductions = async agent => {
 exports.pmtCalcUnknownSSDeductions = async agent => {
   try {
     await agent.add(
-      'Please provide an estimate of your social security contributions to continue with the estimation.'
+      'Please provide an estimate of your <strong>social security contributions</strong> to continue with the estimation.'
     )
     await agent.context.set({
       name: 'waiting-pmt-calc-retirement-contributions',
