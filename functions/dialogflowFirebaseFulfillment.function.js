@@ -237,7 +237,7 @@ exports = module.exports = functions
     const acknowledgePrivacyStatement = async agent => {
       try {
         await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Common Requests'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
         await agent.add(new Suggestion('Employer'))
@@ -254,7 +254,7 @@ exports = module.exports = functions
           `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
         )
         await agent.add(`I can help you with these topics.`)
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Common Requests'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
