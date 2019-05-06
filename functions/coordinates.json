@@ -96,10 +96,10 @@
     "placeId": "ChIJgZWEGyI0g4gRvn183UKBfPs"
   },
   {
-    "addressComponents": { "city": "Magee", "street": "1st Avenue South East" },
-    "lat": 31.8644459,
-    "lng": -89.73141079999999,
-    "placeId": "ChIJ7ZTKqPu4gogRtXN2-EIT9ZE"
+    "addressComponents": { "city": "Magee", "street": "1st Avenue Southeast" },
+    "lat": 31.8664031,
+    "lng": -89.7312862,
+    "placeId": "ChIJ3ZB4Ivu4gogRjW5i3iQMf8Q"
   },
   {
     "addressComponents": {
@@ -114,7 +114,7 @@
     "addressComponents": { "city": "Meridian", "street": "2911 8th Street" },
     "lat": 32.364604,
     "lng": -88.708075,
-    "placeId": "Ei9TdWl0ZSBBJkIsIDI5MTEgOHRoIFN0LCBNZXJpZGlhbiwgTVMgMzkzMDEsIFVTQSIlGiMKFgoUChIJqdYdseN9hIgRBATfF8iD76cSCVN1aXRlIEEmQg"
+    "placeId": "Ei1TdWl0ZSBCLCAyOTExIDh0aCBTdCwgTWVyaWRpYW4sIE1TIDM5MzAxLCBVU0EiIxohChYKFAoSCanWHbHjfYSIEQQE3xfIg--nEgdTdWl0ZSBC"
   },
   {
     "addressComponents": {
