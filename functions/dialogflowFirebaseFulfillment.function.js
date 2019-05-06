@@ -6,8 +6,10 @@ const { Suggestion } = require('dialogflow-fulfillment')
 // General payment intents
 const {
   pmtsGeneralRoot,
+  pmtsGeneralNotParent,
   pmtsGeneralReceivePayments,
   pmtsGeneralMakePayments,
+  pmtsGeneralDebitCard,
 } = require('./paymentsGeneral.js')
 
 // Payment calculator intents
@@ -45,6 +47,11 @@ const {
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
   pmtMethodsMoneygram,
+  pmtMethodsPayNearMe,
+  pmtMethodsCantMake,
+  pmtMethodsCantMakeNonQualifying,
+  pmtMethodsCantMakeQualifying,
+  pmtMethodsCantMakeQualifyingHelp,
 } = require('./paymentMethods.js')
 
 // Open Child Support Case
@@ -325,8 +332,10 @@ exports = module.exports = functions
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
+    intentMap.set('pmts-general-not-parent', pmtsGeneralNotParent)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
+    intentMap.set('pmts-general-debit-card', pmtsGeneralDebitCard)
 
     // Payment methods intents
     intentMap.set('pmtMethods-root', pmtMethodsRoot)
@@ -338,6 +347,20 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
+    intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
+    intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
+    intentMap.set(
+      'pmtMethods-cant-make-non-qualifying',
+      pmtMethodsCantMakeNonQualifying
+    )
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying',
+      pmtMethodsCantMakeQualifying
+    )
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying-help',
+      pmtMethodsCantMakeQualifyingHelp
+    )
 
     // Open a Child Support Case
     intentMap.set('open-csc-root', openCSCRoot)

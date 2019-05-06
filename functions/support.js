@@ -203,6 +203,46 @@ exports.supportType = async agent => {
   }
 }
 
+exports.supportInqueries = async agent => {
+  const supportType = 'inquiry'
+
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: supportType },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportChildSupportType = async agent => {
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'child support increase or decrease' },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 exports.supportCollectName = async agent => {
   const firstName = toTitleCase(agent.parameters.firstName)
   const lastName = toTitleCase(agent.parameters.lastName)
@@ -515,7 +555,6 @@ exports.supportSummarizeIssue = async agent => {
   const supportType = ticketinfo.supportType.toLowerCase()
   const company = ticketinfo.companyName
   const employmentSubType = ticketinfo.employmentSubType
-
   let supportSummary
   if (supportType === 'child support increase or decrease') {
     supportSummary = 'Order Review & Modification'
