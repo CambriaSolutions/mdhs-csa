@@ -204,9 +204,17 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(
-          `While protecting personal information is important, please do not enter SSN or DOB in Gen at any time.`
+          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. <br/><br/>
+          The information I provide is not legal advice. MDHS does not provide legal representation.  <br/><br/>
+          Also, please do not enter SSN or DOB in at any time during your conversations.  <br/><br/>
+          By clicking Yes below you are acknowledging receipt and understanding of these statements and that you wish to continue. <br/><br/>
+          Would you like to continue?`
         )
         await agent.add(new Suggestion('I Acknowledge'))
+        await agent.context.set({
+          name: 'waiting-acknowledge-privacy-statement',
+          lifespan: 2,
+        })
       } catch (err) {
         console.error(err)
       }
@@ -215,7 +223,7 @@ exports = module.exports = functions
     const restartConversation = async agent => {
       try {
         await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Common Requests'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
         await agent.add(new Suggestion('Employer'))
