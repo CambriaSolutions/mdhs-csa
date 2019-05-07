@@ -2,86 +2,16 @@ const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 const { supportInqueries, supportChildSupportType } = require('./support.js')
 
-exports.pmtMethodsRoot = async agent => {
+exports.pmtsMethodsDebitCard = async agent => {
   try {
     await agent.add(
-      `I can help help with determining payment options. Which of the following roles applies to you?`
+      `MDHS will issue Child Support payments to a debit card, unless the custodial parent chooses to receive payments via direct deposit.`
     )
-    await agent.add(new Suggestion('Custodial Parent'))
-    await agent.add(new Suggestion('Non-Custodial Parent'))
-    await agent.add(new Suggestion('Employer'))
-    await agent.add(new Suggestion('None of These'))
-    await agent.context.set({
-      name: 'waiting-pmtMethods-custodial',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-nonCustodial',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-employer',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-none',
-      lifespan: 2,
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtMethodsCustodial = async agent => {
-  try {
     await agent.add(
-      `Payments for custodial parents go through EPPICard. <a href="https://www.eppicard.com/" target="_blank">Click here</a> to access the EPPICard website or or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
+      `For information about fees associated with the debit card or other information, visit [url] or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
-    await handleEndConversation(agent)
   } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtMethodsNonCustodial = async agent => {
-  try {
-    await agent.add(
-      `Non-custodial parents have a variety of methods to make payments. Talk to your employer about a payroll deduction, or select one of the following to learn more.`
-    )
-    await agent.add(new Suggestion('Check or Money Order'))
-    await agent.add(new Suggestion('Cash'))
-    await agent.add(new Suggestion('eCheck/Bank Account Debit'))
-    await agent.add(new Suggestion('Moneygram'))
-
-    await agent.context.set({
-      name: 'waiting-pmtMethods-checkOrMoneyOrder',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-cash',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-eCheckDebit',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtMethods-moneygram',
-      lifespan: 2,
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtMethodsEmployer = async agent => {
-  try {
-    await agent.add(
-      `You can manage child support payments through iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
-    )
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -160,6 +90,22 @@ exports.pmtMethodsMoneygram = async agent => {
       `You can pay MDHS Child Support with cash at MoneyGram locations. Fees apply.<br/><br/>Some locations also accept PIN based debit card payments.<br/><br/>MoneyGram is available at Walmart, Kroger, CVS/Pharmacy, and Advance America locations.<br/><br/>Payment may take 2-3 business days to be posted to your child support account.<br/><br/><a href="http://www.MoneyGram.com/BillPayLocations" target="_blank">Click here</a> to find the nearest location to you.<br/><br/><a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf" target="_blank">Click here</a> for frequently asked questions.`
     )
     await handleEndConversation(agent)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.pmtMethodsNCPWithhold = async agent => {
+  try {
+    await agent.add(
+      `MDHS can assist you with having your payments deducted from your pay. <br/><br/>Click below to submit your employer information.`
+    )
+    await agent.add(new Suggestion('Employer Information'))
+
+    await agent.context.set({
+      name: 'waiting-employment-status',
+      lifespan: 3,
+    })
   } catch (err) {
     console.log(err)
   }

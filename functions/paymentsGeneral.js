@@ -8,7 +8,7 @@ exports.pmtsGeneralRoot = async agent => {
       lifespan: 2,
     })
     await agent.context.set({
-      name: 'waiting-pmts-general-not-parent',
+      name: 'waiting-pmts-general-non-custodial',
       lifespan: 2,
     })
   } catch (err) {
@@ -16,11 +16,15 @@ exports.pmtsGeneralRoot = async agent => {
   }
 }
 
-exports.pmtsGeneralNotParent = async agent => {
+exports.pmtsGeneralNonCustodial = async agent => {
   try {
     await agent.add(`What can I help you with regarding payments?`)
     await agent.add(new Suggestion('Make Payments'))
     await agent.add(new Suggestion('None of These'))
+    await agent.context.set({
+      name: 'waiting-pmtMethods-none',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -33,19 +37,6 @@ exports.pmtsGeneralReceivePayments = async agent => {
     )
     await agent.add(new Suggestion('Debit Card'))
     await agent.add(new Suggestion('Direct Deposit'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.pmtsGeneralDebitCard = async agent => {
-  try {
-    await agent.add(
-      `MDHS will issue Child Support payments to a debit card, unless the custodial parent chooses to receive payments via direct deposit.`
-    )
-    await agent.add(
-      `For information about fees associated with the debit card or other information, visit [url] or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
-    )
   } catch (err) {
     console.error(err)
   }
@@ -77,6 +68,12 @@ exports.pmtsGeneralMakePayments = async agent => {
       name: 'waiting-pmtMethods-eCheckDebit',
       lifespan: 2,
     })
+
+    await agent.context.set({
+      name: 'waiting-pmtMethods-withhold-payments',
+      lifespan: 2,
+    })
+
     await agent.context.set({
       name: 'waiting-pmtMethods-moneygram',
       lifespan: 2,

@@ -6,10 +6,9 @@ const { Suggestion } = require('dialogflow-fulfillment')
 // General payment intents
 const {
   pmtsGeneralRoot,
-  pmtsGeneralNotParent,
+  pmtsGeneralNonCustodial,
   pmtsGeneralReceivePayments,
   pmtsGeneralMakePayments,
-  pmtsGeneralDebitCard,
 } = require('./paymentsGeneral.js')
 
 // Payment calculator intents
@@ -38,10 +37,6 @@ const {
 
 // Payment methods intents
 const {
-  pmtMethodsRoot,
-  pmtMethodsCustodial,
-  pmtMethodsNonCustodial,
-  pmtMethodsEmployer,
   pmtMethodsNone,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
@@ -49,9 +44,10 @@ const {
   pmtMethodsMoneygram,
   pmtMethodsPayNearMe,
   pmtMethodsCantMake,
-  pmtMethodsCantMakeNonQualifying,
   pmtMethodsCantMakeQualifying,
   pmtMethodsCantMakeQualifyingHelp,
+  pmtMethodDebitCard,
+  pmtMethodsNCPWithhold,
 } = require('./paymentMethods.js')
 
 // Open Child Support Case
@@ -355,16 +351,11 @@ exports = module.exports = functions
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
-    intentMap.set('pmts-general-not-parent', pmtsGeneralNotParent)
+    intentMap.set('pmts-general-non-custodial', pmtsGeneralNonCustodial)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
-    intentMap.set('pmts-general-debit-card', pmtsGeneralDebitCard)
 
     // Payment methods intents
-    intentMap.set('pmtMethods-root', pmtMethodsRoot)
-    intentMap.set('pmtMethods-custodial', pmtMethodsCustodial)
-    intentMap.set('pmtMethods-nonCustodial', pmtMethodsNonCustodial)
-    intentMap.set('pmtMethods-employer', pmtMethodsEmployer)
     intentMap.set('pmtMethods-none', pmtMethodsNone)
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
@@ -372,10 +363,8 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
     intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
-    intentMap.set(
-      'pmtMethods-cant-make-non-qualifying',
-      pmtMethodsCantMakeNonQualifying
-    )
+    intentMap.set('pmtMethods-debit-card', pmtMethodDebitCard)
+    intentMap.set('pmtMethods-withhold-payments', pmtMethodsNCPWithhold)
     intentMap.set(
       'pmtMethods-cant-make-qualifying',
       pmtMethodsCantMakeQualifying
