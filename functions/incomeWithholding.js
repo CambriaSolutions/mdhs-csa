@@ -50,7 +50,7 @@ exports.iwoFAQs = async agent => {
 exports.iwoWantsAssistance = async agent => {
   try {
     await agent.add(
-      `Is your employee supporting another family other than the one in the IWO?`
+      `Is your employee supporting a family other than the one(s) for whom support is being withheld?`
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -152,11 +152,11 @@ exports.iwoRequestDisposableIncome = async agent => {
 exports.iwoDefineDisposableIncome = async agent => {
   try {
     await agent.add(
-      `Disposable income = gross pay - mandatory deductions such as Federal, state and local taxes, unemployment insurance, workers' compensation insurance, state employee retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
+      `Disposable income = gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers' compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
     )
 
     await agent.add(
-      `Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+      `Note: Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
     )
     await agent.add(`What is the employee's disposable income?`)
     await agent.context.set({
@@ -179,9 +179,9 @@ exports.iwoDisposableIncome = async agent => {
   if (amountToWithhold) {
     try {
       await agent.add(
-        `The amount to withhold is approximately ${formatCurrency(
+        `The estimated maximum amount that can be withheld is ${formatCurrency(
           amountToWithhold
-        )}`
+        )} regardless of how many withholding orders you receive for this employee.`
       )
       await handleEndConversation(agent)
     } catch (err) {
@@ -196,9 +196,49 @@ exports.iwoDisposableIncome = async agent => {
 
 exports.iwoWhereToSubmit = async agent => {
   try {
+    await agent.add(`Who are you?`)
+    await agent.add(new Suggestion('Employer'))
     await agent.add(
-      `The employer is required to submit payments to the State Dispersement Unit per the Income Withholding Order.`
+      new Suggestion(
+        'Parent who is responsible for making child support payments'
+      )
     )
+    await agent.context.set({
+      name: 'waiting-iwo-employer-submit-payments',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-iwo-payments-handoff',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoEmployerSubmitPayments = async agent => {
+  try {
+    await agent.add(
+      `Employers can make payments electronically through iPayOnline or EFT payments.`
+    )
+    await agent.add(
+      `For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>`
+    )
+    await agent.add(
+      `The employer may submit payments to the State Dispersement Unit per the Income Witholding Order. Submit payments to:
+         MDHS/SDU
+         PO Box 23094
+         Jackson, MS 39225
+        `
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoPaymentsHandoff = async agent => {
+  try {
+    await agent.add(`Direct to 2.0`)
   } catch (err) {
     console.error(err)
   }
@@ -217,7 +257,7 @@ exports.iwoAdministrativeFee = async agent => {
 exports.iwoOtherGarnishments = async agent => {
   try {
     await agent.add(
-      `Child Support payments take precedence over all other garnishments.`
+      `Child Support payments take precedence over all other garnishments, except the IRS when the employer receives the IRS garnishment first.`
     )
   } catch (err) {
     console.error(err)
@@ -237,7 +277,7 @@ exports.iwoOtherState = async agent => {
 exports.iwoInsuranceCoverage = async agent => {
   try {
     await agent.add(
-      `If ordered within the IWO, Mississippi CSE only enforces medical insurance payments for children on the IWO.`
+      `If you received a National Medical Support Notice, the NCP must provide dependent health insurance.`
     )
   } catch (err) {
     console.error(err)
@@ -247,7 +287,12 @@ exports.iwoInsuranceCoverage = async agent => {
 exports.iwoNotAnEmployee = async agent => {
   try {
     await agent.add(
-      `Per the IWO, the employer is required to respond with employment history to the State Dispersement Unit.`
+      `Per the IWO, the employer is required to respond with employment history to:<br/>
+      MDHS-Division of Child Support<br/>
+      950 E. County Line Rd.<br/>
+      Suite #G<br/>
+      Ridgeland, MS 39157.
+      `
     )
   } catch (err) {
     console.error(err)
@@ -259,6 +304,34 @@ exports.iwoFireEmployee = async agent => {
     await agent.add(
       `Per MS state law, if you were to fire an employee due to a garnishment, you are subject to a fine. (Page 4 of IWO - anti discrimination section).`
     )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoEmployerObligation = async agent => {
+  try {
+    await agent.add(
+      `As the employer, you are obligated to withhold per the Consumer Credit Protection Act guidelines.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoWhenToBegin = async agent => {
+  try {
+    await agent.add(
+      `The next payable income for the employee after 14 days following receipt of the IWO.`
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoHowLongToSend = async agent => {
+  try {
+    await agent.add(`7 days`)
   } catch (err) {
     console.error(err)
   }

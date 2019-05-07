@@ -158,6 +158,11 @@ const {
   iwoInsuranceCoverage,
   iwoNotAnEmployee,
   iwoFireEmployee,
+  iwoEmployerObligation,
+  iwoHowLongToSend,
+  iwoWhenToBegin,
+  iwoEmployerSubmitPayments,
+  iwoPaymentsHandoff,
 } = require('./incomeWithholding.js')
 
 // Feedback
@@ -356,6 +361,11 @@ exports = module.exports = functions
     intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
     intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
     intentMap.set('iwo-fire-employee', iwoFireEmployee)
+    intentMap.set('iwo-employer-obligation', iwoEmployerObligation)
+    intentMap.set('iwo-when-to-begin', iwoWhenToBegin)
+    intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
+    intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
+    intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
