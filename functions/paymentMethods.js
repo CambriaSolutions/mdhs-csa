@@ -127,8 +127,8 @@ exports.pmtMethodsCantMake = async agent => {
 
 exports.pmtMethodsCantMakeQualifying = async agent => {
   try {
-    const needsHelp = agent.parameters.needsHelp
-    if (needsHelp === 'yes') {
+    const qualifying = agent.parameters.qualifying
+    if (qualifying === 'yes') {
       await agent.add(
         `Would you like to submit a request for your child support amount to be reviewed?`
       )
