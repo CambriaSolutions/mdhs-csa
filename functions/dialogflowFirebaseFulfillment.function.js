@@ -10,6 +10,15 @@ const {
   pmtsGeneralMakePayments,
 } = require('./paymentsGeneral.js')
 
+// Employer intents
+const {
+  employerRoot,
+  employerEFT,
+  employerIPayOnline,
+  employerChecksMoneyOrders,
+  employerIWOHandoff,
+} = require('./employer.js')
+
 // Payment calculator intents
 const {
   pmtCalcRoot,
@@ -133,6 +142,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
   iwoIsSupporting,
@@ -148,7 +158,7 @@ const {
   iwoInsuranceCoverage,
   iwoNotAnEmployee,
   iwoFireEmployee,
-} = require('./incomeWitholding.js')
+} = require('./incomeWithholding.js')
 
 // Feedback
 const {
@@ -330,6 +340,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
@@ -350,6 +361,13 @@ exports = module.exports = functions
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
+
+    // Employer intents
+    intentMap.set('employer-root', employerRoot)
+    intentMap.set('employer-eft', employerEFT)
+    intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
+    intentMap.set('employer-iwo-handoff', employerIWOHandoff)
 
     // Payment methods intents
     intentMap.set('pmtMethods-root', pmtMethodsRoot)
