@@ -224,7 +224,7 @@ exports.supportInquiries = async agent => {
   }
 }
 
-exports.supportChildSupportType = async agent => {
+exports.supportReviewPayments = async agent => {
   try {
     await agent.add(
       `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your first and last name?`
