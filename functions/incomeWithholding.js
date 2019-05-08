@@ -4,6 +4,7 @@ const {
   handleEndConversation,
   formatCurrency,
 } = require('./globalFunctions.js')
+const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
 
 exports.iwoRoot = async agent => {
   try {
@@ -238,7 +239,7 @@ exports.iwoEmployerSubmitPayments = async agent => {
 
 exports.iwoPaymentsHandoff = async agent => {
   try {
-    await agent.add(`Direct to 2.0`)
+    await pmtsGeneralMakePayments(agent)
   } catch (err) {
     console.error(err)
   }
