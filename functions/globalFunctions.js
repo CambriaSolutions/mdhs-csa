@@ -1,5 +1,8 @@
+const { Suggestion } = require('dialogflow-fulfillment')
+
 exports.handleEndConversation = async agent => {
   await agent.add(`Can I help you with anything else?`)
+  await agent.add(new Suggestion(`Home`))
   await agent.context.set({
     name: 'waiting-feedback-root',
     lifespan: 2,

@@ -11,6 +11,15 @@ const {
   pmtsGeneralMakePayments,
 } = require('./paymentsGeneral.js')
 
+// Employer intents
+const {
+  employerRoot,
+  employerEFT,
+  employerIPayOnline,
+  employerChecksMoneyOrders,
+  employerIWOHandoff,
+} = require('./employer.js')
+
 // Payment calculator intents
 const {
   pmtCalcRoot,
@@ -136,6 +145,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
   iwoIsSupporting,
@@ -151,7 +161,12 @@ const {
   iwoInsuranceCoverage,
   iwoNotAnEmployee,
   iwoFireEmployee,
-} = require('./incomeWitholding.js')
+  iwoEmployerObligation,
+  iwoHowLongToSend,
+  iwoWhenToBegin,
+  iwoEmployerSubmitPayments,
+  iwoPaymentsHandoff,
+} = require('./incomeWithholding.js')
 
 // Feedback
 const {
@@ -333,6 +348,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
@@ -348,12 +364,24 @@ exports = module.exports = functions
     intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
     intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
     intentMap.set('iwo-fire-employee', iwoFireEmployee)
+    intentMap.set('iwo-employer-obligation', iwoEmployerObligation)
+    intentMap.set('iwo-when-to-begin', iwoWhenToBegin)
+    intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
+    intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
+    intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
     intentMap.set('pmts-general-non-custodial', pmtsGeneralNonCustodial)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
+
+    // Employer intents
+    intentMap.set('employer-root', employerRoot)
+    intentMap.set('employer-eft', employerEFT)
+    intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
+    intentMap.set('employer-iwo-handoff', employerIWOHandoff)
 
     // Payment methods intents
     intentMap.set('pmtMethods-none', pmtMethodsNone)
