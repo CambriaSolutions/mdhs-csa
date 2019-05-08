@@ -8,7 +8,7 @@ exports.employerRoot = async agent => {
     await agent.add(new Suggestion('EFT'))
     await agent.add(new Suggestion('iPayOnline'))
     await agent.add(new Suggestion('Checks/Money Orders'))
-    await agent.add(new Suggestion('Income Witholding Order Information'))
+    await agent.add(new Suggestion('Income Withholding Order Information'))
   } catch (err) {
     console.error(err)
   }
@@ -42,7 +42,7 @@ exports.employerIPayOnline = async agent => {
 exports.employerChecksMoneyOrders = async agent => {
   try {
     await agent.add(
-      `The employer may submit payments to the State Dispersement Unit per the Income Witholding Order. Submit payments to:
+      `The employer may submit payments to the State Disbursement Unit per the Income Witholding Order. Submit payments to:
          MDHS/SDU
          PO Box 23094
          Jackson, MS 39225
