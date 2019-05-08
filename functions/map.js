@@ -2,6 +2,7 @@ const { Payload } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const locations = require('./coordinates.json')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.mapRoot = async agent => {
   try {
@@ -68,6 +69,7 @@ exports.mapDeliverMap = async agent => {
           }
         )
       )
+      await handleEndConversation(agent)
     } else {
       await agent.add(
         `Sorry, I couldn't find that address. Could you say that again?`
