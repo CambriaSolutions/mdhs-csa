@@ -881,10 +881,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cambriasolutions/chatframe@^1.17,2":
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.17.2.tgz#6ce7dab061570b4ffaf4ce984bcdc4c2772dad6b"
-  integrity sha512-n05ezn2hpNuKVrwxZNaiBEGjtC9AG+G862ysKizTMpoV3VsMNY5/228yQ8FCE0HaXa5TN/6+bV2KAvNdsbOXdA==
+"@cambriasolutions/chatframe@1.17.3":
+  version "1.17.3"
+  resolved "https://registry.yarnpkg.com/@cambriasolutions/chatframe/-/chatframe-1.17.3.tgz#308f9c58d1f45c439abe5ea52207deff85084c34"
+  integrity sha512-OD/NDBHOgLLvPBJzKWaTr5O7KFgxaiM2d/WWWu1tcn3IxmOEHGuulFmA4X25pfRu4NoU4LQhGW4jcooa7ZdiOA==
   dependencies:
     "@material-ui/core" "^3.9.2"
     "@material-ui/icons" "^3.0.1"
