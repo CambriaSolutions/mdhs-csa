@@ -203,7 +203,7 @@ exports.supportType = async agent => {
   }
 }
 
-exports.supportInqueries = async agent => {
+exports.supportInquiries = async agent => {
   const supportType = 'inquiry'
 
   try {

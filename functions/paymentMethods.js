@@ -1,6 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
-const { supportInqueries, supportChildSupportType } = require('./support.js')
+const { supportInquiries, supportReviewPayments } = require('./support.js')
 
 exports.pmtsMethodsDebitCard = async agent => {
   try {
@@ -46,6 +46,9 @@ exports.pmtMethodsCheckOrMoneyOrder = async agent => {
 
 exports.pmtMethodsCash = async agent => {
   try {
+    await agent.add(
+      `You can pay with cash with MoneyGram and PayNearMe. Which would you like to learn more about?`
+    )
     await agent.add(new Suggestion('MoneyGram'))
     await agent.add(new Suggestion('PayNearMe'))
 
@@ -87,7 +90,7 @@ exports.pmtMethodsEcheckDebit = async agent => {
 exports.pmtMethodsMoneygram = async agent => {
   try {
     await agent.add(
-      `You can pay MDHS Child Support with cash at MoneyGram locations. Fees apply.<br/><br/>Some locations also accept PIN based debit card payments.<br/><br/>MoneyGram is available at Walmart, Kroger, CVS/Pharmacy, and Advance America locations.<br/><br/>Payment may take 2-3 business days to be posted to your child support account.<br/><br/><a href="http://www.MoneyGram.com/BillPayLocations" target="_blank">Click here</a> to find the nearest location to you.<br/><br/><a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf" target="_blank">Click here</a> for frequently asked questions.`
+      `You can pay MDHS Child Support with cash at MoneyGram locations. Fees apply.<br/><br/>Some locations also accept PIN based debit card payments.<br/><br/>MoneyGram is available at Walmart, Kroger, CVS/Pharmacy, and Advance America locations.<br/><br/>Payments may take 2-3 business days to be posted to your child support account.<br/><br/><a href="http://www.MoneyGram.com/BillPayLocations" target="_blank">Click here</a> to find the nearest location to you.<br/><br/><a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf" target="_blank">Click here</a> for frequently asked questions.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -114,7 +117,7 @@ exports.pmtMethodsNCPWithhold = async agent => {
 exports.pmtMethodsCantMake = async agent => {
   try {
     await agent.add(
-      `Has any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
+      `Have any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
     )
     await agent.context.set({
       name: 'waiting-pmtMethods-cant-make-qualifying',
@@ -137,7 +140,7 @@ exports.pmtMethodsCantMakeQualifying = async agent => {
         lifespan: 2,
       })
     } else {
-      await supportInqueries(agent)
+      await supportInquiries(agent)
     }
   } catch (err) {
     console.log(err)
@@ -148,7 +151,7 @@ exports.pmtMethodsCantMakeQualifyingHelp = async agent => {
   try {
     const needsHelp = agent.parameters.needsHelp
     if (needsHelp === 'yes') {
-      await supportChildSupportType(agent)
+      await supportReviewPayments(agent)
     } else {
       await handleEndConversation(agent)
     }
