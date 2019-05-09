@@ -2,7 +2,7 @@ const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 const { supportInquiries, supportReviewPayments } = require('./support.js')
 
-exports.pmtsMethodsDebitCard = async agent => {
+exports.pmtMethodsDebitCard = async agent => {
   try {
     await agent.add(
       `MDHS will issue Child Support payments to a debit card, unless the custodial parent chooses to receive payments via direct deposit.`
@@ -10,6 +10,7 @@ exports.pmtsMethodsDebitCard = async agent => {
     await agent.add(
       `For information about fees associated with the debit card or other information, visit [url] or call their support line at <a href="tel:+18664614095">1-866-461-4095</a>.`
     )
+    await agent.add(new Suggestion('Tell me about EPPICARD'))
   } catch (err) {
     console.error(err)
   }
