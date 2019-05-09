@@ -83,6 +83,8 @@ const {
 // Support intents
 const {
   supportRoot,
+  supportParentReceiving,
+  supportParentPaying,
   supportPaymentsRoot,
   supportRequestsRoot,
   supportChangeRoot,
@@ -422,6 +424,8 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
+    intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-paying', supportParentPaying)
     intentMap.set('support-payments-root', supportPaymentsRoot)
     intentMap.set('support-requests-root', supportRequestsRoot)
     intentMap.set('support-change-root', supportChangeRoot)
