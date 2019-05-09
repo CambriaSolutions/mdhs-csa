@@ -189,7 +189,6 @@ exports = module.exports = functions
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
-    const agent = new WebhookClient({ request, response })
 
     const agent = new WebhookClient({ request, response })
 
