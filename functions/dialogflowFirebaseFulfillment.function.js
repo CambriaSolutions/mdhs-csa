@@ -2,6 +2,7 @@ const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 // General payment intents
 const {
@@ -288,6 +289,7 @@ exports = module.exports = functions
         await agent.add(
           `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
         )
+        await handleEndConversation(agent)
       } catch (err) {
         console.error(err)
       }
