@@ -204,8 +204,9 @@ exports.dirDepChecking = async agent => {
 exports.dirDepAccountTerm = async agent => {
   try {
     await agent.add(
-      `Your Direct Deposit will remain in full force and effect until the agency, DCSE - Direct Deposit Unit has received written notice to terminate this authority and until DCSE and the Financial Institution have been afforded a reasonable time to act on it.`
+      `Your Direct Deposit will remain in effect until the agency receives written notice to terminate the authority and until MDHS has a reasonable time to act on it.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -214,13 +215,13 @@ exports.dirDepAccountTerm = async agent => {
 exports.dirDepTakeEffect = async agent => {
   try {
     await agent.add(
-      `For either an initial direct deposit request or a change direct deposit request, it generally takes about 2 weeks or 14 calendar days from when a correctly completed authorization agreement is recieved by MDHS-DCSE Direct Deposit staff for processing to be complete.`
+      `For either an initial direct deposit request, a change direct deposit request, or to terminate direct deposit, it generally takes about 2 weeks from when a correctly completed authorization agreement is received by MDHS for processing to be complete.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
 }
-
 exports.dirDepExtraFunds = async agent => {
   try {
     await agent.add(
