@@ -156,11 +156,17 @@ exports.dirDepSavings = async agent => {
       `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
+      `These numbers are often found on the bottom of the check or bank issued deposit slip.`
+    )
+    await agent.add(
       `Finally, don't forget, you MUST send the form to the proper location! Send to:  
        MDHS Child Support Enforcement Direct Deposit Unit  
        PO Box 352  
        Jackson, MS 39205-0352  
       `
+    )
+    await agent.add(
+      `Click <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf" target="_blank">here</a> to access the Direct Deposit Authorization Form.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -177,11 +183,17 @@ exports.dirDepChecking = async agent => {
       `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
+      `These numbers are often found on the bottom of the check or bank issued deposit slip.`
+    )
+    await agent.add(
       `Finally, don't forget, you MUST send the form to the proper location! Send to:  
        MDHS Child Support Enforcement Direct Deposit Unit  
        PO Box 352  
        Jackson, MS 39205-0352  
       `
+    )
+    await agent.add(
+      `Click <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf" target="_blank">here</a> to access the Direct Deposit Authorization Form.`
     )
     await handleEndConversation(agent)
   } catch (err) {

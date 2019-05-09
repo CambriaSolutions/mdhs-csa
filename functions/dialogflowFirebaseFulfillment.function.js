@@ -56,7 +56,7 @@ const {
   pmtMethodsCantMake,
   pmtMethodsCantMakeQualifying,
   pmtMethodsCantMakeQualifyingHelp,
-  pmtMethodDebitCard,
+  pmtMethodsDebitCard,
   pmtMethodsNCPWithhold,
 } = require('./paymentMethods.js')
 
@@ -185,12 +185,12 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    const agent = new WebhookClient({ request, response })
-
     console.log(
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+
+    const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
     req({
@@ -393,7 +393,7 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
     intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
-    intentMap.set('pmtMethods-debit-card', pmtMethodDebitCard)
+    intentMap.set('pmtMethods-debit-card', pmtMethodsDebitCard)
     intentMap.set('pmtMethods-withhold-payments', pmtMethodsNCPWithhold)
     intentMap.set(
       'pmtMethods-cant-make-qualifying',
