@@ -120,6 +120,8 @@ exports.pmtMethodsCantMake = async agent => {
     await agent.add(
       `Have any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
     )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
     await agent.context.set({
       name: 'waiting-pmtMethods-cant-make-qualifying',
       lifespan: 1,
