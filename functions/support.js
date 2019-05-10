@@ -52,11 +52,6 @@ exports.supportRoot = async agent => {
       name: 'waiting-support-employer',
       lifespan: 3,
     })
-
-    await agent.context.set({
-      name: 'waiting-support-general',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -79,6 +74,10 @@ exports.supportParentReceiving = async agent => {
       name: 'waiting-support-type',
       lifespan: 3,
     })
+    await agent.context.set({
+      name: 'waiting-support-parent-receiving-more',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -99,21 +98,8 @@ exports.supportParentPaying = async agent => {
       name: 'waiting-support-type',
       lifespan: 3,
     })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportRequestsRoot = async agent => {
-  try {
-    await agent.add(
-      `Please select what type of request you would like to create a support ticket for.`
-    )
-    await agent.add(new Suggestion(`Request Contempt Action`))
-    await agent.add(new Suggestion(`Request Case Closure`))
-    await agent.add(new Suggestion(`Add Authorized User`))
     await agent.context.set({
-      name: 'waiting-support-type',
+      name: 'waiting-support-parent-paying-more',
       lifespan: 3,
     })
   } catch (err) {
@@ -121,22 +107,53 @@ exports.supportRequestsRoot = async agent => {
   }
 }
 
-exports.supportChangeRoot = async agent => {
+exports.supportEmployer = async agent => {
   try {
-    await agent.add(
-      `Please select what type of change you would like to create a support ticket for.`
-    )
+    await agent.add(`Would you like to create a lump sum notification? If not `)
     await agent.add(new Suggestion(`Change of Personal Information`))
     await agent.add(new Suggestion(`Change of Employment Status`))
     await agent.add(
-      new Suggestion(`Information about the parent who pays child support`)
+      new Suggestion(`Child Support Payment Increase or Decrease`)
     )
+    await agent.add(new Suggestion(`More`))
     await agent.context.set({
       name: 'waiting-support-type',
       lifespan: 3,
     })
     await agent.context.set({
-      name: 'waiting-support-employment-status',
+      name: 'waiting-support-parent-paying-more',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+const supportMoreOptions = async (agent, option) => {
+  try {
+    if (option === 'receiving') {
+      await agent.add(
+        `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
+      )
+      await agent.add(
+        new Suggestion(`Information about the parent who pays child support`)
+      )
+      await agent.add(new Suggestion(`Request Payment History`))
+      await agent.add(new Suggestion(`Add Authorized User`))
+      await agent.add(new Suggestion(`None of These`))
+    } else if (option === 'paying') {
+      await agent.add(
+        `I can help parents making payments with the following additional requests. If you don't see what you need, select "None of These".`
+      )
+      await agent.add(new Suggestion(`Request Payment History`))
+      await agent.add(new Suggestion(`Add Authorized User`))
+      await agent.add(new Suggestion(`None of These`))
+    }
+    await agent.context.set({
+      name: 'waiting-support-type',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-general-inquiries',
       lifespan: 3,
     })
   } catch (err) {
@@ -144,13 +161,27 @@ exports.supportChangeRoot = async agent => {
   }
 }
 
-exports.supportGeneralRoot = async agent => {
+exports.supportParentReceivingMore = async agent => {
+  await supportMoreOptions(agent, 'receiving')
+}
+
+exports.supportParentPayingMore = async agent => {
+  await supportMoreOptions(agent, 'paying')
+}
+
+exports.supportNoOptionsSelected = async agent => {
   try {
-    await agent.add(`What can I help you with?`)
-    await agent.add(new Suggestion(`Employer Report LumpSum Notification`))
-    await agent.add(new Suggestion(`Inquiries`))
+    await agent.add(
+      `Would you like to submit an inquiry or go back to support options?`
+    )
+    await agent.add(new Suggestion(`Inquiry`))
+    await agent.add(new Suggestion(`Go Back`))
     await agent.context.set({
       name: 'waiting-support-type',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-restart',
       lifespan: 3,
     })
   } catch (err) {
