@@ -27,7 +27,7 @@ const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
   }
 }
 
-exports.supportRoot = async agent => {
+const startSupportConvo = async agent => {
   try {
     await agent.add(`Which of the following are you?`)
     await agent.add(
@@ -52,6 +52,25 @@ exports.supportRoot = async agent => {
       name: 'waiting-support-employer',
       lifespan: 3,
     })
+
+    // Clear out context in case of multiple tickets
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 0,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportRoot = async agent => {
+  await startSupportConvo(agent)
+}
+
+exports.supportRestart = async agent => {
+  try {
+    await agent.add(`Alright, let's start over.`)
+    await startSupportConvo(agent)
   } catch (err) {
     console.error(err)
   }
