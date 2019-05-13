@@ -53,7 +53,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
   }
 
   let requestObjectToDeliver
-  if (typeof phoneNumber !== 'number') {
+  if (isNaN(phoneNumber)) {
     requestObjectToDeliver = Object.keys(requestFieldBody).reduce(
       (object, key) => {
         if (key !== reporterPhoneNumber) {
