@@ -109,25 +109,17 @@ exports.supportParentPaying = async agent => {
 
 exports.supportEmployer = async agent => {
   try {
-    await agent.add(`Would you like to create a lump sum notification? If not `)
-    await agent.add(new Suggestion(`Change of Personal Information`))
-    await agent.add(new Suggestion(`Change of Employment Status`))
-    await agent.add(
-      new Suggestion(`Child Support Payment Increase or Decrease`)
-    )
-    await agent.add(new Suggestion(`More`))
+    await agent.add(`Click below to get started with a Lump Sum Notification.`)
+    await agent.add(new Suggestion(`Employer Report Lump Sum Notification`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-parent-paying-more',
       lifespan: 3,
     })
   } catch (err) {
     console.error(err)
   }
 }
+
 const supportMoreOptions = async (agent, option) => {
   try {
     if (option === 'receiving') {
@@ -414,11 +406,17 @@ exports.supportPhoneNumber = async agent => {
   }
 }
 
+const checkForLumpSum = async agent => {
+  const supportType = await agent.context.get('ticketinfo').parameters
+    .supportType
+  const isLumpSum = await supportType.includes('lump')
+  return isLumpSum
+}
+
 exports.supportEmail = async agent => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
-  const supportType = agent.context.get('ticketinfo').parameters.supportType
-  const isLumpSum = supportType.includes('lump')
+  const isLumpSum = checkForLumpSum(agent)
 
   if (isValid) {
     if (isLumpSum) {
@@ -480,25 +478,44 @@ exports.supportEmail = async agent => {
 
 exports.supportNoEmail = async agent => {
   const email = 'No Email Provided'
+  const isLumpSum = checkForLumpSum(agent)
+  if (isLumpSum) {
+    try {
+      await agent.add(`What is the name of your company/employer?`)
 
-  try {
-    await agent.add(
-      `What is your case number? Please do not provide your social security number.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-case-number',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-no-case-number',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      parameters: { email: email },
-    })
-  } catch (err) {
-    console.error(err)
+      await agent.context.set({
+        name: 'waiting-support-collect-company',
+        lifespan: 3,
+      })
+
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `What is your case number? Please do not provide your social security number.`
+      )
+
+      await agent.context.set({
+        name: 'waiting-support-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -714,6 +731,8 @@ exports.supportSumbitIssue = async agent => {
   // Send ticket data to service desk api
   const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
   const issueKey = postToServiceDesk.issueKey
+  console.log(`postToServiceDesk: ${postToServiceDesk}`)
+  console.log(`issueKey: ${issueKey}`)
   if (issueKey) {
     try {
       await agent.add(

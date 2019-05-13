@@ -82,6 +82,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     json: true,
   }
 
+  console.log(options)
   const serviceRequest = rp(options)
     .then(response => {
       return response
