@@ -118,7 +118,10 @@ exports.pmtMethodsNCPWithhold = async agent => {
 exports.pmtMethodsCantMake = async agent => {
   try {
     await agent.add(
-      `Have any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
+      `First, click <a href="https://www.mississippiworks.org/" target="_blank">here</a> to visit MS Works for help with employment.`
+    )
+    await agent.add(
+      `Second, has any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -143,7 +146,29 @@ exports.pmtMethodsCantMakeQualifying = async agent => {
         lifespan: 2,
       })
     } else {
+      await agent.add(
+        `Would you like to submit an inquiry to our support team for additional information about your options for making child support payments?`
+      )
+      await agent.context.set({
+        name: 'waiting-pmtMethods-cant-make-qualifying-no-help',
+        lifespan: 2,
+      })
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.pmtMethodsCantMakeQualifyingNoHelp = async agent => {
+  try {
+    const needsInquiry = agent.parameters.needsInquiry
+    if (needsInquiry === 'yes') {
       await supportInquiries(agent)
+    } else {
+      await agent.add(
+        `Click <a href="https://www.mississippiworks.org/" target="_blank">here</a> to visit MS Works for help with employment.`
+      )
+      await handleEndConversation(agent)
     }
   } catch (err) {
     console.log(err)
