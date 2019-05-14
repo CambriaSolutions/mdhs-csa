@@ -118,6 +118,10 @@ exports.supportParentPaying = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
+      name: 'waiting-support-employment-status',
+      lifespan: 3,
+    })
+    await agent.context.set({
       name: 'waiting-support-parent-paying-more',
       lifespan: 3,
     })
@@ -748,12 +752,15 @@ exports.supportSumbitIssue = async agent => {
   }
 
   // Send ticket data to service desk api
-  const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
-  const issueKey = postToServiceDesk.issueKey
-  console.log(`postToServiceDesk: ${postToServiceDesk}`)
-  console.log(`issueKey: ${issueKey}`)
+  // const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
+  // const issueKey = postToServiceDesk.issueKey
+
+  const issueKey = 12345
+
   if (issueKey) {
     try {
+      // Get appropriate confirmation reponse
+      const confirmationRespone = await formatConfirmationResponse(agent)
       await agent.add(
         new Card({
           title: `${supportSummary}: Issue #${issueKey}`,
@@ -764,9 +771,9 @@ exports.supportSumbitIssue = async agent => {
           Message: ${filteredRequests}`,
         })
       )
-      await agent.add(
-        `Thanks, your request has been submitted! Your issue number is **#${issueKey}**. A member of our team will reach out within 1-2 business days to validate your request.`
-      )
+
+      //
+      await agent.add(confirmationRespone)
       // Clear out context for ticket info
       await agent.context.set({
         name: 'requests',
@@ -787,4 +794,54 @@ exports.supportSumbitIssue = async agent => {
     await agent.add(`Looks like something has gone wrong!`)
     await handleEndConversation(agent)
   }
+}
+
+const formatConfirmationResponse = async agent => {
+  const supportType = await agent.context
+    .get('ticketinfo')
+    .parameters.supportType.toLowerCase()
+  let confimationResponse
+  // 1
+  if (supportType === 'request contempt action') {
+    confimationResponse = `Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.`
+  }
+  //2
+  else if (supportType === 'child support increase or decrease') {
+    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
+  }
+  // 3
+  else if (supportType === 'change of personal information') {
+    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.`
+  }
+  // 4
+  else if (supportType === 'change of employment information') {
+    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
+  }
+  // 5
+  else if (supportType === 'request payment history') {
+    confimationResponse = `Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.`
+  }
+  // 6
+  else if (
+    supportType === 'information about the parent who pays child support'
+  ) {
+    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
+  }
+  // 7
+  else if (supportType === 'request case closure') {
+    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
+  }
+  // 8
+  else if (supportType === 'employer report lump sum notification') {
+    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.`
+  }
+  // 9
+  else if (supportType === 'add authorized user') {
+    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
+  }
+  // 10
+  else {
+    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
+  }
+  return confimationResponse
 }
