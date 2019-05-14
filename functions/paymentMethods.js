@@ -120,9 +120,12 @@ exports.pmtMethodsCantMake = async agent => {
     await agent.add(
       `First, click <a href="https://www.mississippiworks.org/" target="_blank">here</a> to visit MS Works for help with employment.`
     )
-    await agent.add(
-      `Second, has any of the following occurred? Change in employment status, recently incarcerated, income is less, lost a job, been injured?`
-    )
+    await agent.add(`Second, have any of the following occurred?
+    <br/>• Change in employment status
+    <br/>• Recently incarcerated
+    <br/>• Income reduced
+    <br/>• Lost a job
+    <br/>• Been injured`)
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
