@@ -7,61 +7,15 @@ const {
   toTitleCase,
   formatDescriptionText,
 } = require('./globalFunctions.js')
+const {
+  formatConfirmationResponse,
+  handleCaseNumber,
+  startSupportConvo,
+  supportMoreOptions,
+  checkForLumpSum,
+} = require('./supportHelperFunctions.js')
+
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
-
-const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
-  try {
-    await agent.add(
-      `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 10,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      parameters: { caseNumber },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-const startSupportConvo = async agent => {
-  try {
-    await agent.add(`Which of the following are you?`)
-    await agent.add(
-      new Suggestion(`Parent who is to receive child support payments`)
-    )
-    await agent.add(
-      new Suggestion(`Parent who is to pay child support payments`)
-    )
-    await agent.add(new Suggestion(`Employer`))
-
-    await agent.context.set({
-      name: 'waiting-support-parent-receiving',
-      lifespan: 3,
-    })
-
-    await agent.context.set({
-      name: 'waiting-support-parent-paying',
-      lifespan: 3,
-    })
-
-    await agent.context.set({
-      name: 'waiting-support-employer',
-      lifespan: 3,
-    })
-
-    // Clear out context in case of multiple tickets
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 0,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 exports.supportRoot = async agent => {
   await startSupportConvo(agent)
@@ -136,39 +90,6 @@ exports.supportEmployer = async agent => {
     await agent.add(new Suggestion(`Employer Report Lump Sum Notification`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-const supportMoreOptions = async (agent, option) => {
-  try {
-    if (option === 'receiving') {
-      await agent.add(
-        `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
-      )
-      await agent.add(
-        new Suggestion(`Information about the parent who pays child support`)
-      )
-      await agent.add(new Suggestion(`Request Payment History`))
-      await agent.add(new Suggestion(`Add Authorized User`))
-      await agent.add(new Suggestion(`None of These`))
-    } else if (option === 'paying') {
-      await agent.add(
-        `I can help parents making payments with the following additional requests. If you don't see what you need, select "None of These".`
-      )
-      await agent.add(new Suggestion(`Request Payment History`))
-      await agent.add(new Suggestion(`Add Authorized User`))
-      await agent.add(new Suggestion(`None of These`))
-    }
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-general-inquiries',
       lifespan: 3,
     })
   } catch (err) {
@@ -429,36 +350,13 @@ exports.supportPhoneNumber = async agent => {
   }
 }
 
-const checkForLumpSum = async agent => {
-  const supportType = await agent.context.get('ticketinfo').parameters
-    .supportType
-  const isLumpSum = await supportType.includes('lump')
-  return isLumpSum
-}
-
 exports.supportEmail = async agent => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
-  const isLumpSum = checkForLumpSum(agent)
-
+  const isLumpSum = await checkForLumpSum(agent)
+  console.log(isLumpSum)
   if (isValid) {
-    if (isLumpSum) {
-      try {
-        await agent.add(`What is the name of your company/employer?`)
-
-        await agent.context.set({
-          name: 'waiting-support-collect-company',
-          lifespan: 3,
-        })
-
-        await agent.context.set({
-          name: 'ticketinfo',
-          parameters: { email: email },
-        })
-      } catch (err) {
-        console.error(err)
-      }
-    } else {
+    if (!isLumpSum) {
       try {
         await agent.add(
           `What is your case number? Please do not provide your social security number.`
@@ -472,6 +370,22 @@ exports.supportEmail = async agent => {
           name: 'waiting-support-no-case-number',
           lifespan: 3,
         })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(`What is the name of your company/employer?`)
+
+        await agent.context.set({
+          name: 'waiting-support-collect-company',
+          lifespan: 3,
+        })
+
         await agent.context.set({
           name: 'ticketinfo',
           parameters: { email: email },
@@ -501,24 +415,9 @@ exports.supportEmail = async agent => {
 
 exports.supportNoEmail = async agent => {
   const email = 'No Email Provided'
-  const isLumpSum = checkForLumpSum(agent)
-  if (isLumpSum) {
-    try {
-      await agent.add(`What is the name of your company/employer?`)
-
-      await agent.context.set({
-        name: 'waiting-support-collect-company',
-        lifespan: 3,
-      })
-
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  } else {
+  const isLumpSum = await checkForLumpSum(agent)
+  console.log(isLumpSum)
+  if (!isLumpSum) {
     try {
       await agent.add(
         `What is your case number? Please do not provide your social security number.`
@@ -532,6 +431,22 @@ exports.supportNoEmail = async agent => {
         name: 'waiting-support-no-case-number',
         lifespan: 3,
       })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(`What is the name of your company/employer?`)
+
+      await agent.context.set({
+        name: 'waiting-support-collect-company',
+        lifespan: 3,
+      })
+
       await agent.context.set({
         name: 'ticketinfo',
         parameters: { email: email },
@@ -569,35 +484,37 @@ exports.supportCaseNumber = async agent => {
   const validCaseNumber = validateCaseNumber(caseNumber)
 
   // Retrieve what type of issue this is, and change the wording appropriately
-  const supportType = agent.context.get('ticketinfo').parameters.supportType
+  const supportType = await agent.context.get('ticketinfo').parameters
+    .supportType
   const descriptionText = formatDescriptionText(supportType)
 
-  if (noCaseNumber && noCaseNumber !== '') {
-    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
-  } else if (caseNumber && !validCaseNumber) {
-    try {
-      await agent.add(
-        `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
-      )
-      await agent.add(`What is your case number?`)
-      await agent.context.set({
-        name: 'waiting-support-case-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-no-case-number',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
+  if (supportType === ' ')
+    if (noCaseNumber && noCaseNumber !== '') {
+      await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
+    } else if (caseNumber && !validCaseNumber) {
+      try {
+        await agent.add(
+          `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
+        )
+        await agent.add(`What is your case number?`)
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await handleCaseNumber(descriptionText, agent, caseNumber)
+      } catch (err) {
+        console.error(err)
+      }
     }
-  } else {
-    try {
-      await handleCaseNumber(descriptionText, agent, caseNumber)
-    } catch (err) {
-      console.error(err)
-    }
-  }
 }
 
 exports.supportNoCaseNumber = async agent => {
@@ -657,6 +574,7 @@ exports.supportSummarizeIssue = async agent => {
   const supportType = ticketinfo.supportType.toLowerCase()
   const company = ticketinfo.companyName
   const employmentSubType = ticketinfo.employmentSubType
+
   let supportSummary
   if (supportType === 'child support increase or decrease') {
     supportSummary = 'Order Review & Modification'
@@ -794,54 +712,4 @@ exports.supportSumbitIssue = async agent => {
     await agent.add(`Looks like something has gone wrong!`)
     await handleEndConversation(agent)
   }
-}
-
-const formatConfirmationResponse = async agent => {
-  const supportType = await agent.context
-    .get('ticketinfo')
-    .parameters.supportType.toLowerCase()
-  let confimationResponse
-  // 1
-  if (supportType === 'request contempt action') {
-    confimationResponse = `Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.`
-  }
-  //2
-  else if (supportType === 'child support increase or decrease') {
-    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
-  }
-  // 3
-  else if (supportType === 'change of personal information') {
-    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.`
-  }
-  // 4
-  else if (supportType === 'change of employment information') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
-  }
-  // 5
-  else if (supportType === 'request payment history') {
-    confimationResponse = `Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.`
-  }
-  // 6
-  else if (
-    supportType === 'information about the parent who pays child support'
-  ) {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
-  }
-  // 7
-  else if (supportType === 'request case closure') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
-  }
-  // 8
-  else if (supportType === 'employer report lump sum notification') {
-    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.`
-  }
-  // 9
-  else if (supportType === 'add authorized user') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
-  }
-  // 10
-  else {
-    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
-  }
-  return confimationResponse
 }
