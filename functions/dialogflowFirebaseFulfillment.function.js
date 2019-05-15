@@ -56,6 +56,7 @@ const {
   pmtMethodsCantMake,
   pmtMethodsCantMakeQualifying,
   pmtMethodsCantMakeQualifyingHelp,
+  pmtMethodsCantMakeQualifyingNoHelp,
   pmtMethodsDebitCard,
   pmtMethodsNCPWithhold,
 } = require('./paymentMethods.js')
@@ -402,6 +403,10 @@ exports = module.exports = functions
     intentMap.set(
       'pmtMethods-cant-make-qualifying-help',
       pmtMethodsCantMakeQualifyingHelp
+    )
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying-no-help',
+      pmtMethodsCantMakeQualifyingNoHelp
     )
 
     // Open a Child Support Case
