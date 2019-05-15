@@ -131,9 +131,8 @@ exports.supportEmploymentStatus = async agent => {
     await agent.add(new Suggestion(`Change of Employment Information`))
     await agent.add(new Suggestion(`Full Time to Part Time`))
     await agent.add(new Suggestion(`Part Time to Full Time`))
-    await agent.add(new Suggestion(`Add Employer`))
     await agent.add(new Suggestion(`Loss of Employer`))
-    await agent.add(new Suggestion(`Change of Employer`))
+    await agent.add(new Suggestion(`Change or Add Employer`))
     await agent.context.set({
       name: 'waiting-support-handle-employment-status',
       lifespan: 3,
@@ -144,27 +143,95 @@ exports.supportEmploymentStatus = async agent => {
 }
 
 exports.supportHandleEmploymentStatus = async agent => {
-  const employmentStatus = toTitleCase(agent.parameters.employmentStatus)
+  // Handle it here
+  const employmentStatus = agent.parameters.employmentStatus.toLowerCase()
+  const formattedEmploymentStatus = toTitleCase(
+    agent.parameters.employmentStatus
+  )
   const supportType = `Change of Employment Status`
-  try {
-    await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
-    )
 
+  if (employmentStatus === 'change of employer') {
+    try {
+      await agent.add(`What is the new employer's name?`)
+      await agent.context.set({
+        name: 'waiting-support-collect-new-employer-name',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+      )
+      await agent.context.set({
+        name: 'waiting-support-collect-name',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  await agent.context.set({
+    name: 'ticketinfo',
+    lifespan: 100,
+    parameters: {
+      supportType: supportType,
+      employmentSubType: formattedEmploymentStatus,
+    },
+  })
+}
+
+exports.supportCollectNewEmployerName = async agent => {
+  const newEmployerName = agent.parameters.newEmployerName
+  try {
+    await agent.add(`What is the new employer's phone number?`)
     await agent.context.set({
-      name: 'waiting-support-collect-name',
+      name: 'waiting-support-collect-new-employer-phone',
       lifespan: 3,
     })
     await agent.context.set({
       name: 'ticketinfo',
-      lifespan: 100,
-      parameters: {
-        supportType: supportType,
-        employmentSubType: employmentStatus,
-      },
+      parameters: { newEmployerName },
     })
   } catch (err) {
     console.error(err)
+  }
+}
+
+exports.supportCollectNewEmployerPhone = async agent => {
+  const newEmployerPhone = agent.parameters.newEmployerPhone
+  const formattedPhone = `+1${newEmployerPhone}`
+  const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
+  if (isValid) {
+    try {
+      await agent.add(
+        `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+      )
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { newEmployerPhone },
+      })
+      await agent.context.set({
+        name: 'waiting-support-collect-issue',
+        lifespan: 10,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `I'm sorry, I didn't catch that as a valid phone number, what is your new employer's phone number.`
+      )
+      await agent.context.set({
+        name: 'waiting-support-collect-new-employer-phone',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -488,33 +555,32 @@ exports.supportCaseNumber = async agent => {
     .supportType
   const descriptionText = formatDescriptionText(supportType)
 
-  if (supportType === ' ')
-    if (noCaseNumber && noCaseNumber !== '') {
-      await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
-    } else if (caseNumber && !validCaseNumber) {
-      try {
-        await agent.add(
-          `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
-        )
-        await agent.add(`What is your case number?`)
-        await agent.context.set({
-          name: 'waiting-support-case-number',
-          lifespan: 3,
-        })
-        await agent.context.set({
-          name: 'waiting-support-no-case-number',
-          lifespan: 3,
-        })
-      } catch (err) {
-        console.error(err)
-      }
-    } else {
-      try {
-        await handleCaseNumber(descriptionText, agent, caseNumber)
-      } catch (err) {
-        console.error(err)
-      }
+  if (noCaseNumber && noCaseNumber !== '') {
+    await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
+  } else if (caseNumber && !validCaseNumber) {
+    try {
+      await agent.add(
+        `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
+      )
+      await agent.add(`What is your case number?`)
+      await agent.context.set({
+        name: 'waiting-support-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-case-number',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
     }
+  } else {
+    try {
+      await handleCaseNumber(descriptionText, agent, caseNumber)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
 
 exports.supportNoCaseNumber = async agent => {
