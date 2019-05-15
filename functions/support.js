@@ -736,10 +736,8 @@ exports.supportSumbitIssue = async agent => {
   }
 
   // Send ticket data to service desk api
-  // const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
-  // const issueKey = postToServiceDesk.issueKey
-
-  const issueKey = 12345
+  const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
+  const issueKey = postToServiceDesk.issueKey
 
   if (issueKey) {
     try {
