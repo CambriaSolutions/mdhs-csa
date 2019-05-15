@@ -22,9 +22,9 @@ exports.pmtsGeneralNonCustodial = async agent => {
   try {
     await agent.add(`What can I help you with regarding payments?`)
     await agent.add(new Suggestion('Make Payments'))
-    await agent.add(new Suggestion('None of These'))
+    await agent.add(new Suggestion(`Home`))
     await agent.context.set({
-      name: 'waiting-pmtMethods-none',
+      name: 'waiting-restart-conversation',
       lifespan: 2,
     })
   } catch (err) {
