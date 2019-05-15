@@ -178,7 +178,7 @@ exports.supportHandleEmploymentStatus = async agent => {
     lifespan: 100,
     parameters: {
       supportType: supportType,
-      employmentSubType: formattedEmploymentStatus,
+      employmentChangeType: formattedEmploymentStatus,
     },
   })
 }
@@ -421,7 +421,7 @@ exports.supportEmail = async agent => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
   const isLumpSum = await checkForLumpSum(agent)
-  console.log(isLumpSum)
+
   if (isValid) {
     if (!isLumpSum) {
       try {
@@ -639,14 +639,14 @@ exports.supportSummarizeIssue = async agent => {
   const email = ticketinfo.email
   const supportType = ticketinfo.supportType.toLowerCase()
   const company = ticketinfo.companyName
-  const employmentSubType = ticketinfo.employmentSubType
+  const employmentChangeType = ticketinfo.employmentChangeType
 
   let supportSummary
   if (supportType === 'child support increase or decrease') {
     supportSummary = 'Order Review & Modification'
   } else if (supportType === 'change of employment status') {
-    if (employmentSubType) {
-      supportSummary = `Change of Employment Status - ${employmentSubType}`
+    if (employmentChangeType) {
+      supportSummary = `Change of Employment Status - ${employmentChangeType}`
     } else {
       supportSummary = `Change of Employment Status`
     }
@@ -721,6 +721,9 @@ exports.supportSumbitIssue = async agent => {
   const company = ticketinfo.companyName
   const supportSummary = ticketinfo.supportSummary
   const preppedPhoneNumber = phoneNumberToDisplay.replace(/\D/g, '')
+  const newEmployerName = ticketinfo.newEmployerName
+  const newEmployerNumber = ticketinfo.newEmployerNumber
+  const employmentChangeType = ticketinfo.employmentChangeType
   const phoneNumber = parseInt(preppedPhoneNumber)
 
   // Prepare payload fields for service desk call
@@ -733,6 +736,9 @@ exports.supportSumbitIssue = async agent => {
     email,
     caseNumber,
     company,
+    newEmployerName,
+    newEmployerNumber,
+    employmentChangeType,
   }
 
   // Send ticket data to service desk api

@@ -12,6 +12,9 @@ const serviceDeskFields = {
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
   companyName: 'customfield_10111',
+  employer: 'customfield_10136',
+  employerPhoneNumber: 'customfield_10137',
+  employmentSubType: 'customfield_10138',
 }
 
 const firstName = 'test <Firstname>'
@@ -21,7 +24,12 @@ const phoneNumber = 9163264446
 const email = 'test <email>'
 const supportSummary = 'test summary'
 const filteredRequests = 'test Description'
-const company = ''
+const company = 'Lump Sum company'
+
+// New fields
+const newEmployer = 'employer'
+const newEmployerPhoneNumber = '(916)799-0766'
+const employmentStatus = 'employment subtype'
 
 const {
   environment,
@@ -33,6 +41,9 @@ const {
   reporterCaseNumber,
   channel,
   companyName,
+  employer,
+  employerPhoneNumber,
+  employmentSubType,
 } = serviceDeskFields
 
 const requestFieldBody = {
@@ -49,6 +60,9 @@ const requestFieldBody = {
   [channel]: {
     value: 'Chat Bot',
   },
+  [employer]: newEmployer,
+  [employerPhoneNumber]: newEmployerPhoneNumber,
+  [employmentSubType]: employmentStatus,
 }
 
 let objectToDeliver
