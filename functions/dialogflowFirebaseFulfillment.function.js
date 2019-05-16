@@ -94,6 +94,8 @@ const {
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
   supportCollectNewEmployerName,
+  supportNoNewEmployer,
+  supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
@@ -447,6 +449,11 @@ exports = module.exports = functions
     intentMap.set(
       'support-collect-new-employer-name',
       supportCollectNewEmployerName
+    )
+    intentMap.set('support-no-new-employer', supportNoNewEmployer)
+    intentMap.set(
+      'support-new-employer-unknown-phone',
+      supportNewEmployerUnkownPhone
     )
     intentMap.set(
       'support-collect-new-employer-phone',

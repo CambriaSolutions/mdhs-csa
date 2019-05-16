@@ -179,6 +179,29 @@ exports.supportCollectNewEmployerName = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
+      name: 'waiting-support-new-employer-unknown-phone',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { newEmployerName },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportNoNewEmployer = async agent => {
+  const newEmployerName = 'Unknown new employer'
+  try {
+    await agent.add(
+      `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-issue',
+      lifespan: 10,
+    })
+    await agent.context.set({
       name: 'ticketinfo',
       parameters: { newEmployerName },
     })
@@ -219,6 +242,25 @@ exports.supportCollectNewEmployerPhone = async agent => {
     } catch (err) {
       console.error(err)
     }
+  }
+}
+
+exports.supportNewEmployerUnkownPhone = async agent => {
+  const newEmployerPhone = 'Unknown phone number'
+  try {
+    await agent.add(
+      `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-issue',
+      lifespan: 10,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { newEmployerPhone },
+    })
+  } catch (err) {
+    console.error(err)
   }
 }
 

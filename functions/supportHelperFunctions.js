@@ -89,18 +89,23 @@ exports.formatConfirmationResponse = async agent => {
 
 // Responds to case number and sets context appropriately
 exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
-  const employmentChangeType = await agent.context
-    .get('ticketinfo')
-    .parameters.employmentChangeType.toLowerCase()
+  const employmentChangeType = await agent.context.get('ticketinfo').parameters
+    .employmentChangeType
 
-  if (
-    employmentChangeType === 'change of employer' ||
-    employmentChangeType === 'loss of employer'
-  ) {
+  let change
+  if (employmentChangeType) {
+    change = employmentChangeType.toLowerCase()
+  }
+
+  if (change === 'change of employer' || change === 'loss of employer') {
     try {
       await agent.add(`What is the new employer's name?`)
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-name',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-new-employer',
         lifespan: 3,
       })
       await agent.context.set({
