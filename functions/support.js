@@ -417,26 +417,266 @@ exports.supportEmail = async agent => {
 }
 
 exports.supportNoEmail = async agent => {
-  const email = 'No Email Provided'
+  // Check to see if they have provided a phone number
+  const phoneNumber = agent.context.get('ticketinfo').parameters.phoneNumber
 
-  try {
-    await agent.add(
-      `What is your case number? Please do not provide your social security number.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-case-number',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-no-case-number',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      parameters: { email: email },
-    })
-  } catch (err) {
-    console.error(err)
+  if (phoneNumber) {
+    const email = 'No Email Provided'
+    try {
+      await agent.add(
+        `What is your case number? Please do not provide your social security number.`
+      )
+      await agent.context.set({
+        name: 'waiting-support-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { email: email },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `We need either a phone number or an email in order to continue, which would you like to provide?`
+      )
+      await agent.add(new Suggestion(`Email`))
+      await agent.add(new Suggestion(`Phone Number`))
+      await agent.context.set({
+        name: 'waiting-support-retry-email',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-retry-phone-number',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+const handleContactCollection = async (agent, type) => {
+  const supportType = await agent.context.get('ticketinfo').parameters
+    .supportType
+  const isLumpSum = supportType.includes('lump')
+
+  if (type === 'phone') {
+    const phoneNumberResponse = agent.parameters.phoneNumber
+    const formattedPhone = `+1${phoneNumberResponse}`
+    const isValidPhone = validator.isMobilePhone(formattedPhone, 'en-US')
+
+    if (isValidPhone) {
+      const phoneNumber = parsePhoneNumberFromString(
+        formattedPhone
+      ).formatNational()
+
+      try {
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { phoneNumber },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(
+          `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+        )
+        await agent.context.set({
+          name: 'waiting-support-retry-phone-number',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  } else if (type === 'email') {
+    const email = agent.parameters.email
+    const isValidEmail = validator.isEmail(email)
+
+    if (isValidEmail) {
+      if (isLumpSum) {
+        try {
+          await agent.add(`What is the name of your company/employer?`)
+
+          await agent.context.set({
+            name: 'waiting-support-collect-company',
+            lifespan: 3,
+          })
+
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: { email: email },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        try {
+          await agent.add(
+            `What is your case number? Please do not provide your social security number.`
+          )
+
+          await agent.context.set({
+            name: 'waiting-support-case-number',
+            lifespan: 3,
+          })
+          await agent.context.set({
+            name: 'waiting-support-no-case-number',
+            lifespan: 3,
+          })
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: { email: email },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      }
+    } else {
+      try {
+        await agent.add(
+          `I didn't recognize that as an email address, could you say that again?`
+        )
+        await agent.context.set({
+          name: 'waiting-support-email',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-email',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
+}
+
+exports.supportRetryPhoneNumber = async agent => {
+  const phoneNumberResponse = agent.parameters.phoneNumber
+  const formattedPhone = `+1${phoneNumberResponse}`
+  const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
+
+  if (isValid) {
+    const phoneNumber = parsePhoneNumberFromString(
+      formattedPhone
+    ).formatNational()
+
+    try {
+      await agent.add(
+        `What is your case number? Please do not provide your social security number.`
+      )
+      await agent.context.set({
+        name: 'waiting-support-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-case-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { phoneNumber },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+      )
+      await agent.context.set({
+        name: 'waiting-support-retry-phone-number',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+exports.supportRetryEmail = async agent => {
+  const email = agent.parameters.email
+  const isValid = validator.isEmail(email)
+  const supportType = agent.context.get('ticketinfo').parameters.supportType
+  const isLumpSum = supportType.includes('lump')
+
+  if (isValid) {
+    if (isLumpSum) {
+      try {
+        await agent.add(`What is the name of your company/employer?`)
+
+        await agent.context.set({
+          name: 'waiting-support-collect-company',
+          lifespan: 3,
+        })
+
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
+
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  } else {
+    try {
+      await agent.add(
+        `I didn't recognize that as an email address, could you say that again?`
+      )
+      await agent.context.set({
+        name: 'waiting-support-email',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-email',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
