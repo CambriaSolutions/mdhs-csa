@@ -707,7 +707,7 @@ exports.supportSumbitIssue = async agent => {
   const supportSummary = ticketinfo.supportSummary
   const preppedPhoneNumber = phoneNumberToDisplay.replace(/\D/g, '')
   const newEmployerName = ticketinfo.newEmployerName
-  const newEmployerNumber = ticketinfo.newEmployerNumber
+  const newEmployerNumber = ticketinfo.newEmployerPhone
   const employmentChangeType = ticketinfo.employmentChangeType
   const phoneNumber = parseInt(preppedPhoneNumber)
 

@@ -64,6 +64,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [employmentSubType]: employmentChangeType,
   }
 
+  // Will replace after type of string accepted
   let requestObjectToDeliver
   if (isNaN(phoneNumber)) {
     requestObjectToDeliver = Object.keys(requestFieldBody).reduce(
@@ -78,6 +79,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
   } else {
     requestObjectToDeliver = requestFieldBody
   }
+
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,

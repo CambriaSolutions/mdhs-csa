@@ -93,7 +93,6 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
     .get('ticketinfo')
     .parameters.employmentChangeType.toLowerCase()
 
-  console.log(employmentChangeType)
   if (
     employmentChangeType === 'change of employer' ||
     employmentChangeType === 'loss of employer'
@@ -103,6 +102,10 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-name',
         lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { caseNumber },
       })
     } catch (err) {
       console.error(err)
