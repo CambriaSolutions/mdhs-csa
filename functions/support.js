@@ -1,12 +1,14 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
+
 const {
   handleEndConversation,
   validateCaseNumber,
   toTitleCase,
   formatDescriptionText,
 } = require('./globalFunctions.js')
+
 const {
   formatConfirmationResponse,
   handleCaseNumber,
@@ -143,44 +145,29 @@ exports.supportEmploymentStatus = async agent => {
 }
 
 exports.supportHandleEmploymentStatus = async agent => {
-  // Handle it here
-  const employmentStatus = agent.parameters.employmentStatus.toLowerCase()
   const formattedEmploymentStatus = toTitleCase(
     agent.parameters.employmentStatus
   )
   const supportType = `Change of Employment Status`
-
-  if (employmentStatus === 'change of employer') {
-    try {
-      await agent.add(`What is the new employer's name?`)
-      await agent.context.set({
-        name: 'waiting-support-collect-new-employer-name',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  } else {
-    try {
-      await agent.add(
-        `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
-      )
-      await agent.context.set({
-        name: 'waiting-support-collect-name',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
-    }
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: {
+        supportType: supportType,
+        employmentChangeType: formattedEmploymentStatus,
+      },
+    })
+  } catch (err) {
+    console.error(err)
   }
-  await agent.context.set({
-    name: 'ticketinfo',
-    lifespan: 100,
-    parameters: {
-      supportType: supportType,
-      employmentChangeType: formattedEmploymentStatus,
-    },
-  })
 }
 
 exports.supportCollectNewEmployerName = async agent => {
@@ -483,7 +470,7 @@ exports.supportEmail = async agent => {
 exports.supportNoEmail = async agent => {
   const email = 'No Email Provided'
   const isLumpSum = await checkForLumpSum(agent)
-  console.log(isLumpSum)
+
   if (!isLumpSum) {
     try {
       await agent.add(
@@ -549,10 +536,8 @@ exports.supportCaseNumber = async agent => {
   const caseNumber = agent.parameters.caseNumber
   const noCaseNumber = agent.parameters.noCaseNumber
   const validCaseNumber = validateCaseNumber(caseNumber)
-
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = await agent.context.get('ticketinfo').parameters
-    .supportType
   const descriptionText = formatDescriptionText(supportType)
 
   if (noCaseNumber && noCaseNumber !== '') {
@@ -629,9 +614,9 @@ exports.supportCollectIssue = async agent => {
 }
 
 exports.supportSummarizeIssue = async agent => {
-  const rawRequests = agent.context.get('requests').parameters.requests
+  const rawRequests = await agent.context.get('requests').parameters.requests
   const filteredRequests = rawRequests.join(' ')
-  const ticketinfo = agent.context.get('ticketinfo').parameters
+  const ticketinfo = await agent.context.get('ticketinfo').parameters
   const firstName = ticketinfo.firstName
   const lastName = ticketinfo.lastName
   const caseNumber = ticketinfo.caseNumber
@@ -778,7 +763,7 @@ exports.supportSumbitIssue = async agent => {
       console.error(err)
     }
   } else {
-    // handle service desk errors?
+    // Handle service desk errors?
     await agent.add(`Looks like something has gone wrong!`)
     await handleEndConversation(agent)
   }
