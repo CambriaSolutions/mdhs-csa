@@ -10,6 +10,9 @@ const serviceDeskFields = {
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
   companyName: 'customfield_10111',
+  employer: 'customfield_10136',
+  employerPhoneNumber: 'customfield_10137',
+  employmentSubType: 'customfield_10138',
 }
 
 exports.sendToServiceDesk = async requestFieldValues => {
@@ -22,6 +25,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
     email,
     caseNumber,
     company,
+    newEmployerName,
+    newEmployerNumber,
+    employmentChangeType,
   } = requestFieldValues
 
   const {
@@ -34,6 +40,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
     reporterCaseNumber,
     channel,
     companyName,
+    employer,
+    employerPhoneNumber,
+    employmentSubType,
   } = serviceDeskFields
 
   const requestFieldBody = {
@@ -50,10 +59,14 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [channel]: {
       value: 'Chat Bot',
     },
+    [employer]: newEmployerName,
+    [employerPhoneNumber]: newEmployerNumber,
+    [employmentSubType]: employmentChangeType,
   }
 
+  // Will replace after type of string accepted
   let requestObjectToDeliver
-  if (typeof phoneNumber !== 'number') {
+  if (isNaN(phoneNumber)) {
     requestObjectToDeliver = Object.keys(requestFieldBody).reduce(
       (object, key) => {
         if (key !== reporterPhoneNumber) {
@@ -66,6 +79,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
   } else {
     requestObjectToDeliver = requestFieldBody
   }
+
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -88,6 +102,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     })
     .catch(err => {
       console.log(requestObjectToDeliver)
+      console.error(err)
       return err
     })
 

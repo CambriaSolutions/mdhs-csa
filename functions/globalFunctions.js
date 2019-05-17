@@ -95,8 +95,7 @@ exports.formatDescriptionText = supportType => {
   } else if (
     supportType === 'information about the parent who pays child support'
   ) {
-    descriptionText =
-      'What informaton do you want to share regarding the parent who pays child support?'
+    descriptionText = `What informaton do you want to share regarding the parent who pays child support? Helpful information includes this parent's address and phone number, employer information, asset information or information about this parent's ability to work.`
   } else if (supportType === 'request case closure') {
     descriptionText =
       'What informaton do you want to share regarding your request for case closure?'
