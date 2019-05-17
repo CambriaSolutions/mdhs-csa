@@ -84,12 +84,19 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportPaymentsRoot,
-  supportRequestsRoot,
-  supportChangeRoot,
-  supportGeneralRoot,
+  supportRestart,
+  supportParentReceiving,
+  supportParentPaying,
+  supportParentReceivingMore,
+  supportEmployer,
+  supportParentPayingMore,
+  supportNoOptionsSelected,
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
+  supportCollectNewEmployerName,
+  supportNoNewEmployer,
+  supportNewEmployerUnkownPhone,
+  supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
   supportCollectName,
@@ -427,14 +434,30 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-payments-root', supportPaymentsRoot)
-    intentMap.set('support-requests-root', supportRequestsRoot)
-    intentMap.set('support-change-root', supportChangeRoot)
-    intentMap.set('support-general-root', supportGeneralRoot)
+    intentMap.set('support-restart', supportRestart)
+    intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-paying', supportParentPaying)
+    intentMap.set('support-employer', supportEmployer)
+    intentMap.set('support-parent-paying-more', supportParentPayingMore)
+    intentMap.set('support-parent-receiving-more', supportParentReceivingMore)
+    intentMap.set('support-no-options-selected', supportNoOptionsSelected)
     intentMap.set('support-employment-status', supportEmploymentStatus)
     intentMap.set(
       'support-handle-employment-status',
       supportHandleEmploymentStatus
+    )
+    intentMap.set(
+      'support-collect-new-employer-name',
+      supportCollectNewEmployerName
+    )
+    intentMap.set('support-no-new-employer', supportNoNewEmployer)
+    intentMap.set(
+      'support-new-employer-unknown-phone',
+      supportNewEmployerUnkownPhone
+    )
+    intentMap.set(
+      'support-collect-new-employer-phone',
+      supportCollectNewEmployerPhone
     )
     intentMap.set('support-type', supportType)
     intentMap.set('support-collect-company-name', supportCollectCompanyName)
