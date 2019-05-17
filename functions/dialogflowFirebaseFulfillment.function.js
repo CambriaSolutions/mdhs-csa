@@ -106,6 +106,10 @@ const {
   supportNoCaseNumber,
   supportEmail,
   supportNoEmail,
+  supportRetryPhoneNumber,
+  supportHandlePhoneRetry,
+  supportRetryEmail,
+  supportHandleEmailRetry,
   supportCollectIssue,
   supportSummarizeIssue,
   supportReviseIssue,
@@ -466,6 +470,10 @@ exports = module.exports = functions
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
     intentMap.set('support-no-email', supportNoEmail)
+    intentMap.set('support-retry-email', supportRetryEmail)
+    intentMap.set('support-handle-email-retry', supportHandleEmailRetry)
+    intentMap.set('support-retry-phone-number', supportRetryPhoneNumber)
+    intentMap.set('support-handle-phone-retry', supportHandlePhoneRetry)
     intentMap.set('support-case-number', supportCaseNumber)
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)

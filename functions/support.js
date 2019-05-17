@@ -515,7 +515,7 @@ exports.supportNoEmail = async agent => {
   const phoneNumber = agent.context.get('ticketinfo').parameters.phoneNumber
   const isLumpSum = await checkForLumpSum(agent)
 
-  if (phoneNumber) {
+  if (phoneNumber.toLowerCase() !== 'no phone number') {
     const email = 'No Email Provided'
     if (!isLumpSum) {
       try {
@@ -562,7 +562,6 @@ exports.supportNoEmail = async agent => {
       )
       await agent.add(new Suggestion(`Email`))
       await agent.add(new Suggestion(`Phone Number`))
-      await agent.add(`What is the name of your company/employer?`)
 
       await agent.context.set({
         name: 'waiting-support-retry-email',
@@ -570,7 +569,7 @@ exports.supportNoEmail = async agent => {
       })
 
       await agent.context.set({
-        name: 'waiting-support-collect-company',
+        name: 'waiting-support-retry-phone-number',
         lifespan: 3,
       })
     } catch (err) {
@@ -580,6 +579,18 @@ exports.supportNoEmail = async agent => {
 }
 
 exports.supportRetryPhoneNumber = async agent => {
+  try {
+    await agent.add(`Starting with area code, what is your phone number?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-phone-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+//
+exports.supportHandlePhoneRetry = async agent => {
   const isLumpSum = await checkForLumpSum(agent)
   try {
     await handleContactCollection(agent, 'phone', isLumpSum)
@@ -589,6 +600,18 @@ exports.supportRetryPhoneNumber = async agent => {
 }
 
 exports.supportRetryEmail = async agent => {
+  try {
+    await agent.add(`What is your email address?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-email-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+//
+exports.supportHandleEmailRetry = async agent => {
   const isLumpSum = await checkForLumpSum(agent)
   try {
     await handleContactCollection(agent, 'email', isLumpSum)
