@@ -1,4 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { supportEmail } = require('./support.js')
 
 // Used to handle restarting and starting conversations for support requests
 exports.startSupportConvo = async agent => {
@@ -172,6 +173,59 @@ exports.supportMoreOptions = async (agent, option) => {
 exports.checkForLumpSum = async agent => {
   const supportType = await agent.context.get('ticketinfo').parameters
     .supportType
-  const isLumpSum = await supportType.includes('lump')
+  const isLumpSum = supportType.includes('lump')
   return isLumpSum
+}
+
+exports.handleContactCollection = async (agent, type, isLumpSum) => {
+  if (type === 'phone') {
+    const phoneNumberResponse = agent.parameters.phoneNumber
+    const formattedPhone = `+1${phoneNumberResponse}`
+    const isValidPhone = validator.isMobilePhone(formattedPhone, 'en-US')
+
+    if (isValidPhone) {
+      const phoneNumber = parsePhoneNumberFromString(
+        formattedPhone
+      ).formatNational()
+
+      try {
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { phoneNumber },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(
+          `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+        )
+        await agent.context.set({
+          name: 'waiting-support-retry-phone-number',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  } else if (type === 'email') {
+    // Send to email function
+    try {
+      await supportEmail(agent)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
