@@ -232,7 +232,10 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCaseNumber(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: { phoneNumber },
+            parameters: {
+              phoneNumber: phoneNumber,
+              email: 'No Email Provided.',
+            },
           })
         } catch (err) {
           console.error(err)
@@ -243,7 +246,10 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCompany(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: { phoneNumber },
+            parameters: {
+              phoneNumber: phoneNumber,
+              email: 'No Email Provided',
+            },
           })
         } catch (err) {
           console.error(err)
