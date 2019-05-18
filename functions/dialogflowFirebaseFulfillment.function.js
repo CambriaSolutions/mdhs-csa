@@ -2,7 +2,10 @@ const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('./globalFunctions.js')
+const {
+  handleEndConversation,
+  startRootConversation,
+} = require('./globalFunctions.js')
 
 // General payment intents
 const {
@@ -253,13 +256,7 @@ exports = module.exports = functions
 
     const restartConversation = async agent => {
       try {
-        await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await startRootConversation(agent)
       } catch (err) {
         console.error(err)
       }
@@ -267,13 +264,15 @@ exports = module.exports = functions
 
     const acknowledgePrivacyStatement = async agent => {
       try {
-        await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await startRootConversation(agent)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const globalRestart = async agent => {
+      try {
+        await startRootConversation(agent)
       } catch (err) {
         console.error(err)
       }
@@ -312,6 +311,7 @@ exports = module.exports = functions
 
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
+    intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)

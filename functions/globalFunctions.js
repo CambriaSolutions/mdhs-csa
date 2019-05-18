@@ -117,3 +117,19 @@ exports.formatCurrency = num => {
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   )
 }
+
+// Handle startOfConversation
+exports.startRootConversation = async agent => {
+  try {
+    await agent.add(`What can I help you with?`)
+    await agent.add(new Suggestion('Common Requests'))
+    await agent.add(new Suggestion('Appointments'))
+    await agent.add(new Suggestion('Payments'))
+    await agent.add(new Suggestion('Employer'))
+    await agent.add(new Suggestion('Opening a Child Support Case'))
+    await agent.add(new Suggestion('Office Locations'))
+    await agent.add(new Suggestion('Policy Manual'))
+  } catch (err) {
+    console.error(err)
+  }
+}
