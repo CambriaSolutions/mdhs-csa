@@ -156,11 +156,17 @@ exports.dirDepSavings = async agent => {
       `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
+      `These numbers are often found on the bottom of the check or bank issued deposit slip.`
+    )
+    await agent.add(
       `Finally, don't forget, you MUST send the form to the proper location! Send to:  
        MDHS Child Support Enforcement Direct Deposit Unit  
        PO Box 352  
        Jackson, MS 39205-0352  
       `
+    )
+    await agent.add(
+      `Click <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf" target="_blank">here</a> to access the Direct Deposit Authorization Form.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -177,11 +183,17 @@ exports.dirDepChecking = async agent => {
       `Make sure that the account and routing numbers are identifiable and clearly visible on the document to prevent processing delays. If the account and/or routing bank numbers are not identifiable, the authorization agreement will not be processed!`
     )
     await agent.add(
+      `These numbers are often found on the bottom of the check or bank issued deposit slip.`
+    )
+    await agent.add(
       `Finally, don't forget, you MUST send the form to the proper location! Send to:  
        MDHS Child Support Enforcement Direct Deposit Unit  
        PO Box 352  
        Jackson, MS 39205-0352  
       `
+    )
+    await agent.add(
+      `Click <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf" target="_blank">here</a> to access the Direct Deposit Authorization Form.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -192,8 +204,9 @@ exports.dirDepChecking = async agent => {
 exports.dirDepAccountTerm = async agent => {
   try {
     await agent.add(
-      `Your Direct Deposit will remain in full force and effect until the agency, DCSE - Direct Deposit Unit has received written notice to terminate this authority and until DCSE and the Financial Institution have been afforded a reasonable time to act on it.`
+      `Your Direct Deposit will remain in effect until the agency receives written notice to terminate the authority and until MDHS has a reasonable time to act on it.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -202,13 +215,13 @@ exports.dirDepAccountTerm = async agent => {
 exports.dirDepTakeEffect = async agent => {
   try {
     await agent.add(
-      `For either an initial direct deposit request or a change direct deposit request, it generally takes about 2 weeks or 14 calendar days from when a correctly completed authorization agreement is recieved by MDHS-DCSE Direct Deposit staff for processing to be complete.`
+      `For either an initial direct deposit request, a change direct deposit request, or to terminate direct deposit, it generally takes about 2 weeks from when a correctly completed authorization agreement is received by MDHS for processing to be complete.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
 }
-
 exports.dirDepExtraFunds = async agent => {
   try {
     await agent.add(

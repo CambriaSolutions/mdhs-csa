@@ -5,14 +5,14 @@
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "deploy-dev": "firebase deploy --only functions --project dev",
-    "deploy-dev-beta": "firebase deploy --only functions --project dev-beta",
-    "deploy-stage": "firebase deploy --only functions --project stage",
+    "deploy": "node retrieveCoordinates && firebase deploy --only functions",
+    "deploy-dev": "node retrieveCoordinates && firebase deploy --only functions --project dev",
+    "deploy-dev-beta": "node retrieveCoordinates && firebase deploy --only functions --project dev-beta",
+    "deploy-stage": "node retrieveCoordinates && firebase deploy --only functions --project stage",
     "deploy-dev-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
     "deploy-dev-beta-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev-beta",
-    "deploy-stage-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project stage",
-    "deploy-prod": "firebase deploy --only functions --project prod",
+    "deploy-stage-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project stage",
+    "deploy-prod": "node retrieveCoordinates && firebase deploy --only functions --project prod",
     "logs": "firebase functions:log",
     "test": "jest"
   },
@@ -27,14 +27,12 @@
     "firebase-functions": "^2.1.0",
     "geolib": "^2.0.24",
     "glob": "^7.1.3",
+    "libphonenumber-js": "^1.7.15",
     "lodash": "^4.17.11",
     "node-fetch": "^2.3.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "validator": "^10.11.0"
-  },
-  "engines": {
-    "node": "8"
   },
   "private": true,
   "devDependencies": {

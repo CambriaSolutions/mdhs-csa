@@ -4,11 +4,11 @@ const isNumber = require('lodash/isNumber')
 // any cadence to monthly. For example:
 // Income: 1,000
 // Cadence: biweekly
-// Multiplier: 24 (24 payments in a year)
-// Annual Income: 24,000
+// Multiplier: 26 (26 payments in a year)
+// Annual Income: 26,000
 const getIncomeMultiplier = cadence => {
   // We can only collect income in one of the below cadences
-  const allowedCadences = ['biweekly', 'monthly', 'annual']
+  const allowedCadences = ['weekly', 'biweekly', 'monthly', 'annual']
   if (!allowedCadences.includes(cadence)) {
     throw new Error(
       `${cadence} is not an allowed cadence for estimating payments`
@@ -16,8 +16,10 @@ const getIncomeMultiplier = cadence => {
   }
 
   switch (cadence) {
+    case 'weekly':
+      return 52
     case 'biweekly':
-      return 24
+      return 26
     case 'monthly':
       return 12
     case 'annual':
@@ -53,13 +55,40 @@ const getSupportBracket = numChildren => {
   return percentage
 }
 
+// Validate that deductions aren't higher than the income before estimating child support obligations
+exports.validateIncomeAndDeductions = ({
+  incomeTerm,
+  grossIncome,
+  taxDeductions = 0,
+  ssDeductions = 0,
+  retirementContributions = 0,
+  otherChildSupport = 0,
+}) => {
+  const cadenceMultiplier = getIncomeMultiplier(incomeTerm)
+
+  // Convert income from provided cadence to annual
+  const annualIncome = grossIncome * cadenceMultiplier
+
+  return (
+    annualIncome -
+      taxDeductions -
+      ssDeductions -
+      retirementContributions -
+      otherChildSupport >
+    0
+  )
+}
+
 // Simple child support estimation based on annual income,
 // number of children, and arrears payments
 exports.calculatePayment = ({
-  income,
-  cadence,
   numChildren,
-  includeArrears,
+  incomeTerm,
+  grossIncome,
+  taxDeductions,
+  ssDeductions,
+  retirementContributions,
+  otherChildSupport,
 }) => {
   // Get the percentage of income that should be paid per year
   const bracketPct = getSupportBracket(numChildren)
@@ -67,31 +96,31 @@ exports.calculatePayment = ({
   // Get the multiplier to adjust payment to a monthly cadence, e.g. if
   // user provided bi-weekly income, we need to multiply by 2 to get
   // monthly income
-  const cadenceMultiplier = getIncomeMultiplier(cadence)
+  const cadenceMultiplier = getIncomeMultiplier(incomeTerm)
   if (cadenceMultiplier === null) {
     throw new Error(
       `There was a problem determining the multiplier for payment estimation`
     )
   }
 
-  // Convert income from provided cadence to annual
-  const annualIncome = income * cadenceMultiplier
+  const adjustedGrossIncome =
+    grossIncome -
+    taxDeductions -
+    ssDeductions -
+    retirementContributions -
+    otherChildSupport
+
+  // Convert adjusted gross income from provided cadence to annual
+  const annualAdjustedIncome = adjustedGrossIncome * cadenceMultiplier
 
   // Determine the annual child support contribution
-  const annualPayment = annualIncome * bracketPct
+  const annualPayment = annualAdjustedIncome * bracketPct
 
   // Convert annual to monthly payment
   const monthlyPayment = annualPayment / 12
 
-  // If we want to include arrears payments, calculate them and add
-  // to the total payment
-  let monthlyArrears = 0
-  if (includeArrears) {
-    const arrearsPct = 0.2
-    monthlyArrears = monthlyPayment * arrearsPct
-  }
-
   // Only return whole numbers
-  const totalPayment = Math.round(monthlyPayment + monthlyArrears)
+  const totalPayment = Math.round(monthlyPayment)
+
   return totalPayment
 }

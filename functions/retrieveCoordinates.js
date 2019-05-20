@@ -2,7 +2,10 @@ require('dotenv').config()
 const URL = require('url').URL
 const fetch = require('node-fetch')
 const fs = require('fs')
-
+const mapsKey = process.env.GOOGLE_MAPS_KEY
+console.log(' ')
+console.log('Retrieving address coordinates ...')
+// Create an array of locations to send to the geocode api
 const locations = [
   '108 S. Whitworth Ave Brookhaven, MS 39601',
   '157 Issaquena Ave Clarksdale, MS 38614',
@@ -12,7 +15,7 @@ const locations = [
   '643 HWY 1, Greenville, MS 38701',
   '1400 Wooded Dr Grenada, MS 38901',
   '14231 Seaway Rd, Suite 5001 Gulfport, MS 39503',
-  '5 Willow Bend Hattiesburg, MS 39402',
+  '5 Willow Bend Drive, Hattiesburg, MS 39402',
   '165 W. South St, Suite 100 Hernando, MS 38632',
   '128 W Washington St Kosciusko, MS 39090',
   '1600 Highway 15 N Laurel, MS 39440',
@@ -25,16 +28,15 @@ const locations = [
   '1122 E Main St, Suite 1 Philadelphia, MS 39328',
   '950 E County Line Road, Suite #G Ridgeland, MS 39157',
   '600 Russell St, Suite 110 Starkville, MS 39759',
-  '600 Russell St, Suite 110  Starkville, MS 39759',
   '600 Main St, Suite #B Tupelo, MS 38804',
   '1507 Washington St, 1st Floor Vicksburg, MS 39180',
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
 
-const logAddress = async address => {
-  const apiKey = process.env.GOOGLE_MAPS_KEY
+// Send the address to the geocode api to return the latitude, longitude and placeId
+const retrieveCoordinates = async address => {
   const url = new URL('https://maps.googleapis.com/maps/api/geocode/json'),
-    params = { address: address, key: apiKey }
+    params = { address: address, key: mapsKey }
 
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
@@ -47,11 +49,29 @@ const logAddress = async address => {
       lng: json.results[0].geometry.location.lng,
     }
     const placeId = json.results[0].place_id
+    const unformattedAddressComponents = json.results[0].address_components
+    const addressComponents = {}
+    const streetComponents = []
+
+    // Only include components for street name and city
+    unformattedAddressComponents.forEach(component => {
+      if (component.types.indexOf('route') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('street_number') !== -1) {
+        streetComponents.push(component.long_name)
+      }
+      if (component.types.indexOf('locality') !== -1) {
+        addressComponents.city = component.long_name
+      }
+    })
+    addressComponents.street = streetComponents.join(' ')
+
     const result = {
-      address,
+      addressComponents,
       lat: geoCode.lat,
       lng: geoCode.lng,
-      placeId: placeId,
+      placeId,
     }
     return result
   } else {
@@ -59,18 +79,17 @@ const logAddress = async address => {
   }
 }
 
+// Map through the array of locations to send each to the geocode api
 let requests = locations.map(location => {
-  return logAddress(location)
+  return retrieveCoordinates(location)
 })
 
+// Send each request to the geocode api and create a file with the results inside
+// the functions directory. We will use these to populate the custom payload for the
+// map intent fulfillment
 Promise.all(requests).then(responses => {
-  console.log(responses)
-  fs.writeFile(
-    '../functions/coordinates.json',
-    JSON.stringify(responses),
-    function(err) {
-      if (err) throw err
-      console.log('Saved!')
-    }
-  )
+  fs.writeFile('./coordinates.json', JSON.stringify(responses), err => {
+    if (err) throw err
+    console.log('Coordinates retrieved!')
+  })
 })

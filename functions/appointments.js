@@ -1,6 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
-
+const { mapRoot } = require('./map.js')
 exports.apptsRoot = async agent => {
   try {
     await agent.add(
@@ -48,9 +48,14 @@ exports.apptsSchedule = async agent => {
 
 exports.apptsYesContacted = async agent => {
   try {
-    await agent.add(`Plan to appear at the office listed in your summons.`)
     await agent.add(
-      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
+      `Plan to appear at the office listed in your notice letter during the specified time frame.`
+    )
+    await agent.add(
+      `Failure to appear in accordance with notice instructions may result in your case being closed and your public assistance benefits may be sanctioned.`
+    )
+    await agent.add(
+      `If you have urgent questions, or cannot appear during the allotted time, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
 
     // Ask the user if they need anything else, set appropriate contexts
@@ -63,28 +68,32 @@ exports.apptsYesContacted = async agent => {
 exports.apptsNoContacted = async agent => {
   try {
     await agent.add(
-      `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
-    )
-    await agent.add(
-      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
+      `You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office.`
     )
 
-    // Ask the user if they need anything else, set appropriate contexts
-    await handleEndConversation(agent)
+    await agent.add(
+      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.`
+    )
+    await agent.add('Do you need help finding an office location?')
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-appts-office-locations-handoff',
+      lifespan: 2,
+    })
   } catch (err) {
     console.log(err)
   }
 }
 
-exports.apptsOfficeLocations = async agent => {
+exports.apptsOfficeLocationsHandoff = async agent => {
   try {
-    await agent.add(
-      `Sorry, I'm still getting trained on locating offices, check back soon!`
-    )
-    await agent.add(`Can I help you with some of the things I know?`)
-    await agent.add(new Suggestion('Appointments'))
-    await agent.add(new Suggestion('Payments'))
-    await agent.add(new Suggestion('Complaints'))
+    const wantsLocation = agent.parameters.wantsLocation
+    if (wantsLocation === 'yes') {
+      await mapRoot(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
   } catch (err) {
     console.log(err)
   }

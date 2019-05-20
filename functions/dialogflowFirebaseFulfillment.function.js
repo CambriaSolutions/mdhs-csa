@@ -2,36 +2,66 @@ const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
+const {
+  handleEndConversation,
+  startRootConversation,
+} = require('./globalFunctions.js')
 
 // General payment intents
 const {
   pmtsGeneralRoot,
+  pmtsGeneralNonCustodial,
   pmtsGeneralReceivePayments,
   pmtsGeneralMakePayments,
 } = require('./paymentsGeneral.js')
 
+// Employer intents
+const {
+  employerRoot,
+  employerEFT,
+  employerIPayOnline,
+  employerChecksMoneyOrders,
+  employerIWOHandoff,
+} = require('./employer.js')
+
 // Payment calculator intents
 const {
   pmtCalcRoot,
-  pmtCalcTimeframe,
-  pmtCalcUnknownIncome,
-  pmtCalcHandleTimeframe,
-  pmtCalcIncome,
+  pmtCalcRootRestart,
   pmtCalcNumChildren,
-  pmtCalcNumMothers,
+  pmtCalcIncomeTerm,
+  pmtCalcUnknownIncome,
+  pmtCalcGrossIncome,
+  pmtCalcTaxDeductions,
+  pmtCalcUnknownTaxDeductions,
+  pmtCalcSSDeductions,
+  pmtCalcUnknownSSDeductions,
+  pmtCalcRetirementContributions,
+  pmtCalcRetirementContributionsAmount,
+  pmtCalcUnknownRetirementContributions,
+  pmtCalcChildSupport,
+  pmtCalcChildSupportNoRetirement,
+  pmtCalcChildSupportAmount,
+  pmtCalcUnknownOtherChildSupport,
+  pmtCalcUnknownDeductions,
+  pmtCalcFinalEstimation,
+  pmtCalcFinalEstimationNoOtherChildren,
 } = require('./paymentsCalculator.js')
 
 // Payment methods intents
 const {
-  pmtMethodsRoot,
-  pmtMethodsCustodial,
-  pmtMethodsNonCustodial,
-  pmtMethodsEmployer,
   pmtMethodsNone,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
   pmtMethodsMoneygram,
+  pmtMethodsPayNearMe,
+  pmtMethodsCantMake,
+  pmtMethodsCantMakeQualifying,
+  pmtMethodsCantMakeQualifyingHelp,
+  pmtMethodsCantMakeQualifyingNoHelp,
+  pmtMethodsDebitCard,
+  pmtMethodsNCPWithhold,
 } = require('./paymentMethods.js')
 
 // Open Child Support Case
@@ -50,19 +80,26 @@ const {
   apptsSchedule,
   apptsNoContacted,
   apptsYesContacted,
-  apptsOfficeLocations,
+  apptsOfficeLocationsHandoff,
   apptsGuidelines,
 } = require('./appointments.js')
 
 // Support intents
 const {
   supportRoot,
-  supportPaymentsRoot,
-  supportRequestsRoot,
-  supportChangeRoot,
-  supportGeneralRoot,
+  supportRestart,
+  supportParentReceiving,
+  supportParentPaying,
+  supportParentReceivingMore,
+  supportEmployer,
+  supportParentPayingMore,
+  supportNoOptionsSelected,
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
+  supportCollectNewEmployerName,
+  supportNoNewEmployer,
+  supportNewEmployerUnkownPhone,
+  supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
   supportCollectName,
@@ -72,6 +109,10 @@ const {
   supportNoCaseNumber,
   supportEmail,
   supportNoEmail,
+  supportRetryPhoneNumber,
+  supportHandlePhoneRetry,
+  supportRetryEmail,
+  supportHandleEmailRetry,
   supportCollectIssue,
   supportSummarizeIssue,
   supportReviseIssue,
@@ -120,6 +161,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
   iwoIsSupporting,
@@ -135,7 +177,20 @@ const {
   iwoInsuranceCoverage,
   iwoNotAnEmployee,
   iwoFireEmployee,
-} = require('./incomeWitholding.js')
+  iwoEmployerObligation,
+  iwoHowLongToSend,
+  iwoWhenToBegin,
+  iwoEmployerSubmitPayments,
+  iwoPaymentsHandoff,
+} = require('./incomeWithholding.js')
+
+// Feedback
+const {
+  feedbackRoot,
+  feedbackHelpful,
+  feedbackNotHelpful,
+  feedbackComplete,
+} = require('./feedback.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -145,6 +200,11 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
+    console.log(
+      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    )
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
@@ -177,12 +237,18 @@ exports = module.exports = functions
 
     const yesChildSupport = async agent => {
       try {
-        await agent.add(`What can I help you with today?`)
-        await agent.add(new Suggestion('Support'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(
+          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. <br/><br/>
+          The information I provide is not legal advice. MDHS does not provide legal representation.  <br/><br/>
+          Also, please do not enter SSN or DOB in at any time during your conversations.  <br/><br/>
+          By clicking Yes below you are acknowledging receipt and understanding of these statements and that you wish to continue. <br/><br/>
+          Would you like to continue?`
+        )
+        await agent.add(new Suggestion('I Acknowledge'))
+        await agent.context.set({
+          name: 'waiting-acknowledge-privacy-statement',
+          lifespan: 2,
+        })
       } catch (err) {
         console.error(err)
       }
@@ -190,12 +256,23 @@ exports = module.exports = functions
 
     const restartConversation = async agent => {
       try {
-        await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Support'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await startRootConversation(agent)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const acknowledgePrivacyStatement = async agent => {
+      try {
+        await startRootConversation(agent)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const globalRestart = async agent => {
+      try {
+        await startRootConversation(agent)
       } catch (err) {
         console.error(err)
       }
@@ -207,9 +284,10 @@ exports = module.exports = functions
           `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
         )
         await agent.add(`I can help you with these topics.`)
-        await agent.add(new Suggestion('Support'))
+        await agent.add(new Suggestion('Common Requests'))
         await agent.add(new Suggestion('Appointments'))
         await agent.add(new Suggestion('Payments'))
+        await agent.add(new Suggestion('Employer'))
         await agent.add(new Suggestion('Opening a Child Support Case'))
         await agent.add(new Suggestion('Policy Manual'))
       } catch (err) {
@@ -223,13 +301,17 @@ exports = module.exports = functions
         await agent.add(
           `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
         )
+        await handleEndConversation(agent)
       } catch (err) {
         console.error(err)
       }
     }
 
     let intentMap = new Map()
+
     intentMap.set('Default Welcome Intent', welcome)
+    intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
+    intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
@@ -237,15 +319,50 @@ exports = module.exports = functions
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
-    intentMap.set('pmt-calc-timeframe', pmtCalcTimeframe)
-    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
-    intentMap.set('pmt-calc-handle-timeframe', pmtCalcHandleTimeframe)
-    intentMap.set('pmt-calc-income', pmtCalcIncome)
+    intentMap.set('pmt-calc-restart', pmtCalcRootRestart)
     intentMap.set('pmt-calc-num-children', pmtCalcNumChildren)
-    intentMap.set('pmt-calc-num-mothers', pmtCalcNumMothers)
+    intentMap.set('pmt-calc-income-term', pmtCalcIncomeTerm)
+    intentMap.set('pmt-calc-unknown-income', pmtCalcUnknownIncome)
+    intentMap.set('pmt-calc-gross-income', pmtCalcGrossIncome)
+    intentMap.set('pmt-calc-tax-deductions', pmtCalcTaxDeductions)
+    intentMap.set(
+      'pmt-calc-unknown-tax-deductions',
+      pmtCalcUnknownTaxDeductions
+    )
+    intentMap.set('pmt-calc-ss-deductions', pmtCalcSSDeductions)
+    intentMap.set('pmt-calc-unknown-ss-deductions', pmtCalcUnknownSSDeductions)
+    intentMap.set(
+      'pmt-calc-retirement-contributions',
+      pmtCalcRetirementContributions
+    )
+    intentMap.set(
+      'pmt-calc-retirement-contributions-amount',
+      pmtCalcRetirementContributionsAmount
+    )
+    intentMap.set(
+      'pmt-calc-unknown-retirement-contributions',
+      pmtCalcUnknownRetirementContributions
+    )
+    intentMap.set('pmt-calc-child-support', pmtCalcChildSupport)
+    intentMap.set(
+      'pmt-calc-child-support-no-retirement',
+      pmtCalcChildSupportNoRetirement
+    )
+    intentMap.set('pmt-calc-child-support-amount', pmtCalcChildSupportAmount)
+    intentMap.set(
+      'pmt-calc-unknown-other-child-support',
+      pmtCalcUnknownOtherChildSupport
+    )
+    intentMap.set('pmt-calc-unknown-deductions', pmtCalcUnknownDeductions)
+    intentMap.set('pmt-calc-final-estimation', pmtCalcFinalEstimation)
+    intentMap.set(
+      'pmt-calc-final-estimation-no-other-children',
+      pmtCalcFinalEstimationNoOtherChildren
+    )
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
     intentMap.set('iwo-is-supporting', iwoIsSupporting)
@@ -261,22 +378,47 @@ exports = module.exports = functions
     intentMap.set('iwo-insurance-coverage', iwoInsuranceCoverage)
     intentMap.set('iwo-not-an-employee', iwoNotAnEmployee)
     intentMap.set('iwo-fire-employee', iwoFireEmployee)
+    intentMap.set('iwo-employer-obligation', iwoEmployerObligation)
+    intentMap.set('iwo-when-to-begin', iwoWhenToBegin)
+    intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
+    intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
+    intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
+    intentMap.set('pmts-general-non-custodial', pmtsGeneralNonCustodial)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
 
+    // Employer intents
+    intentMap.set('employer-root', employerRoot)
+    intentMap.set('employer-eft', employerEFT)
+    intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
+    intentMap.set('employer-iwo-handoff', employerIWOHandoff)
+
     // Payment methods intents
-    intentMap.set('pmtMethods-root', pmtMethodsRoot)
-    intentMap.set('pmtMethods-custodial', pmtMethodsCustodial)
-    intentMap.set('pmtMethods-nonCustodial', pmtMethodsNonCustodial)
-    intentMap.set('pmtMethods-employer', pmtMethodsEmployer)
     intentMap.set('pmtMethods-none', pmtMethodsNone)
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
+    intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
+    intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
+    intentMap.set('pmtMethods-debit-card', pmtMethodsDebitCard)
+    intentMap.set('pmtMethods-withhold-payments', pmtMethodsNCPWithhold)
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying',
+      pmtMethodsCantMakeQualifying
+    )
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying-help',
+      pmtMethodsCantMakeQualifyingHelp
+    )
+    intentMap.set(
+      'pmtMethods-cant-make-qualifying-no-help',
+      pmtMethodsCantMakeQualifyingNoHelp
+    )
 
     // Open a Child Support Case
     intentMap.set('open-csc-root', openCSCRoot)
@@ -291,19 +433,35 @@ exports = module.exports = functions
     intentMap.set('appts-schedule', apptsSchedule)
     intentMap.set('appts-no-contacted', apptsNoContacted)
     intentMap.set('appts-yes-contacted', apptsYesContacted)
-    intentMap.set('appts-office-locations', apptsOfficeLocations)
+    intentMap.set('appts-office-locations-handoff', apptsOfficeLocationsHandoff)
     intentMap.set('appts-guidelines', apptsGuidelines)
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-payments-root', supportPaymentsRoot)
-    intentMap.set('support-requests-root', supportRequestsRoot)
-    intentMap.set('support-change-root', supportChangeRoot)
-    intentMap.set('support-general-root', supportGeneralRoot)
+    intentMap.set('support-restart', supportRestart)
+    intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-paying', supportParentPaying)
+    intentMap.set('support-employer', supportEmployer)
+    intentMap.set('support-parent-paying-more', supportParentPayingMore)
+    intentMap.set('support-parent-receiving-more', supportParentReceivingMore)
+    intentMap.set('support-no-options-selected', supportNoOptionsSelected)
     intentMap.set('support-employment-status', supportEmploymentStatus)
     intentMap.set(
       'support-handle-employment-status',
       supportHandleEmploymentStatus
+    )
+    intentMap.set(
+      'support-collect-new-employer-name',
+      supportCollectNewEmployerName
+    )
+    intentMap.set('support-no-new-employer', supportNoNewEmployer)
+    intentMap.set(
+      'support-new-employer-unknown-phone',
+      supportNewEmployerUnkownPhone
+    )
+    intentMap.set(
+      'support-collect-new-employer-phone',
+      supportCollectNewEmployerPhone
     )
     intentMap.set('support-type', supportType)
     intentMap.set('support-collect-company-name', supportCollectCompanyName)
@@ -312,6 +470,10 @@ exports = module.exports = functions
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
     intentMap.set('support-no-email', supportNoEmail)
+    intentMap.set('support-retry-email', supportRetryEmail)
+    intentMap.set('support-handle-email-retry', supportHandleEmailRetry)
+    intentMap.set('support-retry-phone-number', supportRetryPhoneNumber)
+    intentMap.set('support-handle-phone-retry', supportHandlePhoneRetry)
     intentMap.set('support-case-number', supportCaseNumber)
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)
@@ -354,6 +516,12 @@ exports = module.exports = functions
     intentMap.set('eppi-surcharge', eppiSurcharge)
     intentMap.set('eppi-learn-more', eppiLearnMore)
     intentMap.set('eppi-balance-denial', eppiBalanceDenial)
+
+    // Feedback intents
+    intentMap.set('feedback-root', feedbackRoot)
+    intentMap.set('feedback-helpful', feedbackHelpful)
+    intentMap.set('feedback-not-helpful', feedbackNotHelpful)
+    intentMap.set('feedback-complete', feedbackComplete)
 
     agent.handleRequest(intentMap)
   })

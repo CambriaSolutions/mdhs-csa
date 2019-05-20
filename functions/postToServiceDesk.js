@@ -10,6 +10,9 @@ const serviceDeskFields = {
   reporterCaseNumber: 'customfield_10106',
   channel: 'customfield_10084',
   companyName: 'customfield_10111',
+  employer: 'customfield_10136',
+  employerPhoneNumber: 'customfield_10137',
+  employmentSubType: 'customfield_10138',
 }
 
 exports.sendToServiceDesk = async requestFieldValues => {
@@ -22,6 +25,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
     email,
     caseNumber,
     company,
+    newEmployerName,
+    newEmployerNumber,
+    employmentChangeType,
   } = requestFieldValues
 
   const {
@@ -34,6 +40,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
     reporterCaseNumber,
     channel,
     companyName,
+    employer,
+    employerPhoneNumber,
+    employmentSubType,
   } = serviceDeskFields
 
   const requestFieldBody = {
@@ -50,11 +59,15 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [channel]: {
       value: 'Chat Bot',
     },
+    [employer]: newEmployerName,
+    [employerPhoneNumber]: newEmployerNumber,
+    [employmentSubType]: employmentChangeType,
   }
 
-  let requestObjecToDeliver
-  if (typeof phoneNumber !== 'number') {
-    requestObjecToDeliver = Object.keys(requestFieldBody).reduce(
+  // Will replace after type of string accepted
+  let requestObjectToDeliver
+  if (isNaN(phoneNumber)) {
+    requestObjectToDeliver = Object.keys(requestFieldBody).reduce(
       (object, key) => {
         if (key !== reporterPhoneNumber) {
           object[key] = requestFieldBody[key]
@@ -64,9 +77,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
       {}
     )
   } else {
-    requestObjecToDeliver = requestFieldBody
+    requestObjectToDeliver = requestFieldBody
   }
-  console.log(requestObjecToDeliver)
+
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -78,7 +91,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     body: {
       serviceDeskId: process.env.SERVICE_DESK_ID,
       requestTypeId: process.env.REQUEST_TYPE_ID,
-      requestFieldValues: requestObjecToDeliver,
+      requestFieldValues: requestObjectToDeliver,
     },
     json: true,
   }
@@ -88,6 +101,8 @@ exports.sendToServiceDesk = async requestFieldValues => {
       return response
     })
     .catch(err => {
+      console.log(requestObjectToDeliver)
+      console.error(err)
       return err
     })
 

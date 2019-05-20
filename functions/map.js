@@ -2,6 +2,7 @@ const { Payload } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const locations = require('./coordinates.json')
+const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.mapRoot = async agent => {
   try {
@@ -19,6 +20,7 @@ exports.mapRoot = async agent => {
 
 exports.mapDeliverMap = async agent => {
   try {
+    let currentLocation = null
     let userAddress = ''
     let userCity = ''
     let userZip = ''
@@ -29,23 +31,27 @@ exports.mapDeliverMap = async agent => {
     if (agent.parameters.userCity) {
       userCity = agent.parameters.userCity.toLowerCase()
     }
+    // validate zip code before defining it in userZip
     if (agent.parameters.userZip) {
       if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
         userZip = agent.parameters.userZip
       }
     }
+    // build current location string
     if (userZip !== '' || userCity !== '' || userAddress !== '') {
-      let userLocation = `${userAddress} ${userCity} ${userZip}`
+      currentLocation = `${userAddress} ${userCity} ${userZip}`
 
       if (
-        !userLocation.includes(' ms') ||
-        !userLocation.includes(' mississippi')
+        !currentLocation.includes(' ms') ||
+        !currentLocation.includes(' mississippi')
       ) {
-        userLocation += ' ms'
+        currentLocation += ' ms'
       }
+    }
+    // retrieve long and lat coordinates from current location
+    const currentGeocode = await getGeocode(currentLocation)
 
-      const currentLocation = { userLocation }
-      const currentGeocode = await getGeocode(currentLocation)
+    if (currentGeocode) {
       const nearestLocations = getNearestThreeLocations(
         currentGeocode,
         locations
@@ -63,6 +69,7 @@ exports.mapDeliverMap = async agent => {
           }
         )
       )
+      await handleEndConversation(agent)
     } else {
       await agent.add(
         `Sorry, I couldn't find that address. Could you say that again?`
