@@ -22,7 +22,7 @@ const lastName = 'test <Lastname>'
 const caseNumber = 'test <Casenumber>'
 const phoneNumber = 9163264446
 const email = 'test <email>'
-const supportSummary = 'test summary'
+const supportSummary = 'Request Payment History or Record'
 const filteredRequests = 'test Description'
 const company = 'Lump Sum company'
 
@@ -30,6 +30,19 @@ const company = 'Lump Sum company'
 const newEmployer = 'employer'
 const newEmployerPhoneNumber = '(916)799-0766'
 const employmentStatus = 'employment subtype'
+
+const callbackRequired = [
+  'request case closure',
+  'add authorized user',
+  'employer report lump sum notification',
+  'change personal information',
+]
+
+const callBackCommitment = callbackRequired.includes[
+  supportSummary.toLowerCase()
+]
+  ? 'Call back'
+  : 'None'
 
 const {
   environment,
@@ -94,12 +107,17 @@ const sendToServiceDesk = async fieldValues => {
     json: true,
   }
 
-  request(options, function(error, response, body) {
-    if (error) throw new Error(error)
-    console.log(
-      'Response: ' + response.statusCode + ' ' + response.statusMessage
-    )
-    console.log(body)
-  })
+  console.log(options)
+  // request(options, function(error, response, body) {
+  //   if (error) throw new Error(error)
+  //   console.log(
+  //     'Response: ' + response.statusCode + ' ' + response.statusMessage
+  //   )
+  //   console.log(body)
+  // })
 }
 sendToServiceDesk(objectToDeliver)
+
+// Access to test env
+// Custom field id for YW callback commitment
+// Phone number field to accept strings instead of numbers

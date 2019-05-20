@@ -15,6 +15,14 @@ const serviceDeskFields = {
   employmentSubType: 'customfield_10138',
 }
 
+// Cases requiring a callback
+const callbackRequired = [
+  'request case closure',
+  'add authorized user',
+  'employer report lump sum notification',
+  'change personal information',
+]
+
 exports.sendToServiceDesk = async requestFieldValues => {
   const {
     supportSummary,
@@ -44,6 +52,13 @@ exports.sendToServiceDesk = async requestFieldValues => {
     employerPhoneNumber,
     employmentSubType,
   } = serviceDeskFields
+
+  // Check to see if the support request requires a callback
+  const callBackCommitment = callbackRequired.includes[
+    supportSummary.toLocaleLowerCase()
+  ]
+    ? 'Call back'
+    : 'None'
 
   const requestFieldBody = {
     summary: supportSummary,
