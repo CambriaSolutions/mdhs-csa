@@ -107,17 +107,12 @@ const sendToServiceDesk = async fieldValues => {
     json: true,
   }
 
-  console.log(options)
-  // request(options, function(error, response, body) {
-  //   if (error) throw new Error(error)
-  //   console.log(
-  //     'Response: ' + response.statusCode + ' ' + response.statusMessage
-  //   )
-  //   console.log(body)
-  // })
+  request(options, function(error, response, body) {
+    if (error) throw new Error(error)
+    console.log(
+      'Response: ' + response.statusCode + ' ' + response.statusMessage
+    )
+    console.log(body)
+  })
 }
 sendToServiceDesk(objectToDeliver)
-
-// Access to test env
-// Custom field id for YW callback commitment
-// Phone number field to accept strings instead of numbers
