@@ -15,6 +15,7 @@ const {
   startSupportConvo,
   supportMoreOptions,
   checkForLumpSum,
+  handleContactCollection,
 } = require('./supportHelperFunctions.js')
 
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
@@ -510,46 +511,112 @@ exports.supportEmail = async agent => {
 }
 
 exports.supportNoEmail = async agent => {
-  const email = 'No Email Provided'
+  // Check to see if they have provided a phone number
+  const phoneNumber = agent.context.get('ticketinfo').parameters.phoneNumber
   const isLumpSum = await checkForLumpSum(agent)
 
-  if (!isLumpSum) {
-    try {
-      await agent.add(
-        `What is your case number? Please do not provide your social security number.`
-      )
+  if (phoneNumber.toLowerCase() !== 'no phone number') {
+    const email = 'No Email Provided'
+    if (!isLumpSum) {
+      try {
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
 
-      await agent.context.set({
-        name: 'waiting-support-case-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-no-case-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(`What is the name of your company/employer?`)
+
+        await agent.context.set({
+          name: 'waiting-support-collect-company',
+          lifespan: 3,
+        })
+
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
   } else {
     try {
-      await agent.add(`What is the name of your company/employer?`)
+      await agent.add(
+        `We need either a phone number or an email in order to continue, which would you like to provide?`
+      )
+      await agent.add(new Suggestion(`Email`))
+      await agent.add(new Suggestion(`Phone Number`))
 
       await agent.context.set({
-        name: 'waiting-support-collect-company',
+        name: 'waiting-support-retry-email',
         lifespan: 3,
       })
 
       await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
+        name: 'waiting-support-retry-phone-number',
+        lifespan: 3,
       })
     } catch (err) {
       console.error(err)
     }
+  }
+}
+
+exports.supportRetryPhoneNumber = async agent => {
+  try {
+    await agent.add(`Starting with area code, what is your phone number?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-phone-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+//
+exports.supportHandlePhoneRetry = async agent => {
+  const isLumpSum = await checkForLumpSum(agent)
+  try {
+    await handleContactCollection(agent, 'phone', isLumpSum)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportRetryEmail = async agent => {
+  try {
+    await agent.add(`What is your email address?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-email-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+//
+exports.supportHandleEmailRetry = async agent => {
+  const isLumpSum = await checkForLumpSum(agent)
+  try {
+    await handleContactCollection(agent, 'email', isLumpSum)
+  } catch (err) {
+    console.error(err)
   }
 }
 

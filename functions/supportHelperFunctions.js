@@ -1,3 +1,5 @@
+const validator = require('validator')
+const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
 const { Suggestion } = require('dialogflow-fulfillment')
 
 // Used to handle restarting and starting conversations for support requests
@@ -172,6 +174,143 @@ exports.supportMoreOptions = async (agent, option) => {
 exports.checkForLumpSum = async agent => {
   const supportType = await agent.context.get('ticketinfo').parameters
     .supportType
-  const isLumpSum = await supportType.includes('lump')
+  const isLumpSum = supportType.includes('lump')
   return isLumpSum
+}
+
+// Used to request the case number
+const requestCaseNumber = async agent => {
+  try {
+    await agent.add(
+      `What is your case number? Please do not provide your social security number.`
+    )
+
+    await agent.context.set({
+      name: 'waiting-support-case-number',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-no-case-number',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Used to request a company for a lump sum notification
+const requestCompany = async agent => {
+  try {
+    await agent.add(`What is the name of your company/employer?`)
+
+    await agent.context.set({
+      name: 'waiting-support-collect-company',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Used to handle the collection of either an email or phone number
+// after the user has been reminded that they need to submit either type
+exports.handleContactCollection = async (agent, type, isLumpSum) => {
+  if (type === 'phone') {
+    const phoneNumberResponse = agent.parameters.phoneNumber
+    const formattedPhone = `+1${phoneNumberResponse}`
+    const isValidPhone = validator.isMobilePhone(formattedPhone, 'en-US')
+
+    if (isValidPhone) {
+      // The number is valid, so we format it to store in context
+      const phoneNumber = parsePhoneNumberFromString(
+        formattedPhone
+      ).formatNational()
+
+      if (!isLumpSum) {
+        // Not a lump sum reporting, so we gather the case number
+        try {
+          await requestCaseNumber(agent)
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: {
+              phoneNumber: phoneNumber,
+              email: 'No Email Provided.',
+            },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        // Its a lump sum reporting, so we collect the company name
+        try {
+          await requestCompany(agent)
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: {
+              phoneNumber: phoneNumber,
+              email: 'No Email Provided',
+            },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      }
+    } else {
+      // Failed to validate phone number
+      try {
+        await agent.add(
+          `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+        )
+        await agent.context.set({
+          name: 'waiting-support-handle-phone-retry',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  } else if (type === 'email') {
+    // Retrieve and validate email address provided
+    const email = agent.parameters.email
+    const isValid = validator.isEmail(email)
+
+    if (isValid) {
+      // Not a lump sum reporting, so we gather the case number
+      if (!isLumpSum) {
+        try {
+          await requestCaseNumber(agent)
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: { email: email },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        // Its a lump sum reporting, so we collect the company name
+        try {
+          await requestCompany(agent)
+          await agent.context.set({
+            name: 'ticketinfo',
+            parameters: { email: email },
+          })
+        } catch (err) {
+          console.error(err)
+        }
+      }
+    } else {
+      // Failed to validate email, so we retry
+      try {
+        await agent.add(
+          `I didn't recognize that as an email address, could you say that again?`
+        )
+        await agent.context.set({
+          name: 'waiting-support-handle-email-retry',
+          lifespan: 3,
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
 }
