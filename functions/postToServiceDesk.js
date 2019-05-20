@@ -54,9 +54,9 @@ exports.sendToServiceDesk = async requestFieldValues => {
   } = serviceDeskFields
 
   // Check to see if the support request requires a callback
-  const callBackCommitment = callbackRequired.includes[
-    supportSummary.toLocaleLowerCase()
-  ]
+  const callBackCommitment = callbackRequired.includes(
+    supportSummary.toLowerCase()
+  )
     ? 'Call back'
     : 'None'
 
