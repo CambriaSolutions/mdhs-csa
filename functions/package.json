@@ -9,7 +9,7 @@
     "deploy-dev": "node retrieveCoordinates && firebase deploy --only functions --project dev",
     "deploy-dev-beta": "node retrieveCoordinates && firebase deploy --only functions --project dev-beta",
     "deploy-stage": "node retrieveCoordinates && firebase deploy --only functions --project stage",
-    "deploy-dev-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
+    "deploy-dev-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
     "deploy-dev-beta-dialogflow": "firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev-beta",
     "deploy-stage-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project stage",
     "deploy-prod": "node retrieveCoordinates && firebase deploy --only functions --project prod",
