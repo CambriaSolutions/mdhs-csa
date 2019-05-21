@@ -20,15 +20,15 @@ const locations = [
   '128 W Washington St Kosciusko, MS 39090',
   '1600 Highway 15 N Laurel, MS 39440',
   '110 First Ave SE Magee, MS 39111',
-  '907 S. Locust St #C McComb, MS 39648',
+  '907 S. Locust St Suite C McComb, MS 39648',
   '2911 8th St Suite A, Meridian, MS 39301',
   '119 Jefferson Davis Blvd, Suite A Natchez, MS 39120',
   '2550 W Jackson Ave, Suite 2550-6 Oxford, MS 38655',
   '3664 14 St Pascagoula, MS 39567',
   '1122 E Main St, Suite 1 Philadelphia, MS 39328',
-  '950 E County Line Road, Suite #G Ridgeland, MS 39157',
+  '950 E County Line Road, Suite G Ridgeland, MS 39157',
   '600 Russell St, Suite 110 Starkville, MS 39759',
-  '600 Main St, Suite #B Tupelo, MS 38804',
+  '600 Main St, Suite B Tupelo, MS 38804',
   '1507 Washington St, 1st Floor Vicksburg, MS 39180',
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
@@ -53,6 +53,7 @@ const retrieveCoordinates = async address => {
     const addressComponents = {}
     const streetComponents = []
 
+    let suiteName = ''
     // Only include components for street name and city
     unformattedAddressComponents.forEach(component => {
       if (component.types.indexOf('route') !== -1) {
@@ -64,8 +65,16 @@ const retrieveCoordinates = async address => {
       if (component.types.indexOf('locality') !== -1) {
         addressComponents.city = component.long_name
       }
+      if (component.types.indexOf('subpremise') !== -1) {
+        if (component.long_name.includes('Suite')) {
+          suiteName = ` ${component.long_name}`
+        } else {
+          suiteName = ` Suite ${component.long_name}`
+        }
+      }
     })
-    addressComponents.street = streetComponents.join(' ')
+
+    addressComponents.street = streetComponents.join(' ') + suiteName
 
     const result = {
       addressComponents,
@@ -73,6 +82,7 @@ const retrieveCoordinates = async address => {
       lng: geoCode.lng,
       placeId,
     }
+    console.log(result)
     return result
   } else {
     return false
