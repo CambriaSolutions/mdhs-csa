@@ -21,7 +21,7 @@ const locations = [
   '1600 Highway 15 N Laurel, MS 39440',
   '110 First Ave SE Magee, MS 39111',
   '907 S. Locust St #C McComb, MS 39648',
-  '2911 8th St, Suite A&B Meridian, MS 39301',
+  '2911 8th St, Suite A Meridian, MS 39301',
   '119 Jefferson Davis Blvd, Suite A Natchez, MS 39120',
   '2550 W Jackson Ave, Suite 2550-6 Oxford, MS 38655',
   '3664 14 St Pascagoula, MS 39567',
