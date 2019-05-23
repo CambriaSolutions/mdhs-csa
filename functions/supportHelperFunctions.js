@@ -2,6 +2,8 @@ const validator = require('validator')
 const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
 const { Suggestion } = require('dialogflow-fulfillment')
 
+const { toTitleCase } = require('./globalFunctions.js')
+
 // Used to handle restarting and starting conversations for support requests
 exports.startSupportConvo = async agent => {
   try {
@@ -313,4 +315,60 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
       }
     }
   }
+}
+
+// Create the card text for support requests
+exports.formatCardText = (ticketinfo, requests) => {
+  const firstName = ticketinfo.firstName
+  const lastName = ticketinfo.lastName
+  const caseNumber = ticketinfo.caseNumber
+  const phoneNumber = ticketinfo.phoneNumber
+  const email = ticketinfo.email
+  const company = ticketinfo.companyName
+  const newEmployerName = ticketinfo.newEmployerName
+  const newEmployerNumber = ticketinfo.newEmployerPhone
+
+  let cardText
+  if (!newEmployerName) {
+    cardText = `Full Name: ${firstName} ${lastName}
+    Phone Number: ${phoneNumber}
+    Email: ${email}
+    ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
+    Message: ${requests}`
+  } else if (newEmployerName.toLowerCase() !== 'unknown new employer') {
+    cardText = `Full Name: ${firstName} ${lastName}
+    Phone Number:  ${phoneNumber}
+    Email: ${email}
+    ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
+    New Employer: ${newEmployerName}
+    New Employer Phone: ${newEmployerNumber}
+    Message:  ${requests}`
+  } else {
+    cardText = `Full Name: ${firstName} ${lastName}
+  Phone Number: ${phoneNumber}
+  Email: ${email}
+  ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
+  Message: ${requests}`
+  }
+
+  return cardText
+}
+
+// Format the summary depending on support type
+exports.formatSummary = ({ supportType, employmentChangeType }) => {
+  let supportSummary
+  if (supportType === 'child support increase or decrease') {
+    supportSummary = 'Order Review & Modification'
+  } else if (supportType === 'change of employment status') {
+    if (employmentChangeType) {
+      supportSummary = `Change of Employment Status - ${employmentChangeType}`
+    } else {
+      supportSummary = `Change of Employment Status`
+    }
+  } else if (supportType === 'inquiry') {
+    supportSummary = `Support Request`
+  } else {
+    supportSummary = toTitleCase(supportType)
+  }
+  return supportSummary
 }

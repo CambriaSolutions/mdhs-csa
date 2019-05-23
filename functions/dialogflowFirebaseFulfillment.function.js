@@ -238,19 +238,11 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(
-          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling.`
-        )
-        await agent.add(
-          `The information I provide is not legal advice. MDHS does not provide legal representation.`
-        )
-        await agent.add(
-          `Also, please do not enter SSN or DOB in at any time during your conversations.`
+          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.`
         )
         await agent.add(
           `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and that you wish to continue.`
         )
-        await agent.add(`Would you like to continue?`)
-
         await agent.add(new Suggestion('I Acknowledge'))
         await agent.context.set({
           name: 'waiting-acknowledge-privacy-statement',
