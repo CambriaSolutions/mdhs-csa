@@ -727,9 +727,9 @@ exports.supportCollectIssue = async agent => {
   } else {
     try {
       await agent.add(
-        `I'm sorry, your last message brought your total request character count to more than 500 characters. Would you like to revise the issue, or review what you've got so far?`
+        `I'm sorry, your last message brought your total request character count to more than 500 characters. Would you like to rewrite your request, or review what you've got so far?`
       )
-      await agent.add(new Suggestion(`Revise`))
+      await agent.add(new Suggestion(`Start Over`))
       await agent.add(new Suggestion(`Review`))
       await agent.context.set({
         name: 'waiting-support-revise-issue',
