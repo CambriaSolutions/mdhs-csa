@@ -330,25 +330,25 @@ exports.formatCardText = (ticketinfo, requests) => {
 
   let cardText
   if (!newEmployerName) {
-    cardText = `Full Name: ${firstName} ${lastName}
-    Phone Number: ${phoneNumber}
-    Email: ${email}
-    ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
-    Message: ${requests}`
+    cardText = `**Full Name**: ${firstName} ${lastName}
+    **Phone Number**: ${phoneNumber}
+    **Email**: ${email}
+    ${company ? `**Company**: ${company}` : `**Case Number**: ${caseNumber} `}
+    **Message**: ${requests}`
   } else if (newEmployerName.toLowerCase() !== 'unknown new employer') {
-    cardText = `Full Name: ${firstName} ${lastName}
-    Phone Number:  ${phoneNumber}
-    Email: ${email}
-    ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
-    New Employer: ${newEmployerName}
-    New Employer Phone: ${newEmployerNumber}
-    Message:  ${requests}`
+    cardText = `**Full Name**: ${firstName} ${lastName}
+    **Phone Number**:  ${phoneNumber}
+    **Email**: ${email}
+    ${company ? `**Company**: ${company}` : `**Case Number**: ${caseNumber} `}
+    **New Employer**: ${newEmployerName}
+    **New Employer Phone**: ${newEmployerNumber}
+    **Message**:  ${requests}`
   } else {
-    cardText = `Full Name: ${firstName} ${lastName}
-  Phone Number: ${phoneNumber}
-  Email: ${email}
-  ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
-  Message: ${requests}`
+    cardText = `**Full Name**: ${firstName} ${lastName}
+  **Phone Number**: ${phoneNumber}
+  **Email**: ${email}
+  ${company ? `**Company**: ${company}` : `**Case Number**: ${caseNumber} `}
+  **Message**: ${requests}`
   }
 
   return cardText
