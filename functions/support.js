@@ -215,13 +215,16 @@ exports.supportCollectNewEmployerPhone = async agent => {
   const formattedPhone = `+1${newEmployerPhone}`
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
   if (isValid) {
+    const phoneNumber = parsePhoneNumberFromString(
+      formattedPhone
+    ).formatNational()
     try {
       await agent.add(
         `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
       )
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { newEmployerPhone },
+        parameters: { phoneNumber },
       })
       await agent.context.set({
         name: 'waiting-support-collect-issue',
@@ -743,15 +746,13 @@ exports.supportSumbitIssue = async agent => {
   const firstName = ticketinfo.firstName
   const lastName = ticketinfo.lastName
   const caseNumber = ticketinfo.caseNumber
-  const phoneNumberToDisplay = ticketinfo.phoneNumber
+  const phoneNumber = ticketinfo.phoneNumber
   const email = ticketinfo.email
   const company = ticketinfo.companyName
   const supportSummary = ticketinfo.supportSummary
-  const preppedPhoneNumber = phoneNumberToDisplay.replace(/\D/g, '')
   const newEmployerName = ticketinfo.newEmployerName
   const newEmployerNumber = ticketinfo.newEmployerPhone
   const employmentChangeType = ticketinfo.employmentChangeType
-  const phoneNumber = parseInt(preppedPhoneNumber)
 
   // Prepare payload fields for service desk call
   const requestFieldValues = {
@@ -780,7 +781,7 @@ exports.supportSumbitIssue = async agent => {
         new Card({
           title: `${supportSummary}: Issue #${issueKey}`,
           text: `Full Name: ${firstName} ${lastName}
-          Phone Number: ${phoneNumberToDisplay}
+          Phone Number: ${phoneNumber}
           Email: ${email}
           ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
           Message: ${filteredRequests}`,
