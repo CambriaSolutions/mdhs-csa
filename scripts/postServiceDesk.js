@@ -74,7 +74,7 @@ const {
 } = serviceDeskFields
 
 const requestFieldBody = {
-  [environment]: { value: 'Test' },
+  [environment]: { value: process.env.SERVICE_DESK_ENV },
   // [division]: 'Child Support',
   [reporterFullName]: fullName,
   [reporterPhoneNumber]: phoneNumber,
