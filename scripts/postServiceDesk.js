@@ -30,7 +30,7 @@ const company = 'Lump Sum company'
 // New fields
 const newEmployerName = 'employer'
 const newEmployerNumber = '(916)799-0766'
-const employmentChangeType = 'Full Time to Part Time'
+const employmentChangeType = 'loss of employer'
 
 const callbackRequired = [
   'request case closure',
@@ -44,6 +44,17 @@ const callBackCommitmentType = callbackRequired.includes[
 ]
   ? 'Call back'
   : 'None'
+
+let formattedEmploymentChange
+if (employmentChangeType === 'loss of employer') {
+  formattedEmploymentChange = 'Loss of employer'
+} else if (employmentChangeType === 'change of employer') {
+  formattedEmploymentChange = 'Change/Add Employer'
+} else if (employmentChangeType === 'full time to part time') {
+  formattedEmploymentChange = 'Full Time to Part Time'
+} else if (employmentChangeType === 'part time to full time') {
+  formattedEmploymentChange = 'Part Time to Full Time'
+}
 
 const {
   environment,
@@ -70,7 +81,7 @@ const requestFieldBody = {
   [reporterEmail]: email,
   // [reporterCaseNumber]: caseNumber,
   summary: supportSummary,
-  [employmentSubType]: { value: employmentChangeType },
+  [employmentSubType]: { value: formattedEmploymentChange },
   [message]: filteredRequests,
   [channel]: {
     value: 'Genbot',
@@ -78,7 +89,7 @@ const requestFieldBody = {
   [companyName]: company,
   [employer]: newEmployerName,
   [employerPhoneNumber]: newEmployerNumber,
-  [youngWilliamsNextStep]: 'Young Williams Next Steps Narative',
+  // [youngWilliamsNextStep]: 'Young Williams Next Steps Narative',
   [callBackCommitment]: { value: callBackCommitmentType },
 }
 

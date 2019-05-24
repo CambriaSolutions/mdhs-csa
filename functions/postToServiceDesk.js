@@ -65,6 +65,18 @@ exports.sendToServiceDesk = async requestFieldValues => {
     ? 'Call back'
     : 'None'
 
+  // Format the employment change type
+  let formattedEmploymentChange
+  if (employmentChangeType === 'loss of employer') {
+    formattedEmploymentChange = 'Loss of employer'
+  } else if (employmentChangeType === 'change of employer') {
+    formattedEmploymentChange = 'Change/Add Employer'
+  } else if (employmentChangeType === 'full time to part time') {
+    formattedEmploymentChange = 'Full Time to Part Time'
+  } else if (employmentChangeType === 'part time to full time') {
+    formattedEmploymentChange = 'Part Time to Full Time'
+  }
+
   const requestFieldBody = {
     [environment]: { value: 'Test' },
     // [division]: 'Child Support',
@@ -73,7 +85,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [reporterEmail]: email,
     // [reporterCaseNumber]: caseNumber,
     summary: supportSummary,
-    [employmentSubType]: { value: employmentChangeType },
+    [employmentSubType]: { value: formattedEmploymentChange },
     [message]: filteredRequests,
     [channel]: {
       value: 'Genbot',
@@ -81,7 +93,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     [companyName]: company,
     [employer]: newEmployerName,
     [employerPhoneNumber]: newEmployerNumber,
-    [youngWilliamsNextStep]: 'Young Williams Next Steps Narative',
+    // [youngWilliamsNextStep]: 'Young Williams Next Steps Narrative',
     [callBackCommitment]: { value: callBackCommitmentType },
   }
 
