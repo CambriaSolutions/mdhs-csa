@@ -75,11 +75,11 @@ const {
 
 const requestFieldBody = {
   [environment]: { value: process.env.SERVICE_DESK_ENV },
-  // [division]: 'Child Support',
+  [division]: { value: 'Child Support Services' },
   [reporterFullName]: fullName,
   [reporterPhoneNumber]: phoneNumber,
   [reporterEmail]: email,
-  // [reporterCaseNumber]: caseNumber,
+  [reporterCaseNumber]: caseNumber,
   summary: supportSummary,
   [employmentSubType]: { value: formattedEmploymentChange },
   [message]: filteredRequests,
@@ -89,7 +89,7 @@ const requestFieldBody = {
   [companyName]: company,
   [employer]: newEmployerName,
   [employerPhoneNumber]: newEmployerNumber,
-  // [youngWilliamsNextStep]: 'Young Williams Next Steps Narative',
+  [youngWilliamsNextStep]: 'Young Williams Next Steps Narative',
   [callBackCommitment]: { value: callBackCommitmentType },
 }
 
