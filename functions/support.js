@@ -15,6 +15,9 @@ const {
   startSupportConvo,
   supportMoreOptions,
   checkForLumpSum,
+  handleContactCollection,
+  formatCardText,
+  formatSummary,
 } = require('./supportHelperFunctions.js')
 
 const { sendToServiceDesk } = require('./postToServiceDesk.js')
@@ -513,46 +516,112 @@ exports.supportEmail = async agent => {
 }
 
 exports.supportNoEmail = async agent => {
-  const email = 'No Email Provided'
+  // Check to see if they have provided a phone number
+  const phoneNumber = agent.context.get('ticketinfo').parameters.phoneNumber
   const isLumpSum = await checkForLumpSum(agent)
 
-  if (!isLumpSum) {
-    try {
-      await agent.add(
-        `What is your case number? Please do not provide your social security number.`
-      )
+  if (phoneNumber.toLowerCase() !== 'no phone number') {
+    const email = 'No Email Provided'
+    if (!isLumpSum) {
+      try {
+        await agent.add(
+          `What is your case number? Please do not provide your social security number.`
+        )
 
-      await agent.context.set({
-        name: 'waiting-support-case-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-no-case-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
-      })
-    } catch (err) {
-      console.error(err)
+        await agent.context.set({
+          name: 'waiting-support-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'waiting-support-no-case-number',
+          lifespan: 3,
+        })
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      try {
+        await agent.add(`What is the name of your company/employer?`)
+
+        await agent.context.set({
+          name: 'waiting-support-collect-company',
+          lifespan: 3,
+        })
+
+        await agent.context.set({
+          name: 'ticketinfo',
+          parameters: { email: email },
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
   } else {
     try {
-      await agent.add(`What is the name of your company/employer?`)
+      await agent.add(
+        `We need either a phone number or an email in order to continue, which would you like to provide?`
+      )
+      await agent.add(new Suggestion(`Email`))
+      await agent.add(new Suggestion(`Phone Number`))
 
       await agent.context.set({
-        name: 'waiting-support-collect-company',
+        name: 'waiting-support-retry-email',
         lifespan: 3,
       })
 
       await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { email: email },
+        name: 'waiting-support-retry-phone-number',
+        lifespan: 3,
       })
     } catch (err) {
       console.error(err)
     }
+  }
+}
+
+exports.supportRetryPhoneNumber = async agent => {
+  try {
+    await agent.add(`Starting with area code, what is your phone number?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-phone-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportHandlePhoneRetry = async agent => {
+  const isLumpSum = await checkForLumpSum(agent)
+  try {
+    await handleContactCollection(agent, 'phone', isLumpSum)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportRetryEmail = async agent => {
+  try {
+    await agent.add(`What is your email address?`)
+    await agent.context.set({
+      name: 'waiting-support-handle-email-retry',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportHandleEmailRetry = async agent => {
+  const isLumpSum = await checkForLumpSum(agent)
+  try {
+    await handleContactCollection(agent, 'email', isLumpSum)
+  } catch (err) {
+    console.error(err)
   }
 }
 
@@ -634,59 +703,59 @@ exports.supportCollectIssue = async agent => {
   } else {
     requestCollection.push(request)
   }
+  const summary = requestCollection.join(' ')
 
-  try {
-    await agent.add(
-      `Feel free to add to your issue, or click or say "I'm done".`
-    )
-    await agent.add(new Suggestion(`I'm done`))
-    await agent.context.set({
-      name: 'requests',
-      lifespan: 5,
-      parameters: { requests: requestCollection },
-    })
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-summarize-issue',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
+  if (summary.length <= 500) {
+    try {
+      await agent.add(
+        `Feel free to add to your issue, or click or say "I'm done".`
+      )
+      await agent.add(new Suggestion(`I'm done`))
+      await agent.context.set({
+        name: 'requests',
+        lifespan: 5,
+        parameters: { requests: requestCollection },
+      })
+      await agent.context.set({
+        name: 'waiting-support-collect-issue',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-summarize-issue',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `I'm sorry, your last message brought your total request character count to more than 500 characters. Would you like to rewrite your request, or review what you've got so far?`
+      )
+      await agent.add(new Suggestion(`Start Over`))
+      await agent.add(new Suggestion(`Review`))
+      await agent.context.set({
+        name: 'waiting-support-revise-issue',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-summarize-issue',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
 exports.supportSummarizeIssue = async agent => {
+  const ticketInfo = await agent.context.get('ticketinfo').parameters
   const rawRequests = await agent.context.get('requests').parameters.requests
-  const filteredRequests = rawRequests.join(' ')
-  const ticketinfo = await agent.context.get('ticketinfo').parameters
-  const firstName = ticketinfo.firstName
-  const lastName = ticketinfo.lastName
-  const caseNumber = ticketinfo.caseNumber
-  const phoneNumber = ticketinfo.phoneNumber
-  const email = ticketinfo.email
-  const supportType = ticketinfo.supportType.toLowerCase()
-  const company = ticketinfo.companyName
-  const employmentChangeType = ticketinfo.employmentChangeType
+  const requestSummary = rawRequests.join(' ')
 
-  let supportSummary
-  if (supportType === 'child support increase or decrease') {
-    supportSummary = 'Order Review & Modification'
-  } else if (supportType === 'change of employment status') {
-    if (employmentChangeType) {
-      supportSummary = `Change of Employment Status - ${employmentChangeType}`
-    } else {
-      supportSummary = `Change of Employment Status`
-    }
-  } else if (supportType === 'inquiry') {
-    supportSummary = `Support Request`
-  } else {
-    supportSummary = toTitleCase(supportType)
-  }
+  const supportSummary = formatSummary(ticketInfo)
+  const cardText = formatCardText(ticketInfo, requestSummary)
 
-  // Add check for summary items
   try {
     await agent.add(
       `Okay, I've put your request together. Here's what I've got.`
@@ -694,11 +763,7 @@ exports.supportSummarizeIssue = async agent => {
     await agent.add(
       new Card({
         title: `${supportSummary}`,
-        text: `Full Name: ${firstName} ${lastName}
-          Phone Number: ${phoneNumber}
-          Email: ${email}
-          ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
-          Message: ${filteredRequests}`,
+        text: `${cardText}`,
       })
     )
     await agent.add(new Suggestion(`Revise`))
@@ -713,7 +778,10 @@ exports.supportSummarizeIssue = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { supportSummary: supportSummary },
+      parameters: {
+        supportSummary: supportSummary,
+        requestSummary: requestSummary,
+      },
     })
   } catch (err) {
     console.error(err)
@@ -723,7 +791,7 @@ exports.supportSummarizeIssue = async agent => {
 exports.supportReviseIssue = async agent => {
   try {
     await agent.add(
-      `Let's start over. Please describe your issue. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+      `Let's start over. Please describe your issue or request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
     )
     await agent.context.set({
       name: 'waiting-support-collect-issue',
@@ -740,9 +808,8 @@ exports.supportReviseIssue = async agent => {
 }
 
 exports.supportSumbitIssue = async agent => {
-  const rawRequests = agent.context.get('requests').parameters.requests
-  const filteredRequests = rawRequests.join(' ')
   const ticketinfo = agent.context.get('ticketinfo').parameters
+  const filteredRequests = ticketinfo.requestSummary
   const firstName = ticketinfo.firstName
   const lastName = ticketinfo.lastName
   const caseNumber = ticketinfo.caseNumber
@@ -769,26 +836,24 @@ exports.supportSumbitIssue = async agent => {
     employmentChangeType,
   }
 
+  //// Will update
   // Send ticket data to service desk api
-  const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
-  const issueKey = postToServiceDesk.issueKey
+  // const postToServiceDesk = await sendToServiceDesk(requestFieldValues)
+  // const issueKey = postToServiceDesk.issueKey
+  const issueKey = 320
 
   if (issueKey) {
     try {
       // Get appropriate confirmation reponse
       const confirmationRespone = await formatConfirmationResponse(agent)
+      const cardText = formatCardText(ticketinfo, filteredRequests)
       await agent.add(
         new Card({
           title: `${supportSummary}: Issue #${issueKey}`,
-          text: `Full Name: ${firstName} ${lastName}
-          Phone Number: ${phoneNumber}
-          Email: ${email}
-          ${company ? `Company: ${company}` : `Case Number: ${caseNumber} `}
-          Message: ${filteredRequests}`,
+          text: `${cardText}`,
         })
       )
 
-      //
       await agent.add(confirmationRespone)
       // Clear out context for ticket info
       await agent.context.set({

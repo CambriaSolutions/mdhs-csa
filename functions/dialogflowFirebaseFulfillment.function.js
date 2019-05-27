@@ -2,7 +2,10 @@ const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const { Suggestion } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('./globalFunctions.js')
+const {
+  handleEndConversation,
+  startRootConversation,
+} = require('./globalFunctions.js')
 
 // General payment intents
 const {
@@ -106,6 +109,10 @@ const {
   supportNoCaseNumber,
   supportEmail,
   supportNoEmail,
+  supportRetryPhoneNumber,
+  supportHandlePhoneRetry,
+  supportRetryEmail,
+  supportHandleEmailRetry,
   supportCollectIssue,
   supportSummarizeIssue,
   supportReviseIssue,
@@ -231,11 +238,10 @@ exports = module.exports = functions
     const yesChildSupport = async agent => {
       try {
         await agent.add(
-          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. <br/><br/>
-          The information I provide is not legal advice. MDHS does not provide legal representation.  <br/><br/>
-          Also, please do not enter SSN or DOB in at any time during your conversations.  <br/><br/>
-          By clicking 'I Acknowledge' below you are acknowledging receipt and understanding of these statements and that you wish to continue. <br/><br/>
-          Would you like to continue?`
+          `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.`
+        )
+        await agent.add(
+          `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and that you wish to continue.`
         )
         await agent.add(new Suggestion('I Acknowledge'))
         await agent.context.set({
@@ -249,13 +255,7 @@ exports = module.exports = functions
 
     const restartConversation = async agent => {
       try {
-        await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await startRootConversation(agent)
       } catch (err) {
         console.error(err)
       }
@@ -263,13 +263,15 @@ exports = module.exports = functions
 
     const acknowledgePrivacyStatement = async agent => {
       try {
-        await agent.add(`What can I help you with?`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await startRootConversation(agent)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const globalRestart = async agent => {
+      try {
+        await startRootConversation(agent)
       } catch (err) {
         console.error(err)
       }
@@ -308,6 +310,7 @@ exports = module.exports = functions
 
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
+    intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('not-child-support', notChildSupport)
@@ -466,6 +469,10 @@ exports = module.exports = functions
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
     intentMap.set('support-no-email', supportNoEmail)
+    intentMap.set('support-retry-email', supportRetryEmail)
+    intentMap.set('support-handle-email-retry', supportHandleEmailRetry)
+    intentMap.set('support-retry-phone-number', supportRetryPhoneNumber)
+    intentMap.set('support-handle-phone-retry', supportHandlePhoneRetry)
     intentMap.set('support-case-number', supportCaseNumber)
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)

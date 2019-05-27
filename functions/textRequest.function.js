@@ -39,6 +39,7 @@ exports = module.exports = functions
         .detectIntent(dfRequest)
         .then(responses => {
           // return responses[0]
+          responses[0].session = sessionPath
           res.json(responses[0])
         })
         .catch(err => {
