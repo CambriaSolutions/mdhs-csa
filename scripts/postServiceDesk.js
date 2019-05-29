@@ -122,8 +122,6 @@ const sendToServiceDesk = async fieldValues => {
     json: true,
   }
 
-  console.log(options)
-
   request(options, function(error, response, body) {
     if (error) throw new Error(error)
     console.log(
