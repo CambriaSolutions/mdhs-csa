@@ -713,7 +713,6 @@ exports.supportCollectIssue = async agent => {
     )
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
-    await agent.add(new Suggestion(`Start Over`))
     await agent.context.set({
       name: 'waiting-support-submit-issue',
       lifespan: 3,
