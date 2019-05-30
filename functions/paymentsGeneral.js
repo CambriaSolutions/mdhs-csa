@@ -39,6 +39,7 @@ exports.pmtsGeneralReceivePayments = async agent => {
     )
     await agent.add(new Suggestion('Debit Card'))
     await agent.add(new Suggestion('Direct Deposit'))
+    await agent.add(new Suggestion('Estimate Payments'))
     await agent.context.set({
       name: 'waiting-pmtMethods-debit-card',
       lifespan: 2,
