@@ -695,71 +695,15 @@ exports.supportNoCaseNumber = async agent => {
 }
 
 exports.supportCollectIssue = async agent => {
-  const request = agent.parameters.request
-  const requestsInContext = agent.context.get('requests')
-  let requestCollection = []
-  if (requestsInContext) {
-    const storedRequests = requestsInContext.parameters.requests
-    requestCollection = [...storedRequests, request]
-  } else {
-    requestCollection.push(request)
-  }
-  const summary = requestCollection.join(' ')
-
-  if (summary.length <= 500) {
-    try {
-      await agent.add(
-        `Feel free to add to your issue, or click or say "I'm done".`
-      )
-      await agent.add(new Suggestion(`I'm done`))
-      await agent.context.set({
-        name: 'requests',
-        lifespan: 5,
-        parameters: { requests: requestCollection },
-      })
-      await agent.context.set({
-        name: 'waiting-support-collect-issue',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-summarize-issue',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  } else {
-    try {
-      await agent.add(
-        `I'm sorry, your last message brought your total request character count to more than 500 characters. Would you like to rewrite your request, or review what you've got so far?`
-      )
-      await agent.add(new Suggestion(`Start Over`))
-      await agent.add(new Suggestion(`Review`))
-      await agent.context.set({
-        name: 'waiting-support-revise-issue',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-summarize-issue',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
-
-exports.supportSummarizeIssue = async agent => {
   const ticketInfo = await agent.context.get('ticketinfo').parameters
-  const rawRequests = await agent.context.get('requests').parameters.requests
-  const requestSummary = rawRequests.join(' ')
+  const request = agent.parameters.request
 
   const supportSummary = formatSummary(ticketInfo)
-  const cardText = formatCardText(ticketInfo, requestSummary)
+  const cardText = formatCardText(ticketInfo, request)
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got.`
+      `Okay, I've put your request together. Here's what I've got. Click revise to revise your message`
     )
     await agent.add(
       new Card({
@@ -769,6 +713,7 @@ exports.supportSummarizeIssue = async agent => {
     )
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
+    await agent.add(new Suggestion(`Start Over`))
     await agent.context.set({
       name: 'waiting-support-submit-issue',
       lifespan: 3,
@@ -781,7 +726,7 @@ exports.supportSummarizeIssue = async agent => {
       name: 'ticketinfo',
       parameters: {
         supportSummary: supportSummary,
-        requestSummary: requestSummary,
+        requestSummary: request,
       },
     })
   } catch (err) {
@@ -871,7 +816,9 @@ exports.supportSumbitIssue = async agent => {
     }
   } else {
     // Handle service desk errors?
-    await agent.add(`Looks like something has gone wrong!`)
+    await agent.add(
+      `Looks like something has gone wrong! Please try again or call please call <a href="tel:+18778824916">1-877-882-4916</a> to reach a support representative.`
+    )
     await handleEndConversation(agent)
   }
 }

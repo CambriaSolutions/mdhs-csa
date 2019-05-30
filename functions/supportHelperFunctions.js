@@ -121,9 +121,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
     }
   } else {
     try {
-      await agent.add(
-        `${descriptionText} You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-      )
+      await agent.add(`${descriptionText}`)
       await agent.context.set({
         name: 'waiting-support-collect-issue',
         lifespan: 10,
