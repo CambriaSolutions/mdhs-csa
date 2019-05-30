@@ -144,6 +144,8 @@ exports.pmtMethodsCantMakeQualifying = async agent => {
       await agent.add(
         `Would you like to submit a request for your child support amount to be reviewed?`
       )
+      await agent.add(new Suggestion('Yes'))
+      await agent.add(new Suggestion('No'))
       await agent.context.set({
         name: 'waiting-pmtMethods-cant-make-qualifying-help',
         lifespan: 2,
@@ -152,6 +154,8 @@ exports.pmtMethodsCantMakeQualifying = async agent => {
       await agent.add(
         `Would you like to submit an inquiry to our support team for additional information about your options for making child support payments?`
       )
+      await agent.add(new Suggestion('Yes'))
+      await agent.add(new Suggestion('No'))
       await agent.context.set({
         name: 'waiting-pmtMethods-cant-make-qualifying-no-help',
         lifespan: 2,
