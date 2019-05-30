@@ -703,7 +703,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click revise to revise your message`
+      `Okay, I've put your request together. Here's what I've got. Click revise to edit your message or submit to send to one of representatives.`
     )
     await agent.add(
       new Card({
