@@ -652,6 +652,7 @@ exports.supportCaseNumber = async agent => {
   const validCaseNumber = validateCaseNumber(caseNumber)
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = await agent.context.get('ticketinfo').parameters
+    .supportType
   const descriptionText = formatDescriptionText(supportType)
 
   if (noCaseNumber && noCaseNumber !== '') {
