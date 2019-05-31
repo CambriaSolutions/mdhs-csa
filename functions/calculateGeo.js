@@ -35,7 +35,8 @@ exports.getNearestThreeLocations = (currentCoordinates, locations) => {
         {
           lat: place.lat,
           lng: place.lng,
-        }
+        },
+        '0.01'
       )
       const distanceMiles = geolib.convertDistance(distance, 'mi').toFixed(2)
       return {
