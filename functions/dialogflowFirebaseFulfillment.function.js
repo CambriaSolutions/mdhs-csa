@@ -235,6 +235,17 @@ exports = module.exports = functions
       }
     }
 
+    const fallback = async agent => {
+      try {
+        await agent.add(
+          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+        )
+        await agent.add(new Suggestion(`Home`))
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
     const yesChildSupport = async agent => {
       try {
         await agent.add(
@@ -280,15 +291,18 @@ exports = module.exports = functions
     const notChildSupport = async agent => {
       try {
         await agent.add(
-          `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
+          `Sorry, I'm still learning how to help with other issues. Is there anything else I can help with?`
         )
-        await agent.add(`I can help you with these topics.`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Yes'))
+        await agent.add(new Suggestion('No'))
+        await agent.context.set({
+          name: 'waiting-not-child-support',
+          lifespan: 2,
+        })
+        await agent.context.set({
+          name: 'waiting-yes-child-support',
+          lifespan: 2,
+        })
       } catch (err) {
         console.error(err)
       }
@@ -308,6 +322,7 @@ exports = module.exports = functions
 
     let intentMap = new Map()
 
+    intentMap.set('Default Fallback Intent', fallback)
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
     intentMap.set('global-restart', globalRestart)
