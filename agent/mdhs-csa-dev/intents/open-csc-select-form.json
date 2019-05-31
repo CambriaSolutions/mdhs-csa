@@ -1,0 +1,49 @@
+{
+  "id": "6a80949a-0c09-4c0a-a779-a2c4c629cbd8",
+  "name": "open-csc-select-form",
+  "auto": true,
+  "contexts": [
+    "waiting-open-csc-select-form"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-open-csc-select-form",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-open-csc-no-service",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "8958bece-5b96-4846-a81a-9c461b76c5f2",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

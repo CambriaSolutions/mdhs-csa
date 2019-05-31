@@ -1,0 +1,28 @@
+{
+  "id": "d185621b-2905-4462-8904-989ef572ff1c",
+  "name": "iwo-other-garnishments",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551130178,
+  "fallbackIntent": false,
+  "events": []
+}

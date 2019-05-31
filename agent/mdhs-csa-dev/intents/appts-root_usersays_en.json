@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bbb6ae6f-73d5-4879-94e8-88ca1f113717",
+    "data": [
+      {
+        "text": "make an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548804915
+  },
+  {
+    "id": "58aa5ab6-8475-442f-ac28-53d3febbc606",
+    "data": [
+      {
+        "text": "i need to set up an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548804915
+  },
+  {
+    "id": "3764b054-1c32-4c56-82f9-9b63adec346c",
+    "data": [
+      {
+        "text": "appointments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1547512779
+  }
+]

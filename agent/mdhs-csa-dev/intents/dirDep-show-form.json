@@ -1,0 +1,41 @@
+{
+  "id": "d6dbfc32-23b8-42b0-814b-00fa9d15259c",
+  "name": "dirDep-show-form",
+  "auto": true,
+  "contexts": [
+    "waiting-dirDep-show-form"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-dirDep-show-form",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-dirDep-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1550096378,
+  "fallbackIntent": false,
+  "events": []
+}

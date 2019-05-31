@@ -1,0 +1,28 @@
+{
+  "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5a",
+  "name": "map-root",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1550598951,
+  "fallbackIntent": false,
+  "events": []
+}

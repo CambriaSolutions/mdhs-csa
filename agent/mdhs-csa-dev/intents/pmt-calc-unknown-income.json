@@ -1,0 +1,41 @@
+{
+  "id": "418659ab-794c-4301-887b-0329c67feffb",
+  "name": "pmt-calc-unknown-income",
+  "auto": true,
+  "contexts": [
+    "waiting-pmt-calc-unknown-income"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmt-calc-unknown-income",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmt-calc-handle-timeframe",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551310756,
+  "fallbackIntent": false,
+  "events": []
+}

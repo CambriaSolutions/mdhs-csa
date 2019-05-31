@@ -1,0 +1,26 @@
+[
+  {
+    "value": "yes",
+    "synonyms": [
+      "yes",
+      "correct",
+      "i think so",
+      "indeed",
+      "yup",
+      "yes sir",
+      "yes maam",
+      "yea"
+    ]
+  },
+  {
+    "value": "no",
+    "synonyms": [
+      "no",
+      "incorrect",
+      "nope",
+      "no sir",
+      "no maam",
+      "no"
+    ]
+  }
+]

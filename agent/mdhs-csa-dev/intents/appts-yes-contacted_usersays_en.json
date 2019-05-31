@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0003d127-ff1c-4676-8525-8000734f1bf4",
+    "data": [
+      {
+        "text": "yes i have been contacted",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272779
+  },
+  {
+    "id": "da1c12c3-86c5-449e-863f-d683dd45d81d",
+    "data": [
+      {
+        "text": "yes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1548272779
+  }
+]

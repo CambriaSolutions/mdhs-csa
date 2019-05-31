@@ -5,12 +5,37 @@
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "deploy": "node retrieveCoordinates && firebase deploy --only functions",
+    "deploy-dev": "node retrieveCoordinates && firebase deploy --only functions --project dev",
+    "deploy-dev-beta": "node retrieveCoordinates && firebase deploy --only functions --project dev-beta",
+    "deploy-stage": "node retrieveCoordinates && firebase deploy --only functions --project stage",
+    "deploy-dev-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev",
+    "deploy-dev-beta-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project dev-beta",
+    "deploy-stage-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project stage",
+    "deploy-prod": "node retrieveCoordinates && firebase deploy --only functions --project prod",
+    "logs": "firebase functions:log",
+    "test": "jest"
   },
   "dependencies": {
-    "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.1.0"
+    "actions-on-google": "^2.6.0",
+    "camelcase": "^5.3.1",
+    "cors": "^2.8.5",
+    "dialogflow": "^0.9.1",
+    "dialogflow-fulfillment": "github:dialogflow/dialogflow-fulfillment-nodejs",
+    "dotenv": "^8.0.0",
+    "firebase-admin": "^8.0.0",
+    "firebase-functions": "^2.3.1",
+    "geolib": "^3.0.3",
+    "glob": "^7.1.4",
+    "libphonenumber-js": "^1.7.18",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "validator": "^11.0.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
 }

@@ -1,0 +1,28 @@
+{
+  "id": "c13f0dcb-ba3d-4bdd-a1c8-e51177b182c2",
+  "name": "eppi-root",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551225882,
+  "fallbackIntent": false,
+  "events": []
+}

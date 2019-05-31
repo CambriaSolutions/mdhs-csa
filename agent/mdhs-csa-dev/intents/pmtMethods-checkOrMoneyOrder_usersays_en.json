@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ad3b2aee-2473-4ea0-896a-b171e17f97cb",
+    "data": [
+      {
+        "text": "do you take checks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551313990
+  },
+  {
+    "id": "eb74d5d1-a077-4f27-9d10-1e143c3ea27f",
+    "data": [
+      {
+        "text": "can i pay by check",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551313990
+  },
+  {
+    "id": "94285ade-9b55-4989-ae46-1b957d691df8",
+    "data": [
+      {
+        "text": "check",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550689923
+  },
+  {
+    "id": "07e20498-6cd3-4ca4-8a6c-3e30d99bf770",
+    "data": [
+      {
+        "text": "Check or Money Order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550636823
+  }
+]

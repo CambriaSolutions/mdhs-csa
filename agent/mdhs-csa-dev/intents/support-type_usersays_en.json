@@ -1,0 +1,146 @@
+[
+  {
+    "id": "79e7973c-be89-4faf-b78c-86be4b485bd8",
+    "data": [
+      {
+        "text": "inquiries",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ffffd95f-9189-4cba-8031-4f6342d90576",
+    "data": [
+      {
+        "text": "child support increase decrease",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "695e822b-b193-4c9f-83bb-ae039da997b9",
+    "data": [
+      {
+        "text": "Child Support Increase/Decrease",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d7d97321-3aa9-45b9-9464-a960be46790c",
+    "data": [
+      {
+        "text": "Add Authorized User",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "705bf2b5-c69a-4247-9670-05c87e15abcc",
+    "data": [
+      {
+        "text": "Employer Report Lump Sum Notification",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "02f0ea14-c9b0-45ad-b14e-9e56506df0a0",
+    "data": [
+      {
+        "text": "Request Case Closure",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d458e4e0-7434-4485-adbd-c12d85b262be",
+    "data": [
+      {
+        "text": "Information about parent who pays child support",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "586c04ed-7830-4a9e-8639-f3901c4b4732",
+    "data": [
+      {
+        "text": "Request Payment History",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a18abcf6-b350-47c3-9412-af457f147057",
+    "data": [
+      {
+        "text": "Change of Personal Information",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ff0e4f38-6c34-4798-9c4b-28f3de75e1f7",
+    "data": [
+      {
+        "text": "Child Support Payment Increase/Decrease",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "5dbb6151-b766-42ef-88ea-52b5b820098c",
+    "data": [
+      {
+        "text": "Request Contempt Action",
+        "alias": "supportType",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

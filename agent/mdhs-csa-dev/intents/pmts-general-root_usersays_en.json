@@ -1,0 +1,38 @@
+[
+  {
+    "id": "26961efc-ff6c-42ac-a299-f5dae640f5c9",
+    "data": [
+      {
+        "text": "who do i contact regarding payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551314410
+  },
+  {
+    "id": "8b42b8aa-7522-48fd-bc10-8ce7c71c1f4d",
+    "data": [
+      {
+        "text": "payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551314410
+  },
+  {
+    "id": "6cddfbfc-6eb3-44d5-bd5d-44af65f87d07",
+    "data": [
+      {
+        "text": "what are the options for payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551314410
+  }
+]

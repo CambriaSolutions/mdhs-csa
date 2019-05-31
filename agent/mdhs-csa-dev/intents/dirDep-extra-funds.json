@@ -1,0 +1,28 @@
+{
+  "id": "d040f754-52bb-4fd4-a207-a177ed48e11b",
+  "name": "dirDep-extra-funds",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551820858,
+  "fallbackIntent": false,
+  "events": []
+}

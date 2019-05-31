@@ -1,0 +1,28 @@
+{
+  "id": "a4cf0abd-7bb7-4c34-98dd-e2b3d349961f",
+  "name": "iwo-fire-employee",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 250000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551131068,
+  "fallbackIntent": false,
+  "events": []
+}

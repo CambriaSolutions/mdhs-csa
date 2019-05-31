@@ -1,0 +1,30 @@
+{
+  "id": "27ffc9f2-0e43-44ff-bf65-10d6be3514c0",
+  "name": "eppi-activate-card",
+  "auto": true,
+  "contexts": [
+    "waiting-eppi-activate"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551811234,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cc7fa96f-d49c-43a8-b8c8-537b605451dd",
+  "name": "pmtMethods-cash",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-cash"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551828785,
+  "fallbackIntent": false,
+  "events": []
+}

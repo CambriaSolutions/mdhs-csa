@@ -1,0 +1,141 @@
+[
+  {
+    "id": "17848acd-e2b6-47f2-b156-5a58ecd84451",
+    "data": [
+      {
+        "text": "i need to make a request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "fc53dcb8-e62d-4ad4-8bbf-d9aff1d5596c",
+    "data": [
+      {
+        "text": "create ticket",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "06d0acde-94f9-432f-8af1-d1b2593ac616",
+    "data": [
+      {
+        "text": "i need to create a support ticket",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b1008350-012c-4307-a2ea-4af826adc42e",
+    "data": [
+      {
+        "text": "i have an issue",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e1177041-5149-4347-94bc-dcbfe1cb09d6",
+    "data": [
+      {
+        "text": "action request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3a45889d-3cc3-45fd-bf69-8345bc66240f",
+    "data": [
+      {
+        "text": "support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551294857
+  },
+  {
+    "id": "df49e383-0358-420a-88e0-05813c5b4e6d",
+    "data": [
+      {
+        "text": "i have a complaint",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550256356
+  },
+  {
+    "id": "1b04ceed-08cb-4043-868f-2c624ad5a868",
+    "data": [
+      {
+        "text": "i need help",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550256356
+  },
+  {
+    "id": "b61adc91-77ce-4dc4-8f0a-babfe22fabe6",
+    "data": [
+      {
+        "text": "i want support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550256356
+  },
+  {
+    "id": "65484b48-5c45-471f-b5f8-c556b13d21b9",
+    "data": [
+      {
+        "text": "submit a complaint",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1547584328
+  },
+  {
+    "id": "5a667483-f824-4c47-a8fb-7c1920cbb046",
+    "data": [
+      {
+        "text": "i want to complain",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1547584328
+  },
+  {
+    "id": "effaec35-010f-41b7-8a8a-23ff9866605b",
+    "data": [
+      {
+        "text": "complaints",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1547584328
+  }
+]

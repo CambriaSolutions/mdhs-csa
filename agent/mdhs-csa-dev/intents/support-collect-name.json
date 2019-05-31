@@ -1,0 +1,65 @@
+{
+  "id": "7f4038ad-adfc-43ee-864e-5463bea58839",
+  "name": "support-collect-name",
+  "auto": true,
+  "contexts": [
+    "waiting-support-collect-name"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-collect-name",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "0028cfc4-bc96-4c8a-83e6-b13d14e0007f",
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "firstName",
+          "value": "$firstName",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is your first name?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "692a835c-2c2e-4880-928a-6666d78d7d88",
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "lastName",
+          "value": "$lastName",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Thanks, what is your last name?"
+            }
+          ],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551294917,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "d76c30d7-289c-4bfe-8f31-3ecf7b845570",
+    "data": [
+      {
+        "text": "bank",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550689788
+  },
+  {
+    "id": "171514c7-3296-4267-a8fc-cd82df06161b",
+    "data": [
+      {
+        "text": "echeck",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550689788
+  },
+  {
+    "id": "b32e3ee2-ef36-4cbf-b86d-db709121152f",
+    "data": [
+      {
+        "text": "debit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550689788
+  },
+  {
+    "id": "6d703167-4951-4329-9077-b97e16dc63d2",
+    "data": [
+      {
+        "text": "eCheck/Bank Account Debit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550636925
+  }
+]

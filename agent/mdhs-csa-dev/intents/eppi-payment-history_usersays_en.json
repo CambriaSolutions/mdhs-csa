@@ -1,0 +1,50 @@
+[
+  {
+    "id": "32ecc35a-9bcf-4697-a2c1-f36ca56b5804",
+    "data": [
+      {
+        "text": "i need to get my transaction history",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222285
+  },
+  {
+    "id": "f3f26e06-881b-47f9-84d1-22d532b29788",
+    "data": [
+      {
+        "text": "transaction history",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222285
+  },
+  {
+    "id": "ef15e7a3-2a1a-4a51-bd5b-b15d32c7d501",
+    "data": [
+      {
+        "text": "i need payment history",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222285
+  },
+  {
+    "id": "6e21d33a-f1d4-4a89-95e7-e0db190c3b9c",
+    "data": [
+      {
+        "text": "how do i get my payment history",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551222285
+  }
+]

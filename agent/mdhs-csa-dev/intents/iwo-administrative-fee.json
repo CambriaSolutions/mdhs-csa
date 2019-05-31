@@ -1,0 +1,28 @@
+{
+  "id": "fdfd8b4e-e478-4255-8e06-c391b0c19a15",
+  "name": "iwo-administrative-fee",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551129344,
+  "fallbackIntent": false,
+  "events": []
+}
