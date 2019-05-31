@@ -235,6 +235,17 @@ exports = module.exports = functions
       }
     }
 
+    const fallback = async agent => {
+      try {
+        await agent.add(
+          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at 877-882-4916.`
+        )
+        await handleEndConversation(agent)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
     const yesChildSupport = async agent => {
       try {
         await agent.add(
@@ -311,6 +322,7 @@ exports = module.exports = functions
 
     let intentMap = new Map()
 
+    intentMap.set('Default Fallback Intent', fallback)
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
     intentMap.set('global-restart', globalRestart)
