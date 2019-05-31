@@ -280,15 +280,18 @@ exports = module.exports = functions
     const notChildSupport = async agent => {
       try {
         await agent.add(
-          `Sorry, I'm still learning to help with other issues. Is there anything else I can help with?`
+          `Sorry, I'm still learning how to help with other issues. Is there anything else I can help with?`
         )
-        await agent.add(`I can help you with these topics.`)
-        await agent.add(new Suggestion('Common Requests'))
-        await agent.add(new Suggestion('Appointments'))
-        await agent.add(new Suggestion('Payments'))
-        await agent.add(new Suggestion('Employer'))
-        await agent.add(new Suggestion('Opening a Child Support Case'))
-        await agent.add(new Suggestion('Policy Manual'))
+        await agent.add(new Suggestion('Yes'))
+        await agent.add(new Suggestion('No'))
+        await agent.context.set({
+          name: 'waiting-not-child-support',
+          lifespan: 2,
+        })
+        await agent.context.set({
+          name: 'waiting-yes-child-support',
+          lifespan: 2,
+        })
       } catch (err) {
         console.error(err)
       }
