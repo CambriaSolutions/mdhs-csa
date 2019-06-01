@@ -5,6 +5,7 @@ const mapsKey = process.env.GOOGLE_MAPS_KEY
 
 exports.getGeocode = async address => {
   if (!address) {
+    console.log('No address provided to fetch geocode.')
     return
   }
 
@@ -55,6 +56,8 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
             placeId: place.placeId,
             distance,
           }
+        } else {
+          console.log('No results returned from Distance Matrix calculation.')
         }
       })
     )
@@ -63,5 +66,7 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
     )
     const nearestThreeLocations = sortedResults.slice(0, 3)
     return nearestThreeLocations
+  } else {
+    console.log('Unable to fetch nearest location from invalid coordinates.')
   }
 }
