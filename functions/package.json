@@ -34,6 +34,9 @@
     "request-promise": "^4.2.4",
     "validator": "^11.0.0"
   },
+  "engines": {
+    "node": "8"
+  },
   "private": true,
   "devDependencies": {
     "jest": "^24.8.0"
