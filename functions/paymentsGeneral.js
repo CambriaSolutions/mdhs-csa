@@ -55,11 +55,11 @@ exports.pmtsGeneralMakePayments = async agent => {
       `Non-custodial parents have a variety of methods to make payments.<br/><br/>For payment options other than having payments withheld from your pay, select one of the following to learn more.<br/><br/>The date the payment is received is the date of collection. Payments cannot be posted for a prior month.<br/><br/>Payments are not considered to be received by MDHS until all payment processing has occurred.`
     )
 
-    await agent.add(new Suggestion('Check or Money Order'))
     await agent.add(new Suggestion('Cash'))
     await agent.add(new Suggestion('Estimate Payments'))
     await agent.add(new Suggestion('Withhold Payments'))
     await agent.add(new Suggestion('eCheck/Bank Account Debit'))
+    await agent.add(new Suggestion('Check or Money Order'))
     await agent.add(new Suggestion("Can't Make Payments"))
 
     await agent.context.set({
