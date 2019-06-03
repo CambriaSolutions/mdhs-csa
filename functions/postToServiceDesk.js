@@ -67,13 +67,18 @@ exports.sendToServiceDesk = async requestFieldValues => {
 
   // Format the employment change type
   let formattedEmploymentChange
-  if (employmentChangeType === 'loss of employer') {
+  let changeType
+  if (employmentChangeType) {
+    changeType = employmentChangeType.toLowerCase()
+  }
+
+  if (changeType === 'loss of employer') {
     formattedEmploymentChange = 'Loss of employer'
-  } else if (employmentChangeType === 'change of employer') {
+  } else if (changeType === 'change of employer') {
     formattedEmploymentChange = 'Change/Add Employer'
-  } else if (employmentChangeType === 'full time to part time') {
+  } else if (changeType === 'full time to part time') {
     formattedEmploymentChange = 'Full Time to Part Time'
-  } else if (employmentChangeType === 'part time to full time') {
+  } else if (changeType === 'part time to full time') {
     formattedEmploymentChange = 'Part Time to Full Time'
   }
 

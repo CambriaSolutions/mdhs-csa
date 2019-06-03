@@ -133,7 +133,6 @@ exports.supportNoOptionsSelected = async agent => {
 exports.supportEmploymentStatus = async agent => {
   try {
     await agent.add(`Which of the following applies to you?`)
-    await agent.add(new Suggestion(`Change of Employment Information`))
     await agent.add(new Suggestion(`Full Time to Part Time`))
     await agent.add(new Suggestion(`Part Time to Full Time`))
     await agent.add(new Suggestion(`Loss of Employer`))
