@@ -108,7 +108,7 @@ exports.openCSCLocationServices = async agent => {
 exports.openCSCCollectionEmployer = async agent => {
   try {
     await agent.add(
-      `For this service, MDHS does not provide any enforcement services in order to collect payments. Payments are recieved and disbursed through the State Disbursement Unit.`
+      `For this service, MDHS does not provide any enforcement services in order to collect payments. Payments are received and disbursed through the State Disbursement Unit.`
     )
     await agent.add(`Is this the service you want?`)
 
