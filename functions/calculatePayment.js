@@ -92,7 +92,6 @@ exports.calculatePayment = ({
 }) => {
   // Get the percentage of income that should be paid per year
   const bracketPct = getSupportBracket(numChildren)
-
   // Get the multiplier to adjust payment to a monthly cadence, e.g. if
   // user provided bi-weekly income, we need to multiply by 2 to get
   // monthly income
@@ -109,13 +108,31 @@ exports.calculatePayment = ({
     ssDeductions -
     retirementContributions -
     otherChildSupport
+  console.log(`adjustedGrossIncome: ${adjustedGrossIncome}`)
+
+  // Testing
+  const adjustedGrossIncomeTest =
+    grossIncome - taxDeductions - ssDeductions - retirementContributions
+  console.log(`adjustedGrossIncomeTest: ${adjustedGrossIncomeTest}`)
 
   // Convert adjusted gross income from provided cadence to annual
   const annualAdjustedIncome = adjustedGrossIncome * cadenceMultiplier
+  console.log(`annualAdjustedIncome: ${annualAdjustedIncome}`)
+
+  // Testing
+  const annualAdjustedIncomeTest =
+    adjustedGrossIncomeTest * cadenceMultiplier - otherChildSupport
+  console.log(`annualAdjustedIncomeTest: ${annualAdjustedIncomeTest}`)
 
   // Determine the annual child support contribution
   const annualPayment = annualAdjustedIncome * bracketPct
+  console.log(`annualPayment: ${annualPayment}`)
 
+  // Testing
+  const annualPaymentTesting = annualAdjustedIncomeTest * bracketPct
+  console.log(`annualPaymentTesting: ${annualPaymentTesting}`)
+
+  // console.log(`annualAdjustedIncome: ${annualAdjustedIncome}`)
   // Convert annual to monthly payment
   const monthlyPayment = annualPayment / 12
 
