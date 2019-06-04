@@ -103,13 +103,25 @@ exports.calculatePayment = ({
     )
   }
 
+  // Adjust existing Child Support Obligations as they are only collected
+  // as a monthly ammount
+  let csObligations
+  if (incomeTerm === 'annual') {
+    csObligations = otherChildSupport * 12
+  } else if (incomeTerm === 'biweekly') {
+    csObligations = otherChildSupport / 2
+  } else if (incomeTerm === 'weekly') {
+    csObligations = otherChildSupport / 4
+  } else {
+    csObligations = otherChildSupport
+  }
+
   const adjustedGrossIncome =
     grossIncome -
     taxDeductions -
     ssDeductions -
     retirementContributions -
-    otherChildSupport
-
+    csObligations
   // Convert adjusted gross income from provided cadence to annual
   const annualAdjustedIncome = adjustedGrossIncome * cadenceMultiplier
 

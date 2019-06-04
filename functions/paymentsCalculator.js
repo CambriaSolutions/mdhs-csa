@@ -444,12 +444,8 @@ const existingChildSupport = async (agent, retirementContributions) => {
 // User is already paying for child support for other children
 exports.pmtCalcChildSupportAmount = async agent => {
   try {
-    const paymentFactors = await agent.context.get('payment-factors').parameters
-
     await agent.add(
-      `How much are you currently court ordered to pay ${`${
-        paymentFactors.incomeTerm
-      }`.toLowerCase()} in child support?`
+      `What are your <strong>monthly</strong> child support obligations?`
     )
     await agent.context.set({
       name: 'waiting-pmt-calc-final-estimation',

@@ -25,14 +25,14 @@ describe('Payment Estimator', () => {
   test('Should calculate correctly for annual income', () => {
     const opts = {
       numChildren: 1,
-      incomeTerm: 'annual',
-      grossIncome: 100000,
-      taxDeductions: 20000,
-      ssDeductions: 5000,
-      retirementContributions: 5000,
-      otherChildSupport: 5000,
+      incomeTerm: 'monthly',
+      grossIncome: 12000,
+      taxDeductions: 1000,
+      ssDeductions: 1000,
+      retirementContributions: 500,
+      otherChildSupport: 400,
     }
-    expect(calculatePayment(opts)).toBe(758)
+    expect(calculatePayment(opts)).toBe(1274)
   })
 
   test('Should calculate correctly for annual income and no retirement contributions', () => {
@@ -45,7 +45,7 @@ describe('Payment Estimator', () => {
       retirementContributions: 0,
       otherChildSupport: 1000,
     }
-    expect(calculatePayment(opts)).toBe(358)
+    expect(calculatePayment(opts)).toBe(156)
   })
 
   test('Should calculate correctly for annual income, no retirement contributions & no existing child support', () => {
@@ -71,7 +71,7 @@ describe('Payment Estimator', () => {
       retirementContributions: 5000,
       otherChildSupport: 5000,
     }
-    expect(calculatePayment(opts)).toBe(1192)
+    expect(calculatePayment(opts)).toBe(183)
   })
 
   test('Should calculate correctly for overflow child count', () => {
@@ -84,7 +84,7 @@ describe('Payment Estimator', () => {
       retirementContributions: 5000,
       otherChildSupport: 5000,
     }
-    expect(calculatePayment(opts)).toBe(1408)
+    expect(calculatePayment(opts)).toBe(217)
   })
 
   test('Should calculate correctly for monthly income', () => {
@@ -108,7 +108,7 @@ describe('Payment Estimator', () => {
       taxDeductions: 100,
       ssDeductions: 100,
       retirementContributions: 50,
-      otherChildSupport: 100,
+      otherChildSupport: 400,
     }
     expect(calculatePayment(opts)).toBe(897)
   })
@@ -121,7 +121,7 @@ describe('Payment Estimator', () => {
       taxDeductions: 100,
       ssDeductions: 100,
       retirementContributions: 50,
-      otherChildSupport: 100,
+      otherChildSupport: 200,
     }
     expect(calculatePayment(opts)).toBe(1363)
   })
