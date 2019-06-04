@@ -249,9 +249,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
 exports.supportNewEmployerUnkownPhone = async agent => {
   const newEmployerPhone = 'Unknown phone number'
   try {
-    await agent.add(
-      `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-    )
+    await agent.add(`Please describe your request.`)
     await agent.context.set({
       name: 'waiting-support-collect-issue',
       lifespan: 10,
