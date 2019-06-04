@@ -196,9 +196,7 @@ exports.supportCollectNewEmployerName = async agent => {
 exports.supportNoNewEmployer = async agent => {
   const newEmployerName = 'Unknown new employer'
   try {
-    await agent.add(
-      `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-    )
+    await agent.add(`Please describe your request.`)
     await agent.context.set({
       name: 'waiting-support-collect-issue',
       lifespan: 10,
@@ -221,9 +219,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
       formattedPhone
     ).formatNational()
     try {
-      await agent.add(
-        `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-      )
+      await agent.add(`Please describe your request.`)
       await agent.context.set({
         name: 'ticketinfo',
         parameters: { phoneNumber },
@@ -253,9 +249,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
 exports.supportNewEmployerUnkownPhone = async agent => {
   const newEmployerPhone = 'Unknown phone number'
   try {
-    await agent.add(
-      `Please describe your request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
-    )
+    await agent.add(`Please describe your request.`)
     await agent.context.set({
       name: 'waiting-support-collect-issue',
       lifespan: 10,
