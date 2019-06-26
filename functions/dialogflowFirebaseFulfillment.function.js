@@ -103,6 +103,8 @@ const {
   supportType,
   supportCollectCompanyName,
   supportCollectName,
+  supportCollectFirstName,
+  supportCollectLastName,
   supportPhoneNumber,
   supportNoPhoneNumber,
   supportCaseNumber,
@@ -200,10 +202,10 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
@@ -217,6 +219,7 @@ exports = module.exports = functions
 
     const welcome = async agent => {
       try {
+        console.log('hi')
         await agent.add(
           `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
         )
@@ -480,6 +483,8 @@ exports = module.exports = functions
     intentMap.set('support-type', supportType)
     intentMap.set('support-collect-company-name', supportCollectCompanyName)
     intentMap.set('support-collect-name', supportCollectName)
+    intentMap.set('support-collect-first-name', supportCollectFirstName)
+    intentMap.set('support-collect-last-name', supportCollectLastName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
