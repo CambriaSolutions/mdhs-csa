@@ -192,6 +192,12 @@ const {
   feedbackComplete,
 } = require('./feedback.js')
 
+// Genetic Testing
+const {
+  geneticTestingRoot,
+  geneticTestingResults,
+} = require('./geneticTesting.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -536,6 +542,10 @@ exports = module.exports = functions
     intentMap.set('feedback-helpful', feedbackHelpful)
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
+
+    // Genetic Testing intents
+    intentMap.set('geneticTesting-root', geneticTestingRoot)
+    intentMap.set('geneticTesting-results', geneticTestingResults)
 
     agent.handleRequest(intentMap)
   })
