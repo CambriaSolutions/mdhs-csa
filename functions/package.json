@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "serve": "firebase serve --only functions --port=9000",
-    "serve-local": "firebase serve --only functions & ngrok http 9000",
+    "serve-local": "firebase serve --only functions --port=9000 & ngrok http 9000",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "node retrieveCoordinates && firebase deploy --only functions",
