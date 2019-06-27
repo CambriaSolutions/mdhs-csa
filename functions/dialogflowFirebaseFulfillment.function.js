@@ -219,7 +219,6 @@ exports = module.exports = functions
 
     const welcome = async agent => {
       try {
-        console.log('hi')
         await agent.add(
           `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
         )
