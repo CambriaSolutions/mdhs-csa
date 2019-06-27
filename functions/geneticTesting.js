@@ -1,6 +1,6 @@
 const { handleEndConversation } = require('./globalFunctions.js')
 
-exports.geneticTestingRoot = async agent => {
+exports.geneticTestingRequest = async agent => {
   try {
     await agent.add(
       `Genetic testing is available as part of MDHS full services. Full services require a payment of $35.00.`

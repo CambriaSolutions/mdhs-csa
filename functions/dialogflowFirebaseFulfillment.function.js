@@ -194,7 +194,7 @@ const {
 
 // Genetic Testing
 const {
-  geneticTestingRoot,
+  geneticTestingRequest,
   geneticTestingResults,
 } = require('./geneticTesting.js')
 
@@ -544,7 +544,7 @@ exports = module.exports = functions
     intentMap.set('feedback-complete', feedbackComplete)
 
     // Genetic Testing intents
-    intentMap.set('geneticTesting-root', geneticTestingRoot)
+    intentMap.set('geneticTesting-request', geneticTestingRequest)
     intentMap.set('geneticTesting-results', geneticTestingResults)
 
     agent.handleRequest(intentMap)
