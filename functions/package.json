@@ -2,7 +2,8 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
-    "serve": "firebase serve --only functions",
+    "serve": "firebase serve --only functions --port=9000",
+    "serve-local": "firebase serve --only functions & ngrok http 9000",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "node retrieveCoordinates && firebase deploy --only functions",
@@ -24,7 +25,7 @@
     "dialogflow-fulfillment": "github:dialogflow/dialogflow-fulfillment-nodejs",
     "dotenv": "^8.0.0",
     "firebase-admin": "^8.0.0",
-    "firebase-functions": "^2.3.1",
+    "firebase-functions": "^3.0.2",
     "firebase-tools": "^7.0.1",
     "glob": "^7.1.4",
     "grpc": "^1.21.1",
