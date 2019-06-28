@@ -7,6 +7,7 @@ const {
 const {
   handleEndConversation,
   formatCurrency,
+  disableInput,
 } = require('./globalFunctions.js')
 
 // User starts calculations process
@@ -28,6 +29,8 @@ const startCalculationProcess = async agent => {
       'If you need to know the exact amount you owe, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
     )
     await agent.add(new Suggestion('I Understand'))
+    // Force user to select suggestion
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-pmt-calc-num-children',
       lifespan: 3,
