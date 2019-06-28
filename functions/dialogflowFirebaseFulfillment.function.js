@@ -102,7 +102,6 @@ const {
   supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
-  supportCollectName,
   supportCollectFirstName,
   supportCollectLastName,
   supportPhoneNumber,
