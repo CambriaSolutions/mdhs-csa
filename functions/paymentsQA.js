@@ -1,6 +1,10 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
-const { supportInquiries, supportReviewPayments } = require('./support.js')
+const {
+  supportInquiries,
+  supportReviewPayments,
+  supportEmploymentStatus,
+} = require('./support.js')
 
 exports.pmtQAHaventReceived = async agent => {
   try {
@@ -70,6 +74,49 @@ exports.pmtQAOver21SubmitRequest = async agent => {
       parameters: { supportType: 'inquiry' },
     })
     await supportInquiries(agent)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.pmtQAEmployerPaymentStatus = async agent => {
+  try {
+    await agent.add(`Have you reported your employer to CSE?`)
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion(`No`))
+
+    await agent.context.set({
+      name: 'waiting-pmtqa-yes-employer-payment-status',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.pmtQAYesEmployerPaymentStatus = async agent => {
+  try {
+    const reportCSE = agent.parameters.reportCSE
+    console.log(12321321, reportCSE)
+
+    if (reportCSE === 'yes') {
+      await agent.context.set({
+        name: 'ticketinfo',
+        lifespan: 100,
+        parameters: { supportType: 'inquiry' },
+      })
+      await supportInquiries(agent)
+    } else {
+      await agent.context.set({
+        name: 'ticketinfo',
+        lifespan: 100,
+        parameters: {
+          supportType: 'Change of Employment Status',
+          employmentChangeType: 'Change Or Add Employer',
+        },
+      })
+      await supportEmploymentStatus(agent)
+    }
   } catch (err) {
     console.log(err)
   }
