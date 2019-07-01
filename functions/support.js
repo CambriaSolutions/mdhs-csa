@@ -153,10 +153,10 @@ exports.supportHandleEmploymentStatus = async agent => {
   const supportType = `Change of Employment Status`
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your **First Name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-name',
+      name: 'waiting-support-collect-first-name',
       lifespan: 3,
     })
     await agent.context.set({
@@ -280,10 +280,10 @@ exports.supportType = async agent => {
   }
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your first and last name?`
+      `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your **First Name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-name',
+      name: 'waiting-support-collect-first-name',
       lifespan: 3,
     })
     await agent.context.set({
@@ -296,15 +296,57 @@ exports.supportType = async agent => {
   }
 }
 
+exports.supportCollectFirstName = async agent => {
+  const firstName = agent.parameters.firstName
+  try {
+    await agent.add(`Thanks ${firstName}, what is your **Last Name**?`)
+
+    await agent.context.set({
+      name: 'waiting-support-collect-last-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { firstName },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportCollectLastName = async agent => {
+  const lastName = agent.parameters.lastName
+  try {
+    await agent.add(
+      `What is your phone number so we can reach out to you with a solution?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-phone-number',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-no-phone-number',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      parameters: { lastName },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 exports.supportInquiries = async agent => {
   const supportType = 'inquiry'
 
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your **First Name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-name',
+      name: 'waiting-support-collect-first-name',
       lifespan: 3,
     })
     await agent.context.set({
@@ -320,10 +362,10 @@ exports.supportInquiries = async agent => {
 exports.supportReviewPayments = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your first and last name?`
+      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your **First Name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-name',
+      name: 'waiting-support-collect-first-name',
       lifespan: 3,
     })
     await agent.context.set({
@@ -333,45 +375,6 @@ exports.supportReviewPayments = async agent => {
     })
   } catch (err) {
     console.error(err)
-  }
-}
-
-exports.supportCollectName = async agent => {
-  const firstName = toTitleCase(agent.parameters.firstName)
-  const lastName = toTitleCase(agent.parameters.lastName)
-
-  if (firstName && lastName) {
-    try {
-      await agent.add(
-        `Thanks, ${firstName}. What is your phone number so we can reach out to you with a solution?`
-      )
-      await agent.context.set({
-        name: 'waiting-support-phone-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'waiting-support-no-phone-number',
-        lifespan: 3,
-      })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { firstName: firstName, lastName: lastName },
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  } else {
-    try {
-      await agent.add(
-        `Sorry, I didn't catch that. What's your first and last name?`
-      )
-      await agent.context.set({
-        name: 'waiting-support-name',
-        lifespan: 3,
-      })
-    } catch (err) {
-      console.error(err)
-    }
   }
 }
 

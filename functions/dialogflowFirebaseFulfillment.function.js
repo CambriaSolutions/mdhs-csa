@@ -102,7 +102,8 @@ const {
   supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
-  supportCollectName,
+  supportCollectFirstName,
+  supportCollectLastName,
   supportPhoneNumber,
   supportNoPhoneNumber,
   supportCaseNumber,
@@ -480,6 +481,8 @@ exports = module.exports = functions
     intentMap.set('support-type', supportType)
     intentMap.set('support-collect-company-name', supportCollectCompanyName)
     intentMap.set('support-collect-name', supportCollectName)
+    intentMap.set('support-collect-first-name', supportCollectFirstName)
+    intentMap.set('support-collect-last-name', supportCollectLastName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
