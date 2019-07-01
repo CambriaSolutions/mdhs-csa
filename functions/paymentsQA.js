@@ -41,3 +41,36 @@ exports.pmtQAYesPaymentReduction = async agent => {
     console.log(err)
   }
 }
+
+exports.pmtQAOver21 = async agent => {
+  try {
+    await agent.add(
+      `If you owe back child support, you still have to pay that support. There are other special circumstances that may also require continued payments. If you would like more information, I can help you submit a support request.`
+    )
+    await agent.add(new Suggestion('Submit Support Request'))
+    await agent.add(new Suggestion(`Home`))
+    await agent.context.set({
+      name: 'waiting-pmtQA-over-21-submit-request',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-restart-conversation',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.pmtQAOver21SubmitRequest = async agent => {
+  try {
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'inquiry' },
+    })
+    await supportInquiries(agent)
+  } catch (err) {
+    console.log(err)
+  }
+}

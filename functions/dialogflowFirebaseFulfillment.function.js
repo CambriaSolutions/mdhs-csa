@@ -208,6 +208,8 @@ const {
   pmtQAHaventReceived,
   pmtQAPaymentReduction,
   pmtQAYesPaymentReduction,
+  pmtQAOver21,
+  pmtQAOver21SubmitRequest,
 } = require('./paymentsQA.js')
 
 exports = module.exports = functions
@@ -558,6 +560,8 @@ exports = module.exports = functions
     intentMap.set('pmtQA-havent-received', pmtQAHaventReceived)
     intentMap.set('pmtQA-payment-reduction', pmtQAPaymentReduction)
     intentMap.set('pmtQA-yes-payment-reduction', pmtQAYesPaymentReduction)
+    intentMap.set('pmtQA-over-21', pmtQAOver21)
+    intentMap.set('pmtQA-over-21-submit-request', pmtQAOver21SubmitRequest)
 
     agent.handleRequest(intentMap)
   })
