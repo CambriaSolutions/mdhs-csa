@@ -68,11 +68,6 @@ exports.pmtQAOver21 = async agent => {
 
 exports.pmtQAOver21SubmitRequest = async agent => {
   try {
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'inquiry' },
-    })
     await supportInquiries(agent)
   } catch (err) {
     console.log(err)
@@ -99,11 +94,6 @@ exports.pmtQAYesEmployerPaymentStatus = async agent => {
     const reportCSE = agent.parameters.reportCSE
 
     if (reportCSE === 'yes') {
-      await agent.context.set({
-        name: 'ticketinfo',
-        lifespan: 100,
-        parameters: { supportType: 'inquiry' },
-      })
       await supportInquiries(agent)
     } else {
       await agent.context.set({
@@ -146,11 +136,6 @@ exports.pmtQANCPPaymentStatus = async agent => {
 
 exports.pmtQANCPPaymentStatusSubmitRequest = async agent => {
   try {
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'inquiry' },
-    })
     await supportInquiries(agent)
   } catch (err) {
     console.log(err)
