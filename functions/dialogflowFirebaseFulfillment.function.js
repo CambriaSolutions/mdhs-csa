@@ -75,10 +75,10 @@ const {
 } = require('./openChildSupportCase.js')
 
 // Close Child Support Case
-const {
-  closeCSCQACloseCase,
-  closeCSCQAReviewCase,
-} = require('./closeChildSupportCase.js')
+const { closeCSCQACloseCase } = require('./closeChildSupportCase.js')
+
+// Case specific intents
+const { caseQAIncreaseReview } = require('./caseQA.js')
 
 // Appointments intents
 const {
@@ -472,7 +472,6 @@ exports = module.exports = functions
 
     // Open a Child Support Case
     intentMap.set('close-cscQA-close-case', closeCSCQACloseCase)
-    intentMap.set('close-cscQA-review-case', closeCSCQAReviewCase)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
@@ -527,6 +526,9 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+
+    // Case specific intents
+    intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
 
     // Map intents
     intentMap.set('map-root', mapRoot)
