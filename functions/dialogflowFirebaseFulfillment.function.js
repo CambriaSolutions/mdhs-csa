@@ -82,6 +82,7 @@ const {
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
   apptsGuidelines,
+  apptsQAOfficeHours,
 } = require('./appointments.js')
 
 // Support intents
@@ -468,6 +469,7 @@ exports = module.exports = functions
     intentMap.set('appts-yes-contacted', apptsYesContacted)
     intentMap.set('appts-office-locations-handoff', apptsOfficeLocationsHandoff)
     intentMap.set('appts-guidelines', apptsGuidelines)
+    intentMap.set('apptsQA-office-hours', apptsQAOfficeHours)
 
     // Support intents
     intentMap.set('support-root', supportRoot)

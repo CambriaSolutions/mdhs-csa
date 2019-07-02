@@ -1,6 +1,7 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 const { mapRoot } = require('./map.js')
+
 exports.apptsRoot = async agent => {
   try {
     await agent.add(
@@ -112,5 +113,17 @@ exports.apptsGuidelines = async agent => {
     await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
+  }
+}
+
+exports.apptsQAOfficeHours = async agent => {
+  try {
+    await agent.context.set({
+      name: 'waiting-appts-not-contacted',
+      lifespan: 2,
+    })
+    this.apptsNoContacted(agent)
+  } catch (err) {
+    console.error(err)
   }
 }
