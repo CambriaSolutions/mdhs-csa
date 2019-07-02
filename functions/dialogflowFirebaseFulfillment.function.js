@@ -183,6 +183,7 @@ const {
   iwoWhenToBegin,
   iwoEmployerSubmitPayments,
   iwoPaymentsHandoff,
+  iwoQAArrearsBalance,
 } = require('./incomeWithholding.js')
 
 // Feedback
@@ -417,6 +418,7 @@ exports = module.exports = functions
     intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
     intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
     intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
+    intentMap.set('iwoQA-arrears-balance', iwoQAArrearsBalance)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)

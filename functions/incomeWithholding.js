@@ -5,6 +5,7 @@ const {
   formatCurrency,
 } = require('./globalFunctions.js')
 const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
+const { supportPaymentHistory } = require('./support.js')
 
 exports.iwoRoot = async agent => {
   try {
@@ -333,6 +334,14 @@ exports.iwoWhenToBegin = async agent => {
 exports.iwoHowLongToSend = async agent => {
   try {
     await agent.add(`7 days`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoQAArrearsBalance = async agent => {
+  try {
+    supportPaymentHistory(agent)
   } catch (err) {
     console.error(err)
   }

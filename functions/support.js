@@ -336,6 +336,25 @@ exports.supportReviewPayments = async agent => {
   }
 }
 
+exports.supportPaymentHistory = async agent => {
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'request payment history or record' },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 exports.supportCollectName = async agent => {
   const firstName = toTitleCase(agent.parameters.firstName)
   const lastName = toTitleCase(agent.parameters.lastName)
