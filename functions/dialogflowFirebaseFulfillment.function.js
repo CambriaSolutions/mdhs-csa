@@ -101,6 +101,7 @@ const {
   supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
+  supportCollectName,
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
@@ -192,6 +193,17 @@ const {
   feedbackNotHelpful,
   feedbackComplete,
 } = require('./feedback.js')
+
+// Support QA
+const {
+  supportQACpPictureId,
+  supportQAWhoCanApply,
+  supportQAOtherState,
+  supportQANcpPrison,
+} = require('./supportQA.js')
+
+// Emancipation QA
+const { emancipationAge } = require('./emancipationQA.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -539,6 +551,15 @@ exports = module.exports = functions
     intentMap.set('feedback-helpful', feedbackHelpful)
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
+
+    // Support QA intents
+    intentMap.set('support-qa-cp-pictureId', supportQACpPictureId)
+    intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
+    intentMap.set('support-qa-other-state', supportQAOtherState)
+    intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
+
+    // Emancipation QA intents
+    intentMap.set('emancipation-qa-age', emancipationAge)
 
     agent.handleRequest(intentMap)
   })
