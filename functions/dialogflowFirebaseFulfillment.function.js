@@ -78,7 +78,11 @@ const {
 const { closeCSCQACloseCase } = require('./closeChildSupportCase.js')
 
 // Case specific intents
-const { caseQAIncreaseReview } = require('./caseQA.js')
+const {
+  caseQAIncreaseReview,
+  caseQAGeneral,
+  caseQAGeneralSupportRequest,
+} = require('./caseQA.js')
 
 // Appointments intents
 const {
@@ -529,6 +533,8 @@ exports = module.exports = functions
 
     // Case specific intents
     intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
+    intentMap.set('caseQA-general', caseQAGeneral)
+    intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
 
     // Map intents
     intentMap.set('map-root', mapRoot)
