@@ -212,6 +212,8 @@ const {
   pmtQAOver21SubmitRequest,
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
+  pmtQANCPPaymentStatus,
+  pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
 exports = module.exports = functions
@@ -568,6 +570,11 @@ exports = module.exports = functions
     intentMap.set(
       'pmtQA-yes-employer-payment-status',
       pmtQAYesEmployerPaymentStatus
+    )
+    intentMap.set('pmtQA-NCP-payment-status', pmtQANCPPaymentStatus)
+    intentMap.set(
+      'pmtQA-NCP-payment-status-submit-request',
+      pmtQANCPPaymentStatusSubmitRequest
     )
 
     agent.handleRequest(intentMap)
