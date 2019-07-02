@@ -75,7 +75,10 @@ const {
 } = require('./openChildSupportCase.js')
 
 // Close Child Support Case
-const { closeCSCQACloseCase } = require('./closeChildSupportCase.js')
+const {
+  closeCSCQACloseCase,
+  closeCSCQAReviewCase,
+} = require('./closeChildSupportCase.js')
 
 // Appointments intents
 const {
@@ -469,6 +472,7 @@ exports = module.exports = functions
 
     // Open a Child Support Case
     intentMap.set('close-cscQA-close-case', closeCSCQACloseCase)
+    intentMap.set('close-cscQA-review-case', closeCSCQAReviewCase)
 
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
