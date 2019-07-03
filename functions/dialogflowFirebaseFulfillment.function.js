@@ -101,6 +101,7 @@ const {
   supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
+  supportCollectName,
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
@@ -193,6 +194,21 @@ const {
   feedbackComplete,
 } = require('./feedback.js')
 
+// Support QA
+const {
+  supportQACpPictureId,
+  supportQAWhoCanApply,
+  supportQAOtherState,
+  supportQANcpPrison,
+  supportQACpGoodCauseClaim,
+} = require('./supportQA.js')
+
+// Emancipation QA
+const { emancipationAge } = require('./emancipationQA.js')
+
+// Contact QA
+const { contactQANumber } = require('./contactQA.js')
+
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -219,7 +235,7 @@ exports = module.exports = functions
     const welcome = async agent => {
       try {
         await agent.add(
-          `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
+          `Hi, I'm Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?`
         )
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
@@ -539,6 +555,19 @@ exports = module.exports = functions
     intentMap.set('feedback-helpful', feedbackHelpful)
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
+
+    // Support QA intents
+    intentMap.set('support-qa-cp-pictureId', supportQACpPictureId)
+    intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
+    intentMap.set('support-qa-other-state', supportQAOtherState)
+    intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
+    intentMap.set('support-qa-cp-good-clause-claim', supportQACpGoodCauseClaim)
+
+    // Emancipation QA intents
+    intentMap.set('emancipation-qa-age', emancipationAge)
+
+    // Contact QA intents
+    intentMap.set('contact-qa-number', contactQANumber)
 
     agent.handleRequest(intentMap)
   })

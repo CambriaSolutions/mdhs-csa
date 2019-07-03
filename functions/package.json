@@ -40,5 +40,8 @@
   "private": true,
   "devDependencies": {
     "jest": "^24.8.0"
+  },
+  "engines": {
+    "node": "8"
   }
 }
