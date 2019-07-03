@@ -48,3 +48,31 @@ exports.caseQAChangePersonalInfo = async agent => {
     console.error(err)
   }
 }
+
+exports.caseQACompliance = async agent => {
+  try {
+    await agent.add(
+      `You may submit an action request here, or call the support number at <a href="tel:+18778824916">877-882-4916</a>`
+    )
+    await agent.add(new Suggestion('Submit Action Request'))
+    await agent.add(new Suggestion(`Home`))
+    await agent.context.set({
+      name: 'waiting-caseQA-compliance-support-request',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-restart-conversation',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.caseQAComplianceSupportRequest = async agent => {
+  try {
+    await supportInquiries(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
