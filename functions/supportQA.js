@@ -43,7 +43,16 @@ exports.supportQANcpPrison = async agent => {
 exports.supportQACpGoodCauseClaim = async agent => {
   try {
     await agent.add(
-      `Yes, good cause can be documented through the use of one of the following: Protective Order, Birth Certificate, medical or law enforcement records indicating the child was conceived as the result of incest or forcible rape, Court documents or other records that show legal proceedings for adoption are pending, A written statement from a public or licensed private social agency that the custodial parent is being assisted by the agency in resolving whether to keep the child or relinquish the child for adoption, Court, medical, criminal child protective services, social services, psychological or law enforcement records which indicate that the other parent might inflict physical or emotional harm on the child or custodial parent, Medical records or statements from a mental health professional regarding the emotional health of the child or custodial parent which indicate that cooperating with child support may result in emotional harm to the child or custodial parent.`
+      `Yes, good cause can be documented through the use of one of the following: 
+        <ul>
+            <li>Protective Order.</li>
+            <li>Birth Certificate.</li>
+            <li>Medical or law enforcement records indicating the child was conceived as the result of incest or forcible rape.</li>
+            <li>Court documents or other records that show legal proceedings for adoption are pending.</li>
+            <li>A written statement from a public or licensed private social agency that the custodial parent is being assisted by the agency in resolving whether to keep the child or relinquish the child for adoption.</li>
+            <li>Court, medical, criminal child protective services, social services, psychological or law enforcement records which indicate that the other parent might inflict physical or emotional harm on the child or custodial parent.</li>
+            <li>Medical records or statements from a mental health professional regarding the emotional health of the child or custodial parent which indicate that cooperating with child support may result in emotional harm to the child or custodial parent.</li>
+        </ul>`
     )
     await handleEndConversation(agent)
   } catch (err) {
