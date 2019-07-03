@@ -82,6 +82,7 @@ const {
   caseQAIncreaseReview,
   caseQAGeneral,
   caseQAGeneralSupportRequest,
+  caseQAChangePersonalInfo,
 } = require('./caseQA.js')
 
 // Appointments intents
@@ -535,6 +536,7 @@ exports = module.exports = functions
     intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
     intentMap.set('caseQA-general', caseQAGeneral)
     intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
+    intentMap.set('caseQA-change-personal-info', caseQAChangePersonalInfo)
 
     // Map intents
     intentMap.set('map-root', mapRoot)

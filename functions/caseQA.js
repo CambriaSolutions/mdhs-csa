@@ -1,5 +1,9 @@
 const { Suggestion } = require('dialogflow-fulfillment')
-const { supportReviewPayments, supportInquiries } = require('./support.js')
+const {
+  supportReviewPayments,
+  supportInquiries,
+  supportChangePersonalInfo,
+} = require('./support.js')
 
 exports.caseQAIncreaseReview = async agent => {
   try {
@@ -32,6 +36,14 @@ exports.caseQAGeneral = async agent => {
 exports.caseQAGeneralSupportRequest = async agent => {
   try {
     await supportInquiries(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.caseQAChangePersonalInfo = async agent => {
+  try {
+    await supportChangePersonalInfo(agent)
   } catch (err) {
     console.error(err)
   }
