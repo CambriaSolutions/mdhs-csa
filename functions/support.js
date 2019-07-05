@@ -280,7 +280,7 @@ exports.supportType = async agent => {
   }
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your **First Name**?`
+      `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -299,7 +299,7 @@ exports.supportType = async agent => {
 exports.supportCollectFirstName = async agent => {
   const firstName = agent.parameters.firstName
   try {
-    await agent.add(`Thanks ${firstName}, what is your **Last Name**?`)
+    await agent.add(`Thanks ${firstName}, what is your **last name**?`)
 
     await agent.context.set({
       name: 'waiting-support-collect-last-name',

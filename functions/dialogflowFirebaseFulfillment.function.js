@@ -118,6 +118,7 @@ const {
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
+  supportCollectName,
   supportPhoneNumber,
   supportNoPhoneNumber,
   supportCaseNumber,
