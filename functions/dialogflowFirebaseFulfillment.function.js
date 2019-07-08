@@ -1,10 +1,9 @@
 const functions = require('firebase-functions')
-const req = require('request')
-const { WebhookClient } = require('dialogflow-fulfillment')
-const { Suggestion } = require('dialogflow-fulfillment')
+const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const {
   handleEndConversation,
   startRootConversation,
+  disableInput,
 } = require('./globalFunctions.js')
 
 // General payment intents
@@ -116,6 +115,7 @@ const {
   supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
+  supportCollectName,
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
@@ -215,6 +215,20 @@ const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./geneticTesting.js')
+// Support QA
+const {
+  supportQACpPictureId,
+  supportQAWhoCanApply,
+  supportQAOtherState,
+  supportQANcpPrison,
+  supportQACpGoodCauseClaim,
+} = require('./supportQA.js')
+
+// Emancipation QA
+const { emancipationAge } = require('./emancipationQA.js')
+
+// Contact QA
+const { contactQANumber } = require('./contactQA.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -255,8 +269,9 @@ exports = module.exports = functions
     const welcome = async agent => {
       try {
         await agent.add(
-          `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
+          `Hi, I'm Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?`
         )
+        await disableInput(agent)
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
         await agent.context.set({
@@ -292,6 +307,7 @@ exports = module.exports = functions
           `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and that you wish to continue.`
         )
         await agent.add(new Suggestion('I Acknowledge'))
+        await disableInput(agent)
         await agent.context.set({
           name: 'waiting-acknowledge-privacy-statement',
           lifespan: 2,
@@ -613,6 +629,18 @@ exports = module.exports = functions
       'pmtQA-NCP-payment-status-submit-request',
       pmtQANCPPaymentStatusSubmitRequest
     )
+    // Support QA intents
+    intentMap.set('support-qa-cp-pictureId', supportQACpPictureId)
+    intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
+    intentMap.set('support-qa-other-state', supportQAOtherState)
+    intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
+    intentMap.set('support-qa-cp-good-clause-claim', supportQACpGoodCauseClaim)
+
+    // Emancipation QA intents
+    intentMap.set('emancipation-qa-age', emancipationAge)
+
+    // Contact QA intents
+    intentMap.set('contact-qa-number', contactQANumber)
 
     agent.handleRequest(intentMap)
   })

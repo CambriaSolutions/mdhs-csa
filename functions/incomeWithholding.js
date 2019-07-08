@@ -3,6 +3,7 @@ const {
   calculatePercentage,
   handleEndConversation,
   formatCurrency,
+  disableInput,
 } = require('./globalFunctions.js')
 const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
 const { supportPaymentHistory } = require('./support.js')
@@ -125,6 +126,8 @@ exports.iwoConfirmEstimate = async agent => {
       `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
     await agent.add(new Suggestion('I Understand'))
+    // Force user to select suggestion
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-iwo-request-disposable-income',
       lifespan: 2,
