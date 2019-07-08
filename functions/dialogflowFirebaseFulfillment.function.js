@@ -200,7 +200,6 @@ const {
   supportQAWhoCanApply,
   supportQAOtherState,
   supportQANcpPrison,
-  supportQACpGoodCauseClaim,
 } = require('./supportQA.js')
 
 // Emancipation QA
@@ -563,7 +562,6 @@ exports = module.exports = functions
     intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
     intentMap.set('support-qa-other-state', supportQAOtherState)
     intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
-    intentMap.set('support-qa-cp-good-clause-claim', supportQACpGoodCauseClaim)
 
     // Emancipation QA intents
     intentMap.set('emancipation-qa-age', emancipationAge)
