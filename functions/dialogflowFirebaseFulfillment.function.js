@@ -115,7 +115,6 @@ const {
   supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
-  supportCollectName,
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
