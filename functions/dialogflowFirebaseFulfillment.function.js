@@ -74,6 +74,19 @@ const {
   openCSCNoService,
 } = require('./openChildSupportCase.js')
 
+// Close Child Support Case
+const { closeCSCQACloseCase } = require('./closeChildSupportCase.js')
+
+// Case specific intents
+const {
+  caseQAIncreaseReview,
+  caseQAGeneral,
+  caseQAGeneralSupportRequest,
+  caseQAChangePersonalInfo,
+  caseQACompliance,
+  caseQAComplianceSupportRequest,
+} = require('./caseQA.js')
+
 // Appointments intents
 const {
   apptsRoot,
@@ -82,6 +95,8 @@ const {
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
   apptsGuidelines,
+  apptsQAOfficeHours,
+  apptsQAMissedAppt,
 } = require('./appointments.js')
 
 // Support intents
@@ -101,10 +116,10 @@ const {
   supportNewEmployerUnkownPhone,
   supportCollectNewEmployerPhone,
   supportType,
-  supportCollectName,
   supportCollectCompanyName,
   supportCollectFirstName,
   supportCollectLastName,
+  supportCollectName,
   supportPhoneNumber,
   supportNoPhoneNumber,
   supportCaseNumber,
@@ -184,6 +199,7 @@ const {
   iwoWhenToBegin,
   iwoEmployerSubmitPayments,
   iwoPaymentsHandoff,
+  iwoQAArrearsBalance,
 } = require('./incomeWithholding.js')
 
 // Feedback
@@ -194,6 +210,11 @@ const {
   feedbackComplete,
 } = require('./feedback.js')
 
+// Genetic Testing
+const {
+  geneticTestingRequest,
+  geneticTestingResults,
+} = require('./geneticTesting.js')
 // Support QA
 const {
   supportQACpPictureId,
@@ -213,6 +234,19 @@ const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
 }
+
+// Payments QA
+const {
+  pmtQAHaventReceived,
+  pmtQAPaymentReduction,
+  pmtQAYesPaymentReduction,
+  pmtQAOver21,
+  pmtQAOver21SubmitRequest,
+  pmtQAEmployerPaymentStatus,
+  pmtQAYesEmployerPaymentStatus,
+  pmtQANCPPaymentStatus,
+  pmtQANCPPaymentStatusSubmitRequest,
+} = require('./paymentsQA.js')
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
@@ -416,6 +450,7 @@ exports = module.exports = functions
     intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
     intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
     intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
+    intentMap.set('iwoQA-arrears-balance', iwoQAArrearsBalance)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
@@ -461,6 +496,9 @@ exports = module.exports = functions
     intentMap.set('open-csc-employer-payments', openCSCCollectionEmployer)
     intentMap.set('open-csc-no-service', openCSCNoService)
 
+    // Open a Child Support Case
+    intentMap.set('close-cscQA-close-case', closeCSCQACloseCase)
+
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
     intentMap.set('appts-schedule', apptsSchedule)
@@ -468,6 +506,8 @@ exports = module.exports = functions
     intentMap.set('appts-yes-contacted', apptsYesContacted)
     intentMap.set('appts-office-locations-handoff', apptsOfficeLocationsHandoff)
     intentMap.set('appts-guidelines', apptsGuidelines)
+    intentMap.set('apptsQA-office-hours', apptsQAOfficeHours)
+    intentMap.set('apptsQA-missed-appt', apptsQAMissedAppt)
 
     // Support intents
     intentMap.set('support-root', supportRoot)
@@ -516,6 +556,17 @@ exports = module.exports = functions
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
 
+    // Case specific intents
+    intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
+    intentMap.set('caseQA-general', caseQAGeneral)
+    intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
+    intentMap.set('caseQA-change-personal-info', caseQAChangePersonalInfo)
+    intentMap.set('caseQA-compliance', caseQACompliance)
+    intentMap.set(
+      'caseQA-compliance-support-request',
+      caseQAComplianceSupportRequest
+    )
+
     // Map intents
     intentMap.set('map-root', mapRoot)
     intentMap.set('map-deliver-map', mapDeliverMap)
@@ -558,6 +609,26 @@ exports = module.exports = functions
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
 
+    // Genetic Testing intents
+    intentMap.set('geneticTesting-request', geneticTestingRequest)
+    intentMap.set('geneticTesting-results', geneticTestingResults)
+
+    // Payments QA intents
+    intentMap.set('pmtQA-havent-received', pmtQAHaventReceived)
+    intentMap.set('pmtQA-payment-reduction', pmtQAPaymentReduction)
+    intentMap.set('pmtQA-yes-payment-reduction', pmtQAYesPaymentReduction)
+    intentMap.set('pmtQA-over-21', pmtQAOver21)
+    intentMap.set('pmtQA-over-21-submit-request', pmtQAOver21SubmitRequest)
+    intentMap.set('pmtQA-employer-payment-status', pmtQAEmployerPaymentStatus)
+    intentMap.set(
+      'pmtQA-yes-employer-payment-status',
+      pmtQAYesEmployerPaymentStatus
+    )
+    intentMap.set('pmtQA-NCP-payment-status', pmtQANCPPaymentStatus)
+    intentMap.set(
+      'pmtQA-NCP-payment-status-submit-request',
+      pmtQANCPPaymentStatusSubmitRequest
+    )
     // Support QA intents
     intentMap.set('support-qa-cp-pictureId', supportQACpPictureId)
     intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
