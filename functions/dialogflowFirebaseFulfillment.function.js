@@ -1,10 +1,9 @@
 const functions = require('firebase-functions')
-const req = require('request')
-const { WebhookClient } = require('dialogflow-fulfillment')
-const { Suggestion } = require('dialogflow-fulfillment')
+const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const {
   handleEndConversation,
   startRootConversation,
+  disableInput,
 } = require('./globalFunctions.js')
 
 // General payment intents
@@ -237,6 +236,7 @@ exports = module.exports = functions
         await agent.add(
           `Hi, I'm Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?`
         )
+        await disableInput(agent)
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
         await agent.context.set({
@@ -272,6 +272,7 @@ exports = module.exports = functions
           `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and that you wish to continue.`
         )
         await agent.add(new Suggestion('I Acknowledge'))
+        await disableInput(agent)
         await agent.context.set({
           name: 'waiting-acknowledge-privacy-statement',
           lifespan: 2,
