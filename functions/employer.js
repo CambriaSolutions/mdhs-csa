@@ -42,7 +42,7 @@ exports.employerIPayOnline = async agent => {
 exports.employerChecksMoneyOrders = async agent => {
   try {
     await agent.add(
-      `The employer may submit payments to the State Disbursement Unit per the Income Witholding Order. Submit payments to:
+      `The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:
          MDHS/SDU
          PO Box 23094
          Jackson, MS 39225
