@@ -134,6 +134,7 @@ const {
   supportSummarizeIssue,
   supportReviseIssue,
   supportSumbitIssue,
+  supportCancel,
 } = require('./support.js')
 
 // Map intents
@@ -221,7 +222,6 @@ const {
   supportQAWhoCanApply,
   supportQAOtherState,
   supportQANcpPrison,
-  supportQACpGoodCauseClaim,
 } = require('./supportQA.js')
 
 // Emancipation QA
@@ -634,13 +634,15 @@ exports = module.exports = functions
     intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
     intentMap.set('support-qa-other-state', supportQAOtherState)
     intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
-    intentMap.set('support-qa-cp-good-clause-claim', supportQACpGoodCauseClaim)
 
     // Emancipation QA intents
     intentMap.set('emancipation-qa-age', emancipationAge)
 
     // Contact QA intents
     intentMap.set('contact-qa-number', contactQANumber)
+
+    // Cancel intent
+    intentMap.set('support-cancel', supportCancel)
 
     agent.handleRequest(intentMap)
   })
