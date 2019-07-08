@@ -230,7 +230,7 @@ exports.iwoEmployerSubmitPayments = async agent => {
       `For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>`
     )
     await agent.add(
-      `The employer may submit payments to the State Disbursement Unit per the Income Witholding Order. Submit payments to:
+      `The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:
          MDHS/SDU
          PO Box 23094
          Jackson, MS 39225

@@ -10,6 +10,8 @@ exports.handleEndConversation = async agent => {
     helpMessages[Math.floor(Math.random() * helpMessages.length)]
   await agent.add(helpMessage)
   await agent.add(new Suggestion(`Home`))
+  await agent.add(new Suggestion(`Submit Feedback`))
+
   await agent.context.set({
     name: 'waiting-feedback-root',
     lifespan: 2,
