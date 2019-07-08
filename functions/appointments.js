@@ -127,3 +127,15 @@ exports.apptsQAOfficeHours = async agent => {
     console.error(err)
   }
 }
+
+exports.apptsQAMissedAppt = async agent => {
+  try {
+    await agent.context.set({
+      name: 'waiting-appts-yes-contacted',
+      lifespan: 2,
+    })
+    this.apptsYesContacted(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
