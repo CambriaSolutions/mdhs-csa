@@ -108,7 +108,7 @@ exports.openCSCLocationServices = async agent => {
 exports.openCSCCollectionEmployer = async agent => {
   try {
     await agent.add(
-      `For this service, MDHS does not proivde any enforcement services in order to collect payments. You must already have a court order requiring income to be witheld. Federal and state law requires all income withholding payments to be paid to the state disbursement unit. There is no fee for this service.`
+      `For this service, MDHS does not provide any enforcement services in order to collect payments. You must already have a court order requiring income to be witheld. Federal and state law requires all income withholding payments to be paid to the state disbursement unit. There is no fee for this service.`
     )
     await agent.add(`Is this the service you want?`)
 
