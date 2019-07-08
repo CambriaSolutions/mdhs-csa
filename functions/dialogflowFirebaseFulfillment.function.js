@@ -1,4 +1,5 @@
 const functions = require('firebase-functions')
+const req = require('request')
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const {
   handleEndConversation,
