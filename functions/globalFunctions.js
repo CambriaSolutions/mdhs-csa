@@ -1,4 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Payload } = require('dialogflow-fulfillment')
 
 exports.handleEndConversation = async agent => {
   const helpMessages = [
@@ -131,6 +131,24 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Opening a Child Support Case'))
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Send a payload to disable user input and require suggestion selection
+exports.disableInput = async agent => {
+  try {
+    await agent.add(
+      new Payload(
+        agent.UNSPECIFIED,
+        { disableInput: 'true' },
+        {
+          sendAsMessage: true,
+          rawPayload: true,
+        }
+      )
+    )
   } catch (err) {
     console.error(err)
   }
