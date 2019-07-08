@@ -7,6 +7,7 @@ const {
   validateCaseNumber,
   toTitleCase,
   formatDescriptionText,
+  disableInput,
 } = require('./globalFunctions.js')
 
 const {
@@ -709,6 +710,10 @@ exports.supportCollectIssue = async agent => {
     )
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
+    await agent.add(new Suggestion(`Cancel`))
+    await agent.add(new Suggestion(`Home`))
+    // Force user to select suggestion
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-support-submit-issue',
       lifespan: 3,
@@ -815,5 +820,13 @@ exports.supportSumbitIssue = async agent => {
       `Looks like something has gone wrong! Please try again or call please call <a href="tel:+18778824916">1-877-882-4916</a> to reach a support representative.`
     )
     await handleEndConversation(agent)
+  }
+}
+
+exports.supportCancel = async agent => {
+  try {
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
   }
 }

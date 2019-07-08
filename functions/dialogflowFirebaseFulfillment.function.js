@@ -118,6 +118,7 @@ const {
   supportSummarizeIssue,
   supportReviseIssue,
   supportSumbitIssue,
+  supportCancel,
 } = require('./support.js')
 
 // Map intents
@@ -569,6 +570,9 @@ exports = module.exports = functions
 
     // Contact QA intents
     intentMap.set('contact-qa-number', contactQANumber)
+
+    // Cancel intent
+    intentMap.set('support-cancel', supportCancel)
 
     agent.handleRequest(intentMap)
   })
