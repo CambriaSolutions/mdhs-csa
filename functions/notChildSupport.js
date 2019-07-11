@@ -12,6 +12,7 @@ const { openCSCRoot } = require('./openChildSupportCase.js')
 const { pmtsGeneralRoot } = require('./paymentsGeneral.js')
 const { supportRoot } = require('./support.js')
 
+// User has stated that they are not here for child support
 exports.notChildSupportRoot = async agent => {
   try {
     await agent.add(
@@ -34,6 +35,7 @@ exports.notChildSupportRoot = async agent => {
   }
 }
 
+// Store the request type from the retry above and force acknowledgement
 exports.handleChildSupportRetry = async agent => {
   const childSupportRequestType = agent.parameters.childSupportRequests
   try {
@@ -61,13 +63,13 @@ exports.handleChildSupportRetry = async agent => {
 
 exports.handleAcknowledgementAfterRetry = async agent => {
   try {
-    await mapTypeToIntent(agent)
+    await mapRequestTypeToIntent(agent)
   } catch (err) {
     console.error(err)
   }
 }
 
-const mapTypeToIntent = async agent => {
+const mapRequestTypeToIntent = async agent => {
   const type = await agent.context
     .get('request-type')
     .parameters.childSupportRequestType.toLowerCase()
