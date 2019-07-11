@@ -7,6 +7,12 @@ const {
   disableInput,
 } = require('./globalFunctions.js')
 
+// Not child support intents
+const {
+  notChildSupportRoot,
+  handleChildSupportRetry,
+  handleAcknowledgementAfterRetry,
+} = require('./notChildSupport.js')
 // General payment intents
 const {
   pmtsGeneralRoot,
@@ -251,20 +257,20 @@ const {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const welcome = async agent => {
       try {
@@ -381,8 +387,16 @@ exports = module.exports = functions
     intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
-    intentMap.set('not-child-support', notChildSupport)
+    // intentMap.set('not-child-support', notChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
+
+    // Not child support intents
+    intentMap.set('not-child-support', notChildSupportRoot)
+    intentMap.set('handle-child-support-retry', handleChildSupportRetry)
+    intentMap.set(
+      'acknowledgement-after-retry',
+      handleAcknowledgementAfterRetry
+    )
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
