@@ -1,5 +1,16 @@
 const { Suggestion } = require('dialogflow-fulfillment')
-const { startRootConversation, disableInput } = require('./globalFunctions.js')
+const {
+  startRootConversation,
+  disableInput,
+  caseyHandoff,
+} = require('./globalFunctions.js')
+
+const { apptsRoot } = require('./appointments.js')
+const { employerRoot } = require('./employer.js')
+const { mapRoot } = require('./map.js')
+const { openCSCRoot } = require('./openChildSupportCase.js')
+const { pmtsGeneralRoot } = require('./paymentsGeneral.js')
+const { supportRoot } = require('./support.js')
 
 exports.notChildSupportRoot = async agent => {
   try {
@@ -9,7 +20,8 @@ exports.notChildSupportRoot = async agent => {
     await agent.add(new Suggestion('Common Child Support Requests'))
     await agent.add(new Suggestion('Child Support Appointments'))
     await agent.add(new Suggestion('Child Support Payments'))
-    await agent.add(new Suggestion('Opening a Child Support Case'))
+    await agent.add(new Suggestion('Employer Assistance with Child Support'))
+    await agent.add(new Suggestion('Child Support Case Services'))
     await agent.add(new Suggestion('Child Support Office Locations'))
     await agent.add(new Suggestion('Child Support Policy Manual'))
     await disableInput(agent)
@@ -59,25 +71,28 @@ const mapTypeToIntent = async agent => {
   const type = await agent.context
     .get('request-type')
     .parameters.childSupportRequestType.toLowerCase()
-
+  console.log(type)
   switch (type) {
     case 'common child support requests':
-      await agent.add('Requests intent')
+      await supportRoot(agent)
       break
     case 'child support appointments':
-      await agent.add('Appointments intent')
+      await apptsRoot(agent)
       break
     case 'child support payments':
-      await agent.add('Child Support Payments intent')
+      await pmtsGeneralRoot(agent)
       break
-    case 'opening a child support case':
-      await agent.add('Opening a Child Support Case intent')
+    case 'employer assistance with child support':
+      await employerRoot(agent)
+      break
+    case 'child support case services':
+      await openCSCRoot(agent)
       break
     case 'child support office locations':
-      await agent.add('Child Support Office Locations')
+      await mapRoot(agent)
       break
     case 'child support policy manual':
-      await agent.add('Child Support Policy Manual')
+      await caseyHandoff(agent)
       break
     default:
       await startRootConversation(agent)
