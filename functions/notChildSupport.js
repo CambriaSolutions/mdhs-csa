@@ -15,15 +15,15 @@ const { supportRoot } = require('./support.js')
 exports.notChildSupportRoot = async agent => {
   try {
     await agent.add(
-      `I’m sorry, I am still learning how to help with other issues. Here are the topics I can help you with.`
+      `I’m sorry, I am still learning how to help with other issues. Here are the topics I can help you with relating to **Child Support (CS)**:`
     )
-    await agent.add(new Suggestion('Common Child Support Requests'))
-    await agent.add(new Suggestion('Child Support Appointments'))
-    await agent.add(new Suggestion('Child Support Payments'))
-    await agent.add(new Suggestion('Employer Assistance with Child Support'))
-    await agent.add(new Suggestion('Child Support Case Services'))
-    await agent.add(new Suggestion('Child Support Office Locations'))
-    await agent.add(new Suggestion('Child Support Policy Manual'))
+    await agent.add(new Suggestion('Common CS Requests'))
+    await agent.add(new Suggestion('CS Appointments'))
+    await agent.add(new Suggestion('CS Payments'))
+    await agent.add(new Suggestion('Employer Assistance with CS'))
+    await agent.add(new Suggestion('CS Case Services'))
+    await agent.add(new Suggestion('CS Office Locations'))
+    await agent.add(new Suggestion('CS Policy Manual'))
     await disableInput(agent)
     await agent.context.set({
       name: 'waiting-not-child-support-retry',
@@ -73,25 +73,25 @@ const mapTypeToIntent = async agent => {
     .parameters.childSupportRequestType.toLowerCase()
   console.log(type)
   switch (type) {
-    case 'common child support requests':
+    case 'common cs requests':
       await supportRoot(agent)
       break
-    case 'child support appointments':
+    case 'cs appointments':
       await apptsRoot(agent)
       break
-    case 'child support payments':
+    case 'cs payments':
       await pmtsGeneralRoot(agent)
       break
-    case 'employer assistance with child support':
+    case 'employer assistance with cs':
       await employerRoot(agent)
       break
-    case 'child support case services':
+    case 'cs case services':
       await openCSCRoot(agent)
       break
-    case 'child support office locations':
+    case 'cs office locations':
       await mapRoot(agent)
       break
-    case 'child support policy manual':
+    case 'cs policy manual':
       await caseyHandoff(agent)
       break
     default:
