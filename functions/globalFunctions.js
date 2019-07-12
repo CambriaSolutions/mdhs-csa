@@ -153,3 +153,15 @@ exports.disableInput = async agent => {
     console.error(err)
   }
 }
+
+// Directs the user to Casey
+exports.caseyHandoff = async agent => {
+  try {
+    await agent.add(
+      `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+    )
+    await this.handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}

@@ -2,10 +2,17 @@ const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const {
-  handleEndConversation,
   startRootConversation,
   disableInput,
+  caseyHandoff,
 } = require('./globalFunctions.js')
+
+// Not child support intents
+const {
+  notChildSupportRoot,
+  handleChildSupportRetry,
+  handleAcknowledgementAfterRetry,
+} = require('./notChildSupport.js')
 
 // General payment intents
 const {
@@ -341,38 +348,6 @@ exports = module.exports = functions
       }
     }
 
-    const notChildSupport = async agent => {
-      try {
-        await agent.add(
-          `Sorry, I'm still learning how to help with other issues. Is there anything else I can help with?`
-        )
-        await agent.add(new Suggestion('Yes'))
-        await agent.add(new Suggestion('No'))
-        await agent.context.set({
-          name: 'waiting-not-child-support',
-          lifespan: 2,
-        })
-        await agent.context.set({
-          name: 'waiting-yes-child-support',
-          lifespan: 2,
-        })
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    // Directs the user to Casey
-    const caseyHandoff = async agent => {
-      try {
-        await agent.add(
-          `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
-        )
-        await handleEndConversation(agent)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
     let intentMap = new Map()
 
     intentMap.set('Default Fallback Intent', fallback)
@@ -381,8 +356,15 @@ exports = module.exports = functions
     intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
-    intentMap.set('not-child-support', notChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
+
+    // Not child support intents
+    intentMap.set('not-child-support', notChildSupportRoot)
+    intentMap.set('handle-child-support-retry', handleChildSupportRetry)
+    intentMap.set(
+      'acknowledgement-after-retry',
+      handleAcknowledgementAfterRetry
+    )
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
