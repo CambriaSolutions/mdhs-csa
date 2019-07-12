@@ -158,7 +158,7 @@ exports.disableInput = async agent => {
 exports.caseyHandoff = async agent => {
   try {
     await agent.add(
-      `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+      `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
     )
     await this.handleEndConversation(agent)
   } catch (err) {

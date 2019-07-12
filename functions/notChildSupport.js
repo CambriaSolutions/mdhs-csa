@@ -69,11 +69,11 @@ exports.handleAcknowledgementAfterRetry = async agent => {
   }
 }
 
+// Retrieve the request type from context and map to appropriate intent
 const mapRequestTypeToIntent = async agent => {
   const type = await agent.context
     .get('request-type')
     .parameters.childSupportRequestType.toLowerCase()
-  console.log(type)
   switch (type) {
     case 'common cs requests':
       await supportRoot(agent)
