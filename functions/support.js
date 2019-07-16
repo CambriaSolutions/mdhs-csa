@@ -154,7 +154,7 @@ exports.supportHandleEmploymentStatus = async agent => {
   const supportType = `Change of Employment Status`
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **First Name**?`
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -344,7 +344,7 @@ exports.supportInquiries = async agent => {
 
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **First Name**?`
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -363,7 +363,7 @@ exports.supportInquiries = async agent => {
 exports.supportReviewPayments = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your **First Name**?`
+      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
