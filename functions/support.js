@@ -7,6 +7,7 @@ const {
   validateCaseNumber,
   toTitleCase,
   formatDescriptionText,
+  disableInput,
 } = require('./globalFunctions.js')
 
 const {
@@ -378,6 +379,102 @@ exports.supportReviewPayments = async agent => {
   }
 }
 
+exports.supportPaymentHistory = async agent => {
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'request payment history or record' },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportRequestCaseClosure = async agent => {
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'request case closure' },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportChangePersonalInfo = async agent => {
+  try {
+    await agent.add(
+      `Got it. I have a few questions to make sure your request gets to the right place. What's your first and last name?`
+    )
+    await agent.context.set({
+      name: 'waiting-support-collect-name',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'ticketinfo',
+      lifespan: 100,
+      parameters: { supportType: 'change personal information' },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportCollectName = async agent => {
+  const firstName = toTitleCase(agent.parameters.firstName)
+  const lastName = toTitleCase(agent.parameters.lastName)
+
+  if (firstName && lastName) {
+    try {
+      await agent.add(
+        `Thanks, ${firstName}. What is your phone number so we can reach out to you with a solution?`
+      )
+      await agent.context.set({
+        name: 'waiting-support-phone-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'waiting-support-no-phone-number',
+        lifespan: 3,
+      })
+      await agent.context.set({
+        name: 'ticketinfo',
+        parameters: { firstName: firstName, lastName: lastName },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    try {
+      await agent.add(
+        `Sorry, I didn't catch that. What's your first and last name?`
+      )
+      await agent.context.set({
+        name: 'waiting-support-name',
+        lifespan: 3,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 exports.supportNoPhoneNumber = async agent => {
   const phoneNumber = 'No Phone Number'
   const firstName = agent.context.get('ticketinfo').parameters.firstName
@@ -709,6 +806,10 @@ exports.supportCollectIssue = async agent => {
     )
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
+    await agent.add(new Suggestion(`Cancel`))
+    await agent.add(new Suggestion(`Home`))
+    // Force user to select suggestion
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-support-submit-issue',
       lifespan: 3,
@@ -815,5 +916,13 @@ exports.supportSumbitIssue = async agent => {
       `Looks like something has gone wrong! Please try again or call please call <a href="tel:+18778824916">1-877-882-4916</a> to reach a support representative.`
     )
     await handleEndConversation(agent)
+  }
+}
+
+exports.supportCancel = async agent => {
+  try {
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
   }
 }
