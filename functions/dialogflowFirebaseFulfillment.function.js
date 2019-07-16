@@ -359,7 +359,7 @@ exports = module.exports = functions
     intentMap.set('casey-handoff', caseyHandoff)
 
     // Not child support intents
-    intentMap.set('not-child-support', notChildSupportRoot)
+    intentMap.set('not-child-support-root', notChildSupportRoot)
     intentMap.set('handle-child-support-retry', handleChildSupportRetry)
     intentMap.set(
       'acknowledgement-after-retry',
