@@ -320,7 +320,7 @@ exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
   try {
     await agent.add(
-      `What is your phone number so we can reach out to you with a solution?`
+      `What is your **phone number** so we can reach out to you with a solution?`
     )
     await agent.context.set({
       name: 'waiting-support-phone-number',
