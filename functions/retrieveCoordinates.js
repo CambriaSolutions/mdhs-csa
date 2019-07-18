@@ -5,8 +5,8 @@ const fs = require('fs')
 const parser = require('parse-address')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
-console.log(' ')
-console.log('Retrieving address coordinates ...')
+console.log('\n', 'Retrieving address coordinates ...', '\n')
+
 // Create an array of locations to send to the geocode api
 const locations = [
   '108 S. Whitworth Ave Brookhaven, MS 39601',
@@ -114,7 +114,7 @@ const coordinatesRequests = locations.map(async location => {
         cleanedAddress += `${parsedAddress[addressComponent]} `
       } else {
         // Populate a separate string with the troubling components,
-        // to be added back to the street property upon successfail geocoding retrieval
+        // to be added back to the street property upon successful geocoding retrieval
         addressUnitComponents += `${parsedAddress[addressComponent]} `
       }
     }
