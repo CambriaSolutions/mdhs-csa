@@ -13,7 +13,7 @@ exports.iwoRoot = async agent => {
     await agent.add(
       `Would you like assistance working through the CCPA guidelines to determine how much to withhold? Or do you want to simply ask a question?`
     )
-    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('CCPA Assistance'))
     await agent.add(new Suggestion('FAQs'))
     await agent.context.set({
       name: 'waiting-iwo-wants-assistance',

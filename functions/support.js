@@ -385,13 +385,13 @@ exports.supportPaymentHistory = async agent => {
       `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'ticketinfo',
       lifespan: 100,
       parameters: { supportType: 'request payment history or record' },
+    })
+    await agent.context.set({
+      name: 'waiting-support-collect-first-name',
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
