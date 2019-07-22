@@ -14,7 +14,7 @@ exports.geneticTestingRequest = async agent => {
 exports.geneticTestingResults = async agent => {
   try {
     await agent.add(
-      `Generally, within 14 days of all parties completing the swab.`
+      `Generally, the Genetic test results are completed within 14 days of all parties completing the swab.`
     )
     await handleEndConversation(agent)
   } catch (err) {

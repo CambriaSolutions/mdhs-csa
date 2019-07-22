@@ -385,13 +385,13 @@ exports.supportPaymentHistory = async agent => {
       `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
     )
     await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'ticketinfo',
       lifespan: 100,
       parameters: { supportType: 'request payment history or record' },
+    })
+    await agent.context.set({
+      name: 'waiting-support-collect-first-name',
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -782,6 +782,10 @@ exports.supportCollectIssue = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
+      name: 'waiting-support-cancel-issue',
+      lifespan: 3,
+    })
+    await agent.context.set({
       name: 'ticketinfo',
       parameters: {
         supportSummary: supportSummary,
@@ -796,7 +800,7 @@ exports.supportCollectIssue = async agent => {
 exports.supportReviseIssue = async agent => {
   try {
     await agent.add(
-      `Let's start over. Please describe your issue or request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+      `Sure, let's start over. Please describe your issue or request.`
     )
     await agent.context.set({
       name: 'waiting-support-collect-issue',

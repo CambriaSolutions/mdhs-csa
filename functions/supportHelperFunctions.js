@@ -174,7 +174,11 @@ exports.supportMoreOptions = async (agent, option) => {
 exports.checkForLumpSum = async agent => {
   const supportType = await agent.context.get('ticketinfo').parameters
     .supportType
-  const isLumpSum = supportType.includes('lump')
+
+  let isLumpSum
+  if (supportType) {
+    isLumpSum = supportType.includes('lump')
+  }
   return isLumpSum
 }
 
