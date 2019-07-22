@@ -796,7 +796,7 @@ exports.supportCollectIssue = async agent => {
 exports.supportReviseIssue = async agent => {
   try {
     await agent.add(
-      `Let's start over. Please describe your issue or request. You can use as many messages as you like - just click the "I'm Done" button when you are finished.`
+      `Sure, let's start over. Please describe your issue or request.`
     )
     await agent.context.set({
       name: 'waiting-support-collect-issue',
