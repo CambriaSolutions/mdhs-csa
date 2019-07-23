@@ -11,6 +11,7 @@ exports.pmtQAHaventReceived = async agent => {
     await agent.add(
       `Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
