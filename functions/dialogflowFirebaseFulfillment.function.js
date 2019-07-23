@@ -14,6 +14,12 @@ const {
   handleAcknowledgementAfterRetry,
 } = require('./notChildSupport.js')
 
+// General enforcement intents
+const {
+  enforcementRoot,
+  enforcementSubmitInquiry,
+} = require('./enforcement.js')
+
 // General payment intents
 const {
   pmtsGeneralRoot,
@@ -622,6 +628,10 @@ exports = module.exports = functions
 
     // Contact QA intents
     intentMap.set('contact-qa-number', contactQANumber)
+
+    // Enforcement intents
+    intentMap.set('enforcement-root', enforcementRoot)
+    intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
