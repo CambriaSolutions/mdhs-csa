@@ -248,11 +248,6 @@ const {
   contactProvidePhoneNumber,
 } = require('./contactQA.js')
 
-const runtimeOpts = {
-  timeoutSeconds: 300,
-  memory: '2GB',
-}
-
 // Payments QA
 const {
   pmtQAHaventReceived,
@@ -265,6 +260,13 @@ const {
   pmtQANCPPaymentStatus,
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
+
+const { goodCauseClaim } = require('./goodCauseClaim')
+
+const runtimeOpts = {
+  timeoutSeconds: 300,
+  memory: '2GB',
+}
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
@@ -658,6 +660,9 @@ exports = module.exports = functions
 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
+
+    // Cancel intent
+    intentMap.set('good-cause-claim', goodCauseClaim)
 
     agent.handleRequest(intentMap)
   })
