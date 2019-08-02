@@ -241,12 +241,13 @@ const {
 const { emancipationAge } = require('./emancipationQA.js')
 
 // Contact QA
-const { contactQANumber } = require('./contactQA.js')
+const {
+  contactQANumber,
 
-const runtimeOpts = {
-  timeoutSeconds: 300,
-  memory: '2GB',
-}
+  // Waiting on more information from MDHS
+  // contactSupportHandoff,
+  // contactProvidePhoneNumber,
+} = require('./contactQA.js')
 
 // Payments QA
 const {
@@ -260,6 +261,14 @@ const {
   pmtQANCPPaymentStatus,
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
+
+// Waiting on more information from MDHS
+// const { goodCauseClaim } = require('./goodCauseClaim')
+
+const runtimeOpts = {
+  timeoutSeconds: 300,
+  memory: '2GB',
+}
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
@@ -306,6 +315,21 @@ exports = module.exports = functions
           `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
         await agent.add(new Suggestion(`Home`))
+
+        // Waiting on more information from MDHS
+        // await agent.add(
+        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
+        // )
+        // await agent.add(new Suggestion(`Submit Support Request`))
+        // await agent.add(new Suggestion(`Contact Number`))
+        // await agent.context.set({
+        //   name: 'waiting-contact-support-handoff',
+        //   lifespan: 2,
+        // })
+        // await agent.context.set({
+        //   name: 'waiting-contact-provide-phone-number',
+        //   lifespan: 2,
+        // })
       } catch (err) {
         console.error(err)
       }
@@ -363,6 +387,11 @@ exports = module.exports = functions
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
+
+    // Waiting on more information from MDHS
+    // // Contact number intents
+    // intentMap.set('contact-support-handoff', contactSupportHandoff)
+    // intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)
@@ -635,6 +664,10 @@ exports = module.exports = functions
 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
+
+    // Waiting on more information from client
+    // Good cause claim intent
+    // intentMap.set('good-cause-claim', goodCauseClaim)
 
     agent.handleRequest(intentMap)
   })

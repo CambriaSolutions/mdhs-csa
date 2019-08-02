@@ -3,7 +3,7 @@ const { handleEndConversation } = require('./globalFunctions.js')
 exports.geneticTestingRequest = async agent => {
   try {
     await agent.add(
-      `Genetic testing is available as part of MDHS full services. Full services require a payment of $35.00.`
+      `Genetic testing is available as part of MDHS full services. There is a $25 fee to apply for full services, and if you are a parent responsible for paying support, you may also be responsible for paying the costs of genetic testing.`
     )
     await handleEndConversation(agent)
   } catch (err) {
