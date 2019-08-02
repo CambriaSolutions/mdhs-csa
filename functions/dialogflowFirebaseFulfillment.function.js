@@ -229,7 +229,6 @@ const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./geneticTesting.js')
-
 // Support QA
 const {
   supportQACpPictureId,
@@ -244,8 +243,10 @@ const { emancipationAge } = require('./emancipationQA.js')
 // Contact QA
 const {
   contactQANumber,
-  contactSupportHandoff,
-  contactProvidePhoneNumber,
+
+  // Waiting on more information from MDHS
+  // contactSupportHandoff,
+  // contactProvidePhoneNumber,
 } = require('./contactQA.js')
 
 // Payments QA
@@ -261,7 +262,8 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-const { goodCauseClaim } = require('./goodCauseClaim')
+// Waiting on more information from MDHS
+// const { goodCauseClaim } = require('./goodCauseClaim')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -271,20 +273,20 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    // console.log(
-    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    // )
-    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    console.log(
+      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    )
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
-    // req({
-    //   method: 'POST',
-    //   uri: process.env.ANALYTICS_URI,
-    //   body: request.body,
-    //   json: true,
-    // })
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const welcome = async agent => {
       try {
@@ -309,24 +311,25 @@ exports = module.exports = functions
 
     const fallback = async agent => {
       try {
-        // // Legacy Handler
-        // await agent.add(
-        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
-        // )
         await agent.add(
-          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
+          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
-        await agent.add(new Suggestion(`Submit Support Request`))
-        await agent.add(new Suggestion(`Contact Number`))
         await agent.add(new Suggestion(`Home`))
-        await agent.context.set({
-          name: 'waiting-contact-support-handoff',
-          lifespan: 2,
-        })
-        await agent.context.set({
-          name: 'waiting-contact-provide-phone-number',
-          lifespan: 2,
-        })
+
+        // Waiting on more information from MDHS
+        // await agent.add(
+        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
+        // )
+        // await agent.add(new Suggestion(`Submit Support Request`))
+        // await agent.add(new Suggestion(`Contact Number`))
+        // await agent.context.set({
+        //   name: 'waiting-contact-support-handoff',
+        //   lifespan: 2,
+        // })
+        // await agent.context.set({
+        //   name: 'waiting-contact-provide-phone-number',
+        //   lifespan: 2,
+        // })
       } catch (err) {
         console.error(err)
       }
@@ -385,9 +388,10 @@ exports = module.exports = functions
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
 
-    // Contact number intents
-    intentMap.set('contact-support-handoff', contactSupportHandoff)
-    intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
+    // Waiting on more information from MDHS
+    // // Contact number intents
+    // intentMap.set('contact-support-handoff', contactSupportHandoff)
+    // intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)
@@ -661,8 +665,9 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Cancel intent
-    intentMap.set('good-cause-claim', goodCauseClaim)
+    // Waiting on more information from client
+    // Good cause claim intent
+    // intentMap.set('good-cause-claim', goodCauseClaim)
 
     agent.handleRequest(intentMap)
   })
