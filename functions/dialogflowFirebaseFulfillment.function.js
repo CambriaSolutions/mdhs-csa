@@ -243,10 +243,8 @@ const { emancipationAge } = require('./emancipationQA.js')
 // Contact QA
 const {
   contactQANumber,
-
-  // Waiting on more information from MDHS
-  // contactSupportHandoff,
-  // contactProvidePhoneNumber,
+  contactSupportHandoff,
+  contactProvidePhoneNumber,
 } = require('./contactQA.js')
 
 // Payments QA
@@ -388,10 +386,9 @@ exports = module.exports = functions
     intentMap.set('yes-child-support', yesChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
 
-    // Waiting on more information from MDHS
-    // // Contact number intents
-    // intentMap.set('contact-support-handoff', contactSupportHandoff)
-    // intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
+    // Contact number intents
+    intentMap.set('contact-support-handoff', contactSupportHandoff)
+    intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)
