@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Chatframe from '@cambriasolutions/chatframe'
 import './App.css'
-import Avatar from './images/genbot_avatar.svg'
 const dfWebhookOptions = {
   eventUrl: 'https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest',
   textUrl: 'https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest',
@@ -27,7 +26,6 @@ class App extends Component {
   render() {
     return (
       <Chatframe
-        avatar={Avatar}
         primaryColor='#6497AD'
         secondaryColor='#6497AD'
         headerColor='#6497AD'
