@@ -17,6 +17,20 @@ const {
 // General enforcement intents
 const {
   enforcementRoot,
+  enforcementRootLicenseSuspension,
+  enforcementRootLicenseSuspensionTwo,
+  enforcementRootLicenseReinstatement,
+  enforcementRootTaxOffset,
+  enforcementRootLiens,
+  enforcementRootContestLien,
+  enforcementRootFinancialAccountUpdateCase,
+  enforcementRootPersonalInjury,
+  enforcementRootSettlementsUpdateCase,
+  enforcementRootPassportRevocation,
+  enforcementRootPassportReinstatement,
+  enforcementRootCreditBureauReporting,
+  enforcementRootReportError,
+  enforcementRootUnemployment,
   enforcementSubmitInquiry,
 } = require('./enforcement.js')
 
@@ -271,20 +285,20 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const welcome = async agent => {
       try {
@@ -657,7 +671,52 @@ exports = module.exports = functions
 
     // Enforcement intents
     intentMap.set('enforcement-root', enforcementRoot)
-    intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
+    intentMap.set(
+      'enforcement-root-license-suspension-and-reinstatement',
+      enforcementRootLicenseReinstatement
+    )
+    intentMap.set(
+      'enforcement-root-license-suspension',
+      enforcementRootLicenseSuspension
+    )
+    intentMap.set(
+      'enforcement-root-license-suspension-repeat-two',
+      enforcementRootLicenseSuspensionTwo
+    )
+    intentMap.set(
+      'enforcement-root-license-reinstatement',
+      enforcementRootLicenseReinstatement
+    )
+    intentMap.set('enforcement-root-tax-offset', enforcementRootTaxOffset)
+    intentMap.set('enforcement-root-liens', enforcementRootLiens)
+    intentMap.set('enforcement-root-contest-lien', enforcementRootContestLien)
+    intentMap.set(
+      'enforcement-root-financial-account-update-case',
+      enforcementRootFinancialAccountUpdateCase
+    )
+    intentMap.set(
+      'enforcement-root-personal-injury',
+      enforcementRootPersonalInjury
+    )
+    intentMap.set(
+      'enforcement-root-settlements-update-case',
+      enforcementRootSettlementsUpdateCase
+    )
+    intentMap.set(
+      'enforcement-root-passport-revocation',
+      enforcementRootPassportRevocation
+    )
+    intentMap.set(
+      'enforcement-root-passport-reinstatement',
+      enforcementRootPassportReinstatement
+    )
+    intentMap.set(
+      'enforcement-root-credit-bureau-reporting',
+      enforcementRootCreditBureauReporting
+    )
+    intentMap.set('enforcement-root-report-error', enforcementRootReportError)
+    intentMap.set('enforcement-root-unemployment', enforcementRootUnemployment)
+    // intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
