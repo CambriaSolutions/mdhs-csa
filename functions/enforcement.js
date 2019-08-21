@@ -44,7 +44,7 @@ exports.enforcementRoot = async agent => {
  */
 exports.enforcementLicenseSuspensionReinstatement = async agent => {
   try {
-    await agent.add('License is one of the MDHS enforcement tools.')
+    await agent.add('License Suspension is one of the MDHS enforcement tools.')
     await agent.add(
       'Would you like to learn more about when a license will be suspended or how to get a suspended license reinstated?'
     )
@@ -86,7 +86,7 @@ exports.enforcementLicenseSuspensionTwo = async agent => {
 }
 
 /**
- * Intent: enforcement--license-reinstatement
+ * Intent: enforcement-license-reinstatement
  * Training phrases: { "License Reinstatement" }
  * TODO: Insert link for action request to reinstate license
  *
@@ -103,7 +103,7 @@ exports.enforcementLicenseReinstatement = async agent => {
 }
 
 /**
- * Intent: enforcement--tax-offset
+ * Intent: enforcement-tax-offset
  * Training phrases: { " Taxes " }
  *
  * @param {*} agent
@@ -120,7 +120,7 @@ exports.enforcementTaxOffset = async agent => {
   }
 }
 /**
- * Intent: enforcement--liens
+ * Intent: enforcement-liens
  * Training phrases: { "Liens", "Bank Accounts", etc }
  *
  * @param {*} agent
@@ -139,7 +139,7 @@ exports.enforcementLiens = async agent => {
   }
 }
 /**
- * Intent: enforcement--contest-lien
+ * Intent: enforcement-contest-lien
  * Training phrases: { "Contest an existing Lien " }
  *
  * @param {*} agent
@@ -155,7 +155,7 @@ exports.enforcementContestLien = async agent => {
 }
 
 /**
- * Intent: enforcement--financial-account-update-case
+ * Intent: enforcement-financial-account-update-case
  * Training phrases: { "Provide information on a financial account" }
  * TODO: Insert link to 1-800 number
  *
@@ -172,7 +172,7 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement--personal-injury
+ * Intent: enforcement-personal-injury
  * Training phrases: { "Personal injury", "Workman's comp" }
  *
  * @param {*} agent
@@ -193,7 +193,7 @@ exports.enforcementPersonalInjury = async agent => {
 }
 
 /**
- * Intent: enforcement--settlements-update-case
+ * Intent: enforcement-settlements-update-case
  * Training phrases: { "Update case settlements"}
  * TODO: Insert update case link
  *
@@ -210,7 +210,7 @@ exports.enforcementSettlementsUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement--passport-revocation
+ * Intent: enforcement-passport-revocation
  * Training phrases: { "Passport revoked" }
  *
  * @param {*} agent
@@ -226,7 +226,7 @@ exports.enforcementPassportRevocation = async agent => {
   }
 }
 /**
- * Intent: enforcement--passport-reinstatement
+ * Intent: enforcement-passport-reinstatement
  * Training phrases: { "How do I get my passport reinstated?" }
  *
  * @param {*} agent
@@ -241,7 +241,7 @@ exports.enforcementPassportReinstatement = async agent => {
   }
 }
 /**
- * Intent: enforcement--credit-bureau-reporting
+ * Intent: enforcement-credit-bureau-reporting
  * Training phrases: { "Credit Bureau Reporting Credit Score" }
  *
  * @param {*} agent
@@ -258,7 +258,7 @@ exports.enforcementCreditBureauReporting = async agent => {
 }
 
 /**
- * Intent: enforcement--report-error
+ * Intent: enforcement-report-error
  * Training phrases: { "What if this was done in error?" }
  * TODO: Insert Generic Support Ticket link
  *
@@ -275,7 +275,7 @@ exports.enforcementReportError = async agent => {
 }
 
 /**
- * Intent: enforcement--unemployment
+ * Intent: enforcement-unemployment
  * Train phrases: { "How will my unemployment benefits be impacted?" }
  *
  * @param {*} agent
