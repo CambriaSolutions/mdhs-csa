@@ -285,10 +285,10 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    // console.log(
-    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    // )
-    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    console.log(
+      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    )
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
