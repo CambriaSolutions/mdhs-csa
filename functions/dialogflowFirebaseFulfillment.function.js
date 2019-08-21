@@ -17,20 +17,20 @@ const {
 // General enforcement intents
 const {
   enforcementRoot,
-  enforcementRootLicenseSuspension,
-  enforcementRootLicenseSuspensionTwo,
-  enforcementRootLicenseReinstatement,
-  enforcementRootTaxOffset,
-  enforcementRootLiens,
-  enforcementRootContestLien,
-  enforcementRootFinancialAccountUpdateCase,
-  enforcementRootPersonalInjury,
-  enforcementRootSettlementsUpdateCase,
-  enforcementRootPassportRevocation,
-  enforcementRootPassportReinstatement,
-  enforcementRootCreditBureauReporting,
-  enforcementRootReportError,
-  enforcementRootUnemployment,
+  enforcementLicenseSuspension,
+  enforcementLicenseSuspensionTwo,
+  enforcementLicenseReinstatement,
+  enforcementTaxOffset,
+  enforcementLiens,
+  enforcementContestLien,
+  enforcementFinancialAccountUpdateCase,
+  enforcementPersonalInjury,
+  enforcementSettlementsUpdateCase,
+  enforcementPassportRevocation,
+  enforcementPassportReinstatement,
+  enforcementCreditBureauReporting,
+  enforcementReportError,
+  enforcementUnemployment,
   enforcementSubmitInquiry,
 } = require('./enforcement.js')
 
@@ -405,7 +405,7 @@ exports = module.exports = functions
     intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
     // Not child support intents
-    intentMap.set('not-child-support-root', notChildSupportRoot)
+    intentMap.set('not-child-support', notChildSupportRoot)
     intentMap.set('handle-child-support-retry', handleChildSupportRetry)
     intentMap.set(
       'acknowledgement-after-retry',
@@ -413,7 +413,7 @@ exports = module.exports = functions
     )
 
     // Payment calculation intents
-    intentMap.set('pmt-calc-root', pmtCalcRoot)
+    intentMap.set('pmt-calc', pmtCalcRoot)
     intentMap.set('pmt-calc-restart', pmtCalcRootRestart)
     intentMap.set('pmt-calc-num-children', pmtCalcNumChildren)
     intentMap.set('pmt-calc-income-term', pmtCalcIncomeTerm)
@@ -456,7 +456,7 @@ exports = module.exports = functions
     )
 
     // IWO intents
-    intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo', iwoRoot)
     intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
@@ -481,13 +481,13 @@ exports = module.exports = functions
     intentMap.set('iwoQA-arrears-balance', iwoQAArrearsBalance)
 
     // General payment intents
-    intentMap.set('pmts-general-root', pmtsGeneralRoot)
+    intentMap.set('pmts-general', pmtsGeneralRoot)
     intentMap.set('pmts-general-non-custodial', pmtsGeneralNonCustodial)
     intentMap.set('pmts-general-make-payments', pmtsGeneralMakePayments)
     intentMap.set('pmts-general-receive-payments', pmtsGeneralReceivePayments)
 
     // Employer intents
-    intentMap.set('employer-root', employerRoot)
+    intentMap.set('employer', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
@@ -517,7 +517,7 @@ exports = module.exports = functions
     )
 
     // Open a Child Support Case
-    intentMap.set('open-csc-root', openCSCRoot)
+    intentMap.set('open-csc', openCSCRoot)
     intentMap.set('open-csc-full-services', openCSCFullServices)
     intentMap.set('open-csc-select-form', openCSCSelectForm)
     intentMap.set('open-csc-location-services', openCSCLocationServices)
@@ -528,7 +528,7 @@ exports = module.exports = functions
     intentMap.set('close-cscQA-close-case', closeCSCQACloseCase)
 
     // Appointment intents
-    intentMap.set('appts-root', apptsRoot)
+    intentMap.set('appts', apptsRoot)
     intentMap.set('appts-schedule', apptsSchedule)
     intentMap.set('appts-no-contacted', apptsNoContacted)
     intentMap.set('appts-yes-contacted', apptsYesContacted)
@@ -538,7 +538,7 @@ exports = module.exports = functions
     intentMap.set('apptsQA-missed-appt', apptsQAMissedAppt)
 
     // Support intents
-    intentMap.set('support-root', supportRoot)
+    intentMap.set('support', supportRoot)
     intentMap.set('support-restart', supportRestart)
     intentMap.set('support-parent-receiving', supportParentReceiving)
     intentMap.set('support-parent-paying', supportParentPaying)
@@ -596,11 +596,11 @@ exports = module.exports = functions
     )
 
     // Map intents
-    intentMap.set('map-root', mapRoot)
+    intentMap.set('map', mapRoot)
     intentMap.set('map-deliver-map', mapDeliverMap)
 
     // Direct deposit intents
-    intentMap.set('dirDep-root', dirDepRoot)
+    intentMap.set('dirDep', dirDepRoot)
     intentMap.set('dirDep-confirm-form', dirDepConfirmForm)
     intentMap.set('dirDep-show-form', dirDepShowForm)
     intentMap.set('dirDep-learn-more', dirDepLearnMore)
@@ -617,7 +617,7 @@ exports = module.exports = functions
     intentMap.set('dirDep-no-learn-more-eppicard', dirDepNoLearnMoreEppiCard)
 
     // EppiCard intents
-    intentMap.set('eppi-root', eppiRoot)
+    intentMap.set('eppi', eppiRoot)
     intentMap.set('eppi-get-card', eppiGetCard)
     intentMap.set('eppi-activate-card', eppiActivateCard)
     intentMap.set('eppi-fees', eppiFees)
@@ -632,7 +632,7 @@ exports = module.exports = functions
     intentMap.set('eppi-balance-denial', eppiBalanceDenial)
 
     // Feedback intents
-    intentMap.set('feedback-root', feedbackRoot)
+    intentMap.set('feedback', feedbackRoot)
     intentMap.set('feedback-helpful', feedbackHelpful)
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
@@ -672,50 +672,47 @@ exports = module.exports = functions
     // Enforcement intents
     intentMap.set('enforcement-root', enforcementRoot)
     intentMap.set(
-      'enforcement-root-license-suspension-and-reinstatement',
-      enforcementRootLicenseReinstatement
+      'enforcement-license-suspension-and-reinstatement',
+      enforcementLicenseReinstatement
     )
     intentMap.set(
-      'enforcement-root-license-suspension',
-      enforcementRootLicenseSuspension
+      'enforcement-license-suspension',
+      enforcementLicenseSuspension
     )
     intentMap.set(
-      'enforcement-root-license-suspension-repeat-two',
-      enforcementRootLicenseSuspensionTwo
+      'enforcement-license-suspension-repeat-two',
+      enforcementLicenseSuspensionTwo
     )
     intentMap.set(
-      'enforcement-root-license-reinstatement',
-      enforcementRootLicenseReinstatement
+      'enforcement-license-reinstatement',
+      enforcementLicenseReinstatement
     )
-    intentMap.set('enforcement-root-tax-offset', enforcementRootTaxOffset)
-    intentMap.set('enforcement-root-liens', enforcementRootLiens)
-    intentMap.set('enforcement-root-contest-lien', enforcementRootContestLien)
+    intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-liens', enforcementLiens)
+    intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(
-      'enforcement-root-financial-account-update-case',
-      enforcementRootFinancialAccountUpdateCase
+      'enforcement-financial-account-update-case',
+      enforcementFinancialAccountUpdateCase
     )
+    intentMap.set('enforcement-personal-injury', enforcementPersonalInjury)
     intentMap.set(
-      'enforcement-root-personal-injury',
-      enforcementRootPersonalInjury
-    )
-    intentMap.set(
-      'enforcement-root-settlements-update-case',
-      enforcementRootSettlementsUpdateCase
+      'enforcement-settlements-update-case',
+      enforcementSettlementsUpdateCase
     )
     intentMap.set(
-      'enforcement-root-passport-revocation',
-      enforcementRootPassportRevocation
+      'enforcement-passport-revocation',
+      enforcementPassportRevocation
     )
     intentMap.set(
-      'enforcement-root-passport-reinstatement',
-      enforcementRootPassportReinstatement
+      'enforcement-passport-reinstatement',
+      enforcementPassportReinstatement
     )
     intentMap.set(
-      'enforcement-root-credit-bureau-reporting',
-      enforcementRootCreditBureauReporting
+      'enforcement-credit-bureau-reporting',
+      enforcementCreditBureauReporting
     )
-    intentMap.set('enforcement-root-report-error', enforcementRootReportError)
-    intentMap.set('enforcement-root-unemployment', enforcementRootUnemployment)
+    intentMap.set('enforcement-report-error', enforcementReportError)
+    intentMap.set('enforcement-unemployment', enforcementUnemployment)
     // intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
     // Cancel intent

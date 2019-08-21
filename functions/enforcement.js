@@ -1,7 +1,7 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { supportInquiries } = require('./support.js')
 /**
- * Intent: enforcement-root
+ * Intent: enforcement-
  *
  * @param {*} agent
  */
@@ -37,12 +37,12 @@ exports.enforcementRoot = async agent => {
 }
 
 /**
- * Intent: enforcement-root-license-suspension-and-reinstatement
+ * Intent: enforcement-license-suspension-and-reinstatement
  * Training phrases: { "Can I get license revoked?", "Why was my license revoked?", "How can I get my license reinstated?" }
  *
  * @param {*} agent
  */
-exports.enforcementRootLicenseSuspensionReinstatement = async agent => {
+exports.enforcementLicenseSuspensionReinstatement = async agent => {
   try {
     await agent.add('License is one of the MDHS enforcement tools.')
     await agent.add(
@@ -54,12 +54,12 @@ exports.enforcementRootLicenseSuspensionReinstatement = async agent => {
 }
 
 /**
- * Intent: enforcement-root-license-suspension
+ * Intent: enforcement-license-suspension
  * Training phrases: { "License Suspension" }
  *
  * @param {*} agent
  */
-exports.enforcementRootLicenseSuspension = async agent => {
+exports.enforcementLicenseSuspension = async agent => {
   try {
     await agent.add(
       'Generally, after 30 days of non-payment a license suspension notice will automatically be sent to the parent who owes support. The parent who owes support has 90 days to become current or enter into a payment arrangement to avoid suspension. If the parent who owes support does not comply, the license is subject to suspension.'
@@ -70,12 +70,12 @@ exports.enforcementRootLicenseSuspension = async agent => {
 }
 
 /**
- * Intent: enforcement-root-license-suspension-repeat-two
+ * Intent: enforcement-license-suspension-repeat-two
  * Training phrases: { "What if their license has been suspended before for non-payment?" }
  *
  * @param {*} agent
  */
-exports.enforcementRootLicenseSuspensionTwo = async agent => {
+exports.enforcementLicenseSuspensionTwo = async agent => {
   try {
     await agent.add(
       'If the parent who owes support previously entered into a payment arrangement and fails to make payments in accordance with that arrangement, a notice is not required and the 90 days does not apply. The license is subject to immediate suspension.'
@@ -86,13 +86,13 @@ exports.enforcementRootLicenseSuspensionTwo = async agent => {
 }
 
 /**
- * Intent: enforcement-root-license-reinstatement
+ * Intent: enforcement--license-reinstatement
  * Training phrases: { "License Reinstatement" }
  * TODO: Insert link for action request to reinstate license
  *
  * @param {*} agent
  */
-exports.enforcementRootLicenseReinstatement = async agent => {
+exports.enforcementLicenseReinstatement = async agent => {
   try {
     await agent.add(
       'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement. <Insert link to license Reinstatement action request>'
@@ -103,12 +103,12 @@ exports.enforcementRootLicenseReinstatement = async agent => {
 }
 
 /**
- * Intent: enforcement-root-tax-offset
+ * Intent: enforcement--tax-offset
  * Training phrases: { " Taxes " }
  *
  * @param {*} agent
  */
-exports.enforcementRootTaxOffset = async agent => {
+exports.enforcementTaxOffset = async agent => {
   try {
     await agent.add(
       'Tax Offset is one of the MDHS enforcement tools. What would you like to learn about Tax Offsets?'
@@ -120,12 +120,12 @@ exports.enforcementRootTaxOffset = async agent => {
   }
 }
 /**
- * Intent: enforcement-root-liens
+ * Intent: enforcement--liens
  * Training phrases: { "Liens", "Bank Accounts", etc }
  *
  * @param {*} agent
  */
-exports.enforcementRootLiens = async agent => {
+exports.enforcementLiens = async agent => {
   try {
     await agent.add(
       'Funds and Financial accounts may be seized. Generally MDHS receives this information through various sources and sends notice of lien with the bank, court, and the parent who owes support.'
@@ -139,12 +139,12 @@ exports.enforcementRootLiens = async agent => {
   }
 }
 /**
- * Intent: enforcement-root-contest-lien
+ * Intent: enforcement--contest-lien
  * Training phrases: { "Contest an existing Lien " }
  *
  * @param {*} agent
  */
-exports.enforcementRootContestLien = async agent => {
+exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
       'Funds are held at the institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien.'
@@ -155,13 +155,13 @@ exports.enforcementRootContestLien = async agent => {
 }
 
 /**
- * Intent: enforcement-root-financial-account-update-case
+ * Intent: enforcement--financial-account-update-case
  * Training phrases: { "Provide information on a financial account" }
  * TODO: Insert link to 1-800 number
  *
  * @param {*} agent
  */
-exports.enforcementRootFinancialAccountUpdateCase = async agent => {
+exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
       "If you have information about the parent who owes support's financial accounts, please call <p>Insert 1-800 number here.</p> to update your service."
@@ -172,12 +172,12 @@ exports.enforcementRootFinancialAccountUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-root-personal-injury
+ * Intent: enforcement--personal-injury
  * Training phrases: { "Personal injury", "Workman's comp" }
  *
  * @param {*} agent
  */
-exports.enforcementRootPersonalInjury = async agent => {
+exports.enforcementPersonalInjury = async agent => {
   try {
     await agent.add(
       "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements. "
@@ -193,13 +193,13 @@ exports.enforcementRootPersonalInjury = async agent => {
 }
 
 /**
- * Intent: enforcement-root-settlements-update-case
+ * Intent: enforcement--settlements-update-case
  * Training phrases: { "Update case settlements"}
  * TODO: Insert update case link
  *
  * @param {*} agent
  */
-exports.enforcementRootSettlementsUpdateCase = async agent => {
+exports.enforcementSettlementsUpdateCase = async agent => {
   try {
     await agent.add(
       `If you have information about settlements that the parent who owes support may receive please click here <a>link tbd</a> to update your case.`
@@ -210,12 +210,12 @@ exports.enforcementRootSettlementsUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-root-passport-revocation
+ * Intent: enforcement--passport-revocation
  * Training phrases: { "Passport revoked" }
  *
  * @param {*} agent
  */
-exports.enforcementRootPassportRevocation = async agent => {
+exports.enforcementPassportRevocation = async agent => {
   try {
     await agent.add(
       'If the parent who owes child support owes more than $2500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
@@ -226,12 +226,12 @@ exports.enforcementRootPassportRevocation = async agent => {
   }
 }
 /**
- * Intent: enforcement-root-passport-reinstatement
+ * Intent: enforcement--passport-reinstatement
  * Training phrases: { "How do I get my passport reinstated?" }
  *
  * @param {*} agent
  */
-exports.enforcementRootPassportReinstatement = async agent => {
+exports.enforcementPassportReinstatement = async agent => {
   try {
     await agent.add(
       'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
@@ -241,12 +241,12 @@ exports.enforcementRootPassportReinstatement = async agent => {
   }
 }
 /**
- * Intent: enforcement-root-credit-bureau-reporting
+ * Intent: enforcement--credit-bureau-reporting
  * Training phrases: { "Credit Bureau Reporting Credit Score" }
  *
  * @param {*} agent
  */
-exports.enforcementRootCreditBureauReporting = async agent => {
+exports.enforcementCreditBureauReporting = async agent => {
   try {
     await agent.add(
       'MDHS automatically sends notice to the major credit bureaus when the parent who owes support is delinquent more than 60 days.'
@@ -258,13 +258,13 @@ exports.enforcementRootCreditBureauReporting = async agent => {
 }
 
 /**
- * Intent: enforcement-root-report-error
+ * Intent: enforcement--report-error
  * Training phrases: { "What if this was done in error?" }
  * TODO: Insert Generic Support Ticket link
  *
  * @param {*} agent
  */
-exports.enforcementRootReportError = async agent => {
+exports.enforcementReportError = async agent => {
   try {
     await agent.add(
       'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click here <Generic Support Ticket>.'
@@ -275,12 +275,12 @@ exports.enforcementRootReportError = async agent => {
 }
 
 /**
- * Intent: enforcement-root-unemployment
+ * Intent: enforcement--unemployment
  * Train phrases: { "How will my unemployment benefits be impacted?" }
  *
  * @param {*} agent
  */
-exports.enforcementRootUnemployment = async agent => {
+exports.enforcementUnemployment = async agent => {
   try {
     await agent.add(
       'MDHS partners with the MS Dept. of Employment Security to withhold child support payments from unemployment benefits.'
