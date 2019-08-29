@@ -1,4 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { handleEndConversation } = require('./globalFunctions.js')
 const { supportInquiries } = require('./support.js')
 /**
  * Intent: enforcement-
@@ -48,6 +49,16 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
     await agent.add(
       'Would you like to learn more about when a license will be suspended or how to get a suspended license reinstated?'
     )
+    await agent.add(new Suggestion('License Suspension'))
+    await agent.add(new Suggestion('License Reinstatement'))
+    await agent.context.set({
+      name: 'waiting-license-suspension-learn-more',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-license-reinstatement-learn-more',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -64,6 +75,7 @@ exports.enforcementLicenseSuspension = async agent => {
     await agent.add(
       'Generally, after 30 days of non-payment a license suspension notice will automatically be sent to the parent who owes support. The parent who owes support has 90 days to become current or enter into a payment arrangement to avoid suspension. If the parent who owes support does not comply, the license is subject to suspension.'
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -75,11 +87,12 @@ exports.enforcementLicenseSuspension = async agent => {
  *
  * @param {*} agent
  */
-exports.enforcementLicenseSuspensionTwo = async agent => {
+exports.enforcementLicenseSuspensionNonCompliance = async agent => {
   try {
     await agent.add(
       'If the parent who owes support previously entered into a payment arrangement and fails to make payments in accordance with that arrangement, a notice is not required and the 90 days does not apply. The license is subject to immediate suspension.'
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -88,15 +101,19 @@ exports.enforcementLicenseSuspensionTwo = async agent => {
 /**
  * Intent: enforcement-license-reinstatement
  * Training phrases: { "License Reinstatement" }
- * TODO: Insert link for action request to reinstate license
  *
  * @param {*} agent
  */
 exports.enforcementLicenseReinstatement = async agent => {
   try {
     await agent.add(
-      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement. <Insert link to license Reinstatement action request>'
+      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement.'
     )
+    await agent.add(new Suggestion(`Submit Inquiry for Reinstatement`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -115,6 +132,14 @@ exports.enforcementTaxOffset = async agent => {
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
+    await agent.context.set({
+      name: 'waiting-license-suspension-learn-more',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-license-reinstatement-learn-more',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -149,6 +174,7 @@ exports.enforcementContestLien = async agent => {
     await agent.add(
       'Funds are held at the institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien.'
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -164,8 +190,9 @@ exports.enforcementContestLien = async agent => {
 exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
-      "If you have information about the parent who owes support's financial accounts, please call <p>Insert 1-800 number here.</p> to update your service."
+      `If you have information about the parent who owes support's financial accounts, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your service.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -236,6 +263,7 @@ exports.enforcementPassportReinstatement = async agent => {
     await agent.add(
       'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -267,8 +295,13 @@ exports.enforcementCreditBureauReporting = async agent => {
 exports.enforcementReportError = async agent => {
   try {
     await agent.add(
-      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click here <Generic Support Ticket>.'
+      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click below.'
     )
+    await agent.add(new Suggestion(`Submit Inquiry for Review`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }

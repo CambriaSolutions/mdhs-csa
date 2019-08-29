@@ -17,8 +17,9 @@ const {
 // General enforcement intents
 const {
   enforcementRoot,
+  enforcementLicenseSuspensionReinstatement,
   enforcementLicenseSuspension,
-  enforcementLicenseSuspensionTwo,
+  enforcementLicenseSuspensionNonCompliance,
   enforcementLicenseReinstatement,
   enforcementTaxOffset,
   enforcementLiens,
@@ -673,15 +674,15 @@ exports = module.exports = functions
     intentMap.set('enforcement-root', enforcementRoot)
     intentMap.set(
       'enforcement-license-suspension-and-reinstatement',
-      enforcementLicenseReinstatement
+      enforcementLicenseSuspensionReinstatement
     )
     intentMap.set(
       'enforcement-license-suspension',
       enforcementLicenseSuspension
     )
     intentMap.set(
-      'enforcement-license-suspension-repeat-two',
-      enforcementLicenseSuspensionTwo
+      'enforcement-license-suspension-non-compliance',
+      enforcementLicenseSuspensionNonCompliance
     )
     intentMap.set(
       'enforcement-license-reinstatement',
@@ -713,7 +714,7 @@ exports = module.exports = functions
     )
     intentMap.set('enforcement-report-error', enforcementReportError)
     intentMap.set('enforcement-unemployment', enforcementUnemployment)
-    // intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
+    intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
