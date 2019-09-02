@@ -207,7 +207,7 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
 exports.enforcementPersonalInjury = async agent => {
   try {
     await agent.add(
-      "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements. "
+      "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
     )
     await agent.add(
       new Suggestion(
@@ -229,8 +229,13 @@ exports.enforcementPersonalInjury = async agent => {
 exports.enforcementSettlementsUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about settlements that the parent who owes support may receive please click here <a>link tbd</a> to update your case.`
+      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
     )
+    await agent.add(new Suggestion(`Update Case`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -263,6 +268,13 @@ exports.enforcementPassportReinstatement = async agent => {
     await agent.add(
       'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
     )
+
+    // The client has not requested this suggestion, but it makes sense to include
+    await agent.add(new Suggestion(`Submit Inquiry`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -318,6 +330,7 @@ exports.enforcementUnemployment = async agent => {
     await agent.add(
       'MDHS partners with the MS Dept. of Employment Security to withhold child support payments from unemployment benefits.'
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
