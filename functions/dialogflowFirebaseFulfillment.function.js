@@ -27,6 +27,7 @@ const {
   enforcementFinancialAccountUpdateCase,
   enforcementPersonalInjury,
   enforcementSettlementsUpdateCase,
+  enforcementSettlementsNoUpdateCase,
   enforcementPassportRevocation,
   enforcementPassportReinstatement,
   enforcementCreditBureauReporting,
@@ -699,6 +700,10 @@ exports = module.exports = functions
     intentMap.set(
       'enforcement-settlements-update-case',
       enforcementSettlementsUpdateCase
+    )
+    intentMap.set(
+      'enforcement-settlements-no-update-case',
+      enforcementSettlementsNoUpdateCase
     )
     intentMap.set(
       'enforcement-passport-revocation',

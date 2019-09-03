@@ -202,10 +202,18 @@ exports.enforcementPersonalInjury = async agent => {
       "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
     )
     await agent.add(
-      new Suggestion(
-        "Do you have information about a workman's comp or personal injury settlement?"
-      )
+      "Do you have information about a workman's comp or personal injury settlement?"
     )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-enforcement-settlements-update-case',
+      lifespan: 1,
+    })
+    await agent.context.set({
+      name: 'waiting-enforcement-settlements-no-update-case',
+      lifespan: 1,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -228,6 +236,14 @@ exports.enforcementSettlementsUpdateCase = async agent => {
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
     })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.enforcementSettlementsNoUpdateCase = async agent => {
+  try {
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
