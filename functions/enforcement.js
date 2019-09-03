@@ -175,7 +175,6 @@ exports.enforcementContestLien = async agent => {
 /**
  * Intent: enforcement-financial-account-update-case
  * Training phrases: { "Provide information on a financial account" }
- * TODO: Insert link to 1-800 number
  *
  * @param {*} agent
  */
@@ -222,7 +221,6 @@ exports.enforcementPersonalInjury = async agent => {
 /**
  * Intent: enforcement-settlements-update-case
  * Training phrases: { "Update case settlements"}
- * TODO: Insert update case link
  *
  * @param {*} agent
  */
@@ -308,7 +306,6 @@ exports.enforcementCreditBureauReporting = async agent => {
 /**
  * Intent: enforcement-report-error
  * Training phrases: { "What if this was done in error?" }
- * TODO: Insert Generic Support Ticket link
  *
  * @param {*} agent
  */
