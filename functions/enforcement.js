@@ -17,13 +17,6 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Passport Revocation'))
     await agent.add(new Suggestion('Credit Bureau Reporting'))
     await agent.add(new Suggestion('Unemployment Benefits'))
-    await agent.add(
-      new Suggestion("Personal Injury and Workman's Comp Injuries")
-    )
-    await agent.context.set({
-      name: 'waiting-enforcement-submit-inquiry',
-      lifespan: 2,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -256,7 +249,7 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
 exports.enforcementPassportRevocation = async agent => {
   try {
     await agent.add(
-      'If the parent who owes child support owes more than $2500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
+      'If the parent who owes child support owes more than $2,500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
     )
     await agent.add(new Suggestion('How do I get my passport reinstated?'))
   } catch (err) {
