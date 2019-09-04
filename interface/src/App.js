@@ -10,7 +10,7 @@ const policyText =
   'Please do not enter any personally identifiable information such as SSN or Date of Birth.'
 
 const feedbackUrl =
-  'https://us-central1-webchat-analytics.cloudfunctions.net/storeFeedback'
+  'https://us-central1-webchat-analytics-dev.cloudfunctions.net/storeFeedback'
 
 export const mapConfig = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,

@@ -17,6 +17,22 @@ const {
 // General enforcement intents
 const {
   enforcementRoot,
+  enforcementLicenseSuspensionReinstatement,
+  enforcementLicenseSuspension,
+  enforcementLicenseSuspensionNonCompliance,
+  enforcementLicenseReinstatement,
+  enforcementTaxOffset,
+  enforcementLiens,
+  enforcementContestLien,
+  enforcementFinancialAccountUpdateCase,
+  enforcementPersonalInjury,
+  enforcementSettlementsUpdateCase,
+  enforcementSettlementsNoUpdateCase,
+  enforcementPassportRevocation,
+  enforcementPassportReinstatement,
+  enforcementCreditBureauReporting,
+  enforcementReportError,
+  enforcementUnemployment,
   enforcementSubmitInquiry,
 } = require('./enforcement.js')
 
@@ -503,7 +519,7 @@ exports = module.exports = functions
     )
 
     // Open a Child Support Case
-    intentMap.set('open-csc-root', openCSCRoot)
+    intentMap.set('open-csc', openCSCRoot)
     intentMap.set('open-csc-full-services', openCSCFullServices)
     intentMap.set('open-csc-select-form', openCSCSelectForm)
     intentMap.set('open-csc-location-services', openCSCLocationServices)
@@ -657,6 +673,52 @@ exports = module.exports = functions
 
     // Enforcement intents
     intentMap.set('enforcement-root', enforcementRoot)
+    intentMap.set(
+      'enforcement-license-suspension-and-reinstatement',
+      enforcementLicenseSuspensionReinstatement
+    )
+    intentMap.set(
+      'enforcement-license-suspension',
+      enforcementLicenseSuspension
+    )
+    intentMap.set(
+      'enforcement-license-suspension-non-compliance',
+      enforcementLicenseSuspensionNonCompliance
+    )
+    intentMap.set(
+      'enforcement-license-reinstatement',
+      enforcementLicenseReinstatement
+    )
+    intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-liens', enforcementLiens)
+    intentMap.set('enforcement-contest-lien', enforcementContestLien)
+    intentMap.set(
+      'enforcement-financial-account-update-case',
+      enforcementFinancialAccountUpdateCase
+    )
+    intentMap.set('enforcement-personal-injury', enforcementPersonalInjury)
+    intentMap.set(
+      'enforcement-settlements-update-case',
+      enforcementSettlementsUpdateCase
+    )
+    intentMap.set(
+      'enforcement-settlements-no-update-case',
+      enforcementSettlementsNoUpdateCase
+    )
+    intentMap.set(
+      'enforcement-passport-revocation',
+      enforcementPassportRevocation
+    )
+    intentMap.set(
+      'enforcement-passport-reinstatement',
+      enforcementPassportReinstatement
+    )
+    intentMap.set(
+      'enforcement-credit-bureau-reporting',
+      enforcementCreditBureauReporting
+    )
+    intentMap.set('enforcement-report-error', enforcementReportError)
+    intentMap.set('enforcement-unemployment', enforcementUnemployment)
     intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
     // Cancel intent
