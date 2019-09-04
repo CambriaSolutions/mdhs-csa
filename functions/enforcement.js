@@ -9,7 +9,7 @@ const { supportInquiries } = require('./support.js')
 exports.enforcementRoot = async agent => {
   try {
     await agent.add(
-      `<p>MDHS has several enforcement tools to enforce child support orders.</p><br/><p>If you would like, I can give you information on enforcement actions regarding:</p><br/>• License Suspension or Reinstatement<br/>• Tax Offsets<br/>• Liens<br/>• Passport Revocation<br/>• Credit Bureau Reporting<br/>• Unemployment Benefits<br/>• Personal Injury and Workman's Comp Injuries`
+      `MDHS has several enforcement tools to enforce child support orders.<br/>If you would like, I can give you information on enforcement actions regarding:<br/>• License Suspension or Reinstatement<br/>• Tax Offsets<br/>• Liens<br/>• Passport Revocation<br/>• Credit Bureau Reporting<br/>• Unemployment Benefits<br/>• Personal Injury and Workman's Comp Injuries`
     )
     await agent.add(new Suggestion('License Suspension/Reinstatement'))
     await agent.add(new Suggestion('Tax Offset'))
