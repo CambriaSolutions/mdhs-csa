@@ -214,10 +214,160 @@ exports.enforcementSettlementsUpdateCase = async agent => {
       `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
     )
     await agent.add(new Suggestion(`Update Case`))
+    
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: enforcement-personal-injury
+ * Training phrases: { "Personal injury", "Workman's comp" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementPersonalInjury = async agent => {
+  try {
+    await agent.add(
+      "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
+    )
+    await agent.add(
+      "Do you have information about a workman's comp or personal injury settlement?"
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-enforcement-settlements-update-case',
+      lifespan: 1,
+    })
+    await agent.context.set({
+      name: 'waiting-enforcement-settlements-no-update-case',
+      lifespan: 1,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: enforcement-settlements-update-case
+ * Training phrases: { "Update case settlements"}
+ *
+ * @param {*} agent
+ */
+exports.enforcementSettlementsUpdateCase = async agent => {
+  try {
+    await agent.add(
+      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
+    )
+    await agent.add(new Suggestion(`Update Case`))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
     })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.enforcementSettlementsNoUpdateCase = async agent => {
+  try {
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: enforcement-passport-revocation
+ * Training phrases: { "Passport revoked" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementPassportRevocation = async agent => {
+  try {
+    await agent.add(
+      'If the parent who owes child support owes more than $2,500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
+    )
+    await agent.add(new Suggestion('How do I get my passport reinstated?'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+/**
+ * Intent: enforcement-passport-reinstatement
+ * Training phrases: { "How do I get my passport reinstated?" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementPassportReinstatement = async agent => {
+  try {
+    await agent.add(
+      'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
+    )
+
+    // The client has not requested this suggestion, but it makes sense to include
+    await agent.add(new Suggestion(`Submit Inquiry`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+/**
+ * Intent: enforcement-credit-bureau-reporting
+ * Training phrases: { "Credit Bureau Reporting Credit Score" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementCreditBureauReporting = async agent => {
+  try {
+    await agent.add(
+      'MDHS automatically sends notice to the major credit bureaus when the parent who owes support is delinquent more than 60 days.'
+    )
+    await agent.add(new Suggestion('What if this was done in error?'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: enforcement-report-error
+ * Training phrases: { "What if this was done in error?" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementReportError = async agent => {
+  try {
+    await agent.add(
+      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click below.'
+    )
+    await agent.add(new Suggestion(`Submit Inquiry for Review`))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: enforcement-unemployment
+ * Train phrases: { "How will my unemployment benefits be impacted?" }
+ *
+ * @param {*} agent
+ */
+exports.enforcementUnemployment = async agent => {
+  try {
+    await agent.add(
+      'MDHS partners with the MS Dept. of Employment Security to withhold child support payments from unemployment benefits.'
+    )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
