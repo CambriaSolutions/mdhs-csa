@@ -9,7 +9,7 @@ const { supportInquiries } = require('./support.js')
 exports.enforcementRoot = async agent => {
   try {
     await agent.add(
-      `MDHS has several enforcement tools to enforce child support orders.<br/>If you would like, I can give you information on enforcement actions regarding:<br/>• License Suspension or Reinstatement<br/>• Tax Offsets<br/>• Liens<br/>• Passport Revocation<br/>• Credit Bureau Reporting<br/>• Unemployment Benefits<br/>• Personal Injury and Workman's Comp Injuries`
+      `MDHS has several enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more.`
     )
     await agent.add(new Suggestion('License Suspension/Reinstatement'))
     await agent.add(new Suggestion('Tax Offset'))
@@ -113,18 +113,9 @@ exports.enforcementLicenseReinstatement = async agent => {
 exports.enforcementTaxOffset = async agent => {
   try {
     await agent.add(
-      'Tax Offset is one of the MDHS enforcement tools. What would you like to learn about Tax Offsets?'
+      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period.'
     )
-    await agent.add(new Suggestion('License Suspension'))
-    await agent.add(new Suggestion('License Reinstatement'))
-    await agent.context.set({
-      name: 'waiting-license-suspension-learn-more',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-license-reinstatement-learn-more',
-      lifespan: 2,
-    })
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -305,7 +296,7 @@ exports.enforcementCreditBureauReporting = async agent => {
 exports.enforcementReportError = async agent => {
   try {
     await agent.add(
-      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click below.'
+      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click "Submit Inquiry for Review" below.'
     )
     await agent.add(new Suggestion(`Submit Inquiry for Review`))
     await agent.context.set({
