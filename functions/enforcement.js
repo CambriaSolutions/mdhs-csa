@@ -17,6 +17,7 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Passport Revocation'))
     await agent.add(new Suggestion('Credit Bureau Reporting'))
     await agent.add(new Suggestion('Unemployment Benefits'))
+    await agent.add(new Suggestion('Income Withholding'))
   } catch (err) {
     console.error(err)
   }
@@ -214,7 +215,7 @@ exports.enforcementSettlementsUpdateCase = async agent => {
       `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
     )
     await agent.add(new Suggestion(`Update Case`))
-    
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
