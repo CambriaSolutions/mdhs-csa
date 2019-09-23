@@ -14,6 +14,8 @@ const {
   handleAcknowledgementAfterRetry,
 } = require('./notChildSupport.js')
 
+// Bankruptcy intents
+const { bankruptcySupport } = require('./bankruptcy.js')
 // General enforcement intents
 const {
   enforcementRoot,
@@ -414,6 +416,8 @@ exports = module.exports = functions
       handleAcknowledgementAfterRetry
     )
 
+    // Bankruptcy intents
+    intentMap.set('bankruptcy-support', bankruptcySupport)
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
     intentMap.set('pmt-calc-restart', pmtCalcRootRestart)
