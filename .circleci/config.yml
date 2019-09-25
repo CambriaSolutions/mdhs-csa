@@ -21,8 +21,8 @@ jobs:
             SERVICE_DESK_URI=$DEV_SERVICE_DESK_URI
             SERVICE_DESK_ID=$DEV_SERVICE_DESK_ID
             REQUEST_TYPE_ID=$DEV_REQUEST_TYPE_ID
-            SERVICE_DESK_ENV=$DEV_SERVICE_DESK_ENV
-      - run: sudo npm install -g firebase-tools' > .env
+            SERVICE_DESK_ENV=$DEV_SERVICE_DESK_ENV' > .env
+      - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
   version: 2
