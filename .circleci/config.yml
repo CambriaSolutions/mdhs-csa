@@ -15,7 +15,7 @@ jobs:
             - functions/node_modules
       - run:
           name: 'Add env variables and deploy'
-          command: echo '
+          command: cd functions && echo '
             GOOGLE_MAPS_KEY=$DEV_GOOGLE_MAPS_KEY
             SERVICE_DESK_KEY=$DEV_SERVICE_DESK_KEY
             SERVICE_DESK_URI=$DEV_SERVICE_DESK_URI
