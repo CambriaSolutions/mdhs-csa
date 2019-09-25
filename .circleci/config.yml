@@ -15,23 +15,84 @@ jobs:
             - functions/node_modules
       - run:
           name: 'Add env variables and deploy'
-          command: 
-            cd functions && echo 
+          command: cd functions && echo
             "GOOGLE_MAPS_KEY=${DEV_GOOGLE_MAPS_KEY}
-            
+
             SERVICE_DESK_KEY=${DEV_SERVICE_DESK_KEY}
-            
+
             SERVICE_DESK_URI=${DEV_SERVICE_DESK_URI}
-            
+
             SERVICE_DESK_ID=${DEV_SERVICE_DESK_ID}
-            
+
             REQUEST_TYPE_ID=${DEV_REQUEST_TYPE_ID}
-            
+
             SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}
-            
+
             ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
+  deploy_stage_functions:
+    docker:
+      - image: circleci/node:10.15.0
+    working_directory: ~/repo/
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run: cd functions && npm install
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - functions/node_modules
+      - run:
+          name: 'Add env variables and deploy'
+          command: cd functions && echo
+            "GOOGLE_MAPS_KEY=${STAGE_GOOGLE_MAPS_KEY}
+
+            SERVICE_DESK_KEY=${STAGE_SERVICE_DESK_KEY}
+
+            SERVICE_DESK_URI=${STAGE_SERVICE_DESK_URI}
+
+            SERVICE_DESK_ID=${STAGE_SERVICE_DESK_ID}
+
+            REQUEST_TYPE_ID=${STAGE_REQUEST_TYPE_ID}
+
+            SERVICE_DESK_ENV=${STAGE_SERVICE_DESK_ENV}
+
+            ANALYTICS_URI=${STAGE_ANALYTICS_URI}" > .env
+      - run: sudo npm install -g firebase-tools
+      - run: firebase deploy -P $STAGE_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
+  deploy_prod_functions:
+    docker:
+      - image: circleci/node:10.15.0
+    working_directory: ~/repo/
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run: cd functions && npm install
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - functions/node_modules
+      - run:
+          name: 'Add env variables and deploy'
+          command: cd functions && echo
+            "GOOGLE_MAPS_KEY=${PROD_GOOGLE_MAPS_KEY}
+
+            SERVICE_DESK_KEY=${PROD_SERVICE_DESK_KEY}
+
+            SERVICE_DESK_URI=${PROD_SERVICE_DESK_URI}
+
+            SERVICE_DESK_ID=${PROD_SERVICE_DESK_ID}
+
+            REQUEST_TYPE_ID=${PROD_REQUEST_TYPE_ID}
+
+            SERVICE_DESK_ENV=${PROD_SERVICE_DESK_ENV}
+
+            ANALYTICS_URI=${PROD_ANALYTICS_URI}" > .env
+      - run: sudo npm install -g firebase-tools
+      - run: firebase deploy -P $PROD_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
   version: 2
   build_deploy:
@@ -41,3 +102,13 @@ workflows:
             branches:
               only:
                 - development
+      - deploy_stage_functions:
+          filters:
+            branches:
+              only:
+                - stage
+      - deploy_prod_functions:
+          filters:
+            branches:
+              only:
+                - master
