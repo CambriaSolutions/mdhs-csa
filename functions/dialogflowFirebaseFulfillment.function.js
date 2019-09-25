@@ -523,7 +523,7 @@ exports = module.exports = functions
     )
 
     // Open a Child Support Case
-    intentMap.set('open-csc', openCSCRoot)
+    intentMap.set('open-csc-root', openCSCRoot)
     intentMap.set('open-csc-full-services', openCSCFullServices)
     intentMap.set('open-csc-select-form', openCSCSelectForm)
     intentMap.set('open-csc-location-services', openCSCLocationServices)
