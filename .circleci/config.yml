@@ -8,6 +8,11 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run: npm install
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - functions/node_modules
       - run:
           name: 'Add env variables and deploy'
           command: |
