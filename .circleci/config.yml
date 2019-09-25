@@ -16,7 +16,7 @@ jobs:
       - run:
           name: 'Add env variables and deploy'
           command: |
-            cd functions && echo "GOOGLE_MAPS_KEY=${DEV_GOOGLE_MAPS_KEY}\nSERVICE_DESK_KEY=${DEV_SERVICE_DESK_KEY}\nSERVICE_DESK_URI=${DEV_SERVICE_DESK_URI}\nSERVICE_DESK_ID=${DEV_SERVICE_DESK_ID}\nREQUEST_TYPE_ID=${DEV_REQUEST_TYPE_ID}\nSERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}\nANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
+            cd functions && echo "GOOGLE_MAPS_KEY=${DEV_GOOGLE_MAPS_KEY} \n SERVICE_DESK_KEY=${DEV_SERVICE_DESK_KEY} \n SERVICE_DESK_URI=${DEV_SERVICE_DESK_URI} \n SERVICE_DESK_ID=${DEV_SERVICE_DESK_ID} \n REQUEST_TYPE_ID=${DEV_REQUEST_TYPE_ID} \n SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV} \n ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
