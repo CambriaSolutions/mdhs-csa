@@ -15,14 +15,14 @@ jobs:
             - functions/node_modules
       - run:
           name: 'Add env variables and deploy'
-          command: |
-            export GOOGLE_MAPS_KEY=$DEV_GOOGLE_MAPS_KEY
-            export SERVICE_DESK_KEY=$DEV_SERVICE_DESK_KEY
-            export SERVICE_DESK_URI=$DEV_SERVICE_DESK_URI
-            export SERVICE_DESK_ID=$DEV_SERVICE_DESK_ID
-            export REQUEST_TYPE_ID=$DEV_REQUEST_TYPE_ID
-            export SERVICE_DESK_ENV=$DEV_SERVICE_DESK_ENV
-      - run: sudo npm install -g firebase-tools
+          command: echo '
+            GOOGLE_MAPS_KEY=$DEV_GOOGLE_MAPS_KEY
+            SERVICE_DESK_KEY=$DEV_SERVICE_DESK_KEY
+            SERVICE_DESK_URI=$DEV_SERVICE_DESK_URI
+            SERVICE_DESK_ID=$DEV_SERVICE_DESK_ID
+            REQUEST_TYPE_ID=$DEV_REQUEST_TYPE_ID
+            SERVICE_DESK_ENV=$DEV_SERVICE_DESK_ENV
+      - run: sudo npm install -g firebase-tools' > .env
       - run: firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
   version: 2
