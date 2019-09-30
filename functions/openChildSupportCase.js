@@ -1,10 +1,17 @@
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.openCSCRoot = async agent => {
+  await startCSCConvo(agent)
+}
+
+const startCSCConvo = async agent => {
   try {
     await agent.add(
       `Sure, I can help you with finding the type of service you desire. I can also help you with information, instructions and a link to the application to open a child support case.`
+    )
+    await agent.add(
+      `The custodial parent, non-custodial parent or guardian may complete an application.`
     )
     await agent.add(
       `Which of the following services do you want assistance with?`
@@ -12,9 +19,7 @@ exports.openCSCRoot = async agent => {
 
     await agent.add(new Suggestion('Full Services'))
     await agent.add(new Suggestion('Location Services'))
-    await agent.add(
-      new Suggestion('Collection of employer payments for private orders')
-    )
+    await agent.add(new Suggestion('Income Withholding Service Only'))
 
     await agent.context.set({
       name: 'waiting-open-csc-full-services',
@@ -103,7 +108,7 @@ exports.openCSCLocationServices = async agent => {
 exports.openCSCCollectionEmployer = async agent => {
   try {
     await agent.add(
-      `For this service, MDHS does not provide any enforcement services in order to collect payments. Payments are recieved and disbursed through the State Disbursement Unit.`
+      `For this service, MDHS does not provide any enforcement services in order to collect payments. You must already have a court order requiring income to be withheld. Federal and state law requires all income withholding payments to be paid to the state disbursement unit. There is no fee for this service.`
     )
     await agent.add(`Is this the service you want?`)
 
@@ -127,7 +132,7 @@ exports.openCSCCollectionEmployer = async agent => {
 
 exports.openCSCNoService = async agent => {
   try {
-    await handleEndConversation(agent)
+    await startCSCConvo(agent)
   } catch (err) {
     console.error(err)
   }

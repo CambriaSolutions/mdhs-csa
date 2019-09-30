@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Chatframe from '@cambriasolutions/chatframe'
 import './App.css'
-
 const dfWebhookOptions = {
   eventUrl:
     'https://us-central1-mdhs-csa-stage.cloudfunctions.net/eventRequest',
@@ -9,7 +8,10 @@ const dfWebhookOptions = {
 }
 
 const policyText =
-  'Please do not enter any personally identifiable information such as SSN, Date of Birth or last name.'
+  'Please do not enter any personally identifiable information such as SSN or Date of Birth.'
+
+const feedbackUrl =
+  'https://us-central1-webchat-analytics-dev.cloudfunctions.net/storeFeedback'
 
 export const mapConfig = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -19,12 +21,15 @@ export const mapConfig = {
   },
 }
 
+export const activationText = 'Talk to Gen'
+
 class App extends Component {
   render() {
     return (
       <Chatframe
-        primaryColor='#3bafbf'
-        secondaryColor='#3bafbf'
+        primaryColor='#6497AD'
+        secondaryColor='#6497AD'
+        headerColor='#6497AD'
         title='Gen'
         client='Dialogflow'
         clientOptions={dfWebhookOptions}
@@ -32,6 +37,8 @@ class App extends Component {
         initialActive={false}
         policyText={policyText}
         mapConfig={mapConfig}
+        feedbackUrl={feedbackUrl}
+        activationText={activationText}
       />
     )
   }

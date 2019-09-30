@@ -3,31 +3,29 @@
   "name": "support-case-number",
   "auto": true,
   "contexts": [
-    "waiting-compts-case-number"
+    "waiting-support-case-number"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-case-number",
+          "name": "waiting-support-case-number",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-no-case-number",
           "parameters": {},
           "lifespan": 0
         }
       ],
       "parameters": [
         {
-          "id": "73ee1dd5-abab-49c4-8122-aef6f69ebc27",
-          "required": false,
-          "dataType": "@sys.number",
+          "id": "8151cbda-9840-4e46-be54-359a17c9e8de",
+          "dataType": "@sys.any",
           "name": "caseNumber",
           "value": "$caseNumber",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "I didn\u0027t recognize that as a case number, could you say that again?"
-            }
-          ],
           "isList": false
         }
       ],

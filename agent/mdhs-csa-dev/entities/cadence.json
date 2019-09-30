@@ -3,5 +3,6 @@
   "name": "cadence",
   "isOverridable": true,
   "isEnum": false,
-  "automatedExpansion": false
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
 }

@@ -1,0 +1,44 @@
+{
+  "id": "418a742c-bd6c-48c0-a480-4d7cbe0f1305",
+  "name": "support-type",
+  "auto": true,
+  "contexts": [
+    "waiting-support-type"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-type",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "129fb15d-9372-4053-9259-f25de80a51b5",
+          "required": false,
+          "dataType": "@action-requests",
+          "name": "supportType",
+          "value": "$supportType",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

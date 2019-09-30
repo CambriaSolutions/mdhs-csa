@@ -1,0 +1,111 @@
+[
+  {
+    "id": "4be89223-dec0-4f90-8735-713f961590ba",
+    "data": [
+      {
+        "text": "nope",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "21c4231d-340a-4c56-9423-97e84990ec68",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      },
+      {
+        "text": " way",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "40692407-e703-4a6e-8230-07b1155058c7",
+    "data": [
+      {
+        "text": "i don\u0027t want to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d7d57155-ee8c-48ae-a3cc-f2b6319d3503",
+    "data": [
+      {
+        "text": "i dont want to give it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "42d96678-d89f-44d1-8136-a92f15622769",
+    "data": [
+      {
+        "text": "why would i give you that",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "1074157b-d61a-4420-b7c0-ae0637ed384e",
+    "data": [
+      {
+        "text": "i dont want you to call me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a7fa8436-c0a2-4290-88a1-15157073baed",
+    "data": [
+      {
+        "text": "i dont want to do that",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "537097ba-361b-413b-92bd-b6d830a4bc88",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b6022a89-9485-43e3-97d5-584be6f92455",
+    "data": [
+      {
+        "text": "I dont have one",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

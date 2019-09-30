@@ -1,16 +1,16 @@
 {
   "id": "7f4038ad-adfc-43ee-864e-5463bea58839",
-  "name": "support-name",
+  "name": "support-collect-name",
   "auto": true,
   "contexts": [
-    "waiting-compts-name"
+    "waiting-support-collect-name"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-name",
+          "name": "waiting-support-collect-name",
           "parameters": {},
           "lifespan": 0
         }

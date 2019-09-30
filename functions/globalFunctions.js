@@ -1,7 +1,19 @@
+const { Suggestion, Payload } = require('dialogflow-fulfillment')
+
 exports.handleEndConversation = async agent => {
-  await agent.add(`Can I help you with anything else?`)
+  const helpMessages = [
+    `Can I help you with anything else?`,
+    `Is there anything else I can help you with today?`,
+    `Do you have any other questions?`,
+  ]
+  const helpMessage =
+    helpMessages[Math.floor(Math.random() * helpMessages.length)]
+  await agent.add(helpMessage)
+  await agent.add(new Suggestion(`Home`))
+  await agent.add(new Suggestion(`Submit Feedback`))
+
   await agent.context.set({
-    name: 'waiting-end-conversation',
+    name: 'waiting-feedback-root',
     lifespan: 2,
   })
   await agent.context.set({
@@ -57,8 +69,13 @@ exports.validateCaseNumber = caseNumber => {
 
 // Upper case the first letter of a string
 exports.toTitleCase = string => {
+  const excludedWords = ['or', 'and', 'on', 'of', 'to', 'the']
   return string.replace(/\w\S*/g, text => {
-    return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
+    if (!excludedWords.includes(text)) {
+      return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
+    } else {
+      return text
+    }
   })
 }
 
@@ -80,8 +97,7 @@ exports.formatDescriptionText = supportType => {
   } else if (
     supportType === 'information about the parent who pays child support'
   ) {
-    descriptionText =
-      'What informaton do you want to share regarding the parent who pays child support?'
+    descriptionText = `What informaton do you want to share regarding the parent who pays child support? Helpful information includes this parent's address and phone number, employer information, asset information or information about this parent's ability to work.`
   } else if (supportType === 'request case closure') {
     descriptionText =
       'What informaton do you want to share regarding your request for case closure?'
@@ -92,4 +108,61 @@ exports.formatDescriptionText = supportType => {
     descriptionText = 'Please describe your request.'
   }
   return descriptionText
+}
+
+// Format any number as currency, with prefixed $ sign, commas added per thousands & decimals fixed to 2
+exports.formatCurrency = num => {
+  return (
+    '$' +
+    parseFloat(num)
+      .toFixed(2)
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  )
+}
+
+// Handle startOfConversation
+exports.startRootConversation = async agent => {
+  try {
+    await agent.add(`What can I help you with?`)
+    await agent.add(new Suggestion('Common Requests'))
+    await agent.add(new Suggestion('Appointments'))
+    await agent.add(new Suggestion('Payments'))
+    await agent.add(new Suggestion('Employer'))
+    await agent.add(new Suggestion('Opening a Child Support Case'))
+    await agent.add(new Suggestion('Office Locations'))
+    await agent.add(new Suggestion('Policy Manual'))
+    await agent.add(new Suggestion('Enforcement Action'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Send a payload to disable user input and require suggestion selection
+exports.disableInput = async agent => {
+  try {
+    await agent.add(
+      new Payload(
+        agent.UNSPECIFIED,
+        { disableInput: 'true' },
+        {
+          sendAsMessage: true,
+          rawPayload: true,
+        }
+      )
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Directs the user to Casey
+exports.caseyHandoff = async agent => {
+  try {
+    await agent.add(
+      `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+    )
+    await this.handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
 }

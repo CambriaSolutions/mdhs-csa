@@ -1,12 +1,20 @@
 {
-  "id": "4ca99c7d-1036-4036-a4ef-c24f654a3b63",
-  "name": "feedback-result",
+  "id": "e8597266-1660-4b6e-9156-563e578d0a16",
+  "name": "open-csc-employer-payments",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-open-csc-employer-payments"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-open-csc-employer-payments",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {
@@ -20,9 +28,8 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": false,
+  "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1550773819,
   "fallbackIntent": false,
   "events": []
 }

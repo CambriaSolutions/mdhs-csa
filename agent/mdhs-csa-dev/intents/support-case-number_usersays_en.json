@@ -1,12 +1,38 @@
 [
   {
+    "id": "a04012a2-e6d8-42e3-bb99-4022ec7076dd",
+    "data": [
+      {
+        "text": "62345678a",
+        "alias": "caseNumber",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e3c51991-0a04-435e-bf83-40c8f9cdaf23",
+    "data": [
+      {
+        "text": "612345678a",
+        "alias": "caseNumber",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
     "id": "bbabfa8b-5194-4bba-b405-8df50d6bf935",
     "data": [
       {
         "text": "123",
         "alias": "caseNumber",
-        "meta": "@sys.number",
-        "userDefined": false
+        "meta": "@sys.any",
+        "userDefined": true
       }
     ],
     "isTemplate": false,
@@ -17,14 +43,14 @@
     "id": "c700fb03-a431-4e2c-b015-bd90f285b854",
     "data": [
       {
-        "text": "its ",
+        "text": " ",
         "userDefined": false
       },
       {
         "text": "098765",
         "alias": "caseNumber",
-        "meta": "@sys.number",
-        "userDefined": false
+        "meta": "@sys.any",
+        "userDefined": true
       }
     ],
     "isTemplate": false,
@@ -35,14 +61,10 @@
     "id": "4dc813c2-a822-426e-9be0-38fc268bdfc3",
     "data": [
       {
-        "text": "my case number is ",
-        "userDefined": false
-      },
-      {
         "text": "556677",
         "alias": "caseNumber",
-        "meta": "@sys.number",
-        "userDefined": false
+        "meta": "@sys.any",
+        "userDefined": true
       }
     ],
     "isTemplate": false,
@@ -53,14 +75,14 @@
     "id": "b795c2b7-10dc-48e5-a082-e0afe8507c48",
     "data": [
       {
-        "text": "my number is ",
+        "text": " ",
         "userDefined": false
       },
       {
         "text": "123456",
         "alias": "caseNumber",
-        "meta": "@sys.number",
-        "userDefined": false
+        "meta": "@sys.any",
+        "userDefined": true
       }
     ],
     "isTemplate": false,
@@ -73,8 +95,8 @@
       {
         "text": "123456",
         "alias": "caseNumber",
-        "meta": "@sys.number",
-        "userDefined": false
+        "meta": "@sys.any",
+        "userDefined": true
       }
     ],
     "isTemplate": false,

@@ -3,14 +3,19 @@
   "name": "support-email",
   "auto": true,
   "contexts": [
-    "waiting-compts-email"
+    "waiting-support-email"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-compts-email",
+          "name": "waiting-support-email",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-no-email",
           "parameters": {},
           "lifespan": 0
         }

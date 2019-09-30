@@ -1,0 +1,100 @@
+[
+  {
+    "id": "495ea775-70ef-42f0-a098-94fae5a3e366",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "39e13f8a-3580-498c-8195-38f21a7d41de",
+    "data": [
+      {
+        "text": "i do not have an email address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a341754b-e1b5-44de-9442-b68eb3a38420",
+    "data": [
+      {
+        "text": "i dont have one",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "809e5288-689e-4564-b90a-fc036842fabc",
+    "data": [
+      {
+        "text": "you dont need that",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "70e832c7-885e-454f-8eba-28287abc68a5",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      },
+      {
+        "text": " thanks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c5139fca-b8e6-43f4-8ce9-e05cacb9bed2",
+    "data": [
+      {
+        "text": "i dont wanna",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "72000d7c-924d-41cd-86ff-5a88e4de3c73",
+    "data": [
+      {
+        "text": "nope",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ae7a9651-e9d4-436b-987b-2d6ddffc65ff",
+    "data": [
+      {
+        "text": "I dont want to give you that",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
