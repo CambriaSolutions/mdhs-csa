@@ -296,13 +296,13 @@ exports = module.exports = functions
 
     const agent = new WebhookClient({ request, response })
 
-    // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    // // Send request body to analytics function
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const welcome = async agent => {
       try {
