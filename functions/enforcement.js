@@ -154,7 +154,7 @@ exports.enforcementLiens = async agent => {
 exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
-      'Funds are held at the institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien.'
+      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien. Please call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -171,7 +171,7 @@ exports.enforcementContestLien = async agent => {
 exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about the parent who owes support's financial accounts, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your service.`
+      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -181,7 +181,7 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
 
 /**
  * Intent: enforcement-personal-injury
- * Training phrases: { "Personal injury", "Workman's comp" }
+ * Training phrases: { "Settlements", "Personal injury", "Workman's comp" }
  *
  * @param {*} agent
  */
@@ -265,7 +265,7 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
 exports.enforcementPassportRevocation = async agent => {
   try {
     await agent.add(
-      'If the parent who owes child support owes more than $2,500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
+      'Reduce the total amount of support owed to less than $2,500 or contact MDHS. MDHS has the discretion when negotiating with a parent who owes support to have the passport hold removed.'
     )
     await agent.add(new Suggestion('How do I get my passport reinstated?'))
   } catch (err) {
@@ -359,22 +359,6 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-passport-revocation
- * Training phrases: { "Passport revoked" }
- *
- * @param {*} agent
- */
-exports.enforcementPassportRevocation = async agent => {
-  try {
-    await agent.add(
-      'If the parent who owes child support owes more than $2,500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
-    )
-    await agent.add(new Suggestion('How do I get my passport reinstated?'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-/**
  * Intent: enforcement-passport-reinstatement
  * Training phrases: { "How do I get my passport reinstated?" }
  *
@@ -455,6 +439,21 @@ exports.enforcementUnemployment = async agent => {
 exports.enforcementSubmitInquiry = async agent => {
   try {
     await supportInquiries(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * Intent: bankruptcy-support
+ *
+ * @param {*} agent
+ */
+exports.enforcementBankruptcy = async agent => {
+  try {
+    await agent.add(
+      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy statements.`
+    )
   } catch (err) {
     console.error(err)
   }
