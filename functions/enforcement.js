@@ -235,10 +235,10 @@ exports.enforcementSettlementsUpdateCase = async agent => {
 exports.enforcementPersonalInjury = async agent => {
   try {
     await agent.add(
-      "MDHS may offset personal injury or worker's compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
+      `MDHS may offset personal injury or workers' compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements.`
     )
     await agent.add(
-      "Do you have information about a workman's comp or personal injury settlement?"
+      `Do you have information about a workman's comp or personal injury settlement?`
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
