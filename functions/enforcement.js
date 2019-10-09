@@ -227,35 +227,6 @@ exports.enforcementSettlementsUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-personal-injury
- * Training phrases: { "Personal injury", "Workman's comp" }
- *
- * @param {*} agent
- */
-exports.enforcementPersonalInjury = async agent => {
-  try {
-    await agent.add(
-      `MDHS may offset personal injury or workers' compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements.`
-    )
-    await agent.add(
-      `Do you have information about a workman's comp or personal injury settlement?`
-    )
-    await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion('No'))
-    await agent.context.set({
-      name: 'waiting-enforcement-settlements-update-case',
-      lifespan: 1,
-    })
-    await agent.context.set({
-      name: 'waiting-enforcement-settlements-no-update-case',
-      lifespan: 1,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
  * Intent: enforcement-settlements-update-case
  * Training phrases: { "Update case settlements"}
  *
