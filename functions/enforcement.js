@@ -449,6 +449,7 @@ exports.enforcementBankruptcy = async agent => {
     await agent.add(
       `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy statements.`
     )
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
