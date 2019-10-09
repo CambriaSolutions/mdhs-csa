@@ -39,14 +39,6 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
-    await agent.context.set({
-      name: 'waiting-license-suspension-learn-more',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-license-reinstatement-learn-more',
-      lifespan: 2,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -80,6 +72,9 @@ exports.enforcementLicenseSuspension = async agent => {
  */
 exports.enforcementLicenseSuspensionNonCompliance = async agent => {
   try {
+    await agent.add(
+      'Generally, after 30 days of non-payment a license suspension notice will automatically be sent to the parent who owes support. The parent who owes support has 90 days to become current or enter into a payment arrangement to avoid suspension. If the parent who owes support does not comply, the license is subject to suspension.'
+    )
     await agent.add(
       'If the parent who owes support previously entered into a court-approved payment arrangement and fails to make payments in accordance with that arrangement, a notice is not required and the 90 days does not apply. The license is subject to immediate suspension.'
     )
