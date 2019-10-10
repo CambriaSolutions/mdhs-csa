@@ -172,6 +172,11 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
     await agent.add(
       `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case.`
     )
+    await agent.add(new Suggestion('Submit Request'))
+    await agent.context.set({
+      name: 'waiting-enforcement-submit-inquiry',
+      lifespan: 2,
+    })
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
