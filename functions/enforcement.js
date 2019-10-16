@@ -130,7 +130,7 @@ exports.enforcementTaxOffset = async agent => {
 exports.enforcementLiens = async agent => {
   try {
     await agent.add(
-      'Funds and Financial accounts may be seized. Generally MDHS receives this information through various sources and sends notice of lien with the bank, court, and the parent who owes support.'
+      'Funds in financial accounts may be seized for past due child support. Generally, MDHS receives this information through various sources and sends notice of lien to the bank, court, and the parent who owes support.'
     )
     await agent.add(new Suggestion('Contest an existing Lien'))
     await agent.add(
