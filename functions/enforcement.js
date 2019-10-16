@@ -9,7 +9,7 @@ const { supportInquiries } = require('./support.js')
 exports.enforcementRoot = async agent => {
   try {
     await agent.add(
-      `MDHS has several enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more.`
+      `MDHS has multiple enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more.`
     )
     await agent.add(new Suggestion('License Suspension/Reinstatement'))
     await agent.add(new Suggestion('Tax Offset'))
@@ -33,9 +33,11 @@ exports.enforcementRoot = async agent => {
  */
 exports.enforcementLicenseSuspensionReinstatement = async agent => {
   try {
-    await agent.add('License Suspension is one of the MDHS enforcement tools.')
     await agent.add(
-      'Would you like to learn more about when a license will be suspended or how to get a suspended license reinstated?'
+      `MDHS may suspend driver's licenses and professional licenses to enforce child support when arrears are owed.`
+    )
+    await agent.add(
+      'Would you like to learn more about when a license may be suspended or how to get a suspended license reinstated?'
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
@@ -93,7 +95,7 @@ exports.enforcementLicenseSuspensionNonCompliance = async agent => {
 exports.enforcementLicenseReinstatement = async agent => {
   try {
     await agent.add(
-      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement.'
+      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement with MDHS.'
     )
     await agent.add(new Suggestion(`Submit Inquiry for Reinstatement`))
     await agent.context.set({
@@ -130,7 +132,7 @@ exports.enforcementTaxOffset = async agent => {
 exports.enforcementLiens = async agent => {
   try {
     await agent.add(
-      'Funds and Financial accounts may be seized. Generally MDHS receives this information through various sources and sends notice of lien with the bank, court, and the parent who owes support.'
+      'Funds in financial accounts may be seized for past due child support. Generally, MDHS receives this information through various sources and sends notice of lien to the bank, court, and the parent who owes support.'
     )
     await agent.add(new Suggestion('Contest an existing Lien'))
     await agent.add(
@@ -149,7 +151,7 @@ exports.enforcementLiens = async agent => {
 exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
-      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
+      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
     )
     await agent.add(new Suggestion('Submit Request'))
     await agent.context.set({
@@ -221,40 +223,13 @@ exports.enforcementPersonalInjury = async agent => {
 exports.enforcementSettlementsUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
-    )
-    await agent.add(new Suggestion(`Update Case`))
-
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
- * Intent: enforcement-settlements-update-case
- * Training phrases: { "Update case settlements"}
- *
- * @param {*} agent
- */
-exports.enforcementSettlementsUpdateCase = async agent => {
-  try {
-    await agent.add(
-      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
+      `If you have information about settlements that the parent who owes support may receive, please click below to update your case.`
     )
     await agent.add(new Suggestion(`Update Case`))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
     })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.enforcementSettlementsNoUpdateCase = async agent => {
-  try {
-    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -317,27 +292,6 @@ exports.enforcementCreditBureauReporting = async agent => {
 }
 
 /**
- * Intent: enforcement-report-error
- * Training phrases: { "What if this was done in error?" }
- *
- * @param {*} agent
- */
-exports.enforcementReportError = async agent => {
-  try {
-    await agent.add(
-      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click below.'
-    )
-    await agent.add(new Suggestion(`Submit Inquiry for Review`))
-    await agent.context.set({
-      name: 'waiting-enforcement-submit-inquiry',
-      lifespan: 2,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
  * Intent: enforcement-unemployment
  * Train phrases: { "How will my unemployment benefits be impacted?" }
  *
@@ -363,46 +317,6 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-passport-reinstatement
- * Training phrases: { "How do I get my passport reinstated?" }
- *
- * @param {*} agent
- */
-exports.enforcementPassportReinstatement = async agent => {
-  try {
-    await agent.add(
-      'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
-    )
-
-    // The client has not requested this suggestion, but it makes sense to include
-    await agent.add(new Suggestion(`Submit Inquiry`))
-    await agent.context.set({
-      name: 'waiting-enforcement-submit-inquiry',
-      lifespan: 2,
-    })
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-/**
- * Intent: enforcement-credit-bureau-reporting
- * Training phrases: { "Credit Bureau Reporting Credit Score" }
- *
- * @param {*} agent
- */
-exports.enforcementCreditBureauReporting = async agent => {
-  try {
-    await agent.add(
-      'MDHS automatically sends notice to the major credit bureaus when the parent who owes support is delinquent more than 60 days.'
-    )
-    await agent.add(new Suggestion('What if this was done in error?'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
  * Intent: enforcement-report-error
  * Training phrases: { "What if this was done in error?" }
  *
@@ -411,30 +325,13 @@ exports.enforcementCreditBureauReporting = async agent => {
 exports.enforcementReportError = async agent => {
   try {
     await agent.add(
-      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have the your case reviewed click "Submit Inquiry for Review" below.'
+      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have your case reviewed, click "Submit Inquiry for Review" below.'
     )
     await agent.add(new Suggestion(`Submit Inquiry for Review`))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
     })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
- * Intent: enforcement-unemployment
- * Train phrases: { "How will my unemployment benefits be impacted?" }
- *
- * @param {*} agent
- */
-exports.enforcementUnemployment = async agent => {
-  try {
-    await agent.add(
-      'MDHS partners with the MS Dept. of Employment Security to withhold child support payments from unemployment benefits.'
-    )
-    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
