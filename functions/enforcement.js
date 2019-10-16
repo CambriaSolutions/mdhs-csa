@@ -235,14 +235,6 @@ exports.enforcementSettlementsUpdateCase = async agent => {
   }
 }
 
-exports.enforcementSettlementsNoUpdateCase = async agent => {
-  try {
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 /**
  * Intent: enforcement-passport-revocation
  * Training phrases: { "Passport revoked" }
@@ -325,46 +317,6 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
 }
 
 /**
- * Intent: enforcement-passport-reinstatement
- * Training phrases: { "How do I get my passport reinstated?" }
- *
- * @param {*} agent
- */
-exports.enforcementPassportReinstatement = async agent => {
-  try {
-    await agent.add(
-      'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
-    )
-
-    // The client has not requested this suggestion, but it makes sense to include
-    await agent.add(new Suggestion(`Submit Inquiry`))
-    await agent.context.set({
-      name: 'waiting-enforcement-submit-inquiry',
-      lifespan: 2,
-    })
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-/**
- * Intent: enforcement-credit-bureau-reporting
- * Training phrases: { "Credit Bureau Reporting Credit Score" }
- *
- * @param {*} agent
- */
-exports.enforcementCreditBureauReporting = async agent => {
-  try {
-    await agent.add(
-      'MDHS automatically sends notice to the major credit bureaus when the parent who owes support is delinquent more than 60 days.'
-    )
-    await agent.add(new Suggestion('What if this was done in error?'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
  * Intent: enforcement-report-error
  * Training phrases: { "What if this was done in error?" }
  *
@@ -380,23 +332,6 @@ exports.enforcementReportError = async agent => {
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
     })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
- * Intent: enforcement-unemployment
- * Train phrases: { "How will my unemployment benefits be impacted?" }
- *
- * @param {*} agent
- */
-exports.enforcementUnemployment = async agent => {
-  try {
-    await agent.add(
-      'MDHS partners with the MS Dept. of Employment Security to withhold child support payments from unemployment benefits.'
-    )
-    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
