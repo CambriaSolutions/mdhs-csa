@@ -95,7 +95,7 @@ exports.enforcementLicenseSuspensionNonCompliance = async agent => {
 exports.enforcementLicenseReinstatement = async agent => {
   try {
     await agent.add(
-      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement with MDHS'
+      'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement with MDHS.'
     )
     await agent.add(new Suggestion(`Submit Inquiry for Reinstatement`))
     await agent.context.set({
