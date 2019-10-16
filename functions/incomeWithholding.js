@@ -344,7 +344,7 @@ exports.iwoHowLongToSend = async agent => {
 
 exports.iwoQAArrearsBalance = async agent => {
   try {
-    supportPaymentHistory(agent)
+    await supportPaymentHistory(agent)
   } catch (err) {
     console.error(err)
   }
