@@ -33,9 +33,11 @@ exports.enforcementRoot = async agent => {
  */
 exports.enforcementLicenseSuspensionReinstatement = async agent => {
   try {
-    await agent.add('License Suspension is one of the MDHS enforcement tools.')
     await agent.add(
-      'Would you like to learn more about when a license will be suspended or how to get a suspended license reinstated?'
+      `MDHS may suspend driver's licenses and professional licenses to enforce child support when arrears are owed.`
+    )
+    await agent.add(
+      'Would you like to learn more about when a license may be suspended or how to get a suspended license reinstated?'
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
