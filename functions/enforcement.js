@@ -373,7 +373,7 @@ exports.enforcementCreditBureauReporting = async agent => {
 exports.enforcementReportError = async agent => {
   try {
     await agent.add(
-      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have your case reviewed click "Submit Inquiry for Review" below.'
+      'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have your case reviewed, click "Submit Inquiry for Review" below.'
     )
     await agent.add(new Suggestion(`Submit Inquiry for Review`))
     await agent.context.set({
