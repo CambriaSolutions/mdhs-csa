@@ -149,7 +149,7 @@ exports.enforcementLiens = async agent => {
 exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
-      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact on account of lien. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
+      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
     )
     await agent.add(new Suggestion('Submit Request'))
     await agent.context.set({
