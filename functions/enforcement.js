@@ -223,26 +223,7 @@ exports.enforcementPersonalInjury = async agent => {
 exports.enforcementSettlementsUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
-    )
-    await agent.add(new Suggestion(`Update Case`))
-
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-/**
- * Intent: enforcement-settlements-update-case
- * Training phrases: { "Update case settlements"}
- *
- * @param {*} agent
- */
-exports.enforcementSettlementsUpdateCase = async agent => {
-  try {
-    await agent.add(
-      `If you have information about settlements that the parent who owes support may receive please click below to update your case.`
+      `If you have information about settlements that the parent who owes support may receive, please click below to update your case.`
     )
     await agent.add(new Suggestion(`Update Case`))
     await agent.context.set({
