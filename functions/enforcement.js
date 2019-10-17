@@ -244,7 +244,7 @@ exports.enforcementSettlementsUpdateCase = async agent => {
 exports.enforcementPassportRevocation = async agent => {
   try {
     await agent.add(
-      'Reduce the total amount of support owed to less than $2,500 or contact MDHS. MDHS has the discretion when negotiating with a parent who owes support to have the passport hold removed.'
+      'If the parent who owes support owes more than $2,500 in child support, an automatic notification is sent to the federal government to prevent the issuance or renewal of a passport.'
     )
     await agent.add(new Suggestion('How do I get my passport reinstated?'))
   } catch (err) {
@@ -260,7 +260,7 @@ exports.enforcementPassportRevocation = async agent => {
 exports.enforcementPassportReinstatement = async agent => {
   try {
     await agent.add(
-      'MDHS has discretion when negotiating with a parent who owes support to have the passport hold removed.'
+      'A passport may be reinstated when the amount of support owed is less than $2,500. In very limited circumstances, MDHS has discretion to negotiate with the parent who owes support to remove the passport hold.'
     )
 
     // The client has not requested this suggestion, but it makes sense to include
