@@ -30,7 +30,7 @@ jobs:
 
             ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
+      - run: node retrieveCoordinates && firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
   deploy_stage_functions:
     docker:
       - image: circleci/node:10.15.0
@@ -61,7 +61,7 @@ jobs:
 
             ANALYTICS_URI=${STAGE_ANALYTICS_URI}" > .env
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy -P $STAGE_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
+      - run: node retrieveCoordinates && firebase deploy -P $STAGE_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
   deploy_prod_functions:
     docker:
       - image: circleci/node:10.15.0
@@ -92,7 +92,7 @@ jobs:
 
             ANALYTICS_URI=${PROD_ANALYTICS_URI}" > .env
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy -P $PROD_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
+      - run: node retrieveCoordinates && firebase deploy -P $PROD_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
   version: 2
   build_deploy:
