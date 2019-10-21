@@ -154,6 +154,7 @@ exports.enforcementContestLien = async agent => {
       `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
     )
     await agent.add(new Suggestion('Submit Request'))
+    await handleEndConversation(agent)
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
@@ -174,11 +175,6 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
     await agent.add(
       `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case.`
     )
-    await agent.add(new Suggestion('Submit Request'))
-    await agent.context.set({
-      name: 'waiting-enforcement-submit-inquiry',
-      lifespan: 2,
-    })
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -353,7 +349,7 @@ exports.enforcementSubmitInquiry = async agent => {
 exports.enforcementBankruptcy = async agent => {
   try {
     await agent.add(
-      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy statements.`
+      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy payment.`
     )
     await handleEndConversation(agent)
   } catch (err) {
