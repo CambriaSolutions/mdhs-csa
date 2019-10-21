@@ -61,3 +61,5 @@ typings/
 .next
 agent/.DS_Store
 functions/serviceAccount.json
+functions/localTestingKey.json
+functions/mdhs-csa-dev-key.json
