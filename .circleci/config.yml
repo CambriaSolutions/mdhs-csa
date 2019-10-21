@@ -29,6 +29,9 @@ jobs:
             SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}
 
             ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
+      - run:
+          name: 'Run geocode script'
+          command: cd functions && node retrieveCoordinates
       - run: sudo npm install -g firebase-tools
       - run: node retrieveCoordinates && firebase deploy -P $DEV_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
   deploy_stage_functions:
@@ -60,6 +63,9 @@ jobs:
             SERVICE_DESK_ENV=${STAGE_SERVICE_DESK_ENV}
 
             ANALYTICS_URI=${STAGE_ANALYTICS_URI}" > .env
+      - run:
+          name: 'Run geocode script'
+          command: cd functions && node retrieveCoordinates
       - run: sudo npm install -g firebase-tools
       - run: node retrieveCoordinates && firebase deploy -P $STAGE_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
   deploy_prod_functions:
@@ -76,7 +82,7 @@ jobs:
           paths:
             - functions/node_modules
       - run:
-          name: 'Add env variables and deploy'
+          name: 'Add env variables'
           command: cd functions && echo
             "GOOGLE_MAPS_KEY=${PROD_GOOGLE_MAPS_KEY}
 
@@ -91,6 +97,9 @@ jobs:
             SERVICE_DESK_ENV=${PROD_SERVICE_DESK_ENV}
 
             ANALYTICS_URI=${PROD_ANALYTICS_URI}" > .env
+      - run:
+          name: 'Run geocode script'
+          command: cd functions && node retrieveCoordinates
       - run: sudo npm install -g firebase-tools
       - run: node retrieveCoordinates && firebase deploy -P $PROD_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
