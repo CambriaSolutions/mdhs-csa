@@ -29,7 +29,7 @@ jobs:
             SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}
 
             ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
-       - run:
+      - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
       - run: sudo npm install -g firebase-tools
@@ -63,9 +63,9 @@ jobs:
             SERVICE_DESK_ENV=${STAGE_SERVICE_DESK_ENV}
 
             ANALYTICS_URI=${STAGE_ANALYTICS_URI}" > .env
-       - run:
-           name: 'Run geocode script'
-           command: cd functions && node retrieveCoordinates
+      - run:
+          name: 'Run geocode script'
+          command: cd functions && node retrieveCoordinates
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P $STAGE_FIREBASE_PROJECT_ID --only functions --token $FIREBASE_DEPLOY_TOKEN
   deploy_prod_functions:
