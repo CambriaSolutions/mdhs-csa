@@ -6,6 +6,7 @@ const {
   disableInput,
   caseyHandoff,
 } = require('./globalFunctions.js')
+const { backIntent } = require('./components/back/back.js')
 
 // Not child support intents
 const {
@@ -729,6 +730,6 @@ exports = module.exports = functions
     // Waiting on more information from client
     // Good cause claim intent
     // intentMap.set('good-cause-claim', goodCauseClaim)
-
+    backIntent(agent, intentMap, 'go-back')
     agent.handleRequest(intentMap)
   })
