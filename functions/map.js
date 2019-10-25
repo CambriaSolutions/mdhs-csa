@@ -52,7 +52,7 @@ exports.mapDeliverMap = async agent => {
     const currentGeocode = await getGeocode(currentLocation)
 
     if (currentGeocode) {
-      const nearestLocations = getNearestThreeLocations(
+      const nearestLocations = await getNearestThreeLocations(
         currentGeocode,
         locations
       )

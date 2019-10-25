@@ -42,7 +42,7 @@ exports.employerIPayOnline = async agent => {
 exports.employerChecksMoneyOrders = async agent => {
   try {
     await agent.add(
-      `The employer may submit payments to the State Disbursement Unit per the Income Witholding Order. Submit payments to:
+      `The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:
          MDHS/SDU
          PO Box 23094
          Jackson, MS 39225
@@ -56,6 +56,9 @@ exports.employerChecksMoneyOrders = async agent => {
 
 exports.employerIWOHandoff = async agent => {
   try {
+    await agent.add(
+      `MDHS is required by law to submit Income Withholding Orders to employers to withhold child support and any arrears obligation.`
+    )
     await agent.add(
       `If you are an employer needing assistance with an Income Withholding Order, I can help you.`
     )

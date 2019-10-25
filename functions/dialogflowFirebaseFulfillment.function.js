@@ -1,11 +1,41 @@
 const functions = require('firebase-functions')
 const req = require('request')
-const { WebhookClient } = require('dialogflow-fulfillment')
-const { Suggestion } = require('dialogflow-fulfillment')
+const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const {
-  handleEndConversation,
   startRootConversation,
+  disableInput,
+  caseyHandoff,
 } = require('./globalFunctions.js')
+
+// Not child support intents
+const {
+  notChildSupportRoot,
+  handleChildSupportRetry,
+  handleAcknowledgementAfterRetry,
+} = require('./notChildSupport.js')
+
+// General enforcement intents
+const {
+  enforcementRoot,
+  enforcementLicenseSuspensionReinstatement,
+  enforcementLicenseSuspension,
+  enforcementLicenseSuspensionNonCompliance,
+  enforcementLicenseReinstatement,
+  enforcementTaxOffset,
+  enforcementLiens,
+  enforcementContestLien,
+  enforcementFinancialAccountUpdateCase,
+  enforcementPersonalInjury,
+  enforcementSettlementsUpdateCase,
+  enforcementSettlementsNoUpdateCase,
+  enforcementPassportRevocation,
+  enforcementPassportReinstatement,
+  enforcementCreditBureauReporting,
+  enforcementReportError,
+  enforcementUnemployment,
+  enforcementSubmitInquiry,
+  enforcementBankruptcy,
+} = require('./enforcement.js')
 
 // General payment intents
 const {
@@ -74,6 +104,19 @@ const {
   openCSCNoService,
 } = require('./openChildSupportCase.js')
 
+// Close Child Support Case
+const { closeCSCQACloseCase } = require('./closeChildSupportCase.js')
+
+// Case specific intents
+const {
+  caseQAIncreaseReview,
+  caseQAGeneral,
+  caseQAGeneralSupportRequest,
+  caseQAChangePersonalInfo,
+  caseQACompliance,
+  caseQAComplianceSupportRequest,
+} = require('./caseQA.js')
+
 // Appointments intents
 const {
   apptsRoot,
@@ -82,6 +125,8 @@ const {
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
   apptsGuidelines,
+  apptsQAOfficeHours,
+  apptsQAMissedAppt,
 } = require('./appointments.js')
 
 // Support intents
@@ -102,6 +147,8 @@ const {
   supportCollectNewEmployerPhone,
   supportType,
   supportCollectCompanyName,
+  supportCollectFirstName,
+  supportCollectLastName,
   supportCollectName,
   supportPhoneNumber,
   supportNoPhoneNumber,
@@ -117,6 +164,7 @@ const {
   supportSummarizeIssue,
   supportReviseIssue,
   supportSumbitIssue,
+  supportCancel,
 } = require('./support.js')
 
 // Map intents
@@ -182,6 +230,7 @@ const {
   iwoWhenToBegin,
   iwoEmployerSubmitPayments,
   iwoPaymentsHandoff,
+  iwoQAArrearsBalance,
 } = require('./incomeWithholding.js')
 
 // Feedback
@@ -191,6 +240,45 @@ const {
   feedbackNotHelpful,
   feedbackComplete,
 } = require('./feedback.js')
+
+// Genetic Testing
+const {
+  geneticTestingRequest,
+  geneticTestingResults,
+} = require('./geneticTesting.js')
+// Support QA
+const {
+  supportQACpPictureId,
+  supportQAWhoCanApply,
+  supportQAOtherState,
+  supportQANcpPrison,
+} = require('./supportQA.js')
+
+// Emancipation QA
+const { emancipationAge } = require('./emancipationQA.js')
+
+// Contact QA
+const {
+  contactQANumber,
+  contactSupportHandoff,
+  contactProvidePhoneNumber,
+} = require('./contactQA.js')
+
+// Payments QA
+const {
+  pmtQAHaventReceived,
+  pmtQAPaymentReduction,
+  pmtQAYesPaymentReduction,
+  pmtQAOver21,
+  pmtQAOver21SubmitRequest,
+  pmtQAEmployerPaymentStatus,
+  pmtQAYesEmployerPaymentStatus,
+  pmtQANCPPaymentStatus,
+  pmtQANCPPaymentStatusSubmitRequest,
+} = require('./paymentsQA.js')
+
+// Waiting on more information from MDHS
+// const { goodCauseClaim } = require('./goodCauseClaim')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -218,8 +306,9 @@ exports = module.exports = functions
     const welcome = async agent => {
       try {
         await agent.add(
-          `Hi, I'm Gen. I can help you with common child support requests. Are you here to get help with Child Support?`
+          `Hi, I'm Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?`
         )
+        await disableInput(agent)
         await agent.add(new Suggestion('Yes'))
         await agent.add(new Suggestion('No'))
         await agent.context.set({
@@ -238,9 +327,24 @@ exports = module.exports = functions
     const fallback = async agent => {
       try {
         await agent.add(
-          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
         await agent.add(new Suggestion(`Home`))
+
+        // Waiting on more information from MDHS
+        // await agent.add(
+        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
+        // )
+        // await agent.add(new Suggestion(`Submit Support Request`))
+        // await agent.add(new Suggestion(`Contact Number`))
+        // await agent.context.set({
+        //   name: 'waiting-contact-support-handoff',
+        //   lifespan: 2,
+        // })
+        // await agent.context.set({
+        //   name: 'waiting-contact-provide-phone-number',
+        //   lifespan: 2,
+        // })
       } catch (err) {
         console.error(err)
       }
@@ -252,9 +356,10 @@ exports = module.exports = functions
           `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.`
         )
         await agent.add(
-          `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and that you wish to continue.`
+          `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website Disclaimers, Terms, and Conditions found <a href="https://www.mdhs.ms.gov/privacy-disclaimer/" target="_blank">here</a>, and that you wish to continue.`
         )
         await agent.add(new Suggestion('I Acknowledge'))
+        await disableInput(agent)
         await agent.context.set({
           name: 'waiting-acknowledge-privacy-statement',
           lifespan: 2,
@@ -288,38 +393,6 @@ exports = module.exports = functions
       }
     }
 
-    const notChildSupport = async agent => {
-      try {
-        await agent.add(
-          `Sorry, I'm still learning how to help with other issues. Is there anything else I can help with?`
-        )
-        await agent.add(new Suggestion('Yes'))
-        await agent.add(new Suggestion('No'))
-        await agent.context.set({
-          name: 'waiting-not-child-support',
-          lifespan: 2,
-        })
-        await agent.context.set({
-          name: 'waiting-yes-child-support',
-          lifespan: 2,
-        })
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    // Directs the user to Casey
-    const caseyHandoff = async agent => {
-      try {
-        await agent.add(
-          `Click <a href="https://mdhs-policysearch.firebaseapp.com" target="_blank">Here</a> to search the Child Support Policy Manual`
-        )
-        await handleEndConversation(agent)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
     let intentMap = new Map()
 
     intentMap.set('Default Fallback Intent', fallback)
@@ -328,8 +401,19 @@ exports = module.exports = functions
     intentMap.set('global-restart', globalRestart)
     intentMap.set('restart-conversation', restartConversation)
     intentMap.set('yes-child-support', yesChildSupport)
-    intentMap.set('not-child-support', notChildSupport)
     intentMap.set('casey-handoff', caseyHandoff)
+
+    // Contact number intents
+    intentMap.set('contact-support-handoff', contactSupportHandoff)
+    intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
+
+    // Not child support intents
+    intentMap.set('not-child-support-root', notChildSupportRoot)
+    intentMap.set('handle-child-support-retry', handleChildSupportRetry)
+    intentMap.set(
+      'acknowledgement-after-retry',
+      handleAcknowledgementAfterRetry
+    )
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
@@ -397,6 +481,7 @@ exports = module.exports = functions
     intentMap.set('iwo-how-long-to-send', iwoHowLongToSend)
     intentMap.set('iwo-employer-submit-payments', iwoEmployerSubmitPayments)
     intentMap.set('iwo-payments-handoff', iwoPaymentsHandoff)
+    intentMap.set('iwoQA-arrears-balance', iwoQAArrearsBalance)
 
     // General payment intents
     intentMap.set('pmts-general-root', pmtsGeneralRoot)
@@ -442,6 +527,9 @@ exports = module.exports = functions
     intentMap.set('open-csc-employer-payments', openCSCCollectionEmployer)
     intentMap.set('open-csc-no-service', openCSCNoService)
 
+    // Open a Child Support Case
+    intentMap.set('close-cscQA-close-case', closeCSCQACloseCase)
+
     // Appointment intents
     intentMap.set('appts-root', apptsRoot)
     intentMap.set('appts-schedule', apptsSchedule)
@@ -449,6 +537,8 @@ exports = module.exports = functions
     intentMap.set('appts-yes-contacted', apptsYesContacted)
     intentMap.set('appts-office-locations-handoff', apptsOfficeLocationsHandoff)
     intentMap.set('appts-guidelines', apptsGuidelines)
+    intentMap.set('apptsQA-office-hours', apptsQAOfficeHours)
+    intentMap.set('apptsQA-missed-appt', apptsQAMissedAppt)
 
     // Support intents
     intentMap.set('support-root', supportRoot)
@@ -480,6 +570,8 @@ exports = module.exports = functions
     intentMap.set('support-type', supportType)
     intentMap.set('support-collect-company-name', supportCollectCompanyName)
     intentMap.set('support-collect-name', supportCollectName)
+    intentMap.set('support-collect-first-name', supportCollectFirstName)
+    intentMap.set('support-collect-last-name', supportCollectLastName)
     intentMap.set('support-phone-number', supportPhoneNumber)
     intentMap.set('support-no-phone-number', supportNoPhoneNumber)
     intentMap.set('support-email', supportEmail)
@@ -494,6 +586,17 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+
+    // Case specific intents
+    intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
+    intentMap.set('caseQA-general', caseQAGeneral)
+    intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
+    intentMap.set('caseQA-change-personal-info', caseQAChangePersonalInfo)
+    intentMap.set('caseQA-compliance', caseQACompliance)
+    intentMap.set(
+      'caseQA-compliance-support-request',
+      caseQAComplianceSupportRequest
+    )
 
     // Map intents
     intentMap.set('map-root', mapRoot)
@@ -536,6 +639,96 @@ exports = module.exports = functions
     intentMap.set('feedback-helpful', feedbackHelpful)
     intentMap.set('feedback-not-helpful', feedbackNotHelpful)
     intentMap.set('feedback-complete', feedbackComplete)
+
+    // Genetic Testing intents
+    intentMap.set('geneticTesting-request', geneticTestingRequest)
+    intentMap.set('geneticTesting-results', geneticTestingResults)
+
+    // Payments QA intents
+    intentMap.set('pmtQA-havent-received', pmtQAHaventReceived)
+    intentMap.set('pmtQA-payment-reduction', pmtQAPaymentReduction)
+    intentMap.set('pmtQA-yes-payment-reduction', pmtQAYesPaymentReduction)
+    intentMap.set('pmtQA-over-21', pmtQAOver21)
+    intentMap.set('pmtQA-over-21-submit-request', pmtQAOver21SubmitRequest)
+    intentMap.set('pmtQA-employer-payment-status', pmtQAEmployerPaymentStatus)
+    intentMap.set(
+      'pmtQA-yes-employer-payment-status',
+      pmtQAYesEmployerPaymentStatus
+    )
+    intentMap.set('pmtQA-NCP-payment-status', pmtQANCPPaymentStatus)
+    intentMap.set(
+      'pmtQA-NCP-payment-status-submit-request',
+      pmtQANCPPaymentStatusSubmitRequest
+    )
+    // Support QA intents
+    intentMap.set('support-qa-cp-pictureId', supportQACpPictureId)
+    intentMap.set('support-qa-who-can-apply', supportQAWhoCanApply)
+    intentMap.set('support-qa-other-state', supportQAOtherState)
+    intentMap.set('support-qa-ncp-prison', supportQANcpPrison)
+
+    // Emancipation QA intents
+    intentMap.set('emancipation-qa-age', emancipationAge)
+
+    // Contact QA intents
+    intentMap.set('contact-qa-number', contactQANumber)
+
+    // Enforcement intents
+    intentMap.set('enforcement-root', enforcementRoot)
+    intentMap.set(
+      'enforcement-license-suspension-and-reinstatement',
+      enforcementLicenseSuspensionReinstatement
+    )
+    intentMap.set(
+      'enforcement-license-suspension',
+      enforcementLicenseSuspension
+    )
+    intentMap.set(
+      'enforcement-license-suspension-non-compliance',
+      enforcementLicenseSuspensionNonCompliance
+    )
+    intentMap.set(
+      'enforcement-license-reinstatement',
+      enforcementLicenseReinstatement
+    )
+    intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-liens', enforcementLiens)
+    intentMap.set('enforcement-contest-lien', enforcementContestLien)
+    intentMap.set(
+      'enforcement-financial-account-update-case',
+      enforcementFinancialAccountUpdateCase
+    )
+    intentMap.set('enforcement-personal-injury', enforcementPersonalInjury)
+    intentMap.set(
+      'enforcement-settlements-update-case',
+      enforcementSettlementsUpdateCase
+    )
+    intentMap.set(
+      'enforcement-settlements-no-update-case',
+      enforcementSettlementsNoUpdateCase
+    )
+    intentMap.set(
+      'enforcement-passport-revocation',
+      enforcementPassportRevocation
+    )
+    intentMap.set(
+      'enforcement-passport-reinstatement',
+      enforcementPassportReinstatement
+    )
+    intentMap.set(
+      'enforcement-credit-bureau-reporting',
+      enforcementCreditBureauReporting
+    )
+    intentMap.set('enforcement-report-error', enforcementReportError)
+    intentMap.set('enforcement-unemployment', enforcementUnemployment)
+    intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
+
+    intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
+    // Cancel intent
+    intentMap.set('support-cancel', supportCancel)
+
+    // Waiting on more information from client
+    // Good cause claim intent
+    // intentMap.set('good-cause-claim', goodCauseClaim)
 
     agent.handleRequest(intentMap)
   })

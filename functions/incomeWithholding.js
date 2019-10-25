@@ -3,15 +3,17 @@ const {
   calculatePercentage,
   handleEndConversation,
   formatCurrency,
+  disableInput,
 } = require('./globalFunctions.js')
 const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
+const { supportPaymentHistory } = require('./support.js')
 
 exports.iwoRoot = async agent => {
   try {
     await agent.add(
       `Would you like assistance working through the CCPA guidelines to determine how much to withhold? Or do you want to simply ask a question?`
     )
-    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('CCPA Assistance'))
     await agent.add(new Suggestion('FAQs'))
     await agent.context.set({
       name: 'waiting-iwo-wants-assistance',
@@ -124,6 +126,8 @@ exports.iwoConfirmEstimate = async agent => {
       `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.`
     )
     await agent.add(new Suggestion('I Understand'))
+    // Force user to select suggestion
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-iwo-request-disposable-income',
       lifespan: 2,
@@ -226,7 +230,7 @@ exports.iwoEmployerSubmitPayments = async agent => {
       `For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>`
     )
     await agent.add(
-      `The employer may submit payments to the State Disbursement Unit per the Income Witholding Order. Submit payments to:
+      `The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:
          MDHS/SDU
          PO Box 23094
          Jackson, MS 39225
@@ -333,6 +337,14 @@ exports.iwoWhenToBegin = async agent => {
 exports.iwoHowLongToSend = async agent => {
   try {
     await agent.add(`7 days`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.iwoQAArrearsBalance = async agent => {
+  try {
+    await supportPaymentHistory(agent)
   } catch (err) {
     console.error(err)
   }

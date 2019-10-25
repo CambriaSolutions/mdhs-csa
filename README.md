@@ -145,3 +145,32 @@ centerCoordinates: {
 ```
 activationText = 'Talk to Gen'
 ```
+
+## Deployment from Dev to Stage
+
+### Interface
+
+1. Update chat frame version in testing ui
+2. Ensure webhook is changed to staging
+3. Build and deploy to stage hosting
+   `yarn deploy-stage`
+
+### Functions
+
+1. Ensure .env contains stage credentials
+2. Deploy to stage environment
+   `yarn deploy-stage-dialogflow`
+3. Test!
+
+### Agent
+
+#### In dev agent
+
+1. Ensure all intents and entities have been updated in dev
+2. Download dev agent through: project settings -> export and import -> export as zip
+
+#### In stage agent
+
+1. Update stage agent through: project settings -> export and import -> restore from zip
+2. Update fulfillment to staging webhook
+3. Test!

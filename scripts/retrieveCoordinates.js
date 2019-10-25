@@ -2,6 +2,7 @@ require('dotenv').config()
 const URL = require('url').URL
 const fetch = require('node-fetch')
 const fs = require('fs')
+const parser = require('parse-address')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
 // Create an array of locations to send to the geocode api
@@ -27,7 +28,8 @@ const locations = [
   '1122 E Main St, Suite 1 Philadelphia, MS 39328',
   '950 E County Line Road, Suite #G Ridgeland, MS 39157',
   '600 Russell St, Suite 110 Starkville, MS 39759',
-  '600 Main St, Suite #B Tupelo, MS 38804',
+  '600 Main St Suite B, Tupelo, MS 38804',
+  '600 Main St Suite B, Tupelo, MS 38804',
   '1507 Washington St, 1st Floor Vicksburg, MS 39180',
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
@@ -79,15 +81,55 @@ const retrieveCoordinates = async address => {
 }
 
 // Map through the array of locations to send each to the geocode api
-let requests = locations.map(location => {
-  return retrieveCoordinates(location)
+const coordinatesRequests = locations.map(async location => {
+  let coordinates = await retrieveCoordinates(location)
+
+  // Sometimes extra address components (suite #, apartment #, etc.) cause the geolocation
+  // call to fail. In the case of failure, we attempt to remove the troubling components, and retry
+  if (!coordinates) {
+    // The call has failed to return results
+
+    // Parse the address into individual address components
+    let cleanedAddress = ''
+    let addressUnitComponents = ''
+    const parsedAddress = parser.parseAddress(location)
+
+    for (let addressComponent in parsedAddress) {
+      if (
+        addressComponent !== 'sec_unit_type' &&
+        addressComponent !== 'sec_unit_num'
+      ) {
+        // Populate a string without the troubling components to send to the
+        // geocoding api
+        cleanedAddress += `${parsedAddress[addressComponent]} `
+      } else {
+        // Populate a separate string with the troubling components,
+        // to be added back to the street property upon successfail geocoding retrieval
+        addressUnitComponents += `${parsedAddress[addressComponent]} `
+      }
+    }
+
+    // Try to retrieve the coordinates again without the troubling address components
+    coordinates = await retrieveCoordinates(cleanedAddress)
+    if (!coordinates) {
+      // The call has failed again, throw an error to call attention to the address
+      throw new Error(
+        `Unable to retrieve coordinates for location: ${location}`
+      )
+    } else {
+      // Return the components to the street property
+      coordinates.addressComponents.street += `, ${addressUnitComponents}`
+    }
+    return coordinates
+  } else {
+    return coordinates
+  }
 })
 
 // Send each request to the geocode api and create a file with the results inside
 // the functions directory. We will use these to populate the custom payload for the
 // map intent fulfillment
-Promise.all(requests).then(responses => {
-  console.log(responses)
+Promise.all(coordinatesRequests).then(responses => {
   fs.writeFile(
     '../functions/coordinates.json',
     JSON.stringify(responses),

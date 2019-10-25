@@ -1,4 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion, Payload } = require('dialogflow-fulfillment')
 
 exports.handleEndConversation = async agent => {
   const helpMessages = [
@@ -10,6 +10,8 @@ exports.handleEndConversation = async agent => {
     helpMessages[Math.floor(Math.random() * helpMessages.length)]
   await agent.add(helpMessage)
   await agent.add(new Suggestion(`Home`))
+  await agent.add(new Suggestion(`Submit Feedback`))
+
   await agent.context.set({
     name: 'waiting-feedback-root',
     lifespan: 2,
@@ -129,6 +131,37 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Opening a Child Support Case'))
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
+    await agent.add(new Suggestion('Enforcement Action'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Send a payload to disable user input and require suggestion selection
+exports.disableInput = async agent => {
+  try {
+    await agent.add(
+      new Payload(
+        agent.UNSPECIFIED,
+        { disableInput: 'true' },
+        {
+          sendAsMessage: true,
+          rawPayload: true,
+        }
+      )
+    )
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Directs the user to Casey
+exports.caseyHandoff = async agent => {
+  try {
+    await agent.add(
+      `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+    )
+    await this.handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }

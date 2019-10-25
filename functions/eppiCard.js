@@ -60,7 +60,7 @@ exports.eppiGetCard = async agent => {
 exports.eppiActivateCard = async agent => {
   try {
     await agent.add(
-      `When you recieve your card, call <a href="tel:+1-866-461-4095">1-866-461-4095</a> to activate your card and create your PIN. You will need your card number, Social Security Number and Date of Birth to complete the activation process.`
+      `When you receive your card, call <a href="tel:+1-866-461-4095">1-866-461-4095</a> to activate your card and create your PIN. You will need your card number, Social Security Number and Date of Birth to complete the activation process.`
     )
     await agent.add(`Remember to sign your name on the back of the card!`)
     await handleEndConversation(agent)

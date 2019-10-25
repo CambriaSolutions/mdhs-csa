@@ -5,7 +5,15 @@ const languageCode = 'en-US'
 
 // Instantiate a DialogFlow client.
 const dialogflow = require('dialogflow')
+
+// For deployment
 const sessionClient = new dialogflow.SessionsClient()
+
+// // For local testing uncomment below and comment out sessionClient
+// // above.
+// const sessionClient = new dialogflow.SessionsClient({
+//   keyFilename: process.env.GOOGLE_SERVICE_ACCOUNT,
+// })
 
 const cors = require('cors')({
   origin: true,
