@@ -277,8 +277,8 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-// Waiting on more information from MDHS
-// const { goodCauseClaim } = require('./goodCauseClaim')
+// ML model requests
+const { categorizeAndPredict } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -288,20 +288,21 @@ const runtimeOpts = {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
-    // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    console.log(agent.query)
+    // // Send request body to analytics function
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const welcome = async agent => {
       try {
@@ -326,25 +327,37 @@ exports = module.exports = functions
 
     const fallback = async agent => {
       try {
-        await agent.add(
-          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
-        )
-        await agent.add(new Suggestion(`Home`))
-
-        // Waiting on more information from MDHS
-        // await agent.add(
-        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
-        // )
-        // await agent.add(new Suggestion(`Submit Support Request`))
-        // await agent.add(new Suggestion(`Contact Number`))
-        // await agent.context.set({
-        //   name: 'waiting-contact-support-handoff',
-        //   lifespan: 2,
-        // })
-        // await agent.context.set({
-        //   name: 'waiting-contact-provide-phone-number',
-        //   lifespan: 2,
-        // })
+        const { query } = agent
+        const categories = await categorizeAndPredict(query)
+        if (categories) {
+          const categoriesAndConfidence = categories[0].labels
+          const suggestions = []
+          for (const category of Object.keys(categoriesAndConfidence)) {
+            const { name, confidence } = categoriesAndConfidence[category]
+            if (confidence > 0.01) {
+              suggestions.push(name)
+            }
+          }
+          await agent.add(
+            `I'm sorry, were you referring to one of the topics below?`
+          )
+          suggestions.forEach(async suggestion => {
+            await agent.add(new Suggestion(suggestion))
+          })
+          await agent.context.set({
+            name: 'should-inspect-ml',
+            lifespan: 1,
+            parameters: {
+              originalQuery: query,
+              suggestions: suggestions,
+            },
+          })
+        } else {
+          await agent.add(
+            `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+          )
+          await agent.add(new Suggestion(`Home`))
+        }
       } catch (err) {
         console.error(err)
       }
