@@ -1,6 +1,12 @@
 require('dotenv').config()
 const automl = require('@google-cloud/automl')
-const client = new automl.v1beta1.PredictionServiceClient({})
+
+const client = new automl.v1beta1.PredictionServiceClient({
+  credentials: {
+    client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
+    private_key: `${process.env.AUTOML_PRIVATE_KEY}`,
+  },
+})
 
 const predictCategories = async query => {
   const categoryModelPath = client.modelPath(
