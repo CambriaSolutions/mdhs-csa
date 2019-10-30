@@ -278,11 +278,30 @@ const {
 } = require('./paymentsQA.js')
 
 // ML model requests
-const { categorizeAndPredict } = require('./categorizeAndPredict.js')
+const { handledUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
   memory: '2GB',
+}
+
+const preProcessIntent = async (agent, intentMap, request) => {
+  const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+  // If the intent is handled by the agent, continue with default behavior
+  if (isHandled) {
+    agent.handleRequest(intentMap)
+  } else {
+    // The intent is unhandled, send the request for ML processing and handling
+    agent.handleRequest(handledUnhandled)
+  }
+
+  // Send request body to analytics function
+  req({
+    method: 'POST',
+    uri: process.env.ANALYTICS_URI,
+    body: request.body,
+    json: true,
+  })
 }
 
 exports = module.exports = functions
@@ -294,14 +313,6 @@ exports = module.exports = functions
     // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
-
-    // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
 
     const welcome = async agent => {
       try {
@@ -738,9 +749,6 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Waiting on more information from client
-    // Good cause claim intent
-    // intentMap.set('good-cause-claim', goodCauseClaim)
-
-    agent.handleRequest(intentMap)
+    // Analyze the intent
+    preProcessIntent(agent, intentMap, request)
   })
