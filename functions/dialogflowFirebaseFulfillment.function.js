@@ -278,7 +278,7 @@ const {
 } = require('./paymentsQA.js')
 
 // ML model requests
-const { handledUnhandled } = require('./categorizeAndPredict.js')
+const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -292,7 +292,7 @@ const preProcessIntent = async (agent, intentMap, request) => {
     agent.handleRequest(intentMap)
   } else {
     // The intent is unhandled, send the request for ML processing and handling
-    agent.handleRequest(handledUnhandled)
+    agent.handleRequest(handleUnhandled)
   }
 
   // Send request body to analytics function
@@ -307,10 +307,10 @@ const preProcessIntent = async (agent, intentMap, request) => {
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 

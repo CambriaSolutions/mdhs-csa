@@ -1,8 +1,8 @@
 require('dotenv').config()
 const automl = require('@google-cloud/automl')
-const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 
-// Instatiate autoML client
+// Instantiate autoML client
 const client = new automl.v1beta1.PredictionServiceClient({
   client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
   private_key: `${process.env.AUTOML_PRIVATE_KEY.replace(/\\n/g, '\n')}`,
@@ -11,6 +11,7 @@ const client = new automl.v1beta1.PredictionServiceClient({
 // Mapping ML categories to intent suggestions
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
 
+// Query the category model to return category predictions
 const predictCategories = async query => {
   // Define the location of the category prediction model
   const categoryModelPath = client.modelPath(
@@ -33,7 +34,7 @@ const predictCategories = async query => {
   const catResponses = await client.predict(catRequest)
   return {
     predictionType: 'categories',
-    labels: {
+    categories: {
       category1: {
         name: catResponses[0].payload[0].displayName,
         confidence: catResponses[0].payload[0].classification.score,
@@ -50,6 +51,8 @@ const predictCategories = async query => {
   }
 }
 
+// Query the subject matter model to return what subject matter the query
+// belongs to
 const predictSubjectMatter = async query => {
   // Define the location of the subject matter model
   const subjectMatterModelPath = client.modelPath(
@@ -72,34 +75,42 @@ const predictSubjectMatter = async query => {
   const smResponses = await client.predict(smRequest)
   return {
     predictionType: 'subjectMatter',
-    labels: smResponses[0].payload[0].displayName,
+    categories: smResponses[0].payload[0].displayName,
   }
 }
 
+// Query both models to determine
+// 1. Is this applicable to the subject matter we handle?
+// 2. What category is the query most likely to match?
 const categorizeAndPredict = async query => {
-  // Query both models to determine
-  // 1. Is this applicable to the subject matter we handle?
-  // 2. What category is the query most likely to match?
-
   const modelPromises = [predictCategories(query), predictSubjectMatter(query)]
   const results = await Promise.all(modelPromises)
 
-  // Check the responses to
+  // Check the responses to determing if this query applies to child support
   const appliesToChildSupport = results.find(
     result =>
       result.predictionType === 'subjectMatter' &&
-      result.labels === 'child-support'
+      result.categories === 'child-support'
+  )
+  const predictions = results.find(
+    result => result.predictionType === 'categories'
   )
 
+  const categories = []
   if (appliesToChildSupport) {
-    // Remove the subject matter prediction
-    return results.filter(result => {
-      return result.predictionType !== 'subjectMatter'
-    })
+    for (const category in predictions.categories) {
+      const { name, confidence } = predictions.categories[category]
+
+      // TODO: determine threshold, it is low now for testing purposes
+      if (confidence > 0.01) {
+        categories.push(name)
+      }
+    }
   }
+  return categories
 }
 
-exports.handledUnhandled = async agent => {
+exports.handleUnhandled = async agent => {
   try {
     const { query } = agent
 
@@ -108,22 +119,14 @@ exports.handledUnhandled = async agent => {
 
     // If there are categories returned, map them to intents,
     // and present them to the user as suggestions
-    if (categories) {
-      const categoriesAndConfidence = categories[0].labels
-      const suggestions = []
-      for (const category of Object.keys(categoriesAndConfidence)) {
-        const { name, confidence } = categoriesAndConfidence[category]
-        if (confidence > 0.01) {
-          const suggestionText = mapCategoryToIntent(name)
-          if (suggestionText !== '') {
-            suggestions.push(suggestionText)
-          }
-        }
-      }
+    if (categories.length > 0) {
+      const suggestions = categories.map(category => {
+        return mapCategoryToIntent(category)
+      })
+
       await agent.add(
         `I'm sorry, were you referring to one of the topics below?`
       )
-      console.log(suggestions)
       suggestions.forEach(async suggestion => {
         await agent.add(new Suggestion(suggestion))
       })
@@ -131,7 +134,7 @@ exports.handledUnhandled = async agent => {
       // Save the query and suggestions in context for further analysis
       // on the analytics end
       await agent.context.set({
-        name: 'should-inspect-ml',
+        name: 'should-inspect-for-ml',
         lifespan: 1,
         parameters: {
           originalQuery: query,
