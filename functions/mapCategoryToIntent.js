@@ -1,13 +1,13 @@
 const admin = require('firebase-admin')
 const get = require('lodash/get')
 
-// Add the service account key and uncomment below for local testing
-// to grant read access to database
-const serviceAccount = require('./dev-beta-service-key.json')
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://mdhs-csa-dev-beta.firebaseio.com',
-})
+// // Add the service account key and uncomment below for local testing
+// // to grant read access to database
+// const serviceAccount = require('./dev-beta-service-key.json')
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: 'https://mdhs-csa-dev-beta.firebaseio.com',
+// })
 
 let db = admin.firestore()
 
