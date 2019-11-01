@@ -92,6 +92,7 @@ const categorizeAndPredict = async query => {
       result.predictionType === 'subjectMatter' &&
       result.categories === 'child-support'
   )
+
   const predictions = results.find(
     result => result.predictionType === 'categories'
   )
@@ -117,30 +118,42 @@ exports.handleUnhandled = async agent => {
     // Send the user's query to interact with our custom machine learning models
     const categories = await categorizeAndPredict(query)
 
-    // If there are categories returned, map them to intents,
+    // If there are categories returned, attempt to map them to intents,
     // and present them to the user as suggestions
     if (categories.length > 0) {
-      const suggestions = categories.map(category => {
-        return mapCategoryToIntent(category)
-      })
+      // Use the ML categories to retrieve associated suggestions from the db
+      const suggestions = await mapCategoryToIntent(categories)
 
-      await agent.add(
-        `I'm sorry, were you referring to one of the topics below?`
-      )
-      suggestions.forEach(async suggestion => {
-        await agent.add(new Suggestion(suggestion))
-      })
+      if (suggestions.length > 0) {
+        // TODO: Determine non-suggestion text
+        await agent.add(
+          `I'm sorry, were you referring to one of the topics below?`
+        )
 
-      // Save the query and suggestions in context for further analysis
-      // on the analytics end
-      await agent.context.set({
-        name: 'should-inspect-for-ml',
-        lifespan: 1,
-        parameters: {
-          originalQuery: query,
-          suggestions: suggestions,
-        },
-      })
+        suggestions.forEach(async suggestion => {
+          if (suggestion.suggestionText) {
+            await agent.add(new Suggestion(suggestion.suggestionText))
+          }
+        })
+
+        // Save the query and suggestion and intent collection in context for
+        // further analysis on the analytics end
+        await agent.context.set({
+          name: 'should-inspect-for-ml',
+          lifespan: 1,
+          parameters: {
+            originalQuery: query,
+            suggestions: suggestions,
+          },
+        })
+      } else {
+        // The query did not return any suggestions
+        // handle with default fallback language
+        await agent.add(
+          `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+        )
+        await agent.add(new Suggestion(`Home`))
+      }
     } else {
       // The query was not in the realm of our subject matter,
       // handle with default fallback language

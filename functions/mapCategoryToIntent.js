@@ -1,57 +1,55 @@
+const admin = require('firebase-admin')
+const get = require('lodash/get')
+
+// Add the service account key and uncomment below for local testing
+// to grant read access to database
+const serviceAccount = require('./dev-beta-service-key.json')
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://mdhs-csa-dev-beta.firebaseio.com',
+})
+
+let db = admin.firestore()
+
 const camelCase = require('camelcase')
 
-exports.mapCategoryToIntent = category => {
+const retrieveIntentData = async category => {
+  // Format the category returned from ml models to match our db naming convention
   const formattedCategory = camelCase(category)
-  // TBD: Query the db for these suggestions
-  const suggestionsForCategories = {
-    accountBalance: 'account balance',
-    addressingCheck: 'make payments',
-    appointments: 'appointments',
-    arrears: 'arrears placeholder',
-    callcenterNotAnswering: 'tbd',
-    cantMakePayments: 'tbd',
-    card: 'card',
-    caseNumber: 'tbd',
-    caseStatus: 'tbd',
-    changeEmploymentInformation: 'tbd',
-    changeOfInformation: 'tbd',
-    childCare: 'tbd',
-    complaints: 'tbd',
-    contactHuman: 'tbd',
-    documentation: 'tbd',
-    email: 'tbd',
-    emancipation: 'emancipation',
-    enforcement: 'enforcement',
-    estimatePayments: 'estimate payments',
-    fax: 'tbd',
-    gratitude: 'tbd',
-    greaterThanOneMonth: 'tbd',
-    incarceration: 'tbd',
-    infoAboutParent: 'tbd',
-    insufficientResponse: 'tbd',
-    interstate: 'tbd',
-    legal: 'tbd',
-    licenseSuspension: 'license suspension',
-    login: 'tbd',
-    makePayment: 'make payment',
-    notReceivedPayment: 'not received payment',
-    officeLocations: 'office locations',
-    onlineAction: 'tbd',
-    openCase: 'open a case',
-    paidButNotReceived: 'paid but not received',
-    paternity: 'paternity',
-    paymentHistory: 'tbd',
-    paymentModification: 'payment modification',
-    paymentTimelines: 'tbd', // possibly pmtQA-NCP-payment-status
-    refund: 'tbd',
-    snap: 'tbd',
-    supportInquiries: 'support inquiry',
-    tanf: 'tbd',
-    terminate: 'close case',
-    verification: 'tbd',
-    visitation: 'tbd',
+
+  // Create a reference for the mlCategory collection and retrieve the intent name
+  // to reference the intent collection
+  const categoryDocRef = db.collection('mlCategories').doc(formattedCategory)
+  const categoryDoc = await categoryDocRef.get()
+  const categoryData = categoryDoc.data()
+  const intent = get(categoryData, 'intent')
+
+  // Create a reference for the intent collection and retrieve the suggestion
+  // text for the specific intent
+  let suggestionText
+  if (intent) {
+    const intentDocRef = db.collection('intents').doc(intent)
+    const intentDoc = await intentDocRef.get()
+    const intentData = intentDoc.data()
+    suggestionText = get(intentData, 'suggestionText', '')
   }
 
-  const suggestionText = suggestionsForCategories[formattedCategory]
-  return suggestionText
+  if (intent && suggestionText) {
+    return {
+      intent,
+      suggestionText,
+    }
+  } else {
+    return
+  }
+}
+
+exports.mapCategoryToIntent = async categories => {
+  // Create an array of db queries for each category returned from the ml models
+  const promises = categories.map(async category => {
+    return retrieveIntentData(category)
+  })
+  const suggestionResults = await Promise.all(promises)
+
+  return suggestionResults.filter(suggestion => suggestion !== undefined)
 }

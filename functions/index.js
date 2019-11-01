@@ -1,6 +1,6 @@
-const admin = require('firebase-admin')
-const functions = require('firebase-functions')
-admin.initializeApp(functions.config().firebase)
+// const admin = require('firebase-admin')
+// const functions = require('firebase-functions')
+// admin.initializeApp(functions.config().firebase)
 const glob = require('glob')
 const camelCase = require('camelcase')
 
@@ -8,7 +8,7 @@ const camelCase = require('camelcase')
 // anything inside of node-modules
 const files = glob.sync('./**/*.function.js', {
   cwd: __dirname,
-  ignore: './node_modules/**'
+  ignore: './node_modules/**',
 })
 
 // Clean up function names to be camelCase and export
