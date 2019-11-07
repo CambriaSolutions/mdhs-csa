@@ -31,7 +31,7 @@ const retrieveIntentData = async category => {
     const intentDocRef = db.collection('intents').doc(intent)
     const intentDoc = await intentDocRef.get()
     const intentData = intentDoc.data()
-    suggestionText = get(intentData, 'suggestionText')
+    suggestionText = get(intentData, 'suggestionButtonText')
   }
 
   if (intent && suggestionText) {
