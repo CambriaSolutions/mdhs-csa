@@ -63,3 +63,6 @@ agent/.DS_Store
 functions/serviceAccount.json
 functions/localTestingKey.json
 functions/mdhs-csa-dev-key.json
+functions/deploy/dev-beta-service-key.json
+functions/analyticsKey.json
+functions/__tests__/dev-beta-service-key.json
