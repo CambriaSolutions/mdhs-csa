@@ -290,10 +290,10 @@ const preProcessIntent = async (agent, intentMap, request) => {
   const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
   // If the intent is handled by the agent, continue with default behavior
   if (isHandled) {
-    agent.handleRequest(intentMap)
+    await agent.handleRequest(intentMap)
   } else {
     // The intent is unhandled, send the request for ML processing and handling
-    agent.handleRequest(handleUnhandled)
+    await agent.handleRequest(handleUnhandled)
   }
 
   // Send request body to analytics function
