@@ -286,32 +286,13 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-const preProcessIntent = async (agent, intentMap, request) => {
-  // Send request body to analytics function
-  req({
-    method: 'POST',
-    uri: process.env.ANALYTICS_URI,
-    body: request.body,
-    json: true,
-  })
-
-  const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-  // If the intent is handled by the agent, continue with default behavior
-  if (isHandled) {
-    await agent.handleRequest(intentMap)
-  } else {
-    // The intent is unhandled, send the request for ML processing and handling
-    await agent.handleRequest(handleUnhandled)
-  }
-}
-
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest(async (request, response) => {
-    console.log(
-      'Dialogflow Request headers: ' + JSON.stringify(request.headers)
-    )
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    // console.log(
+    //   'Dialogflow Request headers: ' + JSON.stringify(request.headers)
+    // )
+    // console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
 
@@ -733,5 +714,23 @@ exports = module.exports = functions
     intentMap.set('tbd', tbd)
 
     // Analyze the intent
+    const preProcessIntent = async (agent, intentMap, request) => {
+      // Send request body to analytics function
+      req({
+        method: 'POST',
+        uri: process.env.ANALYTICS_URI,
+        body: request.body,
+        json: true,
+      })
+
+      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+      // If the intent is handled by the agent, continue with default behavior
+      if (isHandled) {
+        await agent.handleRequest(intentMap)
+      } else {
+        // The intent is unhandled, send the request for ML processing and handling
+        await agent.handleRequest(handleUnhandled)
+      }
+    }
     await preProcessIntent(agent, intentMap, request)
   })

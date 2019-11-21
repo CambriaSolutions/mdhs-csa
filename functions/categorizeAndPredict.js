@@ -130,9 +130,11 @@ exports.handleUnhandled = async agent => {
           `I'm sorry, were you referring to one of the topics below?`
         )
 
-        suggestions.forEach(async suggestion => {
+        suggestions.forEach(async (suggestion, i) => {
+          console.log(JSON.stringify(suggestion))
           if (suggestion.suggestionText) {
-            await agent.add(new Suggestion(suggestion.suggestionText))
+            await agent.add(`ML-Category:${suggestion.mlCategory}`)
+            await agent.add(new Suggestion(`${suggestion.suggestionText}`))
           }
         })
 
