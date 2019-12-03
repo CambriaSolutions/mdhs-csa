@@ -52,7 +52,7 @@ const predictCategories = async query => {
 }
 
 // Query the subject matter model to return what subject matter the query
-// belongs to
+// belongs to child support
 const predictSubjectMatter = async query => {
   // Define the location of the subject matter model
   const subjectMatterModelPath = client.modelPath(
@@ -86,28 +86,29 @@ const categorizeAndPredict = async query => {
   const modelPromises = [predictCategories(query), predictSubjectMatter(query)]
   const results = await Promise.all(modelPromises)
 
-  // Check the responses to determing if this query applies to child support
-  const appliesToChildSupport = results.find(
-    result =>
-      result.predictionType === 'subjectMatter' &&
-      result.categories === 'child-support'
-  )
+  // TODO: uncomment below once the subject matter model is complete
+  // // Check the responses to determing if this query applies to child support
+  // const appliesToChildSupport = results.find(
+  //   result =>
+  //     result.predictionType === 'subjectMatter' &&
+  //     result.categories === 'child-support'
+  // )
 
   const predictions = results.find(
     result => result.predictionType === 'categories'
   )
 
   const categories = []
-  if (appliesToChildSupport) {
-    for (const category in predictions.categories) {
-      const { name, confidence } = predictions.categories[category]
+  // if (appliesToChildSupport) {
+  for (const category in predictions.categories) {
+    const { name, confidence } = predictions.categories[category]
 
-      // TODO: determine threshold, it is low now for testing purposes
-      if (confidence > 0.01) {
-        categories.push(name)
-      }
+    // TODO: determine threshold, it is low now for testing purposes
+    if (confidence > 0.01) {
+      categories.push(name)
     }
   }
+  // }
   return categories
 }
 
