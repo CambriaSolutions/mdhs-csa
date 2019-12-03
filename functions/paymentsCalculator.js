@@ -29,6 +29,7 @@ const startCalculationProcess = async agent => {
       'If you need to know the exact amount you owe, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
     )
     await agent.add(new Suggestion('I Understand'))
+    await agent.add(new Suggestion('Other Options'))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({

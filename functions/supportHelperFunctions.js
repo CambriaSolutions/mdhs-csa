@@ -144,7 +144,7 @@ exports.supportMoreOptions = async (agent, option) => {
         `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
       )
       await agent.add(
-        new Suggestion(`Information about the parent who pays child support`)
+        new Suggestion(`Report Information About the Parent who Pays Support`)
       )
       await agent.add(new Suggestion(`Request Payment History`))
       await agent.add(new Suggestion(`Add Authorized User`))

@@ -84,6 +84,7 @@ const {
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
+  pmtMethodsMailAddress,
   pmtMethodsMoneygram,
   pmtMethodsPayNearMe,
   pmtMethodsCantMake,
@@ -498,6 +499,7 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
+    intentMap.set('pmtMethods-mail-address', pmtMethodsMailAddress)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
     intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
