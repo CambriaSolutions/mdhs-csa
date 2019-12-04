@@ -135,11 +135,15 @@ const {
   supportRoot,
   supportRestart,
   supportParentReceiving,
+  supportParentReceivingEmploymentInfo,
+  supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
+  supportEditProviderEmployment,
+  supportReportProviderEmployment,
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
   supportCollectNewEmployerName,
@@ -543,7 +547,15 @@ exports = module.exports = functions
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-restart', supportRestart)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set(
+      'support-parent-receiving-employment-info',
+      supportParentReceivingEmploymentInfo
+    )
     intentMap.set('support-parent-paying', supportParentPaying)
+    intentMap.set(
+      'support-parent-paying-employment-info',
+      supportParentPayingEmploymentInfo
+    )
     intentMap.set('support-employer', supportEmployer)
     intentMap.set('support-parent-paying-more', supportParentPayingMore)
     intentMap.set('support-parent-receiving-more', supportParentReceivingMore)
@@ -585,6 +597,14 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set(
+      'support-edit-provider-employment',
+      supportEditProviderEmployment
+    )
+    intentMap.set(
+      'support-report-provider-employment',
+      supportReportProviderEmployment
+    )
 
     // Case specific intents
     intentMap.set('caseQA-increase-review', caseQAIncreaseReview)

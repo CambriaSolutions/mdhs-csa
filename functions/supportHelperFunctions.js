@@ -68,7 +68,7 @@ exports.formatConfirmationResponse = async agent => {
   }
   // Information about parent who pays child support
   else if (
-    supportType === 'information about the parent who pays child support'
+    supportType === 'Report Information About the Parent who Pays Support'
   ) {
     confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
   }

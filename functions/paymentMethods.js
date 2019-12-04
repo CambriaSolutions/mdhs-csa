@@ -28,7 +28,7 @@ exports.pmtMethodsNone = async agent => {
   }
 }
 
-exports.pmtMethodsCheckOrMoneyOrder = async agent => {
+exports.pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
   try {
     await agent.add(
       `Please mail to:  
@@ -40,14 +40,17 @@ exports.pmtMethodsCheckOrMoneyOrder = async agent => {
       `Make sure to include your Social Security Number AND Case Number.`
     )
     await handleEndConversation(agent)
-    await agent.add(new Suggestion('Other Options'))
+    if (isGlobal !== true) {
+      await agent.add(new Suggestion('Other Options'))
+    }
   } catch (err) {
     console.log(err)
   }
 }
 // This is for the mail address intent
 exports.pmtMethodsMailAddress = async agent => {
-  await this.pmtMethodsCheckOrMoneyOrder(agent)
+  const isGlobal = true
+  await this.pmtMethodsCheckOrMoneyOrder(agent, isGlobal)
 }
 
 exports.pmtMethodsCash = async agent => {
@@ -123,7 +126,6 @@ exports.pmtMethodsNCPWithhold = async agent => {
       `MDHS can assist you with having your payments deducted from your pay. <br/><br/>Click below to submit your employer information.`
     )
     await agent.add(new Suggestion('Employer Information'))
-    await agent.add(new Suggestion('Other Options'))
     await agent.context.set({
       name: 'waiting-support-employment-status',
       lifespan: 3,
@@ -209,13 +211,6 @@ exports.pmtMethodsCantMakeQualifyingHelp = async agent => {
     } else {
       await handleEndConversation(agent)
     }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtMethodsOtherPaymentOptions = async agent => {
-  try {
   } catch (err) {
     console.log(err)
   }
