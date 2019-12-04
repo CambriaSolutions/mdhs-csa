@@ -916,7 +916,7 @@ exports.supportEditProviderEmployment = async agent => {
     if (yesNo === 'yes') {
       await this.supportEmploymentStatus(agent)
     } else {
-      handleEndConversation(agent)
+      await handleEndConversation(agent)
     }
   } catch (err) {
     console.error(err)
@@ -931,7 +931,7 @@ exports.supportReportProviderEmployment = async agent => {
         'Report Information About the Parent who Pays Support'
       await this.supportType(agent)
     } else {
-      handleEndConversation(agent)
+      await handleEndConversation(agent)
     }
   } catch (err) {
     console.error(err)
