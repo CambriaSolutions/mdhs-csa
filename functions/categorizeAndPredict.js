@@ -177,10 +177,6 @@ exports.handleUnhandled = async agent => {
         // handle with default fallback language
         await defaultUnhandledResponse(agent)
       }
-    } else {
-      // The query was not in the realm of our subject matter,
-      // handle with default fallback language
-      await defaultUnhandledResponse(agent)
     }
   } catch (err) {
     console.error(err)
