@@ -36,6 +36,8 @@ const predictCategories = async query => {
       payload: payload,
     }
 
+    // Client predictions return all categories sorted by highest classification score (percent confidence),
+    // with the highest first. For our purposes, we only return the top three
     const catResponses = await client.predict(catRequest)
     return {
       predictionType: 'categories',
@@ -150,8 +152,13 @@ exports.handleUnhandled = async agent => {
 
         suggestions.forEach(async (suggestion, i) => {
           if (suggestion.suggestionText) {
-            await agent.add(`ML-Category:${suggestion.mlCategory}`)
-            await agent.add(new Suggestion(`${suggestion.suggestionText}`))
+            // TODO: removed category name from suggestion text, this is included
+            // only for demonstration purposes
+            await agent.add(
+              new Suggestion(
+                `${suggestion.suggestionText}-(${suggestion.mlCategory})`
+              )
+            )
           }
         })
 
