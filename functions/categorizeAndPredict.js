@@ -156,7 +156,7 @@ exports.handleUnhandled = async agent => {
             // only for demonstration purposes
             await agent.add(
               new Suggestion(
-                `${suggestion.suggestionText}-(${suggestion.mlCategory})`
+                `${suggestion.suggestionText} (${suggestion.mlCategory})`
               )
             )
           }
