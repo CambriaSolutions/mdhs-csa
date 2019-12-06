@@ -291,28 +291,9 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-const preProcessIntent = async (agent, intentMap, request) => {
-  const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-  // If the intent is handled by the agent, continue with default behavior
-  if (isHandled) {
-    agent.handleRequest(intentMap)
-  } else {
-    // The intent is unhandled, send the request for ML processing and handling
-    agent.handleRequest(handleUnhandled)
-  }
-
-  // Send request body to analytics function
-  req({
-    method: 'POST',
-    uri: process.env.ANALYTICS_URI,
-    body: request.body,
-    json: true,
-  })
-}
-
 exports = module.exports = functions
   .runWith(runtimeOpts)
-  .https.onRequest((request, response) => {
+  .https.onRequest(async (request, response) => {
     console.log(
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
@@ -393,6 +374,12 @@ exports = module.exports = functions
       } catch (err) {
         console.error(err)
       }
+    }
+
+    // TODO: remove after testing
+    // Testing intent for ml training
+    const tbd = async agent => {
+      await agent.add('test')
     }
 
     let intentMap = new Map()
@@ -745,6 +732,27 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
+    // TBD intent
+    intentMap.set('tbd', tbd)
+
     // Analyze the intent
-    preProcessIntent(agent, intentMap, request)
+    const preProcessIntent = async (agent, intentMap, request) => {
+      // Send request body to analytics function
+      req({
+        method: 'POST',
+        uri: process.env.ANALYTICS_URI,
+        body: request.body,
+        json: true,
+      })
+
+      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+      // If the intent is handled by the agent, continue with default behavior
+      if (isHandled) {
+        await agent.handleRequest(intentMap)
+      } else {
+        // The intent is unhandled, send the request for ML processing and handling
+        await agent.handleRequest(handleUnhandled)
+      }
+    }
+    await preProcessIntent(agent, intentMap, request)
   })
