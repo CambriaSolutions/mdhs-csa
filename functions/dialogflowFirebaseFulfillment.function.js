@@ -6,8 +6,6 @@ const {
   disableInput,
   caseyHandoff,
 } = require('./globalFunctions.js')
-const { backIntent } = require('./components/back/back.js')
-
 // Not child support intents
 const {
   notChildSupportRoot,
@@ -278,6 +276,8 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+const { backIntent, fullfillmentWrapper } = require('./back.js')
+
 // Waiting on more information from MDHS
 // const { goodCauseClaim } = require('./goodCauseClaim')
 
@@ -288,7 +288,7 @@ const runtimeOpts = {
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
-  .https.onRequest((request, response) => {
+  .https.onRequest(async (request, response) => {
     console.log(
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
@@ -297,12 +297,12 @@ exports = module.exports = functions
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const welcome = async agent => {
       try {
@@ -730,6 +730,23 @@ exports = module.exports = functions
     // Waiting on more information from client
     // Good cause claim intent
     // intentMap.set('good-cause-claim', goodCauseClaim)
-    backIntent(agent, intentMap, 'go-back')
+
+    // Go back for intents that require @sys.any
+    const goBackAnyOpts = {
+      intentResetList: ['yes-child-support', 'Default Welcome Intent'],
+      isSysAny: true,
+      backIntentName: 'go-back-any',
+      addButton: false,
+    }
+
+    backIntent(agent, intentMap, goBackAnyOpts)
+
+    const goBackOpts = {
+      intentResetList: ['yes-child-support', 'Default Welcome Intent'],
+    }
+    // General go back button.
+    backIntent(agent, intentMap, goBackOpts)
+
+    // Context specific go back button
     agent.handleRequest(intentMap)
   })
