@@ -244,6 +244,7 @@ const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./geneticTesting.js')
+
 // Support QA
 const {
   supportQACpPictureId,
@@ -275,10 +276,13 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-const { backIntent, fullfillmentWrapper } = require('./back.js')
+const { backIntent} = require('./back.js')
 
 // Waiting on more information from MDHS
 // const { goodCauseClaim } = require('./goodCauseClaim')
+
+// ML model requests
+const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -294,14 +298,6 @@ exports = module.exports = functions
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     const agent = new WebhookClient({ request, response })
-
-    // Send request body to analytics function
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
 
     const welcome = async agent => {
       try {
@@ -330,21 +326,6 @@ exports = module.exports = functions
           `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
         await agent.add(new Suggestion(`Home`))
-
-        // Waiting on more information from MDHS
-        // await agent.add(
-        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
-        // )
-        // await agent.add(new Suggestion(`Submit Support Request`))
-        // await agent.add(new Suggestion(`Contact Number`))
-        // await agent.context.set({
-        //   name: 'waiting-contact-support-handoff',
-        //   lifespan: 2,
-        // })
-        // await agent.context.set({
-        //   name: 'waiting-contact-provide-phone-number',
-        //   lifespan: 2,
-        // })
       } catch (err) {
         console.error(err)
       }
@@ -391,6 +372,12 @@ exports = module.exports = functions
       } catch (err) {
         console.error(err)
       }
+    }
+
+    // TODO: remove after testing
+    // Testing intent for ml training
+    const tbd = async agent => {
+      await agent.add('test')
     }
 
     let intentMap = new Map()
@@ -729,6 +716,10 @@ exports = module.exports = functions
     // Good cause claim intent
     // intentMap.set('good-cause-claim', goodCauseClaim)
 
+
+    // TBD intent
+    intentMap.set('tbd', tbd)
+
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',
@@ -736,6 +727,24 @@ exports = module.exports = functions
     ]
     backIntent(agent, intentMap, resetBackIntentList)
 
-    // Context specific go back button
-    agent.handleRequest(intentMap)
+    // Analyze the intent
+    const preProcessIntent = async (agent, intentMap, request) => {
+      // Send request body to analytics function
+      req({
+        method: 'POST',
+        uri: process.env.ANALYTICS_URI,
+        body: request.body,
+        json: true,
+      })
+
+      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+      // If the intent is handled by the agent, continue with default behavior
+      if (isHandled) {
+        await agent.handleRequest(intentMap)
+      } else {
+        // The intent is unhandled, send the request for ML processing and handling
+        await agent.handleRequest(handleUnhandled)
+      }
+    }
+    await preProcessIntent(agent, intentMap, request)
   })

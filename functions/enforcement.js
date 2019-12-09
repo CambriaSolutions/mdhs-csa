@@ -18,7 +18,6 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Passport Revocation'))
     await agent.add(new Suggestion('Credit Bureau Reporting'))
     await agent.add(new Suggestion('Unemployment Benefits'))
-    await agent.add(new Suggestion('Income Withholding'))
     await agent.add(new Suggestion('Bankruptcy'))
   } catch (err) {
     console.error(err)
