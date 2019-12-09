@@ -1,7 +1,6 @@
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
-const { setBackContext } = require('./back')
 
 const {
   handleEndConversation,
@@ -190,7 +189,6 @@ exports.supportCollectNewEmployerName = async agent => {
       name: 'ticketinfo',
       parameters: { newEmployerName },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -208,7 +206,6 @@ exports.supportNoNewEmployer = async agent => {
       name: 'ticketinfo',
       parameters: { newEmployerName },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -295,7 +292,6 @@ exports.supportType = async agent => {
       lifespan: 100,
       parameters: { supportType: supportType },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -315,7 +311,6 @@ exports.supportCollectFirstName = async agent => {
       lifespan: 100,
       parameters: { firstName },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -339,7 +334,6 @@ exports.supportCollectLastName = async agent => {
       name: 'ticketinfo',
       parameters: { lastName },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -703,7 +697,6 @@ exports.supportCollectCompanyName = async agent => {
       name: 'ticketinfo',
       parameters: { companyName: companyName },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }
@@ -734,7 +727,6 @@ exports.supportCaseNumber = async agent => {
         name: 'waiting-support-no-case-number',
         lifespan: 3,
       })
-      await setBackContext(agent)
     } catch (err) {
       console.error(err)
     }
@@ -800,7 +792,6 @@ exports.supportCollectIssue = async agent => {
         requestSummary: request,
       },
     })
-    await setBackContext(agent)
   } catch (err) {
     console.error(err)
   }

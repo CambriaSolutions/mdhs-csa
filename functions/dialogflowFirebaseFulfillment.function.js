@@ -297,12 +297,12 @@ exports = module.exports = functions
     const agent = new WebhookClient({ request, response })
 
     // Send request body to analytics function
-    // req({
-    //   method: 'POST',
-    //   uri: process.env.ANALYTICS_URI,
-    //   body: request.body,
-    //   json: true,
-    // })
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const welcome = async agent => {
       try {
@@ -731,21 +731,12 @@ exports = module.exports = functions
     // Good cause claim intent
     // intentMap.set('good-cause-claim', goodCauseClaim)
 
-    // Go back for intents that require @sys.any
-    const goBackAnyOpts = {
-      intentResetList: ['yes-child-support', 'Default Welcome Intent'],
-      isSysAny: true,
-      backIntentName: 'go-back-any',
-      addButton: false,
-    }
-
-    backIntent(agent, intentMap, goBackAnyOpts)
-
-    const goBackOpts = {
-      intentResetList: ['yes-child-support', 'Default Welcome Intent'],
-    }
-    // General go back button.
-    backIntent(agent, intentMap, goBackOpts)
+    const resetBackIntentList = [
+      'yes-child-support',
+      'Default Welcome Intent',
+      'support-submit-issue',
+    ]
+    backIntent(agent, intentMap, resetBackIntentList)
 
     // Context specific go back button
     agent.handleRequest(intentMap)
