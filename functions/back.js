@@ -107,6 +107,8 @@ const backFunction = (agent, intentMap) => {
 const fullfillmentWrapper = (agent, intentMap) => {
   const currentIntentFullfillmentFunction = intentMap.get(agent.intent)
   const prevIntents = agent.context.get('previous-agent-states')
+  const displayBackButton =
+    prevIntents.parameters.userConversationPath.length > 1
 
   const maskFunction = async agent => {
     await currentIntentFullfillmentFunction(agent)
@@ -114,15 +116,10 @@ const fullfillmentWrapper = (agent, intentMap) => {
       name: 'waiting-go-back',
       lifespan: 1,
     })
-    if (
-      prevIntents &&
-      prevIntents.lifespan !== 0 &&
-      prevIntents.parameters.userConversationPath.length > 1
-    ) {
+    if (displayBackButton) {
       await agent.add(new Suggestion('Go Back'))
     }
   }
-
   intentMap.set(agent.intent, maskFunction)
 }
 

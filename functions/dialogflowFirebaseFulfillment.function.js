@@ -131,7 +131,6 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportRestart,
   supportParentReceiving,
   supportParentPaying,
   supportParentReceivingMore,
@@ -543,7 +542,6 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-restart', supportRestart)
     intentMap.set('support-parent-receiving', supportParentReceiving)
     intentMap.set('support-parent-paying', supportParentPaying)
     intentMap.set('support-employer', supportEmployer)

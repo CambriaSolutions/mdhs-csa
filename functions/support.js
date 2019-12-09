@@ -27,15 +27,6 @@ exports.supportRoot = async agent => {
   await startSupportConvo(agent)
 }
 
-exports.supportRestart = async agent => {
-  try {
-    await agent.add(`Alright, let's start over.`)
-    await startSupportConvo(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportParentReceiving = async agent => {
   try {
     await agent.add(
@@ -117,13 +108,8 @@ exports.supportNoOptionsSelected = async agent => {
       `Would you like to submit an inquiry or go back to support options?`
     )
     await agent.add(new Suggestion(`Inquiry`))
-    await agent.add(new Suggestion(`Go Back`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-restart',
       lifespan: 3,
     })
   } catch (err) {
