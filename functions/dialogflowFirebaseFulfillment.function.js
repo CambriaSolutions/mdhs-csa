@@ -276,7 +276,7 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-const { backIntent} = require('./back.js')
+const { backIntent } = require('./back.js')
 
 // Waiting on more information from MDHS
 // const { goodCauseClaim } = require('./goodCauseClaim')
@@ -715,7 +715,6 @@ exports = module.exports = functions
     // Waiting on more information from client
     // Good cause claim intent
     // intentMap.set('good-cause-claim', goodCauseClaim)
-
 
     // TBD intent
     intentMap.set('tbd', tbd)
