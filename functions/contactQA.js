@@ -9,7 +9,6 @@ exports.contactQANumber = async agent => {
     )
     await agent.add(new Suggestion(`Submit Support Request`))
     await agent.add(new Suggestion(`Customer Service`))
-    await agent.add(new Suggestion(`Home`))
     await agent.context.set({
       name: 'waiting-contact-support-handoff',
       lifespan: 2,
