@@ -722,23 +722,23 @@ exports = module.exports = functions
     ])
 
     // Analyze the intent
-    // const preProcessIntent = async (agent, intentMap, request) => {
-    //   // Send request body to analytics function
-    //   req({
-    //     method: 'POST',
-    //     uri: process.env.ANALYTICS_URI,
-    //     body: request.body,
-    //     json: true,
-    //   })
+    const preProcessIntent = async (agent, intentMap, request) => {
+      // Send request body to analytics function
+      req({
+        method: 'POST',
+        uri: process.env.ANALYTICS_URI,
+        body: request.body,
+        json: true,
+      })
 
-    //   const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-    //   // If the intent is handled by the agent, continue with default behavior
-    //   if (isHandled) {
-    await agent.handleRequest(intentMap)
-    //   } else {
-    //     // The intent is unhandled, send the request for ML processing and handling
-    //     await agent.handleRequest(handleUnhandled)
-    //   }
-    // }
-    // await preProcessIntent(agent, intentMap, request)
+      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+      // If the intent is handled by the agent, continue with default behavior
+      if (isHandled) {
+        await agent.handleRequest(intentMap)
+      } else {
+        // The intent is unhandled, send the request for ML processing and handling
+        await agent.handleRequest(handleUnhandled)
+      }
+    }
+    await preProcessIntent(agent, intentMap, request)
   })

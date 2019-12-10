@@ -1,6 +1,10 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 
-exports.homeButton = (agent, intentMap, exclusionList = []) => {
+/**************************************************************************************************
+ * home creates a new function in place of the current intent that adds a 'Home' suggestion button
+ * and global-restart context.
+ **************************************************************************************************/
+exports.home = (agent, intentMap, exclusionList = []) => {
   if (!exclusionList.includes(agent.intent)) {
     const currentIntent = agent.intent
     const currentIntentFunction = intentMap.get(currentIntent)
