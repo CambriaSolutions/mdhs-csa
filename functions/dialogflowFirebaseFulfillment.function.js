@@ -278,8 +278,10 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+const { homeButton } = require('./home')
+
 // ML model requests
-const { handleUnhandled } = require('./categorizeAndPredict.js')
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -711,25 +713,32 @@ exports = module.exports = functions
 
     // TBD intent
     intentMap.set('tbd', tbd)
+    homeButton(agent, intentMap, [
+      'Default Welcome Intent',
+      'yes-child-support',
+      'restart-conversation',
+      'global-restart',
+      'acknowledge-privacy-statement',
+    ])
 
     // Analyze the intent
-    const preProcessIntent = async (agent, intentMap, request) => {
-      // Send request body to analytics function
-      req({
-        method: 'POST',
-        uri: process.env.ANALYTICS_URI,
-        body: request.body,
-        json: true,
-      })
+    // const preProcessIntent = async (agent, intentMap, request) => {
+    //   // Send request body to analytics function
+    //   req({
+    //     method: 'POST',
+    //     uri: process.env.ANALYTICS_URI,
+    //     body: request.body,
+    //     json: true,
+    //   })
 
-      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-      // If the intent is handled by the agent, continue with default behavior
-      if (isHandled) {
-        await agent.handleRequest(intentMap)
-      } else {
-        // The intent is unhandled, send the request for ML processing and handling
-        await agent.handleRequest(handleUnhandled)
-      }
-    }
-    await preProcessIntent(agent, intentMap, request)
+    //   const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
+    //   // If the intent is handled by the agent, continue with default behavior
+    //   if (isHandled) {
+    await agent.handleRequest(intentMap)
+    //   } else {
+    //     // The intent is unhandled, send the request for ML processing and handling
+    //     await agent.handleRequest(handleUnhandled)
+    //   }
+    // }
+    // await preProcessIntent(agent, intentMap, request)
   })
