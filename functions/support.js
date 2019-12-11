@@ -304,6 +304,9 @@ exports.supportCollectFirstName = async agent => {
 
 exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
+  const ticketInfoContext = agent.context.get('ticketinfo')
+  const ticketInfoParams = ticketInfoContext.parameters
+  ticketInfoParams.lastName = lastName
   try {
     await agent.add(
       `What is your **phone number** so we can reach out to you with a solution?`
@@ -318,7 +321,7 @@ exports.supportCollectLastName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { lastName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)

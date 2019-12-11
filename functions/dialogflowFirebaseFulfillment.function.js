@@ -286,7 +286,7 @@ const { backIntent } = require('./back.js')
 const { home } = require('./home')
 
 // ML model requests
-const { handleUnhandled } = require('./categorizeAndPredict.js')
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -300,12 +300,12 @@ exports = module.exports = functions
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
-    req({
-      method: 'POST',
-      uri: process.env.ANALYTICS_URI,
-      body: request.body,
-      json: true,
-    })
+    // req({
+    //   method: 'POST',
+    //   uri: process.env.ANALYTICS_URI,
+    //   body: request.body,
+    //   json: true,
+    // })
 
     const agent = new WebhookClient({ request, response })
 
@@ -741,21 +741,21 @@ exports = module.exports = functions
     // TBD intent
     intentMap.set('tbd', tbd)
 
-    intentMap.set('Default Fallback Intent', handleUnhandled)
-
-    home(agent, intentMap, [
-      'Default Welcome Intent',
-      'yes-child-support',
-      'restart-conversation',
-      'global-restart',
-      'acknowledge-privacy-statement',
-    ])
+    // intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',
       'support-submit-issue',
     ]
-    backIntent(agent, intentMap, resetBackIntentList)
+    await backIntent(agent, intentMap, resetBackIntentList)
+    await home(agent, intentMap, [
+      'Default Welcome Intent',
+      'yes-child-support',
+      'restart-conversation',
+      'global-restart',
+      'acknowledge-privacy-statement',
+      'not-child-support-root',
+    ])
     await agent.handleRequest(intentMap)
   })

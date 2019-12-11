@@ -5,10 +5,10 @@ const { Suggestion } = require('dialogflow-fulfillment')
  *  intent information to the userConversationPath parameter of the 'previous-agent-states' context.
  ************************************************************************************************/
 
-const snapshotCurrentState = agent => {
+const snapshotCurrentState = async agent => {
   // Grab all the existing contexts except for 'previous-agent-states'
   let currentContexts = []
-  agent.contexts.forEach(context => {
+  await agent.contexts.forEach(context => {
     if (context.name !== 'previous-agent-states') {
       currentContexts.push(context)
     }
@@ -17,7 +17,7 @@ const snapshotCurrentState = agent => {
   // Take a snapshot of the conversation.
   const newIntentAndParams = {
     name: agent.intent,
-    parameters: agent.parameters,
+    parameters: agent.parameters || {},
     contexts: currentContexts,
   }
   // Get the 'previous-intent' context
@@ -29,7 +29,7 @@ const snapshotCurrentState = agent => {
 	append the current intent name and parameters to the the 
 	userConversationPath parameter.*/
   if (previousContexts === undefined) {
-    agent.context.set({
+    await agent.context.set({
       name: 'previous-agent-states',
       lifespan: 99999,
       parameters: {
@@ -40,7 +40,7 @@ const snapshotCurrentState = agent => {
     const previousIntentsAndParams =
       previousContexts.parameters.userConversationPath
 
-    agent.context.set({
+    await agent.context.set({
       name: 'previous-agent-states',
       parameters: {
         userConversationPath: previousIntentsAndParams.concat(
@@ -60,9 +60,8 @@ const snapshotCurrentState = agent => {
 const backFunction = (agent, intentMap) => {
   return async () => {
     try {
-      const { userConversationPath } = agent.context.get(
-        'previous-agent-states'
-      ).parameters
+      const userConversationPath = agent.context.get('previous-agent-states')
+        .parameters.userConversationPath
 
       // Clear all the contexts that are currently set.
       agent.contexts.forEach(context => {
@@ -108,8 +107,6 @@ const backFunction = (agent, intentMap) => {
 const fullfillmentWrapper = (agent, intentMap) => {
   const currentIntentFullfillmentFunction = intentMap.get(agent.intent)
   const prevIntents = agent.context.get('previous-agent-states')
-  const displayBackButton =
-    prevIntents.parameters.userConversationPath.length > 1
 
   const maskFunction = async agent => {
     await currentIntentFullfillmentFunction(agent)
@@ -117,7 +114,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
       name: 'waiting-go-back',
       lifespan: 1,
     })
-    if (displayBackButton) {
+    if (prevIntents.parameters.userConversationPath.length > 1) {
       await agent.add(new Suggestion('Go Back'))
     }
   }
@@ -134,8 +131,8 @@ const fullfillmentWrapper = (agent, intentMap) => {
  * training phrase and create 'Go Back' suggestion button.
  ************************************************************************************************/
 
-const backIntentCycle = (agent, intentMap, name) => {
-  snapshotCurrentState(agent)
+const backIntentCycle = async (agent, intentMap, name) => {
+  await snapshotCurrentState(agent)
   const back = backFunction(agent, intentMap)
   intentMap.set(name, back)
   fullfillmentWrapper(agent, intentMap)
@@ -159,7 +156,7 @@ const backIntentCycle = (agent, intentMap, name) => {
  *
  ************************************************************************************************/
 
-exports.backIntent = (
+exports.backIntent = async (
   agent,
   intentMap,
   resetBackButtonIntentList = [],
@@ -169,6 +166,6 @@ exports.backIntent = (
   if (resetBackButtonIntentList.includes(currentIntent)) {
     agent.context.delete('previous-agent-states')
   } else {
-    backIntentCycle(agent, intentMap, backIntentName)
+    await backIntentCycle(agent, intentMap, backIntentName)
   }
 }
