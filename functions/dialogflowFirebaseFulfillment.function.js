@@ -285,6 +285,7 @@ const { backIntent } = require('./back.js')
 
 const { home } = require('./home')
 
+// TODO: uncomment for ml integration
 // ML model requests
 // const { handleUnhandled } = require('./categorizeAndPredict.js')
 
