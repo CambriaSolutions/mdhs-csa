@@ -285,8 +285,9 @@ const { backIntent } = require('./back.js')
 
 const { home } = require('./home')
 
+// TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled } = require('./categorizeAndPredict.js')
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -738,10 +739,10 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // TBD intent
-    intentMap.set('tbd', tbd)
-
-    intentMap.set('Default Fallback Intent', handleUnhandled)
+    // TODO: uncomment handleUnhandled for ml integration
+    // intentMap.set('Default Fallback Intent', handleUnhandled)
+    // // TBD intent
+    // intentMap.set('tbd', tbd)
 
     home(agent, intentMap, [
       'Default Welcome Intent',
