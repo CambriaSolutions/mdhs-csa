@@ -60,9 +60,23 @@ exports.employerIWOHandoff = async agent => {
       `MDHS is required by law to submit Income Withholding Orders to employers to withhold child support and any arrears obligation.`
     )
     await agent.add(
-      `If you are an employer needing assistance with an Income Withholding Order, I can help you.`
+      `Would you like to report employment information? If so, which of the following are you?`
     )
-    await iwoRoot(agent)
+    await agent.add(new Suggestion('Employer'))
+    await agent.add(new Suggestion('Parent Who Pays Support'))
+    await agent.add(new Suggestion('Parent Who Receives Support'))
+    await agent.context.set({
+      name: 'waiting-iwo-root',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-support-parent-paying-employment-info',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-support-parent-receiving-employment-info',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
