@@ -5,8 +5,7 @@ const { Suggestion } = require('dialogflow-fulfillment')
  * and global-restart context.
  **************************************************************************************************/
 exports.home = async (agent, intentMap, exclusionList = []) => {
-  const currentIntent = agent.intent
-  const currentIntentFunction = intentMap.get(currentIntent)
+  const currentIntentFunction = intentMap.get(agent.intent)
   const homeFunction = async () => {
     await currentIntentFunction(agent)
     if (!exclusionList.includes(agent.intent)) {
