@@ -770,7 +770,6 @@ exports.supportCollectIssue = async agent => {
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
-    await agent.add(new Suggestion(`Home`))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({

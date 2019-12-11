@@ -283,8 +283,10 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+const { home } = require('./home')
+
 // ML model requests
-const { handleUnhandled } = require('./categorizeAndPredict.js')
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -298,6 +300,12 @@ exports = module.exports = functions
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const agent = new WebhookClient({ request, response })
 
@@ -327,7 +335,6 @@ exports = module.exports = functions
         await agent.add(
           `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
-        await agent.add(new Suggestion(`Home`))
       } catch (err) {
         console.error(err)
       }
@@ -735,24 +742,13 @@ exports = module.exports = functions
     // TBD intent
     intentMap.set('tbd', tbd)
 
-    // Analyze the intent
-    const preProcessIntent = async (agent, intentMap, request) => {
-      // Send request body to analytics function
-      req({
-        method: 'POST',
-        uri: process.env.ANALYTICS_URI,
-        body: request.body,
-        json: true,
-      })
-
-      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-      // If the intent is handled by the agent, continue with default behavior
-      if (isHandled) {
-        await agent.handleRequest(intentMap)
-      } else {
-        // The intent is unhandled, send the request for ML processing and handling
-        await agent.handleRequest(handleUnhandled)
-      }
-    }
-    await preProcessIntent(agent, intentMap, request)
+    intentMap.set('Default Fallback Intent', handleUnhandled)
+    home(agent, intentMap, [
+      'Default Welcome Intent',
+      'yes-child-support',
+      'restart-conversation',
+      'global-restart',
+      'acknowledge-privacy-statement',
+    ])
+    await agent.handleRequest(intentMap)
   })
