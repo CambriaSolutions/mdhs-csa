@@ -28,7 +28,7 @@ exports.pmtMethodsNone = async agent => {
   }
 }
 
-exports.pmtMethodsCheckOrMoneyOrder = async agent => {
+exports.pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
   try {
     await agent.add(
       `Please mail to:  
@@ -40,9 +40,17 @@ exports.pmtMethodsCheckOrMoneyOrder = async agent => {
       `Make sure to include your Social Security Number AND Case Number.`
     )
     await handleEndConversation(agent)
+    if (isGlobal !== true) {
+      await agent.add(new Suggestion('Other Options'))
+    }
   } catch (err) {
     console.log(err)
   }
+}
+// This is for the mail address intent
+exports.pmtMethodsMailAddress = async agent => {
+  const isGlobal = true
+  await this.pmtMethodsCheckOrMoneyOrder(agent, isGlobal)
 }
 
 exports.pmtMethodsCash = async agent => {
@@ -52,7 +60,7 @@ exports.pmtMethodsCash = async agent => {
     )
     await agent.add(new Suggestion('MoneyGram'))
     await agent.add(new Suggestion('PayNearMe'))
-
+    await agent.add(new Suggestion('Other Options'))
     await agent.context.set({
       name: 'waiting-pmtMethods-paynearme',
       lifespan: 2,
@@ -72,6 +80,12 @@ exports.pmtMethodsPayNearMe = async agent => {
       `You can pay MDHS Child Support with cash at PayNearMe locations. A small fee applies.<br/><br/>PayNearMe is available at CVS/Pharmacy, Family Dollar, Fidelity Express, ACE Cash Express and 7-Eleven.<br/><br/>Payments may take 3 to 4 banking days to be posted to your child support account.<br/><br/><a href="http://paynearme.com/mississippi" target="_blank">Click here</a> to find the nearest location to you.<br/><br/><a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/01/Mississippi-Child-Support-MDHS-FAQ.pdf" target="_blank">Click here</a> for frequently asked questions.`
     )
     await handleEndConversation(agent)
+    await agent.add(new Suggestion('MoneyGram'))
+    await agent.add(new Suggestion('Other Options'))
+    await agent.context.set({
+      name: 'waiting-pmtMethods-moneygram',
+      lifespan: 2,
+    })
   } catch (err) {
     console.log(err)
   }
@@ -83,6 +97,7 @@ exports.pmtMethodsEcheckDebit = async agent => {
       `You can make payments online using Mississippi iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
     )
     await handleEndConversation(agent)
+    await agent.add(new Suggestion('Other Options'))
   } catch (err) {
     console.log(err)
   }
@@ -94,6 +109,12 @@ exports.pmtMethodsMoneygram = async agent => {
       `You can pay MDHS Child Support with cash at MoneyGram locations. Fees apply.<br/><br/>Some locations also accept PIN based debit card payments.<br/><br/>MoneyGram is available at Walmart, Kroger, CVS/Pharmacy, and Advance America locations.<br/><br/>Payments may take 2-3 business days to be posted to your child support account.<br/><br/><a href="http://www.MoneyGram.com/BillPayLocations" target="_blank">Click here</a> to find the nearest location to you.<br/><br/><a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/12/MoneyGram-Quick-Reference.pdf" target="_blank">Click here</a> for frequently asked questions.`
     )
     await handleEndConversation(agent)
+    await agent.add(new Suggestion('PayNearMe'))
+    await agent.add(new Suggestion('Other Options'))
+    await agent.context.set({
+      name: 'waiting-pmtMethods-paynearme',
+      lifespan: 2,
+    })
   } catch (err) {
     console.log(err)
   }
@@ -105,7 +126,6 @@ exports.pmtMethodsNCPWithhold = async agent => {
       `MDHS can assist you with having your payments deducted from your pay. <br/><br/>Click below to submit your employer information.`
     )
     await agent.add(new Suggestion('Employer Information'))
-
     await agent.context.set({
       name: 'waiting-support-employment-status',
       lifespan: 3,
@@ -128,6 +148,7 @@ exports.pmtMethodsCantMake = async agent => {
     <br/>• Been injured`)
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
+    await agent.add(new Suggestion('Other Options'))
     await agent.context.set({
       name: 'waiting-pmtMethods-cant-make-qualifying',
       lifespan: 1,

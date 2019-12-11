@@ -756,7 +756,6 @@ exports.supportCollectIssue = async agent => {
     await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
-    await agent.add(new Suggestion(`Home`))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({
@@ -875,6 +874,65 @@ exports.supportSumbitIssue = async agent => {
 exports.supportCancel = async agent => {
   try {
     await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportParentPayingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      `Would you like to change or edit information about your employment status?`
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-edit-provider-employment',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportEditProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      await this.supportEmploymentStatus(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportReportProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      agent.parameters.supportType =
+        'Report Information About the Parent who Pays Support'
+      await this.supportType(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+exports.supportParentReceivingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      'Would you like to report information about the parent who provides support?'
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-report-provider-employment',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }

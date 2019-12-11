@@ -68,7 +68,7 @@ exports.formatConfirmationResponse = async agent => {
   }
   // Information about parent who pays child support
   else if (
-    supportType === 'information about the parent who pays child support'
+    supportType === 'Report Information About the Parent who Pays Support'
   ) {
     confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
   }
@@ -144,7 +144,7 @@ exports.supportMoreOptions = async (agent, option) => {
         `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
       )
       await agent.add(
-        new Suggestion(`Information about the parent who pays child support`)
+        new Suggestion(`Report Information About the Parent who Pays Support`)
       )
       await agent.add(new Suggestion(`Request Payment History`))
       await agent.add(new Suggestion(`Add Authorized User`))

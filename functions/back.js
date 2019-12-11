@@ -17,7 +17,7 @@ const snapshotCurrentState = agent => {
   // Take a snapshot of the conversation.
   const newIntentAndParams = {
     name: agent.intent,
-    parameters: agent.parameters || {},
+    parameters: agent.parameters,
     contexts: currentContexts,
   }
   // Get the 'previous-intent' context
@@ -60,8 +60,9 @@ const snapshotCurrentState = agent => {
 const backFunction = (agent, intentMap) => {
   return async () => {
     try {
-      let userConversationPath = agent.context.get('previous-agent-states')
-        .parameters.userConversationPath
+      const { userConversationPath } = agent.context.get(
+        'previous-agent-states'
+      ).parameters
 
       // Clear all the contexts that are currently set.
       agent.contexts.forEach(context => {
@@ -127,7 +128,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
  * backIntentCycle does the following:
  *
  * 1. Snapshot the current state of the agent.
- * 2. Creating a fullfillment for the 'go-back' intent.
+ * 2. Creating a fullfillment function for the 'go-back' intent.
  * 3. Set the intent map for dialogflow.
  * 4. Create a fullfillment wrapper for the current intent that sets context to recognize the
  * training phrase and create 'Go Back' suggestion button.

@@ -19,7 +19,7 @@ const startCSCConvo = async agent => {
 
     await agent.add(new Suggestion('Full Services'))
     await agent.add(new Suggestion('Location Services'))
-    await agent.add(new Suggestion('Income Withholding Service Only'))
+    await agent.add(new Suggestion('Income Disbursement Service Only'))
 
     await agent.context.set({
       name: 'waiting-open-csc-full-services',

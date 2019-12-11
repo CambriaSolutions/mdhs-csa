@@ -9,7 +9,6 @@ exports.handleEndConversation = async agent => {
   const helpMessage =
     helpMessages[Math.floor(Math.random() * helpMessages.length)]
   await agent.add(helpMessage)
-  await agent.add(new Suggestion(`Home`))
   await agent.add(new Suggestion(`Submit Feedback`))
 
   await agent.context.set({
@@ -95,7 +94,7 @@ exports.formatDescriptionText = supportType => {
     descriptionText =
       'What do you need exactly regarding payment history or payment records?'
   } else if (
-    supportType === 'information about the parent who pays child support'
+    supportType === 'report information about the parent who pays support'
   ) {
     descriptionText = `What informaton do you want to share regarding the parent who pays child support? Helpful information includes this parent's address and phone number, employer information, asset information or information about this parent's ability to work.`
   } else if (supportType === 'request case closure') {
@@ -173,7 +172,6 @@ exports.defaultUnhandledResponse = async agent => {
     await agent.add(
       `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
     )
-    await agent.add(new Suggestion(`Home`))
   } catch (err) {
     console.error(err)
   }
