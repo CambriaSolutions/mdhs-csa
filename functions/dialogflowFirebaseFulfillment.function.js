@@ -295,6 +295,12 @@ exports = module.exports = functions
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    req({
+      method: 'POST',
+      uri: process.env.ANALYTICS_URI,
+      body: request.body,
+      json: true,
+    })
 
     const agent = new WebhookClient({ request, response })
 
@@ -713,6 +719,8 @@ exports = module.exports = functions
 
     // TBD intent
     intentMap.set('tbd', tbd)
+
+    intentMap.set('Default Fallback Intent', handleUnhandled)
     homeButton(agent, intentMap, [
       'Default Welcome Intent',
       'yes-child-support',
@@ -720,25 +728,5 @@ exports = module.exports = functions
       'global-restart',
       'acknowledge-privacy-statement',
     ])
-
-    // Analyze the intent
-    const preProcessIntent = async (agent, intentMap, request) => {
-      // Send request body to analytics function
-      req({
-        method: 'POST',
-        uri: process.env.ANALYTICS_URI,
-        body: request.body,
-        json: true,
-      })
-
-      const isHandled = agent.intent.toLowerCase() !== 'default fallback intent'
-      // If the intent is handled by the agent, continue with default behavior
-      if (isHandled) {
-        await agent.handleRequest(intentMap)
-      } else {
-        // The intent is unhandled, send the request for ML processing and handling
-        await agent.handleRequest(handleUnhandled)
-      }
-    }
-    await preProcessIntent(agent, intentMap, request)
+    await agent.handleRequest(intentMap)
   })

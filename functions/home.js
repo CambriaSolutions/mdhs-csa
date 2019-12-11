@@ -11,6 +11,8 @@ exports.home = (agent, intentMap, exclusionList = []) => {
     const homeFunction = async () => {
       await currentIntentFunction(agent)
       await agent.add(new Suggestion('Home'))
+
+      // Necessary to overwrite @sys.any
       await agent.context.set({
         name: 'waiting-global-restart',
         lifespan: 1,
