@@ -278,7 +278,7 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-const { homeButton } = require('./home')
+const { home } = require('./home')
 
 // ML model requests
 // const { handleUnhandled } = require('./categorizeAndPredict.js')
@@ -713,7 +713,7 @@ exports = module.exports = functions
 
     // TBD intent
     intentMap.set('tbd', tbd)
-    homeButton(agent, intentMap, [
+    home(agent, intentMap, [
       'Default Welcome Intent',
       'yes-child-support',
       'restart-conversation',
