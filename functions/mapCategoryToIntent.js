@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
 const get = require('lodash/get')
+const camelCase = require('camelcase')
 
 // // Add the service account key and uncomment below for local testing
 // // to grant read access to database
@@ -11,37 +12,40 @@ const get = require('lodash/get')
 
 let db = admin.firestore()
 
-const camelCase = require('camelcase')
-
+// Retrieve suggestion text to display to users depending on the categetory/intent mapping
 const retrieveIntentData = async category => {
   // Format the category returned from ml models to match our db naming convention
   const formattedCategory = camelCase(category)
 
   // Create a reference for the mlCategory collection and retrieve the intent name
   // to reference the intent collection
-  const categoryDocRef = db.collection('mlCategories').doc(formattedCategory)
-  const categoryDoc = await categoryDocRef.get()
-  const categoryData = categoryDoc.data()
-  const intent = get(categoryData, 'intent')
+  try {
+    const categoryDocRef = db.collection('mlCategories').doc(formattedCategory)
+    const categoryDoc = await categoryDocRef.get()
+    const categoryData = categoryDoc.data()
+    const intent = get(categoryData, 'intent')
 
-  // Create a reference for the intent collection and retrieve the suggestion
-  // text for the specific intent
-  let suggestionText
-  if (intent) {
-    const intentDocRef = db.collection('intents').doc(intent)
-    const intentDoc = await intentDocRef.get()
-    const intentData = intentDoc.data()
-    suggestionText = get(intentData, 'suggestionButtonText')
-  }
-
-  if (intent && suggestionText) {
-    return {
-      mlCategory: category,
-      intent,
-      suggestionText,
+    // Create a reference for the intent collection and retrieve the suggestion
+    // text for the specific intent
+    let suggestionText
+    if (intent) {
+      const intentDocRef = db.collection('intents').doc(intent)
+      const intentDoc = await intentDocRef.get()
+      const intentData = intentDoc.data()
+      suggestionText = get(intentData, 'suggestionButtonText')
     }
-  } else {
-    return
+
+    if (intent && suggestionText) {
+      return {
+        mlCategory: category,
+        intent,
+        suggestionText,
+      }
+    } else {
+      return
+    }
+  } catch (error) {
+    console.error(error)
   }
 }
 

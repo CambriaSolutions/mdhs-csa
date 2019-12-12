@@ -27,15 +27,6 @@ exports.supportRoot = async agent => {
   await startSupportConvo(agent)
 }
 
-exports.supportRestart = async agent => {
-  try {
-    await agent.add(`Alright, let's start over.`)
-    await startSupportConvo(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportParentReceiving = async agent => {
   try {
     await agent.add(
@@ -117,13 +108,8 @@ exports.supportNoOptionsSelected = async agent => {
       `Would you like to submit an inquiry or go back to support options?`
     )
     await agent.add(new Suggestion(`Inquiry`))
-    await agent.add(new Suggestion(`Go Back`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-restart',
       lifespan: 3,
     })
   } catch (err) {
@@ -318,6 +304,9 @@ exports.supportCollectFirstName = async agent => {
 
 exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
+  const ticketInfoContext = agent.context.get('ticketinfo')
+  const ticketInfoParams = ticketInfoContext.parameters
+  ticketInfoParams.lastName = lastName
   try {
     await agent.add(
       `What is your **phone number** so we can reach out to you with a solution?`
@@ -332,7 +321,7 @@ exports.supportCollectLastName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { lastName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -759,7 +748,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click revise to edit your message or submit to send to a representative.`
+      `Okay, I've put your request together. Here's what I've got. Click 'Go Back' to edit your message or submit to send to a representative.`
     )
     await agent.add(
       new Card({
@@ -767,18 +756,12 @@ exports.supportCollectIssue = async agent => {
         text: `${cardText}`,
       })
     )
-    await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
-    await agent.add(new Suggestion(`Home`))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({
       name: 'waiting-support-submit-issue',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-revise-issue',
       lifespan: 3,
     })
     await agent.context.set({
@@ -791,25 +774,6 @@ exports.supportCollectIssue = async agent => {
         supportSummary: supportSummary,
         requestSummary: request,
       },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportReviseIssue = async agent => {
-  try {
-    await agent.add(
-      `Sure, let's start over. Please describe your issue or request.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 5,
-    })
-    await agent.context.set({
-      name: 'requests',
-      lifespan: 5,
-      parameters: { requests: [] },
     })
   } catch (err) {
     console.error(err)
@@ -889,6 +853,65 @@ exports.supportSumbitIssue = async agent => {
 exports.supportCancel = async agent => {
   try {
     await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportParentPayingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      `Would you like to change or edit information about your employment status?`
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-edit-provider-employment',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportEditProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      await this.supportEmploymentStatus(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportReportProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      agent.parameters.supportType =
+        'Report Information About the Parent who Pays Support'
+      await this.supportType(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+exports.supportParentReceivingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      'Would you like to report information about the parent who provides support?'
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-report-provider-employment',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }
