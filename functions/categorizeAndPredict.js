@@ -1,16 +1,17 @@
 require('dotenv').config()
 const automl = require('@google-cloud/automl')
 const { Suggestion } = require('dialogflow-fulfillment')
+const admin = require('firebase-admin')
+let db = admin.firestore()
+
 const { defaultUnhandledResponse } = require('./globalFunctions')
 
-// Instantiate autoML client
-const client = new automl.v1beta1.PredictionServiceClient({
-  credentials: {
-    client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
-    private_key: `${process.env.AUTOML_PRIVATE_KEY.replace(/\\n/g, '\n')}`,
-  },
-  projectId: process.env.AUTOML_PROJECT,
-})
+const mlCredentials = async () => {
+  const credentialsRef = db.collection('credentials').doc('autoML')
+  const credentialDoc = await credentialsRef.get()
+  const credentials = await credentialDoc.data()
+  return credentials
+}
 
 // Mapping ML categories to intent suggestions
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
@@ -103,7 +104,7 @@ const categorizeAndPredict = async query => {
   try {
     // const modelPromises = [predictCategories(query), predictSubjectMatter(query)]
     // const results = await Promise.all(modelPromises)
-    const predictions = await predictCategories(query)
+    const predictions = await predictCategories(query, client, creds)
 
     // // Check the responses to determing if this query applies to child support
     // const appliesToChildSupport = results.find(
@@ -136,15 +137,29 @@ exports.handleUnhandled = async agent => {
   try {
     const { query } = agent
 
+    console.time('time')
+    const creds = await mlCredentials()
+    console.timeLog('time')
+
+    // Instantiate autoML client
+    const client = new automl.v1beta1.PredictionServiceClient({
+      credentials: {
+        client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
+        private_key: `${process.env.AUTOML_PRIVATE_KEY.replace(/\\n/g, '\n')}`,
+      },
+      projectId: process.env.AUTOML_PROJECT,
+    })
+
     // Send the user's query to interact with our custom machine learning models
-    const categories = await categorizeAndPredict(query)
+    const categories = await categorizeAndPredict(query, client, creds)
+    console.timeLog('time')
 
     // If there are categories returned, attempt to map them to intents,
     // and present them to the user as suggestions
     if (categories.length > 0) {
       // Use the ML categories to retrieve associated suggestions from the db
       const suggestions = await mapCategoryToIntent(categories)
-
+      console.timeLog('time')
       if (suggestions.length > 0) {
         await agent.add(
           `I'm sorry, were you referring to one of the topics below?`
