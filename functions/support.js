@@ -301,6 +301,7 @@ exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
   const ticketInfoContext = agent.context.get('ticketinfo')
   ticketInfoContext.parameters.lastName = agent.parameters.lastName
+
   try {
     await agent.add(
       `What is your **phone number** so we can reach out to you with a solution?`
@@ -313,7 +314,9 @@ exports.supportCollectLastName = async agent => {
       name: 'waiting-support-no-phone-number',
       lifespan: 3,
     })
+
     await agent.context.set(ticketInfoContext)
+
   } catch (err) {
     console.error(err)
   }
@@ -729,7 +732,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click revise to edit your message or submit to send to a representative.`
+      `Okay, I've put your request together. Here's what I've got. Click 'Go Back' to edit your message or submit to send to a representative.`
     )
     await agent.add(
       new Card({
@@ -737,7 +740,6 @@ exports.supportCollectIssue = async agent => {
         text: `${cardText}`,
       })
     )
-    await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
     // Force user to select suggestion
@@ -747,33 +749,10 @@ exports.supportCollectIssue = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
-      name: 'waiting-support-revise-issue',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'waiting-support-cancel-issue',
       lifespan: 3,
     })
     await agent.context.set(ticketInfoContext)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportReviseIssue = async agent => {
-  try {
-    await agent.add(
-      `Sure, let's start over. Please describe your issue or request.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 5,
-    })
-    await agent.context.set({
-      name: 'requests',
-      lifespan: 5,
-      parameters: { requests: [] },
-    })
   } catch (err) {
     console.error(err)
   }
