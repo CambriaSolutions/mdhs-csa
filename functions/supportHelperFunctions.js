@@ -95,6 +95,8 @@ exports.formatConfirmationResponse = async agent => {
 exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
   const employmentChangeType = await agent.context.get('ticketinfo').parameters
     .employmentChangeType
+  const ticketInfoContext = agent.context.get('ticketinfo')
+  ticketInfoContext.parameters.caseNumber = caseNumber
 
   let change
   if (employmentChangeType) {
@@ -112,10 +114,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
         name: 'waiting-support-no-new-employer',
         lifespan: 3,
       })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { caseNumber },
-      })
+      await agent.context.set(ticketInfoContext)
     } catch (err) {
       console.error(err)
     }
@@ -126,10 +125,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
         name: 'waiting-support-collect-issue',
         lifespan: 10,
       })
-      await agent.context.set({
-        name: 'ticketinfo',
-        parameters: { caseNumber },
-      })
+      await agent.context.set(ticketInfoContext)
     } catch (err) {
       console.error(err)
     }
@@ -219,6 +215,8 @@ const requestCompany = async agent => {
 // Used to handle the collection of either an email or phone number
 // after the user has been reminded that they need to submit either type
 exports.handleContactCollection = async (agent, type, isLumpSum) => {
+  const ticketInfoContext = agent.context.get('ticketinfo')
+
   if (type === 'phone') {
     const phoneNumberResponse = agent.parameters.phoneNumber
     const formattedPhone = `+1${phoneNumberResponse}`
@@ -229,18 +227,13 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
       const phoneNumber = parsePhoneNumberFromString(
         formattedPhone
       ).formatNational()
-
+      ticketInfoContext.parameters.phoneNumber = phoneNumber
+      ticketInfoContext.parameters.email = 'No Email Provided.'
       if (!isLumpSum) {
         // Not a lump sum reporting, so we gather the case number
         try {
           await requestCaseNumber(agent)
-          await agent.context.set({
-            name: 'ticketinfo',
-            parameters: {
-              phoneNumber: phoneNumber,
-              email: 'No Email Provided.',
-            },
-          })
+          await agent.context.set(ticketInfoContext)
         } catch (err) {
           console.error(err)
         }
@@ -248,13 +241,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
         // Its a lump sum reporting, so we collect the company name
         try {
           await requestCompany(agent)
-          await agent.context.set({
-            name: 'ticketinfo',
-            parameters: {
-              phoneNumber: phoneNumber,
-              email: 'No Email Provided',
-            },
-          })
+          await agent.context.set(ticketInfoContext)
         } catch (err) {
           console.error(err)
         }
@@ -279,14 +266,12 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
     const isValid = validator.isEmail(email)
 
     if (isValid) {
+      ticketInfoContext.parameters.email = email
       // Not a lump sum reporting, so we gather the case number
       if (!isLumpSum) {
         try {
           await requestCaseNumber(agent)
-          await agent.context.set({
-            name: 'ticketinfo',
-            parameters: { email: email },
-          })
+          await agent.context.set(ticketInfoContext)
         } catch (err) {
           console.error(err)
         }
@@ -294,10 +279,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
         // Its a lump sum reporting, so we collect the company name
         try {
           await requestCompany(agent)
-          await agent.context.set({
-            name: 'ticketinfo',
-            parameters: { email: email },
-          })
+          await agent.context.set(ticketInfoContext)
         } catch (err) {
           console.error(err)
         }

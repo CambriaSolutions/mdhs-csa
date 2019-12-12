@@ -165,7 +165,6 @@ const {
   supportHandleEmailRetry,
   supportCollectIssue,
   supportSummarizeIssue,
-  supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
 } = require('./support.js')
@@ -589,7 +588,6 @@ exports = module.exports = functions
     intentMap.set('support-no-case-number', supportNoCaseNumber)
     intentMap.set('support-collect-issue', supportCollectIssue)
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
-    intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
     intentMap.set(
       'support-edit-provider-employment',
