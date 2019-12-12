@@ -27,15 +27,6 @@ exports.supportRoot = async agent => {
   await startSupportConvo(agent)
 }
 
-exports.supportRestart = async agent => {
-  try {
-    await agent.add(`Alright, let's start over.`)
-    await startSupportConvo(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportParentReceiving = async agent => {
   try {
     await agent.add(
@@ -117,13 +108,8 @@ exports.supportNoOptionsSelected = async agent => {
       `Would you like to submit an inquiry or go back to support options?`
     )
     await agent.add(new Suggestion(`Inquiry`))
-    await agent.add(new Suggestion(`Go Back`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-restart',
       lifespan: 3,
     })
   } catch (err) {
@@ -318,6 +304,9 @@ exports.supportCollectFirstName = async agent => {
 
 exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
+  const ticketInfoContext = agent.context.get('ticketinfo')
+  const ticketInfoParams = ticketInfoContext.parameters
+  ticketInfoParams.lastName = lastName
   try {
     await agent.add(
       `What is your **phone number** so we can reach out to you with a solution?`
@@ -332,7 +321,7 @@ exports.supportCollectLastName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { lastName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -759,7 +748,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click revise to edit your message or submit to send to a representative.`
+      `Okay, I've put your request together. Here's what I've got. Click 'Go Back' to edit your message or submit to send to a representative.`
     )
     await agent.add(
       new Card({
@@ -767,17 +756,12 @@ exports.supportCollectIssue = async agent => {
         text: `${cardText}`,
       })
     )
-    await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({
       name: 'waiting-support-submit-issue',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-revise-issue',
       lifespan: 3,
     })
     await agent.context.set({
@@ -790,25 +774,6 @@ exports.supportCollectIssue = async agent => {
         supportSummary: supportSummary,
         requestSummary: request,
       },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportReviseIssue = async agent => {
-  try {
-    await agent.add(
-      `Sure, let's start over. Please describe your issue or request.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 5,
-    })
-    await agent.context.set({
-      name: 'requests',
-      lifespan: 5,
-      parameters: { requests: [] },
     })
   } catch (err) {
     console.error(err)

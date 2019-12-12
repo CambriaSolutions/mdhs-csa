@@ -6,7 +6,6 @@ const {
   disableInput,
   caseyHandoff,
 } = require('./globalFunctions.js')
-
 // Not child support intents
 const {
   notChildSupportRoot,
@@ -133,7 +132,6 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportRestart,
   supportParentReceiving,
   supportParentReceivingEmploymentInfo,
   supportParentPayingEmploymentInfo,
@@ -283,8 +281,11 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+const { backIntent } = require('./back.js')
+
 const { home } = require('./home')
 
+// TODO: uncomment for ml integration
 // ML model requests
 // const { handleUnhandled } = require('./categorizeAndPredict.js')
 
@@ -539,7 +540,6 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-restart', supportRestart)
     intentMap.set('support-parent-receiving', supportParentReceiving)
     intentMap.set(
       'support-parent-receiving-employment-info',
@@ -742,13 +742,21 @@ exports = module.exports = functions
     // TBD intent
     intentMap.set('tbd', tbd)
 
-    intentMap.set('Default Fallback Intent', handleUnhandled)
-    home(agent, intentMap, [
+    // intentMap.set('Default Fallback Intent', handleUnhandled)
+
+    const resetBackIntentList = [
+      'yes-child-support',
+      'Default Welcome Intent',
+      'support-submit-issue',
+    ]
+    await backIntent(agent, intentMap, resetBackIntentList)
+    await home(agent, intentMap, [
       'Default Welcome Intent',
       'yes-child-support',
       'restart-conversation',
       'global-restart',
       'acknowledge-privacy-statement',
+      'not-child-support-root',
     ])
     await agent.handleRequest(intentMap)
   })

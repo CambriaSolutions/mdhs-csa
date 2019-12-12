@@ -4,12 +4,12 @@ const { Suggestion } = require('dialogflow-fulfillment')
  * home creates a new function in place of the current intent that adds a 'Home' suggestion button
  * and global-restart context.
  **************************************************************************************************/
-exports.home = (agent, intentMap, exclusionList = []) => {
-  if (!exclusionList.includes(agent.intent)) {
-    const currentIntent = agent.intent
-    const currentIntentFunction = intentMap.get(currentIntent)
-    const homeFunction = async () => {
-      await currentIntentFunction(agent)
+exports.home = async (agent, intentMap, exclusionList = []) => {
+  const currentIntent = agent.intent
+  const currentIntentFunction = intentMap.get(currentIntent)
+  const homeFunction = async () => {
+    await currentIntentFunction(agent)
+    if (!exclusionList.includes(agent.intent)) {
       await agent.add(new Suggestion('Home'))
 
       // Necessary to overwrite @sys.any
@@ -18,6 +18,14 @@ exports.home = (agent, intentMap, exclusionList = []) => {
         lifespan: 1,
       })
     }
-    intentMap.set(currentIntent, homeFunction)
+  }
+  intentMap.set(currentIntent, homeFunction)
+
+  if (agent.intent === 'global-restart') {
+    await agent.contexts.forEach(async context => {
+      if (context.name !== 'previous-agent-states') {
+        await agent.context.delete(context.name)
+      }
+    })
   }
 }
