@@ -1,4 +1,6 @@
 const { Payload } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
+
 const {
   disableInput,
 } = require('./globalFunctions.js')
