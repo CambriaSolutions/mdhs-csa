@@ -1,8 +1,14 @@
 const { Payload } = require('dialogflow-fulfillment')
+const {
+  disableInput,
+} = require('./globalFunctions.js')
 
 exports.feedbackRoot = async agent => {
   try {
     await agent.add(`Was Gen helpful?`)
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await disableInput(agent)
     await agent.context.set({
       name: 'waiting-feedback-not-helpful',
       lifespan: 2,
