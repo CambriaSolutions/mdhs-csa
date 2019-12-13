@@ -13,9 +13,9 @@
       "city": "Clarksdale",
       "street": "157 Issaquena Avenue"
     },
-    "lat": 34.2038003,
-    "lng": -90.5730985,
-    "placeId": "EiwxNTcgSXNzYXF1ZW5hIEF2ZSwgQ2xhcmtzZGFsZSwgTVMgMzg2MTQsIFVTQSIbEhkKFAoSCRe2woUF3yqGEQB21HtSKnFhEJ0B"
+    "lat": 34.2033988,
+    "lng": -90.57286719999999,
+    "placeId": "EiwxNTcgSXNzYXF1ZW5hIEF2ZSwgQ2xhcmtzZGFsZSwgTVMgMzg2MTQsIFVTQSIbEhkKFAoSCWG-bY0F3yqGEYjmUAoavIodEJ0B"
   },
   {
     "addressComponents": {
@@ -45,13 +45,10 @@
     "placeId": "EiU2MTAgUyBDYXNzIFN0LCBDb3JpbnRoLCBNUyAzODgzNCwgVVNBIhsSGQoUChIJOV42ZifBfYgRaKJ9ySB9-5AQ4gQ"
   },
   {
-    "addressComponents": {
-      "city": "Greenville",
-      "street": "643 Mississippi 1"
-    },
-    "lat": 33.41683270000001,
-    "lng": -91.037555,
-    "placeId": "EiM2NDMgTVMtMSwgR3JlZW52aWxsZSwgTVMgMzg3MDMsIFVTQSIbEhkKFAoSCQN2mjo_7SuGEe_JTFBpKHNkEIMF"
+    "addressComponents": { "city": "Rosedale", "street": "643 Mississippi 1" },
+    "lat": 33.8385825,
+    "lng": -91.02570349999999,
+    "placeId": "EiE2NDMgTVMtMSwgUm9zZWRhbGUsIE1TIDM4NzY5LCBVU0EiGxIZChQKEgmZ0YilAHcrhhGjr-ltRNJDYRCDBQ"
   },
   {
     "addressComponents": { "city": "Grenada", "street": "1400 Wooded Drive" },
@@ -62,11 +59,11 @@
   {
     "addressComponents": {
       "city": "Gulfport",
-      "street": "14231 Seaway Road Suite 5001"
+      "street": "10415 Express Drive"
     },
-    "lat": 30.4337792,
-    "lng": -89.0754729,
-    "placeId": "Ei41MDAxLCAxNDIzMSBTZWF3YXkgUmQsIEd1bGZwb3J0LCBNUyAzOTUwMywgVVNBIiAaHgoWChQKEgllFmnMChaciBEbEi_SsYQKIRIENTAwMQ"
+    "lat": 30.4393999,
+    "lng": -89.03799029999999,
+    "placeId": "ChIJS9hAEyIUnIgRmhxb6dY7lQY"
   },
   {
     "addressComponents": {
