@@ -122,6 +122,17 @@ exports.pmtCalcUnknownIncome = async agent => {
   }
 }
 
+const updateFormContext = async (agent, context, param) => {
+  const currentContext = agent.context.get(context)
+  currentContextParams = currentContext.parameters
+  currentContextParams[Object.keys(param)[0]] = Object.values(param)[0]
+  console.log(JSON.stringify(currentContextParams))
+  await agent.context.set({
+    name: context,
+    parameters: currentContextParams,
+  })
+}
+
 // User has provided their income timeframe
 exports.pmtCalcGrossIncome = async agent => {
   try {
@@ -139,12 +150,7 @@ exports.pmtCalcGrossIncome = async agent => {
       name: 'waiting-pmt-calc-unknown-income',
       lifespan: 3,
     })
-
-    // Keep log of payment factors
-    await agent.context.set({
-      name: 'payment-factors',
-      parameters: { incomeTerm },
-    })
+    await updateFormContext(agent, 'payment-factors', { incomeTerm })
   } catch (err) {
     console.error(err)
   }
@@ -183,12 +189,6 @@ exports.pmtCalcTaxDeductions = async agent => {
         lifespan: 3,
       })
     } else {
-      // Save gross income in context
-      await agent.context.set({
-        name: 'payment-factors',
-        parameters: { grossIncome },
-      })
-
       await agent.add(
         'How much <strong>federal and state taxes</strong> are subtracted from your gross income?'
       )
@@ -200,6 +200,8 @@ exports.pmtCalcTaxDeductions = async agent => {
         name: 'waiting-pmt-calc-unknown-tax-deductions',
         lifespan: 3,
       })
+      // Save gross income in context
+      await updateFormContext(agent, 'payment-factors', { grossIncome })
     }
   } catch (err) {
     console.error(err)
@@ -273,10 +275,7 @@ exports.pmtCalcSSDeductions = async agent => {
       })
 
       // Keep log of payment factors
-      await agent.context.set({
-        name: 'payment-factors',
-        parameters: { taxDeductions },
-      })
+      await updateFormContext(agent, 'payment-factors', { taxDeductions })
     } else {
       await invalidDeductions(agent)
     }
@@ -350,10 +349,7 @@ exports.pmtCalcRetirementContributions = async agent => {
       })
 
       // Keep log of payment factors
-      await agent.context.set({
-        name: 'payment-factors',
-        parameters: { ssDeductions },
-      })
+      await updateFormContext(agent, 'payment-factors', { ssDeductions })
     } else {
       await invalidDeductions(agent)
     }
@@ -413,8 +409,11 @@ exports.pmtCalcChildSupportNoRetirement = async agent => {
 
 const existingChildSupport = async (agent, retirementContributions) => {
   try {
-    let paymentFactors = await agent.context.get('payment-factors').parameters
+    const paymentFactorsInContext = await agent.context.get('payment-factors')
+      .parameters
+    const paymentFactors = paymentFactorsInContext
     paymentFactors.retirementContributions = retirementContributions
+    console.log(JSON.stringify(paymentFactorsInContext))
     // Validate that income is higher than deductions & contributions
     if (await validateIncomeAndDeductions(paymentFactors)) {
       await agent.add(
@@ -432,9 +431,9 @@ const existingChildSupport = async (agent, retirementContributions) => {
       })
 
       // Save retirement contributions in context
-      await agent.context.set({
-        name: 'payment-factors',
-        parameters: { retirementContributions },
+      console.log('im here')
+      await updateFormContext(agent, 'payment-factors', {
+        retirementContributions,
       })
     } else {
       await invalidDeductions(agent)

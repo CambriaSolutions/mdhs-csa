@@ -92,7 +92,13 @@ exports.calculatePayment = ({
 }) => {
   // Get the percentage of income that should be paid per year
   const bracketPct = getSupportBracket(numChildren)
-
+  console.log(`numChildren: ${numChildren}`)
+  console.log(`incomeTerm: ${incomeTerm}`)
+  console.log(`grossIncome: ${grossIncome}`)
+  console.log(`taxDeductions: ${taxDeductions}`)
+  console.log(`ssDeductions: ${ssDeductions}`)
+  console.log(`retirementContributions: ${retirementContributions}`)
+  console.log(`otherChildSupport: ${otherChildSupport}`)
   // Get the multiplier to adjust payment to a monthly cadence, e.g. if
   // user provided bi-weekly income, we need to multiply by 2 to get
   // monthly income
