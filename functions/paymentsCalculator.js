@@ -123,10 +123,14 @@ exports.pmtCalcUnknownIncome = async agent => {
 }
 
 const updateFormContext = async (agent, context, param) => {
+  // Retrieve agent context
   const currentContext = agent.context.get(context)
+  // Isolate parameters of that context
   currentContextParams = currentContext.parameters
+  // Update the paramenters with the key and value of the object passed
   currentContextParams[Object.keys(param)[0]] = Object.values(param)[0]
   console.log(JSON.stringify(currentContextParams))
+  // Set the updated context
   await agent.context.set({
     name: context,
     parameters: currentContextParams,
@@ -258,7 +262,7 @@ exports.pmtCalcSSDeductions = async agent => {
     // Save tax deductions in context
     const taxDeductions = agent.parameters.taxDeductions
 
-    let paymentFactors = await agent.context.get('payment-factors').parameters
+    const paymentFactors = await agent.context.get('payment-factors').parameters
     paymentFactors.taxDeductions = taxDeductions
     // Validate that income is higher than deductions
     if (await validateIncomeAndDeductions(paymentFactors)) {
@@ -399,21 +403,13 @@ exports.pmtCalcUnknownRetirementContributions = async agent => {
 // User stated he contributes to a retirement account
 exports.pmtCalcChildSupport = async agent => {
   // Save retirement contributions in context
-  await existingChildSupport(agent, agent.parameters.retirementContributions)
-}
-
-// User stated he does not contribute to a retirement account
-exports.pmtCalcChildSupportNoRetirement = async agent => {
-  await existingChildSupport(agent, 0)
-}
-
-const existingChildSupport = async (agent, retirementContributions) => {
+  // await existingChildSupport(agent, agent.parameters.retirementContributions)
   try {
+    const retirementContributions = agent.parameters.retirementContributions
     const paymentFactorsInContext = await agent.context.get('payment-factors')
       .parameters
     const paymentFactors = paymentFactorsInContext
     paymentFactors.retirementContributions = retirementContributions
-    console.log(JSON.stringify(paymentFactorsInContext))
     // Validate that income is higher than deductions & contributions
     if (await validateIncomeAndDeductions(paymentFactors)) {
       await agent.add(
@@ -432,12 +428,43 @@ const existingChildSupport = async (agent, retirementContributions) => {
 
       // Save retirement contributions in context
       console.log('im here')
+      console.log(retirementContributions)
       await updateFormContext(agent, 'payment-factors', {
         retirementContributions,
       })
     } else {
       await invalidDeductions(agent)
     }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// User stated he does not contribute to a retirement account
+exports.pmtCalcChildSupportNoRetirement = async agent => {
+  try {
+    await agent.add(
+      `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
+    )
+    await agent.add(new Suggestion(`Yes`))
+    await agent.add(new Suggestion(`No`))
+    await agent.context.set({
+      name: 'waiting-pmt-calc-child-support-amount',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-pmt-calc-final-estimation-no-other-children',
+      lifespan: 3,
+    })
+
+    console.log('im in no time, before')
+    // Save retirement contributions in context
+    console.log(JSON.stringify(agent.context.get('payment-factors').parameters))
+    await updateFormContext(agent, 'payment-factors', {
+      retirementContributions: 0,
+    })
+    console.log('after no time')
+    console.log(JSON.stringify(agent.context.get('payment-factors').parameters))
   } catch (err) {
     console.error(err)
   }
@@ -485,13 +512,18 @@ exports.pmtCalcUnknownOtherChildSupport = async agent => {
 exports.pmtCalcFinalEstimation = async agent => {
   let paymentFactors = await agent.context.get('payment-factors').parameters
   paymentFactors.otherChildSupport = agent.parameters.otherChildSupport
+  console.log('this is where it is good')
   await finalPaymentCalculation(agent, paymentFactors)
 }
 
 // User is NOT paying for child support for other children. move on to calculations
 exports.pmtCalcFinalEstimationNoOtherChildren = async agent => {
-  let paymentFactors = await agent.context.get('payment-factors').parameters
-  paymentFactors.otherChildSupport = 0
+  console.log('before not the good')
+  console.log(JSON.stringify(agent.context.get('payment-factors').parameters))
+  console.log('not the good')
+  await updateFormContext(agent, 'payment-factors', { otherChildSupport: 0 })
+  const paymentFactors = await agent.context.get('payment-factors').parameters
+  console.log(JSON.stringify(paymentFactors))
   await finalPaymentCalculation(agent, paymentFactors)
 }
 
