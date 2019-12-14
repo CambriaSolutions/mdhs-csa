@@ -745,20 +745,20 @@ exports = module.exports = functions
     // intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
-      'yes-child-support',
-      'Default Welcome Intent',
-      'support-submit-issue',
-      'pmt-calc-num-children',
-      'pmt-calc-income-term',
-      'pmt-calc-gross-income',
-      'pmt-calc-tax-deductions',
-      'pmt-calc-ss-deductions',
-      'pmt-calc-retirement-contributions',
-      'pmt-calc-retirement-contributions-amount',
-      'pmt-calc-child-support',
-      'pmt-calc-final-estimation',
-      'pmt-calc-child-support-no-retirement',
-      'pmt-calc-final-estimation-no-other-children',
+			'yes-child-support',
+			'Default Welcome Intent',
+			'support-submit-issue',
+			'pmt-calc-num-children',
+			'pmt-calc-income-term',
+			'pmt-calc-gross-income',
+			'pmt-calc-tax-deductions',
+			'pmt-calc-ss-deductions',
+			'pmt-calc-retirement-contributions',
+			'pmt-calc-retirement-contributions-amount',
+			'pmt-calc-child-support',
+			'pmt-calc-final-estimation',
+			'pmt-calc-child-support-no-retirement',
+			'pmt-calc-final-estimation-no-other-children'
     ]
     await backIntent(agent, intentMap, resetBackIntentList)
     await home(agent, intentMap, [
