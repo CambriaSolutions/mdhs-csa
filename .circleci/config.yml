@@ -28,19 +28,7 @@ jobs:
 
             SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}
 
-            ANALYTICS_URI=${DEV_ANALYTICS_URI}
-
-            AUTOML_PROJECT=${AUTOML_PROJECT}
-
-            AUTOML_LOCATION=${AUTOML_LOCATION}
-
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
-
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
-
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
-
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            ANALYTICS_URI=${DEV_ANALYTICS_URI}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
@@ -74,19 +62,7 @@ jobs:
 
             SERVICE_DESK_ENV=${STAGE_SERVICE_DESK_ENV}
 
-            ANALYTICS_URI=${STAGE_ANALYTICS_URI}
-
-            AUTOML_PROJECT=${AUTOML_PROJECT}
-
-            AUTOML_LOCATION=${AUTOML_LOCATION}
-
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
-
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
-
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
-
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            ANALYTICS_URI=${STAGE_ANALYTICS_URI}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
@@ -120,19 +96,7 @@ jobs:
 
             SERVICE_DESK_ENV=${PROD_SERVICE_DESK_ENV}
 
-            ANALYTICS_URI=${PROD_ANALYTICS_URI}
-
-            AUTOML_PROJECT=${AUTOML_PROJECT}
-
-            AUTOML_LOCATION=${AUTOML_LOCATION}
-
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
-
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
-
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
-
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            ANALYTICS_URI=${PROD_ANALYTICS_URI}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
