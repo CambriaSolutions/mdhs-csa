@@ -287,7 +287,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-// const { handleUnhandled } = require('./categorizeAndPredict.js')
+const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -392,7 +392,7 @@ exports = module.exports = functions
 
     let intentMap = new Map()
 
-    intentMap.set('Default Fallback Intent', fallback)
+    // intentMap.set('Default Fallback Intent', fallback)
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement)
     intentMap.set('global-restart', globalRestart)
@@ -742,23 +742,23 @@ exports = module.exports = functions
     // TBD intent
     intentMap.set('tbd', tbd)
 
-    // intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
-			'yes-child-support',
-			'Default Welcome Intent',
-			'support-submit-issue',
-			'pmt-calc-num-children',
-			'pmt-calc-income-term',
-			'pmt-calc-gross-income',
-			'pmt-calc-tax-deductions',
-			'pmt-calc-ss-deductions',
-			'pmt-calc-retirement-contributions',
-			'pmt-calc-retirement-contributions-amount',
-			'pmt-calc-child-support',
-			'pmt-calc-final-estimation',
-			'pmt-calc-child-support-no-retirement',
-			'pmt-calc-final-estimation-no-other-children'
+      'yes-child-support',
+      'Default Welcome Intent',
+      'support-submit-issue',
+      'pmt-calc-num-children',
+      'pmt-calc-income-term',
+      'pmt-calc-gross-income',
+      'pmt-calc-tax-deductions',
+      'pmt-calc-ss-deductions',
+      'pmt-calc-retirement-contributions',
+      'pmt-calc-retirement-contributions-amount',
+      'pmt-calc-child-support',
+      'pmt-calc-final-estimation',
+      'pmt-calc-child-support-no-retirement',
+      'pmt-calc-final-estimation-no-other-children',
     ]
     await backIntent(agent, intentMap, resetBackIntentList)
     await home(agent, intentMap, [

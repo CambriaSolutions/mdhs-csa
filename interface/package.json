@@ -16,7 +16,8 @@
     "eject": "react-scripts eject",
     "deploy-dev": "firebase deploy --only hosting --project dev",
     "deploy-prod": "firebase deploy --only hosting --project prod",
-    "deploy-stage": "firebase deploy --only hosting --project stage"
+    "deploy-stage": "firebase deploy --only hosting --project stage",
+    "deploy-dev-beta": "firebase deploy --only hosting --project dev-beta"
   },
   "eslintConfig": {
     "extends": "react-app"
