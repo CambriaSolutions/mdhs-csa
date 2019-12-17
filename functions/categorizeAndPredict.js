@@ -114,10 +114,10 @@ const categorizeAndPredict = async (query, client, mlCredentials) => {
     for (const category in predictions.categories) {
       const { name, confidence } = predictions.categories[category]
 
-      // TODO: determine threshold, it is low now for testing purposes
-      if (confidence > 0.01) {
-        categories.push(name)
-      }
+      // TODO: determine threshold, we are showing the top three for testing purposes
+      // if (confidence > 0.01) {
+      categories.push(name)
+      // }
     }
     // }
     return categories
@@ -157,13 +157,9 @@ exports.handleUnhandled = async agent => {
           `I'm sorry, were you referring to one of the topics below?`
         )
 
-        suggestions.forEach(async (suggestion, i) => {
+        suggestions.forEach(async suggestion => {
           if (suggestion.suggestionText) {
-            // TODO: removed category name from suggestion text, this is included
-            // only for demonstration purposes
-            await agent.add(
-              `${suggestion.suggestionText} (${suggestion.mlCategory})`
-            )
+            // Add suggestions generated based on ml model
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
           }
         })
