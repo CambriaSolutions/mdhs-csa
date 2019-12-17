@@ -127,6 +127,10 @@ exports.pmtCalcGrossIncome = async agent => {
   try {
     // Save income term in context
     const incomeTerm = agent.parameters.incomeTerm
+    const paymentFactorsParams = {
+      ...agent.context.get('payment-factors').parameters,
+      incomeTerm,
+    }
 
     await agent.add(
       `What is your ${incomeTerm} <strong>gross income</strong>? This includes all income before any deductions are subtracted.`
@@ -143,7 +147,7 @@ exports.pmtCalcGrossIncome = async agent => {
     // Keep log of payment factors
     await agent.context.set({
       name: 'payment-factors',
-      parameters: { incomeTerm },
+      parameters: paymentFactorsParams,
     })
   } catch (err) {
     console.error(err)
@@ -183,10 +187,14 @@ exports.pmtCalcTaxDeductions = async agent => {
         lifespan: 3,
       })
     } else {
+      const paymentFactorsParams = {
+        ...agent.context.get('payment-factors').parameters,
+        grossIncome,
+      }
       // Save gross income in context
       await agent.context.set({
         name: 'payment-factors',
-        parameters: { grossIncome },
+        parameters: paymentFactorsParams,
       })
 
       await agent.add(
@@ -256,10 +264,12 @@ exports.pmtCalcSSDeductions = async agent => {
     // Save tax deductions in context
     const taxDeductions = agent.parameters.taxDeductions
 
-    let paymentFactors = await agent.context.get('payment-factors').parameters
-    paymentFactors.taxDeductions = taxDeductions
+    const paymentFactorsParams = {
+      ...agent.context.get('payment-factors').parameters,
+      taxDeductions,
+    }
     // Validate that income is higher than deductions
-    if (await validateIncomeAndDeductions(paymentFactors)) {
+    if (await validateIncomeAndDeductions(paymentFactorsParams)) {
       await agent.add(
         'How much is subtracted from your gross income for <strong>social security contributions</strong>?'
       )
@@ -275,7 +285,7 @@ exports.pmtCalcSSDeductions = async agent => {
       // Keep log of payment factors
       await agent.context.set({
         name: 'payment-factors',
-        parameters: { taxDeductions },
+        parameters: paymentFactorsParams,
       })
     } else {
       await invalidDeductions(agent)
@@ -331,10 +341,12 @@ exports.pmtCalcRetirementContributions = async agent => {
     // Save social security deductions in context
     const ssDeductions = agent.parameters.ssDeductions
 
-    let paymentFactors = await agent.context.get('payment-factors').parameters
-    paymentFactors.ssDeductions = ssDeductions
+    const paymentFactorsParams = {
+      ...agent.context.get('payment-factors').parameters,
+      ssDeductions,
+    }
     // Validate that income is higher than deductions
-    if (await validateIncomeAndDeductions(paymentFactors)) {
+    if (await validateIncomeAndDeductions(paymentFactorsParams)) {
       await agent.add(
         'Does your employer require you to contribute to a <strong>retirement account</strong> in which you may not opt out?'
       )
@@ -352,7 +364,7 @@ exports.pmtCalcRetirementContributions = async agent => {
       // Keep log of payment factors
       await agent.context.set({
         name: 'payment-factors',
-        parameters: { ssDeductions },
+        parameters: paymentFactorsParams,
       })
     } else {
       await invalidDeductions(agent)
@@ -413,10 +425,12 @@ exports.pmtCalcChildSupportNoRetirement = async agent => {
 
 const existingChildSupport = async (agent, retirementContributions) => {
   try {
-    let paymentFactors = await agent.context.get('payment-factors').parameters
-    paymentFactors.retirementContributions = retirementContributions
+    const paymentFactorsParams = {
+      ...agent.context.get('payment-factors').parameters,
+      retirementContributions,
+    }
     // Validate that income is higher than deductions & contributions
-    if (await validateIncomeAndDeductions(paymentFactors)) {
+    if (await validateIncomeAndDeductions(paymentFactorsParams)) {
       await agent.add(
         `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
       )
@@ -434,7 +448,7 @@ const existingChildSupport = async (agent, retirementContributions) => {
       // Save retirement contributions in context
       await agent.context.set({
         name: 'payment-factors',
-        parameters: { retirementContributions },
+        parameters: paymentFactorsParams,
       })
     } else {
       await invalidDeductions(agent)

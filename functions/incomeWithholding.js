@@ -104,6 +104,10 @@ exports.iwoInArrears = async agent => {
   const isSupporting = await agent.context.get('iwo-factors').parameters
     .isSupporting
   const percentage = calculatePercentage(isSupporting, inArrears)
+  const iwoFactorsParams = {
+    ...agent.context.get('iwo-factors').parameters,
+    percentage,
+  }
   try {
     await agent.add(
       `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's.`
@@ -125,7 +129,7 @@ exports.iwoInArrears = async agent => {
     // Save percentage in context
     await agent.context.set({
       name: 'iwo-factors',
-      parameters: { percentage },
+      parameters: iwoFactorsParams,
     })
   } catch (err) {
     console.error(err)

@@ -40,6 +40,14 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
+    agent.context.set({
+      name: 'waiting-license-suspension-learn-more',
+      lifespan: 3,
+    })
+    agent.context.set({
+      name: 'waiting-license-reinstatement-learn-more',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }
