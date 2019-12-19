@@ -19,6 +19,7 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Credit Bureau Reporting'))
     await agent.add(new Suggestion('Unemployment Benefits'))
     await agent.add(new Suggestion('Bankruptcy'))
+    await agent.add(new Suggestion('Income Withholding Order Information'))
   } catch (err) {
     console.error(err)
   }
@@ -40,6 +41,14 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
+    agent.context.set({
+      name: 'waiting-license-suspension-learn-more',
+      lifespan: 3,
+    })
+    agent.context.set({
+      name: 'waiting-license-reinstatement-learn-more',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }
@@ -348,7 +357,7 @@ exports.enforcementSubmitInquiry = async agent => {
 exports.enforcementBankruptcy = async agent => {
   try {
     await agent.add(
-      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy payment.`
+      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy payments.`
     )
     await handleEndConversation(agent)
   } catch (err) {

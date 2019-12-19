@@ -16,7 +16,7 @@ const locations = [
   '610 S. Cass St Corinth, MS 38834',
   '643 HWY 1, Greenville, MS 38701',
   '1400 Wooded Dr Grenada, MS 38901',
-  '14231 Seaway Rd, Suite 5001 Gulfport, MS 39503',
+  '10415 Express Drive, Gulfport, MS 39503',
   '5 Willow Bend Drive, Hattiesburg, MS 39402',
   '165 W. South St, Suite 100 Hernando, MS 38632',
   '128 W Washington St Kosciusko, MS 39090',

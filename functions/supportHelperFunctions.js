@@ -68,7 +68,7 @@ exports.formatConfirmationResponse = async agent => {
   }
   // Information about parent who pays child support
   else if (
-    supportType === 'information about the parent who pays child support'
+    supportType === 'Report Information About the Parent who Pays Support'
   ) {
     confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
   }
@@ -96,6 +96,11 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
   const employmentChangeType = await agent.context.get('ticketinfo').parameters
     .employmentChangeType
 
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    caseNumber,
+  }
+
   let change
   if (employmentChangeType) {
     change = employmentChangeType.toLowerCase()
@@ -114,7 +119,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { caseNumber },
+        parameters: ticketInfoParams,
       })
     } catch (err) {
       console.error(err)
@@ -128,7 +133,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { caseNumber },
+        parameters: ticketInfoParams,
       })
     } catch (err) {
       console.error(err)
@@ -144,7 +149,7 @@ exports.supportMoreOptions = async (agent, option) => {
         `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
       )
       await agent.add(
-        new Suggestion(`Information about the parent who pays child support`)
+        new Suggestion(`Report Information About the Parent who Pays Support`)
       )
       await agent.add(new Suggestion(`Request Payment History`))
       await agent.add(new Suggestion(`Add Authorized User`))
@@ -229,6 +234,11 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
       const phoneNumber = parsePhoneNumberFromString(
         formattedPhone
       ).formatNational()
+      const ticketInfoParams = {
+        ...agent.context.get('ticketinfo').parameters,
+        phoneNumber,
+      }
+      ticketInfoParams.email = 'No Email Provided.'
 
       if (!isLumpSum) {
         // Not a lump sum reporting, so we gather the case number
@@ -236,10 +246,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCaseNumber(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: {
-              phoneNumber: phoneNumber,
-              email: 'No Email Provided.',
-            },
+            parameters: ticketInfoParams,
           })
         } catch (err) {
           console.error(err)
@@ -250,10 +257,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCompany(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: {
-              phoneNumber: phoneNumber,
-              email: 'No Email Provided',
-            },
+            parameters: ticketInfoParams,
           })
         } catch (err) {
           console.error(err)
@@ -277,6 +281,10 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
     // Retrieve and validate email address provided
     const email = agent.parameters.email
     const isValid = validator.isEmail(email)
+    const ticketInfoParams = {
+      ...agent.context.get('ticketinfo').parameters,
+      email,
+    }
 
     if (isValid) {
       // Not a lump sum reporting, so we gather the case number
@@ -285,7 +293,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCaseNumber(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: { email: email },
+            parameters: ticketInfoParams,
           })
         } catch (err) {
           console.error(err)
@@ -296,7 +304,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           await requestCompany(agent)
           await agent.context.set({
             name: 'ticketinfo',
-            parameters: { email: email },
+            parameters: ticketInfoParams,
           })
         } catch (err) {
           console.error(err)

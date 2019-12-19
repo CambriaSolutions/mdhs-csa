@@ -6,7 +6,6 @@ const {
   disableInput,
   caseyHandoff,
 } = require('./globalFunctions.js')
-
 // Not child support intents
 const {
   notChildSupportRoot,
@@ -84,6 +83,7 @@ const {
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
   pmtMethodsEcheckDebit,
+  pmtMethodsMailAddress,
   pmtMethodsMoneygram,
   pmtMethodsPayNearMe,
   pmtMethodsCantMake,
@@ -132,13 +132,16 @@ const {
 // Support intents
 const {
   supportRoot,
-  supportRestart,
   supportParentReceiving,
+  supportParentReceivingEmploymentInfo,
+  supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
+  supportEditProviderEmployment,
+  supportReportProviderEmployment,
   supportEmploymentStatus,
   supportHandleEmploymentStatus,
   supportCollectNewEmployerName,
@@ -246,6 +249,7 @@ const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./geneticTesting.js')
+
 // Support QA
 const {
   supportQACpPictureId,
@@ -277,8 +281,14 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
-// Waiting on more information from MDHS
-// const { goodCauseClaim } = require('./goodCauseClaim')
+const { backIntent } = require('./back.js')
+
+const { home } = require('./home')
+
+// TODO: uncomment for ml integration
+// ML model requests
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
+
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -287,21 +297,19 @@ const runtimeOpts = {
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
-  .https.onRequest((request, response) => {
+  .https.onRequest(async (request, response) => {
     console.log(
       'Dialogflow Request headers: ' + JSON.stringify(request.headers)
     )
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
-
-    const agent = new WebhookClient({ request, response })
-
-    // Send request body to analytics function
     req({
       method: 'POST',
       uri: process.env.ANALYTICS_URI,
       body: request.body,
       json: true,
     })
+
+    const agent = new WebhookClient({ request, response })
 
     const welcome = async agent => {
       try {
@@ -329,22 +337,6 @@ exports = module.exports = functions
         await agent.add(
           `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
         )
-        await agent.add(new Suggestion(`Home`))
-
-        // Waiting on more information from MDHS
-        // await agent.add(
-        //   `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; please try rephrasing or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center by either submitting a support request (the fastest way) or calling a support representative.`
-        // )
-        // await agent.add(new Suggestion(`Submit Support Request`))
-        // await agent.add(new Suggestion(`Contact Number`))
-        // await agent.context.set({
-        //   name: 'waiting-contact-support-handoff',
-        //   lifespan: 2,
-        // })
-        // await agent.context.set({
-        //   name: 'waiting-contact-provide-phone-number',
-        //   lifespan: 2,
-        // })
       } catch (err) {
         console.error(err)
       }
@@ -391,6 +383,12 @@ exports = module.exports = functions
       } catch (err) {
         console.error(err)
       }
+    }
+
+    // TODO: remove after testing
+    // Testing intent for ml training
+    const tbd = async agent => {
+      await agent.add('test')
     }
 
     let intentMap = new Map()
@@ -501,6 +499,7 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
     intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
+    intentMap.set('pmtMethods-mail-address', pmtMethodsMailAddress)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
     intentMap.set('pmtMethods-cant-make', pmtMethodsCantMake)
@@ -542,9 +541,16 @@ exports = module.exports = functions
 
     // Support intents
     intentMap.set('support-root', supportRoot)
-    intentMap.set('support-restart', supportRestart)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set(
+      'support-parent-receiving-employment-info',
+      supportParentReceivingEmploymentInfo
+    )
     intentMap.set('support-parent-paying', supportParentPaying)
+    intentMap.set(
+      'support-parent-paying-employment-info',
+      supportParentPayingEmploymentInfo
+    )
     intentMap.set('support-employer', supportEmployer)
     intentMap.set('support-parent-paying-more', supportParentPayingMore)
     intentMap.set('support-parent-receiving-more', supportParentReceivingMore)
@@ -586,6 +592,14 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set(
+      'support-edit-provider-employment',
+      supportEditProviderEmployment
+    )
+    intentMap.set(
+      'support-report-provider-employment',
+      supportReportProviderEmployment
+    )
 
     // Case specific intents
     intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
@@ -726,9 +740,25 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Waiting on more information from client
-    // Good cause claim intent
-    // intentMap.set('good-cause-claim', goodCauseClaim)
+    // TBD intent
+    intentMap.set('tbd', tbd)
 
-    agent.handleRequest(intentMap)
+    // intentMap.set('Default Fallback Intent', handleUnhandled)
+
+    const resetBackIntentList = [
+      'yes-child-support',
+      'Default Welcome Intent',
+      'support-submit-issue',
+    ]
+    await backIntent(agent, intentMap, resetBackIntentList)
+    await home(agent, intentMap, [
+      'Default Welcome Intent',
+      'yes-child-support',
+      'restart-conversation',
+      'global-restart',
+      'acknowledge-privacy-statement',
+      'not-child-support-root',
+    ])
+    await agent.handleRequest(intentMap)
+
   })

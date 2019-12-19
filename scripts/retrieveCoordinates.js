@@ -5,6 +5,8 @@ const fs = require('fs')
 const parser = require('parse-address')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
+console.log('\n', 'Retrieving address coordinates ...', '\n')
+
 // Create an array of locations to send to the geocode api
 const locations = [
   '108 S. Whitworth Ave Brookhaven, MS 39601',
@@ -14,22 +16,21 @@ const locations = [
   '610 S. Cass St Corinth, MS 38834',
   '643 HWY 1, Greenville, MS 38701',
   '1400 Wooded Dr Grenada, MS 38901',
-  '14231 Seaway Rd, Suite 5001 Gulfport, MS 39503',
-  '5 Willow Bend Hattiesburg, MS 39402',
+  '10415 Express Drive, Gulfport, MS 39503',
+  '5 Willow Bend Drive, Hattiesburg, MS 39402',
   '165 W. South St, Suite 100 Hernando, MS 38632',
   '128 W Washington St Kosciusko, MS 39090',
   '1600 Highway 15 N Laurel, MS 39440',
   '110 First Ave SE Magee, MS 39111',
-  '907 S. Locust St #C McComb, MS 39648',
-  '2911 8th St, Suite A&B Meridian, MS 39301',
+  '907 S. Locust St Suite C McComb, MS 39648',
+  '2911 8th St, Suite A Meridian, MS 39301',
   '119 Jefferson Davis Blvd, Suite A Natchez, MS 39120',
   '2550 W Jackson Ave, Suite 2550-6 Oxford, MS 38655',
   '3664 14 St Pascagoula, MS 39567',
   '1122 E Main St, Suite 1 Philadelphia, MS 39328',
-  '950 E County Line Road, Suite #G Ridgeland, MS 39157',
+  '950 E County Line Road, Suite G Ridgeland, MS 39157',
   '600 Russell St, Suite 110 Starkville, MS 39759',
-  '600 Main St Suite B, Tupelo, MS 38804',
-  '600 Main St Suite B, Tupelo, MS 38804',
+  '600 Main St, Suite B Tupelo, MS 38804',
   '1507 Washington St, 1st Floor Vicksburg, MS 39180',
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
@@ -54,6 +55,7 @@ const retrieveCoordinates = async address => {
     const addressComponents = {}
     const streetComponents = []
 
+    let suiteName = ''
     // Only include components for street name and city
     unformattedAddressComponents.forEach(component => {
       if (component.types.indexOf('route') !== -1) {
@@ -65,8 +67,16 @@ const retrieveCoordinates = async address => {
       if (component.types.indexOf('locality') !== -1) {
         addressComponents.city = component.long_name
       }
+      if (component.types.indexOf('subpremise') !== -1) {
+        if (component.long_name.includes('Suite')) {
+          suiteName = ` ${component.long_name}`
+        } else {
+          suiteName = ` Suite ${component.long_name}`
+        }
+      }
     })
-    addressComponents.street = streetComponents.join(' ')
+
+    addressComponents.street = streetComponents.join(' ') + suiteName
 
     const result = {
       addressComponents,
@@ -104,7 +114,7 @@ const coordinatesRequests = locations.map(async location => {
         cleanedAddress += `${parsedAddress[addressComponent]} `
       } else {
         // Populate a separate string with the troubling components,
-        // to be added back to the street property upon successfail geocoding retrieval
+        // to be added back to the street property upon successful geocoding retrieval
         addressUnitComponents += `${parsedAddress[addressComponent]} `
       }
     }
@@ -130,12 +140,8 @@ const coordinatesRequests = locations.map(async location => {
 // the functions directory. We will use these to populate the custom payload for the
 // map intent fulfillment
 Promise.all(coordinatesRequests).then(responses => {
-  fs.writeFile(
-    '../functions/coordinates.json',
-    JSON.stringify(responses),
-    err => {
-      if (err) throw err
-      console.log('Saved!')
-    }
-  )
+  fs.writeFile('./coordinates.json', JSON.stringify(responses), err => {
+    if (err) throw err
+    console.log('Coordinates retrieved!')
+  })
 })

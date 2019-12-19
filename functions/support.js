@@ -27,15 +27,6 @@ exports.supportRoot = async agent => {
   await startSupportConvo(agent)
 }
 
-exports.supportRestart = async agent => {
-  try {
-    await agent.add(`Alright, let's start over.`)
-    await startSupportConvo(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportParentReceiving = async agent => {
   try {
     await agent.add(
@@ -117,13 +108,8 @@ exports.supportNoOptionsSelected = async agent => {
       `Would you like to submit an inquiry or go back to support options?`
     )
     await agent.add(new Suggestion(`Inquiry`))
-    await agent.add(new Suggestion(`Go Back`))
     await agent.context.set({
       name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-restart',
       lifespan: 3,
     })
   } catch (err) {
@@ -175,6 +161,11 @@ exports.supportHandleEmploymentStatus = async agent => {
 
 exports.supportCollectNewEmployerName = async agent => {
   const newEmployerName = agent.parameters.newEmployerName
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    newEmployerName,
+  }
+
   try {
     await agent.add(`What is the new employer's phone number?`)
     await agent.context.set({
@@ -187,7 +178,7 @@ exports.supportCollectNewEmployerName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { newEmployerName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -196,6 +187,10 @@ exports.supportCollectNewEmployerName = async agent => {
 
 exports.supportNoNewEmployer = async agent => {
   const newEmployerName = 'Unknown new employer'
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    newEmployerName,
+  }
   try {
     await agent.add(`Please describe your request.`)
     await agent.context.set({
@@ -204,7 +199,7 @@ exports.supportNoNewEmployer = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { newEmployerName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -219,11 +214,15 @@ exports.supportCollectNewEmployerPhone = async agent => {
     const phoneNumber = parsePhoneNumberFromString(
       formattedPhone
     ).formatNational()
+    const ticketInfoParams = {
+      ...agent.context.get('ticketinfo').parameters,
+      phoneNumber,
+    }
     try {
       await agent.add(`Please describe your request.`)
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { phoneNumber },
+        parameters: ticketInfoParams,
       })
       await agent.context.set({
         name: 'waiting-support-collect-issue',
@@ -249,6 +248,10 @@ exports.supportCollectNewEmployerPhone = async agent => {
 
 exports.supportNewEmployerUnkownPhone = async agent => {
   const newEmployerPhone = 'Unknown phone number'
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    newEmployerPhone,
+  }
   try {
     await agent.add(`Please describe your request.`)
     await agent.context.set({
@@ -257,7 +260,7 @@ exports.supportNewEmployerUnkownPhone = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { newEmployerPhone },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -299,6 +302,10 @@ exports.supportType = async agent => {
 
 exports.supportCollectFirstName = async agent => {
   const firstName = agent.parameters.firstName
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    firstName,
+  }
   try {
     await agent.add(`Thanks ${firstName}, what is your **last name**?`)
 
@@ -308,8 +315,7 @@ exports.supportCollectFirstName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { firstName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -318,6 +324,10 @@ exports.supportCollectFirstName = async agent => {
 
 exports.supportCollectLastName = async agent => {
   const lastName = agent.parameters.lastName
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    lastName,
+  }
   try {
     await agent.add(
       `What is your **phone number** so we can reach out to you with a solution?`
@@ -332,7 +342,7 @@ exports.supportCollectLastName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { lastName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -439,6 +449,10 @@ exports.supportChangePersonalInfo = async agent => {
 exports.supportNoPhoneNumber = async agent => {
   const phoneNumber = 'No Phone Number'
   const firstName = agent.context.get('ticketinfo').parameters.firstName
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    phoneNumber,
+  }
 
   try {
     await agent.add(
@@ -454,7 +468,7 @@ exports.supportNoPhoneNumber = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { phoneNumber: phoneNumber },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -472,6 +486,11 @@ exports.supportPhoneNumber = async agent => {
       formattedPhone
     ).formatNational()
 
+    const ticketInfoParams = {
+      ...agent.context.get('ticketinfo').parameters,
+      phoneNumber,
+    }
+
     try {
       await agent.add(
         `Thanks, ${firstName}. What is your **email address** so that we can reach out to you with a solution?`
@@ -486,7 +505,7 @@ exports.supportPhoneNumber = async agent => {
       })
       await agent.context.set({
         name: 'ticketinfo',
-        parameters: { phoneNumber },
+        parameters: ticketInfoParams,
       })
     } catch (err) {
       console.error(err)
@@ -510,6 +529,10 @@ exports.supportEmail = async agent => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
   const isLumpSum = await checkForLumpSum(agent)
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    email,
+  }
 
   if (isValid) {
     if (!isLumpSum) {
@@ -528,7 +551,7 @@ exports.supportEmail = async agent => {
         })
         await agent.context.set({
           name: 'ticketinfo',
-          parameters: { email: email },
+          parameters: ticketInfoParams,
         })
       } catch (err) {
         console.error(err)
@@ -544,7 +567,7 @@ exports.supportEmail = async agent => {
 
         await agent.context.set({
           name: 'ticketinfo',
-          parameters: { email: email },
+          parameters: ticketInfoParams,
         })
       } catch (err) {
         console.error(err)
@@ -576,6 +599,10 @@ exports.supportNoEmail = async agent => {
 
   if (phoneNumber.toLowerCase() !== 'no phone number') {
     const email = 'No Email Provided'
+    const ticketInfoParams = {
+      ...agent.context.get('ticketinfo').parameters,
+      email,
+    }
     if (!isLumpSum) {
       try {
         await agent.add(
@@ -592,7 +619,7 @@ exports.supportNoEmail = async agent => {
         })
         await agent.context.set({
           name: 'ticketinfo',
-          parameters: { email: email },
+          parameters: ticketInfoParams,
         })
       } catch (err) {
         console.error(err)
@@ -608,7 +635,7 @@ exports.supportNoEmail = async agent => {
 
         await agent.context.set({
           name: 'ticketinfo',
-          parameters: { email: email },
+          parameters: ticketInfoParams,
         })
       } catch (err) {
         console.error(err)
@@ -683,6 +710,10 @@ exports.supportHandleEmailRetry = async agent => {
 
 exports.supportCollectCompanyName = async agent => {
   const companyName = toTitleCase(agent.parameters.companyName)
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    companyName,
+  }
 
   try {
     await agent.add(
@@ -695,7 +726,7 @@ exports.supportCollectCompanyName = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: { companyName: companyName },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -757,9 +788,15 @@ exports.supportCollectIssue = async agent => {
   const supportSummary = formatSummary(ticketInfo)
   const cardText = formatCardText(ticketInfo, request)
 
+  const ticketInfoParams = {
+    ...agent.context.get('ticketinfo').parameters,
+    supportSummary,
+  }
+  ticketInfoParams.requestSummary = request
+
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click revise to edit your message or submit to send to a representative.`
+      `Okay, I've put your request together. Here's what I've got. Click 'Go Back' to edit your message or submit to send to a representative.`
     )
     await agent.add(
       new Card({
@@ -767,10 +804,8 @@ exports.supportCollectIssue = async agent => {
         text: `${cardText}`,
       })
     )
-    await agent.add(new Suggestion(`Revise`))
     await agent.add(new Suggestion(`Submit`))
     await agent.add(new Suggestion(`Cancel`))
-    await agent.add(new Suggestion(`Home`))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({
@@ -778,7 +813,7 @@ exports.supportCollectIssue = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
-      name: 'waiting-support-revise-issue',
+      name: 'waiting-support-cancel-issue',
       lifespan: 3,
     })
     await agent.context.set({
@@ -787,29 +822,7 @@ exports.supportCollectIssue = async agent => {
     })
     await agent.context.set({
       name: 'ticketinfo',
-      parameters: {
-        supportSummary: supportSummary,
-        requestSummary: request,
-      },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportReviseIssue = async agent => {
-  try {
-    await agent.add(
-      `Sure, let's start over. Please describe your issue or request.`
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-issue',
-      lifespan: 5,
-    })
-    await agent.context.set({
-      name: 'requests',
-      lifespan: 5,
-      parameters: { requests: [] },
+      parameters: ticketInfoParams,
     })
   } catch (err) {
     console.error(err)
@@ -889,6 +902,65 @@ exports.supportSumbitIssue = async agent => {
 exports.supportCancel = async agent => {
   try {
     await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportParentPayingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      `Would you like to change or edit information about your employment status?`
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-edit-provider-employment',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportEditProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      await this.supportEmploymentStatus(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportReportProviderEmployment = async agent => {
+  try {
+    const yesNo = agent.parameters['yes-no']
+    if (yesNo === 'yes') {
+      agent.parameters.supportType =
+        'Report Information About the Parent who Pays Support'
+      await this.supportType(agent)
+    } else {
+      await handleEndConversation(agent)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+exports.supportParentReceivingEmploymentInfo = async agent => {
+  try {
+    await agent.add(
+      'Would you like to report information about the parent who provides support?'
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-support-report-provider-employment',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }

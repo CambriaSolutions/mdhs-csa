@@ -8,7 +8,7 @@ const camelCase = require('camelcase')
 // anything inside of node-modules
 const files = glob.sync('./**/*.function.js', {
   cwd: __dirname,
-  ignore: './node_modules/**'
+  ignore: './node_modules/**',
 })
 
 // Clean up function names to be camelCase and export

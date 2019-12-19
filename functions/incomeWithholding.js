@@ -10,11 +10,20 @@ const { supportPaymentHistory } = require('./support.js')
 
 exports.iwoRoot = async agent => {
   try {
+    await agent.add(`Which of the following is most relevant to your inquiry?`)
     await agent.add(
-      `Would you like assistance working through the CCPA guidelines to determine how much to withhold? Or do you want to simply ask a question?`
+      'CCPA Assistance: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
     )
+    await agent.add('FAQs: Regarding Income Withholding Orders')
+    await agent.add(
+      'Report Information About the Parent who Pays Support: Report information about the parent who provides support like change in their address, salary change, employment change, etc.'
+    )
+
     await agent.add(new Suggestion('CCPA Assistance'))
     await agent.add(new Suggestion('FAQs'))
+    await agent.add(
+      new Suggestion('Report Information About the Parent who Pays Support')
+    )
     await agent.context.set({
       name: 'waiting-iwo-wants-assistance',
       lifespan: 2,
@@ -26,6 +35,10 @@ exports.iwoRoot = async agent => {
     await agent.context.set({
       name: 'waiting-iwo-faqs',
       lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-support-type',
+      lifespan: 3,
     })
   } catch (err) {
     console.error(err)
@@ -92,6 +105,10 @@ exports.iwoInArrears = async agent => {
   const isSupporting = await agent.context.get('iwo-factors').parameters
     .isSupporting
   const percentage = calculatePercentage(isSupporting, inArrears)
+  const iwoFactorsParams = {
+    ...agent.context.get('iwo-factors').parameters,
+    percentage,
+  }
   try {
     await agent.add(
       `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's.`
@@ -113,7 +130,7 @@ exports.iwoInArrears = async agent => {
     // Save percentage in context
     await agent.context.set({
       name: 'iwo-factors',
-      parameters: { percentage },
+      parameters: iwoFactorsParams,
     })
   } catch (err) {
     console.error(err)
