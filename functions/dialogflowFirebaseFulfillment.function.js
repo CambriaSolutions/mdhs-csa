@@ -36,6 +36,36 @@ const {
   enforcementBankruptcy,
 } = require('./enforcement.js')
 
+// Not child support intents
+const {
+  notChildSupportRoot,
+  handleChildSupportRetry,
+  handleAcknowledgementAfterRetry,
+} = require('./notChildSupport.js')
+
+// General enforcement intents
+const {
+  enforcementRoot,
+  enforcementLicenseSuspensionReinstatement,
+  enforcementLicenseSuspension,
+  enforcementLicenseSuspensionNonCompliance,
+  enforcementLicenseReinstatement,
+  enforcementTaxOffset,
+  enforcementLiens,
+  enforcementContestLien,
+  enforcementFinancialAccountUpdateCase,
+  enforcementPersonalInjury,
+  enforcementSettlementsUpdateCase,
+  enforcementSettlementsNoUpdateCase,
+  enforcementPassportRevocation,
+  enforcementPassportReinstatement,
+  enforcementCreditBureauReporting,
+  enforcementReportError,
+  enforcementUnemployment,
+  enforcementSubmitInquiry,
+  enforcementBankruptcy,
+} = require('./enforcement.js')
+
 // General payment intents
 const {
   pmtsGeneralRoot,
@@ -288,6 +318,7 @@ const { home } = require('./home')
 // TODO: uncomment for ml integration
 // ML model requests
 // const { handleUnhandled } = require('./categorizeAndPredict.js')
+
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -611,6 +642,17 @@ exports = module.exports = functions
       caseQAComplianceSupportRequest
     )
 
+    // Case specific intents
+    intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
+    intentMap.set('caseQA-general', caseQAGeneral)
+    intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
+    intentMap.set('caseQA-change-personal-info', caseQAChangePersonalInfo)
+    intentMap.set('caseQA-compliance', caseQACompliance)
+    intentMap.set(
+      'caseQA-compliance-support-request',
+      caseQAComplianceSupportRequest
+    )
+
     // Map intents
     intentMap.set('map-root', mapRoot)
     intentMap.set('map-deliver-map', mapDeliverMap)
@@ -759,4 +801,5 @@ exports = module.exports = functions
       'not-child-support-root',
     ])
     await agent.handleRequest(intentMap)
+
   })

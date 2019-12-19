@@ -87,6 +87,7 @@ jobs:
             AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
 
             AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
@@ -133,6 +134,7 @@ jobs:
             AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
 
             AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
