@@ -36,36 +36,6 @@ const {
   enforcementBankruptcy,
 } = require('./enforcement.js')
 
-// Not child support intents
-const {
-  notChildSupportRoot,
-  handleChildSupportRetry,
-  handleAcknowledgementAfterRetry,
-} = require('./notChildSupport.js')
-
-// General enforcement intents
-const {
-  enforcementRoot,
-  enforcementLicenseSuspensionReinstatement,
-  enforcementLicenseSuspension,
-  enforcementLicenseSuspensionNonCompliance,
-  enforcementLicenseReinstatement,
-  enforcementTaxOffset,
-  enforcementLiens,
-  enforcementContestLien,
-  enforcementFinancialAccountUpdateCase,
-  enforcementPersonalInjury,
-  enforcementSettlementsUpdateCase,
-  enforcementSettlementsNoUpdateCase,
-  enforcementPassportRevocation,
-  enforcementPassportReinstatement,
-  enforcementCreditBureauReporting,
-  enforcementReportError,
-  enforcementUnemployment,
-  enforcementSubmitInquiry,
-  enforcementBankruptcy,
-} = require('./enforcement.js')
-
 // General payment intents
 const {
   pmtsGeneralRoot,
