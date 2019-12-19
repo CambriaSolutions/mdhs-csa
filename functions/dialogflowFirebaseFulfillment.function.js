@@ -612,17 +612,6 @@ exports = module.exports = functions
       caseQAComplianceSupportRequest
     )
 
-    // Case specific intents
-    intentMap.set('caseQA-increase-review', caseQAIncreaseReview)
-    intentMap.set('caseQA-general', caseQAGeneral)
-    intentMap.set('caseQA-general-support-request', caseQAGeneralSupportRequest)
-    intentMap.set('caseQA-change-personal-info', caseQAChangePersonalInfo)
-    intentMap.set('caseQA-compliance', caseQACompliance)
-    intentMap.set(
-      'caseQA-compliance-support-request',
-      caseQAComplianceSupportRequest
-    )
-
     // Map intents
     intentMap.set('map-root', mapRoot)
     intentMap.set('map-deliver-map', mapDeliverMap)
