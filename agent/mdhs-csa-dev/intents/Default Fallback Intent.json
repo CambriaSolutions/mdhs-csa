@@ -13,6 +13,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": [
             "I didn\u0027t get that. Can you say it again?",
             "I missed what you said. What was that?",
@@ -34,8 +35,11 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": false,
+  "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": true,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

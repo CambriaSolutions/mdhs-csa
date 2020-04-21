@@ -1,6 +1,30 @@
 [
   {
-    "id": "bbb6ae6f-73d5-4879-94e8-88ca1f113717",
+    "id": "7378cd98-3dc7-4378-b600-b2401a2fc876",
+    "data": [
+      {
+        "text": "how do i schedule an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "833b9057-5210-4dca-b2d0-471e6c724fc0",
+    "data": [
+      {
+        "text": "how do i make an appointment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a03e02a9-21d2-4581-bedf-9afbd55fe89e",
     "data": [
       {
         "text": "make an appointment",
@@ -9,10 +33,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1548804915
+    "updated": 0
   },
   {
-    "id": "58aa5ab6-8475-442f-ac28-53d3febbc606",
+    "id": "fa42133b-1b7a-4ed5-a720-d5e9337b19ae",
     "data": [
       {
         "text": "i need to set up an appointment",
@@ -21,10 +45,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1548804915
+    "updated": 0
   },
   {
-    "id": "3764b054-1c32-4c56-82f9-9b63adec346c",
+    "id": "ff872876-c3b5-429d-aad0-7eb84fef772c",
     "data": [
       {
         "text": "appointments",
@@ -33,6 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1547512779
+    "updated": 0
   }
 ]

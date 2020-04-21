@@ -1,101 +1,6 @@
 [
   {
-    "id": "89ccfc2d-3355-4249-b4c5-f86691170845",
-    "data": [
-      {
-        "text": "home",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "id": "b08ad3ba-814b-41ef-88cd-ed9f1a59de0b",
-    "data": [
-      {
-        "text": "start over",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "ab2fbfff-65d6-464f-b073-84f298e127c1",
-    "data": [
-      {
-        "text": "just going to say hi",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "8a092091-72d1-4c93-a7d8-bb5f0619f930",
-    "data": [
-      {
-        "text": "heya",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "83a94144-88d4-4a4a-a779-bc280ff41baa",
-    "data": [
-      {
-        "text": "hello hi",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "9196a7a8-319c-4ae4-bbb3-f95a8d3a14c0",
-    "data": [
-      {
-        "text": "howdy",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "ca240cbc-d5d7-4b25-ad5c-005c5b8d0755",
-    "data": [
-      {
-        "text": "hey there",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "d5111093-522a-4e14-a64a-408facedd8bb",
-    "data": [
-      {
-        "text": "hi there",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 1,
-    "updated": 1548707325
-  },
-  {
-    "id": "0b4e06cd-9018-4ea8-a4a8-c1f26e6314cf",
+    "id": "b7db9471-23a4-465b-b1e8-489775239f74",
     "data": [
       {
         "text": "greetings",
@@ -104,37 +9,13 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1548707325
+    "updated": 0
   },
   {
-    "id": "94480df2-202e-4e3e-a63d-e30166aca0ce",
+    "id": "c6006d4d-9b2b-4b14-a16b-ddc5d694a33d",
     "data": [
       {
-        "text": "hey",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "b0dee2d7-8a29-48bf-87ef-839175277119",
-    "data": [
-      {
-        "text": "long time no see",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1548707325
-  },
-  {
-    "id": "472442c6-c066-4fb7-8c81-412e117ce851",
-    "data": [
-      {
-        "text": "hello",
+        "text": "hello hi",
         "userDefined": false
       }
     ],
@@ -143,7 +24,19 @@
     "updated": 0
   },
   {
-    "id": "1b766285-3dad-4052-8442-e280039f4b70",
+    "id": "44eeb4ca-38c7-4eee-81eb-091937037669",
+    "data": [
+      {
+        "text": "hey there",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "9648222b-7a16-47fb-b8c1-376aab2cdb53",
     "data": [
       {
         "text": "lovely day isn\u0027t it",
@@ -155,7 +48,43 @@
     "updated": 0
   },
   {
-    "id": "7dab6f98-0f0c-4ba7-a826-916fda489c9a",
+    "id": "5b7e2097-6992-462e-bbea-62201eeb4533",
+    "data": [
+      {
+        "text": "hey",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6cb51d9f-ef97-4b11-ae84-a70ba53d5c1d",
+    "data": [
+      {
+        "text": "heya",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a4948e58-e147-4351-b2a2-1ca93d051bcd",
+    "data": [
+      {
+        "text": "just going to say hi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "5dd8c438-16f2-4b99-bbb8-3b7ce5ca282d",
     "data": [
       {
         "text": "I greet you",
@@ -167,7 +96,43 @@
     "updated": 0
   },
   {
-    "id": "af7d2863-320f-476f-87ac-44a691c44cf4",
+    "id": "c5a92c4e-08d9-49d9-a1b1-62f10efefbf5",
+    "data": [
+      {
+        "text": "howdy",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ce559b9e-9d0e-427c-bec3-bde7d699da8e",
+    "data": [
+      {
+        "text": "hi there",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "5b4b0f30-96cb-4cfa-8781-0381cce57c0c",
+    "data": [
+      {
+        "text": "hello",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e54cf0ac-b75d-4b94-b683-28ea3787fd3a",
     "data": [
       {
         "text": "hello again",
@@ -179,7 +144,31 @@
     "updated": 0
   },
   {
-    "id": "3018e05a-6bad-4d08-b207-dd1f35936405",
+    "id": "cd169877-7ec8-4856-9d4a-5f133bebbaed",
+    "data": [
+      {
+        "text": "a good day",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "5bde487b-818d-477d-9e74-8f9914328fb4",
+    "data": [
+      {
+        "text": "long time no see",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "915226f1-52c3-4e89-9af7-311505504bc0",
     "data": [
       {
         "text": "hi",
@@ -191,22 +180,10 @@
     "updated": 0
   },
   {
-    "id": "6717fdfb-a9af-45a9-acbf-1e4ac4297495",
+    "id": "bdc42c08-7d75-46bd-9da9-cf80687e797f",
     "data": [
       {
         "text": "hello there",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "c0882571-f596-4cd3-ac3a-3c406236ed84",
-    "data": [
-      {
-        "text": "a good day",
         "userDefined": false
       }
     ],

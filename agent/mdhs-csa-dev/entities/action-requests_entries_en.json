@@ -1,49 +1,31 @@
 [
   {
-    "value": "Request Contempt Action",
+    "value": "Add Authorized User",
     "synonyms": [
-      "request contempt action"
-    ]
-  },
-  {
-    "value": "Child Support Increase or Decrease",
-    "synonyms": [
-      "increase support",
-      "child support increase/decrease",
-      "Child Support Increase/Decrease",
-      "child support increase or decrease",
-      "increase or decrease",
-      "increase",
-      "decrease",
-      "increase decrease",
-      "increase payments"
+      "add authorized user"
     ]
   },
   {
     "value": "Change Personal Information",
     "synonyms": [
-      "change personal information",
       "change address",
-      "change of personal information"
+      "change of personal information",
+      "change personal information"
     ]
   },
   {
-    "value": "Request Payment History or Record",
+    "value": "Child Support Increase or Decrease",
     "synonyms": [
-      "request payment history",
-      "request payment history or record"
-    ]
-  },
-  {
-    "value": "Report Information About the Parent who Pays Support",
-    "synonyms": [
-      "Report Information About the Parent who Pays Support"
-    ]
-  },
-  {
-    "value": "Request Case Closure",
-    "synonyms": [
-      "request case closure"
+      "Child Support Increase/Decrease",
+      "child support increase or decrease",
+      "child support increase/decrease",
+      "child support payment increase or decrease",
+      "decrease",
+      "increase",
+      "increase decrease",
+      "increase or decrease",
+      "increase payments",
+      "increase support"
     ]
   },
   {
@@ -57,18 +39,43 @@
     ]
   },
   {
-    "value": "Add Authorized User",
-    "synonyms": [
-      "add authorized user"
-    ]
-  },
-  {
     "value": "Inquiry",
     "synonyms": [
       "Inquiries",
       "Questions",
       "i have a question",
       "inquiry"
+    ]
+  },
+  {
+    "value": "Request Case Closure",
+    "synonyms": [
+      "request case closure"
+    ]
+  },
+  {
+    "value": "Request Contempt Action",
+    "synonyms": [
+      "request contempt action"
+    ]
+  },
+  {
+    "value": "Request Payment History or Record",
+    "synonyms": [
+      "request payment history",
+      "request payment history or record"
+    ]
+  },
+  {
+    "value": "information about the parent who pays child support",
+    "synonyms": [
+      "information about the parent who pays child support"
+    ]
+  },
+  {
+    "value": "Report Information About the Parent who Pays Support",
+    "synonyms": [
+      "Report Information About the Parent who Pays Support"
     ]
   }
 ]

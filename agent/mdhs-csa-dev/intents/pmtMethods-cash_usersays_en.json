@@ -1,6 +1,6 @@
 [
   {
-    "id": "684c0bc6-6eb1-4489-941f-25d39f3da68a",
+    "id": "92831259-8c75-45ab-a003-257d5a067a7e",
     "data": [
       {
         "text": "how about using cash",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551828785
+    "updated": 0
   },
   {
-    "id": "8b4e8fdd-69b8-459a-988f-dd65eb2d2b3a",
+    "id": "678fca78-690d-4935-ab09-309b971e97ae",
     "data": [
       {
         "text": "i want to pay by cash",
@@ -21,10 +21,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551828785
+    "updated": 0
   },
   {
-    "id": "44f7d5c0-1f0c-404d-aa79-eb30b3bdf839",
+    "id": "84fdd31c-e697-4039-a217-f28a46efa96d",
     "data": [
       {
         "text": "Cash",
@@ -33,6 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550636860
+    "updated": 0
   }
 ]

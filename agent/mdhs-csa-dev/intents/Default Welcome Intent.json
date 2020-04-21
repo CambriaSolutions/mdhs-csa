@@ -13,6 +13,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": [
             "Hi! How are you doing?",
             "Hello! How can I help you?",
@@ -28,11 +29,13 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1548707325,
   "fallbackIntent": false,
   "events": [
     {
       "name": "WELCOME"
     }
-  ]
+  ],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

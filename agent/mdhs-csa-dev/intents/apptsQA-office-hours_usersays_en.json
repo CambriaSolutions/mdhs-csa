@@ -1,0 +1,110 @@
+[
+  {
+    "id": "3a9f722f-9c23-457e-863c-fcf0886d5ec9",
+    "data": [
+      {
+        "text": "how late do you stay open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a707d8d4-9bc6-4606-90a7-9139ff1bdb81",
+    "data": [
+      {
+        "text": "when do yall open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6c14024d-3eb0-4b8e-a1f2-42076c0fe843",
+    "data": [
+      {
+        "text": "when do you guys open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1f3e9ffe-10f8-4f11-8240-43765a376255",
+    "data": [
+      {
+        "text": "what time are you open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "825b8f51-8b3d-456b-8831-7de6a8ad5ef1",
+    "data": [
+      {
+        "text": "when are you guys open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "78463ac0-56ef-4123-9297-4d230b57e9b0",
+    "data": [
+      {
+        "text": "what are your hours",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "27278ed8-8794-4fa5-9773-cffed10b1174",
+    "data": [
+      {
+        "text": "what are your office hours",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "24ca4298-c918-455f-921b-d9ef5426cf43",
+    "data": [
+      {
+        "text": "What are your hours of operation?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "f212d352-d274-4214-bcd5-97a65f7991ed",
+    "data": [
+      {
+        "text": "May I go into the office at any time?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

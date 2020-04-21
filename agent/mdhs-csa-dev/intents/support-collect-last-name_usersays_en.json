@@ -1,0 +1,16 @@
+[
+  {
+    "id": "6d3ef8a7-38d2-4723-88ac-a895efe527e3",
+    "data": [
+      {
+        "text": "Doe",
+        "alias": "lastName",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

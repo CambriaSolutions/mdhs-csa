@@ -1,0 +1,16 @@
+[
+  {
+    "id": "87d8a5fa-787d-46d1-b6d0-fe9aee0f9a60",
+    "data": [
+      {
+        "text": "cfreeman@cambriasolutions.com",
+        "alias": "email",
+        "meta": "@sys.email",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

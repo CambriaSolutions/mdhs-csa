@@ -1,6 +1,18 @@
 [
   {
-    "id": "ad3b2aee-2473-4ea0-896a-b171e17f97cb",
+    "id": "6b192e0f-2f0a-4a16-889c-c03531dde1e5",
+    "data": [
+      {
+        "text": "Check",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "9eeca165-aba7-4fc8-b3b6-3ab9b563318e",
     "data": [
       {
         "text": "do you take checks",
@@ -9,34 +21,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551313990
+    "updated": 0
   },
   {
-    "id": "eb74d5d1-a077-4f27-9d10-1e143c3ea27f",
-    "data": [
-      {
-        "text": "can i pay by check",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1551313990
-  },
-  {
-    "id": "94285ade-9b55-4989-ae46-1b957d691df8",
-    "data": [
-      {
-        "text": "check",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1550689923
-  },
-  {
-    "id": "07e20498-6cd3-4ca4-8a6c-3e30d99bf770",
+    "id": "0ecb4fe5-ee08-46d1-9c4b-8987aba8b8ca",
     "data": [
       {
         "text": "Check or Money Order",
@@ -45,6 +33,18 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550636823
+    "updated": 0
+  },
+  {
+    "id": "63ee3317-c11d-4a26-b099-5b70236b1876",
+    "data": [
+      {
+        "text": "can i pay by check",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
   }
 ]
