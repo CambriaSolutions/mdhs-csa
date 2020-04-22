@@ -30,17 +30,17 @@ jobs:
 
             ANALYTICS_URI=${DEV_ANALYTICS_URI}
 
-            AUTOML_PROJECT=${AUTOML_PROJECT}
+            AUTOML_PROJECT=${DEV_AUTOML_PROJECT}
 
-            AUTOML_LOCATION=${AUTOML_LOCATION}
+            AUTOML_LOCATION=${DEV_AUTOML_LOCATION}
 
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
+            AUTOML_SM_MODEL=${DEV_AUTOML_SM_MODEL}
 
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
+            AUTOML_CAT_MODEL=${DEV_AUTOML_CAT_MODEL}
 
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
+            AUTOML_PRIVATE_KEY=${DEV_AUTOML_PRIVATE_KEY}
 
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            AUTOML_CLIENT_EMAIL=${DEV_AUTOML_CLIENT_EMAIL}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
@@ -76,17 +76,17 @@ jobs:
 
             ANALYTICS_URI=${STAGE_ANALYTICS_URI}
 
-            AUTOML_PROJECT=${AUTOML_PROJECT}
+            AUTOML_PROJECT=${DEV_AUTOML_PROJECT}
 
-            AUTOML_LOCATION=${AUTOML_LOCATION}
+            AUTOML_LOCATION=${DEV_AUTOML_LOCATION}
 
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
+            AUTOML_SM_MODEL=${DEV_AUTOML_SM_MODEL}
 
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
+            AUTOML_CAT_MODEL=${DEV_AUTOML_CAT_MODEL}
 
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
+            AUTOML_PRIVATE_KEY=${DEV_AUTOML_PRIVATE_KEY}
 
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            AUTOML_CLIENT_EMAIL=${DEV_AUTOML_CLIENT_EMAIL}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
@@ -122,17 +122,17 @@ jobs:
 
             ANALYTICS_URI=${PROD_ANALYTICS_URI}
 
-            AUTOML_PROJECT=${AUTOML_PROJECT}
+            AUTOML_PROJECT=${PROD_AUTOML_PROJECT}
 
-            AUTOML_LOCATION=${AUTOML_LOCATION}
+            AUTOML_LOCATION=${PROD_AUTOML_LOCATION}
 
-            AUTOML_SM_MODEL=${AUTOML_SM_MODEL}
+            AUTOML_SM_MODEL=${PROD_AUTOML_SM_MODEL}
 
-            AUTOML_CAT_MODEL=${AUTOML_CAT_MODEL}
+            AUTOML_CAT_MODEL=${PROD_AUTOML_CAT_MODEL}
 
-            AUTOML_PRIVATE_KEY=${AUTOML_PRIVATE_KEY}
+            AUTOML_PRIVATE_KEY=${PROD_AUTOML_PRIVATE_KEY}
 
-            AUTOML_CLIENT_EMAIL=${AUTOML_CLIENT_EMAIL}" > .env
+            AUTOML_CLIENT_EMAIL=${PROD_AUTOML_CLIENT_EMAIL}" > .env
       - run:
           name: 'Run geocode script'
           command: cd functions && node retrieveCoordinates
