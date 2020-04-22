@@ -7,7 +7,7 @@ const { defaultUnhandledResponse } = require('./globalFunctions')
 const client = new automl.v1beta1.PredictionServiceClient({
   credentials: {
     client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
-    private_key: `${(process.env.AUTOML_PRIVATE_KEY || '').replace('/\\n/g', '\n')}`,
+    private_key: `${(process.env.AUTOML_PRIVATE_KEY || '').replace(/\\n/g, '\n')}`,
   },
   projectId: process.env.AUTOML_PROJECT,
 })
