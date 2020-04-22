@@ -287,7 +287,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-// const { handleUnhandled } = require('./categorizeAndPredict.js')
+const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -742,7 +742,7 @@ exports = module.exports = functions
     // TBD intent
     intentMap.set('tbd', tbd)
 
-    // intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
       'yes-child-support',
