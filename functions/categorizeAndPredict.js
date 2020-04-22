@@ -7,7 +7,7 @@ const { defaultUnhandledResponse } = require('./globalFunctions')
 const client = new automl.v1beta1.PredictionServiceClient({
   credentials: {
     client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
-    private_key: `${process.env.AUTOML_PRIVATE_KEY.replace(/\\n/g, '\n')}`,
+    private_key: `${(process.env.AUTOML_PRIVATE_KEY || '').replace('/\\n/g', '\n')}`,
   },
   projectId: process.env.AUTOML_PROJECT,
 })
@@ -63,35 +63,35 @@ const predictCategories = async query => {
 
 // Query the subject matter model to return what subject matter the query
 // belongs to child support
-const predictSubjectMatter = async query => {
-  try {
-    // Define the location of the subject matter model
-    const subjectMatterModelPath = client.modelPath(
-      process.env.AUTOML_PROJECT,
-      process.env.AUTOML_LOCATION,
-      process.env.AUTOML_SM_MODEL
-    )
-    const payload = {
-      textSnippet: {
-        content: query,
-        mime_type: 'text/plain',
-      },
-    }
+// const predictSubjectMatter = async query => {
+//   try {
+//     // Define the location of the subject matter model
+//     const subjectMatterModelPath = client.modelPath(
+//       process.env.AUTOML_PROJECT,
+//       process.env.AUTOML_LOCATION,
+//       process.env.AUTOML_SM_MODEL
+//     )
+//     const payload = {
+//       textSnippet: {
+//         content: query,
+//         mime_type: 'text/plain',
+//       },
+//     }
 
-    const smRequest = {
-      name: subjectMatterModelPath,
-      payload: payload,
-    }
+//     const smRequest = {
+//       name: subjectMatterModelPath,
+//       payload: payload,
+//     }
 
-    const smResponses = await client.predict(smRequest)
-    return {
-      predictionType: 'subjectMatter',
-      categories: smResponses[0].payload[0].displayName,
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
+//     const smResponses = await client.predict(smRequest)
+//     return {
+//       predictionType: 'subjectMatter',
+//       categories: smResponses[0].payload[0].displayName,
+//     }
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 // Query both models to determine
 // 1. Is this applicable to the subject matter we handle?
@@ -105,7 +105,7 @@ const categorizeAndPredict = async query => {
     // const results = await Promise.all(modelPromises)
     const predictions = await predictCategories(query)
 
-    // // Check the responses to determing if this query applies to child support
+    // // Check the responses to determine if this query applies to child support
     // const appliesToChildSupport = results.find(
     //   result =>
     //     result.predictionType === 'subjectMatter' &&
