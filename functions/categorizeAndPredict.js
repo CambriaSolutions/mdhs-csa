@@ -152,11 +152,6 @@ exports.handleUnhandled = async agent => {
 
         suggestions.forEach(async (suggestion, i) => {
           if (suggestion.suggestionText) {
-            // TODO: removed category name from suggestion text, this is included
-            // only for demonstration purposes
-            await agent.add(
-              `${suggestion.suggestionText} (${suggestion.mlCategory})`
-            )
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
           }
         })
