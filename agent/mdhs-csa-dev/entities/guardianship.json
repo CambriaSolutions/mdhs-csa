@@ -3,6 +3,7 @@
   "name": "guardianship",
   "isOverridable": true,
   "isEnum": false,
+  "isRegexp": false,
   "automatedExpansion": false,
   "allowFuzzyExtraction": false
 }

@@ -1,0 +1,54 @@
+{
+  "id": "06aa58d3-3756-4523-b81c-460a0127fd1f",
+  "name": "pmtMethods-withhold-payments",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-withhold-payments"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmtMethods-withhold-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-checkOrMoneyOrder",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-eCheckDebit",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

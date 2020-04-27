@@ -281,6 +281,66 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+// Callcenter not answering
+const { callcenterNotAnswering } = require('./callcenterNotAnswering.js')
+
+// Childcare
+const { childCare } = require('./childCare.js')
+
+// Complaints
+const { complaints } = require('./complaints.js')
+
+// Documentation
+const { documentation } = require('./documentation.js')
+
+// Email
+const { email } = require('./email.js')
+
+// Fax
+const { fax } = require('./fax.js')
+
+// Gratitude not answering
+const { gratitude } = require('./gratitude.js')
+
+// Greater than one
+const { greaterThanOneMonth } = require('./greaterThanOneMonth.js')
+
+// Insufficient Response
+const { insufficientResponse } = require('./insufficientResponse.js')
+
+// Interstate
+const { interstate } = require('./interstate.js')
+
+// Legal
+const { legal } = require('./legal.js')
+
+// Login
+const { login } = require('./login.js')
+
+// Online action
+const { onlineAction } = require('./onlineAction.js')
+
+// Paid but not received
+const { paidButNotReceived } = require('./paidButNotReceived.js')
+
+// Payment Timelines
+const { paymentTimelines } = require('./paymentTimelines.js')
+
+// Refund
+const { refund } = require('./refund.js')
+
+// Snap
+const { snap } = require('./snap.js')
+
+// Tanf
+const { tanf } = require('./tanf.js')
+
+// Verification
+const { verification } = require('./verification.js')
+
+// Visitation
+const { visitation } = require('./visitation.js')
+
 const { backIntent } = require('./back.js')
 
 const { home } = require('./home')
@@ -383,12 +443,6 @@ exports = module.exports = functions
       } catch (err) {
         console.error(err)
       }
-    }
-
-    // TODO: remove after testing
-    // Testing intent for ml training
-    const tbd = async agent => {
-      await agent.add('test')
     }
 
     let intentMap = new Map()
@@ -740,8 +794,65 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // TBD intent
-    intentMap.set('tbd', tbd)
+    // Callcenter not answering
+    intentMap.set('callcenterNotAnswering-root', callcenterNotAnswering)
+
+    // Childcare
+    intentMap.set('childCare-root', childCare)
+
+    // Complaints
+    intentMap.set('complaints-root', complaints)
+
+    // Documentation
+    intentMap.set('documentation-root', documentation)
+
+    // Email
+    intentMap.set('email-root', email)
+
+    // Fax
+    intentMap.set('fax-root', fax)
+
+    // Gratitude not answering
+    intentMap.set('gratitude-root', gratitude)
+
+    // Greater than one
+    intentMap.set('greaterThanOneMonth-root', greaterThanOneMonth)
+
+    // Insufficient Response
+    intentMap.set('insufficientResponse-root', insufficientResponse)
+
+    // Interstate
+    intentMap.set('interstate-root', interstate)
+
+    // Legal
+    intentMap.set('legal-root', legal)
+
+    // Login
+    intentMap.set('login-root', login)
+
+    // Online action
+    intentMap.set('onlineAction-root', onlineAction)
+
+    // Paid but not received
+    intentMap.set('paidButNotReceived-root', paidButNotReceived)
+
+    // Payment Timelines
+    intentMap.set('paymentTimelines-root', paymentTimelines)
+
+    // Refund
+    intentMap.set('refund-root', refund)
+
+    // Snap
+    intentMap.set('snap-root', snap)
+
+    // Tanf
+    intentMap.set('tanf-root', tanf)
+
+    // Verification
+    intentMap.set('verification-root', verification)
+
+    // Visitation
+    intentMap.set('visitation', visitation)
 
     intentMap.set('Default Fallback Intent', handleUnhandled)
 

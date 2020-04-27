@@ -21,6 +21,12 @@ exports.handleEndConversation = async agent => {
   })
 }
 
+exports.tbd = async agent => {
+  const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
+  await agent.add(tbdMessage)
+  await this.handleEndConversation(agent)
+}
+
 // Used to calculate the percentage of income for employers to withhold
 exports.calculatePercentage = (isSupporting, inArrears) => {
   if (isSupporting && inArrears) {

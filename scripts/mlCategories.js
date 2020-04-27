@@ -1,99 +1,99 @@
 exports.categoriesWithIntents = {
   accountBalance: {
     intent: 'pmtMethods-eCheckDebit',
-    suggestionText: 'tbdAccountBalance',
+    suggestionText: 'Account balance',
   },
   addressingCheck: {
     intent: 'pmts-general-make-payments',
-    suggestionText: 'address check',
+    suggestionText: 'Address check',
   },
-  appointments: { intent: 'appts-root', suggestionText: 'appointments' },
-  arrears: { intent: 'iwoQA-arrears-balance', suggestionText: 'arrears' },
-  callcenterNotAnswering: { intent: 'tbd', suggestionText: 'tbd' }, // Suggest callcenter not answering
+  appointments: { intent: 'appts-root', suggestionText: 'Appointments' },
+  arrears: { intent: 'iwoQA-arrears-balance', suggestionText: 'Arrears' },
+  callcenterNotAnswering: { intent: 'callcenterNotAnswering-root', suggestionText: 'Call not answered' }, // Suggest callcenter not answering
   cantMakePayments: {
     intent: 'pmts-general-make-payments',
-    suggestionText: `can't make payments`,
+    suggestionText: `Can't make payments`,
   },
-  card: { intent: 'eppi-get-card', suggestionText: `eppi card` },
+  card: { intent: 'eppi-get-card', suggestionText: `EPPI card` },
   caseNumber: {
     intent: 'caseQA-general',
-    suggestionText: 'case specific questions',
+    suggestionText: 'Case specific questions',
   },
   caseStatus: {
     intent: 'caseQA-general',
-    suggestionText: 'case specific questions',
+    suggestionText: 'Case specific questions',
   },
   changeEmploymentInformation: {
     intent: 'support-root',
-    suggestionText: 'case specific questions',
+    suggestionText: 'Case specific questions',
   },
   changeOfInformation: {
     intent: 'caseQA-change-personal-info',
-    suggestionText: 'case specific questions',
+    suggestionText: 'Case specific questions',
   },
-  childCare: { intent: 'tbd' }, // Suggest child care intent
-  complaints: { intent: 'tbd' }, // Suggest complaints intent
+  childCare: { intent: 'childCare-root', suggestionText: 'Child care' }, // Suggest child care intent
+  complaints: { intent: 'complaints-root', suggestionText: 'Complaints' }, // Suggest complaints intent
   contactHuman: {
     intent: 'contact-qa-number',
-    suggestionText: 'contact',
+    suggestionText: 'Contact',
   },
-  documentation: { intent: 'tbd' }, // Suggest documentation intent
-  email: { intent: 'tbd' }, // Suggest email intent
+  documentation: { intent: 'documentation-root', suggestionText: 'Documents' }, // Suggest documentation intent
+  email: { intent: 'email-root', suggestionText: 'Email' }, // Suggest email intent
   emancipation: {
     intent: 'emancipation-qa-age',
-    suggestionText: 'emancipation',
+    suggestionText: 'Emancipation',
   },
-  enforcement: { intent: 'enforcement-root', suggestionText: 'enforcement' },
+  enforcement: { intent: 'enforcement-root', suggestionText: 'Enforcement' },
   estimatePayments: {
     intent: 'pmt-calc-root',
-    suggestionText: 'estimate payments',
+    suggestionText: 'Estimate payments',
   },
-  fax: { intent: 'tbd' }, // Suggest fax intent
-  gratitude: { intent: 'tbd' }, // Suggest gratitude intent
-  greaterThanOneMonth: { intent: 'tbd' }, // suggest > 1 month intent
+  fax: { intent: 'fax-root', suggestionText: 'Fax' }, // Suggest fax intent
+  gratitude: { intent: 'gratitude-root', suggestionText: 'Gratitude' }, // Suggest gratitude intent
+  greaterThanOneMonth: { intent: 'greaterThanOneMonth-root', suggestionText: 'tbd (greaterThanOneMonth)' }, // suggest > 1 month intent
   incarceration: {
     intent: 'support-qa-ncp-prison',
-    suggestionText: 'incarceration',
+    suggestionText: 'Incarceration',
   },
-  infoAboutParent: { intent: 'support-root', suggestionText: 'support root' }, // Perhaps move more specific
-  insufficientResponse: { intent: 'tbd' }, // Suggest insufficient response handler
-  interstate: { intent: 'tbd' }, // Suggest interstate intent
-  legal: { intent: 'tbd' }, // Suggest legal intent
+  infoAboutParent: { intent: 'support-root', suggestionText: 'Support' }, // Perhaps move more specific
+  insufficientResponse: { intent: 'insufficientResponse-root', suggestionText: 'tbd (insufficientResponse)' }, // Suggest insufficient response handler
+  interstate: { intent: 'interstate-root', suggestionText: 'Interstate' }, // Suggest interstate intent
+  legal: { intent: 'legal-root', suggestionText: 'Legal' }, // Suggest legal intent
   licenseSuspension: {
     intent: 'enforcement-license-suspension',
-    suggestionText: 'license suspension',
+    suggestionText: 'License suspension',
   },
-  login: { intent: 'tbd' }, // Suggest login intent
+  login: { intent: 'login-root', suggestionText: 'Login issue' }, // Suggest login intent
   makePayment: {
     intent: 'pmts-general-make-payments',
-    suggestionText: 'make payments',
+    suggestionText: 'Make payments',
   },
   notReceivedPayment: {
     intent: 'pmtQA-havent-received',
-    suggestionText: `haven't received payments`,
+    suggestionText: `Haven't received payments`,
   },
-  officeLocations: { intent: 'map-root', suggestionText: 'office locations' },
-  onlineAction: { intent: 'tbd' }, // suggest online action intent
-  openCase: { intent: 'open-csc-root', suggestionText: 'open case' },
-  paidButNotReceived: { intent: 'tbd' }, // Suggest paid but not received intent
+  officeLocations: { intent: 'map-root', suggestionText: 'Office locations' },
+  onlineAction: { intent: 'onlineAction-root', suggestionText: 'Online issue' }, // suggest online action intent
+  openCase: { intent: 'open-csc-root', suggestionText: 'Open case' },
+  paidButNotReceived: { intent: 'paidButNotReceived-root', suggestionText: 'Not received payment' }, // Suggest paid but not received intent
   paternity: {
     intent: 'geneticTesting-request',
-    suggestionText: 'genetic testing',
+    suggestionText: 'Genetic testing',
   },
-  paymentHistory: { intent: 'support-root', suggestionText: 'payment history' },
+  paymentHistory: { intent: 'support-root', suggestionText: 'Payment history' },
   paymentModification: {
     intent: 'caseQA-increase-review',
-    suggestionText: 'payment modification',
+    suggestionText: 'Payment modification',
   },
-  paymentTimelines: { intent: 'tbd' }, // Need payment timelines intent
-  refund: { intent: 'tbd' }, // Suggest refund intent
-  snap: { intent: 'tbd' }, // Suggest snap intent
+  paymentTimelines: { intent: 'paymentTimelines-root', suggestionText: 'Payment timelines' }, // Need payment timelines intent
+  refund: { intent: 'refund-root', suggestionText: 'Refund' }, // Suggest refund intent
+  snap: { intent: 'snap-root', suggestionText: 'SNAP' }, // Suggest snap intent
   supportInquiries: {
     intent: 'support-root',
-    suggestionText: 'support inquiries',
+    suggestionText: 'Support inquiries',
   },
-  tanf: { intent: 'tbd' }, // Suggest tanf intent
-  terminate: { intent: 'support-root', suggestionText: 'close case' },
-  verification: { intent: 'tbd' }, // Suggest verification intent
-  visitation: { intent: 'tbd' }, // Suggest visitation intent
+  tanf: { intent: 'tanf-root', suggestionText: 'TANF' }, // Suggest tanf intent
+  terminate: { intent: 'support-root', suggestionText: 'Close case' },
+  verification: { intent: 'verification-root', suggestionText: 'Verification' }, // Suggest verification intent
+  visitation: { intent: 'visitation-root', suggestionText: 'Visitation' }, // Suggest visitation intent
 }

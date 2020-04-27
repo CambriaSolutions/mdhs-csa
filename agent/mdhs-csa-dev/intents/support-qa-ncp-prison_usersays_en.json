@@ -1,0 +1,163 @@
+[
+  {
+    "id": "73849967-d698-4993-ab29-d67d3bfc0592",
+    "data": [
+      {
+        "text": "my child\u0027s father is incarcerated",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "00a4a275-6242-4d52-ac0d-0ede90dbabcb",
+    "data": [
+      {
+        "text": "my baby\u0027s father is in jail",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c26c740c-d810-4f6c-b648-3a27323ca163",
+    "data": [
+      {
+        "text": "my baby daddy is incarcerated",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "bbd5937c-17db-4021-b5c9-06cb1ea886c9",
+    "data": [
+      {
+        "text": "my baby daddy got arrested",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "67dac2db-fb9e-446a-b671-45862c8f4b73",
+    "data": [
+      {
+        "text": "my child\u0027s father got arrested",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "802e66ef-9911-45a0-b531-f07b1af019df",
+    "data": [
+      {
+        "text": "my baby daddy is in jail",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "44552bb3-0061-427e-97ff-7a602bfcca76",
+    "data": [
+      {
+        "text": "my child\u0027s father is in prison",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b2f51b30-95f8-4130-b4cb-89bae75027d2",
+    "data": [
+      {
+        "text": "my baby daddy ",
+        "userDefined": false
+      },
+      {
+        "text": "is",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " in prison",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "96cdf070-12bb-4c5d-834c-b98bc70bd015",
+    "data": [
+      {
+        "text": "what happens if the father goes to jail",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "0b623349-c319-47fe-a5b4-50be5fe664c8",
+    "data": [
+      {
+        "text": "Does the ",
+        "userDefined": false
+      },
+      {
+        "text": "NCP",
+        "alias": "guardianship",
+        "meta": "@guardianship",
+        "userDefined": false
+      },
+      {
+        "text": " child support stop when he goes to prison/jail/incarcerated?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4452cd5c-3440-4322-813b-59917781c5c7",
+    "data": [
+      {
+        "text": "Does child support stop if the ",
+        "userDefined": false
+      },
+      {
+        "text": "NCP",
+        "alias": "guardianship",
+        "meta": "@guardianship",
+        "userDefined": false
+      },
+      {
+        "text": " goes to prison/jail/incarcerated?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

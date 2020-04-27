@@ -1,6 +1,6 @@
 [
   {
-    "id": "48ac5bd4-45ca-4102-b7e7-4b65b5e1064f",
+    "id": "f936a9b5-e4b7-444d-aa6a-118d39358963",
     "data": [
       {
         "text": "make purchases with my card",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551222398
+    "updated": 0
   },
   {
-    "id": "11b7eebd-4488-4e6e-9818-4e8e404481ba",
+    "id": "f6dc1a0a-8534-4677-becb-8e2f2f4951a1",
     "data": [
       {
         "text": "how do i use the card",
@@ -21,10 +21,10 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1551222370
+    "updated": 0
   },
   {
-    "id": "7c37121a-2128-4dd4-9b12-ff8067fa3ac7",
+    "id": "8fb67024-40b2-4220-8a33-cab922be3eb7",
     "data": [
       {
         "text": "how do i make purchase",
@@ -33,6 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551222370
+    "updated": 0
   }
 ]

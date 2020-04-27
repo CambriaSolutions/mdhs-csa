@@ -1,0 +1,95 @@
+[
+  {
+    "id": "11b5e1ae-57e9-4589-8627-55904341997a",
+    "data": [
+      {
+        "text": "i need to get more money",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "66ce2298-4099-4000-bb1a-9202e08bb155",
+    "data": [
+      {
+        "text": "how can i get more support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "25dbe909-2a45-4e3d-8610-547ee8cbf1af",
+    "data": [
+      {
+        "text": "how can i get more money",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "07c29361-825a-4633-96b3-b810c1f27852",
+    "data": [
+      {
+        "text": "i want to request a review of my case",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "5120857c-356b-47e9-b333-d366234cd5c0",
+    "data": [
+      {
+        "text": "How can I request a review of my child support case?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "39a22f58-eb74-42c7-8025-a27867e0e7c3",
+    "data": [
+      {
+        "text": "how can I request an ",
+        "userDefined": false
+      },
+      {
+        "text": "increase",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " on my case?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d9795885-20b8-49f2-b477-e525c6a093d6",
+    "data": [
+      {
+        "text": "How often can a review be requested for your case?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

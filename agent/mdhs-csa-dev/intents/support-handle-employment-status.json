@@ -18,9 +18,14 @@
       "parameters": [
         {
           "id": "868b4040-05f4-43b6-b59a-f433f3e9842f",
+          "required": false,
           "dataType": "@employmentStatus",
           "name": "employmentStatus",
           "value": "$employmentStatus",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -28,6 +33,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -39,5 +45,8 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

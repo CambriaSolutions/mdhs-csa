@@ -8,12 +8,49 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-pmtMethods-checkOrMoneyOrder",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cash",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-eCheckDebit",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-withhold-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make-qualifying-help",
+          "parameters": {},
+          "lifespan": 5
+        },
+        {
+          "name": "waiting-pmtMethods-chec",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
       "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -24,7 +61,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551313990,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
