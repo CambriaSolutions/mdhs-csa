@@ -1,0 +1,16 @@
+[
+  {
+    "id": "6bab7ee3-b9a6-4151-8007-62003c1aa144",
+    "data": [
+      {
+        "text": "9167990766",
+        "alias": "phoneNumber",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

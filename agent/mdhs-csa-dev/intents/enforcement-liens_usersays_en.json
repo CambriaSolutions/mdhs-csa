@@ -1,0 +1,26 @@
+[
+  {
+    "id": "df1968c5-9043-4296-a42d-64a694544a67",
+    "data": [
+      {
+        "text": "Bank Accounts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2a227e54-f671-4dfa-bb9d-79da6fe38ea9",
+    "data": [
+      {
+        "text": "Liens",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

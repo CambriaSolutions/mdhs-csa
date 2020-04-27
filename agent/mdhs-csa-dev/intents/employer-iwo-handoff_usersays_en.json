@@ -1,0 +1,104 @@
+[
+  {
+    "id": "5cab0630-76b3-4164-ba91-8d12e6c83d54",
+    "data": [
+      {
+        "text": "Our employee is a part time, are we required to withhold",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "697fe249-b215-4cf7-988c-04dfe9b92e0e",
+    "data": [
+      {
+        "text": "Do I withhold for each Income Withholding Order?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1ca6bbe8-cfa7-4c2e-9f27-82138fafad29",
+    "data": [
+      {
+        "text": "employee may have multiple cases how much do I withhold",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0c7d89a6-70ad-46e4-916b-a87cbd142c3d",
+    "data": [
+      {
+        "text": "my employee is not payed enough to make the payments, so how much do i withhold",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ba9e6183-fd21-4ecc-b373-4faabd045182",
+    "data": [
+      {
+        "text": "ncp",
+        "alias": "guardianship",
+        "meta": "@guardianship",
+        "userDefined": false
+      },
+      {
+        "text": " has multiple cases, how much do i withhold",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4a81f13e-5361-4c95-8e0c-2f1d03dedd10",
+    "data": [
+      {
+        "text": "do i withhold for each iwo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2f511b3c-9f38-4691-91dd-f285473bee36",
+    "data": [
+      {
+        "text": "withholding",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8e9c4805-ec4f-49e0-b23d-ec7ee1b18a8a",
+    "data": [
+      {
+        "text": "Income Withholding Order Information",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

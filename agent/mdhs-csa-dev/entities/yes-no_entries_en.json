@@ -1,26 +1,33 @@
 [
   {
-    "value": "yes",
+    "value": "no",
     "synonyms": [
-      "yes",
-      "correct",
-      "i think so",
-      "indeed",
-      "yup",
-      "yes sir",
-      "yes maam",
-      "yea"
+      "i aint got nothing",
+      "incorrect",
+      "nah",
+      "naw",
+      "neh",
+      "no",
+      "no maam",
+      "no sir",
+      "nope"
     ]
   },
   {
-    "value": "no",
+    "value": "yes",
     "synonyms": [
-      "no",
-      "incorrect",
-      "nope",
-      "no sir",
-      "no maam",
-      "no"
+      "correct",
+      "i think so",
+      "indeed",
+      "yea",
+      "yeah",
+      "yep",
+      "yes",
+      "yes ma\u0027am",
+      "yes maam",
+      "yes sir",
+      "yeup",
+      "yup"
     ]
   }
 ]

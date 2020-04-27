@@ -1,0 +1,50 @@
+[
+  {
+    "id": "e6e817f2-111d-439c-902d-f1e59afaf59a",
+    "data": [
+      {
+        "text": "how much do i owe in arrears",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "12854da5-59db-4641-b0d0-c761974ca737",
+    "data": [
+      {
+        "text": "how much is my arrears",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "37ce6450-b27c-4b29-8588-2c267522d64b",
+    "data": [
+      {
+        "text": "what do i owe in back payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "31ce0b42-0646-4ff6-ad2d-36828e84d569",
+    "data": [
+      {
+        "text": "What is my arrears balance?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
