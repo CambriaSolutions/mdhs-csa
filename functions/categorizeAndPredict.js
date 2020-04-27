@@ -153,10 +153,11 @@ exports.handleUnhandled = async agent => {
         suggestions.forEach(async (suggestion, i) => {
           if (suggestion.suggestionText) {
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
-            await agent.add(new Suggestion(`None of these`))
           }
         })
 
+        await agent.add(new Suggestion(`None of these`))
+        
         // Save the query and suggestion and intent collection in context for
         // further analysis on the analytics end
         await agent.context.set({
