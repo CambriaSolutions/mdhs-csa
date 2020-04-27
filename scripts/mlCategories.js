@@ -31,7 +31,7 @@ exports.categoriesWithIntents = {
     intent: 'caseQA-change-personal-info',
     suggestionText: 'case specific questions',
   },
-  childCare: { intent: 'childcare-root', suggestionText: 'tbd (childCare)' }, // Suggest child care intent
+  childCare: { intent: 'childCare-root', suggestionText: 'tbd (childCare)' }, // Suggest child care intent
   complaints: { intent: 'complaints-root', suggestionText: 'tbd (complaints)' }, // Suggest complaints intent
   contactHuman: {
     intent: 'contact-qa-number',

@@ -1,6 +1,6 @@
 const { tbd } = require('./globalFunctions.js')
 
-exports.childcare = async agent => {
+exports.childCare = async agent => {
     try {
         await tbd(agent)
     } catch (err) {
