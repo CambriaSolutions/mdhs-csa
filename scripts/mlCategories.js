@@ -31,7 +31,7 @@ exports.categoriesWithIntents = {
     intent: 'caseQA-change-personal-info',
     suggestionText: 'Case specific questions',
   },
-  childCare: { intent: 'childCare-root', suggestionText: 'Child Care' }, // Suggest child care intent
+  childCare: { intent: 'childCare-root', suggestionText: 'Child care' }, // Suggest child care intent
   complaints: { intent: 'complaints-root', suggestionText: 'Complaints' }, // Suggest complaints intent
   contactHuman: {
     intent: 'contact-qa-number',
@@ -63,7 +63,7 @@ exports.categoriesWithIntents = {
     intent: 'enforcement-license-suspension',
     suggestionText: 'License suspension',
   },
-  login: { intent: 'login-root', suggestionText: 'Login Issue' }, // Suggest login intent
+  login: { intent: 'login-root', suggestionText: 'Login issue' }, // Suggest login intent
   makePayment: {
     intent: 'pmts-general-make-payments',
     suggestionText: 'Make payments',
@@ -73,7 +73,7 @@ exports.categoriesWithIntents = {
     suggestionText: `Haven't received payments`,
   },
   officeLocations: { intent: 'map-root', suggestionText: 'Office locations' },
-  onlineAction: { intent: 'onlineAction-root', suggestionText: 'Online Issue' }, // suggest online action intent
+  onlineAction: { intent: 'onlineAction-root', suggestionText: 'Online issue' }, // suggest online action intent
   openCase: { intent: 'open-csc-root', suggestionText: 'Open case' },
   paidButNotReceived: { intent: 'paidButNotReceived-root', suggestionText: 'Not received payment' }, // Suggest paid but not received intent
   paternity: {
@@ -85,7 +85,7 @@ exports.categoriesWithIntents = {
     intent: 'caseQA-increase-review',
     suggestionText: 'Payment modification',
   },
-  paymentTimelines: { intent: 'paymentTimelines-root', suggestionText: 'Payment Timelines' }, // Need payment timelines intent
+  paymentTimelines: { intent: 'paymentTimelines-root', suggestionText: 'Payment timelines' }, // Need payment timelines intent
   refund: { intent: 'refund-root', suggestionText: 'Refund' }, // Suggest refund intent
   snap: { intent: 'snap-root', suggestionText: 'SNAP' }, // Suggest snap intent
   supportInquiries: {
