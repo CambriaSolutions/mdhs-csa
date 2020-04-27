@@ -12,6 +12,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": "Please \u003ca href\u003d\"http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e for the Direct Deposit Form."
         }
       ],
@@ -22,7 +23,9 @@
   "priority": 500000,
   "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551915894,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

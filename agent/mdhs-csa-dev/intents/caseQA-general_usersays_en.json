@@ -1,0 +1,218 @@
+[
+  {
+    "id": "7b0272d8-e695-4fad-8302-f6b909508c01",
+    "data": [
+      {
+        "text": "whats the status of my case",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "90cc5c8a-c7c9-4882-b89e-eacd8324ae3e",
+    "data": [
+      {
+        "text": "is money being taking out of his check",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "59898d87-91c5-4a2c-aa12-b99780c53486",
+    "data": [
+      {
+        "text": "what is my case number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "dfc14744-5a42-4404-92bc-19eacbcad357",
+    "data": [
+      {
+        "text": "when will my case end",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b6a445b9-ce15-4668-b410-4de7bb66f4e1",
+    "data": [
+      {
+        "text": "when will my case close",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a1159e95-ca40-4e8a-b9e1-04d2fcbb125d",
+    "data": [
+      {
+        "text": "is my daddy required to pay child support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a66956ee-81ba-47e4-b431-1475d8efb0ef",
+    "data": [
+      {
+        "text": "is my mom required to pay child support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4e532b0f-630c-4dbd-91d1-26a5a39ae7df",
+    "data": [
+      {
+        "text": "why is my case still open",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "20907dab-c6d0-4566-9740-6f9c3adf866a",
+    "data": [
+      {
+        "text": "is my case closed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c01f788e-cb64-4338-95c0-cff21578734a",
+    "data": [
+      {
+        "text": "Has a Withholding Order been sent to the Employer?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "685bd768-958f-4705-b2eb-06e5ec0e4dbf",
+    "data": [
+      {
+        "text": "Is my child support case close?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "79b60e86-879a-4459-9803-43bdee51c5c8",
+    "data": [
+      {
+        "text": "Find case number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4161dbe0-61c1-4438-8499-c215f627879b",
+    "data": [
+      {
+        "text": "Is my case pending closure?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2b873a57-c762-4788-b3fb-5e55b4a9f0e7",
+    "data": [
+      {
+        "text": "Is the absent parent ordered to pay child support?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "bde2eb7a-50d3-4149-939f-1b17bddc00a7",
+    "data": [
+      {
+        "text": "Does my case have an order attached?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4c42dfdd-fb6e-491b-8eef-a2c91f02a0d6",
+    "data": [
+      {
+        "text": "Has a court date been schedule for my child support case?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e29e5747-8eae-4a36-aee7-6c5008ead2ba",
+    "data": [
+      {
+        "text": "Has my case been scheduled for court?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "7cee6157-4ff5-4288-afc3-3d7e16618c1f",
+    "data": [
+      {
+        "text": "Has an appointment been schedule for the absent parent?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

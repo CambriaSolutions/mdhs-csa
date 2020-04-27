@@ -1,0 +1,70 @@
+[
+  {
+    "id": "27cd0b51-7e74-4446-afc4-1ba2f144dcc1",
+    "data": [
+      {
+        "text": "Submit Feedback",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8f8a09e2-2218-4a13-8a4c-00717f904c81",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      },
+      {
+        "text": " thanks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "46b0f9c3-0886-44a2-848d-817cd31d4f75",
+    "data": [
+      {
+        "text": "im finished",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "225a5c84-6e0f-404f-9202-4c8124b722bd",
+    "data": [
+      {
+        "text": "all done",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e62d71af-f739-47e6-95a7-abb8bb9201a4",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

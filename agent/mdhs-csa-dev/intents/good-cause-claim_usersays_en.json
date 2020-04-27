@@ -1,0 +1,36 @@
+[
+  {
+    "id": "2097943c-b8ad-4546-8e48-02f95d7e37d3",
+    "data": [
+      {
+        "text": "good cause claim",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "f4330c12-9561-48e1-b643-85a75427edae",
+    "data": [
+      {
+        "text": "does the ",
+        "userDefined": false
+      },
+      {
+        "text": "custodial parent",
+        "alias": "guardianship",
+        "meta": "@guardianship",
+        "userDefined": false
+      },
+      {
+        "text": " need to provide evidence for a good cause claim",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

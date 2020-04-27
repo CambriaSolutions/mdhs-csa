@@ -1,0 +1,52 @@
+{
+  "id": "52147f8d-c97f-4ebe-bad6-9f1d56749f49",
+  "name": "support-collect-new-employer-name",
+  "auto": true,
+  "contexts": [
+    "waiting-support-collect-new-employer-name"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-collect-new-employer-name",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "dacaf281-81e1-4505-b18e-8753f783846c",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "newEmployerName",
+          "value": "$newEmployerName",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

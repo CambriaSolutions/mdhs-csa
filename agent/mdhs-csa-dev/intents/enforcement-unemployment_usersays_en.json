@@ -1,0 +1,26 @@
+[
+  {
+    "id": "4544b317-8cb1-4960-be28-47461c44a8d7",
+    "data": [
+      {
+        "text": "unemployment benefits",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "3f43e57d-209a-4497-936a-9bce6c1326ba",
+    "data": [
+      {
+        "text": "How will my unemployment benefits be impacted?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

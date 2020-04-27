@@ -6,12 +6,42 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
-      "parameters": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-iwo-wants-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-no-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-faqs",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "15242d9f-2b45-4a78-af16-de0ed8dab9d3",
+          "required": false,
+          "dataType": "@action-requests",
+          "name": "action-requests",
+          "value": "$action-requests",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -22,7 +52,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551294857,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

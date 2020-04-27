@@ -1,0 +1,50 @@
+[
+  {
+    "id": "a107c166-6799-4aec-87be-4e64e4330186",
+    "data": [
+      {
+        "text": "pay with money orders",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "81c7fb83-14bc-4e09-a671-f26a37f95f25",
+    "data": [
+      {
+        "text": "pay with checks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d475417b-83a3-40b9-936e-282d724b3b64",
+    "data": [
+      {
+        "text": "checks money orders",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6b63542e-2794-401d-872c-45c5e95bd329",
+    "data": [
+      {
+        "text": "Checks/Money Orders",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

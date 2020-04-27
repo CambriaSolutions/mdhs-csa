@@ -1,6 +1,6 @@
 [
   {
-    "id": "ec0efb22-a21f-4ed6-96b4-9fadb9cd5d98",
+    "id": "671c697c-b030-4c31-a0fe-130f5615bab7",
     "data": [
       {
         "text": "add a new one",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550165886
+    "updated": 0
   },
   {
-    "id": "dc1d45cc-aa47-4ab3-acb3-7333d3ddb9b6",
+    "id": "0c35e472-22f4-49b8-9ddf-6ecf04747f80",
     "data": [
       {
         "text": "open a new account",
@@ -21,10 +21,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550165886
+    "updated": 0
   },
   {
-    "id": "fef562d7-daad-455f-98ab-ca1053eb0e7f",
+    "id": "3527e0b5-7823-43e0-947b-a3c3142879cb",
     "data": [
       {
         "text": "start",
@@ -33,6 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550165886
+    "updated": 0
   }
 ]

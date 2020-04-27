@@ -1,0 +1,16 @@
+[
+  {
+    "id": "a5e36852-1468-4c6a-bd50-0e397bd6af1e",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "reportCSE",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
