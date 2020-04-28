@@ -182,7 +182,6 @@ exports.handleUnhandled = async agent => {
 exports.noneOfThese = async agent => {
   // TODO For now, treat as unhandled w/o ML.
   // In the future record the phrase, category, and suggestions not selected.
-  console.log('None of these selected.');
   try {
     await defaultUnhandledResponse(agent)
   } catch (err) {
