@@ -153,9 +153,10 @@ exports.handleUnhandled = async agent => {
         suggestions.forEach(async (suggestion, i) => {
           if (suggestion.suggestionText) {
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
-            await agent.add(new Suggestion(`None of these`))
           }
         })
+
+        await agent.add(new Suggestion(`None of these`))
 
         // Save the query and suggestion and intent collection in context for
         // further analysis on the analytics end
@@ -173,6 +174,16 @@ exports.handleUnhandled = async agent => {
         await defaultUnhandledResponse(agent)
       }
     }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.noneOfThese = async agent => {
+  // TODO For now, treat as unhandled w/o ML.
+  // In the future record the phrase, category, and suggestions not selected.
+  try {
+    await defaultUnhandledResponse(agent)
   } catch (err) {
     console.error(err)
   }

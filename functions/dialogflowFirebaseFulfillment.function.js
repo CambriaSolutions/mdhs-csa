@@ -341,7 +341,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled } = require('./categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
@@ -842,6 +842,7 @@ exports = module.exports = functions
     // Visitation
     intentMap.set('visitation', visitation)
 
+    intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
