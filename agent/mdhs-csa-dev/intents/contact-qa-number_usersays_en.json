@@ -202,17 +202,5 @@
     "isTemplate": false,
     "count": 0,
     "updated": 0
-  },
-  {
-    "id": "f4e3c34c-5ca3-4df9-8255-1193c0174afe",
-    "data": [
-      {
-        "text": "Tell me how to get to Sesame Street.",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
   }
 ]
