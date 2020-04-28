@@ -302,12 +302,6 @@ const { fax } = require('./fax.js')
 // Gratitude not answering
 const { gratitude } = require('./gratitude.js')
 
-// Greater than one
-const { greaterThanOneMonth } = require('./greaterThanOneMonth.js')
-
-// Insufficient Response
-const { insufficientResponse } = require('./insufficientResponse.js')
-
 // Interstate
 const { interstate } = require('./interstate.js')
 
@@ -814,12 +808,6 @@ exports = module.exports = functions
 
     // Gratitude not answering
     intentMap.set('gratitude-root', gratitude)
-
-    // Greater than one
-    intentMap.set('greaterThanOneMonth-root', greaterThanOneMonth)
-
-    // Insufficient Response
-    intentMap.set('insufficientResponse-root', insufficientResponse)
 
     // Interstate
     intentMap.set('interstate-root', interstate)

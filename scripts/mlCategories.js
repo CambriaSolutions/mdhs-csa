@@ -50,13 +50,11 @@ exports.categoriesWithIntents = {
   },
   fax: { intent: 'fax-root', suggestionText: 'Fax' }, // Suggest fax intent
   gratitude: { intent: 'gratitude-root', suggestionText: 'Gratitude' }, // Suggest gratitude intent
-  greaterThanOneMonth: { intent: 'greaterThanOneMonth-root', suggestionText: 'tbd (greaterThanOneMonth)' }, // suggest > 1 month intent
   incarceration: {
     intent: 'support-qa-ncp-prison',
     suggestionText: 'Incarceration',
   },
   infoAboutParent: { intent: 'support-root', suggestionText: 'Support' }, // Perhaps move more specific
-  insufficientResponse: { intent: 'insufficientResponse-root', suggestionText: 'tbd (insufficientResponse)' }, // Suggest insufficient response handler
   interstate: { intent: 'interstate-root', suggestionText: 'Interstate' }, // Suggest interstate intent
   legal: { intent: 'legal-root', suggestionText: 'Legal' }, // Suggest legal intent
   licenseSuspension: {
@@ -88,7 +86,7 @@ exports.categoriesWithIntents = {
   paymentTimelines: { intent: 'paymentTimelines-root', suggestionText: 'Payment timelines' }, // Need payment timelines intent
   refund: { intent: 'refund-root', suggestionText: 'Refund' }, // Suggest refund intent
   snap: { intent: 'snap-root', suggestionText: 'SNAP' }, // Suggest snap intent
-  supportInquiries: {
+  supportRequest: {
     intent: 'support-root',
     suggestionText: 'Support inquiries',
   },
