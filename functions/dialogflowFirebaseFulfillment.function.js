@@ -5,7 +5,6 @@ const {
   startRootConversation,
   disableInput,
   caseyHandoff,
-  defaultUnhandledResponse,
 } = require('./globalFunctions.js')
 // Not child support intents
 const {
@@ -855,7 +854,7 @@ exports = module.exports = functions
     // Visitation
     intentMap.set('visitation', visitation)
 
-    intentMap.set('none-of-these', defaultUnhandledResponse);
+    intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
