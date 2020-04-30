@@ -281,6 +281,9 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+// Account information
+const { accountInformation } = require('./accountInformation.js')
+
 // Callcenter not answering
 const { callcenterNotAnswering } = require('./callcenterNotAnswering.js')
 
@@ -299,6 +302,9 @@ const { email } = require('./email.js')
 // Fax
 const { fax } = require('./fax.js')
 
+// Fee
+const { fee } = require('./fee.js')
+
 // Gratitude not answering
 const { gratitude } = require('./gratitude.js')
 
@@ -314,11 +320,17 @@ const { login } = require('./login.js')
 // Online action
 const { onlineAction } = require('./onlineAction.js')
 
+// Other
+const { other } = require('./other.js')
+
 // Paid but not received
 const { paidButNotReceived } = require('./paidButNotReceived.js')
 
 // Payment Timelines
 const { paymentTimelines } = require('./paymentTimelines.js')
+
+// Phone number
+const { phoneNumber } = require('./phoneNumber.js')
 
 // Refund
 const { refund } = require('./refund.js')
@@ -328,6 +340,9 @@ const { snap } = require('./snap.js')
 
 // Tanf
 const { tanf } = require('./tanf.js')
+
+// Taxes
+const { taxes } = require('./taxes.js')
 
 // Verification
 const { verification } = require('./verification.js')
@@ -788,8 +803,8 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Callcenter not answering
-    intentMap.set('callcenterNotAnswering-root', callcenterNotAnswering)
+    // Account information
+    intentMap.set('accountInformation-root', accountInformation)
 
     // Childcare
     intentMap.set('childCare-root', childCare)
@@ -806,6 +821,9 @@ exports = module.exports = functions
     // Fax
     intentMap.set('fax-root', fax)
 
+    // Fee
+    intentMap.set('fee-root', fee)
+
     // Gratitude not answering
     intentMap.set('gratitude-root', gratitude)
 
@@ -821,11 +839,17 @@ exports = module.exports = functions
     // Online action
     intentMap.set('onlineAction-root', onlineAction)
 
+    // Other
+    intentMap.set('other-root', other)
+
     // Paid but not received
     intentMap.set('paidButNotReceived-root', paidButNotReceived)
 
     // Payment Timelines
     intentMap.set('paymentTimelines-root', paymentTimelines)
+
+    // Phone number
+    intentMap.set('phoneNumber-root', phoneNumber)
 
     // Refund
     intentMap.set('refund-root', refund)
@@ -835,6 +859,9 @@ exports = module.exports = functions
 
     // Tanf
     intentMap.set('tanf-root', tanf)
+
+    // Taxes
+    intentMap.set('taxes-root', taxes)
 
     // Verification
     intentMap.set('verification-root', verification)
