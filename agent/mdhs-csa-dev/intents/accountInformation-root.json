@@ -1,25 +1,12 @@
 {
-  "id": "bd640c1a-4377-42e1-b64e-ab2b16c72dfc",
-  "name": "dirDep-checking",
+  "id": "6632bd4f-8428-49d4-9ff5-7b491e8a21dd",
+  "name": "accountInformation-root",
   "auto": true,
-  "contexts": [
-    "waiting-dirDep-checking"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-dirDep-checking",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
-          "name": "waiting-dirDep-savings",
-          "parameters": {},
-          "lifespan": 0
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {

@@ -1,25 +1,12 @@
 {
-  "id": "bd640c1a-4377-42e1-b64e-ab2b16c72dfc",
-  "name": "dirDep-checking",
+  "id": "a0028749-b02f-4b34-b48c-c30b7a6ba02a",
+  "name": "other-root",
   "auto": true,
-  "contexts": [
-    "waiting-dirDep-checking"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-dirDep-checking",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
-          "name": "waiting-dirDep-savings",
-          "parameters": {},
-          "lifespan": 0
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
