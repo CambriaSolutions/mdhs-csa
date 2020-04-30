@@ -284,9 +284,6 @@ const {
 // Account information
 const { accountInformation } = require('./accountInformation.js')
 
-// Callcenter not answering
-const { callcenterNotAnswering } = require('./callcenterNotAnswering.js')
-
 // Childcare
 const { childCare } = require('./childCare.js')
 
@@ -799,7 +796,7 @@ exports = module.exports = functions
     intentMap.set('enforcement-unemployment', enforcementUnemployment)
     intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
-    intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
+    intentMap.set('enforcement-bankruptcy', enforcementBankruptcy) 
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
