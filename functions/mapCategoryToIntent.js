@@ -24,16 +24,7 @@ const retrieveIntentData = async category => {
     const categoryDoc = await categoryDocRef.get()
     const categoryData = categoryDoc.data()
     const intent = get(categoryData, 'intent')
-
-    // Create a reference for the intent collection and retrieve the suggestion
-    // text for the specific intent
-    let suggestionText
-    if (intent) {
-      const intentDocRef = db.collection('intents').doc(intent)
-      const intentDoc = await intentDocRef.get()
-      const intentData = intentDoc.data()
-      suggestionText = get(intentData, 'suggestionButtonText')
-    }
+    const suggestionText = get(categoryData, 'suggestionText')
 
     if (intent && suggestionText) {
       return {
