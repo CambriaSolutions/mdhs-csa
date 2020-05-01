@@ -287,9 +287,6 @@ const { accountInformation } = require('./accountInformation.js')
 // Childcare
 const { childCare } = require('./childCare.js')
 
-// Complaints
-const { complaints } = require('./complaints.js')
-
 // Documentation
 const { documentation } = require('./documentation.js')
 
@@ -319,9 +316,6 @@ const { onlineAction } = require('./onlineAction.js')
 
 // Other
 const { other } = require('./other.js')
-
-// Paid but not received
-const { paidButNotReceived } = require('./paidButNotReceived.js')
 
 // Payment Timelines
 const { paymentTimelines } = require('./paymentTimelines.js')
@@ -796,7 +790,7 @@ exports = module.exports = functions
     intentMap.set('enforcement-unemployment', enforcementUnemployment)
     intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
 
-    intentMap.set('enforcement-bankruptcy', enforcementBankruptcy) 
+    intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
@@ -807,7 +801,7 @@ exports = module.exports = functions
     intentMap.set('childCare-root', childCare)
 
     // Complaints
-    intentMap.set('complaints-root', complaints)
+    intentMap.set('complaints-root', feedbackRoot)
 
     // Documentation
     intentMap.set('documentation-root', documentation)
@@ -838,9 +832,6 @@ exports = module.exports = functions
 
     // Other
     intentMap.set('other-root', other)
-
-    // Paid but not received
-    intentMap.set('paidButNotReceived-root', paidButNotReceived)
 
     // Payment Timelines
     intentMap.set('paymentTimelines-root', paymentTimelines)
