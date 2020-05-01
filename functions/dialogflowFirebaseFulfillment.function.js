@@ -317,7 +317,6 @@ const { onlineAction } = require('./onlineAction.js')
 // Other
 const { other } = require('./other.js')
 
-
 // Payment Timelines
 const { paymentTimelines } = require('./paymentTimelines.js')
 
@@ -800,6 +799,9 @@ exports = module.exports = functions
 
     // Childcare
     intentMap.set('childCare-root', childCare)
+
+    // Complaints
+    intentMap.set('complaints-root', feedbackRoot)
 
     // Documentation
     intentMap.set('documentation-root', documentation)
