@@ -90,7 +90,7 @@ exports.categoriesWithIntents = {
   snap: { intent: 'snap-root', suggestionText: 'SNAP' }, // Suggest snap intent
   supportInquiries: {
     intent: 'support-root',
-    suggestionText: 'Support inquiries',
+    suggestionText: 'Support requests',
   },
   tanf: { intent: 'tanf-root', suggestionText: 'TANF' }, // Suggest tanf intent
   terminate: { intent: 'support-root', suggestionText: 'Close case' },
