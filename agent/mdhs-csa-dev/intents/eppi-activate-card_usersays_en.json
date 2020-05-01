@@ -1,6 +1,6 @@
 [
   {
-    "id": "bdead76a-7e87-4820-88c7-9a62f64a9370",
+    "id": "30c15eba-770b-4c6f-89b5-2a625acb341e",
     "data": [
       {
         "text": "i need to activate my card",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551811234
+    "updated": 0
   },
   {
-    "id": "c7374427-9d02-443c-b122-680a8f04d5c7",
+    "id": "3cae5e8c-c4c5-461e-bdaa-2a45348dd3f9",
     "data": [
       {
         "text": "activate",
@@ -21,6 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551221910
+    "updated": 0
   }
 ]

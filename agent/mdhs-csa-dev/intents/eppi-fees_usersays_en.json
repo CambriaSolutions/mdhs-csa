@@ -1,6 +1,54 @@
 [
   {
-    "id": "908f9366-cb29-4c3e-8f21-64ab630c873e",
+    "id": "43aa30d0-1a25-458f-ab90-8ab796ed209d",
+    "data": [
+      {
+        "text": "what does it cost to use",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0d0b5648-4e8c-439d-83c5-dab704af77fb",
+    "data": [
+      {
+        "text": "how much does it cost?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "9e587434-3eac-4f5e-a61c-a04b2a1b0f98",
+    "data": [
+      {
+        "text": "atm fee",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8120477c-1536-432c-ac0a-b3ad2fce0069",
+    "data": [
+      {
+        "text": "withdrawal fee",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d246af63-15d4-4427-b9b2-62f0ea7fa9a1",
     "data": [
       {
         "text": "fees",
@@ -9,6 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551221964
+    "updated": 0
   }
 ]

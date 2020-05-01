@@ -1,0 +1,16 @@
+[
+  {
+    "id": "06ea6c29-2cea-44ba-b0db-03868590f1a8",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "needsInquiry",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

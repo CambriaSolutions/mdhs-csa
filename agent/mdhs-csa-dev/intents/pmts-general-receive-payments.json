@@ -2,16 +2,30 @@
   "id": "f9d78d92-0095-4da7-88c2-84ea875d9ca4",
   "name": "pmts-general-receive-payments",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-pmts-general-receive-payments"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-pmts-general-receive-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmts-general-non-custodial",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -22,7 +36,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551315105,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

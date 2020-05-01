@@ -2,7 +2,9 @@
   "id": "43998fca-ffea-4843-91b0-55198465e3c8",
   "name": "iwo-root",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-iwo-root"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -16,21 +18,19 @@
           "name": "waiting-not-child-support",
           "parameters": {},
           "lifespan": 0
-        }
-      ],
-      "parameters": [
+        },
         {
-          "id": "0399bf92-353d-490f-b433-5b95c8e0bd29",
-          "dataType": "@guardianship",
-          "name": "guardianship",
-          "value": "$guardianship",
-          "isList": false
+          "name": "waiting-iwo-root",
+          "parameters": {},
+          "lifespan": 0
         }
       ],
+      "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -41,7 +41,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551131663,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

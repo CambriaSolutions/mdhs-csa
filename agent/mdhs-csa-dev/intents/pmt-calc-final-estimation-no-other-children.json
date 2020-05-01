@@ -1,0 +1,57 @@
+{
+  "id": "8fb800ab-9fda-481d-a62f-e54cecfdb828",
+  "name": "pmt-calc-final-estimation-no-other-children",
+  "auto": true,
+  "contexts": [
+    "waiting-pmt-calc-final-estimation-no-other-children"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmt-calc-final-estimation-no-other-children",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmt-calc-child-support-amount",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "ab2f1187-144e-449e-a394-335f645f0979",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "otherChildren",
+          "value": "$otherChildren",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -6,12 +6,24 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-pmts-general-make-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmts-general-receive-payments",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -22,7 +34,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551313622,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

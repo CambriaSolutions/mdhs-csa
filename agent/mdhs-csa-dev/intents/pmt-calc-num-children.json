@@ -1,5 +1,5 @@
 {
-  "id": "36eb6e3a-5a90-420d-93c3-bfd0590e594e",
+  "id": "36d0f83c-a3ed-43d2-8fec-64bcb395ee9b",
   "name": "pmt-calc-num-children",
   "auto": true,
   "contexts": [
@@ -13,22 +13,19 @@
           "name": "waiting-pmt-calc-num-children",
           "parameters": {},
           "lifespan": 0
-        }
-      ],
-      "parameters": [
+        },
         {
-          "id": "746e5fee-f998-48e0-8cb7-a5e05633a015",
-          "required": false,
-          "dataType": "@sys.number",
-          "name": "numChildren",
-          "value": "$numChildren",
-          "isList": false
+          "name": "waiting-pmt-calc-restart",
+          "parameters": {},
+          "lifespan": 0
         }
       ],
+      "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -39,7 +36,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551310994,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

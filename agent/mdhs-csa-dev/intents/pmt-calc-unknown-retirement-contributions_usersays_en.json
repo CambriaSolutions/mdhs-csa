@@ -1,0 +1,68 @@
+[
+  {
+    "id": "a344cc92-d751-40c0-9783-b6d01a120a94",
+    "data": [
+      {
+        "text": "I have ",
+        "userDefined": false
+      },
+      {
+        "text": "no idea",
+        "alias": "dont-know",
+        "meta": "@dont-know",
+        "userDefined": false
+      },
+      {
+        "text": " where to get this information",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "698a95d4-3892-46fe-92d3-78551fa85c77",
+    "data": [
+      {
+        "text": "not sure",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4085d5e2-75ce-4ba5-8cbc-d621bcf300b1",
+    "data": [
+      {
+        "text": "I\u0027m not sure",
+        "alias": "dont-know",
+        "meta": "@dont-know",
+        "userDefined": false
+      },
+      {
+        "text": " how much is subtracted",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "5dbe99eb-5d81-47c1-86ef-03d7ce249fbd",
+    "data": [
+      {
+        "text": "I don\u0027t know",
+        "alias": "dont-know",
+        "meta": "@dont-know",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

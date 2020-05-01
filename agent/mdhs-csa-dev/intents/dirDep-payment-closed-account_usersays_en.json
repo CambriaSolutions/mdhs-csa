@@ -1,30 +1,18 @@
 [
   {
-    "id": "9587aabd-a600-4986-9217-3a52e12cd801",
+    "id": "3d1d3a1f-d102-43d3-9332-da796fd09153",
     "data": [
       {
-        "text": "my bank account is currently closed, however a payment was sent to the account. What happened to the payment",
+        "text": "my bank account it closed but a payment was sent to my account",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551821345
+    "updated": 0
   },
   {
-    "id": "03e5cff8-9c3c-437c-9014-933476b06ab9",
-    "data": [
-      {
-        "text": "payments were sent to a closed account",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 1,
-    "updated": 1551821283
-  },
-  {
-    "id": "904c23f2-043d-4247-910f-b0acede9799c",
+    "id": "8f692e74-ed94-4a3c-a8c2-00deea30e4d7",
     "data": [
       {
         "text": "closed account",
@@ -33,6 +21,30 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551821262
+    "updated": 0
+  },
+  {
+    "id": "5a954bc4-9397-4582-9703-521262992b0a",
+    "data": [
+      {
+        "text": "payments were sent to a closed account",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "d0558432-f2ec-4aa5-a359-5a42bd78c231",
+    "data": [
+      {
+        "text": "my bank account is currently closed, however a payment was sent to the account. What happened to the payment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
   }
 ]
