@@ -2,8 +2,10 @@ const { tbd } = require('./globalFunctions.js')
 
 exports.gratitude = async agent => {
     try {
-        await tbd(agent)
+        await agent.add(
+            `You're welcome. I am glad I was able to help.`
+        )
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
