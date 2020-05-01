@@ -1,6 +1,6 @@
 const { tbd } = require('./globalFunctions.js')
 
-exports.callcenterNotAnswering = async agent => {
+exports.accountInformation = async agent => {
     try {
         await tbd(agent)
     } catch (err) {

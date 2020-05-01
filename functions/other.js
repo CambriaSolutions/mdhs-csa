@@ -1,6 +1,6 @@
 const { tbd } = require('./globalFunctions.js')
 
-exports.complaints = async agent => {
+exports.other = async agent => {
     try {
         await tbd(agent)
     } catch (err) {

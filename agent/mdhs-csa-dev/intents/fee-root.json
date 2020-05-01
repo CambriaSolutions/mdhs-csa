@@ -1,25 +1,12 @@
 {
-  "id": "bd640c1a-4377-42e1-b64e-ab2b16c72dfc",
-  "name": "dirDep-checking",
+  "id": "a51faeab-b94a-411c-8dc8-bf12140e1cf1",
+  "name": "fee-root",
   "auto": true,
-  "contexts": [
-    "waiting-dirDep-checking"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-dirDep-checking",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
-          "name": "waiting-dirDep-savings",
-          "parameters": {},
-          "lifespan": 0
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {

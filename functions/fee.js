@@ -1,6 +1,6 @@
 const { tbd } = require('./globalFunctions.js')
 
-exports.greaterThanOneMonth = async agent => {
+exports.fee = async agent => {
     try {
         await tbd(agent)
     } catch (err) {

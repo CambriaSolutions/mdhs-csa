@@ -3,20 +3,15 @@ const dialogflow = require('dialogflow')
 
 require('dotenv').config()
 // Accessible from the firebase console.
-const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  // Accessible from the firebase console.
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-})
+admin.initializeApp()
 const projectId = process.env.PROJECT_ID
 const db = admin.firestore()
 
 const intentsClient = new dialogflow.IntentsClient()
 
 // // The path to identify the agent that owns the intents.
-const projectAgentPath = intentsClient.projectAgentPath(projectId)
+const projectAgentPath = intentsClient.projectAgentPath(projectId) // TODO - figure out a way to remove this
 
 const request = {
   parent: projectAgentPath,
@@ -33,11 +28,7 @@ intentsClient
     const resources = responses[0]
     resources.forEach(intent => {
       const intentData = {
-        intentName: intent.displayName,
-        suggestionButtonText: [],
-        presentedSuggestions: [],
-        autoSuggestions: [],
-        isAutoSuggestionsEnabled: false,
+        intentName: intent.displayName
       }
       const dataForDocument = [intent.displayName, intentData]
       intents.push(dataForDocument)
