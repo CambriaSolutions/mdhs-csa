@@ -141,7 +141,7 @@ exports.categoriesWithIntents = {
   }, // Suggest snap intent
   supportRequest: {
     intent: 'support-root',
-    suggestionText: 'Support inquiries',
+    suggestionText: 'Support requests',
   },
   tanf: {
     intent: 'tanf-root',
