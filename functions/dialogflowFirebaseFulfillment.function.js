@@ -281,6 +281,9 @@ const {
   pmtQANCPPaymentStatusSubmitRequest,
 } = require('./paymentsQA.js')
 
+// Stimulus Check
+const { stimulusCheck } = require('./stimulusCheck.js')
+
 // Account information
 const { accountInformation } = require('./accountInformation.js')
 
@@ -789,6 +792,7 @@ exports = module.exports = functions
     intentMap.set('enforcement-report-error', enforcementReportError)
     intentMap.set('enforcement-unemployment', enforcementUnemployment)
     intentMap.set('enforcement-submit-inquiry', enforcementSubmitInquiry)
+    intentMap.set('stimulusCheck-root', stimulusCheck)
 
     intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
     // Cancel intent
