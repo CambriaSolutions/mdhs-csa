@@ -25,6 +25,7 @@ exports.notChildSupportRoot = async agent => {
     await agent.add(new Suggestion('CS Case Services'))
     await agent.add(new Suggestion('CS Office Locations'))
     await agent.add(new Suggestion('CS Policy Manual'))
+    await agent.add(new Suggestion('Stimulus Check'))
     await disableInput(agent)
     await agent.context.set({
       name: 'waiting-not-child-support-retry',
