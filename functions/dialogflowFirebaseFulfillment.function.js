@@ -137,6 +137,7 @@ const {
   supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
+  supportParentReceivingEmancipation,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
@@ -599,6 +600,8 @@ exports = module.exports = functions
     // Support intents
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-receiving-emancipation', supportParentReceivingEmancipation)
+
     intentMap.set(
       'support-parent-receiving-employment-info',
       supportParentReceivingEmploymentInfo

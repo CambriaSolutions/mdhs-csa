@@ -1,0 +1,62 @@
+[
+  {
+    "id": "750d10e1-0cbf-43cb-b7c2-c336867fc819",
+    "data": [
+      {
+        "text": "I am a child, how can I emancipate?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2c50d661-6477-4f1a-84b9-0b3ac6ec4467",
+    "data": [
+      {
+        "text": "How do I get information about emancipation in MS?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "efac7b12-4e36-4512-b548-83465f1e89ff",
+    "data": [
+      {
+        "text": "How do I know more about emancipation in other states?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "020a77f7-a749-4da6-8998-9efc19558868",
+    "data": [
+      {
+        "text": "Emancipation",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "9bd510dd-a218-49d0-aac9-c9b7351c20af",
+    "data": [
+      {
+        "text": "What is emancipation?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
