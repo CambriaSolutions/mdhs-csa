@@ -20,6 +20,7 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Unemployment Benefits'))
     await agent.add(new Suggestion('Bankruptcy'))
     await agent.add(new Suggestion('Income Withholding Order Information'))
+    await agent.add(new Suggestion('Contempt'))
   } catch (err) {
     console.error(err)
   }
@@ -350,7 +351,7 @@ exports.enforcementSubmitInquiry = async agent => {
 }
 
 /**
- * Intent: bankruptcy-support
+ * Intent: enforcement-bankruptcy
  *
  * @param {*} agent
  */
@@ -364,3 +365,23 @@ exports.enforcementBankruptcy = async agent => {
     console.error(err)
   }
 }
+
+/**
+ * Intent: enforcement-contempt
+ *
+ * @param {*} agent
+ */
+exports.enforcementContempt = async agent => {
+  try {
+    await agent.add(
+      `After all other appropriate enforcement actions have been attempted and an ability to pay assessment has been conducted, MDHS may petition the court to hold the parent who owes support in contempt.This may result in the incarceration of the parent who owes support until a lump sum payment is made on his/her behalf.`
+    )
+    await agent.add(
+      `If you would like to submit a request for contempt action on your case, please select "Submit request for contempt" below.`
+    )
+    await agent.add(new Suggestion('Submit request for contempt'))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
