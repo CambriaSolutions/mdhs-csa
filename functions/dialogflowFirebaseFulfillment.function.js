@@ -284,73 +284,13 @@ const {
 // Stimulus Check
 const { stimulusCheck } = require('./stimulusCheck.js')
 
-// Account information
-const { accountInformation } = require('./accountInformation.js')
-
-// Childcare
-const { childCare } = require('./childCare.js')
-
-// Documentation
-const { documentation } = require('./documentation.js')
-
-// Email
-const { email } = require('./email.js')
-
-// Fax
-const { fax } = require('./fax.js')
-
-// Fee
-const { fee } = require('./fee.js')
-
-// Gratitude not answering
-const { gratitude } = require('./gratitude.js')
-
-// Interstate
-const { interstate } = require('./interstate.js')
-
-// Legal
-const { legal } = require('./legal.js')
-
-// Login
-const { login } = require('./login.js')
-
-// Online action
-const { onlineAction } = require('./onlineAction.js')
-
-// Other
-const { other } = require('./other.js')
-
-// Payment Timelines
-const { paymentTimelines } = require('./paymentTimelines.js')
-
-// Phone number
-const { phoneNumber } = require('./phoneNumber.js')
-
-// Refund
-const { refund } = require('./refund.js')
-
-// Snap
-const { snap } = require('./snap.js')
-
-// Tanf
-const { tanf } = require('./tanf.js')
-
-// Taxes
-const { taxes } = require('./taxes.js')
-
-// Verification
-const { verification } = require('./verification.js')
-
-// Visitation
-const { visitation } = require('./visitation.js')
-
 const { backIntent } = require('./back.js')
 
 const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
+// const { handleUnhandled } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
@@ -446,6 +386,12 @@ exports = module.exports = functions
       } catch (err) {
         console.error(err)
       }
+    }
+
+    // TODO: remove after testing
+    // Testing intent for ml training
+    const tbd = async agent => {
+      await agent.add('test')
     }
 
     let intentMap = new Map()
@@ -798,71 +744,10 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Account information
-    intentMap.set('accountInformation-root', accountInformation)
+    // TBD intent
+    intentMap.set('tbd', tbd)
 
-    // Childcare
-    intentMap.set('childCare-root', childCare)
-
-    // Complaints
-    intentMap.set('complaints-root', feedbackRoot)
-
-    // Documentation
-    intentMap.set('documentation-root', documentation)
-
-    // Email
-    intentMap.set('email-root', email)
-
-    // Fax
-    intentMap.set('fax-root', fax)
-
-    // Fee
-    intentMap.set('fee-root', fee)
-
-    // Gratitude not answering
-    intentMap.set('gratitude-root', gratitude)
-
-    // Interstate
-    intentMap.set('interstate-root', interstate)
-
-    // Legal
-    intentMap.set('legal-root', legal)
-
-    // Login
-    intentMap.set('login-root', login)
-
-    // Online action
-    intentMap.set('onlineAction-root', onlineAction)
-
-    // Other
-    intentMap.set('other-root', other)
-
-    // Payment Timelines
-    intentMap.set('paymentTimelines-root', paymentTimelines)
-
-    // Phone number
-    intentMap.set('phoneNumber-root', phoneNumber)
-
-    // Refund
-    intentMap.set('refund-root', refund)
-
-    // Snap
-    intentMap.set('snap-root', snap)
-
-    // Tanf
-    intentMap.set('tanf-root', tanf)
-
-    // Taxes
-    intentMap.set('taxes-root', taxes)
-
-    // Verification
-    intentMap.set('verification-root', verification)
-
-    // Visitation
-    intentMap.set('visitation', visitation)
-
-    intentMap.set('none-of-these', noneOfThese);
-    intentMap.set('Default Fallback Intent', handleUnhandled)
+    // intentMap.set('Default Fallback Intent', handleUnhandled)
 
     const resetBackIntentList = [
       'yes-child-support',
