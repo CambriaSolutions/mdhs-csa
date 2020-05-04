@@ -181,7 +181,7 @@ exports.enforcementContestLien = async agent => {
 exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case.`
+      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case. Please do NOT provide financial account information through this platform.`
     )
     await handleEndConversation(agent)
   } catch (err) {
