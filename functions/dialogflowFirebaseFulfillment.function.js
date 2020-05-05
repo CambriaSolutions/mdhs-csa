@@ -169,6 +169,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -343,9 +344,9 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { 
-  visitationRoot, 
-  visitationPetitionToCite, 
+const {
+  visitationRoot,
+  visitationPetitionToCite,
   visitationProSePacket,
 } = require('./visitation.js')
 
@@ -655,6 +656,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
