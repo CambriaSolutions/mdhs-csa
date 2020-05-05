@@ -124,8 +124,13 @@ exports.enforcementLicenseReinstatement = async agent => {
 exports.enforcementTaxOffset = async agent => {
   try {
     await agent.add(
-      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the guide.'
+      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the guide.'
     )
+    
+    await agent.add(
+      'You may ask me questions about tax offset or <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the Child Support Tax Offset Guide.'
+    )
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
