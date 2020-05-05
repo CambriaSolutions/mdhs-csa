@@ -1,4 +1,4 @@
-const { Suggestion, Card } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
 
 /**
  * visitation-root
