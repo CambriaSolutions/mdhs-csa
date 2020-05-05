@@ -22,10 +22,27 @@
       ],
       "parameters": [
         {
+          "id": "74baa9cc-14ad-4766-a4a1-480798566279",
+          "required": false,
+          "dataType": "@dont-know",
+          "name": "dont-know",
+          "value": "$dont-know",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
           "id": "8151cbda-9840-4e46-be54-359a17c9e8de",
+          "required": false,
           "dataType": "@sys.any",
           "name": "caseNumber",
           "value": "$caseNumber",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -33,6 +50,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -43,7 +61,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551294878,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

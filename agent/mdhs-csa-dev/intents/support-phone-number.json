@@ -33,6 +33,10 @@
               "value": "I didn\u0027t recognize that as a phone number, starting with area code, could you repeat that?"
             }
           ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -40,6 +44,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -50,7 +55,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551294928,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

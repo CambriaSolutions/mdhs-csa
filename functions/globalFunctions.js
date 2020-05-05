@@ -21,6 +21,12 @@ exports.handleEndConversation = async agent => {
   })
 }
 
+exports.tbd = async agent => {
+  const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
+  await agent.add(tbdMessage)
+  await this.handleEndConversation(agent)
+}
+
 // Used to calculate the percentage of income for employers to withhold
 exports.calculatePercentage = (isSupporting, inArrears) => {
   if (isSupporting && inArrears) {
@@ -130,6 +136,7 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Opening a Child Support Case'))
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
+    await agent.add(new Suggestion('Stimulus Check'))
     await agent.add(new Suggestion('Enforcement Action'))
   } catch (err) {
     console.error(err)

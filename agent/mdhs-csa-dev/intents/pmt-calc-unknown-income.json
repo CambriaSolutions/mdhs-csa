@@ -15,16 +15,35 @@
           "lifespan": 0
         },
         {
-          "name": "waiting-pmt-calc-handle-timeframe",
+          "name": "waiting-pmt-calc-gross-income",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmt-calc-tax-deductions",
           "parameters": {},
           "lifespan": 0
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "3e9a09f6-9a48-40ec-a117-9a6301348291",
+          "required": false,
+          "dataType": "@dont-know",
+          "name": "dont-know",
+          "value": "$dont-know",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
       "messages": [
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -35,7 +54,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551310756,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

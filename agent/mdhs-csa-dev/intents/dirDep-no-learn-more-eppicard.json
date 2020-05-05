@@ -27,6 +27,10 @@
           "dataType": "@yes-no",
           "name": "yes-no",
           "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -34,6 +38,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -44,7 +49,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551820327,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

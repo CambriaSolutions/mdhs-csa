@@ -1,27 +1,39 @@
 [
   {
+    "value": "annual",
+    "synonyms": [
+      "annual",
+      "annually",
+      "anual",
+      "every year",
+      "year"
+    ]
+  },
+  {
     "value": "biweekly",
     "synonyms": [
-      "biweekly",
       "Bi-Weekly",
-      "every two weeks",
-      "bi weekly"
+      "bi weekly",
+      "biweekly",
+      "every 2 weeks",
+      "every other week",
+      "every two weeks"
     ]
   },
   {
     "value": "monthly",
     "synonyms": [
-      "monthly",
       "every month",
+      "monthly",
       "once a month"
     ]
   },
   {
-    "value": "annual",
+    "value": "weekly",
     "synonyms": [
-      "annual",
-      "year",
-      "every year"
+      "every week",
+      "once a week",
+      "weekly"
     ]
   }
 ]

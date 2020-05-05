@@ -4,7 +4,8 @@
   "description": "",
   "main": "locations.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "populateScripts": "node populateMlCategoriesCollection.js && node populateIntentsCollection.js && node populateIntentSuggestions.js"
   },
   "author": "",
   "license": "ISC",

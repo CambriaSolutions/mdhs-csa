@@ -28,6 +28,10 @@
               "value": "What is the street name?"
             }
           ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
@@ -42,6 +46,10 @@
               "value": "What is the city?"
             }
           ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
@@ -50,6 +58,10 @@
           "dataType": "@sys.zip-code",
           "name": "userZip",
           "value": "$userZip",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -57,6 +69,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -67,7 +80,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1551124411,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

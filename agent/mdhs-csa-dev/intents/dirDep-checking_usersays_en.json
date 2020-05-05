@@ -1,6 +1,6 @@
 [
   {
-    "id": "616bb2eb-2a32-4202-9571-359b673046f6",
+    "id": "21d70137-dc2e-439a-a7a0-b3868403dfaf",
     "data": [
       {
         "text": "debit",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550169433
+    "updated": 0
   },
   {
-    "id": "7ea90429-11b1-47ec-89b9-9633f237ad1d",
+    "id": "c974fa31-2ace-4686-93ac-dc764deb656f",
     "data": [
       {
         "text": "checking",
@@ -21,6 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1550169433
+    "updated": 0
   }
 ]

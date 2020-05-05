@@ -18,6 +18,11 @@
           "name": "waiting-support-type",
           "parameters": {},
           "lifespan": 0
+        },
+        {
+          "name": "waiting-support-parent-paying-more",
+          "parameters": {},
+          "lifespan": 0
         }
       ],
       "parameters": [
@@ -27,6 +32,10 @@
           "dataType": "@employmentStatus",
           "name": "employmentStatus",
           "value": "$employmentStatus",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -34,6 +43,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -45,5 +55,8 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

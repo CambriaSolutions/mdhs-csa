@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2c5f140a-abd0-4655-8304-1dcfb9cd1fff",
+    "data": [
+      {
+        "text": "ten",
+        "alias": "taxDeductions",
+        "meta": "@sys.number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8f3a9f54-b72f-4798-8a74-7fb3a69dd646",
+    "data": [
+      {
+        "text": "200",
+        "alias": "taxDeductions",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " dollars",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "65b77ee4-154f-482b-9253-8d5eff0c0e29",
+    "data": [
+      {
+        "text": "$",
+        "userDefined": false
+      },
+      {
+        "text": "1000",
+        "alias": "taxDeductions",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

@@ -18,9 +18,14 @@
       "parameters": [
         {
           "id": "fcd620e6-0ebe-438f-a001-6e4b4971ece9",
+          "required": false,
           "dataType": "@yes-no",
           "name": "isSupporting",
           "value": "$isSupporting",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -28,6 +33,7 @@
         {
           "type": 0,
           "lang": "en",
+          "condition": "",
           "speech": []
         }
       ],
@@ -38,7 +44,9 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1550881568,
   "fallbackIntent": false,
-  "events": []
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

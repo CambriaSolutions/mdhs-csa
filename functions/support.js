@@ -817,10 +817,6 @@ exports.supportCollectIssue = async agent => {
       lifespan: 3,
     })
     await agent.context.set({
-      name: 'waiting-support-cancel-issue',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'ticketinfo',
       parameters: ticketInfoParams,
     })

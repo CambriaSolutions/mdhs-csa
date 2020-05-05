@@ -1,92 +1,14 @@
 [
   {
-    "id": "a75ed4a4-dc14-455b-8b5e-6cd6d0d462dc",
+    "id": "1ade7406-5ef5-479d-b30f-6b5ca5202e9c",
     "data": [
       {
-        "text": "withholding",
+        "text": "employer",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1551131663
-  },
-  {
-    "id": "8fafac7f-2652-4cf2-a5cf-9fc579b695a7",
-    "data": [
-      {
-        "text": "do i withhold for each iwo",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1551131663
-  },
-  {
-    "id": "acc068e7-26fc-47dd-a723-7377319d8f68",
-    "data": [
-      {
-        "text": "ncp",
-        "alias": "guardianship",
-        "meta": "@guardianship",
-        "userDefined": false
-      },
-      {
-        "text": " has multiple cases, how much do i withhold",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1551131663
-  },
-  {
-    "id": "52bbd8e8-b462-45da-b9a2-2913877f4fdd",
-    "data": [
-      {
-        "text": "my employee is not payed enough to make the payments, so how much do i withhold",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1551131663
-  },
-  {
-    "id": "e5194b56-c16c-47c6-aa68-9032a4ec3974",
-    "data": [
-      {
-        "text": "employee may have multiple cases how much do I withhold",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1550878804
-  },
-  {
-    "id": "49a11036-a8e6-456b-88d0-04b50256db30",
-    "data": [
-      {
-        "text": "Do I withhold for each Income Withholding Order?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1550878804
-  },
-  {
-    "id": "82039bda-96f5-4056-beb5-43d2213f4aed",
-    "data": [
-      {
-        "text": "Our employee is a part time, are we required to withhold",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1550878804
+    "updated": 0
   }
 ]
