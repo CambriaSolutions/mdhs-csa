@@ -1,6 +1,18 @@
 [
   {
-    "id": "e4847d61-96c0-473b-9c98-9c6a2e060abf",
+    "id": "8ebf7fc3-947b-470a-94ec-336d11da40e7",
+    "data": [
+      {
+        "text": "Account balance",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "271e36d8-edaf-404d-b4c3-bda07771fb68",
     "data": [
       {
         "text": "bank",
@@ -12,7 +24,7 @@
     "updated": 0
   },
   {
-    "id": "5627d4a5-dd7c-44bd-b0fa-47c7b7f11ddd",
+    "id": "3a0ecd41-7f82-4683-a9fd-0f8debbcde38",
     "data": [
       {
         "text": "echeck",
@@ -24,7 +36,7 @@
     "updated": 0
   },
   {
-    "id": "8a0e4317-7630-4acf-bd95-03b21ffe705c",
+    "id": "1dc0a97e-1084-4c2c-8f25-97888245d8f4",
     "data": [
       {
         "text": "debit",
@@ -36,7 +48,7 @@
     "updated": 0
   },
   {
-    "id": "ce7cccc7-6ae3-49d6-a1ad-7d36e7930cec",
+    "id": "de0a3e25-07ef-409d-b7f2-db3f3b1c0bfb",
     "data": [
       {
         "text": "eCheck/Bank Account Debit",
