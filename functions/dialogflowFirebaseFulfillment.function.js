@@ -51,6 +51,7 @@ const {
   employerIPayOnline,
   employerChecksMoneyOrders,
   employerIWOHandoff,
+  employerBillsAndNotices
 } = require('./employer.js')
 
 // Payment calculator intents
@@ -554,6 +555,7 @@ exports = module.exports = functions
     intentMap.set('employer-iPayOnline', employerIPayOnline)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
+    intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
 
     // Payment methods intents
     intentMap.set('pmtMethods-none', pmtMethodsNone)
