@@ -6,7 +6,7 @@ const { Suggestion } = require('dialogflow-fulfillment')
 exports.visitationRoot = async agent => {
     try {
         await agent.add(
-            `Mississippi’s Access and Visitation Program (MAV-P)is designed for noncustodial parents to have access to visit their children as specified in a court order or divorce decree. Assistance with voluntary agreements for visitation schedules is provided to parents who have a child support case.`
+            `Mississippi’s Access and Visitation Program (MAV-P) is designed for noncustodial parents to have access to visit their children as specified in a court order or divorce decree. Assistance with voluntary agreements for visitation schedules is provided to parents who have a child support case.`
         )
 
         await agent.add(
