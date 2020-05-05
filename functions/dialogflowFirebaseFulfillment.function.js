@@ -342,7 +342,11 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { visitation } = require('./visitation.js')
+const { 
+  visitationRoot, 
+  visitationPetitionToCite, 
+  visitationProSePacket,
+} = require('./visitation.js')
 
 const { backIntent } = require('./back.js')
 
@@ -859,7 +863,9 @@ exports = module.exports = functions
     intentMap.set('verification-root', verification)
 
     // Visitation
-    intentMap.set('visitation', visitation)
+    intentMap.set('visitation-root', visitationRoot)
+    intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
+    intentMap.set('visitation-prosepackets', visitationProSePacket)
 
     intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
