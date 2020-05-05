@@ -15,7 +15,7 @@ exports.startSupportConvo = async agent => {
       new Suggestion(`Parent who is to pay child support payments`)
     )
     await agent.add(new Suggestion(`Employer`))
-
+    await agent.add(new Suggestion(`Visitation`))
     await agent.context.set({
       name: 'waiting-support-parent-receiving',
       lifespan: 3,
