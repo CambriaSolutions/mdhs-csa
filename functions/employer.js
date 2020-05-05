@@ -9,6 +9,7 @@ exports.employerRoot = async agent => {
     await agent.add(new Suggestion('iPayOnline'))
     await agent.add(new Suggestion('Checks/Money Orders'))
     await agent.add(new Suggestion('Income Withholding Order Information'))
+    await agent.add(new Suggestion('Bills and Notices'))
   } catch (err) {
     console.error(err)
   }
@@ -77,6 +78,17 @@ exports.employerIWOHandoff = async agent => {
       name: 'waiting-support-parent-receiving-employment-info',
       lifespan: 2,
     })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.employerBillsAndNotices = async agent => {
+  try {
+    await agent.add('If you are an employer who is receiving a monthly Child Support Income Withholding Bill for an employee, you may now view and print these documents online. These documents are available in Portable Document Format (PDF) only. If you have questions, please contact the Child Support Call Center <a href="tel:+18778824916">1-877-882-4916</a>')
+    await agent.add('<a href="https://ccis.mdhs.ms.gov/" target="_blank">Click here</a> to access the Child Support Billing Notice System')
+
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
