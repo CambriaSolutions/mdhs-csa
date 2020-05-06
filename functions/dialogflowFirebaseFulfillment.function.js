@@ -49,6 +49,7 @@ const {
   employerRoot,
   employerEFT,
   employerIPayOnline,
+  employerGuide,
   employerChecksMoneyOrders,
   employerIWOHandoff,
   employerBillsAndNotices
@@ -343,9 +344,9 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { 
-  visitationRoot, 
-  visitationPetitionToCite, 
+const {
+  visitationRoot,
+  visitationPetitionToCite,
   visitationProSePacket,
 } = require('./visitation.js')
 
@@ -553,6 +554,7 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
     intentMap.set('employer-billsAndNotices', employerBillsAndNotices)

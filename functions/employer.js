@@ -7,6 +7,7 @@ exports.employerRoot = async agent => {
     await agent.add(`What can I help you with?`)
     await agent.add(new Suggestion('EFT'))
     await agent.add(new Suggestion('iPayOnline'))
+    await agent.add(new Suggestion('Employer Guide'))
     await agent.add(new Suggestion('Checks/Money Orders'))
     await agent.add(new Suggestion('Income Withholding Order Information'))
     await agent.add(new Suggestion('Bills and Notices'))
@@ -35,6 +36,19 @@ exports.employerIPayOnline = async agent => {
       `You can manage child support payments through iPayOnline.<a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
     )
     await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.employerGuide = async agent => {
+  try {
+    await agent.add(
+      `An Employer Guide was created to assist employers in learning more about topics such as reporting new hires, handling income withholding orders, or handling medical support notices. This guide provides resources, contact information, and links to forms.`
+    )
+    await agent.add(
+      `Please <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">click here</a> to open the Employer Guide for more information`
+    )
   } catch (err) {
     console.error(err)
   }
