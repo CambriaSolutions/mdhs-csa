@@ -49,7 +49,7 @@ exports.visitationProSePacket = async agent => {
         )
 
         await agent.add(
-            `Pleas <a href="https://www.mdhs.ms.gov/wp-content/uploads/2018/09/Petition-to-Establish-Visitation-Rights-Pro-Se-9-18.pdf" target="_blank">click here</a> to download the Pro Se information Packet`
+            `Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2018/09/Petition-to-Establish-Visitation-Rights-Pro-Se-9-18.pdf" target="_blank">click here</a> to download the Pro Se information Packet`
         )
 
         await agent.add(new Suggestion('Petition to cite'))
