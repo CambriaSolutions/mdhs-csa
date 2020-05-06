@@ -380,7 +380,7 @@ exports.enforcementContempt = async agent => {
     await agent.add(
       `If you would like to submit a request for contempt action on your case, please select "Submit request for contempt" below.`
     )
-    await agent.add(new Suggestion('Submit request for contempt'))
+    await agent.add(new Suggestion('Request Contempt Action'))
   } catch (err) {
     console.error(err)
   }
