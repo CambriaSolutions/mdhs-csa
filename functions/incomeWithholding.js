@@ -45,6 +45,29 @@ exports.iwoRoot = async agent => {
   }
 }
 
+exports.iwoCcpaRoot = async agent => {
+  try {
+    await agent.add(
+      `The Consumer Credit Protection Act limits earnings that may be withheld. Earnings are subject to withholding limits that range between 50-65%. The withholding order will specify the CCPA cap amount based on information known to MDHS.`
+    )
+    await agent.add(
+      `Would you like assistance estimating the CCPA percentage that may apply to a particular case?`
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-iwo-confirm-estimate',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-iwo-no-assistance',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+} 
+
 exports.iwoNoAssistance = async agent => {
   try {
     await handleEndConversation(agent)

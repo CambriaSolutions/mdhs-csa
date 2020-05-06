@@ -56,6 +56,8 @@ const {
   employerBillsAndNotices
 } = require('./employer.js')
 
+const { calcRoot } = require('./calculator.js')
+
 // Payment calculator intents
 const {
   pmtCalcRoot,
@@ -217,6 +219,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoCcpaRoot,
   iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
@@ -485,6 +488,8 @@ exports = module.exports = functions
       handleAcknowledgementAfterRetry
     )
 
+    intentMap.set('calc-root', calcRoot);
+
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
     intentMap.set('pmt-calc-restart', pmtCalcRootRestart)
@@ -530,6 +535,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-ccpa-root', iwoCcpaRoot);
     intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
