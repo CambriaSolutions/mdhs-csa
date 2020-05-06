@@ -1,6 +1,6 @@
 [
   {
-    "id": "3c8843bd-4e83-46a0-be04-12a253ecf9c9",
+    "id": "69939716-898a-424d-8b70-9fb39552faa0",
     "data": [
       {
         "text": "how do i receive payments?",
@@ -12,7 +12,7 @@
     "updated": 0
   },
   {
-    "id": "52a3a95c-4e61-4421-83e2-cb95c4c58439",
+    "id": "e1d1538e-89cf-474f-875c-65c104e85ab9",
     "data": [
       {
         "text": "who do i contact regarding payments",
@@ -24,22 +24,10 @@
     "updated": 0
   },
   {
-    "id": "3952cd72-10d8-4ee2-8096-9fb9e2d3df00",
+    "id": "1219f61b-ce7a-4272-96d6-6e3d6fe52719",
     "data": [
       {
         "text": "what are the options for payments",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "0a25d377-2e53-44cb-8dec-c731dae98733",
-    "data": [
-      {
-        "text": "payments",
         "userDefined": false
       }
     ],
