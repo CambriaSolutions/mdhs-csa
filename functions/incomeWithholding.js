@@ -12,14 +12,14 @@ exports.iwoRoot = async agent => {
   try {
     await agent.add(`Which of the following is most relevant to your inquiry?`)
     await agent.add(
-      'CCPA Assistance: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
+      'CCPA Calculator: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
     )
     await agent.add('FAQs: Regarding Income Withholding Orders')
     await agent.add(
       'Report Information About the Parent who Pays Support: Report information about the parent who provides support like change in their address, salary change, employment change, etc.'
     )
 
-    await agent.add(new Suggestion('CCPA Assistance'))
+    await agent.add(new Suggestion('CCPA Calculator'))
     await agent.add(new Suggestion('FAQs'))
     await agent.add(
       new Suggestion('Report Information About the Parent who Pays Support')
