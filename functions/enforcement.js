@@ -37,7 +37,7 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
       `MDHS may suspend driver's licenses and professional licenses to enforce child support when arrears are owed.`
     )
     await agent.add(
-      'Would you like to learn more about when a license may be suspended or how to get a suspended license reinstated?'
+      'To learn more about when a license may be suspended or how to get a suspended license reinstated, select one of the options below.'
     )
     await agent.add(new Suggestion('License Suspension'))
     await agent.add(new Suggestion('License Reinstatement'))
@@ -124,8 +124,9 @@ exports.enforcementLicenseReinstatement = async agent => {
 exports.enforcementTaxOffset = async agent => {
   try {
     await agent.add(
-      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the guide.'
+      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the guide.'
     )
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -159,7 +160,7 @@ exports.enforcementLiens = async agent => {
 exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
-      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien.`
+      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien. Please do NOT provide your financial account information in the request below.`
     )
     await agent.add(new Suggestion('Submit Request'))
     await handleEndConversation(agent)
@@ -181,7 +182,7 @@ exports.enforcementContestLien = async agent => {
 exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case.`
+      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case. Please do NOT provide financial account information through this platform.`
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -357,7 +358,7 @@ exports.enforcementSubmitInquiry = async agent => {
 exports.enforcementBankruptcy = async agent => {
   try {
     await agent.add(
-      `If a parent who owes Child Support files for Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have the support in the bankruptcy payments.`
+      `If a parent who owes child support files Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have child support payments included in the bankruptcy plan.`
     )
     await handleEndConversation(agent)
   } catch (err) {
