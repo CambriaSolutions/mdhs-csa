@@ -273,6 +273,9 @@ const {
   contactProvidePhoneNumber,
 } = require('./contactQA.js')
 
+// Terminate 
+const { terminateRoot } = require('./terminate.js')
+
 // Payments QA
 const {
   pmtQAHaventReceived,
@@ -470,6 +473,9 @@ exports = module.exports = functions
     // Contact number intents
     intentMap.set('contact-support-handoff', contactSupportHandoff)
     intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
+
+    // Terminate intents
+    intentMap.set('terminate-root', terminateRoot)
 
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)

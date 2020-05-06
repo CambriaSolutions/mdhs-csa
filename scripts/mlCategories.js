@@ -152,7 +152,7 @@ exports.categoriesWithIntents = {
     suggestionText: 'Taxes'
   },
   terminate: {
-    intent: 'support-root',
+    intent: 'terminate-root',
     suggestionText: 'Close case'
   },
   verification: {
