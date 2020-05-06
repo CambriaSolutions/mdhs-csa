@@ -170,6 +170,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -657,6 +658,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
