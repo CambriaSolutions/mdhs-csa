@@ -34,6 +34,7 @@ const {
   enforcementUnemployment,
   enforcementSubmitInquiry,
   enforcementBankruptcy,
+  enforcementContempt
 } = require('./enforcement.js')
 
 // General payment intents
@@ -808,6 +809,7 @@ exports = module.exports = functions
     intentMap.set('stimulusCheck-root', stimulusCheck)
 
     intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
+    intentMap.set('enforcement-contempt', enforcementContempt)
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
