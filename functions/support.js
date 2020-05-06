@@ -38,6 +38,7 @@ exports.supportParentReceiving = async agent => {
     )
     await agent.add(new Suggestion(`Change of Personal Information`))
     await agent.add(new Suggestion(`Request Case Closure`))
+    await agent.add(new Suggestion(`Emancipation`))
     await agent.add(new Suggestion(`More`))
 
     await agent.context.set({
@@ -87,6 +88,36 @@ exports.supportEmployer = async agent => {
     await agent.add(new Suggestion(`Employer Report Lump Sum Notification`))
     await agent.context.set({
       name: 'waiting-support-type',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportParentReceivingEmancipation = async agent => {
+  try {
+    await agent.add(
+      `Unless otherwise ordered by the court, child support generally continues in Mississippi until the child emancipates when a child: 1) reaches the age of 21; 2) marries; 3) joins and serves in the military on a full time basis; or 4) is convicted of a felony and is sentenced to incarceration of at least 2 years. A court may emancipate a child for other reasons allowable under law. Emancipation does not terminate the obligation to satisfy child support arrears that exist at the time of emancipation.`
+    )
+
+    await agent.add(
+      '<a href="https://www.acf.hhs.gov/css/irg-state-map" target="_blank">Click here</a> for emancipation information from other states.'
+    )
+
+    await agent.add(new Suggestion(`Submit Feedback`))
+    await agent.add(new Suggestion(`Request Case Closure`))
+
+    await agent.context.set({
+      name: 'waiting-feedback-root',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-support-type',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-parent-receiving-more',
       lifespan: 3,
     })
   } catch (err) {
@@ -957,6 +988,16 @@ exports.supportParentReceivingEmploymentInfo = async agent => {
       name: 'waiting-support-report-provider-employment',
       lifespan: 3,
     })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportParentsGuideCSE = async agent => {
+  try {
+    await agent.add(`The purpose of the child support program is to secure financial, medical and emotional support for children and families, thereby, contributing to a family’s ability to become self-sufficient and maintain self-sufficiency. The Mississippi Department of Human Services, Division of Child Support Enforcement exists to provide these services to the families of Mississippi.`)
+
+    await agent.add(`<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">Click here</a> to open the Parents Guide to CSE for more information`)
   } catch (err) {
     console.error(err)
   }

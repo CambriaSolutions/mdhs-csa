@@ -50,8 +50,10 @@ const {
   employerRoot,
   employerEFT,
   employerIPayOnline,
+  employerGuide,
   employerChecksMoneyOrders,
   employerIWOHandoff,
+  employerBillsAndNotices
 } = require('./employer.js')
 
 // Payment calculator intents
@@ -138,6 +140,7 @@ const {
   supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
+  supportParentReceivingEmancipation,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
@@ -169,6 +172,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -343,7 +347,11 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { visitation } = require('./visitation.js')
+const {
+  visitationRoot,
+  visitationPetitionToCite,
+  visitationProSePacket,
+} = require('./visitation.js')
 
 const { backIntent } = require('./back.js')
 
@@ -549,8 +557,10 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
+    intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
 
     // Payment methods intents
     intentMap.set('pmtMethods-none', pmtMethodsNone)
@@ -600,6 +610,8 @@ exports = module.exports = functions
     // Support intents
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-receiving-emancipation', supportParentReceivingEmancipation)
+
     intentMap.set(
       'support-parent-receiving-employment-info',
       supportParentReceivingEmploymentInfo
@@ -650,6 +662,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
@@ -861,7 +874,9 @@ exports = module.exports = functions
     intentMap.set('verification-root', verification)
 
     // Visitation
-    intentMap.set('visitation', visitation)
+    intentMap.set('visitation-root', visitationRoot)
+    intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
+    intentMap.set('visitation-prosepackets', visitationProSePacket)
 
     intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
