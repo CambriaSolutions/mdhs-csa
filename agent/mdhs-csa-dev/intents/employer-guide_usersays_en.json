@@ -1,0 +1,38 @@
+[
+  {
+    "id": "2eca74d7-6674-49d9-a049-9cbb3b2651aa",
+    "data": [
+      {
+        "text": "Is there a guide for employer?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "7bd98910-c860-4f6f-907f-e7297c5c3e43",
+    "data": [
+      {
+        "text": "Where can I read about employer rights?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8a4365bf-321a-4e2c-87e9-f71a5f8c77a5",
+    "data": [
+      {
+        "text": "Employer Guide",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

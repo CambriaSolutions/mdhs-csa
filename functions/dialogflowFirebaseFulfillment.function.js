@@ -49,6 +49,7 @@ const {
   employerRoot,
   employerEFT,
   employerIPayOnline,
+  employerGuide,
   employerChecksMoneyOrders,
   employerIWOHandoff,
   employerBillsAndNotices
@@ -138,6 +139,7 @@ const {
   supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
+  supportParentReceivingEmancipation,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
@@ -169,6 +171,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -343,9 +346,9 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { 
-  visitationRoot, 
-  visitationPetitionToCite, 
+const {
+  visitationRoot,
+  visitationPetitionToCite,
   visitationProSePacket,
 } = require('./visitation.js')
 
@@ -553,6 +556,7 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
     intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
@@ -605,6 +609,8 @@ exports = module.exports = functions
     // Support intents
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-receiving-emancipation', supportParentReceivingEmancipation)
+
     intentMap.set(
       'support-parent-receiving-employment-info',
       supportParentReceivingEmploymentInfo
@@ -655,6 +661,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
