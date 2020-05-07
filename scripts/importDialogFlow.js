@@ -15,6 +15,7 @@ const zip = new JSZip();
 
 zip.file("package.json", fs.readFileSync('../agent/package.json'))
 zip.file('agent.json', fs.readFileSync('../agent/agent.json'));
+
 const intentFiles = fs.readdirSync('../agent/intents');
 intentFiles.forEach(intentFile => {
     zip
