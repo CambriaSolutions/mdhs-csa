@@ -297,6 +297,9 @@ workflows:
   build_deploy:
     jobs:
       - deploy_dev_dialogflow_agent
+      - deploy_isd_dialogflow_agent
+      - deploy_stage_dialogflow_agent
+      - deploy_prod_dialogflow_agent
       - deploy_dev_functions:
           requires: 
             - deploy_dev_dialogflow_agent
@@ -305,16 +308,22 @@ workflows:
               only:
                 - development
       - deploy_isd_functions:
+          requires: 
+            - deploy_isd_dialogflow_agent
           filters:
             branches:
               only:
                 - isd
       - deploy_stage_functions:
+          requires: 
+            - deploy_stage_dialogflow_agent
           filters:
             branches:
               only:
                 - stage
       - deploy_prod_functions:
+          requires: 
+            - deploy_prod_dialogflow_agent
           filters:
             branches:
               only:
