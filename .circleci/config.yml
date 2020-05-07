@@ -296,10 +296,6 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - deploy_dev_dialogflow_agent
-      - deploy_isd_dialogflow_agent
-      - deploy_stage_dialogflow_agent
-      - deploy_prod_dialogflow_agent
       - deploy_dev_functions:
           requires: 
             - deploy_dev_dialogflow_agent
