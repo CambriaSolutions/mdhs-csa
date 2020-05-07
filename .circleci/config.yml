@@ -22,7 +22,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}" > .env
       - run
-          name: 'Set agent configuration'
+          name: 'Agent configuration'
           command: cd agent && mv agent.dev.json agent.json
       - run:
           name: 'Import to Dev DialogFlow'
@@ -95,7 +95,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${ISD_AGENT_CLIENT_EMAIL}" > .env
       - run
-          name: 'Set agent configuration'
+          name: 'Agent Configuration'
           command: cd agent && mv agent.isd.json agent.json
       - run:
           name: 'Import to ISD DialogFlow'
@@ -168,7 +168,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${STAGE_AGENT_CLIENT_EMAIL}" > .env
       - run
-          name: 'Set agent configuration'
+          name: 'Agent Configuration'
           command: cd agent && mv agent.stage.json agent.json
       - run:
           name: 'Import to Stage DialogFlow'
@@ -241,7 +241,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${PROD_AGENT_CLIENT_EMAIL}" > .env
       - run
-          name: 'Set agent configuration'
+          name: 'Agent Configuration'
           command: cd agent && mv agent.prod.json agent.json
       - run:
           name: 'Import to Prod DialogFlow'
