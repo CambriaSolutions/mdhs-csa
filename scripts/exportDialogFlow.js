@@ -4,7 +4,7 @@ const dialogflow = require('dialogflow')
 
 const client = new dialogflow.v2.AgentsClient()
 
-client.exportAgent({ parent: `projects/${process.env.PROJECT_ID}` })
+client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
     .then(responses => {
         const [operation, initialApiResponse] = responses;
 
@@ -12,7 +12,7 @@ client.exportAgent({ parent: `projects/${process.env.PROJECT_ID}` })
         return operation.promise();
     })
     .then(responses => {
-        fs.writeFile(`export_${process.env.PROJECT_ID}_${new Date().toISOString().slice(0, 10)}.zip`, responses[0].agentContent, (err) => {
+        fs.writeFile(`export_${process.env.AGENT_PROJECT}_${new Date().toISOString().slice(0, 10)}.zip`, responses[0].agentContent, (err) => {
             if (err)
                 console.error(err)
             console.log("Completed");
