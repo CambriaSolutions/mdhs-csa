@@ -31,7 +31,7 @@
   },
   "defaultTimezone": "America/Los_Angeles",
   "webhook": {
-    "url": "https://us-central1-mdhs-csa-dev.cloudfunctions.net/dialogflowFirebaseFulfillment",
+    "url": "https://us-central1-mdhs-csa.cloudfunctions.net/dialogflowFirebaseFulfillment",
     "username": "",
     "headers": {
       "": ""
