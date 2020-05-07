@@ -21,7 +21,7 @@ jobs:
             AGENT_PRIVATE_KEY=${DEV_AGENT_PRIVATE_KEY}
 
             AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}" > .env
-      - run
+      - run:
           name: 'Agent configuration'
           command: cd agent && mv agent.dev.json agent.json
       - run:
@@ -94,7 +94,7 @@ jobs:
             AGENT_PRIVATE_KEY=${ISD_AGENT_PRIVATE_KEY}
 
             AGENT_CLIENT_EMAIL=${ISD_AGENT_CLIENT_EMAIL}" > .env
-      - run
+      - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.isd.json agent.json
       - run:
@@ -167,7 +167,7 @@ jobs:
             AGENT_PRIVATE_KEY=${STAGE_AGENT_PRIVATE_KEY}
 
             AGENT_CLIENT_EMAIL=${STAGE_AGENT_CLIENT_EMAIL}" > .env
-      - run
+      - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.stage.json agent.json
       - run:
@@ -240,7 +240,7 @@ jobs:
             AGENT_PRIVATE_KEY=${PROD_AGENT_PRIVATE_KEY}
 
             AGENT_CLIENT_EMAIL=${PROD_AGENT_CLIENT_EMAIL}" > .env
-      - run
+      - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.prod.json agent.json
       - run:
