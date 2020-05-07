@@ -378,7 +378,7 @@ exports.enforcementContempt = async agent => {
       `After all other appropriate enforcement actions have been attempted and an ability to pay assessment has been conducted, MDHS may petition the court to hold the parent who owes support in contempt.This may result in the incarceration of the parent who owes support until a lump sum payment is made on his/her behalf.`
     )
     await agent.add(
-      `If you would like to submit a request for contempt action on your case, please select "Submit request for contempt" below.`
+      `If you would like to submit a request for contempt action on your case, please select "Request Contempt Action" below.`
     )
     await agent.add(new Suggestion('Request Contempt Action'))
     await agent.context.set({
