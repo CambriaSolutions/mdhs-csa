@@ -1,6 +1,7 @@
 require('dotenv').config()
 const fs = require('fs')
 const dialogflow = require('dialogflow')
+const JSZip = require('jszip');
 
 const dfConfig = {
     credentials: {
@@ -11,6 +12,10 @@ const dfConfig = {
 
 const client = new dialogflow.v2.AgentsClient(dfConfig)
 
+const updateAgentFiles = (updatedFilesDirectory) => {
+
+}
+
 client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
     .then(responses => {
         const [operation, initialApiResponse] = responses;
@@ -19,10 +24,35 @@ client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
         return operation.promise();
     })
     .then(responses => {
-        fs.writeFile(`export_${process.env.AGENT_PROJECT}_${new Date().toISOString().slice(0, 10)}.zip`, responses[0].agentContent, (err) => {
-            if (err)
-                console.error(err)
-            console.log("Completed");
+        const path = './export/';
+        fs.mkdirSync(path);
+        fs.mkdirSync(`${path}/intents`);
+        fs.mkdirSync(`${path}/entities`);
+
+        var zip = new JSZip();
+        zip.loadAsync(responses[0].agentContent).then(function (contents) {
+            Object.keys(contents.files).forEach(function (filename) {
+                zip.file(filename).async('nodebuffer').then(function (content) {
+                    var dest = path + filename;
+                    fs.writeFileSync(dest, content);
+                });
+            });
+
+            // Clean
+            fs.readdirSync(`${path}/intents`).forEach(function (file, index) {
+                fs.unlinkSync(`${path}/${file}`);
+            });
+            fs.rmdirSync(`${path}/intents`);
+            fs.readdirSync(`${path}/entities`).forEach(function (file, index) {
+                fs.unlinkSync(`${path}/${file}`);
+            });
+            fs.rmdirSync(`${path}/entities`);
+            fs.readdirSync(`${path}`).forEach(function (file, index) {
+                fs.unlinkSync(`${path}/${file}`);
+            });
+            fs.rmdirSync(path);
+
+            return;
         });
     })
     .catch(err => {
