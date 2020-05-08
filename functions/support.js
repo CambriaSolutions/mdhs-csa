@@ -102,7 +102,7 @@ exports.supportParentReceivingEmancipation = async agent => {
     )
 
     await agent.add(
-      '<a href="https://www.acf.hhs.gov/css/irg-state-map" target="_blank">Click here</a> for emancipation information from other states.'
+      'Please <a href="https://www.acf.hhs.gov/css/irg-state-map" target="_blank">click here</a> for emancipation information from other states.'
     )
 
     await agent.add(new Suggestion(`Submit Feedback`))
@@ -997,7 +997,7 @@ exports.supportParentsGuideCSE = async agent => {
   try {
     await agent.add(`The purpose of the child support program is to secure financial, medical and emotional support for children and families, thereby, contributing to a family’s ability to become self-sufficient and maintain self-sufficiency. The Mississippi Department of Human Services, Division of Child Support Enforcement exists to provide these services to the families of Mississippi.`)
 
-    await agent.add(`<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">Click here</a> to open the Parents Guide to CSE for more information`)
+    await agent.add(`Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a> to open the Parents Guide to CSE for more information`)
   } catch (err) {
     console.error(err)
   }
