@@ -44,7 +44,6 @@ client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
         return operation.promise();
     })
     .then(responses => {
-        console.log('Exported');
         console.log('Extracting...');
         const path = './export';
         setupExportDir(path);
@@ -58,8 +57,8 @@ client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
                 });
             });
 
-            console.log('Extracted');
             setTimeout(() => {
+                console.log('Comparing...');
                 fs.readdirSync(`${path}/intents`).forEach(function (file, index) {
                     if (file.match(/^[a-zA-Z\-]+\.json/g)) {
                         const intentName = file.replace('.json', '');
@@ -73,7 +72,7 @@ client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
 
                 console.log('Cleaning up...');
                 cleanExportDir(path);
-                console.log("Cleaned");
+                console.log("Done");
             }, 3000);
 
             return;
