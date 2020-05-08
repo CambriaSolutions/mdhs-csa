@@ -28,17 +28,13 @@ module.exports = class IntentComparator {
             if (isUnmodified) {
                 let currentTrainingData = [];
                 for (const index in currentIntentTrainingPhrases) {
-                    delete currentIntentTrainingPhrases[index]["id"];
-                    delete currentIntentTrainingPhrases[index]["lang"];
-                    currentTrainingData.push(JSON.stringify(currentIntentTrainingPhrases[index]));
+                    currentTrainingData.push(JSON.stringify(currentIntentTrainingPhrases[index].data[0].text));
                 }
     
                 // Let's compare all of the data (except the Id values)
                 for(const index in updatedIntentTrainingPhrases) {
                     isUnmodified = currentTrainingData.find(currentTrainingPhrase => {
-                        delete updatedIntentTrainingPhrases[index]["id"];
-                        delete updatedIntentTrainingPhrases[index]["lang"];
-                        return currentTrainingPhrase === JSON.stringify(updatedIntentTrainingPhrases[index]);
+                        return currentTrainingPhrase === JSON.stringify(updatedIntentTrainingPhrases[index].data[0].text);
                     }) !== undefined;
 
                     // As soon as we see a difference exit the loop
