@@ -91,18 +91,6 @@ exports.pmtMethodsPayNearMe = async agent => {
   }
 }
 
-exports.pmtMethodsEcheckDebit = async agent => {
-  try {
-    await agent.add(
-      `You can make payments online using Mississippi iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
-    )
-    await handleEndConversation(agent)
-    await agent.add(new Suggestion('Other Options'))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 exports.pmtMethodsMoneygram = async agent => {
   try {
     await agent.add(

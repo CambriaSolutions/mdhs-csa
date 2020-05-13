@@ -16,9 +16,10 @@ exports.caseQAIncreaseReview = async agent => {
 exports.caseQAGeneral = async agent => {
   try {
     await agent.add(
-      `I cannot provide you case specific information at this time. You may submit an support request or call <a href="tel:+18778824916">877-882-4916</a>.`
+      `At this time, I am not able to answer specific questions about your case. I can help you submit service requests and prevent you from waiting on hold. To submit a request, please click below. To see our customer service number, please click “Customer Service”.`
     )
     await agent.add(new Suggestion('Submit Support Request'))
+    await agent.add(new Suggestion('Customer Service'))
     await agent.context.set({
       name: 'waiting-caseQA-general-support-request',
       lifespan: 2,

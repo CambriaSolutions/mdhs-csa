@@ -98,18 +98,18 @@ const backFunction = (agent, intentMap) => {
 }
 
 /************************************************************************************************
- * fullfillmentWrapper takes the webhookClient and the intentMap for dialogflow and creates a new
+ * fulfillmentWrapper takes the webhookClient and the intentMap for dialogflow and creates a new
  * function for the intent where the 'Go Back' suggestion is added to the the intent if the
  * 'previous-agent-states' context has captured more than 1 state. Also adds the context needed
  * for the back button functionality.
  ************************************************************************************************/
 
-const fullfillmentWrapper = (agent, intentMap) => {
-  const currentIntentFullfillmentFunction = intentMap.get(agent.intent)
+const fulfillmentWrapper = (agent, intentMap) => {
+  const currentIntentFulfillmentFunction = intentMap.get(agent.intent)
   const prevIntents = agent.context.get('previous-agent-states')
 
   const maskFunction = async agent => {
-    await currentIntentFullfillmentFunction(agent)
+    await currentIntentFulfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
       lifespan: 1,
@@ -125,9 +125,9 @@ const fullfillmentWrapper = (agent, intentMap) => {
  * backIntentCycle does the following:
  *
  * 1. Snapshot the current state of the agent.
- * 2. Creating a fullfillment function for the 'go-back' intent.
+ * 2. Creating a fulfillment function for the 'go-back' intent.
  * 3. Set the intent map for dialogflow.
- * 4. Create a fullfillment wrapper for the current intent that sets context to recognize the
+ * 4. Create a fulfillment wrapper for the current intent that sets context to recognize the
  * training phrase and create 'Go Back' suggestion button.
  ************************************************************************************************/
 
@@ -135,7 +135,7 @@ const backIntentCycle = async (agent, intentMap, name) => {
   await snapshotCurrentState(agent)
   const back = backFunction(agent, intentMap)
   intentMap.set(name, back)
-  fullfillmentWrapper(agent, intentMap)
+  fulfillmentWrapper(agent, intentMap)
 }
 
 /************************************************************************************************
@@ -143,9 +143,9 @@ const backIntentCycle = async (agent, intentMap, name) => {
  * back button context or else it will go through the cycle of the back button:
  *
  * 1. Snapshot the current state of the agent.
- * 2. Creating a fullfillment for the 'go-back' intent.
+ * 2. Creating a fulfillment for the 'go-back' intent.
  * 3. Set the intent map for dialogflow.
- * 4. Create a fullfillment wrapper for the current intent that sets context to recognize the
+ * 4. Create a fulfillment wrapper for the current intent that sets context to recognize the
  * training phrase and create 'Go Back' suggestion button.
  *
  * Parameters:

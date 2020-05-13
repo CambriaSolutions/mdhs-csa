@@ -1,22 +1,23 @@
 {
-  "id": "6632bd4f-8428-49d4-9ff5-7b491e8a21dd",
-  "name": "accountInformation-root",
+  "id": "e86b8113-ee48-44f1-8553-27b49d84751b",
+  "name": "account-balance",
   "auto": true,
   "contexts": [],
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

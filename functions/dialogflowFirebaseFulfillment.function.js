@@ -82,7 +82,6 @@ const {
   pmtMethodsNone,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
-  pmtMethodsEcheckDebit,
   pmtMethodsMailAddress,
   pmtMethodsMoneygram,
   pmtMethodsPayNearMe,
@@ -285,7 +284,7 @@ const {
 const { stimulusCheck } = require('./stimulusCheck.js')
 
 // Account information
-const { accountInformation } = require('./accountInformation.js')
+const { accountInformation, accountBalance } = require('./account.js')
 
 // Childcare
 const { childCare } = require('./childCare.js')
@@ -555,7 +554,6 @@ exports = module.exports = functions
     intentMap.set('pmtMethods-none', pmtMethodsNone)
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
-    intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-mail-address', pmtMethodsMailAddress)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
@@ -798,8 +796,9 @@ exports = module.exports = functions
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // Account information
-    intentMap.set('accountInformation-root', accountInformation)
+    // Account
+    intentMap.set('account-balance', accountBalance)
+    intentMap.set('account-information', accountInformation)
 
     // Childcare
     intentMap.set('childCare-root', childCare)
