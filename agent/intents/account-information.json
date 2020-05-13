@@ -1,10 +1,8 @@
 {
-  "id": "bbb8f350-3ac1-4243-9ca8-fff2f63e8f3f",
-  "name": "pmtMethods-eCheckDebit",
+  "id": "6632bd4f-8428-49d4-9ff5-7b491e8a21dd",
+  "name": "account-information",
   "auto": true,
-  "contexts": [
-    "waiting-pmtMethods-eCheckDebit"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
