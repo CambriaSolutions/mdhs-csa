@@ -1,113 +1,5 @@
 [
   {
-    "id": "0ca8bc69-e1e9-4a1e-ab44-5dc3b1ac8ad0",
-    "data": [
-      {
-        "text": "payment",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "ea2ac30d-9220-4833-b013-7221257034bf",
-    "data": [
-      {
-        "text": "estimate payments",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "0c4003c2-ebd4-424c-967c-ae01f1968273",
-    "data": [
-      {
-        "text": "How do I determine how much I will receive?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "a47a8ddc-cb35-49db-a5e3-f647fe0956a4",
-    "data": [
-      {
-        "text": "How do I determine how much I pay?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "ad928327-8726-473c-9655-5a99d83826e0",
-    "data": [
-      {
-        "text": "Is there a calculator for my case?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "29355664-2ea8-453b-94e7-5ebe3fad2063",
-    "data": [
-      {
-        "text": "How do I calculate",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "9d316694-55ef-467b-9f4f-6be81249704e",
-    "data": [
-      {
-        "text": "I need a calculator",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "a0767d98-1963-4d9f-873a-33895f5e96f2",
-    "data": [
-      {
-        "text": "Calculator?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "faf22e8b-4864-4430-b24f-9c39843f148b",
-    "data": [
-      {
-        "text": "Payments?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
     "id": "98b7419e-d213-44eb-b348-651d552aaebb",
     "data": [
       {
@@ -117,6 +9,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
