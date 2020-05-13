@@ -31,7 +31,7 @@ module.exports = class IntentComparator {
                     currentTrainingData.push(JSON.stringify(currentIntentTrainingPhrases[index].data[0].text));
                 }
     
-                // Let's compare all of the data (except the Id values)
+                // Let's compare all of the training phrases
                 for(const index in updatedIntentTrainingPhrases) {
                     isUnmodified = currentTrainingData.find(currentTrainingPhrase => {
                         return currentTrainingPhrase === JSON.stringify(updatedIntentTrainingPhrases[index].data[0].text);
