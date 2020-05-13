@@ -6,30 +6,33 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "a168f117-be8f-4a6a-a923-1310818d0e11",
+          "id": "de2245fa-4e0d-4d9c-9a09-4828a51f8e5d",
+          "name": "guardianship",
           "required": false,
           "dataType": "@guardianship",
-          "name": "guardianship",
           "value": "$guardianship",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
