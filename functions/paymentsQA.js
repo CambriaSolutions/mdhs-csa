@@ -14,10 +14,18 @@ exports.pmtQAHaventReceived = async agent => {
     await agent.add(
       `Do you have any other questions?`
     )
-    await agent.add(new Suggestion(`Submit Feedback`))
     await agent.add(new Suggestion('Submit Support Request'))
+    await handleEndConversation(agent);
   } catch (err) {
     console.error(err)
+  }
+}
+
+exports.pmtQAHaventReceivedSubmitRequest = async agent => {
+  try {
+    await supportInquiries(agent)
+  } catch (err) {
+    console.log(err)
   }
 }
 

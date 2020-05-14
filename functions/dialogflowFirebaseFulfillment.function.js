@@ -270,6 +270,7 @@ const {
 // Payments QA
 const {
   pmtQAHaventReceived,
+  pmtQAHaventReceivedSubmitRequest,
   pmtQAPaymentReduction,
   pmtQAYesPaymentReduction,
   pmtQAOver21,
@@ -715,6 +716,7 @@ exports = module.exports = functions
 
     // Payments QA intents
     intentMap.set('pmtQA-havent-received', pmtQAHaventReceived)
+    intentMap.set('pmtQA-havent-received-submit-request', pmtQAHaventReceivedSubmitRequest)
     intentMap.set('pmtQA-payment-reduction', pmtQAPaymentReduction)
     intentMap.set('pmtQA-yes-payment-reduction', pmtQAYesPaymentReduction)
     intentMap.set('pmtQA-over-21', pmtQAOver21)
