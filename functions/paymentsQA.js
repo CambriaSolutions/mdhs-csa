@@ -21,6 +21,14 @@ exports.pmtQAHaventReceived = async agent => {
   }
 }
 
+exports.pmtQAHaventReceivedSubmitRequest = async agent => {
+  try {
+    await supportInquiries(agent)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 exports.pmtQAPaymentReduction = async agent => {
   try {
     await agent.add(
