@@ -15,8 +15,12 @@ exports.pmtQAHaventReceived = async agent => {
       `Do you have any other questions?`
     )
     await agent.add(new Suggestion('Submit Support Request'))
-    await handleEndConversation(agent);
+    await agent.add(new Suggestion(`Submit Feedback`))
 
+    await agent.context.set({
+      name: 'waiting-feedback-root',
+      lifespan: 2,
+    })
     await agent.context.set({
       name: 'waiting-pmtQA-havent-received-submit-request',
       lifespan: 2,
