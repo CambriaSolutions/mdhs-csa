@@ -62,7 +62,7 @@ typings/
 agent/.DS_Store
 functions/serviceAccount.json
 functions/dev-beta-service-key.json
-scripts/keys/
 functions/analyticsKey.json
 *keys.json
+**/keys/
 scripts/export/
