@@ -65,3 +65,4 @@ functions/dev-beta-service-key.json
 scripts/keys/
 functions/analyticsKey.json
 *keys.json
+scripts/export/
