@@ -1,22 +1,23 @@
 {
-  "id": "d36ceb93-a04a-421a-b664-468470b80365",
-  "name": "calc-root",
+  "id": "20ae3290-cae6-472e-b311-05d0739ea1be",
+  "name": "pmt-calc-root",
   "auto": true,
   "contexts": [],
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

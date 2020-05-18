@@ -23,6 +23,8 @@ const snapshotCurrentState = async agent => {
   // Get the 'previous-intent' context
   const previousContexts = agent.context.get('previous-agent-states')
 
+  console.log('back.js, snapshotCurrentState(), previousContext: ', previousContexts)
+
   /* If the 'previous-intent' context is undefined aka it is the first time
 	the context is being set, set 'previous-agent-states' to the an array with
 	the first element as the current intent name and parameters. Else,
@@ -39,6 +41,8 @@ const snapshotCurrentState = async agent => {
   } else {
     const previousIntentsAndParams =
       previousContexts.parameters.userConversationPath
+
+    console.log('back.js, snapshotCurrentState(), previousIntentsAndParams [previousContexts.parameters.userConversationPath]: ', previousIntentsAndParams)
 
     await agent.context.set({
       name: 'previous-agent-states',
@@ -62,6 +66,8 @@ const backFunction = (agent, intentMap) => {
     try {
       const userConversationPath = agent.context.get('previous-agent-states')
         .parameters.userConversationPath
+
+      console.log('back.js, backFunction(), userConversationPath [agent.context.get("previous-agent-states")]: ', userConversationPath)
 
       // Clear all the contexts that are currently set.
       agent.contexts.forEach(context => {
