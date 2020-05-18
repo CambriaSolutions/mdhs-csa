@@ -893,6 +893,7 @@ exports = module.exports = functions
     intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
 
+    // List of intents what will reset the back button context
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',

@@ -135,9 +135,18 @@ const categorizeAndPredict = async query => {
 exports.handleUnhandled = async agent => {
   try {
     const { query } = agent
+    let categories
+    // If agent.parameters.mlCategories is populated, it means this intent is being fired by the "go-back" intent, so the 
+    // categories have already been fetched. No need to fetch them again. 
+    if (agent.parameters.mlCategories !== undefined) {
+      categories = agent.parameters.mlCategories
+    } else {
+      // Send the user's query to interact with our custom machine learning models
+      categories = await categorizeAndPredict(query)
 
-    // Send the user's query to interact with our custom machine learning models
-    const categories = await categorizeAndPredict(query)
+      // Save the categories to the agent parameters because if we click "go back" we will need them to display them again.
+      agent.parameters.mlCategories = categories
+    }
 
     // If there are categories returned, attempt to map them to intents,
     // and present them to the user as suggestions
