@@ -357,6 +357,7 @@ const {
   visitationRoot,
   visitationPetitionToCite,
   visitationProSePacket,
+  visitationLegalServices
 } = require('./visitation.js')
 
 const { backIntent } = require('./back.js')
@@ -889,6 +890,7 @@ exports = module.exports = functions
     intentMap.set('visitation-root', visitationRoot)
     intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
     intentMap.set('visitation-prosepackets', visitationProSePacket)
+    intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
