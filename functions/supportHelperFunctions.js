@@ -16,7 +16,6 @@ exports.startSupportConvo = async agent => {
     )
     await agent.add(new Suggestion(`Employer`))
     await agent.add(new Suggestion(`Parent's Guide to CSE`))
-    await agent.add(new Suggestion(`Visitation`))
     await agent.context.set({
       name: 'waiting-support-parent-receiving',
       lifespan: 3,
