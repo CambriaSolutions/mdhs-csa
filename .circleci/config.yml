@@ -20,13 +20,22 @@ jobs:
 
             AGENT_PRIVATE_KEY=${DEV_AGENT_PRIVATE_KEY}
 
-            AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}" > .env
+            AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}
+
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+      - run:
+          name: 'Add json key file'
+          command: cd scripts && echo
+            "${DEV_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
       - run:
           name: 'Agent configuration'
           command: cd agent && mv agent.dev.json agent.json
       - run:
           name: 'Import to Dev DialogFlow'
           command: cd scripts && node importDialogFlow
+      - run:
+          name: 'Populate Firestore'
+          command: cd scripts && node populateFirestore
   deploy_dev_functions:
     docker:
       - image: circleci/node:10.15.0
@@ -93,13 +102,22 @@ jobs:
 
             AGENT_PRIVATE_KEY=${ISD_AGENT_PRIVATE_KEY}
 
-            AGENT_CLIENT_EMAIL=${ISD_AGENT_CLIENT_EMAIL}" > .env
+            AGENT_CLIENT_EMAIL=${ISD_AGENT_CLIENT_EMAIL}
+
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+      - run:
+          name: 'Add json key file'
+          command: cd scripts && echo
+            "${ISD_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
       - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.isd.json agent.json
       - run:
           name: 'Import to ISD DialogFlow'
           command: cd scripts && node importDialogFlow
+      - run:
+          name: 'Populate Firestore'
+          command: cd scripts && node populateFirestore
   deploy_isd_functions:
     docker:
       - image: circleci/node:10.15.0
@@ -166,13 +184,22 @@ jobs:
 
             AGENT_PRIVATE_KEY=${STAGE_AGENT_PRIVATE_KEY}
 
-            AGENT_CLIENT_EMAIL=${STAGE_AGENT_CLIENT_EMAIL}" > .env
+            AGENT_CLIENT_EMAIL=${STAGE_AGENT_CLIENT_EMAIL}
+
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+      - run:
+          name: 'Add json key file'
+          command: cd scripts && echo
+            "${STAGE_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
       - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.stage.json agent.json
       - run:
           name: 'Import to Stage DialogFlow'
           command: cd scripts && node importDialogFlow
+      - run:
+          name: 'Populate Firestore'
+          command: cd scripts && node populateFirestore
   deploy_stage_functions:
     docker:
       - image: circleci/node:10.15.0
@@ -239,13 +266,22 @@ jobs:
 
             AGENT_PRIVATE_KEY=${PROD_AGENT_PRIVATE_KEY}
 
-            AGENT_CLIENT_EMAIL=${PROD_AGENT_CLIENT_EMAIL}" > .env
+            AGENT_CLIENT_EMAIL=${PROD_AGENT_CLIENT_EMAIL}
+
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+      - run:
+          name: 'Add json key file'
+          command: cd scripts && echo
+            "${PROD_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
       - run:
           name: 'Agent Configuration'
           command: cd agent && mv agent.prod.json agent.json
       - run:
           name: 'Import to Prod DialogFlow'
-          command: cd scripts && node importDialogFlow  
+          command: cd scripts && node importDialogFlow 
+      - run:
+          name: 'Populate Firestore'
+          command: cd scripts && node populateFirestore 
   deploy_prod_functions:
     docker:
       - image: circleci/node:10.15.0
