@@ -22,7 +22,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}
 
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
       - run:
           name: 'Add json key file'
           command: cd scripts && echo
@@ -104,7 +104,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${ISD_AGENT_CLIENT_EMAIL}
 
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
       - run:
           name: 'Add json key file'
           command: cd scripts && echo
@@ -186,7 +186,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${STAGE_AGENT_CLIENT_EMAIL}
 
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
       - run:
           name: 'Add json key file'
           command: cd scripts && echo
@@ -268,7 +268,7 @@ jobs:
 
             AGENT_CLIENT_EMAIL=${PROD_AGENT_CLIENT_EMAIL}
 
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key" > .env
+            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
       - run:
           name: 'Add json key file'
           command: cd scripts && echo
