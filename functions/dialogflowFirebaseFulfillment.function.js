@@ -806,7 +806,7 @@ exports = module.exports = functions
     intentMap.set('enforcement-tax-offset-q7', enforcementTaxOffsetQ7)
     intentMap.set('enforcement-tax-offset-q8', enforcementTaxOffsetQ8)
     intentMap.set('enforcement-tax-offset-q9', enforcementTaxOffsetQ9)
-    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffset10)
+    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffsetQ10)
     intentMap.set('enforcement-liens', enforcementLiens)
     intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(

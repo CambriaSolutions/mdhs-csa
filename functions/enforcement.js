@@ -294,12 +294,6 @@ exports.enforcementTaxOffsetQ10 = async agent => {
   }
 }
 
-
-
-
-
-
-
 /**
  * Intent: enforcement-liens
  * Training phrases: { "Liens", "Bank Accounts", etc }
