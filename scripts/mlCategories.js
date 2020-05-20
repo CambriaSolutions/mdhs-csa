@@ -25,15 +25,15 @@ exports.categoriesWithIntents = {
   },
   caseNumber: {
     intent: 'caseQA-general',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Case Number',
   },
   caseStatus: {
     intent: 'caseQA-general',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Case Status',
   },
   changeOfInformation: {
     intent: 'caseQA-change-personal-info',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Change of Information',
   },
   childCare: {
     intent: 'childCare-root',

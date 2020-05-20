@@ -1,0 +1,52 @@
+{
+  "id": "68806140-24f4-4c2d-8a56-ee2b10c7f830",
+  "name": "enforcement-tax-offset-q5",
+  "auto": true,
+  "contexts": [
+    "waiting-enforcement-tax-offset"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-enforcement-tax-offset",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "2253512c-4829-420a-9105-8b6526ef2bd3",
+          "required": false,
+          "dataType": "@cadence",
+          "name": "cadence",
+          "value": "$cadence",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,6 +1,8 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('./globalFunctions.js')
 const { supportInquiries } = require('./support.js')
+
+const taxOffsetGuideLink = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a>'
 /**
  * Intent: enforcement-
  *
@@ -125,14 +127,173 @@ exports.enforcementLicenseReinstatement = async agent => {
 exports.enforcementTaxOffset = async agent => {
   try {
     await agent.add(
-      'Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a> to access the guide.'
+      `Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please ${taxOffsetGuideLink} to access the guide.`
     )
-
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
 }
+
+// Q1
+exports.enforcementTaxOffsetQ1 = async agent => {
+  try {
+    await agent.add(
+      `Tax Offset is the interception of the federal and/or state income tax refunds of a parent who is responsible for paying child support. It is a primary method for the collection of child support arrears. This collection method is used to collect past due child support, spousal support, and medical support.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q2/Q3
+exports.enforcementTaxOffsetQ2Q3 = async agent => {
+  try {
+    await agent.add(
+      `Before issuing a refund, Mississippi’s Department of Revenue is required to check for any outstanding debt owed such as child support arrearages. If such debt is found, the amount owed may be deducted from your state refund. The Mississippi Department of Revenue sends collections intercepted from state income tax refunds to the child support agency for distribution. For more information ${taxOffsetGuideLink}.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q4
+exports.enforcementTaxOffsetQ4 = async agent => {
+  try {
+    await agent.add(
+      `This varies by the type of refund and the type of arrears owed. For information regarding the Federal IRS tax offset refund and State income tax offset refund, please ${taxOffsetGuideLink} for the Child Support Tax Offset Guide.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q5
+exports.enforcementTaxOffsetQ5 = async agent => {
+  try {
+    await agent.add(
+      `The IRS has very specific guidelines that require state child support agencies to safeguard federal tax information. For more information ${taxOffsetGuideLink}.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q6
+exports.enforcementTaxOffsetQ6 = async agent => {
+  try {
+    await agent.add(
+      `<strong>Federal IRS tax offset:</strong> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
+      <br/><strong>State income tax offset:</strong> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q7
+exports.enforcementTaxOffsetQ7 = async agent => {
+  try {
+    await agent.add(
+      `There are three reasons to dispute a tax offset: <ul><li>If you are not the person listed on the Notice.</li><li>If the Notice contains an incorrect social security number.</li><li>If you do not believe you owe past-due child support.</li></ul> For more information ${taxOffsetGuideLink}.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q8
+exports.enforcementTaxOffsetQ8 = async agent => {
+  try {
+    await agent.add(
+      `If a joint tax return is filed, it may take up to <strong>six (6) months</strong> for any federal (IRS) offset payment to be applied. State tax collections are distributed after a <strong>thirty (30) day</strong> hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q9
+exports.enforcementTaxOffsetQ9 = async agent => {
+  try {
+    await agent.add(
+      `If you are the spouse of the person responsible for child support, you may file an <a href="https://www.irs.gov/pub/irs-pdf/f8379.pdf" target="_blank">IRS Form 8379</a> with the IRS for federal taxes. 
+      For state taxes, once you receive notification from the MS Department of Revenue, you may request a review by submitting a request in writing to: 
+      <br/><strong>MS Department of Human Services Attention: Child Support Tax Offset</strong>
+      <br/><strong>P.O. Box 352</strong>
+      <br/><strong>Jackson, MS 39205</strong>
+      <br/>For more information, ${taxOffsetGuideLink}.`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Q10
+exports.enforcementTaxOffsetQ10 = async agent => {
+  try {
+    await agent.add(
+      `Yes. If a joint tax return is filed and the spouse of the parent who owes support agrees to voluntarily waive his or her right to claim a portion of the federal income tax return, the parent who owes support and his/her spouse must complete the <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/03/Revised-Injured-Spouse-Form-Instructions-Final-03.24.20.pdf" target="_blank">Injured Spouse Waiver</a> to release a joint IRS tax refund. Once completed, this form shall be emailed or mailed to:
+      <br/><strong>Email:</strong>&nbsp;<a href="mailto:mdhs.childsupport@mdhs.ms.gov">mdhs.childsupport@mdhs.ms.gov</a>
+      <br/><strong>Mail: MS Department of Human Services</strong>
+      <br/><strong>Attention: Child Support Tax Offset</strong>
+      <br/><strong>P.O. Box 352</strong>
+      <br/><strong>Jackson, MS 39205</strong>`
+    )
+    await agent.context.set({
+      name: 'waiting-enforcement-tax-offset',
+      lifespan: 2,
+    })
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * Intent: enforcement-liens
  * Training phrases: { "Liens", "Bank Accounts", etc }

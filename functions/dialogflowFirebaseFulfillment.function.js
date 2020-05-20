@@ -21,6 +21,15 @@ const {
   enforcementLicenseSuspensionNonCompliance,
   enforcementLicenseReinstatement,
   enforcementTaxOffset,
+  enforcementTaxOffsetQ1,
+  enforcementTaxOffsetQ2Q3,
+  enforcementTaxOffsetQ4,
+  enforcementTaxOffsetQ5,
+  enforcementTaxOffsetQ6,
+  enforcementTaxOffsetQ7,
+  enforcementTaxOffsetQ8,
+  enforcementTaxOffsetQ9,
+  enforcementTaxOffsetQ10,
   enforcementLiens,
   enforcementContestLien,
   enforcementFinancialAccountUpdateCase,
@@ -789,6 +798,15 @@ exports = module.exports = functions
       enforcementLicenseReinstatement
     )
     intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-tax-offset-q1', enforcementTaxOffsetQ1)
+    intentMap.set('enforcement-tax-offset-q2q3', enforcementTaxOffsetQ2Q3)
+    intentMap.set('enforcement-tax-offset-q4', enforcementTaxOffsetQ4)
+    intentMap.set('enforcement-tax-offset-q5', enforcementTaxOffsetQ5)
+    intentMap.set('enforcement-tax-offset-q6', enforcementTaxOffsetQ6)
+    intentMap.set('enforcement-tax-offset-q7', enforcementTaxOffsetQ7)
+    intentMap.set('enforcement-tax-offset-q8', enforcementTaxOffsetQ8)
+    intentMap.set('enforcement-tax-offset-q9', enforcementTaxOffsetQ9)
+    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffsetQ10)
     intentMap.set('enforcement-liens', enforcementLiens)
     intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(

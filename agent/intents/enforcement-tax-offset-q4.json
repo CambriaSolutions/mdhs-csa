@@ -1,0 +1,52 @@
+{
+  "id": "eea4b2d1-0208-4f73-937a-eeaf3a68c6b5",
+  "name": "enforcement-tax-offset-q4",
+  "auto": true,
+  "contexts": [
+    "waiting-enforcement-tax-offset"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-enforcement-tax-offset",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "9af2aa70-d39b-4711-841d-3b0f12de847b",
+          "required": false,
+          "dataType": "@guardianship",
+          "name": "guardianship",
+          "value": "$guardianship",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
