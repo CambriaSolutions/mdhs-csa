@@ -207,8 +207,8 @@ exports.enforcementTaxOffsetQ5 = async agent => {
 exports.enforcementTaxOffsetQ6 = async agent => {
   try {
     await agent.add(
-      `<strong>Federal IRS tax offset</strong>: You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
-      <strong>State income tax offset</strong>: If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
+      `<strong>Federal IRS tax offset:</strong> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
+      <br/><strong>State income tax offset:</strong> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
     )
     await agent.context.set({
       name: 'waiting-enforcement-tax-offset',
@@ -258,10 +258,10 @@ exports.enforcementTaxOffsetQ9 = async agent => {
     await agent.add(
       `If you are the spouse of the person responsible for child support, you may file an <a href="https://www.irs.gov/pub/irs-pdf/f8379.pdf" target="_blank">IRS Form 8379</a> with the IRS for federal taxes. 
       For state taxes, once you receive notification from the MS Department of Revenue, you may request a review by submitting a request in writing to: 
-      <strong>MS Department of Human Services Attention: Child Support Tax Offset</strong>
-      <strong>P.O. Box 352</strong>
-      <strong>Jackson, MS 39205</strong>
-      For more information, ${taxOffsetGuideLink}.`
+      <br/><strong>MS Department of Human Services Attention: Child Support Tax Offset</strong>
+      <br/><strong>P.O. Box 352</strong>
+      <br/><strong>Jackson, MS 39205</strong>
+      <br/>For more information, ${taxOffsetGuideLink}.`
     )
     await agent.context.set({
       name: 'waiting-enforcement-tax-offset',
@@ -278,11 +278,11 @@ exports.enforcementTaxOffsetQ10 = async agent => {
   try {
     await agent.add(
       `Yes. If a joint tax return is filed and the spouse of the parent who owes support agrees to voluntarily waive his or her right to claim a portion of the federal income tax return, the parent who owes support and his/her spouse must complete the <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/03/Revised-Injured-Spouse-Form-Instructions-Final-03.24.20.pdf" target="_blank">Injured Spouse Waiver</a> to release a joint IRS tax refund. Once completed, this form shall be emailed or mailed to:
-      <strong>Email: <a href="mailto:mdhs.childsupport@mdhs.ms.gov">mdhs.childsupport@mdhs.ms.gov</a></strong>
-      <strong>Mail: MS Department of Human Services</strong>
-      <strong>Attention: Child Support Tax Offset</strong>
-      <strong>P.O. Box 352</strong>
-      <strong>Jackson, MS 39205</strong>`
+      <br/><strong>Email:</strong> <a href="mailto:mdhs.childsupport@mdhs.ms.gov">mdhs.childsupport@mdhs.ms.gov</a>
+      <br/><strong>Mail: MS Department of Human Services</strong>
+      <br/><strong>Attention: Child Support Tax Offset</strong>
+      <br/><strong>P.O. Box 352</strong>
+      <br/><strong>Jackson, MS 39205</strong>`
     )
     await agent.context.set({
       name: 'waiting-enforcement-tax-offset',
