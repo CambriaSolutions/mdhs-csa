@@ -3,14 +3,7 @@ const fs = require('fs')
 const dialogflow = require('dialogflow')
 const JSZip = require('jszip');
 
-const dfConfig = {
-    credentials: {
-        private_key: `${(process.env.AGENT_PRIVATE_KEY || '').replace(/\\n/g, '\n')}`,
-        client_email: `${process.env.AGENT_CLIENT_EMAIL}`
-    }
-}
-
-const client = new dialogflow.v2.AgentsClient(dfConfig)
+const client = new dialogflow.v2.AgentsClient()
 const zip = new JSZip();
 
 zip.file("package.json", fs.readFileSync('../agent/package.json'))
