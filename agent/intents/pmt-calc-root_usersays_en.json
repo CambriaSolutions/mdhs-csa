@@ -2,6 +2,18 @@
   {
     "data": [
       {
+        "text": "payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
         "text": "how much will i need to pay",
         "userDefined": false
       }
