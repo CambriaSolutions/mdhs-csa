@@ -114,10 +114,14 @@ exports.textRequest = functions
         return 'The "uuid" parameter is required'
       }
 
-      const query = req.query.query;
-      const sessionId = req.query.uuid;
-      const dialogFlowResponse = await processTextRequest(sessionId, query);      
-
-      return res.json(dialogFlowResponse);
+      try {
+        const query = req.query.query;
+        const sessionId = req.query.uuid;
+        const dialogFlowResponse = await processTextRequest(sessionId, query);      
+        return res.json(dialogFlowResponse);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).send();
+      }      
     })
   });
