@@ -2,19 +2,11 @@
   "id": "161a26d9-3680-4cf6-8bdc-e6a0c9f5402b",
   "name": "enforcement-tax-offset-q1",
   "auto": true,
-  "contexts": [
-    "waiting-enforcement-tax-offset"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-enforcement-tax-offset",
-          "parameters": {},
-          "lifespan": 2
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
