@@ -1,4 +1,4 @@
-const { calculatePayment } = require('../calculatePayment')
+const { calculatePayment } = require('../intentHandlers/calculatePayment')
 
 describe('Payment Estimator', () => {
   test('Should throw an error if options are missing', () => {
