@@ -129,10 +129,7 @@ exports.enforcementTaxOffset = async agent => {
     await agent.add(
       `Generally, if a parent has been certified for tax offset, a portion of the taxes may be offset unless there is a joint tax return filed. If a joint tax return is filed, it may take up to 6 months for any federal (IRS) offset payment to be applied. State Tax Collections are distributed after a 30 day hold period. Please ${taxOffsetGuideLink} to access the guide.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -145,10 +142,7 @@ exports.enforcementTaxOffsetQ1 = async agent => {
     await agent.add(
       `Tax Offset is the interception of the federal and/or state income tax refunds of a parent who is responsible for paying child support. It is a primary method for the collection of child support arrears. This collection method is used to collect past due child support, spousal support, and medical support.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -161,10 +155,7 @@ exports.enforcementTaxOffsetQ2Q3 = async agent => {
     await agent.add(
       `Before issuing a refund, Mississippi’s Department of Revenue is required to check for any outstanding debt owed such as child support arrearages. If such debt is found, the amount owed may be deducted from your state refund. The Mississippi Department of Revenue sends collections intercepted from state income tax refunds to the child support agency for distribution. For more information ${taxOffsetGuideLink}.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -177,10 +168,7 @@ exports.enforcementTaxOffsetQ4 = async agent => {
     await agent.add(
       `This varies by the type of refund and the type of arrears owed. For information regarding the Federal IRS tax offset refund and State income tax offset refund, please ${taxOffsetGuideLink} for the Child Support Tax Offset Guide.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -193,10 +181,7 @@ exports.enforcementTaxOffsetQ5 = async agent => {
     await agent.add(
       `The IRS has very specific guidelines that require state child support agencies to safeguard federal tax information. For more information ${taxOffsetGuideLink}.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -210,10 +195,7 @@ exports.enforcementTaxOffsetQ6 = async agent => {
       `<strong>Federal IRS tax offset:</strong> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
       <br/><strong>State income tax offset:</strong> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -226,10 +208,7 @@ exports.enforcementTaxOffsetQ7 = async agent => {
     await agent.add(
       `There are three reasons to dispute a tax offset: <ul><li>If you are not the person listed on the Notice.</li><li>If the Notice contains an incorrect social security number.</li><li>If you do not believe you owe past-due child support.</li></ul> For more information ${taxOffsetGuideLink}.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -242,10 +221,7 @@ exports.enforcementTaxOffsetQ8 = async agent => {
     await agent.add(
       `If a joint tax return is filed, it may take up to <strong>six (6) months</strong> for any federal (IRS) offset payment to be applied. State tax collections are distributed after a <strong>thirty (30) day</strong> hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -263,10 +239,7 @@ exports.enforcementTaxOffsetQ9 = async agent => {
       <br/><strong>Jackson, MS 39205</strong>
       <br/>For more information, ${taxOffsetGuideLink}.`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
@@ -284,10 +257,7 @@ exports.enforcementTaxOffsetQ10 = async agent => {
       <br/><strong>P.O. Box 352</strong>
       <br/><strong>Jackson, MS 39205</strong>`
     )
-    await agent.context.set({
-      name: 'waiting-enforcement-tax-offset',
-      lifespan: 2,
-    })
+
     await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
