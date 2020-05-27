@@ -2,22 +2,14 @@
   "id": "eea4b2d1-0208-4f73-937a-eeaf3a68c6b5",
   "name": "enforcement-tax-offset-q4",
   "auto": true,
-  "contexts": [
-    "waiting-enforcement-tax-offset"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-enforcement-tax-offset",
-          "parameters": {},
-          "lifespan": 2
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [
         {
-          "id": "9af2aa70-d39b-4711-841d-3b0f12de847b",
+          "id": "7784a428-4eb9-46c8-854d-70f49b05c638",
           "required": false,
           "dataType": "@guardianship",
           "name": "guardianship",
