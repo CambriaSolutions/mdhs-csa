@@ -192,8 +192,8 @@ exports.enforcementTaxOffsetQ5 = async agent => {
 exports.enforcementTaxOffsetQ6 = async agent => {
   try {
     await agent.add(
-      `<strong>Federal IRS tax offset:</strong> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
-      <br/><strong>State income tax offset:</strong> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
+      `<u>Federal IRS tax offset:</u> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. 
+      <br/><u>State income tax offset:</u> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information ${taxOffsetGuideLink}.`
     )
 
     await handleEndConversation(agent)
