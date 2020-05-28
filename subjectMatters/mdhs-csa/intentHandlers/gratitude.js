@@ -1,5 +1,3 @@
-const { tbd } = require('./globalFunctions.js')
-
 exports.gratitude = async agent => {
     try {
         await agent.add(
