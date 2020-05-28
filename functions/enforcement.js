@@ -234,9 +234,9 @@ exports.enforcementTaxOffsetQ9 = async agent => {
     await agent.add(
       `If you are the spouse of the person responsible for child support, you may file an <a href="https://www.irs.gov/pub/irs-pdf/f8379.pdf" target="_blank">IRS Form 8379</a> with the IRS for federal taxes. 
       For state taxes, once you receive notification from the MS Department of Revenue, you may request a review by submitting a request in writing to: 
-      <br/><strong>MS Department of Human Services Attention: Child Support Tax Offset</strong>
-      <br/><strong>P.O. Box 352</strong>
-      <br/><strong>Jackson, MS 39205</strong>
+      <br/>MS Department of Human Services Attention: Child Support Tax Offset
+      <br/>P.O. Box 352
+      <br/>Jackson, MS 39205
       <br/>For more information, ${taxOffsetGuideLink}.`
     )
 
