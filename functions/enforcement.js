@@ -251,7 +251,7 @@ exports.enforcementTaxOffsetQ10 = async agent => {
   try {
     await agent.add(
       `Yes. If a joint tax return is filed and the spouse of the parent who owes support agrees to voluntarily waive his or her right to claim a portion of the federal income tax return, the parent who owes support and his/her spouse must complete the <a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/03/Revised-Injured-Spouse-Form-Instructions-Final-03.24.20.pdf" target="_blank">Injured Spouse Waiver</a> to release a joint IRS tax refund. Once completed, this form shall be emailed or mailed to:
-      <br/>Email:</strong>&nbsp;mdhs.childsupport@mdhs.ms.gov
+      <br/>Email:&nbsp;mdhs.childsupport@mdhs.ms.gov
       <br/>Mail: MS Department of Human Services
       <br/>Attention: Child Support Tax Offset
       <br/>P.O. Box 352
