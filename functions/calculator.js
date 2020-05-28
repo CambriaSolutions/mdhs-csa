@@ -3,13 +3,19 @@ const { Suggestion } = require('dialogflow-fulfillment')
 exports.calcRoot = async agent => {
   try {
     await agent.add(
-      'This estimator can help you determine payments based on a single case involving a single biological family. While each case is unique, I can help get you an estimate.'
+      'I offer two different calculators. The “Estimate Payments” calculator helps estimate child support payments on a single case involving one biological family. The “CCPA Calculator” provides an estimate to parents or employers regarding the maximum amount an employer may withhold pursuant to the federal Consumer Credit Protection Act.'
     )
     await agent.add(
-      'Select one of the options below if you want assistance estimating employee witholding or how to receieve or make child support payments.'
+      'You may select an option below to calculate an estimate based on your information. If you are a parent who is or will be receiving payments, you may select "Payments".'
     )
-    await agent.add(new Suggestion('CCPA Calculator'))
-    await agent.add(new Suggestion('Child Support Payments'))
+    await agent.add(new Suggestion('CCPA Calculator'))    
+    await agent.add(new Suggestion('Estimate Payments'))
+    await agent.add(new Suggestion('Payments'))
+
+    await agent.context.set({
+      name: 'waiting-payment-calc',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }

@@ -1,22 +1,30 @@
 {
-  "id": "d36ceb93-a04a-421a-b664-468470b80365",
-  "name": "calc-root",
+  "id": "54419142-fe42-4d7d-ae91-1456d9484e7d",
+  "name": "pmts-general-root",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-payment-calc"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "waiting-payment-calc",
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

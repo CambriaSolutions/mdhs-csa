@@ -1,9 +1,9 @@
 [
   {
-    "id": "8657b342-d8fd-401a-afa0-2f0cdfece8d3",
+    "id": "fbd03a55-4c1c-403f-97f5-5900fc2d6f77",
     "data": [
       {
-        "text": "How do I read more about tax offset? Is there a tax offset guide?",
+        "text": "Can I have the refund earlier than the release date?",
         "userDefined": false
       }
     ],
@@ -12,10 +12,10 @@
     "updated": 0
   },
   {
-    "id": "3ac4bb3f-ce64-412a-bb33-ada56f294860",
+    "id": "b765a707-b346-43b9-913c-dc222bed4a8f",
     "data": [
       {
-        "text": "When is a case eligible for tax refund offset?",
+        "text": "Can I have the taxes early?",
         "userDefined": false
       }
     ],
@@ -24,10 +24,10 @@
     "updated": 0
   },
   {
-    "id": "b11f8cbe-dc3f-47eb-8e6b-c41fefb7ca10",
+    "id": "04fee732-7cf9-4ecc-9db4-a9b87574c81c",
     "data": [
       {
-        "text": "What can you tell me about the other parent\u0027s tax refund filing status?",
+        "text": "Can I have the refund applied early?",
         "userDefined": false
       }
     ],
@@ -36,10 +36,10 @@
     "updated": 0
   },
   {
-    "id": "114a2b2f-9169-4940-88ae-64de6f9a5e49",
+    "id": "a26534cd-b76d-4635-9805-30adf5e894c6",
     "data": [
       {
-        "text": "What is the Income Tax Refund Offset?",
+        "text": "Can I sign to release taxes early?",
         "userDefined": false
       }
     ],
@@ -48,10 +48,10 @@
     "updated": 0
   },
   {
-    "id": "324a9e42-d1ab-415c-9601-373c540de7a2",
+    "id": "96d2d5e4-076e-400c-92e4-c1645c7a5f3c",
     "data": [
       {
-        "text": "taxes",
+        "text": "Can we release the taxes early?",
         "userDefined": false
       }
     ],
@@ -60,10 +60,10 @@
     "updated": 0
   },
   {
-    "id": "115f594e-4088-4d7e-b8ff-c5a9e1436e33",
+    "id": "ac2de029-0fff-4b2c-89b5-8504555206ff",
     "data": [
       {
-        "text": "Tax Offset",
+        "text": "If I am the spouse on a jointly filed IRS tax return, may I waive my claim to a portion of the jointly filed federal income tax return to allow for the payment to be released early?",
         "userDefined": false
       }
     ],

@@ -21,6 +21,15 @@ const {
   enforcementLicenseSuspensionNonCompliance,
   enforcementLicenseReinstatement,
   enforcementTaxOffset,
+  enforcementTaxOffsetQ1,
+  enforcementTaxOffsetQ2Q3,
+  enforcementTaxOffsetQ4,
+  enforcementTaxOffsetQ5,
+  enforcementTaxOffsetQ6,
+  enforcementTaxOffsetQ7,
+  enforcementTaxOffsetQ8,
+  enforcementTaxOffsetQ9,
+  enforcementTaxOffsetQ10,
   enforcementLiens,
   enforcementContestLien,
   enforcementFinancialAccountUpdateCase,
@@ -357,6 +366,7 @@ const {
   visitationRoot,
   visitationPetitionToCite,
   visitationProSePacket,
+  visitationLegalServices
 } = require('./visitation.js')
 
 const { backIntent } = require('./back.js')
@@ -788,6 +798,15 @@ exports = module.exports = functions
       enforcementLicenseReinstatement
     )
     intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-tax-offset-q1', enforcementTaxOffsetQ1)
+    intentMap.set('enforcement-tax-offset-q2q3', enforcementTaxOffsetQ2Q3)
+    intentMap.set('enforcement-tax-offset-q4', enforcementTaxOffsetQ4)
+    intentMap.set('enforcement-tax-offset-q5', enforcementTaxOffsetQ5)
+    intentMap.set('enforcement-tax-offset-q6', enforcementTaxOffsetQ6)
+    intentMap.set('enforcement-tax-offset-q7', enforcementTaxOffsetQ7)
+    intentMap.set('enforcement-tax-offset-q8', enforcementTaxOffsetQ8)
+    intentMap.set('enforcement-tax-offset-q9', enforcementTaxOffsetQ9)
+    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffsetQ10)
     intentMap.set('enforcement-liens', enforcementLiens)
     intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(
@@ -889,10 +908,12 @@ exports = module.exports = functions
     intentMap.set('visitation-root', visitationRoot)
     intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
     intentMap.set('visitation-prosepackets', visitationProSePacket)
+    intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
     intentMap.set('Default Fallback Intent', handleUnhandled)
 
+    // List of intents what will reset the back button context
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',

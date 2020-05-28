@@ -3,6 +3,7 @@
     "stage": "mdhs-csa-stage",
     "prod": "mdhs-csa",
     "dev": "mdhs-csa-dev",
-    "dev-beta": "mdhs-csa-dev-beta"
+    "dev-beta": "mdhs-csa-dev-beta",
+    "isd": "mdhs-csa-isd-273818"
   }
 }

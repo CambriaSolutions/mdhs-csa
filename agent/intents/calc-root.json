@@ -1,22 +1,23 @@
 {
-  "id": "54419142-fe42-4d7d-ae91-1456d9484e7d",
-  "name": "pmts-general-root",
+  "id": "d36ceb93-a04a-421a-b664-468470b80365",
+  "name": "calc-root",
   "auto": true,
   "contexts": [],
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
