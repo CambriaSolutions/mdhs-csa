@@ -1,7 +1,9 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
-const { categoriesWithIntents } = require('./mlCategories')
 const dialogflow = require('dialogflow')
+const { categoriesWithIntents } = require(`../../${process.env.SUBJECT_MATTER}/mlCategories`)
+
+// TODO need to make it specific to the correct google cloud project
 
 const app = admin.initializeApp()
 const projectId = app.options.credential.projectId

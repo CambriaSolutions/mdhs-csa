@@ -1,5 +1,4 @@
 require('dotenv').config()
-const rp = require('request-promise')
 const request = require('request')
 
 const serviceDeskFields = {

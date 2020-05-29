@@ -1,3 +1,4 @@
+require('dotenv').config()
 const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')

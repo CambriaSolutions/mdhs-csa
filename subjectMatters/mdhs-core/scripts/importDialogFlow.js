@@ -3,6 +3,8 @@ const fs = require('fs')
 const dialogflow = require('dialogflow')
 const JSZip = require('jszip');
 
+// TODO need to make it specific to the correct google cloud project
+
 const client = new dialogflow.v2.AgentsClient()
 const zip = new JSZip();
 
