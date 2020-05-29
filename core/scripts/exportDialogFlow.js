@@ -2,7 +2,7 @@ require('dotenv').config()
 const fs = require('fs')
 const dialogflow = require('dialogflow')
 const JSZip = require('jszip');
-const IntentComparator = require('./intentComparator.js');
+const IntentComparator = require('./intentComparator.js.js');
 
 // TODO need to make it specific to the correct google cloud project
 const client = new dialogflow.v2.AgentsClient()
