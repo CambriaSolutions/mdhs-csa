@@ -59,6 +59,10 @@ exports.categoriesWithIntents = {
     intent: 'emancipation-qa-age',
     suggestionText: 'Emancipation',
   },
+  employer: {
+    intent: 'employer-root',
+    suggestionText: 'Employer'
+  },
   enforcement: {
     intent: 'enforcement-root',
     suggestionText: 'Enforcement'
@@ -122,6 +126,10 @@ exports.categoriesWithIntents = {
   paternity: {
     intent: 'geneticTesting-request',
     suggestionText: 'Genetic testing',
+  },
+  parentCseGuide: {
+    intent: 'support-parentsGuideCSE',
+    suggestionText: 'Parent’s Guide to CSE'
   },
   paymentTimelines: {
     intent: 'paymentTimelines-root',
