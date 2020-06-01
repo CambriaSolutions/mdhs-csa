@@ -1,8 +1,6 @@
-require('dotenv').config()
-const functions = require('firebase-functions')
+const { functions } = require('../clients/firebaseFunctions.js')
+const { WebhookClient } = require('../clients/dialogflowFulfillment.js')
 const req = require('request')
-const { WebhookClient } = require('dialogflow-fulfillment')
-
 const buildIntentMap = require(`../../${process.env.SUBJECT_MATTER}/intentMapper.js`)
 
 const runtimeOpts = {

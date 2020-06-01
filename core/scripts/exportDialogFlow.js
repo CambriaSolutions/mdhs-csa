@@ -1,6 +1,5 @@
-require('dotenv').config()
 const fs = require('fs')
-const dialogflow = require('dialogflow')
+const { dialogflow } = require('../clients/dialogflow.js')
 const JSZip = require('jszip');
 const IntentComparator = require('./intentComparator.js.js');
 

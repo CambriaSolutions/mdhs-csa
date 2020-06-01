@@ -1,5 +1,5 @@
-const admin = require('firebase-admin')
-const functions = require('firebase-functions')
+const { admin } = require('../clients/firebaseAdmin.js')
+const { functions } = require('../clients/firebaseFunctions.js')
 admin.initializeApp(functions.config().firebase)
 const glob = require('glob')
 const camelCase = require('camelcase')

@@ -1,13 +1,8 @@
-require('dotenv').config()
-const admin = require('firebase-admin')
-const dialogflow = require('dialogflow')
+const { db, projectId } = require('../clients/firebaseAdmin.js')
+const { dialogflow } = require('../clients/dialogflow.js')
 const { categoriesWithIntents } = require(`../../${process.env.SUBJECT_MATTER}/mlCategories`)
 
 // TODO need to make it specific to the correct google cloud project
-
-const app = admin.initializeApp()
-const projectId = app.options.credential.projectId
-const db = admin.firestore()
 
 // Populates Firestore with all the ML categories found in ./mlCategories.json
 const populateMLCategoriesCollection = async () => {
