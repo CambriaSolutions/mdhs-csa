@@ -1,83 +1,12 @@
-const { Suggestion, Payload } = require('dialogflow-fulfillment')
+const { Suggestion } = require('dialogflow-fulfillment')
+const { disableInput } = require('../../../common/intentHandlers/disableInput.js')
+const { handleEndConversation } = require('../../../common/intentHandlers/handleEndConversation.js')
+const { tbd } = require('../../../common/intentHandlers/tbd.js')
 
-exports.handleEndConversation = async agent => {
-  const helpMessage = `Is there anything else I can help you with today?`
-
-  await agent.add(helpMessage)
-  await agent.add(new Suggestion(`Submit Feedback`))
-
-  await agent.context.set({
-    name: 'waiting-feedback-root',
-    lifespan: 2,
-  })
-  await agent.context.set({
-    name: 'waiting-restart-conversation',
-    lifespan: 2,
-  })
-}
-
-exports.tbd = async agent => {
-  const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
-  await agent.add(tbdMessage)
-  await this.handleEndConversation(agent)
-}
-
-// Used to calculate the percentage of income for employers to withhold
-exports.calculatePercentage = (isSupporting, inArrears) => {
-  if (isSupporting && inArrears) {
-    return 55
-  } else if (isSupporting && !inArrears) {
-    return 50
-  } else if (!isSupporting && !inArrears) {
-    return 60
-  } else if (!isSupporting && inArrears) {
-    return 65
-  } else {
-    throw new Error('Cannot calculate percentage.')
-  }
-}
-
-// Used to validate that the user has provided a valid case number
-// Valid case numbers start with a 6, are nine digits long, and may have
-// a letter of the alphabet at the end.
-exports.validateCaseNumber = caseNumber => {
-  let validCaseNumber = true
-  if (caseNumber.charAt(0) !== '6') {
-    validCaseNumber = false
-  }
-  if (caseNumber.length !== 9 && caseNumber.length !== 10) {
-    validCaseNumber = false
-  }
-  if (
-    caseNumber.length === 10 &&
-    caseNumber.charAt(9).match(/[a-z]/g === null)
-  ) {
-    validCaseNumber = false
-  }
-  if (caseNumber.length === 10) {
-    const numberWithoutAlpha = caseNumber.slice(0, 9)
-
-    if (isNaN(numberWithoutAlpha)) {
-      validCaseNumber = false
-    }
-  }
-  if (caseNumber.length === 9 && isNaN(caseNumber)) {
-    validCaseNumber = false
-  }
-  return validCaseNumber
-}
-
-// Upper case the first letter of a string
-exports.toTitleCase = string => {
-  const excludedWords = ['or', 'and', 'on', 'of', 'to', 'the']
-  return string.replace(/\w\S*/g, text => {
-    if (!excludedWords.includes(text)) {
-      return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
-    } else {
-      return text
-    }
-  })
-}
+const { formatCurrency } = require('../../../common/util/formatCurrency.js.js')
+const { toTitleCase } = require('../../../common/util/toTitleCase.js')
+const { calculatePercentage } = require('../../../common/util/calculatePercentage.js.js')
+const { validateCaseNumber } = require('../../../common/util/validateCaseNumber.js.js')
 
 // Format description text for Support Requests
 exports.formatDescriptionText = supportType => {
@@ -110,16 +39,6 @@ exports.formatDescriptionText = supportType => {
   return descriptionText
 }
 
-// Format any number as currency, with prefixed $ sign, commas added per thousands & decimals fixed to 2
-exports.formatCurrency = num => {
-  return (
-    '$' +
-    parseFloat(num)
-      .toFixed(2)
-      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  )
-}
-
 // Handle startOfConversation
 exports.startRootConversation = async agent => {
   try {
@@ -139,43 +58,23 @@ exports.startRootConversation = async agent => {
   }
 }
 
-// Send a payload to disable user input and require suggestion selection
-exports.disableInput = async agent => {
-  try {
-    await agent.add(
-      new Payload(
-        agent.UNSPECIFIED,
-        { disableInput: 'true' },
-        {
-          sendAsMessage: true,
-          rawPayload: true,
-        }
-      )
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 // Directs the user to Casey
 exports.caseyHandoff = async agent => {
   try {
     await agent.add(
       `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
     )
-    await this.handleEndConversation(agent)
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
 }
 
-// Handles default unhandled intent when no categories are found
-exports.defaultUnhandledResponse = async agent => {
-  try {
-    await agent.add(
-      `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
+// Persisting the imports below in this location because too many handlers are currently referencing them.
+exports.disableInput = disableInput
+exports.handleEndConversation = handleEndConversation
+exports.tbd = tbd
+exports.formatCurrency = formatCurrency
+exports.toTitleCase = toTitleCase
+exports.calculatePercentage = calculatePercentage
+exports.validateCaseNumber = validateCaseNumber
