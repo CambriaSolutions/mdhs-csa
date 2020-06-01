@@ -326,9 +326,8 @@ const { fallback } = require('../intentHandlers/fallback.js')
 
 const { yesChildSupport } = require('../intentHandlers/yesChildSupport.js')
 
-// TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled, noneOfThese } = require('../intentHandlers/categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese } = require('../../common/intentHandlers/categorizeAndPredict.js')
 
 exports.buildIntentMap = () => {
   let intentMap = new Map()

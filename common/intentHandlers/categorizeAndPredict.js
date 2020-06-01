@@ -1,16 +1,10 @@
 require('dotenv').config()
 const automl = require('@google-cloud/automl')
 const { Suggestion } = require('dialogflow-fulfillment')
-const { defaultUnhandledResponse } = require('./globalFunctions')
+const { defaultUnhandledResponse } = require('./defaultUnhandledResponse.js')
 
 // Instantiate autoML client
-const client = new automl.v1beta1.PredictionServiceClient({
-  credentials: {
-    client_email: `${process.env.AUTOML_CLIENT_EMAIL}`,
-    private_key: `${(process.env.AUTOML_PRIVATE_KEY || '').replace(/\\n/g, '\n')}`,
-  },
-  projectId: process.env.AUTOML_PROJECT,
-})
+const client = new automl.v1beta1.PredictionServiceClient()
 
 // Mapping ML categories to intent suggestions
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
@@ -61,71 +55,19 @@ const predictCategories = async query => {
   }
 }
 
-// Query the subject matter model to return what subject matter the query
-// belongs to child support
-// const predictSubjectMatter = async query => {
-//   try {
-//     // Define the location of the subject matter model
-//     const subjectMatterModelPath = client.modelPath(
-//       process.env.AUTOML_PROJECT,
-//       process.env.AUTOML_LOCATION,
-//       process.env.AUTOML_SM_MODEL
-//     )
-//     const payload = {
-//       textSnippet: {
-//         content: query,
-//         mime_type: 'text/plain',
-//       },
-//     }
-
-//     const smRequest = {
-//       name: subjectMatterModelPath,
-//       payload: payload,
-//     }
-
-//     const smResponses = await client.predict(smRequest)
-//     return {
-//       predictionType: 'subjectMatter',
-//       categories: smResponses[0].payload[0].displayName,
-//     }
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-
 // Query both models to determine
-// 1. Is this applicable to the subject matter we handle?
-// 2. What category is the query most likely to match?
 const categorizeAndPredict = async query => {
-  // TODO: uncomment the pieces pertaining to subject matter below once the subject matter model
-  // is complete to include the call to predict subject matter model and relevant logic
   const categories = []
   try {
-    // const modelPromises = [predictCategories(query), predictSubjectMatter(query)]
-    // const results = await Promise.all(modelPromises)
     const predictions = await predictCategories(query)
 
-    // // Check the responses to determine if this query applies to child support
-    // const appliesToChildSupport = results.find(
-    //   result =>
-    //     result.predictionType === 'subjectMatter' &&
-    //     result.categories === 'child-support'
-    // )
-
-    // const predictions = results.find(
-    //   result => result.predictionType === 'categories'
-    // )
-
-    // if (appliesToChildSupport) {
     for (const category in predictions.categories) {
       const { name, confidence } = predictions.categories[category]
 
-      // TODO: determine threshold, it is low now for testing purposes
       if (confidence > 0.01) {
         categories.push(name)
       }
     }
-    // }
     return categories
   } catch (error) {
     console.error(error)
@@ -136,8 +78,8 @@ exports.handleUnhandled = async agent => {
   try {
     const { query } = agent
     let categories
-    // If agent.parameters.mlCategories is populated, it means this intent is being fired by the "go-back" intent, so the 
-    // categories have already been fetched. No need to fetch them again. 
+    // If agent.parameters.mlCategories is populated, it means this handler is being fired by the "go-back" intent, so the 
+    // categories have already been fetched and exist inside of agent.parameters.mlCategories. No need to fetch them again. 
     if (agent.parameters.mlCategories !== undefined) {
       categories = agent.parameters.mlCategories
     } else {

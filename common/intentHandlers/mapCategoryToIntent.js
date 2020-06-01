@@ -12,7 +12,7 @@ const camelCase = require('camelcase')
 
 let db = admin.firestore()
 
-// Retrieve suggestion text to display to users depending on the categetory/intent mapping
+// Retrieve suggestion text to display to users depending on the category/intent mapping
 const retrieveIntentData = async category => {
   // Format the category returned from ml models to match our db naming convention
   const formattedCategory = camelCase(category)
