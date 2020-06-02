@@ -1,0 +1,33 @@
+{
+  "id": "bbb8f350-3ac1-4243-9ca8-fff2f63e8f3f",
+  "name": "pmtMethods-eCheckDebit",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-eCheckDebit"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

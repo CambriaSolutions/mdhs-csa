@@ -22,7 +22,7 @@
       ],
       "parameters": [
         {
-          "id": "639ad338-e551-471c-bb7d-65855bc7c2cf",
+          "id": "e0eb1f63-1e66-4f0f-8bf3-f9fb55a4a6b9",
           "required": false,
           "dataType": "@yes-no",
           "name": "wantsAssistance",

@@ -10,8 +10,7 @@
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "7118cec1-12ca-4ffc-9185-926eff7ea054",
-          "name": "number",
+          "id": "d5893adf-d48b-4c46-a021-8525687de293",
           "required": false,
           "dataType": "@sys.number",
           "value": "$number",
