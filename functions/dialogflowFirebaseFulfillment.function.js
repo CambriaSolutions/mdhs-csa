@@ -21,6 +21,15 @@ const {
   enforcementLicenseSuspensionNonCompliance,
   enforcementLicenseReinstatement,
   enforcementTaxOffset,
+  enforcementTaxOffsetQ1,
+  enforcementTaxOffsetQ2Q3,
+  enforcementTaxOffsetQ4,
+  enforcementTaxOffsetQ5,
+  enforcementTaxOffsetQ6,
+  enforcementTaxOffsetQ7,
+  enforcementTaxOffsetQ8,
+  enforcementTaxOffsetQ9,
+  enforcementTaxOffsetQ10,
   enforcementLiens,
   enforcementContestLien,
   enforcementFinancialAccountUpdateCase,
@@ -34,6 +43,7 @@ const {
   enforcementUnemployment,
   enforcementSubmitInquiry,
   enforcementBankruptcy,
+  enforcementContempt
 } = require('./enforcement.js')
 
 // General payment intents
@@ -49,9 +59,13 @@ const {
   employerRoot,
   employerEFT,
   employerIPayOnline,
+  employerGuide,
   employerChecksMoneyOrders,
   employerIWOHandoff,
+  employerBillsAndNotices
 } = require('./employer.js')
+
+const { calcRoot } = require('./calculator.js')
 
 // Payment calculator intents
 const {
@@ -136,6 +150,7 @@ const {
   supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
+  supportParentReceivingEmancipation,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
@@ -167,6 +182,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -211,6 +227,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoCcpaRoot,
   iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
@@ -266,6 +283,9 @@ const {
   contactSupportHandoff,
   contactProvidePhoneNumber,
 } = require('./contactQA.js')
+
+// Terminate 
+const { terminateRoot } = require('./terminate.js')
 
 // Payments QA
 const {
@@ -342,7 +362,12 @@ const { taxes } = require('./taxes.js')
 const { verification } = require('./verification.js')
 
 // Visitation
-const { visitation } = require('./visitation.js')
+const {
+  visitationRoot,
+  visitationPetitionToCite,
+  visitationProSePacket,
+  visitationLegalServices
+} = require('./visitation.js')
 
 const { backIntent } = require('./back.js')
 
@@ -350,7 +375,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese, defaultUnhandledResponse } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
@@ -462,6 +487,9 @@ exports = module.exports = functions
     intentMap.set('contact-support-handoff', contactSupportHandoff)
     intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
+    // Terminate intents
+    intentMap.set('terminate-root', terminateRoot)
+
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)
     intentMap.set('handle-child-support-retry', handleChildSupportRetry)
@@ -469,6 +497,8 @@ exports = module.exports = functions
       'acknowledgement-after-retry',
       handleAcknowledgementAfterRetry
     )
+
+    intentMap.set('calc-root', calcRoot);
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
@@ -515,6 +545,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-ccpa-root', iwoCcpaRoot);
     intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
@@ -548,8 +579,11 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
+    // Uncomment when we get the employer guide link from the client
+    //intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
+    intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
 
     // Payment methods intents
     intentMap.set('pmtMethods-none', pmtMethodsNone)
@@ -598,6 +632,8 @@ exports = module.exports = functions
     // Support intents
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-receiving-emancipation', supportParentReceivingEmancipation)
+
     intentMap.set(
       'support-parent-receiving-employment-info',
       supportParentReceivingEmploymentInfo
@@ -648,6 +684,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
@@ -762,6 +799,15 @@ exports = module.exports = functions
       enforcementLicenseReinstatement
     )
     intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-tax-offset-q1', enforcementTaxOffsetQ1)
+    intentMap.set('enforcement-tax-offset-q2q3', enforcementTaxOffsetQ2Q3)
+    intentMap.set('enforcement-tax-offset-q4', enforcementTaxOffsetQ4)
+    intentMap.set('enforcement-tax-offset-q5', enforcementTaxOffsetQ5)
+    intentMap.set('enforcement-tax-offset-q6', enforcementTaxOffsetQ6)
+    intentMap.set('enforcement-tax-offset-q7', enforcementTaxOffsetQ7)
+    intentMap.set('enforcement-tax-offset-q8', enforcementTaxOffsetQ8)
+    intentMap.set('enforcement-tax-offset-q9', enforcementTaxOffsetQ9)
+    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffsetQ10)
     intentMap.set('enforcement-liens', enforcementLiens)
     intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(
@@ -795,6 +841,7 @@ exports = module.exports = functions
     intentMap.set('stimulusCheck-root', stimulusCheck)
 
     intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
+    intentMap.set('enforcement-contempt', enforcementContempt)
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
@@ -860,11 +907,16 @@ exports = module.exports = functions
     intentMap.set('verification-root', verification)
 
     // Visitation
-    intentMap.set('visitation', visitation)
+    intentMap.set('visitation-root', visitationRoot)
+    intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
+    intentMap.set('visitation-prosepackets', visitationProSePacket)
+    intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
-    intentMap.set('Default Fallback Intent', handleUnhandled)
+    //intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
 
+    // List of intents what will reset the back button context
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',

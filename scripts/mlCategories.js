@@ -25,7 +25,7 @@ exports.categoriesWithIntents = {
   },
   caseNumber: {
     intent: 'caseQA-general',
-    suggestionText: 'Case Details',
+    suggestionText: 'Case Number',
   },
   caseStatus: {
     intent: 'caseQA-general',
@@ -58,6 +58,10 @@ exports.categoriesWithIntents = {
   emancipation: {
     intent: 'emancipation-qa-age',
     suggestionText: 'Emancipation',
+  },
+  employer: {
+    intent: 'employer-root',
+    suggestionText: 'Employer'
   },
   enforcement: {
     intent: 'enforcement-root',
@@ -123,6 +127,10 @@ exports.categoriesWithIntents = {
     intent: 'geneticTesting-request',
     suggestionText: 'Genetic Testing',
   },
+  parentCseGuide: {
+    intent: 'support-parentsGuideCSE',
+    suggestionText: 'Parent’s Guide to CSE'
+  },
   paymentTimelines: {
     intent: 'paymentTimelines-root',
     suggestionText: 'Payment Timelines'
@@ -152,8 +160,8 @@ exports.categoriesWithIntents = {
     suggestionText: 'Taxes'
   },
   terminate: {
-    intent: 'support-root',
-    suggestionText: 'Close Case'
+    intent: 'terminate-root',
+    suggestionText: 'Close case'
   },
   verification: {
     intent: 'verification-root',

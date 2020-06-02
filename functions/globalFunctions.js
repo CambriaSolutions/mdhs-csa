@@ -1,13 +1,8 @@
 const { Suggestion, Payload } = require('dialogflow-fulfillment')
 
 exports.handleEndConversation = async agent => {
-  const helpMessages = [
-    `Can I help you with anything else?`,
-    `Is there anything else I can help you with today?`,
-    `Do you have any other questions?`,
-  ]
-  const helpMessage =
-    helpMessages[Math.floor(Math.random() * helpMessages.length)]
+  const helpMessage = `Is there anything else I can help you with today?`
+
   await agent.add(helpMessage)
   await agent.add(new Suggestion(`Submit Feedback`))
 
@@ -137,6 +132,7 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
     await agent.add(new Suggestion('Stimulus Check'))
+    await agent.add(new Suggestion(`Visitation`))
     await agent.add(new Suggestion('Enforcement Action'))
   } catch (err) {
     console.error(err)

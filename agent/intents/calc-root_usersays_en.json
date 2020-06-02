@@ -1,0 +1,98 @@
+[
+  {
+    "id": "841b85fa-797a-4475-865e-306ce9d2afd5",
+    "data": [
+      {
+        "text": "How do I determine how much I will receive",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e160286a-e433-4c06-8a18-2172d15d963a",
+    "data": [
+      {
+        "text": "How do I determine how much I pay",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "3725ae45-5eb4-45ea-93b5-c5fcae89fadc",
+    "data": [
+      {
+        "text": "Is there a calculator for my case",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b2b46305-67bf-4194-bde1-04da0218c403",
+    "data": [
+      {
+        "text": "How do I calculate",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1ad5b2fd-6f94-4fe3-8361-cf81bb562f7e",
+    "data": [
+      {
+        "text": "I need a calculator",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "f23219ab-439e-4f66-bb33-d108e0119390",
+    "data": [
+      {
+        "text": "Calculator",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1a14805c-60f3-494e-939c-ea1f8fc8cbab",
+    "data": [
+      {
+        "text": "Payments",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "98b7419e-d213-44eb-b348-651d552aaebb",
+    "data": [
+      {
+        "text": "choose calculator",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
