@@ -375,7 +375,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese, defaultUnhandledResponse } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
@@ -579,7 +579,8 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
-    intentMap.set('employer-guide', employerGuide)
+    // Uncomment when we get the employer guide link from the client
+    //intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
     intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
@@ -911,7 +912,8 @@ exports = module.exports = functions
     intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
-    intentMap.set('Default Fallback Intent', handleUnhandled)
+    //intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
