@@ -1,5 +1,6 @@
 [
   {
+    "id": "85d16bb1-f622-40dc-88cb-51404c349327",
     "data": [
       {
         "text": "Is there a guide on taxes?",
@@ -8,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
+    "id": "387c9a9a-73a9-44d0-ba3f-6dd2881cbc16",
     "data": [
       {
         "text": "Where can I find a Tax offset guide?",
@@ -20,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -33,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -46,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]
