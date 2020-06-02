@@ -913,8 +913,8 @@ exports = module.exports = functions
     intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
-    //intentMap.set('Default Fallback Intent', handleUnhandled)
-    intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
+    intentMap.set('Default Fallback Intent', handleUnhandled)
+    //intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
