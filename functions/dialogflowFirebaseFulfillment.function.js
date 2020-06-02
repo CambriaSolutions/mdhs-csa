@@ -5,6 +5,7 @@ const {
   startRootConversation,
   disableInput,
   caseyHandoff,
+  defaultUnhandledResponse,
 } = require('./globalFunctions.js')
 // Not child support intents
 const {
@@ -375,7 +376,7 @@ const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-const { handleUnhandled, noneOfThese, defaultUnhandledResponse } = require('./categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
