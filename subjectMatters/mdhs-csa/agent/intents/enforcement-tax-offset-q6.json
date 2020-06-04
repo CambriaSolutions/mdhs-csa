@@ -2,22 +2,14 @@
   "id": "3cabd720-7329-4cae-b6df-16df1e7c0c9b",
   "name": "enforcement-tax-offset-q6",
   "auto": true,
-  "contexts": [
-    "waiting-enforcement-tax-offset"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "waiting-enforcement-tax-offset",
-          "parameters": {},
-          "lifespan": 2
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [
         {
-          "id": "a74a2225-8873-4139-8550-478aa7a0c3c0",
+          "id": "e9f1ffb3-cf0a-45e5-b853-3819ab4c2044",
           "required": false,
           "dataType": "@cadence",
           "name": "cadence",

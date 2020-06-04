@@ -1,9 +1,9 @@
 [
   {
-    "id": "8657b342-d8fd-401a-afa0-2f0cdfece8d3",
+    "id": "85d16bb1-f622-40dc-88cb-51404c349327",
     "data": [
       {
-        "text": "How do I read more about tax offset? Is there a tax offset guide?",
+        "text": "Is there a guide on taxes?",
         "userDefined": false
       }
     ],
@@ -12,34 +12,10 @@
     "updated": 0
   },
   {
-    "id": "3ac4bb3f-ce64-412a-bb33-ada56f294860",
+    "id": "387c9a9a-73a9-44d0-ba3f-6dd2881cbc16",
     "data": [
       {
-        "text": "When is a case eligible for tax refund offset?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "b11f8cbe-dc3f-47eb-8e6b-c41fefb7ca10",
-    "data": [
-      {
-        "text": "What can you tell me about the other parent\u0027s tax refund filing status?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "114a2b2f-9169-4940-88ae-64de6f9a5e49",
-    "data": [
-      {
-        "text": "What is the Income Tax Refund Offset?",
+        "text": "Where can I find a Tax offset guide?",
         "userDefined": false
       }
     ],
