@@ -1,4 +1,4 @@
-const { tbd } = require('./globalFunctions.js.js.js')
+const { tbd } = require('./globalFunctions.js')
 
 exports.snap = async agent => {
     try {
