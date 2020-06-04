@@ -6,7 +6,7 @@ const camelCase = require('camelcase')
 
 // Get all files ending in .function.js, excluding
 // anything inside of node-modules
-const files = glob.sync('./cloudFunctions/*.function.js', {
+const files = glob.sync('./**/*.function.js', {
   cwd: __dirname,
   ignore: './node_modules/**',
 })
