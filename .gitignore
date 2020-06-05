@@ -60,7 +60,9 @@ typings/
 # next.js build output
 .next
 agent/.DS_Store
+functions/serviceAccount.json
+functions/dev-beta-service-key.json
+functions/analyticsKey.json
 *keys.json
 **/keys/
-**/node_modules/
-**/scripts/export/
+scripts/export/
