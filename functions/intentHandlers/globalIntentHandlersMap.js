@@ -10,12 +10,12 @@ const {
 
 const globalIntentHandlersMap = new Map();
 
-intentMap.set('Default Fallback Intent', fallback);
-intentMap.set('Default Welcome Intent', welcome);
-intentMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement);
-intentMap.set('global-restart', globalRestart);
-intentMap.set('restart-conversation', restartConversation);
-intentMap.set('yes-child-support', yesChildSupport);
-intentMap.set('casey-handoff', caseyHandoff);
+globalIntentHandlersMap.set('Default Fallback Intent', fallback);
+globalIntentHandlersMap.set('Default Welcome Intent', welcome);
+globalIntentHandlersMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement);
+globalIntentHandlersMap.set('global-restart', globalRestart);
+globalIntentHandlersMap.set('restart-conversation', restartConversation);
+globalIntentHandlersMap.set('yes-child-support', yesChildSupport);
+globalIntentHandlersMap.set('casey-handoff', caseyHandoff);
 
 exports.globalIntentHandlersMap = globalIntentHandlersMap;
