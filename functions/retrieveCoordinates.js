@@ -140,7 +140,7 @@ const coordinatesRequests = locations.map(async location => {
 // the functions directory. We will use these to populate the custom payload for the
 // map intent fulfillment
 Promise.all(coordinatesRequests).then(responses => {
-  fs.writeFile('../intentHandlers/childSupport/coordinates.json', JSON.stringify(responses), err => {
+  fs.writeFile('./intentHandlers/childSupport/coordinates.json', JSON.stringify(responses), err => {
     if (err) throw err
     console.log('Coordinates retrieved!')
   })
