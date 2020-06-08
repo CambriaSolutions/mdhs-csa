@@ -47,7 +47,7 @@ exports.employerGuide = async agent => {
       `An Employer Guide was created to assist employers in learning more about topics such as reporting new hires, handling income withholding orders, or handling medical support notices. This guide provides resources, contact information, and links to forms.`
     )
     await agent.add(
-      `Please <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">click here</a> to open the Employer Guide for more information`
+      `Please <a href="http://www.mdhs.ms.gov/wp-content/uploads/2020/06/Reference-Guide-for-Employers-.pdf" target="_blank">click here</a> to open the Employer Guide for more information`
     )
   } catch (err) {
     console.error(err)
