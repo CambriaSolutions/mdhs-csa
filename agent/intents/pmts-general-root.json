@@ -2,11 +2,19 @@
   "id": "54419142-fe42-4d7d-ae91-1456d9484e7d",
   "name": "pmts-general-root",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-payment-calc"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-payment-calc",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {

@@ -1,6 +1,6 @@
 {
   "id": "6632bd4f-8428-49d4-9ff5-7b491e8a21dd",
-  "name": "account-information",
+  "name": "accountInformation-root",
   "auto": true,
   "contexts": [],
   "responses": [

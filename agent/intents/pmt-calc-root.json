@@ -2,11 +2,19 @@
   "id": "20ae3290-cae6-472e-b311-05d0739ea1be",
   "name": "pmt-calc-root",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-payment-calc"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-payment-calc",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {

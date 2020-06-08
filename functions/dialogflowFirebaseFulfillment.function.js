@@ -581,7 +581,7 @@ exports = module.exports = functions
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
     // Uncomment when we get the employer guide link from the client
-    //intentMap.set('employer-guide', employerGuide)
+    intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
     intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
@@ -914,8 +914,8 @@ exports = module.exports = functions
     intentMap.set('visitation-legalservices', visitationLegalServices)
 
     intentMap.set('none-of-these', noneOfThese);
-    intentMap.set('Default Fallback Intent', handleUnhandled)
-    //intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
+    //intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [

@@ -20,6 +20,11 @@
           "lifespan": 0
         },
         {
+          "name": "waiting-pmtMethods-eCheckDebit",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
           "name": "waiting-pmtMethods-cant-make",
           "parameters": {},
           "lifespan": 0
