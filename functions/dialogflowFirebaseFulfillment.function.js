@@ -3,6 +3,7 @@ const req = require('request')
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
 const backIntent = require('./intentHandlers/back.js')
 const home = require('./intentHandlers/home')
+const globalIntentHandlersMap = reqiore('./intentHandlers/globalIntentHandlersMap');
 const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
 const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
 
@@ -35,6 +36,7 @@ exports = module.exports = functions
 
     const intentMap = new Map();
     union(intentMap)
+      (globalIntentHandlersMap)
       (commonIntentHandlersMap)
       (childSupportIntentHandlersMap);
 
