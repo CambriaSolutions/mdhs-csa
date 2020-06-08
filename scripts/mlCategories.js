@@ -21,7 +21,7 @@ exports.categoriesWithIntents = {
   },
   card: {
     intent: 'dirDep-learn-more-eppicard',
-    suggestionText: `EPPI Card`
+    suggestionText: `EPPI Card` // testing deployment
   },
   caseNumber: {
     intent: 'caseQA-general',
