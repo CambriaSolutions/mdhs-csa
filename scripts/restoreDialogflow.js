@@ -26,7 +26,7 @@ entityFiles.forEach(entityFile => {
 zip.generateAsync({ type: "uint8array" })
     .then(function (content) {
         console.log('Agent files zipped');
-        client.importAgent({ parent: `projects/${process.env.AGENT_PROJECT}`, agentContent: content })
+        client.restoreAgent({ parent: `projects/${process.env.AGENT_PROJECT}`, agentContent: content })
             .then(responses => {
                 const [operation, initialApiResponse] = responses;
                 // Operation#promise starts polling for the completion of the LRO.

@@ -32,7 +32,7 @@ jobs:
           command: cd agent && mv agent.dev.json agent.json
       - run:
           name: 'Import to Dev DialogFlow'
-          command: cd scripts && node importDialogFlow
+          command: cd scripts && node restoreDialogflow
       - run:
           name: 'Populate Firestore'
           command: cd scripts && node populateFirestore
@@ -114,7 +114,7 @@ jobs:
           command: cd agent && mv agent.isd.json agent.json
       - run:
           name: 'Import to ISD DialogFlow'
-          command: cd scripts && node importDialogFlow
+          command: cd scripts && node restoreDialogflow
       - run:
           name: 'Populate Firestore'
           command: cd scripts && node populateFirestore
@@ -196,7 +196,7 @@ jobs:
           command: cd agent && mv agent.stage.json agent.json
       - run:
           name: 'Import to Stage DialogFlow'
-          command: cd scripts && node importDialogFlow
+          command: cd scripts && node restoreDialogflow
       - run:
           name: 'Populate Firestore'
           command: cd scripts && node populateFirestore
@@ -278,7 +278,7 @@ jobs:
           command: cd agent && mv agent.prod.json agent.json
       - run:
           name: 'Import to Prod DialogFlow'
-          command: cd scripts && node importDialogFlow 
+          command: cd scripts && node restoreDialogflow 
       - run:
           name: 'Populate Firestore'
           command: cd scripts && node populateFirestore 
