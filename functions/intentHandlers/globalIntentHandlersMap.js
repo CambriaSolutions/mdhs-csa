@@ -11,7 +11,7 @@ const {
 module.exports = () => {
     const globalIntentHandlersMap = new Map();
 
-    globalIntentHandlersMap.set('Default Fallback Intent', fallback);
+    // globalIntentHandlersMap.set('Default Fallback Intent', fallback);
     globalIntentHandlersMap.set('Default Welcome Intent', welcome);
     globalIntentHandlersMap.set('acknowledge-privacy-statement', acknowledgePrivacyStatement);
     globalIntentHandlersMap.set('global-restart', globalRestart);
