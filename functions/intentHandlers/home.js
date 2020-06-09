@@ -1,3 +1,5 @@
+const { Suggestion } = require('dialogflow-fulfillment')
+
 module.exports = async (agent, intentMap, exclusionList = []) => {
     const currentIntent = agent.intent
     const currentIntentFunction = intentMap[currentIntent]
