@@ -37,8 +37,12 @@ zip.generateAsync({ type: "uint8array" })
                 return;
             })
             .catch(err => {
-                console.error(err);
+                throw err;
             });
 
         return;
+    })
+    .catch(err => {
+        console.error(err);
+        throw err;
     });
