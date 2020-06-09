@@ -1,6 +1,18 @@
 [
   {
-    "id": "9ade5202-0ab5-4bdf-a1d6-49e001d6ddf0",
+    "data": [
+      {
+        "text": "EPPI Card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8e78467a-865d-4986-b49d-6654b0cd6642",
     "data": [
       {
         "text": "learn more",
@@ -9,10 +21,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "9e226692-60df-4805-8752-a6ea3e04d15f",
+    "id": "09412a55-1fdf-4281-b731-e8834b21c2ba",
     "data": [
       {
         "text": "sure",
@@ -21,10 +34,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "157434ef-bc93-4436-8ce8-de229140e5d0",
+    "id": "cd03a8e8-70ba-445a-a113-faa274b7d92f",
     "data": [
       {
         "text": "i want to know more",
@@ -33,20 +47,22 @@
     ],
     "isTemplate": false,
     "count": 1,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "8df1d92b-6d71-4fd2-ae91-f572d04afcef",
+    "id": "5dcbb899-6023-4e8e-97ca-7a31638a5b90",
     "data": [
       {
         "text": "yes",
-        "alias": "yes-no",
         "meta": "@yes-no",
+        "alias": "yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
