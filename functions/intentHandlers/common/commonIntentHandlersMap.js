@@ -1,8 +1,10 @@
 const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
 
-const commonIntentHandlersMap = new Map();
+module.exports = () => {
+    const commonIntentHandlersMap = new Map();
 
-commonIntentHandlersMap.set('none-of-these', noneOfThese);
-commonIntentHandlersMap.set('Default Fallback Intent', handleUnhandled)
+    commonIntentHandlersMap.set('none-of-these', noneOfThese);
+    commonIntentHandlersMap.set('Default Fallback Intent', handleUnhandled)
 
-module.exports = commonIntentHandlersMap;
+    return commonIntentHandlersMap;
+}

@@ -3,9 +3,9 @@ const req = require('request');
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment');
 const backIntent = require('./intentHandlers/back');
 const home = require('./intentHandlers/home');
-const { globalIntentHandlersMap } = require('./intentHandlers/globalIntentHandlersMap');
-const { commonIntentHandlersMap } = require('./intentHandlers/common/commonIntentHandlersMap');
-const { childSupportIntentHandlersMap } = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
+const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMap');
+const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
+const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
 
 function union(targetMap, sourceMap) {
   for (const key in sourceMap) {
@@ -35,9 +35,9 @@ exports = module.exports = functions
     })
 
     const intentMap = new Map();
-    union(intentMap, globalIntentHandlersMap);
-    union(intentMap, commonIntentHandlersMap);
-    union(intentMap, childSupportIntentHandlersMap);
+    union(intentMap, globalIntentHandlersMap());
+    union(intentMap, commonIntentHandlersMap());
+    union(intentMap, childSupportIntentHandlersMap());
     console.info(`Intent Handlers: ${JSON.stringify(intentMap.keys)}`);
 
     // List of intents what will reset the back button context
