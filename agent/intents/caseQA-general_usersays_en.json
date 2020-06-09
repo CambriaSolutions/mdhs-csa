@@ -1,6 +1,30 @@
 [
   {
-    "id": "d6ce5879-551c-46c4-b7a2-49ced3a0a7b1",
+    "data": [
+      {
+        "text": "Case Status",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Case Details",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b67209b3-7fbc-4137-95ff-61a50850ac5c",
     "data": [
       {
         "text": "whats the status of my case",
@@ -9,10 +33,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "84309901-bd1a-4b88-982c-7ab09b612ab4",
+    "id": "81302c99-79de-41cb-b966-95e930ce6976",
     "data": [
       {
         "text": "is money being taking out of his check",
@@ -21,10 +46,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "bc805647-c740-413c-a7a6-cad830733548",
+    "id": "3ee15077-0025-41b5-a85a-c4587b0ae415",
     "data": [
       {
         "text": "what is my case number",
@@ -33,10 +59,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "d0177c1a-7a0d-4431-928d-b0da8405d2ee",
+    "id": "4c8e41b8-c621-47c0-bc17-774433415792",
     "data": [
       {
         "text": "when will my case end",
@@ -45,10 +72,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "d3db26d0-1f0f-4e7d-9760-3f164cfc70a7",
+    "id": "d7f9634c-842a-4140-819f-7a37bfb6c9bc",
     "data": [
       {
         "text": "when will my case close",
@@ -57,10 +85,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "bf6f8812-0161-4028-9d8f-49f5418d7d70",
+    "id": "8eedfecb-7383-4c79-8e90-f2184e53141a",
     "data": [
       {
         "text": "is my daddy required to pay child support",
@@ -69,10 +98,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "5fe0c4e4-d856-4b40-91a1-81687a970991",
+    "id": "f5f179e6-bb65-41ba-bb2b-6a676b12082d",
     "data": [
       {
         "text": "is my mom required to pay child support",
@@ -81,10 +111,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "f7d46035-094f-4a16-a3d9-675af7cd0304",
+    "id": "11686883-116b-4397-a113-418e6df008a0",
     "data": [
       {
         "text": "why is my case still open",
@@ -93,10 +124,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "1e968116-ac3b-4053-a748-32393b56a56d",
+    "id": "a6880fcf-2ebe-4b55-809f-0cfa4e88c5c4",
     "data": [
       {
         "text": "is my case closed",
@@ -105,10 +137,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "bd6a5b7b-6a9f-43f0-b030-14a2c6895cb0",
+    "id": "de8be136-94f7-4d1a-9bb0-547da107d65f",
     "data": [
       {
         "text": "Has a Withholding Order been sent to the Employer?",
@@ -117,10 +150,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "454c4d8c-ec1f-4ecf-90da-8de01a941c55",
+    "id": "7e4acf43-71dc-4afe-894c-7ee43a1f8874",
     "data": [
       {
         "text": "Is my child support case close?",
@@ -129,10 +163,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "0b96bc56-28e5-4518-b6f4-05888a170a79",
+    "id": "b8fa9a5f-1f7b-4c13-95f3-7116f3e1e2a4",
     "data": [
       {
         "text": "Find case number",
@@ -141,10 +176,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "6b8e4ee9-b299-496d-b4d3-a731a24a9b96",
+    "id": "55d4ee5c-9fd1-47d2-a08c-f9793a226300",
     "data": [
       {
         "text": "Is my case pending closure?",
@@ -153,10 +189,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "ac2b02e9-9ba7-40fb-be99-aaaf4fc58fd7",
+    "id": "63b8aab9-0375-4fd8-845a-4341b91e4c7c",
     "data": [
       {
         "text": "Is the absent parent ordered to pay child support?",
@@ -165,10 +202,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "eee2122c-8377-49bb-8170-14279886ac19",
+    "id": "2941e247-27bc-4eee-82a6-debcafcdfb0d",
     "data": [
       {
         "text": "Does my case have an order attached?",
@@ -177,10 +215,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "7ed0b100-ba94-462c-8e0b-7bc7066f99e1",
+    "id": "26304bef-1ff7-4bfc-b011-df7f2cdc53f8",
     "data": [
       {
         "text": "Has a court date been schedule for my child support case?",
@@ -189,10 +228,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "d00aae9d-a7da-419f-b471-042e4ecb8bc7",
+    "id": "f7b74dbb-1de0-4116-8e9d-e98b15426e77",
     "data": [
       {
         "text": "Has my case been scheduled for court?",
@@ -201,10 +241,11 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
-    "id": "13ef09d5-3104-4758-8873-531fbba941f1",
+    "id": "340552fd-5d8c-4848-abe5-cf4d7dd93956",
     "data": [
       {
         "text": "Has an appointment been schedule for the absent parent?",
@@ -213,6 +254,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
