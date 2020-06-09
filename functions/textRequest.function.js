@@ -26,8 +26,8 @@ const runtimeOpts = {
 
 exports = module.exports = functions
   .runWith(runtimeOpts)
-  .https.onRequest((req, res) => {
-    return cors(req, res, () => {
+  .https.onRequest(async (req, res) => {
+    return cors(req, res, async () => {
       if (!req.query || !req.query.query) {
         return 'The "query" parameter is required'
       }
@@ -43,16 +43,21 @@ exports = module.exports = functions
         queryInput: { text: { text: query, languageCode: languageCode } },
       }
 
-      return sessionClient
-        .detectIntent(dfRequest)
-        .then(responses => {
-          // return responses[0]
-          responses[0].session = sessionPath
-          res.json(responses[0])
-        })
-        .catch(err => {
-          console.error('textRequest.function.js: ', err)
-          return `Dialogflow error: ${err}`
-        })
+      const detectIntentPromise = new Promise((resolve, reject) => {
+        sessionClient
+          .detectIntent(dfRequest)
+          .then(responses => {
+            // return responses[0]
+            responses[0].session = sessionPath
+            res.json(responses[0]);
+            resolve();
+          })
+          .catch(err => {
+            console.error('textRequest.function.js: ', err)
+            reject(`Dialogflow error: ${err}`);
+          })
+      });
+
+      return detectIntentPromise;
     })
   })
