@@ -1,6 +1,7 @@
 module.exports = async (agent, intentMap, exclusionList = []) => {
     const currentIntent = agent.intent
     const currentIntentFunction = intentMap.get(currentIntent)
+    console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`);
     const homeFunction = async () => {
       await currentIntentFunction(agent)
       if (!exclusionList.includes(agent.intent)) {

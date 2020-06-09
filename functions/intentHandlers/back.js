@@ -106,6 +106,7 @@ const backFunction = (agent, intentMap) => {
 
 const fullfillmentWrapper = (agent, intentMap) => {
   const currentIntentFullfillmentFunction = intentMap.get(agent.intent)
+  console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`);
   const prevIntents = agent.context.get('previous-agent-states')
 
   const maskFunction = async agent => {
