@@ -7,6 +7,10 @@ const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMa
 const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
 const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
 
+console.log(`Global Handlers: ${JSON.stringify(globalIntentHandlersMap().keys)}`);
+console.log(`Common Handlers: ${JSON.stringify(commonIntentHandlersMap().keys)}`);
+console.log(`CSA Handlers: ${JSON.stringify(childSupportIntentHandlersMap().keys)}`);
+
 function union(...maps) {
   let unionMap = new Map();
   for(const mapIndex in maps) {
