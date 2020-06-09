@@ -10,11 +10,11 @@ const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/chi
 function union(...maps) {
   const unionMap = new Map();
   for (const map of maps) {
-    for (const [key, value] of map.entries()) {
+    map.forEach((value, key, map) => {
       if(!unionMap.has(key)) {
         unionMap.set(key, value);
       }
-    }
+    });
   }
 }
 
