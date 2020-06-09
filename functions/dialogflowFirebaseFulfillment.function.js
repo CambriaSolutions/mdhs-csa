@@ -7,10 +7,13 @@ const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMa
 const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
 const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
 
-function union(source) {
-  return function(target) {
-    for (const item of target) {
-        source.set(...item);
+function union(...maps) {
+  const unionMap = new Map();
+  for (const map of maps) {
+    for (const [key, value] of map.entries()) {
+      if(!unionMap.has(key)) {
+        unionMap.set(key, value);
+      }
     }
   }
 }
@@ -34,11 +37,7 @@ exports = module.exports = functions
       json: true,
     })
 
-    const intentMap = new Map();
-    union(intentMap)
-      (globalIntentHandlersMap)
-      (commonIntentHandlersMap)
-      (childSupportIntentHandlersMap);
+    const intentMap = union(globalIntentHandlersMap, commonIntentHandlersMap, childSupportIntentHandlersMap);
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
