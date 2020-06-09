@@ -71,10 +71,6 @@ exports.pmtsGeneralMakePayments = async agent => {
       lifespan: 2,
     })
     await agent.context.set({
-      name: 'waiting-pmtMethods-eCheckDebit',
-      lifespan: 2,
-    })
-    await agent.context.set({
       name: 'waiting-pmtMethods-withhold-payments',
       lifespan: 2,
     })

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "0efa9a39-aaba-4f4d-8afb-f5803e6ac22f",
+    "data": [
+      {
+        "text": "no",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0bc74d6b-68b2-453e-bc72-f8dc82d3e59a",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  }
+]

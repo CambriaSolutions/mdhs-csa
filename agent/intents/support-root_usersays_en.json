@@ -1,0 +1,428 @@
+[
+  {
+    "id": "ad5ca3d9-dfea-4ef4-b741-dd6e46d02038",
+    "data": [
+      {
+        "text": "i need to add an authorized user",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d3ec4501-937e-4f08-8c5e-d66235fb2105",
+    "data": [
+      {
+        "text": "i want to close my case",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "49273d09-9296-4f19-ad9c-9234fb86fd83",
+    "data": [
+      {
+        "text": "i need to report ",
+        "userDefined": false
+      },
+      {
+        "text": "information about the parent who pays child support",
+        "alias": "action-requests",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b28bc1f9-43fe-43e7-8089-d1c568ccaf54",
+    "data": [
+      {
+        "text": "i would like to ",
+        "userDefined": false
+      },
+      {
+        "text": "request payment history",
+        "alias": "action-requests",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d4838410-0cb9-40a7-b3e9-e432d849967f",
+    "data": [
+      {
+        "text": "i need to change my personal information",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d39d952b-7222-4b1a-818a-3e1e9b0ebb7d",
+    "data": [
+      {
+        "text": "i want more money",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "02b19509-fc2e-4f68-9f4f-69ca34501b4a",
+    "data": [
+      {
+        "text": "i want my child support ",
+        "userDefined": false
+      },
+      {
+        "text": "increased",
+        "alias": "action-requests",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "eb9b67a3-6f57-4521-86d9-d64422ea4f49",
+    "data": [
+      {
+        "text": "i need to have my payments ",
+        "userDefined": false
+      },
+      {
+        "text": "increased",
+        "alias": "action-requests",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "115d494a-e545-4bcb-ae4d-d9efca79b373",
+    "data": [
+      {
+        "text": "report contempt action",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e5106d02-c132-443d-92d5-5f944e09592e",
+    "data": [
+      {
+        "text": "i want to change my employment information",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "39b91923-b0a7-4588-89ab-af145a7e4508",
+    "data": [
+      {
+        "text": "i want to change my employment status",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d24662b4-8e5c-4f68-b50a-1df445ab55fd",
+    "data": [
+      {
+        "text": "i would like to make a request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ca2f1d69-de17-435b-8ccb-bbc36d1509ba",
+    "data": [
+      {
+        "text": "i need to report",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "310a2d43-edf6-45ba-95ba-5b28806c5423",
+    "data": [
+      {
+        "text": "I have an issue that I want to report",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "7327d27e-d1b8-4dec-b7ce-fd82f8230a92",
+    "data": [
+      {
+        "text": "i have an issue",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "cacf1c8f-a386-4525-b91a-eaab49266310",
+    "data": [
+      {
+        "text": "support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2d1cfd0a-c57d-4e39-bedd-2fe451a938d9",
+    "data": [
+      {
+        "text": "requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "fb8ea047-c5d0-439e-a8f2-243617f91bcf",
+    "data": [
+      {
+        "text": "action request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c535a0c8-c8e5-467d-b364-275a8559fe6d",
+    "data": [
+      {
+        "text": "i need to make a support request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "3eab5f21-cdbc-4c68-91c5-52fae5a540b5",
+    "data": [
+      {
+        "text": "i need to make a request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "31913c4d-dc6f-4443-9dc0-8dc6b9ab7612",
+    "data": [
+      {
+        "text": "i want to report a ",
+        "userDefined": false
+      },
+      {
+        "text": "lump sum",
+        "alias": "action-requests",
+        "meta": "@action-requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1ff97929-0134-4dcc-babd-330348d05ceb",
+    "data": [
+      {
+        "text": "create ticket",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "85903f24-e5c5-4950-83e4-96869dcbec67",
+    "data": [
+      {
+        "text": "i want support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c8588785-f3a2-44d3-8d5e-e2d60133f4ec",
+    "data": [
+      {
+        "text": "i want to complain",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "7dd6a010-e688-4f32-9067-d03791ced025",
+    "data": [
+      {
+        "text": "common requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "5613c221-c50a-42e1-9d91-aa2f7f76248f",
+    "data": [
+      {
+        "text": "i need to create a support ticket",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b71a3061-71af-4319-8aa7-c34333858a59",
+    "data": [
+      {
+        "text": "submit a complaint",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "74bb17c7-c483-4747-bf57-fcd2b0812287",
+    "data": [
+      {
+        "text": "i need to create a ticket",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ff5a3b35-c496-4b69-bef1-f31b70eca2d0",
+    "data": [
+      {
+        "text": "i need help",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "7a5ecd96-6274-4727-beaa-43cb8efff119",
+    "data": [
+      {
+        "text": "complaints",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0af483a2-931e-477e-b2eb-f99795fcbc9e",
+    "data": [
+      {
+        "text": "Support requests",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  },
+  {
+    "id": "ae5b01a3-410a-4e27-b86d-7c72c599de8f",
+    "data": [
+      {
+        "text": "I want to submit a support request",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b8cab376-1113-4bc1-9684-67233a70e3c5",
+    "data": [
+      {
+        "text": "i have a complaint",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  }
+]

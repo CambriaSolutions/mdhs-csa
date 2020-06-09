@@ -1,0 +1,20 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dialogflow": "^0.12.2",
+    "dotenv": "^6.2.0",
+    "firebase-admin": "^8.12.1",
+    "uuid": "^8.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}

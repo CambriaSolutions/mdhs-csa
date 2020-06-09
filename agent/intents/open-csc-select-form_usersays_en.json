@@ -1,0 +1,16 @@
+[
+  {
+    "id": "0ba4f94a-bdcc-4175-af91-6ba17a96255b",
+    "data": [
+      {
+        "text": "Yes",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

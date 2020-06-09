@@ -1,0 +1,63 @@
+{
+  "id": "531c8256-350c-46dd-8f47-5472a9946da6",
+  "name": "pmtMethods-checkOrMoneyOrder",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-checkOrMoneyOrder"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "waiting-pmtMethods-checkOrMoneyOrder",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cash",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-eCheckDebit",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-withhold-payments",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make-qualifying-help",
+          "lifespan": 5
+        },
+        {
+          "name": "waiting-pmtMethods-chec",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

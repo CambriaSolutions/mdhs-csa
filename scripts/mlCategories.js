@@ -1,15 +1,15 @@
 exports.categoriesWithIntents = {
   accountBalance: {
-    intent: 'pmtMethods-eCheckDebit',
-    suggestionText: 'Account balance',
+    intent: 'account-balance',
+    suggestionText: 'Account Balance',
   },
   accountInformation: {
-    intent: 'accountInformation-root',
-    suggestionText: 'Account information'
+    intent: 'account-information',
+    suggestionText: 'Account Information'
   },
   addressingCheck: {
-    intent: 'pmts-general-make-payments',
-    suggestionText: 'Address check',
+    intent: 'pmtMethods-checkOrMoneyOrder',
+    suggestionText: 'Address Check',
   },
   appointments: {
     intent: 'appts-root',
@@ -20,24 +20,24 @@ exports.categoriesWithIntents = {
     suggestionText: 'Arrears'
   },
   card: {
-    intent: 'eppi-get-card',
-    suggestionText: `EPPI card`
+    intent: 'dirDep-learn-more-eppicard',
+    suggestionText: `EPPI Card` // testing deployment
   },
   caseNumber: {
     intent: 'caseQA-general',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Case Number',
   },
   caseStatus: {
     intent: 'caseQA-general',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Case Status',
   },
   changeOfInformation: {
     intent: 'caseQA-change-personal-info',
-    suggestionText: 'Case specific questions',
+    suggestionText: 'Change of Information',
   },
   childCare: {
     intent: 'childCare-root',
-    suggestionText: 'Child care'
+    suggestionText: 'Child Care'
   }, // Suggest child care intent
   complaints: {
     intent: 'feedback-root',
@@ -59,13 +59,17 @@ exports.categoriesWithIntents = {
     intent: 'emancipation-qa-age',
     suggestionText: 'Emancipation',
   },
+  employer: {
+    intent: 'employer-root',
+    suggestionText: 'Employer'
+  },
   enforcement: {
     intent: 'enforcement-root',
     suggestionText: 'Enforcement'
   },
   estimatePayments: {
     intent: 'pmt-calc-root',
-    suggestionText: 'Estimate payments',
+    suggestionText: 'Estimate Payments',
   },
   fax: {
     intent: 'fax-root',
@@ -93,27 +97,27 @@ exports.categoriesWithIntents = {
   }, // Suggest legal intent
   login: {
     intent: 'login-root',
-    suggestionText: 'Login issue'
+    suggestionText: 'Login Issue'
   }, // Suggest login intent
   makePayment: {
     intent: 'pmts-general-make-payments',
-    suggestionText: 'Make payments',
+    suggestionText: 'Make Payments',
   },
   notReceivedPayment: {
     intent: 'pmtQA-havent-received',
-    suggestionText: `Haven't received payments`,
+    suggestionText: `Haven't Received Payments`,
   },
   officeLocations: {
     intent: 'map-root',
-    suggestionText: 'Office locations'
+    suggestionText: 'Office Locations'
   },
   onlineAction: {
     intent: 'onlineAction-root',
-    suggestionText: 'Online issue'
+    suggestionText: 'Online Issue'
   }, // suggest online action intent
   openCase: {
     intent: 'open-csc-root',
-    suggestionText: 'Open case'
+    suggestionText: 'Open Case'
   },
   other: {
     intent: 'other-root',
@@ -121,15 +125,19 @@ exports.categoriesWithIntents = {
   },
   paternity: {
     intent: 'geneticTesting-request',
-    suggestionText: 'Genetic testing',
+    suggestionText: 'Genetic Testing',
+  },
+  parentCseGuide: {
+    intent: 'support-parentsGuideCSE',
+    suggestionText: 'Parent’s Guide to CSE'
   },
   paymentTimelines: {
     intent: 'paymentTimelines-root',
-    suggestionText: 'Payment timelines'
+    suggestionText: 'Payment Timelines'
   }, // Need payment timelines intent
   phoneNumber: {
     intent: 'phoneNumber-root',
-    suggestionText: 'Phone number'
+    suggestionText: 'Phone Number'
   },
   refund: {
     intent: 'refund-root',
@@ -141,7 +149,7 @@ exports.categoriesWithIntents = {
   }, // Suggest snap intent
   supportRequest: {
     intent: 'support-root',
-    suggestionText: 'Support requests',
+    suggestionText: 'Support Requests',
   },
   tanf: {
     intent: 'tanf-root',
@@ -152,7 +160,7 @@ exports.categoriesWithIntents = {
     suggestionText: 'Taxes'
   },
   terminate: {
-    intent: 'support-root',
+    intent: 'terminate-root',
     suggestionText: 'Close case'
   },
   verification: {

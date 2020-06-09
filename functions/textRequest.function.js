@@ -51,6 +51,7 @@ exports = module.exports = functions
           res.json(responses[0])
         })
         .catch(err => {
+          console.error('textRequest.function.js: ', err)
           return `Dialogflow error: ${err}`
         })
     })

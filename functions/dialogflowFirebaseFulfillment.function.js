@@ -5,6 +5,7 @@ const {
   startRootConversation,
   disableInput,
   caseyHandoff,
+  defaultUnhandledResponse,
 } = require('./globalFunctions.js')
 // Not child support intents
 const {
@@ -21,6 +22,15 @@ const {
   enforcementLicenseSuspensionNonCompliance,
   enforcementLicenseReinstatement,
   enforcementTaxOffset,
+  enforcementTaxOffsetQ1,
+  enforcementTaxOffsetQ2Q3,
+  enforcementTaxOffsetQ4,
+  enforcementTaxOffsetQ5,
+  enforcementTaxOffsetQ6,
+  enforcementTaxOffsetQ7,
+  enforcementTaxOffsetQ8,
+  enforcementTaxOffsetQ9,
+  enforcementTaxOffsetQ10,
   enforcementLiens,
   enforcementContestLien,
   enforcementFinancialAccountUpdateCase,
@@ -34,6 +44,7 @@ const {
   enforcementUnemployment,
   enforcementSubmitInquiry,
   enforcementBankruptcy,
+  enforcementContempt
 } = require('./enforcement.js')
 
 // General payment intents
@@ -49,9 +60,13 @@ const {
   employerRoot,
   employerEFT,
   employerIPayOnline,
+  employerGuide,
   employerChecksMoneyOrders,
   employerIWOHandoff,
+  employerBillsAndNotices
 } = require('./employer.js')
+
+const { calcRoot } = require('./calculator.js')
 
 // Payment calculator intents
 const {
@@ -82,7 +97,6 @@ const {
   pmtMethodsNone,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsCash,
-  pmtMethodsEcheckDebit,
   pmtMethodsMailAddress,
   pmtMethodsMoneygram,
   pmtMethodsPayNearMe,
@@ -137,6 +151,7 @@ const {
   supportParentPayingEmploymentInfo,
   supportParentPaying,
   supportParentReceivingMore,
+  supportParentReceivingEmancipation,
   supportEmployer,
   supportParentPayingMore,
   supportNoOptionsSelected,
@@ -168,6 +183,7 @@ const {
   supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
+  supportParentsGuideCSE
 } = require('./support.js')
 
 // Map intents
@@ -212,6 +228,7 @@ const {
 // IWO intents
 const {
   iwoRoot,
+  iwoCcpaRoot,
   iwoFAQs,
   iwoWantsAssistance,
   iwoNoAssistance,
@@ -268,9 +285,13 @@ const {
   contactProvidePhoneNumber,
 } = require('./contactQA.js')
 
+// Terminate 
+const { terminateRoot } = require('./terminate.js')
+
 // Payments QA
 const {
   pmtQAHaventReceived,
+  pmtQAHaventReceivedSubmitRequest,
   pmtQAPaymentReduction,
   pmtQAYesPaymentReduction,
   pmtQAOver21,
@@ -284,13 +305,78 @@ const {
 // Stimulus Check
 const { stimulusCheck } = require('./stimulusCheck.js')
 
+// Account information
+const { accountInformation, accountBalance } = require('./account.js')
+
+// Childcare
+const { childCare } = require('./childCare.js')
+
+// Documentation
+const { documentation } = require('./documentation.js')
+
+// Email
+const { email } = require('./email.js')
+
+// Fax
+const { fax } = require('./fax.js')
+
+// Fee
+const { fee } = require('./fee.js')
+
+// Gratitude not answering
+const { gratitude } = require('./gratitude.js')
+
+// Interstate
+const { interstate } = require('./interstate.js')
+
+// Legal
+const { legal } = require('./legal.js')
+
+// Login
+const { login } = require('./login.js')
+
+// Online action
+const { onlineAction } = require('./onlineAction.js')
+
+// Other
+const { other } = require('./other.js')
+
+// Payment Timelines
+const { paymentTimelines } = require('./paymentTimelines.js')
+
+// Phone number
+const { phoneNumber } = require('./phoneNumber.js')
+
+// Refund
+const { refund } = require('./refund.js')
+
+// Snap
+const { snap } = require('./snap.js')
+
+// Tanf
+const { tanf } = require('./tanf.js')
+
+// Taxes
+const { taxes } = require('./taxes.js')
+
+// Verification
+const { verification } = require('./verification.js')
+
+// Visitation
+const {
+  visitationRoot,
+  visitationPetitionToCite,
+  visitationProSePacket,
+  visitationLegalServices
+} = require('./visitation.js')
+
 const { backIntent } = require('./back.js')
 
 const { home } = require('./home')
 
 // TODO: uncomment for ml integration
 // ML model requests
-// const { handleUnhandled } = require('./categorizeAndPredict.js')
+const { handleUnhandled, noneOfThese } = require('./categorizeAndPredict.js')
 
 
 const runtimeOpts = {
@@ -388,12 +474,6 @@ exports = module.exports = functions
       }
     }
 
-    // TODO: remove after testing
-    // Testing intent for ml training
-    const tbd = async agent => {
-      await agent.add('test')
-    }
-
     let intentMap = new Map()
 
     intentMap.set('Default Fallback Intent', fallback)
@@ -408,6 +488,9 @@ exports = module.exports = functions
     intentMap.set('contact-support-handoff', contactSupportHandoff)
     intentMap.set('contact-provide-phone-number', contactProvidePhoneNumber)
 
+    // Terminate intents
+    intentMap.set('terminate-root', terminateRoot)
+
     // Not child support intents
     intentMap.set('not-child-support-root', notChildSupportRoot)
     intentMap.set('handle-child-support-retry', handleChildSupportRetry)
@@ -415,6 +498,8 @@ exports = module.exports = functions
       'acknowledgement-after-retry',
       handleAcknowledgementAfterRetry
     )
+
+    intentMap.set('calc-root', calcRoot);
 
     // Payment calculation intents
     intentMap.set('pmt-calc-root', pmtCalcRoot)
@@ -461,6 +546,7 @@ exports = module.exports = functions
 
     // IWO intents
     intentMap.set('iwo-root', iwoRoot)
+    intentMap.set('iwo-ccpa-root', iwoCcpaRoot);
     intentMap.set('iwo-faqs', iwoFAQs)
     intentMap.set('iwo-wants-assistance', iwoWantsAssistance)
     intentMap.set('iwo-no-assistance', iwoNoAssistance)
@@ -494,14 +580,15 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
+    intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
+    intentMap.set('employer-billsAndNotices', employerBillsAndNotices)
 
     // Payment methods intents
     intentMap.set('pmtMethods-none', pmtMethodsNone)
     intentMap.set('pmtMethods-checkOrMoneyOrder', pmtMethodsCheckOrMoneyOrder)
     intentMap.set('pmtMethods-cash', pmtMethodsCash)
-    intentMap.set('pmtMethods-eCheckDebit', pmtMethodsEcheckDebit)
     intentMap.set('pmtMethods-mail-address', pmtMethodsMailAddress)
     intentMap.set('pmtMethods-moneygram', pmtMethodsMoneygram)
     intentMap.set('pmtMethods-paynearme', pmtMethodsPayNearMe)
@@ -545,6 +632,8 @@ exports = module.exports = functions
     // Support intents
     intentMap.set('support-root', supportRoot)
     intentMap.set('support-parent-receiving', supportParentReceiving)
+    intentMap.set('support-parent-receiving-emancipation', supportParentReceivingEmancipation)
+
     intentMap.set(
       'support-parent-receiving-employment-info',
       supportParentReceivingEmploymentInfo
@@ -595,6 +684,7 @@ exports = module.exports = functions
     intentMap.set('support-summarize-issue', supportSummarizeIssue)
     intentMap.set('support-revise-issue', supportReviseIssue)
     intentMap.set('support-submit-issue', supportSumbitIssue)
+    intentMap.set('support-parentsGuideCSE', supportParentsGuideCSE)
     intentMap.set(
       'support-edit-provider-employment',
       supportEditProviderEmployment
@@ -663,6 +753,7 @@ exports = module.exports = functions
 
     // Payments QA intents
     intentMap.set('pmtQA-havent-received', pmtQAHaventReceived)
+    intentMap.set('pmtQA-havent-received-submit-request', pmtQAHaventReceivedSubmitRequest)
     intentMap.set('pmtQA-payment-reduction', pmtQAPaymentReduction)
     intentMap.set('pmtQA-yes-payment-reduction', pmtQAYesPaymentReduction)
     intentMap.set('pmtQA-over-21', pmtQAOver21)
@@ -708,6 +799,15 @@ exports = module.exports = functions
       enforcementLicenseReinstatement
     )
     intentMap.set('enforcement-tax-offset', enforcementTaxOffset)
+    intentMap.set('enforcement-tax-offset-q1', enforcementTaxOffsetQ1)
+    intentMap.set('enforcement-tax-offset-q2q3', enforcementTaxOffsetQ2Q3)
+    intentMap.set('enforcement-tax-offset-q4', enforcementTaxOffsetQ4)
+    intentMap.set('enforcement-tax-offset-q5', enforcementTaxOffsetQ5)
+    intentMap.set('enforcement-tax-offset-q6', enforcementTaxOffsetQ6)
+    intentMap.set('enforcement-tax-offset-q7', enforcementTaxOffsetQ7)
+    intentMap.set('enforcement-tax-offset-q8', enforcementTaxOffsetQ8)
+    intentMap.set('enforcement-tax-offset-q9', enforcementTaxOffsetQ9)
+    intentMap.set('enforcement-tax-offset-q10', enforcementTaxOffsetQ10)
     intentMap.set('enforcement-liens', enforcementLiens)
     intentMap.set('enforcement-contest-lien', enforcementContestLien)
     intentMap.set(
@@ -741,14 +841,82 @@ exports = module.exports = functions
     intentMap.set('stimulusCheck-root', stimulusCheck)
 
     intentMap.set('enforcement-bankruptcy', enforcementBankruptcy)
+    intentMap.set('enforcement-contempt', enforcementContempt)
     // Cancel intent
     intentMap.set('support-cancel', supportCancel)
 
-    // TBD intent
-    intentMap.set('tbd', tbd)
+    // Account
+    intentMap.set('account-balance', accountBalance)
+    intentMap.set('account-information', accountInformation)
 
-    // intentMap.set('Default Fallback Intent', handleUnhandled)
+    // Childcare
+    intentMap.set('childCare-root', childCare)
 
+    // Complaints
+    intentMap.set('complaints-root', feedbackRoot)
+
+    // Documentation
+    intentMap.set('documentation-root', documentation)
+
+    // Email
+    intentMap.set('email-root', email)
+
+    // Fax
+    intentMap.set('fax-root', fax)
+
+    // Fee
+    intentMap.set('fee-root', fee)
+
+    // Gratitude not answering
+    intentMap.set('gratitude-root', gratitude)
+
+    // Interstate
+    intentMap.set('interstate-root', interstate)
+
+    // Legal
+    intentMap.set('legal-root', legal)
+
+    // Login
+    intentMap.set('login-root', login)
+
+    // Online action
+    intentMap.set('onlineAction-root', onlineAction)
+
+    // Other
+    intentMap.set('other-root', other)
+
+    // Payment Timelines
+    intentMap.set('paymentTimelines-root', paymentTimelines)
+
+    // Phone number
+    intentMap.set('phoneNumber-root', phoneNumber)
+
+    // Refund
+    intentMap.set('refund-root', refund)
+
+    // Snap
+    intentMap.set('snap-root', snap)
+
+    // Tanf
+    intentMap.set('tanf-root', tanf)
+
+    // Taxes
+    intentMap.set('taxes-root', taxes)
+
+    // Verification
+    intentMap.set('verification-root', verification)
+
+    // Visitation
+    intentMap.set('visitation-root', visitationRoot)
+    intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
+    intentMap.set('visitation-prosepackets', visitationProSePacket)
+    intentMap.set('visitation-legalservices', visitationLegalServices)
+
+    intentMap.set('none-of-these', noneOfThese);
+    //intentMap.set('Default Fallback Intent', handleUnhandled)
+    intentMap.set('Default Fallback Intent', defaultUnhandledResponse)
+
+    // List of intents what will reset the back button context
     const resetBackIntentList = [
       'yes-child-support',
       'Default Welcome Intent',

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "a527f04e-492f-43bf-a00d-a8f4ea25d95b",
+    "data": [
+      {
+        "text": "yeah",
+        "alias": "hasRetirementContributions",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "46645180-1dda-4620-84e1-1f9b9472cfaa",
+    "data": [
+      {
+        "text": "I think so",
+        "alias": "hasRetirementContributions",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "292e4066-befe-447e-81cc-1a07eaced4b7",
+    "data": [
+      {
+        "text": "Yes",
+        "alias": "hasRetirementContributions",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  }
+]

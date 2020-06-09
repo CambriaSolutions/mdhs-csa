@@ -1,0 +1,16 @@
+[
+  {
+    "id": "3e807425-0848-45be-bb4a-b919c3a32a76",
+    "data": [
+      {
+        "text": "yes",
+        "alias": "needsInquiry",
+        "meta": "@yes-no",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

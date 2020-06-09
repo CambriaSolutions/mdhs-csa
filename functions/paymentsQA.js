@@ -9,11 +9,32 @@ const {
 exports.pmtQAHaventReceived = async agent => {
   try {
     await agent.add(
-      `Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.`
+      `Parents who pay support have the full month to pay.  If you would like more information, then you may submit a support request below or call <a href="tel:+18778824916">1-877-882-4916</a>`
     )
-    await handleEndConversation(agent)
+    await agent.add(
+      `Do you have any other questions?`
+    )
+    await agent.add(new Suggestion('Submit Support Request'))
+    await agent.add(new Suggestion(`Submit Feedback`))
+
+    await agent.context.set({
+      name: 'waiting-feedback-root',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-pmtQA-havent-received-submit-request',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
+  }
+}
+
+exports.pmtQAHaventReceivedSubmitRequest = async agent => {
+  try {
+    await supportInquiries(agent)
+  } catch (err) {
+    console.log(err)
   }
 }
 

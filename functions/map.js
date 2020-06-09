@@ -6,9 +6,11 @@ const { handleEndConversation } = require('./globalFunctions.js')
 
 exports.mapRoot = async agent => {
   try {
+    await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case')
     await agent.add(
-      `I can help locate the nearest Child Support office to you, what is your address?`
+      `I can help locate the nearest office to you, what is your address?`
     )
+    
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
       lifespan: 2,

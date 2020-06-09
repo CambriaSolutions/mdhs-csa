@@ -116,7 +116,7 @@ exports.eppiReplaceReport = async agent => {
 exports.eppiFAQ = async agent => {
   try {
     await agent.add(
-      `Sure, I can help answer general questions you might have about the EPPICard. What is your question?`
+      `You may find answers to frequently asked questions about the Debit Card/EppiCard (<a href="https://www.eppicard.com/FAQ.html">here</a>), or ask me your Debit Card/EppiCard questions below.`
     )
   } catch (err) {
     console.log(err)

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "6dcbe25b-95cd-4ab7-abca-75c5bf744034",
+    "data": [
+      {
+        "text": "taxes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0a14a158-88df-4918-b87a-cd4b87f9d7d0",
+    "data": [
+      {
+        "text": "Tax Offset",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

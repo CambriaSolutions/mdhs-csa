@@ -1,0 +1,16 @@
+[
+  {
+    "id": "80baec64-3ef8-4026-a2bc-1817adb602e6",
+    "data": [
+      {
+        "text": "John",
+        "alias": "firstName",
+        "meta": "@sys.any",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 0
+  }
+]

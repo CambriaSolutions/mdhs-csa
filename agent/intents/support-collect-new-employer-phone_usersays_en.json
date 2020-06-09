@@ -1,0 +1,16 @@
+[
+  {
+    "id": "07e0ec1d-f167-421b-a6d5-951a0ff13057",
+    "data": [
+      {
+        "text": "9167990766",
+        "alias": "newEmployerPhone",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

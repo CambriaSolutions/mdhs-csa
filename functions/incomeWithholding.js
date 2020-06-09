@@ -12,14 +12,14 @@ exports.iwoRoot = async agent => {
   try {
     await agent.add(`Which of the following is most relevant to your inquiry?`)
     await agent.add(
-      'CCPA Assistance: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
+      'CCPA Calculator: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
     )
     await agent.add('FAQs: Regarding Income Withholding Orders')
     await agent.add(
       'Report Information About the Parent who Pays Support: Report information about the parent who provides support like change in their address, salary change, employment change, etc.'
     )
 
-    await agent.add(new Suggestion('CCPA Assistance'))
+    await agent.add(new Suggestion('CCPA Calculator'))
     await agent.add(new Suggestion('FAQs'))
     await agent.add(
       new Suggestion('Report Information About the Parent who Pays Support')
@@ -44,6 +44,29 @@ exports.iwoRoot = async agent => {
     console.error(err)
   }
 }
+
+exports.iwoCcpaRoot = async agent => {
+  try {
+    await agent.add(
+      `The Consumer Credit Protection Act limits earnings that may be withheld. Earnings are subject to withholding limits that range between 50-65%. The withholding order will specify the CCPA cap amount based on information known to MDHS.`
+    )
+    await agent.add(
+      `Would you like assistance estimating the CCPA percentage that may apply to a particular case?`
+    )
+    await agent.add(new Suggestion('Yes'))
+    await agent.add(new Suggestion('No'))
+    await agent.context.set({
+      name: 'waiting-iwo-confirm-estimate',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-iwo-no-assistance',
+      lifespan: 2,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+} 
 
 exports.iwoNoAssistance = async agent => {
   try {
