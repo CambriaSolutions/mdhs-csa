@@ -1,5 +1,6 @@
 [
   {
+    "id": "caf29e30-472a-41f1-b375-c6bfeceba3a6",
     "data": [
       {
         "text": "Incarceration",
@@ -8,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -21,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -47,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -60,7 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -73,7 +69,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -86,7 +81,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -99,7 +93,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -121,7 +114,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -134,7 +126,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -146,8 +137,8 @@
       },
       {
         "text": "NCP",
-        "meta": "@guardianship",
         "alias": "guardianship",
+        "meta": "@guardianship",
         "userDefined": false
       },
       {
@@ -157,7 +148,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -169,8 +159,8 @@
       },
       {
         "text": "NCP",
-        "meta": "@guardianship",
         "alias": "guardianship",
+        "meta": "@guardianship",
         "userDefined": false
       },
       {
@@ -180,7 +170,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

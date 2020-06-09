@@ -1,5 +1,6 @@
 [
   {
+    "id": "59bb0fa1-5ff4-417f-965c-3612b5cb983c",
     "data": [
       {
         "text": "Haven\u0027t Received Payments",
@@ -8,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -21,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -47,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -60,7 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]
