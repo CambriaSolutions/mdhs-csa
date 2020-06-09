@@ -3,26 +3,9 @@ const req = require('request');
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment');
 const backIntent = require('./intentHandlers/back');
 const home = require('./intentHandlers/home');
-const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMap');
-const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
-const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
-
-console.log(`Global Handlers(All):`, globalIntentHandlersMap());
-console.log(`Global Handlers: ${JSON.stringify(globalIntentHandlersMap().keys())}`);
-console.log(`Common Handlers: ${JSON.stringify(commonIntentHandlersMap().keys())}`);
-console.log(`CSA Handlers: ${JSON.stringify(childSupportIntentHandlersMap().keys())}`);
-
-function union(...maps) {
-  let unionMap = new Map();
-  for(const mapIndex in maps) {
-    const map = maps[mapIndex];
-    for (const key in map) {
-      unionMap.set(key, map[key]);
-    }
-  }
-  
-  return unionMap;
-}
+const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers');
+const commonIntentHandlers = require('./intentHandlers/common/commonIntentHandlers');
+const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandler');
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -43,7 +26,7 @@ exports = module.exports = functions
       json: true,
     })
 
-    let intentMap = union(globalIntentHandlersMap(), commonIntentHandlersMap(), childSupportIntentHandlersMap());
+    let intentHandlers = {...globalIntentHandlers, ...commonIntentHandlers, ...childSupportIntentHandlers};
     console.info(`Intent Handlers: ${JSON.stringify(intentMap.keys())}`);
 
     // List of intents what will reset the back button context
@@ -54,8 +37,8 @@ exports = module.exports = functions
     ]
 
     const agent = new WebhookClient({ request, response })
-    await backIntent(agent, intentMap, resetBackIntentList)
-    await home(agent, intentMap, [
+    await backIntent(agent, intentHandlers, resetBackIntentList)
+    await home(agent, intentHandlers, [
       'Default Welcome Intent',
       'yes-child-support',
       'restart-conversation',
@@ -63,5 +46,6 @@ exports = module.exports = functions
       'acknowledge-privacy-statement',
       'not-child-support-root',
     ])
-    await agent.handleRequest(intentMap)
+
+    await agent.handleRequest(new Map(Object.entries(intentHandlers)));
   })

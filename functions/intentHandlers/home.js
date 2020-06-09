@@ -1,6 +1,6 @@
 module.exports = async (agent, intentMap, exclusionList = []) => {
     const currentIntent = agent.intent
-    const currentIntentFunction = intentMap.get(currentIntent)
+    const currentIntentFunction = intentMap[currentIntent]
     console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`);
     const homeFunction = async () => {
       await currentIntentFunction(agent)
@@ -14,7 +14,7 @@ module.exports = async (agent, intentMap, exclusionList = []) => {
         })
       }
     }
-    intentMap.set(currentIntent, homeFunction)
+    intentMap[currentIntent] = homeFunction;
   
     if (agent.intent === 'global-restart') {
       await agent.contexts.forEach(async context => {

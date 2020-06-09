@@ -89,7 +89,7 @@ const backFunction = (agent, intentMap) => {
           agent.context.set(context)
         }
       })
-      const previousIntent = intentMap.get(lastIntent.name)
+      const previousIntent = intentMap[lastIntent.name]
       await previousIntent(agent)
     } catch (err) {
       console.error(err)
@@ -105,7 +105,7 @@ const backFunction = (agent, intentMap) => {
  ************************************************************************************************/
 
 const fullfillmentWrapper = (agent, intentMap) => {
-  const currentIntentFullfillmentFunction = intentMap.get(agent.intent)
+  const currentIntentFullfillmentFunction = intentMap[agent.intent]
   console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`);
   const prevIntents = agent.context.get('previous-agent-states')
 
@@ -119,7 +119,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
       await agent.add(new Suggestion('Go Back'))
     }
   }
-  intentMap.set(agent.intent, maskFunction)
+  intentMap[agent.intent] = maskFunction;
 }
 
 /************************************************************************************************
@@ -135,7 +135,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
 const backIntentCycle = async (agent, intentMap, name) => {
   await snapshotCurrentState(agent)
   const back = backFunction(agent, intentMap)
-  intentMap.set(name, back)
+  intentMap[name] = back;
   fullfillmentWrapper(agent, intentMap)
 }
 
@@ -151,7 +151,7 @@ const backIntentCycle = async (agent, intentMap, name) => {
  *
  * Parameters:
  *  - agent: WebHookClient
- *  - intentMap: Map
+ *  - intentMap: Object
  *  - resetBackButtonIntentList: Array (Optional. Defaults to an empty array.)
  *  - backIntentName: String (Optional. Defaults to 'go-back')
  *
