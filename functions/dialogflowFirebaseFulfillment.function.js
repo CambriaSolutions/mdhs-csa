@@ -16,6 +16,8 @@ function union(...maps) {
       }
     }
   }
+
+  return unionMap;
 }
 
 const runtimeOpts = {

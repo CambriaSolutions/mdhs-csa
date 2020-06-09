@@ -1,4 +1,4 @@
-exports.home = async (agent, intentMap, exclusionList = []) => {
+module.exports = async (agent, intentMap, exclusionList = []) => {
     const currentIntent = agent.intent
     const currentIntentFunction = intentMap.get(currentIntent)
     const homeFunction = async () => {
