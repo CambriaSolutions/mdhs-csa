@@ -580,7 +580,6 @@ exports = module.exports = functions
     intentMap.set('employer-root', employerRoot)
     intentMap.set('employer-eft', employerEFT)
     intentMap.set('employer-iPayOnline', employerIPayOnline)
-    // Uncomment when we get the employer guide link from the client
     intentMap.set('employer-guide', employerGuide)
     intentMap.set('employer-checksMoneyOrders', employerChecksMoneyOrders)
     intentMap.set('employer-iwo-handoff', employerIWOHandoff)
