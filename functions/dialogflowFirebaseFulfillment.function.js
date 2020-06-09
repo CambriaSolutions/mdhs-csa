@@ -40,6 +40,7 @@ exports = module.exports = functions
     })
 
     const intentMap = union(globalIntentHandlersMap, commonIntentHandlersMap, childSupportIntentHandlersMap);
+    console.info(`Intent Handlers: ${JSON.stringify(intentMap.keys)}`);
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
