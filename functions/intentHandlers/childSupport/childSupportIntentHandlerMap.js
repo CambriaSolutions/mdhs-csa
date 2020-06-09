@@ -792,4 +792,4 @@ intentMap.set('visitation-petitiontocite', visitationPetitionToCite)
 intentMap.set('visitation-prosepackets', visitationProSePacket)
 intentMap.set('visitation-legalservices', visitationLegalServices)
 
-exports.childSupportIntentHandlersMap = intentMap;
+module.exports = intentMap;

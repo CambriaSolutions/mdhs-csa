@@ -18,4 +18,4 @@ globalIntentHandlersMap.set('restart-conversation', restartConversation);
 globalIntentHandlersMap.set('yes-child-support', yesChildSupport);
 globalIntentHandlersMap.set('casey-handoff', caseyHandoff);
 
-exports.globalIntentHandlersMap = globalIntentHandlersMap;
+module.exports = globalIntentHandlersMap;

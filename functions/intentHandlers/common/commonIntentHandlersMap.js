@@ -5,4 +5,4 @@ const commonIntentHandlersMap = new Map();
 commonIntentHandlersMap.set('none-of-these', noneOfThese);
 commonIntentHandlersMap.set('Default Fallback Intent', handleUnhandled)
 
-exports.commonIntentHandlersMap = commonIntentHandlersMap;
+module.exports = commonIntentHandlersMap;
