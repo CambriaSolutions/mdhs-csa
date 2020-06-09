@@ -7,6 +7,7 @@ const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMa
 const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');
 const childSupportIntentHandlersMap = require('./intentHandlers/childSupport/childSupportIntentHandlerMap.js');
 
+console.log(`Global Handlers(All):`, globalIntentHandlersMap());
 console.log(`Global Handlers: ${JSON.stringify(globalIntentHandlersMap().keys())}`);
 console.log(`Common Handlers: ${JSON.stringify(commonIntentHandlersMap().keys())}`);
 console.log(`CSA Handlers: ${JSON.stringify(childSupportIntentHandlersMap().keys())}`);
