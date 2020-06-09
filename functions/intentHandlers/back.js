@@ -156,12 +156,12 @@ const backIntentCycle = async (agent, intentMap, name) => {
  *
  ************************************************************************************************/
 
-const backIntent = async (
+module.exports = async function backIntent (
   agent,
   intentMap,
   resetBackButtonIntentList = [],
   backIntentName = 'go-back'
-) => {
+) {
   const currentIntent = agent.intent
   if (resetBackButtonIntentList.includes(currentIntent)) {
     agent.context.delete('previous-agent-states')
@@ -169,5 +169,3 @@ const backIntent = async (
     await backIntentCycle(agent, intentMap, backIntentName)
   }
 }
-
-exports.backIntent = backIntent;
