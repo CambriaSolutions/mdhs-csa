@@ -1,7 +1,7 @@
 const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient, Suggestion } = require('dialogflow-fulfillment')
-const backIntent = require('./intentHandlers/back.js')
+const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
 const globalIntentHandlersMap = require('./intentHandlers/globalIntentHandlersMap');
 const commonIntentHandlersMap = require('./intentHandlers/common/commonIntentHandlersMap');

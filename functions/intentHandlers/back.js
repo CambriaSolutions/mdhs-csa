@@ -156,7 +156,7 @@ const backIntentCycle = async (agent, intentMap, name) => {
  *
  ************************************************************************************************/
 
-exports.backIntent = async (
+const backIntent = async (
   agent,
   intentMap,
   resetBackButtonIntentList = [],
@@ -169,3 +169,5 @@ exports.backIntent = async (
     await backIntentCycle(agent, intentMap, backIntentName)
   }
 }
+
+exports.backIntent = backIntent;
