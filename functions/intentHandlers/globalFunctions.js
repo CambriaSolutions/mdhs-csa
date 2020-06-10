@@ -183,7 +183,7 @@ exports.defaultUnhandledResponse = async agent => {
 
 exports.restartConversation = async agent => {
   try {
-    await startRootConversation(agent)
+    await this.startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -191,7 +191,7 @@ exports.restartConversation = async agent => {
 
 exports.acknowledgePrivacyStatement = async agent => {
   try {
-    await startRootConversation(agent)
+    await this.startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -199,7 +199,7 @@ exports.acknowledgePrivacyStatement = async agent => {
 
 exports.globalRestart = async agent => {
   try {
-    await startRootConversation(agent)
+    await this.startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -211,7 +211,7 @@ exports.welcome = async agent => {
     await agent.add(
       'Hi, I\'m Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?'
     )
-    await disableInput(agent)
+    await this.disableInput(agent)
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
@@ -246,7 +246,7 @@ exports.yesChildSupport = async agent => {
       'By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website Disclaimers, Terms, and Conditions found <a href="https://www.mdhs.ms.gov/privacy-disclaimer/" target="_blank">here</a>, and that you wish to continue.'
     )
     await agent.add(new Suggestion('I Acknowledge'))
-    await disableInput(agent)
+    await this.disableInput(agent)
     await agent.context.set({
       name: 'waiting-acknowledge-privacy-statement',
       lifespan: 2,

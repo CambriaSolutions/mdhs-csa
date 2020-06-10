@@ -6,7 +6,7 @@ exports.employerRoot = async agent => {
     await agent.add('What can I help you with?')
     await agent.add(new Suggestion('EFT'))
     await agent.add(new Suggestion('iPayOnline'))
-    // await agent.add(new Suggestion('Employer Guide'))
+    await agent.add(new Suggestion('Employer Guide'))
     await agent.add(new Suggestion('Checks/Money Orders'))
     await agent.add(new Suggestion('Income Withholding Order Information'))
     await agent.add(new Suggestion('Bills and Notices'))

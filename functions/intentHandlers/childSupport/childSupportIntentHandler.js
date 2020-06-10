@@ -435,8 +435,7 @@ module.exports = {
   'employer-root': employerRoot,
   'employer-eft': employerEFT,
   'employer-iPayOnline': employerIPayOnline,
-  // Uncomment when we get the employer guide link from the client
-  //'employer-guide': employerGuide,
+  'employer-guide': employerGuide,
   'employer-checksMoneyOrders': employerChecksMoneyOrders,
   'employer-iwo-handoff': employerIWOHandoff,
   'employer-billsAndNotices': employerBillsAndNotices,

@@ -159,7 +159,7 @@ exports.handleUnhandled = async agent => {
           'I\'m sorry, were you referring to one of the topics below?'
         )
 
-        suggestions.forEach(async (suggestion, i) => {
+        suggestions.forEach(async (suggestion) => {
           if (suggestion.suggestionText) {
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
           }

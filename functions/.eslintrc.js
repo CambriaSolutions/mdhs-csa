@@ -9,6 +9,7 @@ module.exports = {
   'parserOptions': {
     'ecmaVersion': 11
   },
+  'ignorePatterns': ['*.test.js'],
   'rules': {
     'indent': [
       'error',
