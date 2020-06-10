@@ -13,15 +13,15 @@ const setupExportDir = (path) => {
 }
 
 const cleanExportDir = (path) => {
-  fs.readdirSync(`${path}/intents`).forEach(function (file, index) {
+  fs.readdirSync(`${path}/intents`).forEach(function (file) {
     fs.unlinkSync(`${path}/intents/${file}`)
   })
   fs.rmdirSync(`${path}/intents`)
-  fs.readdirSync(`${path}/entities`).forEach(function (file, index) {
+  fs.readdirSync(`${path}/entities`).forEach(function (file) {
     fs.unlinkSync(`${path}/entities/${file}`)
   })
   fs.rmdirSync(`${path}/entities`)
-  fs.readdirSync(`${path}`).forEach(function (file, index) {
+  fs.readdirSync(`${path}`).forEach(function (file) {
     fs.unlinkSync(`${path}/${file}`)
   })
   fs.rmdirSync(path)
@@ -31,7 +31,7 @@ const cleanExportDir = (path) => {
 console.log('Exporting...')
 client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
   .then(responses => {
-    const [operation, initialApiResponse] = responses
+    const [operation] = responses
 
     // Operation#promise starts polling for the completion of the LRO.
     return operation.promise()
@@ -52,8 +52,8 @@ client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
 
       setTimeout(() => {
         console.log('Comparing...')
-        fs.readdirSync(`${path}/intents`).forEach(function (file, index) {
-          if (file.match(/^[a-zA-Z\-]+\.json/g)) {
+        fs.readdirSync(`${path}/intents`).forEach(function (file) {
+          if (file.match(/^[a-zA-Z-]+\.json/g)) {
             const intentName = file.replace('.json', '')
             const comparator = new IntentComparator(intentName, '../agent/intents', `${path}/intents`)
             if (!comparator.compare()) {

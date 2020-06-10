@@ -28,11 +28,11 @@ zip.generateAsync({ type: 'uint8array' })
     console.log('Agent files zipped')
     client.restoreAgent({ parent: `projects/${process.env.AGENT_PROJECT}`, agentContent: content })
       .then(responses => {
-        const [operation, initialApiResponse] = responses
+        const [operation] = responses
         // Operation#promise starts polling for the completion of the LRO.
         return operation.promise()
       })
-      .then(responses => {
+      .then(() => {
         console.log('Imported')
         return
       })

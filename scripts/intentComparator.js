@@ -1,17 +1,13 @@
 const fs = require('fs')
 
 module.exports = class IntentComparator {
-  intentName;
-  currentIntentsDirectory;
-  updatedIntentsDirectory;
-
   constructor(intentName, currentIntentsDirectory, updatedIntentsDirectory) {
     this.intentName = intentName
     this.currentIntentsDirectory = currentIntentsDirectory
     this.updatedIntentsDirectory = updatedIntentsDirectory
   }
 
-  compare = () => {
+  compare() {
     let isUnmodified = false
 
     // Check to see if an intent has been added or removed
