@@ -1,11 +1,11 @@
-const functions = require('firebase-functions');
-const req = require('request');
-const { WebhookClient, Suggestion } = require('dialogflow-fulfillment');
-const backIntent = require('./intentHandlers/back');
-const home = require('./intentHandlers/home');
-const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers');
-const commonIntentHandlers = require('./intentHandlers/common/commonIntentHandlers');
-const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandler');
+const functions = require('firebase-functions')
+const req = require('request')
+const { WebhookClient } = require('dialogflow-fulfillment')
+const backIntent = require('./intentHandlers/back')
+const home = require('./intentHandlers/home')
+const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers')
+const commonIntentHandlers = require('./intentHandlers/common/commonIntentHandlers')
+const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandler')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -26,7 +26,7 @@ exports = module.exports = functions
       json: true,
     })
 
-    let intentHandlers = {...globalIntentHandlers, ...commonIntentHandlers, ...childSupportIntentHandlers};
+    let intentHandlers = { ...globalIntentHandlers, ...commonIntentHandlers, ...childSupportIntentHandlers }
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
@@ -46,5 +46,5 @@ exports = module.exports = functions
       'not-child-support-root',
     ])
 
-    await agent.handleRequest(new Map(Object.entries(intentHandlers)));
+    await agent.handleRequest(new Map(Object.entries(intentHandlers)))
   })
