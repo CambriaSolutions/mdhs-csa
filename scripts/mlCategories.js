@@ -21,7 +21,7 @@ exports.categoriesWithIntents = {
   },
   card: {
     intent: 'eppi-get-card',
-    suggestionText: `EPPI card`
+    suggestionText: 'EPPI card'
   },
   caseNumber: {
     intent: 'caseQA-general',
@@ -105,7 +105,7 @@ exports.categoriesWithIntents = {
   },
   notReceivedPayment: {
     intent: 'pmtQA-havent-received',
-    suggestionText: `Haven't received payments`,
+    suggestionText: 'Haven\'t received payments',
   },
   officeLocations: {
     intent: 'map-root',
