@@ -10,7 +10,7 @@ const { supportPaymentHistory } = require('./support.js')
 
 exports.iwoRoot = async agent => {
   try {
-    await agent.add(`Which of the following is most relevant to your inquiry?`)
+    await agent.add('Which of the following is most relevant to your inquiry?')
     await agent.add(
       'CCPA Calculator: These guidelines help you determine how much to withhold to be in compliance with the Consumer Credit Protection Act'
     )
@@ -48,10 +48,10 @@ exports.iwoRoot = async agent => {
 exports.iwoCcpaRoot = async agent => {
   try {
     await agent.add(
-      `The Consumer Credit Protection Act limits earnings that may be withheld. Earnings are subject to withholding limits that range between 50-65%. The withholding order will specify the CCPA cap amount based on information known to MDHS.`
+      'The Consumer Credit Protection Act limits earnings that may be withheld. Earnings are subject to withholding limits that range between 50-65%. The withholding order will specify the CCPA cap amount based on information known to MDHS.'
     )
     await agent.add(
-      `Would you like assistance estimating the CCPA percentage that may apply to a particular case?`
+      'Would you like assistance estimating the CCPA percentage that may apply to a particular case?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -79,7 +79,7 @@ exports.iwoNoAssistance = async agent => {
 exports.iwoFAQs = async agent => {
   try {
     await agent.add(
-      `Sure, I can help answer general questions you might have about Income Withholding Orders. What is your question?`
+      'Sure, I can help answer general questions you might have about Income Withholding Orders. What is your question?'
     )
   } catch (err) {
     console.error(err)
@@ -89,7 +89,7 @@ exports.iwoFAQs = async agent => {
 exports.iwoWantsAssistance = async agent => {
   try {
     await agent.add(
-      `Is your employee supporting a family other than the one(s) for whom support is being withheld?`
+      'Is your employee supporting a family other than the one(s) for whom support is being withheld?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -105,7 +105,7 @@ exports.iwoWantsAssistance = async agent => {
 exports.iwoIsSupporting = async agent => {
   const isSupporting = agent.parameters.isSupporting.toLowerCase() === 'yes'
   try {
-    await agent.add(`Is your employee in arrears greater than 12 weeks?`)
+    await agent.add('Is your employee in arrears greater than 12 weeks?')
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
@@ -137,7 +137,7 @@ exports.iwoInArrears = async agent => {
       `Per the Consumer Credit Protection Act, in this case, the employer is responsible to withhold a maximum of ${percentage}% of  the employee's Net Disposable Income. This applies to one IWO or the combination of multiple IWO's.`
     )
     await agent.add(
-      `Would you like assistance estimating the withholding amount?`
+      'Would you like assistance estimating the withholding amount?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -163,7 +163,7 @@ exports.iwoInArrears = async agent => {
 exports.iwoConfirmEstimate = async agent => {
   try {
     await agent.add(
-      `Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.`
+      'Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
     await agent.add(new Suggestion('I Understand'))
     // Force user to select suggestion
@@ -179,7 +179,7 @@ exports.iwoConfirmEstimate = async agent => {
 
 exports.iwoRequestDisposableIncome = async agent => {
   try {
-    await agent.add(`What is the employee's disposable income?`)
+    await agent.add('What is the employee\'s disposable income?')
     await agent.add(new Suggestion('Disposable Income Definition'))
     await agent.context.set({
       name: 'waiting-iwo-disposable-income',
@@ -197,13 +197,13 @@ exports.iwoRequestDisposableIncome = async agent => {
 exports.iwoDefineDisposableIncome = async agent => {
   try {
     await agent.add(
-      `Disposable income = gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers' compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees.`
+      'Disposable income = gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers\' compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state\'s mandatory deductions; they are mandatory deductions for federal employees.'
     )
 
     await agent.add(
-      `Note: Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.`
+      'Note: Disposable income is not necessarily the same as net pay. For more detailed information, <a href="https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice" target="_blank">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website.'
     )
-    await agent.add(`What is the employee's disposable income?`)
+    await agent.add('What is the employee\'s disposable income?')
     await agent.context.set({
       name: 'waiting-iwo-disposable-income',
       lifespan: 2,
@@ -234,14 +234,14 @@ exports.iwoDisposableIncome = async agent => {
     }
   } else {
     await agent.add(
-      `I'm sorry, something went wrong, please try again or contact <a href="tel:+18778824916">1-877-882-4916</a> for further assistance.`
+      'I\'m sorry, something went wrong, please try again or contact <a href="tel:+18778824916">1-877-882-4916</a> for further assistance.'
     )
   }
 }
 
 exports.iwoWhereToSubmit = async agent => {
   try {
-    await agent.add(`Who are you?`)
+    await agent.add('Who are you?')
     await agent.add(new Suggestion('Employer'))
     await agent.add(
       new Suggestion(
@@ -264,10 +264,10 @@ exports.iwoWhereToSubmit = async agent => {
 exports.iwoEmployerSubmitPayments = async agent => {
   try {
     await agent.add(
-      `Employers can make payments electronically through iPayOnline or EFT payments.`
+      'Employers can make payments electronically through iPayOnline or EFT payments.'
     )
     await agent.add(
-      `For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>`
+      'For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>'
     )
     await agent.add(
       `The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:
@@ -292,7 +292,7 @@ exports.iwoPaymentsHandoff = async agent => {
 exports.iwoAdministrativeFee = async agent => {
   try {
     await agent.add(
-      `Yes, the administrative fee is included in the payment specified on the IWO.`
+      'Yes, the administrative fee is included in the payment specified on the IWO.'
     )
   } catch (err) {
     console.error(err)
@@ -302,7 +302,7 @@ exports.iwoAdministrativeFee = async agent => {
 exports.iwoOtherGarnishments = async agent => {
   try {
     await agent.add(
-      `Child Support payments take precedence over all other garnishments, except the IRS when the employer receives the IRS garnishment first.`
+      'Child Support payments take precedence over all other garnishments, except the IRS when the employer receives the IRS garnishment first.'
     )
   } catch (err) {
     console.error(err)
@@ -312,7 +312,7 @@ exports.iwoOtherGarnishments = async agent => {
 exports.iwoOtherState = async agent => {
   try {
     await agent.add(
-      `Please contact DHS customer support at <a href="tel:+18778824916">1-877-882-4916</a> to help with this request.`
+      'Please contact DHS customer support at <a href="tel:+18778824916">1-877-882-4916</a> to help with this request.'
     )
   } catch (err) {
     console.error(err)
@@ -322,7 +322,7 @@ exports.iwoOtherState = async agent => {
 exports.iwoInsuranceCoverage = async agent => {
   try {
     await agent.add(
-      `If you received a National Medical Support Notice, the NCP must provide dependent health insurance.`
+      'If you received a National Medical Support Notice, the NCP must provide dependent health insurance.'
     )
   } catch (err) {
     console.error(err)
@@ -347,7 +347,7 @@ exports.iwoNotAnEmployee = async agent => {
 exports.iwoFireEmployee = async agent => {
   try {
     await agent.add(
-      `Per MS state law, if you were to fire an employee due to a garnishment, you are subject to a fine. (Page 4 of IWO - anti discrimination section).`
+      'Per MS state law, if you were to fire an employee due to a garnishment, you are subject to a fine. (Page 4 of IWO - anti discrimination section).'
     )
   } catch (err) {
     console.error(err)
@@ -357,7 +357,7 @@ exports.iwoFireEmployee = async agent => {
 exports.iwoEmployerObligation = async agent => {
   try {
     await agent.add(
-      `As the employer, you are obligated to withhold per the Consumer Credit Protection Act guidelines.`
+      'As the employer, you are obligated to withhold per the Consumer Credit Protection Act guidelines.'
     )
   } catch (err) {
     console.error(err)
@@ -367,7 +367,7 @@ exports.iwoEmployerObligation = async agent => {
 exports.iwoWhenToBegin = async agent => {
   try {
     await agent.add(
-      `The next payable income for the employee after 14 days following receipt of the IWO.`
+      'The next payable income for the employee after 14 days following receipt of the IWO.'
     )
   } catch (err) {
     console.error(err)
@@ -376,7 +376,7 @@ exports.iwoWhenToBegin = async agent => {
 
 exports.iwoHowLongToSend = async agent => {
   try {
-    await agent.add(`7 days`)
+    await agent.add('7 days')
   } catch (err) {
     console.error(err)
   }

@@ -9,7 +9,7 @@ const {
 exports.pmtQAHaventReceived = async agent => {
   try {
     await agent.add(
-      `Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.`
+      'Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -20,7 +20,7 @@ exports.pmtQAHaventReceived = async agent => {
 exports.pmtQAPaymentReduction = async agent => {
   try {
     await agent.add(
-      `I can help you submit a request to have your case reviewed to see if a modification is appropriate. Please note that this can modify your payments upwards or downwards. Would you like to continue?`
+      'I can help you submit a request to have your case reviewed to see if a modification is appropriate. Please note that this can modify your payments upwards or downwards. Would you like to continue?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -50,7 +50,7 @@ exports.pmtQAYesPaymentReduction = async agent => {
 exports.pmtQAOver21 = async agent => {
   try {
     await agent.add(
-      `If you owe back child support, you still have to pay that support. There are other special circumstances that may also require continued payments. If you would like more information, I can help you submit a support request.`
+      'If you owe back child support, you still have to pay that support. There are other special circumstances that may also require continued payments. If you would like more information, I can help you submit a support request.'
     )
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.context.set({
@@ -76,9 +76,9 @@ exports.pmtQAOver21SubmitRequest = async agent => {
 
 exports.pmtQAEmployerPaymentStatus = async agent => {
   try {
-    await agent.add(`Have you reported your employer to CSE?`)
+    await agent.add('Have you reported your employer to CSE?')
     await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion(`No`))
+    await agent.add(new Suggestion('No'))
 
     await agent.context.set({
       name: 'waiting-pmtqa-yes-employer-payment-status',
@@ -114,10 +114,10 @@ exports.pmtQAYesEmployerPaymentStatus = async agent => {
 exports.pmtQANCPPaymentStatus = async agent => {
   try {
     await agent.add(
-      `Click <a href="https://www.eppicard.com/" target="_blank">here</a> to check your EPPI card statement.`
+      'Click <a href="https://www.eppicard.com/" target="_blank">here</a> to check your EPPI card statement.'
     )
     await agent.add(
-      `At this time, I cannot answer this question. However, I can help you get the answer to this question through submitting a support ticket.`
+      'At this time, I cannot answer this question. However, I can help you get the answer to this question through submitting a support ticket.'
     )
     await agent.add(new Suggestion('Submit Support Ticket'))
     await agent.context.set({

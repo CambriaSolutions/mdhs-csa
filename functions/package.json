@@ -14,7 +14,9 @@
     "deploy-stage-dialogflow": "node retrieveCoordinates && firebase deploy --only functions:dialogflowFirebaseFulfillment --project stage",
     "deploy-prod": "node retrieveCoordinates && firebase deploy --only functions --project prod",
     "logs": "firebase functions:log",
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint '**/*.js'",
+    "lint-fix": "npx eslint '**/*.js' --fix"
   },
   "dependencies": {
     "@google-cloud/automl": "^1.7.3",

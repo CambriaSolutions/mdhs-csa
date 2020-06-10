@@ -11,7 +11,7 @@ const taxOffsetGuideLink = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/
 exports.enforcementRoot = async agent => {
   try {
     await agent.add(
-      `MDHS has multiple enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more.`
+      'MDHS has multiple enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more.'
     )
     await agent.add(new Suggestion('License Suspension/Reinstatement'))
     await agent.add(new Suggestion('Tax Offset'))
@@ -37,7 +37,7 @@ exports.enforcementRoot = async agent => {
 exports.enforcementLicenseSuspensionReinstatement = async agent => {
   try {
     await agent.add(
-      `MDHS may suspend driver's licenses and professional licenses to enforce child support when arrears are owed.`
+      'MDHS may suspend driver\'s licenses and professional licenses to enforce child support when arrears are owed.'
     )
     await agent.add(
       'To learn more about when a license may be suspended or how to get a suspended license reinstated, select one of the options below.'
@@ -108,7 +108,7 @@ exports.enforcementLicenseReinstatement = async agent => {
     await agent.add(
       'To reinstate a suspended license, the parent who owes support either has to become current on support owed, or enter into a payment agreement with MDHS.'
     )
-    await agent.add(new Suggestion(`Submit Inquiry for Reinstatement`))
+    await agent.add(new Suggestion('Submit Inquiry for Reinstatement'))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
@@ -140,7 +140,7 @@ exports.enforcementTaxOffset = async agent => {
 exports.enforcementTaxOffsetQ1 = async agent => {
   try {
     await agent.add(
-      `Tax Offset is the interception of the federal and/or state income tax refunds of a parent who is responsible for paying child support. It is a primary method for the collection of child support arrears. This collection method is used to collect past due child support, spousal support, and medical support.`
+      'Tax Offset is the interception of the federal and/or state income tax refunds of a parent who is responsible for paying child support. It is a primary method for the collection of child support arrears. This collection method is used to collect past due child support, spousal support, and medical support.'
     )
 
     await handleEndConversation(agent)
@@ -219,7 +219,7 @@ exports.enforcementTaxOffsetQ7 = async agent => {
 exports.enforcementTaxOffsetQ8 = async agent => {
   try {
     await agent.add(
-      `If a joint tax return is filed, it may take up to <strong>six (6) months</strong> for any federal (IRS) offset payment to be applied. State tax collections are distributed after a <strong>thirty (30) day</strong> hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse.`
+      'If a joint tax return is filed, it may take up to <strong>six (6) months</strong> for any federal (IRS) offset payment to be applied. State tax collections are distributed after a <strong>thirty (30) day</strong> hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse.'
     )
 
     await handleEndConversation(agent)
@@ -292,7 +292,7 @@ exports.enforcementLiens = async agent => {
 exports.enforcementContestLien = async agent => {
   try {
     await agent.add(
-      `Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien. Please do NOT provide your financial account information in the request below.`
+      'Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien. Please do NOT provide your financial account information in the request below.'
     )
     await agent.add(new Suggestion('Submit Request'))
     await handleEndConversation(agent)
@@ -314,7 +314,7 @@ exports.enforcementContestLien = async agent => {
 exports.enforcementFinancialAccountUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case. Please do NOT provide financial account information through this platform.`
+      'If you have information about the financial accounts of the parent who owes support, please call <a href="tel:+18778824916">1-877-882-4916</a> to update your case. Please do NOT provide financial account information through this platform.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -331,10 +331,10 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
 exports.enforcementPersonalInjury = async agent => {
   try {
     await agent.add(
-      "MDHS may offset personal injury or workers' compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
+      'MDHS may offset personal injury or workers\' compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements.'
     )
     await agent.add(
-      "Do you have information about a workers' compensation or personal injury settlement?"
+      'Do you have information about a workers\' compensation or personal injury settlement?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -360,9 +360,9 @@ exports.enforcementPersonalInjury = async agent => {
 exports.enforcementSettlementsUpdateCase = async agent => {
   try {
     await agent.add(
-      `If you have information about settlements that the parent who owes support may receive, please click below to update your case.`
+      'If you have information about settlements that the parent who owes support may receive, please click below to update your case.'
     )
-    await agent.add(new Suggestion(`Update Case`))
+    await agent.add(new Suggestion('Update Case'))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
@@ -401,7 +401,7 @@ exports.enforcementPassportReinstatement = async agent => {
     )
 
     // The client has not requested this suggestion, but it makes sense to include
-    await agent.add(new Suggestion(`Submit Inquiry`))
+    await agent.add(new Suggestion('Submit Inquiry'))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
@@ -464,7 +464,7 @@ exports.enforcementReportError = async agent => {
     await agent.add(
       'The parent who owes support may dispute the DHS claim with the credit bureaus or request MDHS to review their case if they believe the report was made in error. To have your case reviewed, click "Submit Inquiry for Review" below.'
     )
-    await agent.add(new Suggestion(`Submit Inquiry for Review`))
+    await agent.add(new Suggestion('Submit Inquiry for Review'))
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
       lifespan: 2,
@@ -490,7 +490,7 @@ exports.enforcementSubmitInquiry = async agent => {
 exports.enforcementBankruptcy = async agent => {
   try {
     await agent.add(
-      `If a parent who owes child support files Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have child support payments included in the bankruptcy plan.`
+      'If a parent who owes child support files Chapter 13 bankruptcy, MDHS can file a claim with the bankruptcy court and seek to have child support payments included in the bankruptcy plan.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -506,10 +506,10 @@ exports.enforcementBankruptcy = async agent => {
 exports.enforcementContempt = async agent => {
   try {
     await agent.add(
-      `After all other appropriate enforcement actions have been attempted and an ability to pay assessment has been conducted, MDHS may petition the court to hold the parent who owes support in contempt.This may result in the incarceration of the parent who owes support until a lump sum payment is made on his/her behalf.`
+      'After all other appropriate enforcement actions have been attempted and an ability to pay assessment has been conducted, MDHS may petition the court to hold the parent who owes support in contempt.This may result in the incarceration of the parent who owes support until a lump sum payment is made on his/her behalf.'
     )
     await agent.add(
-      `If you would like to submit a request for contempt action on your case, please select "Request Contempt Action" below.`
+      'If you would like to submit a request for contempt action on your case, please select "Request Contempt Action" below.'
     )
     await agent.add(new Suggestion('Request Contempt Action'))
     await agent.context.set({

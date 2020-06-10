@@ -60,7 +60,7 @@ exports.pmtCalcIncomeTerm = async agent => {
 
     if (!isNumber(numChildren)) {
       await agent.add(
-        `Please provide a number of children to continue with the estimation.`
+        'Please provide a number of children to continue with the estimation.'
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-income-term',
@@ -68,14 +68,14 @@ exports.pmtCalcIncomeTerm = async agent => {
       })
     } else if (numChildren < 1) {
       await agent.add(
-        `You must have at least one child to get an estimate. How many children are part of this case?`
+        'You must have at least one child to get an estimate. How many children are part of this case?'
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-income-term',
         lifespan: 3,
       })
     } else if (numChildren % 1 !== 0) {
-      await agent.add(`Please enter the number of children as a whole number.`)
+      await agent.add('Please enter the number of children as a whole number.')
       await agent.context.set({
         name: 'waiting-pmt-calc-income-term',
         lifespan: 3,
@@ -89,13 +89,13 @@ exports.pmtCalcIncomeTerm = async agent => {
       })
 
       await agent.add(
-        `We also need an estimate of your income. How do you want to calculate your income?`
+        'We also need an estimate of your income. How do you want to calculate your income?'
       )
-      await agent.add(new Suggestion(`I don't know my income`))
-      await agent.add(new Suggestion(`Monthly`))
-      await agent.add(new Suggestion(`Weekly`))
-      await agent.add(new Suggestion(`Bi-Weekly`))
-      await agent.add(new Suggestion(`Annually`))
+      await agent.add(new Suggestion('I don\'t know my income'))
+      await agent.add(new Suggestion('Monthly'))
+      await agent.add(new Suggestion('Weekly'))
+      await agent.add(new Suggestion('Bi-Weekly'))
+      await agent.add(new Suggestion('Annually'))
       await agent.context.set({
         name: 'waiting-pmt-calc-gross-income',
         lifespan: 3,
@@ -114,7 +114,7 @@ exports.pmtCalcIncomeTerm = async agent => {
 exports.pmtCalcUnknownIncome = async agent => {
   try {
     await agent.add(
-      `You can find your income statement on documents like a paystub or W-2 form. I can only estimate your child support payments if you know your income.`
+      'You can find your income statement on documents like a paystub or W-2 form. I can only estimate your child support payments if you know your income.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -161,7 +161,7 @@ exports.pmtCalcTaxDeductions = async agent => {
 
     if (!isNumber(grossIncome)) {
       await agent.add(
-        `I didn't catch that as a number, how much do you make before taxes and other deductions are taken out of your pay?`
+        'I didn\'t catch that as a number, how much do you make before taxes and other deductions are taken out of your pay?'
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-tax-deductions',
@@ -173,10 +173,10 @@ exports.pmtCalcTaxDeductions = async agent => {
       })
     } else if (grossIncome <= 0) {
       await agent.add(
-        `For the purposes of this calculation, you will need to provide a gross income.`
+        'For the purposes of this calculation, you will need to provide a gross income.'
       )
       await agent.add(
-        `If you don't have any income, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office for assistance.`
+        'If you don\'t have any income, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office for assistance.'
       )
       await agent.context.set({
         name: 'waiting-pmt-calc-tax-deductions',
@@ -237,10 +237,10 @@ exports.pmtCalcUnknownTaxDeductions = async agent => {
 exports.pmtCalcUnknownDeductions = async agent => {
   try {
     await agent.add(
-      `I can only estimate your child support payments if you know your income & deductions.`
+      'I can only estimate your child support payments if you know your income & deductions.'
     )
     await agent.add(
-      `For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
+      'For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
     )
     // Clear out the payment factors context
     await agent.context.set({
@@ -321,7 +321,7 @@ const invalidDeductions = async agent => {
   await agent.add(
     'For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
   )
-  await agent.add(new Suggestion(`Start over`))
+  await agent.add(new Suggestion('Start over'))
   // Clear out the payment factors context
   await agent.context.set({
     name: 'payment-factors',
@@ -350,8 +350,8 @@ exports.pmtCalcRetirementContributions = async agent => {
       await agent.add(
         'Does your employer require you to contribute to a <strong>retirement account</strong> in which you may not opt out?'
       )
-      await agent.add(new Suggestion(`Yes`))
-      await agent.add(new Suggestion(`No`))
+      await agent.add(new Suggestion('Yes'))
+      await agent.add(new Suggestion('No'))
       await agent.context.set({
         name: 'waiting-pmt-calc-retirement-contributions-amount',
         lifespan: 3,
@@ -378,7 +378,7 @@ exports.pmtCalcRetirementContributions = async agent => {
 exports.pmtCalcRetirementContributionsAmount = async agent => {
   try {
     await agent.add(
-      `How much is subtracted from your gross income for this purpose?`
+      'How much is subtracted from your gross income for this purpose?'
     )
     await agent.context.set({
       name: 'waiting-pmt-calc-child-support',
@@ -432,10 +432,10 @@ const existingChildSupport = async (agent, retirementContributions) => {
     // Validate that income is higher than deductions & contributions
     if (await validateIncomeAndDeductions(paymentFactorsParams)) {
       await agent.add(
-        `Do you have any <strong>existing monthly child support</strong> order(s) for other children?`
+        'Do you have any <strong>existing monthly child support</strong> order(s) for other children?'
       )
-      await agent.add(new Suggestion(`Yes`))
-      await agent.add(new Suggestion(`No`))
+      await agent.add(new Suggestion('Yes'))
+      await agent.add(new Suggestion('No'))
       await agent.context.set({
         name: 'waiting-pmt-calc-child-support-amount',
         lifespan: 3,
@@ -462,7 +462,7 @@ const existingChildSupport = async (agent, retirementContributions) => {
 exports.pmtCalcChildSupportAmount = async agent => {
   try {
     await agent.add(
-      `What are your <strong>monthly</strong> child support obligations?`
+      'What are your <strong>monthly</strong> child support obligations?'
     )
     await agent.context.set({
       name: 'waiting-pmt-calc-final-estimation',
@@ -522,7 +522,7 @@ const finalPaymentCalculation = async (agent, paymentFactors) => {
         )}</strong> monthly.`
       )
       await agent.add(
-        `The information provided in this calculation is only an estimate. For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.`
+        'The information provided in this calculation is only an estimate. For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
       )
 
       // Clear out the payment factors context
@@ -543,7 +543,7 @@ const finalPaymentCalculation = async (agent, paymentFactors) => {
   } catch (err) {
     console.error(err)
     await agent.add(
-      `Something went wrong, please try again, or call <a href="tel:+18778824916">1-877-882-4916</a> for immediate support.`
+      'Something went wrong, please try again, or call <a href="tel:+18778824916">1-877-882-4916</a> for immediate support.'
     )
     await agent.add(new Suggestion('Recalculate'))
     await agent.context.set({

@@ -5,10 +5,10 @@ const { supportRoot } = require('./support.js')
 exports.contactQANumber = async agent => {
   try {
     await agent.add(
-      `I can help you submit service requests and prevent you from waiting on hold. To submit a request, please click below. To see our customer service number, please click “Customer Service”.`
+      'I can help you submit service requests and prevent you from waiting on hold. To submit a request, please click below. To see our customer service number, please click “Customer Service”.'
     )
-    await agent.add(new Suggestion(`Submit Support Request`))
-    await agent.add(new Suggestion(`Customer Service`))
+    await agent.add(new Suggestion('Submit Support Request'))
+    await agent.add(new Suggestion('Customer Service'))
     await agent.context.set({
       name: 'waiting-contact-support-handoff',
       lifespan: 2,
@@ -33,7 +33,7 @@ exports.contactSupportHandoff = async agent => {
 exports.contactProvidePhoneNumber = async agent => {
   try {
     await agent.add(
-      `The contact number for child support customer service is <a href="tel:+18778824916">1-877-882-4916</a>.`
+      'The contact number for child support customer service is <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
     await handleEndConversation(agent)
   } catch (error) {

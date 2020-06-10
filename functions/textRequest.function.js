@@ -49,15 +49,15 @@ exports = module.exports = functions
           .then(responses => {
             // return responses[0]
             responses[0].session = sessionPath
-            res.json(responses[0]);
-            resolve();
+            res.json(responses[0])
+            resolve()
           })
           .catch(err => {
             console.error('textRequest.function.js: ', err)
-            reject(`Dialogflow error: ${err}`);
+            reject(`Dialogflow error: ${err}`)
           })
-      });
+      })
 
-      return detectIntentPromise;
+      return detectIntentPromise
     })
   })

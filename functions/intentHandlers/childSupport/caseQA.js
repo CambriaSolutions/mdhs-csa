@@ -16,7 +16,7 @@ exports.caseQAIncreaseReview = async agent => {
 exports.caseQAGeneral = async agent => {
   try {
     await agent.add(
-      `I cannot provide you case specific information at this time. You may submit an support request or call <a href="tel:+18778824916">877-882-4916</a>.`
+      'I cannot provide you case specific information at this time. You may submit an support request or call <a href="tel:+18778824916">877-882-4916</a>.'
     )
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.context.set({
@@ -51,7 +51,7 @@ exports.caseQAChangePersonalInfo = async agent => {
 exports.caseQACompliance = async agent => {
   try {
     await agent.add(
-      `You may submit an action request here, or call the support number at <a href="tel:+18778824916">877-882-4916</a>`
+      'You may submit an action request here, or call the support number at <a href="tel:+18778824916">877-882-4916</a>'
     )
     await agent.add(new Suggestion('Submit Action Request'))
     await agent.context.set({

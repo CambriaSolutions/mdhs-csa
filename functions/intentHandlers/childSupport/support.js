@@ -30,16 +30,16 @@ exports.supportRoot = async agent => {
 exports.supportParentReceiving = async agent => {
   try {
     await agent.add(
-      `I can help parents receiving payments with the following requests. If you don't see what you need, select "More".`
+      'I can help parents receiving payments with the following requests. If you don\'t see what you need, select "More".'
     )
-    await agent.add(new Suggestion(`Request Contempt Action`))
+    await agent.add(new Suggestion('Request Contempt Action'))
     await agent.add(
-      new Suggestion(`Child Support Payment Increase or Decrease`)
+      new Suggestion('Child Support Payment Increase or Decrease')
     )
-    await agent.add(new Suggestion(`Change of Personal Information`))
-    await agent.add(new Suggestion(`Request Case Closure`))
-    await agent.add(new Suggestion(`Emancipation`))
-    await agent.add(new Suggestion(`More`))
+    await agent.add(new Suggestion('Change of Personal Information'))
+    await agent.add(new Suggestion('Request Case Closure'))
+    await agent.add(new Suggestion('Emancipation'))
+    await agent.add(new Suggestion('More'))
 
     await agent.context.set({
       name: 'waiting-support-type',
@@ -57,15 +57,15 @@ exports.supportParentReceiving = async agent => {
 exports.supportParentPaying = async agent => {
   try {
     await agent.add(
-      `I can help parents making payments with the following requests. If you don't see what you need, select "More".`
+      'I can help parents making payments with the following requests. If you don\'t see what you need, select "More".'
     )
-    await agent.add(new Suggestion(`Change of Personal Information`))
-    await agent.add(new Suggestion(`Change of Employment Status`))
+    await agent.add(new Suggestion('Change of Personal Information'))
+    await agent.add(new Suggestion('Change of Employment Status'))
     await agent.add(
-      new Suggestion(`Child Support Payment Increase or Decrease`)
+      new Suggestion('Child Support Payment Increase or Decrease')
     )
-    await agent.add(new Suggestion(`Visitation`))
-    await agent.add(new Suggestion(`More`))
+    await agent.add(new Suggestion('Visitation'))
+    await agent.add(new Suggestion('More'))
     await agent.context.set({
       name: 'waiting-support-type',
       lifespan: 3,
@@ -85,8 +85,8 @@ exports.supportParentPaying = async agent => {
 
 exports.supportEmployer = async agent => {
   try {
-    await agent.add(`Click below to get started with a Lump Sum Notification.`)
-    await agent.add(new Suggestion(`Employer Report Lump Sum Notification`))
+    await agent.add('Click below to get started with a Lump Sum Notification.')
+    await agent.add(new Suggestion('Employer Report Lump Sum Notification'))
     await agent.context.set({
       name: 'waiting-support-type',
       lifespan: 3,
@@ -99,15 +99,15 @@ exports.supportEmployer = async agent => {
 exports.supportParentReceivingEmancipation = async agent => {
   try {
     await agent.add(
-      `Unless otherwise ordered by the court, child support generally continues in Mississippi until the child emancipates when a child: 1) reaches the age of 21; 2) marries; 3) joins and serves in the military on a full time basis; or 4) is convicted of a felony and is sentenced to incarceration of at least 2 years. A court may emancipate a child for other reasons allowable under law. Emancipation does not terminate the obligation to satisfy child support arrears that exist at the time of emancipation.`
+      'Unless otherwise ordered by the court, child support generally continues in Mississippi until the child emancipates when a child: 1) reaches the age of 21; 2) marries; 3) joins and serves in the military on a full time basis; or 4) is convicted of a felony and is sentenced to incarceration of at least 2 years. A court may emancipate a child for other reasons allowable under law. Emancipation does not terminate the obligation to satisfy child support arrears that exist at the time of emancipation.'
     )
 
     await agent.add(
       'Please <a href="https://www.acf.hhs.gov/css/irg-state-map" target="_blank">click here</a> for emancipation information from other states.'
     )
 
-    await agent.add(new Suggestion(`Submit Feedback`))
-    await agent.add(new Suggestion(`Request Case Closure`))
+    await agent.add(new Suggestion('Submit Feedback'))
+    await agent.add(new Suggestion('Request Case Closure'))
 
     await agent.context.set({
       name: 'waiting-feedback-root',
@@ -137,9 +137,9 @@ exports.supportParentPayingMore = async agent => {
 exports.supportNoOptionsSelected = async agent => {
   try {
     await agent.add(
-      `Would you like to submit an inquiry or go back to support options?`
+      'Would you like to submit an inquiry or go back to support options?'
     )
-    await agent.add(new Suggestion(`Inquiry`))
+    await agent.add(new Suggestion('Inquiry'))
     await agent.context.set({
       name: 'waiting-support-type',
       lifespan: 3,
@@ -151,11 +151,11 @@ exports.supportNoOptionsSelected = async agent => {
 
 exports.supportEmploymentStatus = async agent => {
   try {
-    await agent.add(`Which of the following applies to you?`)
-    await agent.add(new Suggestion(`Full Time to Part Time`))
-    await agent.add(new Suggestion(`Part Time to Full Time`))
-    await agent.add(new Suggestion(`Loss of Employer`))
-    await agent.add(new Suggestion(`Change or Add Employer`))
+    await agent.add('Which of the following applies to you?')
+    await agent.add(new Suggestion('Full Time to Part Time'))
+    await agent.add(new Suggestion('Part Time to Full Time'))
+    await agent.add(new Suggestion('Loss of Employer'))
+    await agent.add(new Suggestion('Change or Add Employer'))
     await agent.context.set({
       name: 'waiting-support-handle-employment-status',
       lifespan: 3,
@@ -169,10 +169,10 @@ exports.supportHandleEmploymentStatus = async agent => {
   const formattedEmploymentStatus = toTitleCase(
     agent.parameters.employmentStatus
   )
-  const supportType = `Change of Employment Status`
+  const supportType = 'Change of Employment Status'
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -199,7 +199,7 @@ exports.supportCollectNewEmployerName = async agent => {
   }
 
   try {
-    await agent.add(`What is the new employer's phone number?`)
+    await agent.add('What is the new employer\'s phone number?')
     await agent.context.set({
       name: 'waiting-support-collect-new-employer-phone',
       lifespan: 3,
@@ -224,7 +224,7 @@ exports.supportNoNewEmployer = async agent => {
     newEmployerName,
   }
   try {
-    await agent.add(`Please describe your request.`)
+    await agent.add('Please describe your request.')
     await agent.context.set({
       name: 'waiting-support-collect-issue',
       lifespan: 10,
@@ -251,7 +251,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
       phoneNumber,
     }
     try {
-      await agent.add(`Please describe your request.`)
+      await agent.add('Please describe your request.')
       await agent.context.set({
         name: 'ticketinfo',
         parameters: ticketInfoParams,
@@ -266,7 +266,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
   } else {
     try {
       await agent.add(
-        `I'm sorry, I didn't catch that as a valid phone number, what is your new employer's phone number.`
+        'I\'m sorry, I didn\'t catch that as a valid phone number, what is your new employer\'s phone number.'
       )
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-phone',
@@ -285,7 +285,7 @@ exports.supportNewEmployerUnkownPhone = async agent => {
     newEmployerPhone,
   }
   try {
-    await agent.add(`Please describe your request.`)
+    await agent.add('Please describe your request.')
     await agent.context.set({
       name: 'waiting-support-collect-issue',
       lifespan: 10,
@@ -362,7 +362,7 @@ exports.supportCollectLastName = async agent => {
   }
   try {
     await agent.add(
-      `What is your **phone number** so we can reach out to you with a solution?`
+      'What is your **phone number** so we can reach out to you with a solution?'
     )
     await agent.context.set({
       name: 'waiting-support-phone-number',
@@ -386,7 +386,7 @@ exports.supportInquiries = async agent => {
 
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -405,7 +405,7 @@ exports.supportInquiries = async agent => {
 exports.supportReviewPayments = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -424,7 +424,7 @@ exports.supportReviewPayments = async agent => {
 exports.supportPaymentHistory = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'ticketinfo',
@@ -443,7 +443,7 @@ exports.supportPaymentHistory = async agent => {
 exports.supportRequestCaseClosure = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -462,7 +462,7 @@ exports.supportRequestCaseClosure = async agent => {
 exports.supportChangePersonalInfo = async agent => {
   try {
     await agent.add(
-      `Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?`
+      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
@@ -545,7 +545,7 @@ exports.supportPhoneNumber = async agent => {
   } else {
     try {
       await agent.add(
-        `I didn't recognize that as a phone number, **starting with area code**, what is your **phone number**?`
+        'I didn\'t recognize that as a phone number, **starting with area code**, what is your **phone number**?'
       )
       await agent.context.set({
         name: 'waiting-support-phone-number',
@@ -570,7 +570,7 @@ exports.supportEmail = async agent => {
     if (!isLumpSum) {
       try {
         await agent.add(
-          `What is your **case number**? Please do not provide your social security number.`
+          'What is your **case number**? Please do not provide your social security number.'
         )
 
         await agent.context.set({
@@ -590,7 +590,7 @@ exports.supportEmail = async agent => {
       }
     } else {
       try {
-        await agent.add(`What is the **name of your company/employer**?`)
+        await agent.add('What is the **name of your company/employer**?')
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
@@ -608,7 +608,7 @@ exports.supportEmail = async agent => {
   } else {
     try {
       await agent.add(
-        `I didn't recognize that as an email address, could you say that again?`
+        'I didn\'t recognize that as an email address, could you say that again?'
       )
       await agent.context.set({
         name: 'waiting-support-email',
@@ -638,7 +638,7 @@ exports.supportNoEmail = async agent => {
     if (!isLumpSum) {
       try {
         await agent.add(
-          `What is your **case number**? Please do not provide your social security number.`
+          'What is your **case number**? Please do not provide your social security number.'
         )
 
         await agent.context.set({
@@ -658,7 +658,7 @@ exports.supportNoEmail = async agent => {
       }
     } else {
       try {
-        await agent.add(`What is the **name of your company/employer**?`)
+        await agent.add('What is the **name of your company/employer**?')
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
@@ -676,10 +676,10 @@ exports.supportNoEmail = async agent => {
   } else {
     try {
       await agent.add(
-        `We need either a phone number or an email in order to continue, which would you like to provide?`
+        'We need either a phone number or an email in order to continue, which would you like to provide?'
       )
-      await agent.add(new Suggestion(`Email`))
-      await agent.add(new Suggestion(`Phone Number`))
+      await agent.add(new Suggestion('Email'))
+      await agent.add(new Suggestion('Phone Number'))
 
       await agent.context.set({
         name: 'waiting-support-retry-email',
@@ -699,7 +699,7 @@ exports.supportNoEmail = async agent => {
 exports.supportRetryPhoneNumber = async agent => {
   try {
     await agent.add(
-      `**Starting with area code**, what is your **phone number**?`
+      '**Starting with area code**, what is your **phone number**?'
     )
     await agent.context.set({
       name: 'waiting-support-handle-phone-retry',
@@ -721,7 +721,7 @@ exports.supportHandlePhoneRetry = async agent => {
 
 exports.supportRetryEmail = async agent => {
   try {
-    await agent.add(`What is your **email address**?`)
+    await agent.add('What is your **email address**?')
     await agent.context.set({
       name: 'waiting-support-handle-email-retry',
       lifespan: 3,
@@ -749,7 +749,7 @@ exports.supportCollectCompanyName = async agent => {
 
   try {
     await agent.add(
-      `What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like – just click the "I'm Done" button when you're finished.`
+      'What information do you want to share regarding the reporting of the Lump Sum Notification? You can use as many messages as you like – just click the "I\'m Done" button when you\'re finished.'
     )
 
     await agent.context.set({
@@ -779,9 +779,9 @@ exports.supportCaseNumber = async agent => {
   } else if (caseNumber && !validCaseNumber) {
     try {
       await agent.add(
-        `I didn't catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.`
+        'I didn\'t catch that as a valid case number, case numbers are nine digits, always start with a 6, and may end with a letter of the alphabet.'
       )
-      await agent.add(`What is your **case number**?`)
+      await agent.add('What is your **case number**?')
       await agent.context.set({
         name: 'waiting-support-case-number',
         lifespan: 3,
@@ -828,7 +828,7 @@ exports.supportCollectIssue = async agent => {
 
   try {
     await agent.add(
-      `Okay, I've put your request together. Here's what I've got. Click 'Go Back' to edit your message or submit to send to a representative.`
+      'Okay, I\'ve put your request together. Here\'s what I\'ve got. Click \'Go Back\' to edit your message or submit to send to a representative.'
     )
     await agent.add(
       new Card({
@@ -836,8 +836,8 @@ exports.supportCollectIssue = async agent => {
         text: `${cardText}`,
       })
     )
-    await agent.add(new Suggestion(`Submit`))
-    await agent.add(new Suggestion(`Cancel`))
+    await agent.add(new Suggestion('Submit'))
+    await agent.add(new Suggestion('Cancel'))
     // Force user to select suggestion
     await disableInput(agent)
     await agent.context.set({
@@ -921,7 +921,7 @@ exports.supportSumbitIssue = async agent => {
   } else {
     // Handle service desk errors?
     await agent.add(
-      `Looks like something has gone wrong! Please try again or call please call <a href="tel:+18778824916">1-877-882-4916</a> to reach a support representative.`
+      'Looks like something has gone wrong! Please try again or call please call <a href="tel:+18778824916">1-877-882-4916</a> to reach a support representative.'
     )
     await handleEndConversation(agent)
   }
@@ -938,7 +938,7 @@ exports.supportCancel = async agent => {
 exports.supportParentPayingEmploymentInfo = async agent => {
   try {
     await agent.add(
-      `Would you like to change or edit information about your employment status?`
+      'Would you like to change or edit information about your employment status?'
     )
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
@@ -996,9 +996,9 @@ exports.supportParentReceivingEmploymentInfo = async agent => {
 
 exports.supportParentsGuideCSE = async agent => {
   try {
-    await agent.add(`The purpose of the child support program is to secure financial, medical and emotional support for children and families, thereby, contributing to a family’s ability to become self-sufficient and maintain self-sufficiency. The Mississippi Department of Human Services, Division of Child Support Enforcement exists to provide these services to the families of Mississippi.`)
+    await agent.add('The purpose of the child support program is to secure financial, medical and emotional support for children and families, thereby, contributing to a family’s ability to become self-sufficient and maintain self-sufficiency. The Mississippi Department of Human Services, Division of Child Support Enforcement exists to provide these services to the families of Mississippi.')
 
-    await agent.add(`Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a> to open the Parent's Guide to CSE for more information`)
+    await agent.add('Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a> to open the Parent\'s Guide to CSE for more information')
   } catch (err) {
     console.error(err)
   }

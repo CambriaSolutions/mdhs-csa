@@ -7,7 +7,7 @@ const {
 
 exports.feedbackRoot = async agent => {
   try {
-    await agent.add(`Was Gen helpful?`)
+    await agent.add('Was Gen helpful?')
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await disableInput(agent)
@@ -31,7 +31,7 @@ exports.feedbackNotHelpful = async agent => {
       options: [
         { value: 'Did not have the information I needed' },
         {
-          value: "I wasn't able to have my questions answered",
+          value: 'I wasn\'t able to have my questions answered',
         },
         {
           value: 'Was difficult requesting assistance',
@@ -111,7 +111,7 @@ exports.feedbackHelpful = async agent => {
 
 exports.feedbackComplete = async agent => {
   try {
-    await agent.add(`To start over just say hello!`)
+    await agent.add('To start over just say hello!')
   } catch (err) {
     console.log(err)
   }

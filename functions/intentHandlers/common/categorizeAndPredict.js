@@ -156,7 +156,7 @@ exports.handleUnhandled = async agent => {
 
       if (suggestions.length > 0) {
         await agent.add(
-          `I'm sorry, were you referring to one of the topics below?`
+          'I\'m sorry, were you referring to one of the topics below?'
         )
 
         suggestions.forEach(async (suggestion, i) => {
@@ -165,7 +165,7 @@ exports.handleUnhandled = async agent => {
           }
         })
 
-        await agent.add(new Suggestion(`None of these`))
+        await agent.add(new Suggestion('None of these'))
 
         // Save the query and suggestion and intent collection in context for
         // further analysis on the analytics end

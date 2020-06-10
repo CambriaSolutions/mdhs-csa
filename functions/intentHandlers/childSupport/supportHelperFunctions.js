@@ -7,15 +7,15 @@ const { toTitleCase } = require('../globalFunctions.js')
 // Used to handle restarting and starting conversations for support requests
 exports.startSupportConvo = async agent => {
   try {
-    await agent.add(`Which of the following are you?`)
+    await agent.add('Which of the following are you?')
     await agent.add(
-      new Suggestion(`Parent who is to receive child support payments`)
+      new Suggestion('Parent who is to receive child support payments')
     )
     await agent.add(
-      new Suggestion(`Parent who is to pay child support payments`)
+      new Suggestion('Parent who is to pay child support payments')
     )
-    await agent.add(new Suggestion(`Employer`))
-    await agent.add(new Suggestion(`Parent's Guide to CSE`))
+    await agent.add(new Suggestion('Employer'))
+    await agent.add(new Suggestion('Parent\'s Guide to CSE'))
     await agent.context.set({
       name: 'waiting-support-parent-receiving',
       lifespan: 3,
@@ -48,45 +48,45 @@ exports.formatConfirmationResponse = async agent => {
   let confimationResponse
   // Request contempt action
   if (supportType === 'request contempt action') {
-    confimationResponse = `Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.`
+    confimationResponse = 'Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.'
   }
   // Child support payment increase or decrease
   else if (supportType === 'child support increase or decrease') {
-    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
+    confimationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
   }
   // Change of personal information
   else if (supportType === 'change personal information') {
-    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.`
+    confimationResponse = 'Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.'
   }
   // Change of employment status
   else if (supportType === 'change of employment status') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
+    confimationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
   }
   // Request payment history
   else if (supportType === 'request payment history or record') {
-    confimationResponse = `Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.`
+    confimationResponse = 'Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.'
   }
   // Information about parent who pays child support
   else if (
     supportType === 'Report Information About the Parent who Pays Support'
   ) {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.`
+    confimationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
   }
   // Request case closure
   else if (supportType === 'request case closure') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
+    confimationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
   }
   // Employer reports a lump sum payment
   else if (supportType === 'employer report lump sum notification') {
-    confimationResponse = `Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.`
+    confimationResponse = 'Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.'
   }
   // Adding an authorized user to an account
   else if (supportType === 'add authorized user') {
-    confimationResponse = `Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.`
+    confimationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
   }
   // Any other type of request
   else {
-    confimationResponse = `Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.`
+    confimationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
   }
   return confimationResponse
 }
@@ -108,7 +108,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
 
   if (change === 'change of employer' || change === 'loss of employer') {
     try {
-      await agent.add(`What is the new employer's name?`)
+      await agent.add('What is the new employer\'s name?')
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-name',
         lifespan: 3,
@@ -146,21 +146,21 @@ exports.supportMoreOptions = async (agent, option) => {
   try {
     if (option === 'receiving') {
       await agent.add(
-        `I can help parents receiving payments with the following additional requests. If you don't see what you need, select "None of These".`
+        'I can help parents receiving payments with the following additional requests. If you don\'t see what you need, select "None of These".'
       )
       await agent.add(
-        new Suggestion(`Report Information About the Parent who Pays Support`)
+        new Suggestion('Report Information About the Parent who Pays Support')
       )
-      await agent.add(new Suggestion(`Request Payment History`))
-      await agent.add(new Suggestion(`Add Authorized User`))
-      await agent.add(new Suggestion(`None of These`))
+      await agent.add(new Suggestion('Request Payment History'))
+      await agent.add(new Suggestion('Add Authorized User'))
+      await agent.add(new Suggestion('None of These'))
     } else if (option === 'paying') {
       await agent.add(
-        `I can help parents making payments with the following additional requests. If you don't see what you need, select "None of These".`
+        'I can help parents making payments with the following additional requests. If you don\'t see what you need, select "None of These".'
       )
-      await agent.add(new Suggestion(`Request Payment History`))
-      await agent.add(new Suggestion(`Add Authorized User`))
-      await agent.add(new Suggestion(`None of These`))
+      await agent.add(new Suggestion('Request Payment History'))
+      await agent.add(new Suggestion('Add Authorized User'))
+      await agent.add(new Suggestion('None of These'))
     }
     await agent.context.set({
       name: 'waiting-support-type',
@@ -191,7 +191,7 @@ exports.checkForLumpSum = async agent => {
 const requestCaseNumber = async agent => {
   try {
     await agent.add(
-      `What is your case number? Please do not provide your social security number.`
+      'What is your case number? Please do not provide your social security number.'
     )
 
     await agent.context.set({
@@ -210,7 +210,7 @@ const requestCaseNumber = async agent => {
 // Used to request a company for a lump sum notification
 const requestCompany = async agent => {
   try {
-    await agent.add(`What is the name of your company/employer?`)
+    await agent.add('What is the name of your company/employer?')
 
     await agent.context.set({
       name: 'waiting-support-collect-company',
@@ -267,7 +267,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
       // Failed to validate phone number
       try {
         await agent.add(
-          `I didn't recognize that as a phone number, starting with area code, what is your phone number?`
+          'I didn\'t recognize that as a phone number, starting with area code, what is your phone number?'
         )
         await agent.context.set({
           name: 'waiting-support-handle-phone-retry',
@@ -314,7 +314,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
       // Failed to validate email, so we retry
       try {
         await agent.add(
-          `I didn't recognize that as an email address, could you say that again?`
+          'I didn\'t recognize that as an email address, could you say that again?'
         )
         await agent.context.set({
           name: 'waiting-support-handle-email-retry',
@@ -373,10 +373,10 @@ exports.formatSummary = ({ supportType, employmentChangeType }) => {
     if (employmentChangeType) {
       supportSummary = `Change of Employment Status - ${employmentChangeType}`
     } else {
-      supportSummary = `Change of Employment Status`
+      supportSummary = 'Change of Employment Status'
     }
   } else if (supportType === 'inquiry') {
-    supportSummary = `Support Request`
+    supportSummary = 'Support Request'
   } else {
     supportSummary = toTitleCase(supportType)
   }

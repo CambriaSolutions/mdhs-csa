@@ -16,16 +16,16 @@ const getIncomeMultiplier = cadence => {
   }
 
   switch (cadence) {
-    case 'weekly':
-      return 52
-    case 'biweekly':
-      return 26
-    case 'monthly':
-      return 12
-    case 'annual':
-      return 1
-    default:
-      return null
+  case 'weekly':
+    return 52
+  case 'biweekly':
+    return 26
+  case 'monthly':
+    return 12
+  case 'annual':
+    return 1
+  default:
+    return null
   }
 }
 
@@ -99,7 +99,7 @@ exports.calculatePayment = ({
   const cadenceMultiplier = getIncomeMultiplier(incomeTerm)
   if (cadenceMultiplier === null) {
     throw new Error(
-      `There was a problem determining the multiplier for payment estimation`
+      'There was a problem determining the multiplier for payment estimation'
     )
   }
 

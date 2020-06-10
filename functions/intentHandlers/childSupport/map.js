@@ -8,7 +8,7 @@ exports.mapRoot = async agent => {
   try {
     await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case')
     await agent.add(
-      `I can help locate the nearest office to you, what is your address?`
+      'I can help locate the nearest office to you, what is your address?'
     )
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
@@ -59,7 +59,7 @@ exports.mapDeliverMap = async agent => {
       )
       const mapInfo = { locations, currentGeocode, nearestLocations }
       const mapPayload = JSON.stringify(mapInfo)
-      await agent.add(`Here is an interactive map of all of our locations!`)
+      await agent.add('Here is an interactive map of all of our locations!')
       await agent.add(
         new Payload(
           agent.UNSPECIFIED,
@@ -73,7 +73,7 @@ exports.mapDeliverMap = async agent => {
       await handleEndConversation(agent)
     } else {
       await agent.add(
-        `Sorry, I couldn't find that address. Could you say that again?`
+        'Sorry, I couldn\'t find that address. Could you say that again?'
       )
       await agent.context.set({
         name: 'waiting-maps-deliver-map',

@@ -1,10 +1,10 @@
 const { Suggestion, Payload } = require('dialogflow-fulfillment')
 
 exports.handleEndConversation = async agent => {
-  const helpMessage = `Is there anything else I can help you with today?`
+  const helpMessage = 'Is there anything else I can help you with today?'
 
   await agent.add(helpMessage)
-  await agent.add(new Suggestion(`Submit Feedback`))
+  await agent.add(new Suggestion('Submit Feedback'))
 
   await agent.context.set({
     name: 'waiting-feedback-root',
@@ -97,7 +97,7 @@ exports.formatDescriptionText = supportType => {
   } else if (
     supportType === 'report information about the parent who pays support'
   ) {
-    descriptionText = `What information do you want to share regarding the parent who pays child support? Helpful information includes this parent's address and phone number, employer information, asset information or information about this parent's ability to work.`
+    descriptionText = 'What information do you want to share regarding the parent who pays child support? Helpful information includes this parent\'s address and phone number, employer information, asset information or information about this parent\'s ability to work.'
   } else if (supportType === 'request case closure') {
     descriptionText =
       'What information do you want to share regarding your request for case closure?'
@@ -123,7 +123,7 @@ exports.formatCurrency = num => {
 // Handle startOfConversation
 exports.startRootConversation = async agent => {
   try {
-    await agent.add(`What can I help you with?`)
+    await agent.add('What can I help you with?')
     await agent.add(new Suggestion('Common Requests'))
     await agent.add(new Suggestion('Appointments'))
     await agent.add(new Suggestion('Payments'))
@@ -132,7 +132,7 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
     await agent.add(new Suggestion('Stimulus Check'))
-    await agent.add(new Suggestion(`Visitation`))
+    await agent.add(new Suggestion('Visitation'))
     await agent.add(new Suggestion('Enforcement Action'))
   } catch (err) {
     console.error(err)
@@ -161,7 +161,7 @@ exports.disableInput = async agent => {
 exports.caseyHandoff = async agent => {
   try {
     await agent.add(
-      `Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual`
+      'Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual'
     )
     await this.handleEndConversation(agent)
   } catch (err) {
@@ -173,7 +173,7 @@ exports.caseyHandoff = async agent => {
 exports.defaultUnhandledResponse = async agent => {
   try {
     await agent.add(
-      `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+      'I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.'
     )
   } catch (err) {
     console.error(err)
@@ -209,7 +209,7 @@ exports.globalRestart = async agent => {
 exports.welcome = async agent => {
   try {
     await agent.add(
-      `Hi, I'm Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?`
+      'Hi, I\'m Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?'
     )
     await disableInput(agent)
     await agent.add(new Suggestion('Yes'))
@@ -230,7 +230,7 @@ exports.welcome = async agent => {
 exports.fallback = async agent => {
   try {
     await agent.add(
-      `I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.`
+      'I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.'
     )
   } catch (err) {
     console.error(err)
@@ -240,10 +240,10 @@ exports.fallback = async agent => {
 exports.yesChildSupport = async agent => {
   try {
     await agent.add(
-      `Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.`
+      'Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.'
     )
     await agent.add(
-      `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website Disclaimers, Terms, and Conditions found <a href="https://www.mdhs.ms.gov/privacy-disclaimer/" target="_blank">here</a>, and that you wish to continue.`
+      'By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website Disclaimers, Terms, and Conditions found <a href="https://www.mdhs.ms.gov/privacy-disclaimer/" target="_blank">here</a>, and that you wish to continue.'
     )
     await agent.add(new Suggestion('I Acknowledge'))
     await disableInput(agent)

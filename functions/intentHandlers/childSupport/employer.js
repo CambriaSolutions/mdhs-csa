@@ -1,10 +1,9 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
-const { iwoRoot } = require('./incomeWithholding.js')
 
 exports.employerRoot = async agent => {
   try {
-    await agent.add(`What can I help you with?`)
+    await agent.add('What can I help you with?')
     await agent.add(new Suggestion('EFT'))
     await agent.add(new Suggestion('iPayOnline'))
     // await agent.add(new Suggestion('Employer Guide'))
@@ -19,10 +18,10 @@ exports.employerRoot = async agent => {
 exports.employerEFT = async agent => {
   try {
     await agent.add(
-      `Employers can make payments electronically through EFT payments.`
+      'Employers can make payments electronically through EFT payments.'
     )
     await agent.add(
-      `For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>`
+      'For information on how to enroll, you can call <a href="tel:+1-769-777-6111">1-769-777-6111</a> or by emailing <a href="mailto:MSSDUOutreach@informatixinc.com">MSSDUOutreach@informatixinc.com</a>'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -33,7 +32,7 @@ exports.employerEFT = async agent => {
 exports.employerIPayOnline = async agent => {
   try {
     await agent.add(
-      `You can manage child support payments through iPayOnline.<a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.`
+      'You can manage child support payments through iPayOnline.<a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -44,10 +43,10 @@ exports.employerIPayOnline = async agent => {
 exports.employerGuide = async agent => {
   try {
     await agent.add(
-      `An Employer Guide was created to assist employers in learning more about topics such as reporting new hires, handling income withholding orders, or handling medical support notices. This guide provides resources, contact information, and links to forms.`
+      'An Employer Guide was created to assist employers in learning more about topics such as reporting new hires, handling income withholding orders, or handling medical support notices. This guide provides resources, contact information, and links to forms.'
     )
     await agent.add(
-      `Please <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">click here</a> to open the Employer Guide for more information`
+      'Please <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">click here</a> to open the Employer Guide for more information'
     )
   } catch (err) {
     console.error(err)
@@ -72,10 +71,10 @@ exports.employerChecksMoneyOrders = async agent => {
 exports.employerIWOHandoff = async agent => {
   try {
     await agent.add(
-      `MDHS is required by law to submit Income Withholding Orders to employers to withhold child support and any arrears obligation.`
+      'MDHS is required by law to submit Income Withholding Orders to employers to withhold child support and any arrears obligation.'
     )
     await agent.add(
-      `Would you like to report employment information? If so, which of the following are you?`
+      'Would you like to report employment information? If so, which of the following are you?'
     )
     await agent.add(new Suggestion('Employer'))
     await agent.add(new Suggestion('Parent Who Pays Support'))

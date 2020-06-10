@@ -50,13 +50,13 @@ exports.apptsSchedule = async agent => {
 exports.apptsYesContacted = async agent => {
   try {
     await agent.add(
-      `Plan to appear at the office listed in your notice letter during the specified time frame.`
+      'Plan to appear at the office listed in your notice letter during the specified time frame.'
     )
     await agent.add(
-      `Failure to appear in accordance with notice instructions may result in your case being closed and your public assistance benefits may be sanctioned.`
+      'Failure to appear in accordance with notice instructions may result in your case being closed and your public assistance benefits may be sanctioned.'
     )
     await agent.add(
-      `If you have urgent questions, or cannot appear during the allotted time, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
+      'If you have urgent questions, or cannot appear during the allotted time, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
 
     // Ask the user if they need anything else, set appropriate contexts
@@ -69,11 +69,11 @@ exports.apptsYesContacted = async agent => {
 exports.apptsNoContacted = async agent => {
   try {
     await agent.add(
-      `You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office.`
+      'You generally aren\'t required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office.'
     )
 
     await agent.add(
-      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.`
+      'If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.'
     )
     await agent.add('Do you need help finding an office location?')
     await agent.add(new Suggestion('Yes'))
@@ -103,10 +103,10 @@ exports.apptsOfficeLocationsHandoff = async agent => {
 exports.apptsGuidelines = async agent => {
   try {
     await agent.add(
-      `You generally aren't required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.`
+      'You generally aren\'t required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.'
     )
     await agent.add(
-      `If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.`
+      'If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
 
     // Ask the user if they need anything else, set appropriate contexts

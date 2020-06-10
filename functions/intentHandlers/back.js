@@ -106,7 +106,7 @@ const backFunction = (agent, intentMap) => {
 
 const fullfillmentWrapper = (agent, intentMap) => {
   const currentIntentFullfillmentFunction = intentMap[agent.intent]
-  console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`);
+  console.log(`${agent.intent} intent has handler ${currentIntentFullfillmentFunction}`)
   const prevIntents = agent.context.get('previous-agent-states')
 
   const maskFunction = async agent => {
@@ -119,7 +119,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
       await agent.add(new Suggestion('Go Back'))
     }
   }
-  intentMap[agent.intent] = maskFunction;
+  intentMap[agent.intent] = maskFunction
 }
 
 /************************************************************************************************
@@ -135,7 +135,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
 const backIntentCycle = async (agent, intentMap, name) => {
   await snapshotCurrentState(agent)
   const back = backFunction(agent, intentMap)
-  intentMap[name] = back;
+  intentMap[name] = back
   fullfillmentWrapper(agent, intentMap)
 }
 
