@@ -13,26 +13,26 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - scripts/node_modules
-      - run:
-          name: "Add env variables"
-          command: cd scripts && echo
-            "AGENT_PROJECT=${DEV_AGENT_PROJECT}
+      # - run:
+      #     name: "Add env variables"
+      #     command: cd scripts && echo
+      #       "AGENT_PROJECT=${DEV_AGENT_PROJECT}
 
-            AGENT_PRIVATE_KEY=${DEV_AGENT_PRIVATE_KEY}
+      #       AGENT_PRIVATE_KEY=${DEV_AGENT_PRIVATE_KEY}
 
-            AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}
+      #       AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}
 
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
-      - run:
-          name: "Add json key file"
-          command: cd scripts && echo
-            "${DEV_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
-      - run:
-          name: "Agent configuration"
-          command: cd agent && mv agent.dev.json agent.json
-      - run:
-          name: "Import to Dev DialogFlow"
-          command: cd scripts && node restoreDialogflow
+      #       GOOGLE_APPLICATION_CREDENTIALS=./mdhs-csa-key.json" > .env
+      # - run:
+      #     name: "Add json key file"
+      #     command: cd scripts && echo
+      #       "${DEV_MDHS_CSA_KEY_JSON}" > mdhs-csa-key.json
+      # - run:
+      #     name: "Agent configuration"
+      #     command: cd agent && mv agent.dev.json agent.json
+      # - run:
+      #     name: "Import to Dev DialogFlow"
+      #     command: cd scripts && node restoreDialogflow
       - run:
           name: "Populate Firestore"
           command: node scripts/populateFirestore
