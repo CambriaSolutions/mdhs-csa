@@ -1,0 +1,75 @@
+{
+    "id": "43bcbeaa-9ede-4b01-ab65-4ee670b2ce3b",
+    "name": "support-case-number",
+    "auto": true,
+    "contexts": [
+        "waiting-support-case-number",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-case-number",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-support-no-case-number",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "74baa9cc-14ad-4766-a4a1-480798566279",
+                    "required": false,
+                    "dataType": "@dont-know",
+                    "name": "dont-know",
+                    "value": "$dont-know",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                },
+                {
+                    "id": "8151cbda-9840-4e46-be54-359a17c9e8de",
+                    "required": false,
+                    "dataType": "@sys.any",
+                    "name": "caseNumber",
+                    "value": "$caseNumber",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

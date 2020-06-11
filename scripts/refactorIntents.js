@@ -54,9 +54,11 @@ const doIntentRenames = (intents) => {
         const currentFilename = pathElements.pop().split('.')[0];
         const renamedFilename = `csa-${currentFilename}`;
         renatedIntents[currentFilename] = renamedFilename;
-        
+        const path = pathElements.join('/');
+
         pathElements.push(`${renamedFilename}.json`);
         fs.renameSync(value, pathElements.join('/'));
+        fs.renameSync(`${path}/${currentFilename}_usersays_en.json`, `${path}/${renamedFilename}_usersays_en.json`);
     });
 
     replaceAllRenamedIntentReferences(renatedIntents);

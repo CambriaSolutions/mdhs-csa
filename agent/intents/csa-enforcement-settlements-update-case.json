@@ -1,0 +1,58 @@
+{
+    "id": "5f42c851-63b4-401b-8b64-f25966b5fa1f",
+    "name": "enforcement-settlements-update-case",
+    "auto": true,
+    "contexts": [
+        "waiting-enforcement-settlements-update-case",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-enforcement-settlements-update-case",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "9a198d98-cb51-4ba6-b507-a48dea8ab030",
+                    "required": false,
+                    "dataType": "@yes-no",
+                    "name": "yes-no",
+                    "value": "$yes-no",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

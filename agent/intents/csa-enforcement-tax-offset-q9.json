@@ -1,0 +1,64 @@
+{
+    "id": "2f8c7829-904f-481a-9705-5a552ea73f07",
+    "name": "enforcement-tax-offset-q9",
+    "auto": true,
+    "contexts": [
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "2a6eae20-4730-424a-ba81-114b3660e2e6",
+                    "required": false,
+                    "dataType": "@yes-no",
+                    "name": "yes-no",
+                    "value": "$yes-no",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                },
+                {
+                    "id": "b76a5634-5708-4a09-b2ac-284ca48ef187",
+                    "required": false,
+                    "dataType": "@guardianship",
+                    "name": "guardianship",
+                    "value": "$guardianship",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

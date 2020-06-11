@@ -1,0 +1,55 @@
+{
+    "id": "fc775287-1d1e-48d7-9373-b1cbac903224",
+    "name": "iwo-faqs",
+    "auto": true,
+    "contexts": [
+        "waiting-iwo-faqs",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-iwo-faqs",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-iwo-wants-assistance",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-iwo-no-assistance",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

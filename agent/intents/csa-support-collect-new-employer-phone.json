@@ -1,0 +1,58 @@
+{
+    "id": "56fdf134-08fc-4cb0-a723-dc3d6b14925c",
+    "name": "support-collect-new-employer-phone",
+    "auto": true,
+    "contexts": [
+        "waiting-support-collect-new-employer-phone",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-collect-new-employer-phone",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "ea8b1558-8d8f-4cc4-9dd1-56608b442d1b",
+                    "required": false,
+                    "dataType": "@sys.phone-number",
+                    "name": "newEmployerPhone",
+                    "value": "$newEmployerPhone",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

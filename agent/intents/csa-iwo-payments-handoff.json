@@ -1,0 +1,50 @@
+{
+    "id": "1faed28f-5e52-4d82-8470-f3b7ef615927",
+    "name": "iwo-payments-handoff",
+    "auto": true,
+    "contexts": [
+        "waiting-iwo-payments-handoff",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-iwo-payments-handoff",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-iwo-employer-submit-payments",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}
