@@ -35,7 +35,7 @@ jobs:
           command: cd scripts && node restoreDialogflow
       - run:
           name: "Populate Firestore"
-          command: "node scripts/populateFirestore"
+          command: "cd scripts && node populateFirestore"
   deploy_dev_functions:
     docker:
       - image: circleci/node:10.15.0
