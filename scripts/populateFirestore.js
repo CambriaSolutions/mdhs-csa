@@ -109,7 +109,7 @@ const populateIntentsCollection = async () => {
 }
 
 const populateFirestore = async () => {
-  //return 1
+  return 2
   throw 'This is a forced error to test build'
   await populateMLCategoriesCollection()
   await populateIntentsCollection()
