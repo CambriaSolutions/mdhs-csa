@@ -114,7 +114,7 @@ const populateFirestore = async () => {
     await populateIntentsCollection()
   } catch (e) {
     console.error(e)
-    process.exit(1)
+    process.exitCode = 1
   }
 }
 

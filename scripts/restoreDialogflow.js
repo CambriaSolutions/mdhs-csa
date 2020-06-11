@@ -44,5 +44,5 @@ zip.generateAsync({ type: 'uint8array' })
   })
   .catch(err => {
     console.error(err)
-    process.exit(1)
+    process.exitCode = 1
   })
