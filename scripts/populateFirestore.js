@@ -109,8 +109,9 @@ const populateIntentsCollection = async () => {
 }
 
 const populateFirestore = async () => {
-  return 2
-  throw 'This is a forced error to test build'
+  process.exit(2)
+  //return 2
+  //throw 'This is a forced error to test build'
   await populateMLCategoriesCollection()
   await populateIntentsCollection()
 }
