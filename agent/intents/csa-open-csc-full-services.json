@@ -1,6 +1,6 @@
 {
     "id": "42833b8a-7885-4da6-aa44-19dd77e51801",
-    "name": "open-csc-full-services",
+    "name": "csa-open-csc-full-services",
     "auto": true,
     "contexts": [
         "waiting-open-csc-full-services",

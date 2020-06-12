@@ -1,6 +1,6 @@
 {
     "id": "6bf75707-c750-4dfb-9751-62ee778fd2d6",
-    "name": "pmtQA-yes-payment-reduction",
+    "name": "csa-pmtQA-yes-payment-reduction",
     "auto": true,
     "contexts": [
         "waiting-pmtqa-yes-payment-reduction",

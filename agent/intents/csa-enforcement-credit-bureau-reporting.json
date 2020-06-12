@@ -1,6 +1,6 @@
 {
     "id": "88c01cf1-1fa9-474f-a596-b6130e941adc",
-    "name": "enforcement-credit-bureau-reporting",
+    "name": "csa-enforcement-credit-bureau-reporting",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

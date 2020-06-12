@@ -1,6 +1,6 @@
 {
     "id": "6b9ff954-9faf-4376-ad5a-f7332137cad5",
-    "name": "feedback-not-helpful",
+    "name": "csa-feedback-not-helpful",
     "auto": true,
     "contexts": [
         "waiting-feedback-not-helpful",

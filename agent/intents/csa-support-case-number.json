@@ -1,6 +1,6 @@
 {
     "id": "43bcbeaa-9ede-4b01-ab65-4ee670b2ce3b",
-    "name": "support-case-number",
+    "name": "csa-support-case-number",
     "auto": true,
     "contexts": [
         "waiting-support-case-number",

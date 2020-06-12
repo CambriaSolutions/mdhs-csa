@@ -1,6 +1,6 @@
 {
     "id": "5f42c851-63b4-401b-8b64-f25966b5fa1f",
-    "name": "enforcement-settlements-update-case",
+    "name": "csa-enforcement-settlements-update-case",
     "auto": true,
     "contexts": [
         "waiting-enforcement-settlements-update-case",

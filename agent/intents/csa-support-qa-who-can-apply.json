@@ -1,6 +1,6 @@
 {
     "id": "ccccbca3-5b12-492c-bb5d-8e8c14e0e162",
-    "name": "support-qa-who-can-apply",
+    "name": "csa-support-qa-who-can-apply",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

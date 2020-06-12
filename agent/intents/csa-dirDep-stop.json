@@ -1,6 +1,6 @@
 {
     "id": "5b55e619-fdc1-4265-804b-94b56a34a96b",
-    "name": "dirDep-stop",
+    "name": "csa-dirDep-stop",
     "auto": true,
     "contexts": [
         "waiting-dirDep-stop",

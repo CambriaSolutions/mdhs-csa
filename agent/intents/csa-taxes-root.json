@@ -1,6 +1,6 @@
 {
     "id": "884ad4e0-573f-4c9d-ad70-d03c46fcd68d",
-    "name": "taxes-root",
+    "name": "csa-taxes-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

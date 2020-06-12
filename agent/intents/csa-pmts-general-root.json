@@ -1,6 +1,6 @@
 {
     "id": "54419142-fe42-4d7d-ae91-1456d9484e7d",
-    "name": "pmts-general-root",
+    "name": "csa-pmts-general-root",
     "auto": true,
     "contexts": [
         "waiting-payment-calc",

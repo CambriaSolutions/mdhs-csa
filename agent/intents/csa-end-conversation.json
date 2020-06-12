@@ -1,6 +1,6 @@
 {
     "id": "183cd01c-dd5b-47a5-a4cf-35c145c733e7",
-    "name": "end-conversation",
+    "name": "csa-end-conversation",
     "auto": true,
     "contexts": [
         "waiting-end-conversation",

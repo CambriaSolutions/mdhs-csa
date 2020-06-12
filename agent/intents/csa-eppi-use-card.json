@@ -1,6 +1,6 @@
 {
     "id": "4f0449dc-f836-4e99-a2ba-c0d7111212de",
-    "name": "eppi-use-card",
+    "name": "csa-eppi-use-card",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

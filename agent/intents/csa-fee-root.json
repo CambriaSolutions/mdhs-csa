@@ -1,6 +1,6 @@
 {
     "id": "a51faeab-b94a-411c-8dc8-bf12140e1cf1",
-    "name": "fee-root",
+    "name": "csa-fee-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

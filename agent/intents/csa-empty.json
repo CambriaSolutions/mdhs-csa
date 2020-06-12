@@ -1,6 +1,6 @@
 {
     "id": "cf8b2d2f-11a2-4652-a55d-3087379eaee3",
-    "name": "empty",
+    "name": "csa-empty",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

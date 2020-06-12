@@ -1,6 +1,6 @@
 {
     "id": "fb71570e-dc39-49fa-9dc8-c0066009500f",
-    "name": "snap-root",
+    "name": "csa-snap-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

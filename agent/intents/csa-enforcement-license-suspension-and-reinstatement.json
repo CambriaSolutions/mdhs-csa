@@ -1,6 +1,6 @@
 {
     "id": "c0ce3a55-aee6-4895-a14e-3d6b7e69570b",
-    "name": "enforcement-license-suspension-and-reinstatement",
+    "name": "csa-enforcement-license-suspension-and-reinstatement",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

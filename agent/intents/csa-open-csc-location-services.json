@@ -1,6 +1,6 @@
 {
     "id": "b54c0093-0901-4469-bba3-1c646fff7571",
-    "name": "open-csc-location-services",
+    "name": "csa-open-csc-location-services",
     "auto": true,
     "contexts": [
         "waiting-open-csc-location-services",

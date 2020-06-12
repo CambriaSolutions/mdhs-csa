@@ -1,6 +1,6 @@
 {
     "id": "341e919e-57ad-46ae-b89d-8441357a3418",
-    "name": "visitation-prosepackets",
+    "name": "csa-visitation-prosepackets",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

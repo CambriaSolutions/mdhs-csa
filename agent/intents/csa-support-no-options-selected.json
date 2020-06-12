@@ -1,6 +1,6 @@
 {
     "id": "46ef6215-e4c3-4674-aa11-b8ff3ba99509",
-    "name": "support-no-options-selected",
+    "name": "csa-support-no-options-selected",
     "auto": true,
     "contexts": [
         "waiting-support-general-inquiries",

@@ -1,6 +1,6 @@
 {
     "id": "5f4a436c-f86a-4f08-8ae2-e6bf3156ff92",
-    "name": "dirDep-change",
+    "name": "csa-dirDep-change",
     "auto": true,
     "contexts": [
         "waiting-dirDep-change",

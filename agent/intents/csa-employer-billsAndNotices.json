@@ -1,6 +1,6 @@
 {
     "id": "9ece8b4a-d754-45ed-ba24-616451ba1df6",
-    "name": "employer-billsAndNotices",
+    "name": "csa-employer-billsAndNotices",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

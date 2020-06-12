@@ -1,6 +1,6 @@
 {
     "id": "1b42c0c2-0943-4df3-ae69-1b71fc0e1f32",
-    "name": "enforcement-contempt",
+    "name": "csa-enforcement-contempt",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

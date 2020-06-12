@@ -1,6 +1,6 @@
 {
     "id": "10e4a496-3197-4b60-87f6-08b14c5c4175",
-    "name": "eppi-payment-history",
+    "name": "csa-eppi-payment-history",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

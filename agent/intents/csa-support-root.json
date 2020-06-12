@@ -1,6 +1,6 @@
 {
     "id": "85a43b03-d217-43be-9d7f-f845ce0307e1",
-    "name": "support-root",
+    "name": "csa-support-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "c9aa16c2-4c83-41c3-a7a2-8043d0aebff0",
-    "name": "pmt-calc-income-term",
+    "name": "csa-pmt-calc-income-term",
     "auto": true,
     "contexts": [
         "waiting-pmt-calc-income-term",

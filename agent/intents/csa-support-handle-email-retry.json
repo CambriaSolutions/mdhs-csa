@@ -1,6 +1,6 @@
 {
     "id": "6cede9d3-780b-43f4-994e-ce5aad292c08",
-    "name": "support-handle-email-retry",
+    "name": "csa-support-handle-email-retry",
     "auto": true,
     "contexts": [
         "waiting-support-handle-email-retry",

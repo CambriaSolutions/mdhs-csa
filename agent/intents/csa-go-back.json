@@ -1,6 +1,6 @@
 {
     "id": "366e6f4b-2ef1-405e-a293-9da705e5ce9a",
-    "name": "go-back",
+    "name": "csa-go-back",
     "auto": true,
     "contexts": [
         "waiting-go-back",

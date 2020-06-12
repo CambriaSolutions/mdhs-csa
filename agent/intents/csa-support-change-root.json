@@ -1,6 +1,6 @@
 {
     "id": "b11326bf-1360-4d15-9f4e-a05f3e414e9f",
-    "name": "support-change-root",
+    "name": "csa-support-change-root",
     "auto": true,
     "contexts": [
         "waiting-support-change",

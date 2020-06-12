@@ -1,6 +1,6 @@
 {
     "id": "52147f8d-c97f-4ebe-bad6-9f1d56749f49",
-    "name": "support-collect-new-employer-name",
+    "name": "csa-support-collect-new-employer-name",
     "auto": true,
     "contexts": [
         "waiting-support-collect-new-employer-name",

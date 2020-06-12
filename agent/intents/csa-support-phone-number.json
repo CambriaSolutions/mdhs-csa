@@ -1,6 +1,6 @@
 {
     "id": "1ce026bf-2eb5-4e22-a378-473d7c94dae6",
-    "name": "support-phone-number",
+    "name": "csa-support-phone-number",
     "auto": true,
     "contexts": [
         "waiting-support-phone-number",

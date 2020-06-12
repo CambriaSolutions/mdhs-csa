@@ -1,6 +1,6 @@
 {
     "id": "314b878b-cb47-4059-a312-0d84e9f65595",
-    "name": "pmts-general-make-payments",
+    "name": "csa-pmts-general-make-payments",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

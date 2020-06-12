@@ -1,6 +1,6 @@
 {
     "id": "54b4a14c-a3c1-4775-a800-7dd8a7408375",
-    "name": "pmtQA-NCP-payment-status-submit-request",
+    "name": "csa-pmtQA-NCP-payment-status-submit-request",
     "auto": true,
     "contexts": [
         "waiting-pmtQA-ncp-payment-status-submit-request",

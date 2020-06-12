@@ -1,6 +1,6 @@
 {
     "id": "a03f0b9f-f80f-455a-8023-66c51152b9d2",
-    "name": "support-payments-root",
+    "name": "csa-support-payments-root",
     "auto": true,
     "contexts": [
         "waiting-support-payments",

@@ -1,6 +1,6 @@
 {
     "id": "6149580d-2a87-444a-bea8-d170ba8d9f5f",
-    "name": "appts-root",
+    "name": "csa-appts-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

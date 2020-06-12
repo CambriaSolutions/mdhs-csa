@@ -1,6 +1,6 @@
 {
     "id": "638830df-174d-4f9e-9ef4-2265b07e05b3",
-    "name": "support-general-root",
+    "name": "csa-support-general-root",
     "auto": true,
     "contexts": [
         "waiting-support-general",

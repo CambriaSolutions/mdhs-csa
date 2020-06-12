@@ -1,6 +1,6 @@
 {
     "id": "c13f0dcb-ba3d-4bdd-a1c8-e51177b182c2",
-    "name": "eppi-root",
+    "name": "csa-eppi-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

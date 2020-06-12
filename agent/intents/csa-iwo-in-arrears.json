@@ -1,6 +1,6 @@
 {
     "id": "f9450ca2-69fe-4efa-b41b-7640b88692ac",
-    "name": "iwo-in-arrears",
+    "name": "csa-iwo-in-arrears",
     "auto": true,
     "contexts": [
         "waiting-iwo-in-arrears",

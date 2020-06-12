@@ -1,6 +1,6 @@
 {
     "id": "5af252d1-48a4-465f-81c6-a18a065d5460",
-    "name": "support-qa-ncp-prison",
+    "name": "csa-support-qa-ncp-prison",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

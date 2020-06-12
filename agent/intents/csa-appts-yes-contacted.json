@@ -1,6 +1,6 @@
 {
     "id": "6d67782c-1215-45c9-a3e7-6811109ffc54",
-    "name": "appts-yes-contacted",
+    "name": "csa-appts-yes-contacted",
     "auto": true,
     "contexts": [
         "waiting-appts-yes-contacted",

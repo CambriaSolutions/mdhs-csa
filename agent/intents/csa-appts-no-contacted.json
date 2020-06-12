@@ -1,6 +1,6 @@
 {
     "id": "cb68b0fb-fbc2-494d-8959-95d7f533f87b",
-    "name": "appts-no-contacted",
+    "name": "csa-appts-no-contacted",
     "auto": true,
     "contexts": [
         "waiting-appts-not-contacted",

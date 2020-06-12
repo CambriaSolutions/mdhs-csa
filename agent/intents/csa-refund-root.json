@@ -1,6 +1,6 @@
 {
     "id": "1b00fa62-a851-48bc-9acb-16f461620e60",
-    "name": "refund-root",
+    "name": "csa-refund-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

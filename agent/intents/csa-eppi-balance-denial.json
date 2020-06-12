@@ -1,6 +1,6 @@
 {
     "id": "a1912578-aa76-4405-b9cd-e207d42da7f2",
-    "name": "eppi-balance-denial",
+    "name": "csa-eppi-balance-denial",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "fdfd8b4e-e478-4255-8e06-c391b0c19a15",
-    "name": "iwo-administrative-fee",
+    "name": "csa-iwo-administrative-fee",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

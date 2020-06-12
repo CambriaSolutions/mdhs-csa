@@ -1,6 +1,6 @@
 {
     "id": "4df33845-f833-411a-ac5e-ff5e62212da3",
-    "name": "pmtQA-over-21",
+    "name": "csa-pmtQA-over-21",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

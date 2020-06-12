@@ -1,6 +1,6 @@
 {
     "id": "eafad64e-52d8-4565-81e1-ddd4e963d4de",
-    "name": "enforcement-root",
+    "name": "csa-enforcement-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

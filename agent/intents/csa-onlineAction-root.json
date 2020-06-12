@@ -1,6 +1,6 @@
 {
     "id": "2f65575a-b72a-4f15-93ef-c252d3110adf",
-    "name": "onlineAction-root",
+    "name": "csa-onlineAction-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

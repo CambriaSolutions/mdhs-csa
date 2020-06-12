@@ -1,6 +1,6 @@
 {
     "id": "0662fe50-41c8-46cb-80c6-8e557117023f",
-    "name": "fax-root",
+    "name": "csa-fax-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

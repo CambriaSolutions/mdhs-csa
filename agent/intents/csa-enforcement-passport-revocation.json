@@ -1,6 +1,6 @@
 {
     "id": "d0d113cb-d163-41be-9685-97876581cc17",
-    "name": "enforcement-passport-revocation",
+    "name": "csa-enforcement-passport-revocation",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

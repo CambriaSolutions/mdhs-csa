@@ -1,6 +1,6 @@
 {
     "id": "f08cf351-06cd-482f-b3e3-7ca91342310b",
-    "name": "support-restart",
+    "name": "csa-support-restart",
     "auto": true,
     "contexts": [
         "waiting-support-restart",

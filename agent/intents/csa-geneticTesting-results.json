@@ -1,6 +1,6 @@
 {
     "id": "f33c5a85-b61b-4821-997c-947169d8a288",
-    "name": "geneticTesting-results",
+    "name": "csa-geneticTesting-results",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

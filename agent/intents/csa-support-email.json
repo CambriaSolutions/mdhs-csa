@@ -1,6 +1,6 @@
 {
     "id": "0684b6d3-a8cd-40e8-82f8-6c4f6b63aaac",
-    "name": "support-email",
+    "name": "csa-support-email",
     "auto": true,
     "contexts": [
         "waiting-support-email",

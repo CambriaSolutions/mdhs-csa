@@ -1,6 +1,6 @@
 {
     "id": "5cb86f2c-e6dc-4751-8773-04bd41f7aa2b",
-    "name": "iwo-when-to-begin",
+    "name": "csa-iwo-when-to-begin",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

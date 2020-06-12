@@ -1,6 +1,6 @@
 {
     "id": "7756c41e-e183-4594-99ff-efeba32563ac",
-    "name": "appts-schedule",
+    "name": "csa-appts-schedule",
     "auto": true,
     "contexts": [
         "waiting-appts-schedule",

@@ -1,6 +1,6 @@
 {
     "id": "353fdba2-f674-4810-b1aa-41ca9a74c80d",
-    "name": "appts-office-locations-handoff",
+    "name": "csa-appts-office-locations-handoff",
     "auto": true,
     "contexts": [
         "waiting-appts-office-locations-handoff",

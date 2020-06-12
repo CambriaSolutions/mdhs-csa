@@ -1,6 +1,6 @@
 {
     "id": "44dc9191-8d81-42e9-8e18-13e421a3de3f",
-    "name": "support-collect-first-name",
+    "name": "csa-support-collect-first-name",
     "auto": true,
     "contexts": [
         "waiting-support-collect-first-name",

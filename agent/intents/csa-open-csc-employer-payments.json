@@ -1,6 +1,6 @@
 {
     "id": "e8597266-1660-4b6e-9156-563e578d0a16",
-    "name": "open-csc-employer-payments",
+    "name": "csa-open-csc-employer-payments",
     "auto": true,
     "contexts": [
         "waiting-open-csc-employer-payments",

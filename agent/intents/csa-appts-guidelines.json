@@ -1,6 +1,6 @@
 {
     "id": "fd669767-084c-4d45-9c9d-cb9a9fcffb91",
-    "name": "appts-guidelines",
+    "name": "csa-appts-guidelines",
     "auto": true,
     "contexts": [
         "waiting-appts-guidelines",

@@ -1,6 +1,6 @@
 {
     "id": "51f9ae5a-809d-48c3-9fae-f96689a3334c",
-    "name": "employer-iwo-handoff",
+    "name": "csa-employer-iwo-handoff",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "940ea194-5f35-49d9-b320-60616c395022",
-    "name": "dirDep-payment-closed-account",
+    "name": "csa-dirDep-payment-closed-account",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

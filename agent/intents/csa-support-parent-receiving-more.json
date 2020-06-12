@@ -1,6 +1,6 @@
 {
     "id": "2dc56ed8-3ac8-4bc8-b6a6-9f00b0d24ac4",
-    "name": "support-parent-receiving-more",
+    "name": "csa-support-parent-receiving-more",
     "auto": true,
     "contexts": [
         "waiting-support-parent-receiving-more",

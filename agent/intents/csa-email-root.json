@@ -1,6 +1,6 @@
 {
     "id": "ff87e35b-2ebb-41e5-8b59-ddcb64fe3636",
-    "name": "email-root",
+    "name": "csa-email-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

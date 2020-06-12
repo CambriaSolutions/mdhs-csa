@@ -1,6 +1,6 @@
 {
     "id": "bd640c1a-4377-42e1-b64e-ab2b16c72dfc",
-    "name": "dirDep-checking",
+    "name": "csa-dirDep-checking",
     "auto": true,
     "contexts": [
         "waiting-dirDep-checking",

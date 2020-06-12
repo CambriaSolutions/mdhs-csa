@@ -1,6 +1,6 @@
 {
     "id": "25e55c47-2d8e-459c-a54a-99a2ad92001e",
-    "name": "eppi-replace-report",
+    "name": "csa-eppi-replace-report",
     "auto": true,
     "contexts": [
         "waiting-eppi-replace-report",

@@ -1,6 +1,6 @@
 {
     "id": "5a44611b-5c1c-4140-8b98-356502fe7594",
-    "name": "phoneNumber-root",
+    "name": "csa-phoneNumber-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

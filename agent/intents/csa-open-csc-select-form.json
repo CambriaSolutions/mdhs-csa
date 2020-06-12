@@ -1,6 +1,6 @@
 {
     "id": "6a80949a-0c09-4c0a-a779-a2c4c629cbd8",
-    "name": "open-csc-select-form",
+    "name": "csa-open-csc-select-form",
     "auto": true,
     "contexts": [
         "waiting-open-csc-select-form",

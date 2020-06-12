@@ -1,6 +1,6 @@
 {
     "id": "872749be-9e90-4964-a044-cc7f822d3ef9",
-    "name": "enforcement-license-reinstatement",
+    "name": "csa-enforcement-license-reinstatement",
     "auto": true,
     "contexts": [
         "waiting-license-reinstatement-learn-more",

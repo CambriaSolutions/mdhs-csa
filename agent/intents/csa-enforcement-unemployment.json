@@ -1,6 +1,6 @@
 {
     "id": "6cdd59c1-8859-4048-bdf5-e8a20b31f7b7",
-    "name": "enforcement-unemployment",
+    "name": "csa-enforcement-unemployment",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "27e5c340-c70a-4665-8b75-4a4f527c1756",
-    "name": "support-handle-phone-retry",
+    "name": "csa-support-handle-phone-retry",
     "auto": true,
     "contexts": [
         "waiting-support-handle-phone-retry",

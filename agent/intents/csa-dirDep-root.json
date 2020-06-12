@@ -1,6 +1,6 @@
 {
     "id": "b1b7bfe6-75d7-48cd-911d-f193e36edb69",
-    "name": "dirDep-root",
+    "name": "csa-dirDep-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

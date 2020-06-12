@@ -1,6 +1,6 @@
 {
     "id": "56c9aadf-437a-4a71-90f0-7d7af8f4f8d7",
-    "name": "caseQA-compliance",
+    "name": "csa-caseQA-compliance",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

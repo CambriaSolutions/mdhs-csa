@@ -1,6 +1,6 @@
 {
     "id": "d8f1c632-2e06-464d-bd85-fa1bfd9d6608",
-    "name": "enforcement-financial-account-update-case",
+    "name": "csa-enforcement-financial-account-update-case",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

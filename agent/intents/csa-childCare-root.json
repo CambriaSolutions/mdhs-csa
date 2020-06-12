@@ -1,6 +1,6 @@
 {
     "id": "7d621e46-e1e9-4496-b342-37ad6b0cbc0f",
-    "name": "childCare-root",
+    "name": "csa-childCare-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

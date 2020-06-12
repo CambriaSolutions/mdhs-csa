@@ -1,6 +1,6 @@
 {
     "id": "f316d915-5932-4d7d-b8d6-771afbb51245",
-    "name": "caseQA-general",
+    "name": "csa-caseQA-general",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

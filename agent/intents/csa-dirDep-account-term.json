@@ -1,6 +1,6 @@
 {
     "id": "2a39904e-765d-4fa7-a067-6b34cc9cf9d0",
-    "name": "dirDep-account-term",
+    "name": "csa-dirDep-account-term",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

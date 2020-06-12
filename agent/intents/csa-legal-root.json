@@ -1,6 +1,6 @@
 {
     "id": "471f722f-0706-4e65-ae85-b2a4239f5873",
-    "name": "legal-root",
+    "name": "csa-legal-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "c1b8658a-eccb-484b-b125-ddfa42d7cdb8",
-    "name": "visitation-root",
+    "name": "csa-visitation-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

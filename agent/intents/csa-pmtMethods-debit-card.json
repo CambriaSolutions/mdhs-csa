@@ -1,6 +1,6 @@
 {
     "id": "982d153d-9a3c-4345-8972-4154384fd581",
-    "name": "pmtMethods-debit-card",
+    "name": "csa-pmtMethods-debit-card",
     "auto": true,
     "contexts": [
         "waiting-pmtMethods-debit-card",

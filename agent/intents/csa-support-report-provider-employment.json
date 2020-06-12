@@ -1,6 +1,6 @@
 {
     "id": "8558f50b-c69b-462c-a8eb-97ab3a64b105",
-    "name": "support-report-provider-employment",
+    "name": "csa-support-report-provider-employment",
     "auto": true,
     "contexts": [
         "waiting-support-report-provider-employment",

@@ -1,6 +1,6 @@
 {
     "id": "43dff9ae-5500-43e5-9539-f286ce9dc6be",
-    "name": "support-parentsGuideCSE",
+    "name": "csa-support-parentsGuideCSE",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

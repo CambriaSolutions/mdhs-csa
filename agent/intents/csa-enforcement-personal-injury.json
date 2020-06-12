@@ -1,6 +1,6 @@
 {
     "id": "57d0e6ae-1163-4c83-b9fa-5ab41b6223dd",
-    "name": "enforcement-personal-injury",
+    "name": "csa-enforcement-personal-injury",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

@@ -1,6 +1,6 @@
 {
     "id": "4e6eda38-68a3-4cc3-babc-4866f44b63cc",
-    "name": "caseQA-increase-review",
+    "name": "csa-caseQA-increase-review",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

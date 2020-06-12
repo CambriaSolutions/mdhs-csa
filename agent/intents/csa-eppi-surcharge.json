@@ -1,6 +1,6 @@
 {
     "id": "6dc03ac5-5f6c-45ac-b0db-6af8b67fea95",
-    "name": "eppi-surcharge",
+    "name": "csa-eppi-surcharge",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

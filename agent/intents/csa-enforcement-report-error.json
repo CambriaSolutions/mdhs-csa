@@ -1,6 +1,6 @@
 {
     "id": "fb576f00-e7dd-4007-a134-de94061d7e83",
-    "name": "enforcement-report-error",
+    "name": "csa-enforcement-report-error",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

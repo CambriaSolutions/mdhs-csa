@@ -1,6 +1,6 @@
 {
     "id": "d040f754-52bb-4fd4-a207-a177ed48e11b",
-    "name": "dirDep-extra-funds",
+    "name": "csa-dirDep-extra-funds",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

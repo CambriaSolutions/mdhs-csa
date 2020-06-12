@@ -1,6 +1,6 @@
 {
     "id": "aa36882d-e34b-45df-a8f1-618372dc6eca",
-    "name": "stimulusCheck-root",
+    "name": "csa-stimulusCheck-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

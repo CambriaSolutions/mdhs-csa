@@ -1,6 +1,6 @@
 {
     "id": "de8a1f8c-6eb2-4d9f-939b-474a5d691b1c",
-    "name": "map-deliver-map",
+    "name": "csa-map-deliver-map",
     "auto": true,
     "contexts": [
         "waiting-maps-deliver-map",

@@ -1,6 +1,6 @@
 {
     "id": "418a742c-bd6c-48c0-a480-4d7cbe0f1305",
-    "name": "support-type",
+    "name": "csa-support-type",
     "auto": true,
     "contexts": [
         "waiting-support-type",

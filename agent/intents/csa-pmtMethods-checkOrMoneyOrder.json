@@ -1,6 +1,6 @@
 {
     "id": "531c8256-350c-46dd-8f47-5472a9946da6",
-    "name": "pmtMethods-checkOrMoneyOrder",
+    "name": "csa-pmtMethods-checkOrMoneyOrder",
     "auto": true,
     "contexts": [
         "waiting-pmtMethods-checkOrMoneyOrder",

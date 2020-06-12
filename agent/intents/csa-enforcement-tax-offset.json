@@ -1,6 +1,6 @@
 {
     "id": "b53204ca-d175-4d9d-abf7-1235dae7d2a1",
-    "name": "enforcement-tax-offset",
+    "name": "csa-enforcement-tax-offset",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

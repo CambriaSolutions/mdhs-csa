@@ -1,6 +1,6 @@
 {
     "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5a",
-    "name": "map-root",
+    "name": "csa-map-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

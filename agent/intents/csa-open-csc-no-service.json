@@ -1,6 +1,6 @@
 {
     "id": "b9ae31d0-268e-4d7b-b69d-9bd2bffa8fc7",
-    "name": "open-csc-no-service",
+    "name": "csa-open-csc-no-service",
     "auto": true,
     "contexts": [
         "waiting-open-csc-no-service",

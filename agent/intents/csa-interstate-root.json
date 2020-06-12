@@ -1,6 +1,6 @@
 {
     "id": "3f216e01-24be-4e5f-bc73-8b92cb8f96c0",
-    "name": "interstate-root",
+    "name": "csa-interstate-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

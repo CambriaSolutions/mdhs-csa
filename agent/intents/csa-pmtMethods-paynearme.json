@@ -1,6 +1,6 @@
 {
     "id": "4289a589-0ee5-4b7d-b0e6-89c9f38865eb",
-    "name": "pmtMethods-paynearme",
+    "name": "csa-pmtMethods-paynearme",
     "auto": true,
     "contexts": [
         "waiting-pmtMethods-paynearme",

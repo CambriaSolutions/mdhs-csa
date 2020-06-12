@@ -1,6 +1,6 @@
 {
     "id": "8ef828af-0faa-407f-b5d2-849ff28703fc",
-    "name": "employer-eft",
+    "name": "csa-employer-eft",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

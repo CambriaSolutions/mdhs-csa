@@ -1,6 +1,6 @@
 {
     "id": "d92d2051-f742-4d27-9876-2999ba662cc9",
-    "name": "acknowledgement-after-retry",
+    "name": "csa-acknowledgement-after-retry",
     "auto": true,
     "contexts": [
         "waiting-acknowlegement-after-retry",

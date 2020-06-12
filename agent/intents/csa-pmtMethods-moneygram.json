@@ -1,6 +1,6 @@
 {
     "id": "32d071f8-f97b-4861-a7c1-eb7111e02c4c",
-    "name": "pmtMethods-moneygram",
+    "name": "csa-pmtMethods-moneygram",
     "auto": true,
     "contexts": [
         "waiting-pmtMethods-moneygram",

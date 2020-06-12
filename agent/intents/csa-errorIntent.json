@@ -1,6 +1,6 @@
 {
     "id": "a2ef37bb-2a40-4b50-910b-f402feb2c353",
-    "name": "errorIntent",
+    "name": "csa-errorIntent",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

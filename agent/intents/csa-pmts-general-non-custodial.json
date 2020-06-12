@@ -1,6 +1,6 @@
 {
     "id": "e92c5714-8e46-430e-99ee-fa79c9613bf4",
-    "name": "pmts-general-non-custodial",
+    "name": "csa-pmts-general-non-custodial",
     "auto": true,
     "contexts": [
         "waiting-pmts-general-non-custodial",

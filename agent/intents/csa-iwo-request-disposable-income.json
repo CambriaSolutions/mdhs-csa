@@ -1,6 +1,6 @@
 {
     "id": "0e7d87ca-95f0-41ef-a6ca-c0c6695ba1f1",
-    "name": "iwo-request-disposable-income",
+    "name": "csa-iwo-request-disposable-income",
     "auto": true,
     "contexts": [
         "waiting-iwo-request-disposable-income",

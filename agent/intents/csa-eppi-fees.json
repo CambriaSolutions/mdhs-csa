@@ -1,6 +1,6 @@
 {
     "id": "1e7f1a10-a0b2-4dfd-a027-f7d2a33ab72a",
-    "name": "eppi-fees",
+    "name": "csa-eppi-fees",
     "auto": true,
     "contexts": [
         "waiting-eppi-fees",

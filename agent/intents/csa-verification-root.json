@@ -1,6 +1,6 @@
 {
     "id": "54a79550-68e1-47ee-a06d-2a4cbb64ad1d",
-    "name": "verification-root",
+    "name": "csa-verification-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

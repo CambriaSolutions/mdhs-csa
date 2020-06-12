@@ -1,6 +1,6 @@
 {
     "id": "35586369-eec3-4523-b001-760852e3223c",
-    "name": "support-no-new-employer",
+    "name": "csa-support-no-new-employer",
     "auto": true,
     "contexts": [
         "waiting-support-no-new-employer",

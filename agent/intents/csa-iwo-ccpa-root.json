@@ -1,6 +1,6 @@
 {
     "id": "a9a567c5-4e4e-43e2-be4d-df46bfd36d6e",
-    "name": "iwo-ccpa-root",
+    "name": "csa-iwo-ccpa-root",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

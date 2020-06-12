@@ -1,6 +1,6 @@
 {
     "id": "539d0809-b8f7-4701-9f75-88f03a609359",
-    "name": "apptsQA-office-hours",
+    "name": "csa-apptsQA-office-hours",
     "auto": true,
     "contexts": [
         "csa-subject-matter"

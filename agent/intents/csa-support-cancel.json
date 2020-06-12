@@ -1,6 +1,6 @@
 {
     "id": "89f2fd35-e59b-4f07-aecd-f68b2ceee920",
-    "name": "support-cancel",
+    "name": "csa-support-cancel",
     "auto": true,
     "contexts": [
         "waiting-support-cancel-issue",
