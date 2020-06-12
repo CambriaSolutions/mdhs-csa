@@ -477,7 +477,7 @@ module.exports = {
   'csa-apptsQA-missed-appt': apptsQAMissedAppt,
 
   // Support intents
-  'support-root': supportRoot,
+  'csa-support-root': supportRoot,
   'csa-support-parent-receiving': supportParentReceiving,
   'csa-support-parent-receiving-emancipation': supportParentReceivingEmancipation,
   'csa-support-parent-receiving-employment-info': supportParentReceivingEmploymentInfo,
@@ -595,8 +595,8 @@ module.exports = {
 
   // Enforcement intents
   'csa-enforcement-root': enforcementRoot,
-  'csa-csa-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
-  'enforcement-license-suspension': enforcementLicenseSuspension,
+  'csa-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
+  'csa-enforcement-license-suspension': enforcementLicenseSuspension,
   'csa-enforcement-license-suspension-non-compliance': enforcementLicenseSuspensionNonCompliance,
   'csa-enforcement-license-reinstatement': enforcementLicenseReinstatement,
   'csa-enforcement-tax-offset': enforcementTaxOffset,
