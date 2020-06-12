@@ -1,0 +1,78 @@
+{
+    "id": "07afd2fd-b428-4702-8aed-05b0f9dfc786",
+    "name": "csa-pmt-calc-unknown-deductions",
+    "auto": true,
+    "contexts": [
+        "waiting-pmt-calc-unknown-deductions",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-pmt-calc-unknown-deductions",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-child-support",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-retirement-contributions",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-final-estimation",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-ss-deductions",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "fed246e1-d2d2-49fc-ad2e-ae7ec0b6d3bc",
+                    "required": false,
+                    "dataType": "@dont-know",
+                    "name": "dont-know",
+                    "value": "$dont-know",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

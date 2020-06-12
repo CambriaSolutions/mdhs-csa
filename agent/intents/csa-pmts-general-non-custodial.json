@@ -1,0 +1,50 @@
+{
+    "id": "e92c5714-8e46-430e-99ee-fa79c9613bf4",
+    "name": "csa-pmts-general-non-custodial",
+    "auto": true,
+    "contexts": [
+        "waiting-pmts-general-non-custodial",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-pmts-general-non-custodial",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmts-general-receive-payments",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

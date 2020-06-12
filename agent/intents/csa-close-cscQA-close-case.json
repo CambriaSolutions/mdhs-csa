@@ -1,0 +1,39 @@
+{
+    "id": "9e766e02-88cf-4344-a48b-fc4cdfefaaaf",
+    "name": "csa-close-cscQA-close-case",
+    "auto": true,
+    "contexts": [
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

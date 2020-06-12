@@ -1,0 +1,50 @@
+{
+    "id": "fd2029b7-c9de-4203-a432-8d340a5a8e0f",
+    "name": "csa-support-retry-phone-number",
+    "auto": true,
+    "contexts": [
+        "waiting-support-retry-phone-number",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-retry-phone-number",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-support-retry-email",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

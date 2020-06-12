@@ -1,0 +1,50 @@
+{
+    "id": "6ecc68f3-09b3-4b7a-a08e-5221cf7cfffa",
+    "name": "csa-support-summarize-issue",
+    "auto": true,
+    "contexts": [
+        "waiting-support-summarize-issue",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-collect-issue",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-support-summarize-issue",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

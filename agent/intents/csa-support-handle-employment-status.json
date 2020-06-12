@@ -1,0 +1,58 @@
+{
+    "id": "1e8308c8-1faf-4e3f-b5da-29c09d85379d",
+    "name": "csa-support-handle-employment-status",
+    "auto": true,
+    "contexts": [
+        "waiting-support-handle-employment-status",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-handle-employment-status",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "868b4040-05f4-43b6-b59a-f433f3e9842f",
+                    "required": false,
+                    "dataType": "@employmentStatus",
+                    "name": "employmentStatus",
+                    "value": "$employmentStatus",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

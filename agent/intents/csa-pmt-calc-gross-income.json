@@ -1,0 +1,68 @@
+{
+    "id": "dea6e094-d5fd-4e2c-a5e9-1eae648312fe",
+    "name": "csa-pmt-calc-gross-income",
+    "auto": true,
+    "contexts": [
+        "waiting-pmt-calc-gross-income",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-pmt-calc-gross-income",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-unknown-income",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-pmt-calc-unknown-tax-deductions",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "a648ff2c-c0ec-4356-9143-85ffb04f4aee",
+                    "required": false,
+                    "dataType": "@cadence",
+                    "name": "incomeTerm",
+                    "value": "$incomeTerm",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

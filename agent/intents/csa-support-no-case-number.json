@@ -1,0 +1,50 @@
+{
+    "id": "20406bfe-0c3e-40d1-aed8-b289ab35d10f",
+    "name": "csa-support-no-case-number",
+    "auto": true,
+    "contexts": [
+        "waiting-support-no-case-number",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-no-case-number",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-support-case-number",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}
