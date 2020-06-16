@@ -262,6 +262,11 @@ const {
 
 // Genetic Testing
 const {
+  safety
+} = require('./intentHandlers/childSupport/safety.js')
+
+// Genetic Testing
+const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./intentHandlers/childSupport/geneticTesting.js')
@@ -640,6 +645,9 @@ module.exports = {
   'csa-enforcement-contempt': enforcementContempt,
   // Cancel intent
   'csa-support-cancel': supportCancel,
+
+  // Safety
+  'csa-safety': safety,
 
   // Account information
   'csa-accountInformation-root': accountInformation,
