@@ -43,8 +43,8 @@ jobs:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
       - run:
-          name: "Restore to Dev DialogFlow"
-          command: cd scripts && node restoreDialogFlow
+          name: "Restore to Dev Dialogflow"
+          command: cd scripts && node restoreDialogflow
       - run:
           name: "Populate Firestore"
           command: cd scripts && node populateFirestore
