@@ -9,7 +9,7 @@
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "b3776524-40e6-4e34-830c-3f6f825ec924",
+          "id": "ce1b65b4-e952-48dd-9412-d6f46f308958",
           "required": false,
           "dataType": "@yes-no",
           "name": "yes-no",
@@ -34,7 +34,7 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": false,
+  "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
   "events": [],
