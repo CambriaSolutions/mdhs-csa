@@ -3,9 +3,9 @@ const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
-const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers')
-const commonIntentHandlers = require('./intentHandlers/common/commonIntentHandlers')
-const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandler')
+const globalIntentHandlers = require('./globalIntentHandlers')
+const commonIntentHandlers = require('./commonIntentHandlers')
+const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandlers')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
