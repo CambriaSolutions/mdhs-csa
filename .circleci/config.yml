@@ -43,8 +43,8 @@ jobs:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
       - run:
-          name: "Restore to Dev Dialogflow"
-          command: cd scripts && node restoreDialogflow
+          name: "Import to Dev DialogFlow"
+          command: cd scripts && node importDialogFlow
       - run:
           name: "Populate Firestore"
           command: cd scripts && node populateFirestore
@@ -115,7 +115,7 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - deploy_dialogflow_agent_dev:
+      - deploy_dialogflow_agent:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
           project: "csa"
@@ -123,7 +123,7 @@ workflows:
             branches:
               only:
                 - development
-      - deploy_functions_dev:
+      - deploy_functions:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
           envCap: "DEV"
@@ -133,7 +133,7 @@ workflows:
             branches:
               only:
                 - development
-      - deploy_dialogflow_agent_isd:
+      - deploy_dialogflow_agent:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
           project: "csa"
@@ -141,7 +141,7 @@ workflows:
             branches:
               only:
                 - isd
-      - deploy_functions_isd:
+      - deploy_functions:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
           envCap: "ISD"
