@@ -5,7 +5,7 @@ const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
 const globalIntentHandlers = require('./globalIntentHandlers')
 const commonIntentHandlers = require('./commonIntentHandlers')
-const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandlers')
+const childSupportIntentHandlers = require('./childSupportIntentHandlers')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
