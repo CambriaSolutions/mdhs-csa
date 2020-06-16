@@ -115,24 +115,24 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      # - deploy_dialogflow_agent:
-      #     jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
-      #     env: "dev"
-      #     project: "csa"
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_functions:
-      #     jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
-      #     env: "dev"
-      #     envCap: "DEV"
-      #     project: "csa"
-      #     firebaseProjectID: ${DEV_CSA_FIREBASE_PROJECT_ID}
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
+      - deploy_dialogflow_agent:
+          jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
+          env: "dev"
+          project: "csa"
+          filters:
+            branches:
+              only:
+                - development
+      - deploy_functions:
+          jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
+          env: "dev"
+          envCap: "DEV"
+          project: "csa"
+          firebaseProjectID: ${DEV_CSA_FIREBASE_PROJECT_ID}
+          filters:
+            branches:
+              only:
+                - development
       - deploy_dialogflow_agent:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"

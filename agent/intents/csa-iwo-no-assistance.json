@@ -1,0 +1,50 @@
+{
+    "id": "c98a41d5-34a0-4558-8f03-70cecf07c33f",
+    "name": "csa-iwo-no-assistance",
+    "auto": true,
+    "contexts": [
+        "waiting-iwo-no-assistance",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-iwo-no-assistance",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-iwo-wants-assistance",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

@@ -1,0 +1,63 @@
+{
+    "id": "f67eedb6-9ab6-435e-a7e3-1836276d04b3",
+    "name": "csa-iwo-disposable-income",
+    "auto": true,
+    "contexts": [
+        "waiting-iwo-disposable-income",
+        "csa-subject-matter"
+    ],
+    "responses": [
+        {
+            "resetContexts": false,
+            "affectedContexts": [
+                {
+                    "name": "waiting-iwo-disposable-income",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "waiting-iwo-define-disposable-income",
+                    "parameters": {},
+                    "lifespan": 0
+                },
+                {
+                    "name": "csa-subject-matter",
+                    "parameters": {},
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [
+                {
+                    "id": "5bc7b279-6a1b-4804-a695-a8f208a955fd",
+                    "required": false,
+                    "dataType": "@sys.number",
+                    "name": "disposableIncome",
+                    "value": "$disposableIncome",
+                    "promptMessages": [],
+                    "noMatchPromptMessages": [],
+                    "noInputPromptMessages": [],
+                    "outputDialogContexts": [],
+                    "isList": false
+                }
+            ],
+            "messages": [
+                {
+                    "type": 0,
+                    "lang": "en",
+                    "condition": "",
+                    "speech": []
+                }
+            ],
+            "defaultResponsePlatforms": {},
+            "speech": []
+        }
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
+}

@@ -5,7 +5,9 @@
   "main": "locations.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populateScripts": "node populateMlCategoriesCollection.js && node populateIntentsCollection.js && node populateIntentSuggestions.js"
+    "populateScripts": "node populateMlCategoriesCollection.js && node populateIntentsCollection.js && node populateIntentSuggestions.js",
+    "lint": "npx eslint '**/*.js'",
+    "lint-fix": "npx eslint '**/*.js' --fix"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +21,8 @@
     "uuid": "^3.3.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0"
   }
 }
