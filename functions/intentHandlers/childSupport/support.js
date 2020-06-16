@@ -40,6 +40,7 @@ exports.supportParentReceiving = async agent => {
     await agent.add(new Suggestion('Request Case Closure'))
     await agent.add(new Suggestion('Emancipation'))
     await agent.add(new Suggestion('Cooperation'))
+    await agent.add(new Suggestion('Safety'))
     await agent.add(new Suggestion('More'))
 
     await agent.context.set({

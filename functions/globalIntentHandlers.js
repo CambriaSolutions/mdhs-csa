@@ -5,7 +5,7 @@ const {
   restartConversation,
   yesChildSupport,
   caseyHandoff,
-} = require('./globalFunctions')
+} = require('./intentHandlers/globalFunctions')
 
 module.exports = {
   //'Default Fallback Intent': fallback,
