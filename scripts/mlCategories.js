@@ -1,174 +1,174 @@
 exports.categoriesWithIntents = {
   accountBalance: {
-    intent: 'pmtMethods-eCheckDebit',
+    intent: 'csa-pmtMethods-eCheckDebit',
     suggestionText: 'Account balance',
   },
   accountInformation: {
-    intent: 'accountInformation-root',
+    intent: 'csa-accountInformation-root',
     suggestionText: 'Account information'
   },
   addressingCheck: {
-    intent: 'pmts-general-make-payments',
+    intent: 'csa-pmts-general-make-payments',
     suggestionText: 'Address check',
   },
   appointments: {
-    intent: 'appts-root',
+    intent: 'csa-appts-root',
     suggestionText: 'Appointments'
   },
   arrears: {
-    intent: 'iwoQA-arrears-balance',
+    intent: 'csa-iwoQA-arrears-balance',
     suggestionText: 'Arrears'
   },
   card: {
-    intent: 'eppi-get-card',
+    intent: 'csa-eppi-get-card',
     suggestionText: 'EPPI card'
   },
   caseNumber: {
-    intent: 'caseQA-general',
+    intent: 'csa-caseQA-general',
     suggestionText: 'Case Number',
   },
   caseStatus: {
-    intent: 'caseQA-general',
+    intent: 'csa-caseQA-general',
     suggestionText: 'Case Status',
   },
   changeOfInformation: {
-    intent: 'caseQA-change-personal-info',
+    intent: 'csa-caseQA-change-personal-info',
     suggestionText: 'Change of Information',
   },
   childCare: {
-    intent: 'childCare-root',
+    intent: 'csa-childCare-root',
     suggestionText: 'Child care'
   }, // Suggest child care intent
   complaints: {
-    intent: 'feedback-root',
+    intent: 'csa-feedback-root',
     suggestionText: 'Complaints'
   }, // Suggest complaints intent
   contactHuman: {
-    intent: 'contact-qa-number',
+    intent: 'csa-contact-qa-number',
     suggestionText: 'Contact',
   },
   documentation: {
-    intent: 'documentation-root',
+    intent: 'csa-documentation-root',
     suggestionText: 'Documents'
   }, // Suggest documentation intent
   email: {
-    intent: 'email-root',
+    intent: 'csa-email-root',
     suggestionText: 'Email'
   }, // Suggest email intent
   emancipation: {
-    intent: 'emancipation-qa-age',
+    intent: 'csa-emancipation-qa-age',
     suggestionText: 'Emancipation',
   },
   employer: {
-    intent: 'employer-root',
+    intent: 'csa-employer-root',
     suggestionText: 'Employer'
   },
   enforcement: {
-    intent: 'enforcement-root',
+    intent: 'csa-enforcement-root',
     suggestionText: 'Enforcement'
   },
   estimatePayments: {
-    intent: 'pmt-calc-root',
+    intent: 'csa-pmt-calc-root',
     suggestionText: 'Estimate payments',
   },
   fax: {
-    intent: 'fax-root',
+    intent: 'csa-fax-root',
     suggestionText: 'Fax'
   }, // Suggest fax intent
   fee: {
-    intent: 'fee-root',
+    intent: 'csa-fee-root',
     suggestionText: 'Fees'
   },
   gratitude: {
-    intent: 'gratitude-root',
+    intent: 'csa-gratitude-root',
     suggestionText: 'Gratitude'
   }, // Suggest gratitude intent
   incarceration: {
-    intent: 'support-qa-ncp-prison',
+    intent: 'csa-support-qa-ncp-prison',
     suggestionText: 'Incarceration',
   },
   interstate: {
-    intent: 'interstate-root',
+    intent: 'csa-interstate-root',
     suggestionText: 'Interstate'
   }, // Suggest interstate intent
   legal: {
-    intent: 'legal-root',
+    intent: 'csa-legal-root',
     suggestionText: 'Legal'
   }, // Suggest legal intent
   login: {
-    intent: 'login-root',
+    intent: 'csa-login-root',
     suggestionText: 'Login issue'
   }, // Suggest login intent
   makePayment: {
-    intent: 'pmts-general-make-payments',
+    intent: 'csa-pmts-general-make-payments',
     suggestionText: 'Make payments',
   },
   notReceivedPayment: {
-    intent: 'pmtQA-havent-received',
+    intent: 'csa-pmtQA-havent-received',
     suggestionText: 'Haven\'t received payments',
   },
   officeLocations: {
-    intent: 'map-root',
+    intent: 'csa-map-root',
     suggestionText: 'Office locations'
   },
   onlineAction: {
-    intent: 'onlineAction-root',
+    intent: 'csa-onlineAction-root',
     suggestionText: 'Online issue'
   }, // suggest online action intent
   openCase: {
-    intent: 'open-csc-root',
+    intent: 'csa-open-csc-root',
     suggestionText: 'Open case'
   },
   other: {
-    intent: 'other-root',
+    intent: 'csa-other-root',
     suggestionText: 'Other'
   },
   paternity: {
-    intent: 'geneticTesting-request',
+    intent: 'csa-geneticTesting-request',
     suggestionText: 'Genetic testing',
   },
   parentCseGuide: {
-    intent: 'support-parentsGuideCSE',
+    intent: 'csa-support-parentsGuideCSE',
     suggestionText: 'Parent’s Guide to CSE'
   },
   paymentTimelines: {
-    intent: 'paymentTimelines-root',
+    intent: 'csa-paymentTimelines-root',
     suggestionText: 'Payment timelines'
   }, // Need payment timelines intent
   phoneNumber: {
-    intent: 'phoneNumber-root',
+    intent: 'csa-phoneNumber-root',
     suggestionText: 'Phone number'
   },
   refund: {
-    intent: 'refund-root',
+    intent: 'csa-refund-root',
     suggestionText: 'Refund'
   }, // Suggest refund intent
   snap: {
-    intent: 'snap-root',
+    intent: 'csa-snap-root',
     suggestionText: 'SNAP'
   }, // Suggest snap intent
   supportRequest: {
-    intent: 'support-root',
+    intent: 'csa-support-root',
     suggestionText: 'Support requests',
   },
   tanf: {
-    intent: 'tanf-root',
+    intent: 'csa-tanf-root',
     suggestionText: 'TANF'
   }, // Suggest tanf intent
   taxes: {
-    intent: 'taxes-root',
+    intent: 'csa-taxes-root',
     suggestionText: 'Taxes'
   },
   terminate: {
-    intent: 'terminate-root',
+    intent: 'csa-terminate-root',
     suggestionText: 'Close case'
   },
   verification: {
-    intent: 'verification-root',
+    intent: 'csa-verification-root',
     suggestionText: 'Verification'
   }, // Suggest verification intent
   visitation: {
-    intent: 'visitation-root',
+    intent: 'csa-visitation-root',
     suggestionText: 'Visitation'
   }, // Suggest visitation intent
 }

@@ -484,7 +484,7 @@ module.exports = {
   'csa-apptsQA-missed-appt': apptsQAMissedAppt,
 
   // Support intents
-  'support-root': supportRoot,
+  'csa-support-root': supportRoot,
   'csa-support-parent-receiving': supportParentReceiving,
   'csa-support-parent-receiving-emancipation': supportParentReceivingEmancipation,
   'csa-support-parent-receiving-cooperation': supportParentReceivingCooperation,
