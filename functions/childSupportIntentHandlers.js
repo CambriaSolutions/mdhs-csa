@@ -453,6 +453,7 @@ module.exports = {
   'csa-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
+  'csa-account-balance': pmtMethodsEcheckDebit,
   'csa-pmtMethods-none': pmtMethodsNone,
   'csa-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
   'csa-pmtMethods-cash': pmtMethodsCash,

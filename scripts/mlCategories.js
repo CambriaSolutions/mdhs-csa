@@ -1,6 +1,6 @@
 exports.categoriesWithIntents = {
   accountBalance: {
-    intent: 'csa-pmtMethods-eCheckDebit',
+    intent: 'csa-account-balance',
     suggestionText: 'Account balance',
   },
   accountInformation: {
