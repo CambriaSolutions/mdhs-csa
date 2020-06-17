@@ -1,64 +1,64 @@
 {
-    "id": "152d4cc7-5a95-44cd-817f-a4fb79ab2bf5",
-    "name": "csa-iwo-not-an-employee",
-    "auto": true,
-    "contexts": [
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "152d4cc7-5a95-44cd-817f-a4fb79ab2bf5",
+  "name": "csa-iwo-not-an-employee",
+  "auto": true,
+  "contexts": [
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "ecc537d0-9482-4304-a881-8bb31b622611",
-                    "required": false,
-                    "dataType": "@guardianship",
-                    "name": "guardianship",
-                    "value": "$guardianship",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                },
-                {
-                    "id": "8513cad4-13e7-4d64-9707-82e9818b46f2",
-                    "required": false,
-                    "dataType": "@yes-no",
-                    "name": "yes-no",
-                    "value": "$yes-no",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "ecc537d0-9482-4304-a881-8bb31b622611",
+          "required": false,
+          "dataType": "@guardianship",
+          "name": "guardianship",
+          "value": "$guardianship",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "id": "8513cad4-13e7-4d64-9707-82e9818b46f2",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

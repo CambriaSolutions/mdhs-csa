@@ -1,88 +1,88 @@
 {
-    "id": "418a742c-bd6c-48c0-a480-4d7cbe0f1305",
-    "name": "csa-support-type",
-    "auto": true,
-    "contexts": [
-        "waiting-support-type",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "418a742c-bd6c-48c0-a480-4d7cbe0f1305",
+  "name": "csa-support-type",
+  "auto": true,
+  "contexts": [
+    "waiting-support-type",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-support-type",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-support-employment-status",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-support-parent-paying-more",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-support-parent-receiving-more",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-no-assistance",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-faqs",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-wants-assistance",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "129fb15d-9372-4053-9259-f25de80a51b5",
-                    "required": false,
-                    "dataType": "@action-requests",
-                    "name": "supportType",
-                    "value": "$supportType",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-support-type",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-employment-status",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-parent-paying-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-parent-receiving-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-no-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-faqs",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-wants-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "129fb15d-9372-4053-9259-f25de80a51b5",
+          "required": false,
+          "dataType": "@action-requests",
+          "name": "supportType",
+          "value": "$supportType",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

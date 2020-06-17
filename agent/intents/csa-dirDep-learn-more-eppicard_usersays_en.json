@@ -1,5 +1,6 @@
 [
   {
+    "id": "2c60c5a9-3dfb-4e7a-96eb-61b4a769e961",
     "data": [
       {
         "text": "EPPI Card",
@@ -8,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -21,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -47,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -55,14 +52,13 @@
     "data": [
       {
         "text": "yes",
-        "meta": "@yes-no",
         "alias": "yes-no",
+        "meta": "@yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

@@ -1,55 +1,55 @@
 {
-    "id": "a0878a66-22ae-4d5e-b542-ad8a8cfd4a7a",
-    "name": "csa-support-parent-receiving-employment-info",
-    "auto": true,
-    "contexts": [
-        "waiting-support-parent-receiving-employment-info",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "a0878a66-22ae-4d5e-b542-ad8a8cfd4a7a",
+  "name": "csa-support-parent-receiving-employment-info",
+  "auto": true,
+  "contexts": [
+    "waiting-support-parent-receiving-employment-info",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-support-parent-receiving-employment-info",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-support-parent-paying-more",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-root",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-support-parent-receiving-employment-info",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-parent-paying-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-root",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

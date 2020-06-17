@@ -1,58 +1,58 @@
 {
-    "id": "8c2c0780-1573-4ce9-a84e-07b70fcb4d9a",
-    "name": "csa-feedback-helpful",
-    "auto": true,
-    "contexts": [
-        "waiting-feedback-helpful",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "8c2c0780-1573-4ce9-a84e-07b70fcb4d9a",
+  "name": "csa-feedback-helpful",
+  "auto": true,
+  "contexts": [
+    "waiting-feedback-helpful",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-feedback-helpful",
-                    "parameters": {},
-                    "lifespan": 5
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "855e2580-45ce-41b4-bac5-29a9201703fd",
-                    "required": false,
-                    "dataType": "@yes-no",
-                    "name": "yes-no",
-                    "value": "$yes-no",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-feedback-helpful",
+          "parameters": {},
+          "lifespan": 5
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "855e2580-45ce-41b4-bac5-29a9201703fd",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

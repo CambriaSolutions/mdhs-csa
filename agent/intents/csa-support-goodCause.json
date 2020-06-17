@@ -1,20 +1,12 @@
 {
-  "id": "d0d113cb-d163-41be-9685-97876581cc17",
-  "name": "csa-enforcement-passport-revocation",
+  "id": "c7204ea3-bc22-498f-afd1-b1a9f5b8127a",
+  "name": "csa-support-goodCause",
   "auto": true,
-  "contexts": [
-    "csa-subject-matter"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "csa-subject-matter",
-          "parameters": {},
-          "lifespan": 99
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {

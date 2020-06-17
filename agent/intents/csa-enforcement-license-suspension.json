@@ -1,50 +1,50 @@
 {
-    "id": "fedeefd3-2eb0-4f9d-aeb5-f2ad96d1a817",
-    "name": "csa-enforcement-license-suspension",
-    "auto": true,
-    "contexts": [
-        "waiting-license-suspension-learn-more",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "fedeefd3-2eb0-4f9d-aeb5-f2ad96d1a817",
+  "name": "csa-enforcement-license-suspension",
+  "auto": true,
+  "contexts": [
+    "waiting-license-suspension-learn-more",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-license-suspension-learn-more",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-license-reinstatement-learn-more",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-license-suspension-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-license-reinstatement-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

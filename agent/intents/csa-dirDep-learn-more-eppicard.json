@@ -1,63 +1,63 @@
 {
-    "id": "ae5051b3-5887-4621-8442-251f6b5888e7",
-    "name": "csa-dirDep-learn-more-eppicard",
-    "auto": true,
-    "contexts": [
-        "waiting-dirdep-learn-more-eppicard",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "ae5051b3-5887-4621-8442-251f6b5888e7",
+  "name": "csa-dirDep-learn-more-eppicard",
+  "auto": true,
+  "contexts": [
+    "waiting-dirdep-learn-more-eppicard",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-dirDep-no-learn-more-eppicard",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-dirdep-learn-more-eppicard",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "c95de1aa-7c94-42d2-8bd8-3edb24a6f079",
-                    "required": false,
-                    "dataType": "@yes-no",
-                    "name": "yes-no",
-                    "value": "$yes-no",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-dirDep-no-learn-more-eppicard",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-dirdep-learn-more-eppicard",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "c95de1aa-7c94-42d2-8bd8-3edb24a6f079",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
