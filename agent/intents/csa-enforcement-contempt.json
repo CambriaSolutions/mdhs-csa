@@ -1,52 +1,52 @@
 {
-    "id": "1b42c0c2-0943-4df3-ae69-1b71fc0e1f32",
-    "name": "csa-enforcement-contempt",
-    "auto": true,
-    "contexts": [
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "1b42c0c2-0943-4df3-ae69-1b71fc0e1f32",
+  "name": "csa-enforcement-contempt",
+  "auto": true,
+  "contexts": [
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "dbd71e67-4fba-4575-b86a-d5f49ff66ab2",
-                    "required": false,
-                    "dataType": "@yes-no",
-                    "name": "yes-no",
-                    "value": "$yes-no",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "dbd71e67-4fba-4575-b86a-d5f49ff66ab2",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

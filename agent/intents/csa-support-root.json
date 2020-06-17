@@ -1,67 +1,67 @@
 {
-    "id": "85a43b03-d217-43be-9d7f-f845ce0307e1",
-    "name": "csa-support-root",
-    "auto": true,
-    "contexts": [
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "85a43b03-d217-43be-9d7f-f845ce0307e1",
+  "name": "csa-support-root",
+  "auto": true,
+  "contexts": [
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-iwo-wants-assistance",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-no-assistance",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-iwo-faqs",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "aa679c61-5ecc-4a3d-a07c-3555abac2f75",
-                    "required": false,
-                    "dataType": "@action-requests",
-                    "name": "action-requests",
-                    "value": "$action-requests",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-iwo-wants-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-no-assistance",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-iwo-faqs",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "aa679c61-5ecc-4a3d-a07c-3555abac2f75",
+          "required": false,
+          "dataType": "@action-requests",
+          "name": "action-requests",
+          "value": "$action-requests",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
