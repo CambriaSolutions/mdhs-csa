@@ -160,6 +160,7 @@ exports.supportMoreOptions = async (agent, option) => {
       )
       await agent.add(new Suggestion('Request Payment History'))
       await agent.add(new Suggestion('Add Authorized User'))
+      await agent.add(new Suggestion('License Reinstatement'))
       await agent.add(new Suggestion('None of These'))
     }
     await agent.context.set({

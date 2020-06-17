@@ -1,0 +1,24 @@
+[
+  {
+    "id": "c5f0c67e-45d4-4dad-9b6b-c843513f2ced",
+    "data": [
+      {
+        "text": "Penalty for ",
+        "userDefined": false
+      },
+      {
+        "text": "Non",
+        "alias": "yes-no",
+        "meta": "@yes-no",
+        "userDefined": false
+      },
+      {
+        "text": "-Cooperation",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

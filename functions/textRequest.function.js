@@ -3,7 +3,7 @@ const admin = require('firebase-admin')
 const projectId = admin.instanceId().app.options.projectId //https://firebase.google.com/docs/reference/admin/node/admin.instanceId
 const languageCode = 'en-US'
 
-// Instantiate a DialogFlow client.
+// Instantiate a Dialogflow client.
 const dialogflow = require('dialogflow')
 
 // For deployment
