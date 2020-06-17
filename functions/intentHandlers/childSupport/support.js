@@ -41,6 +41,7 @@ exports.supportParentReceiving = async agent => {
     await agent.add(new Suggestion('Emancipation'))
     await agent.add(new Suggestion('Cooperation'))
     await agent.add(new Suggestion('Safety'))
+    await agent.add(new Suggestion('Good Cause'))
     await agent.add(new Suggestion('More'))
 
     await agent.context.set({
@@ -91,6 +92,41 @@ exports.supportEmployer = async agent => {
     await agent.add(new Suggestion('Employer Report Lump Sum Notification'))
     await agent.context.set({
       name: 'waiting-support-type',
+      lifespan: 3,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+exports.supportGoodCause = async agent => {
+  try {
+    const link = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a>'
+    await agent.add(
+      'If you were referred to child support by another program that requires cooperation with child support, you may be excused from cooperating with child support \
+      if one of the following circumstances applies to your family: \
+      <ul> \
+        <li>The other parent has caused physical or emotional harm to the child.</li> \
+        <li>The other parent has caused physical or emotional harm which affects your ability to care for the child(ren).</li> \
+        <li>There is a protective order against the other parent. </li> \
+        <li>The child(ren) were conceived of either rape or incest.</li> \
+        <li>Legal proceedings for the adoption of the child are pending before a court of competent jurisdiction.</li> \
+        <li>You are receiving assistance from a public or licensed private social service agency to help determine whether you should allow your child(ren) to be adopted.</li>\
+      </ul>'
+    )
+
+    await agent.add(`If one of these exemptions applies to your family, please submit a request below and a representative will reach out to you \
+      for more information, or you may call 1-877-882-4916. Please ${link} to learn what documentation is required for good cause exemptions.`)
+
+    await agent.add(new Suggestion('Submit Support Request'))
+
+    // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
+    await agent.context.set({
+      name: 'waiting-support-type',
+      lifespan: 3,
+    })
+    await agent.context.set({
+      name: 'waiting-support-parent-receiving-more',
       lifespan: 3,
     })
   } catch (err) {
