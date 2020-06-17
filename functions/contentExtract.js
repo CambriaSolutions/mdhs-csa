@@ -3,9 +3,9 @@ const functions = require('firebase-functions')
 admin.initializeApp(functions.config().firebase)
 
 const fs = require('fs');
-const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers');
-const commonIntentHandlers = require('./intentHandlers/common/commonIntentHandlers');
-const childSupportIntentHandlers = require('./intentHandlers/childSupport/childSupportIntentHandler');
+const globalIntentHandlers = require('./globalIntentHandlers');
+const commonIntentHandlers = require('./commonIntentHandlers');
+const childSupportIntentHandlers = require('./childSupportIntentHandlers');
 
 const intentHandlers = { ...globalIntentHandlers, ...commonIntentHandlers, ...childSupportIntentHandlers };
 
@@ -88,6 +88,10 @@ const getTrainingPhrases = (intentFile) => {
     return trainingPhrases;
 };
 
+const getAffectedContexts = (intentFile) => {
+
+}
+
 const getResponseData = async (intentName) => {
     const handler = intentHandlers[intentName];
     const agt = new agent();
@@ -104,14 +108,32 @@ const generateOutputFile = async (intentFile) => {
     const output = {};
     const intent = require(intentFile);
     
+    output.id = intent.id;
     output.intentName = intent.name;
-    output.triggeringContexts = intent.contexts;
-    output.trainingPhrases = getTrainingPhrases(intentFile);
+    output.requiredContexts = intent.contexts;
 
+    const affectedContexts = [];
+    if(intent.responses) {
+        intent.responses.forEach((response => {
+            if (response.affectedContexts) {
+                response.affectedContexts.forEach((dialogflowAffectedContext) => {
+                    dialogflowAffectedContext.source = "dialogflow";
+                    affectedContexts.push(dialogflowAffectedContext);
+                });
+            }
+        }));
+    }
+
+    output.trainingPhrases = getTrainingPhrases(intentFile);
+    
     const responseData = await getResponseData(intent.name);
     output.responsePhrases = responseData.phrases;
     output.suggestions = responseData.suggestions;
-    output.outputContexts = responseData.contexts;
+    responseData.contexts.forEach((handlerAffectedContext) => {
+        handlerAffectedContext.source = "handler";
+        affectedContexts.push(handlerAffectedContext);
+    });
+    output.affectedContexts = affectedContexts;
 
     return output;
 };
