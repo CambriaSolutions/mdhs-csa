@@ -152,6 +152,7 @@ const {
   supportParentReceivingMore,
   supportParentReceivingEmancipation,
   supportEmployer,
+  supportGoodCause,
   supportParentPayingMore,
   supportNoOptionsSelected,
   supportEditProviderEmployment,
@@ -453,6 +454,7 @@ module.exports = {
   'csa-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
+  'csa-account-balance': pmtMethodsEcheckDebit,
   'csa-pmtMethods-none': pmtMethodsNone,
   'csa-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
   'csa-pmtMethods-cash': pmtMethodsCash,
@@ -503,6 +505,7 @@ module.exports = {
   'csa-support-parent-paying': supportParentPaying,
   'csa-support-parent-paying-employment-info': supportParentPayingEmploymentInfo,
   'csa-support-employer': supportEmployer,
+  'csa-support-goodCause': supportGoodCause,
   'csa-support-parent-paying-more': supportParentPayingMore,
   'csa-support-parent-receiving-more': supportParentReceivingMore,
   'csa-support-no-options-selected': supportNoOptionsSelected,

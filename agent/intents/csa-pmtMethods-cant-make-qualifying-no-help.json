@@ -1,58 +1,58 @@
 {
-    "id": "1e99d42d-455b-407e-b71b-b2a3b54dcecb",
-    "name": "csa-pmtMethods-cant-make-qualifying-no-help",
-    "auto": true,
-    "contexts": [
-        "waiting-pmtMethods-cant-make-qualifying-no-help",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "1e99d42d-455b-407e-b71b-b2a3b54dcecb",
+  "name": "csa-pmtMethods-cant-make-qualifying-no-help",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-cant-make-qualifying-no-help",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-pmtMethods-cant-make-qualifying-no-help",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [
-                {
-                    "id": "e541229c-bc2c-43af-ad97-a96c42ed815d",
-                    "required": false,
-                    "dataType": "@yes-no",
-                    "name": "needsInquiry",
-                    "value": "$needsInquiry",
-                    "promptMessages": [],
-                    "noMatchPromptMessages": [],
-                    "noInputPromptMessages": [],
-                    "outputDialogContexts": [],
-                    "isList": false
-                }
-            ],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-pmtMethods-cant-make-qualifying-no-help",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "e541229c-bc2c-43af-ad97-a96c42ed815d",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "needsInquiry",
+          "value": "$needsInquiry",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

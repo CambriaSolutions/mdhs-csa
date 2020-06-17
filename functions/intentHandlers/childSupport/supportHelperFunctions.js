@@ -171,6 +171,10 @@ exports.supportMoreOptions = async (agent, option) => {
       name: 'waiting-support-general-inquiries',
       lifespan: 3,
     })
+    await agent.context.set({
+      name: 'waiting-license-reinstatement-learn-more',
+      lifespan: 3,
+    })
   } catch (err) {
     console.error(err)
   }

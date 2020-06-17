@@ -1,65 +1,65 @@
 {
-    "id": "cc7fa96f-d49c-43a8-b8c8-537b605451dd",
-    "name": "csa-pmtMethods-cash",
-    "auto": true,
-    "contexts": [
-        "waiting-pmtMethods-cash",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "cc7fa96f-d49c-43a8-b8c8-537b605451dd",
+  "name": "csa-pmtMethods-cash",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-cash",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-pmtMethods-checkOrMoneyOrder",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-pmtMethods-cash",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-pmtMethods-eCheckDebit",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-pmtMethods-withhold-payments",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-pmtMethods-cant-make",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-pmtMethods-checkOrMoneyOrder",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cash",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-eCheckDebit",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-withhold-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-cant-make",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

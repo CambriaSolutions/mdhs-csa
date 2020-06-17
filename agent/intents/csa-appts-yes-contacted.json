@@ -1,50 +1,50 @@
 {
-    "id": "6d67782c-1215-45c9-a3e7-6811109ffc54",
-    "name": "csa-appts-yes-contacted",
-    "auto": true,
-    "contexts": [
-        "waiting-appts-yes-contacted",
-        "csa-subject-matter"
-    ],
-    "responses": [
+  "id": "6d67782c-1215-45c9-a3e7-6811109ffc54",
+  "name": "csa-appts-yes-contacted",
+  "auto": true,
+  "contexts": [
+    "waiting-appts-yes-contacted",
+    "csa-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "affectedContexts": [
-                {
-                    "name": "waiting-appts-yes-contacted",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-appts-not-contacted",
-                    "parameters": {},
-                    "lifespan": 0
-                },
-                {
-                    "name": "csa-subject-matter",
-                    "parameters": {},
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": 0,
-                    "lang": "en",
-                    "condition": "",
-                    "speech": []
-                }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+          "name": "waiting-appts-yes-contacted",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-appts-not-contacted",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "csa-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
