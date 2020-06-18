@@ -617,8 +617,8 @@ module.exports = {
 
   // Enforcement intents
   'cse-enforcement-root': enforcementRoot,
-  'cse-cse-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
-  'enforcement-license-suspension': enforcementLicenseSuspension,
+  'cse-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
+  'cse-enforcement-license-suspension': enforcementLicenseSuspension,
   'cse-enforcement-license-suspension-non-compliance': enforcementLicenseSuspensionNonCompliance,
   'cse-enforcement-license-reinstatement': enforcementLicenseReinstatement,
   'cse-enforcement-tax-offset': enforcementTaxOffset,
