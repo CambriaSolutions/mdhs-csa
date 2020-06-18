@@ -110,30 +110,29 @@ const generateOutputFile = async (intentFile) => {
     
     output.id = intent.id;
     output.intentName = intent.name;
-    output.requiredContexts = intent.contexts;
-
-    const affectedContexts = [];
-    if(intent.responses) {
-        intent.responses.forEach((response => {
-            if (response.affectedContexts) {
-                response.affectedContexts.forEach((dialogflowAffectedContext) => {
-                    dialogflowAffectedContext.source = "dialogflow";
-                    affectedContexts.push(dialogflowAffectedContext);
-                });
-            }
-        }));
-    }
-
+    output.inputContexts = intent.contexts;
     output.trainingPhrases = getTrainingPhrases(intentFile);
     
     const responseData = await getResponseData(intent.name);
     output.responsePhrases = responseData.phrases;
     output.suggestions = responseData.suggestions;
+    
+    output.outputContexts = [];
     responseData.contexts.forEach((handlerAffectedContext) => {
-        handlerAffectedContext.source = "handler";
-        affectedContexts.push(handlerAffectedContext);
+        handlerAffectedContext.actor = "code";
+        output.outputContexts.push(handlerAffectedContext);
     });
-    output.affectedContexts = affectedContexts;
+
+    if(intent.responses) {
+        intent.responses.forEach((response => {
+            if (response.affectedContexts) {
+                response.affectedContexts.forEach((dialogflowAffectedContext) => {
+                    dialogflowAffectedContext.actor = "dialogflow";
+                    output.outputContexts.push(dialogflowAffectedContext);
+                });
+            }
+        }));
+    }
 
     return output;
 };
