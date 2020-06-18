@@ -122,9 +122,11 @@ exports.supportGoodCause = async agent => {
 
     // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
     await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'good cause'
     })
+
     await agent.context.set({
       name: 'waiting-support-parent-receiving-more',
       lifespan: 3,
@@ -337,9 +339,7 @@ exports.supportNewEmployerUnkownPhone = async agent => {
   }
 }
 
-exports.supportType = async agent => {
-  const supportType = agent.parameters.supportType.toLowerCase()
-
+const formatRequest = (supportType) => {
   let formattedRequest
   if (supportType === 'request contempt action') {
     formattedRequest = 'request for a contempt action'
@@ -352,7 +352,18 @@ exports.supportType = async agent => {
   } else {
     formattedRequest = 'request'
   }
+
+  return formattedRequest
+}
+
+/**
+ * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
+ */
+exports.supportType = async (agent, supportType) => {
   try {
+    const _supportType = supportType ? supportType : agent.parameters.supportType.toLowerCase()
+    const formattedRequest = formatRequest(supportType)
+
     await agent.add(
       `Got it. I have a few questions to make sure your ${formattedRequest} gets to the right place. What's your **first name**?`
     )
@@ -363,10 +374,22 @@ exports.supportType = async agent => {
     await agent.context.set({
       name: 'ticketinfo',
       lifespan: 100,
-      parameters: { supportType: supportType },
+      parameters: { supportType: _supportType },
     })
   } catch (err) {
     console.error(err)
+  }
+}
+
+exports.supportSubmitSupportRequest = async (agent) => {
+  try {
+    await agent.contexts.forEach(async context => {
+      if (context.name === 'waiting-support-submitSupportRequest') {
+        await this.supportType(agent, context.supportType)
+      }
+    })
+  } catch (e) {
+    console.error(e)
   }
 }
 
@@ -420,21 +443,8 @@ exports.supportCollectLastName = async agent => {
 }
 
 exports.supportInquiries = async agent => {
-  const supportType = 'inquiry'
-
   try {
-    await agent.add(
-      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: supportType },
-    })
+    await this.supportType(agent, 'inquiry')
   } catch (err) {
     console.error(err)
   }
@@ -442,75 +452,7 @@ exports.supportInquiries = async agent => {
 
 exports.supportReviewPayments = async agent => {
   try {
-    await agent.add(
-      'Got it. I have a few questions to make sure your request to review your child support payments gets to the right place. What\'s your **first name**?'
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'child support increase or decrease' },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportPaymentHistory = async agent => {
-  try {
-    await agent.add(
-      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
-    )
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'request payment history or record' },
-    })
-    await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportRequestCaseClosure = async agent => {
-  try {
-    await agent.add(
-      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'request case closure' },
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportChangePersonalInfo = async agent => {
-  try {
-    await agent.add(
-      'Got it. I have a few questions to make sure your request gets to the right place. What\'s your **first name**?'
-    )
-    await agent.context.set({
-      name: 'waiting-support-collect-first-name',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'ticketinfo',
-      lifespan: 100,
-      parameters: { supportType: 'change personal information' },
-    })
+    await this.supportType(agent, 'child support increase or decrease')
   } catch (err) {
     console.error(err)
   }
@@ -1006,9 +948,7 @@ exports.supportReportProviderEmployment = async agent => {
   try {
     const yesNo = agent.parameters['yes-no']
     if (yesNo === 'yes') {
-      agent.parameters.supportType =
-        'Report Information About the Parent who Pays Support'
-      await this.supportType(agent)
+      await this.supportType(agent, 'Report Information About the Parent who Pays Support')
     } else {
       await handleEndConversation(agent)
     }
@@ -1063,7 +1003,12 @@ exports.supportParentReceivingCooperation = async agent => {
     await agent.add(new Suggestion('Safety'))
     await agent.add(new Suggestion('Good Cause'))
 
-    // TODO - Need to finalize support ticket feature. Create new "cooperation" type of support ticket
+    await agent.context.set({
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'cooperation'
+    })
+
     await agent.context.set({
       name: 'waiting-support-report-provider-employment',
       lifespan: 3,

@@ -26,25 +26,13 @@ exports.safety = async agent => {
       'If you are considering opening a case, please let us know on the application if these issues apply to your family.'
     )
 
-    // TODO - Need to finish this feature. Needs a new type of support ticket
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.add(new Suggestion('Parent\'s Guide to CSE'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.pmtQAPaymentReduction = async agent => {
-  try {
-    await agent.add(
-      'I can help you submit a request to have your case reviewed to see if a modification is appropriate. Please note that this can modify your payments upwards or downwards. Would you like to continue?'
-    )
-    await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion('No'))
 
     await agent.context.set({
-      name: 'waiting-pmtQA-yes-payment-reduction',
-      lifespan: 2,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'safety'
     })
   } catch (err) {
     console.error(err)
