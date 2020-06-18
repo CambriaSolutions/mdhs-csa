@@ -1,10 +1,10 @@
 {
   "id": "353fdba2-f674-4810-b1aa-41ca9a74c80d",
-  "name": "csa-appts-office-locations-handoff",
+  "name": "cse-appts-office-locations-handoff",
   "auto": true,
   "contexts": [
     "waiting-appts-office-locations-handoff",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

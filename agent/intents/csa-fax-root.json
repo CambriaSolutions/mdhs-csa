@@ -1,16 +1,16 @@
 {
   "id": "0662fe50-41c8-46cb-80c6-8e557117023f",
-  "name": "csa-fax-root",
+  "name": "cse-fax-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

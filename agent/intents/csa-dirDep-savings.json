@@ -1,10 +1,10 @@
 {
   "id": "2afdd811-d1ba-4d9f-a288-7a46d76df392",
-  "name": "csa-dirDep-savings",
+  "name": "cse-dirDep-savings",
   "auto": true,
   "contexts": [
     "waiting-dirDep-savings",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

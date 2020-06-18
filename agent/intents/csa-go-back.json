@@ -1,10 +1,10 @@
 {
   "id": "366e6f4b-2ef1-405e-a293-9da705e5ce9a",
-  "name": "csa-go-back",
+  "name": "cse-go-back",
   "auto": true,
   "contexts": [
     "waiting-go-back",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

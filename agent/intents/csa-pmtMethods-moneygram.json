@@ -1,10 +1,10 @@
 {
   "id": "32d071f8-f97b-4861-a7c1-eb7111e02c4c",
-  "name": "csa-pmtMethods-moneygram",
+  "name": "cse-pmtMethods-moneygram",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-moneygram",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

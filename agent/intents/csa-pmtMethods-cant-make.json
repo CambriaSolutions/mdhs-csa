@@ -1,10 +1,10 @@
 {
   "id": "1e4ec7df-cbd9-437f-af02-e48789f2e82b",
-  "name": "csa-pmtMethods-cant-make",
+  "name": "cse-pmtMethods-cant-make",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-cant-make",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

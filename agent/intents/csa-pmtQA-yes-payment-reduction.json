@@ -1,10 +1,10 @@
 {
   "id": "6bf75707-c750-4dfb-9751-62ee778fd2d6",
-  "name": "csa-pmtQA-yes-payment-reduction",
+  "name": "cse-pmtQA-yes-payment-reduction",
   "auto": true,
   "contexts": [
     "waiting-pmtqa-yes-payment-reduction",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

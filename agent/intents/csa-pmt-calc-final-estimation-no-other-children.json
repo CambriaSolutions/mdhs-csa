@@ -1,10 +1,10 @@
 {
   "id": "8fb800ab-9fda-481d-a62f-e54cecfdb828",
-  "name": "csa-pmt-calc-final-estimation-no-other-children",
+  "name": "cse-pmt-calc-final-estimation-no-other-children",
   "auto": true,
   "contexts": [
     "waiting-pmt-calc-final-estimation-no-other-children",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

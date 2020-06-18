@@ -1,16 +1,16 @@
 {
   "id": "4e6eda38-68a3-4cc3-babc-4866f44b63cc",
-  "name": "csa-caseQA-increase-review",
+  "name": "cse-caseQA-increase-review",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

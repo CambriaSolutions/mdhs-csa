@@ -1,16 +1,16 @@
 {
   "id": "999cd577-b7ca-4902-aa33-2e9f9fa11036",
-  "name": "csa-enforcement-passport-reinstatement",
+  "name": "cse-enforcement-passport-reinstatement",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

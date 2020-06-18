@@ -1,16 +1,16 @@
 {
   "id": "54a79550-68e1-47ee-a06d-2a4cbb64ad1d",
-  "name": "csa-verification-root",
+  "name": "cse-verification-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

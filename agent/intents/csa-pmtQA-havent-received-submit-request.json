@@ -1,10 +1,10 @@
 {
   "id": "1c8c5891-137d-4dac-a828-4838d42417a3",
-  "name": "csa-pmtQA-havent-received-submit-request",
+  "name": "cse-pmtQA-havent-received-submit-request",
   "auto": true,
   "contexts": [
     "waiting-pmtQA-havent-received-submit-request",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

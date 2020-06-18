@@ -1,16 +1,16 @@
 {
   "id": "b180367f-4697-4204-826f-b0a18274d6fa",
-  "name": "csa-dirDep-take-effect",
+  "name": "cse-dirDep-take-effect",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

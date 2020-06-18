@@ -1,16 +1,16 @@
 {
   "id": "471f722f-0706-4e65-ae85-b2a4239f5873",
-  "name": "csa-legal-root",
+  "name": "cse-legal-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

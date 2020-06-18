@@ -1,16 +1,16 @@
 {
   "id": "d8f1c632-2e06-464d-bd85-fa1bfd9d6608",
-  "name": "csa-enforcement-financial-account-update-case",
+  "name": "cse-enforcement-financial-account-update-case",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

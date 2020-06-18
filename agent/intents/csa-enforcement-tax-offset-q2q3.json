@@ -1,16 +1,16 @@
 {
   "id": "3d8e7d90-650c-4bae-b276-52315374eead",
-  "name": "csa-enforcement-tax-offset-q2q3",
+  "name": "cse-enforcement-tax-offset-q2q3",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

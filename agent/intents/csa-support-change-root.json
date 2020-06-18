@@ -1,10 +1,10 @@
 {
   "id": "b11326bf-1360-4d15-9f4e-a05f3e414e9f",
-  "name": "csa-support-change-root",
+  "name": "cse-support-change-root",
   "auto": true,
   "contexts": [
     "waiting-support-change",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -31,7 +31,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

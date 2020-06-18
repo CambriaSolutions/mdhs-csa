@@ -1,9 +1,9 @@
 {
   "id": "85a43b03-d217-43be-9d7f-f845ce0307e1",
-  "name": "csa-support-root",
+  "name": "cse-support-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -25,7 +25,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

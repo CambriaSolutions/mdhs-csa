@@ -1,10 +1,10 @@
 {
   "id": "37a9b0ce-7598-4003-b856-314020fec6e1",
-  "name": "csa-enforcement-submit-inquiry",
+  "name": "cse-enforcement-submit-inquiry",
   "auto": true,
   "contexts": [
     "waiting-enforcement-submit-inquiry",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

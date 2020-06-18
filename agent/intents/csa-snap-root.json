@@ -1,16 +1,16 @@
 {
   "id": "fb71570e-dc39-49fa-9dc8-c0066009500f",
-  "name": "csa-snap-root",
+  "name": "cse-snap-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

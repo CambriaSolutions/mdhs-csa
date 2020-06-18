@@ -1,16 +1,16 @@
 {
   "id": "edf1eb19-6d08-4e28-9d8e-0008e66b19be",
-  "name": "csa-iwo-where-to-submit",
+  "name": "cse-iwo-where-to-submit",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

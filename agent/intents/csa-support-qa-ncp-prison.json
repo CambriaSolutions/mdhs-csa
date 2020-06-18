@@ -1,16 +1,16 @@
 {
   "id": "5af252d1-48a4-465f-81c6-a18a065d5460",
-  "name": "csa-support-qa-ncp-prison",
+  "name": "cse-support-qa-ncp-prison",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

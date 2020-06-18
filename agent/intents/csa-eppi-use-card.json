@@ -1,16 +1,16 @@
 {
   "id": "4f0449dc-f836-4e99-a2ba-c0d7111212de",
-  "name": "csa-eppi-use-card",
+  "name": "cse-eppi-use-card",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

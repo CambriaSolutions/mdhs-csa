@@ -1,16 +1,16 @@
 {
   "id": "940ea194-5f35-49d9-b320-60616c395022",
-  "name": "csa-dirDep-payment-closed-account",
+  "name": "cse-dirDep-payment-closed-account",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

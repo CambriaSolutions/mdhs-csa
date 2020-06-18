@@ -1,10 +1,10 @@
 {
   "id": "de8a1f8c-6eb2-4d9f-939b-474a5d691b1c",
-  "name": "csa-map-deliver-map",
+  "name": "cse-map-deliver-map",
   "auto": true,
   "contexts": [
     "waiting-maps-deliver-map",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

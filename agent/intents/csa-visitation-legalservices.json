@@ -1,16 +1,16 @@
 {
   "id": "99aa0eca-7c8f-49e5-a708-52c82430148f",
-  "name": "csa-visitation-legalservices",
+  "name": "cse-visitation-legalservices",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

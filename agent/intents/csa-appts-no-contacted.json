@@ -1,10 +1,10 @@
 {
   "id": "cb68b0fb-fbc2-494d-8959-95d7f533f87b",
-  "name": "csa-appts-no-contacted",
+  "name": "cse-appts-no-contacted",
   "auto": true,
   "contexts": [
     "waiting-appts-not-contacted",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

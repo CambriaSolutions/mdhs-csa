@@ -1,16 +1,16 @@
 {
   "id": "88c01cf1-1fa9-474f-a596-b6130e941adc",
-  "name": "csa-enforcement-credit-bureau-reporting",
+  "name": "cse-enforcement-credit-bureau-reporting",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

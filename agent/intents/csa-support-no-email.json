@@ -1,10 +1,10 @@
 {
   "id": "c4ed388a-5680-44d9-936e-9772d20530f9",
-  "name": "csa-support-no-email",
+  "name": "cse-support-no-email",
   "auto": true,
   "contexts": [
     "waiting-support-no-email",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

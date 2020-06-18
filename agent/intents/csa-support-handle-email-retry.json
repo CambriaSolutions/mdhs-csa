@@ -1,10 +1,10 @@
 {
   "id": "6cede9d3-780b-43f4-994e-ce5aad292c08",
-  "name": "csa-support-handle-email-retry",
+  "name": "cse-support-handle-email-retry",
   "auto": true,
   "contexts": [
     "waiting-support-handle-email-retry",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

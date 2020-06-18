@@ -1,10 +1,10 @@
 {
   "id": "43bcbeaa-9ede-4b01-ab65-4ee670b2ce3b",
-  "name": "csa-support-case-number",
+  "name": "cse-support-case-number",
   "auto": true,
   "contexts": [
     "waiting-support-case-number",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

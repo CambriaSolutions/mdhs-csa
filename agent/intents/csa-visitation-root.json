@@ -1,16 +1,16 @@
 {
   "id": "c1b8658a-eccb-484b-b125-ddfa42d7cdb8",
-  "name": "csa-visitation-root",
+  "name": "cse-visitation-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

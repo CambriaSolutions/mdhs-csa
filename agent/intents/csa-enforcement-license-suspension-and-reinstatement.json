@@ -1,16 +1,16 @@
 {
   "id": "c0ce3a55-aee6-4895-a14e-3d6b7e69570b",
-  "name": "csa-enforcement-license-suspension-and-reinstatement",
+  "name": "cse-enforcement-license-suspension-and-reinstatement",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

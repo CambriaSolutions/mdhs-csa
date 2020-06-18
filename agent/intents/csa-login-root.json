@@ -1,16 +1,16 @@
 {
   "id": "27fd5769-455a-4287-9516-b61451b86c16",
-  "name": "csa-login-root",
+  "name": "cse-login-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

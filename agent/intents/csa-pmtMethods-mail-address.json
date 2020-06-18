@@ -1,16 +1,16 @@
 {
   "id": "954395ff-fc64-4293-8633-631605cd4ba1",
-  "name": "csa-pmtMethods-mail-address",
+  "name": "cse-pmtMethods-mail-address",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

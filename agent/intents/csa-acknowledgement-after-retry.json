@@ -1,10 +1,10 @@
 {
   "id": "d92d2051-f742-4d27-9876-2999ba662cc9",
-  "name": "csa-acknowledgement-after-retry",
+  "name": "cse-acknowledgement-after-retry",
   "auto": true,
   "contexts": [
     "waiting-acknowlegement-after-retry",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

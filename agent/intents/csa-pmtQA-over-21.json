@@ -1,16 +1,16 @@
 {
   "id": "4df33845-f833-411a-ac5e-ff5e62212da3",
-  "name": "csa-pmtQA-over-21",
+  "name": "cse-pmtQA-over-21",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

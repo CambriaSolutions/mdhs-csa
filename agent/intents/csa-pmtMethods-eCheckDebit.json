@@ -1,17 +1,17 @@
 {
   "id": "bbb8f350-3ac1-4243-9ca8-fff2f63e8f3f",
-  "name": "csa-pmtMethods-eCheckDebit",
+  "name": "cse-pmtMethods-eCheckDebit",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-eCheckDebit",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

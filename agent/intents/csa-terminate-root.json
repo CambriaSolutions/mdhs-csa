@@ -1,16 +1,16 @@
 {
   "id": "29a079a2-8c76-48bb-9e19-963595329906",
-  "name": "csa-terminate-root",
+  "name": "cse-terminate-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

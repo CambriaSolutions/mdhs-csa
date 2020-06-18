@@ -1,16 +1,16 @@
 {
   "id": "1b42c0c2-0943-4df3-ae69-1b71fc0e1f32",
-  "name": "csa-enforcement-contempt",
+  "name": "cse-enforcement-contempt",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

@@ -1,10 +1,10 @@
 {
   "id": "ea5cf4f8-f585-4bc5-9475-5c23988807cd",
-  "name": "csa-iwo-employer-submit-payments",
+  "name": "cse-iwo-employer-submit-payments",
   "auto": true,
   "contexts": [
     "waiting-iwo-employer-submit-payments",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

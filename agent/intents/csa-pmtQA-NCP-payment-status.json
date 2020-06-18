@@ -1,16 +1,16 @@
 {
   "id": "a3a40e7a-faf9-42d3-bba0-d712b1a6b2f0",
-  "name": "csa-pmtQA-NCP-payment-status",
+  "name": "cse-pmtQA-NCP-payment-status",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

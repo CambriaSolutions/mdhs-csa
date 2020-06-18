@@ -1,16 +1,16 @@
 {
   "id": "2f65575a-b72a-4f15-93ef-c252d3110adf",
-  "name": "csa-onlineAction-root",
+  "name": "cse-onlineAction-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

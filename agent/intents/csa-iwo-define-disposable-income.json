@@ -1,10 +1,10 @@
 {
   "id": "61b23432-bbfe-4958-9aeb-252f1f83d04d",
-  "name": "csa-iwo-define-disposable-income",
+  "name": "cse-iwo-define-disposable-income",
   "auto": true,
   "contexts": [
     "waiting-iwo-define-disposable-income",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

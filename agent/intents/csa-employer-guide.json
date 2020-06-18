@@ -1,16 +1,16 @@
 {
   "id": "d6fb3a47-6748-47cf-ab04-91dabb49f79d",
-  "name": "csa-employer-guide",
+  "name": "cse-employer-guide",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

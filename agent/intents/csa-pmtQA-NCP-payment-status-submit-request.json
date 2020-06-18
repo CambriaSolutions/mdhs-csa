@@ -1,10 +1,10 @@
 {
   "id": "54b4a14c-a3c1-4775-a800-7dd8a7408375",
-  "name": "csa-pmtQA-NCP-payment-status-submit-request",
+  "name": "cse-pmtQA-NCP-payment-status-submit-request",
   "auto": true,
   "contexts": [
     "waiting-pmtQA-ncp-payment-status-submit-request",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

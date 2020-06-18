@@ -1,17 +1,17 @@
 {
   "id": "9d53906a-1321-4fc3-bb36-3cade00d875a",
-  "name": "csa-eppi-get-card",
+  "name": "cse-eppi-get-card",
   "auto": true,
   "contexts": [
     "waiting-eppi-get-card",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

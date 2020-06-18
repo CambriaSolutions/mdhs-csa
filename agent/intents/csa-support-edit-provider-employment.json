@@ -1,10 +1,10 @@
 {
   "id": "56266b25-9709-42a5-a3be-a3b6786a7a94",
-  "name": "csa-support-edit-provider-employment",
+  "name": "cse-support-edit-provider-employment",
   "auto": true,
   "contexts": [
     "waiting-support-edit-provider-employment",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

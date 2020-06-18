@@ -1,10 +1,10 @@
 {
   "id": "6a80949a-0c09-4c0a-a779-a2c4c629cbd8",
-  "name": "csa-open-csc-select-form",
+  "name": "cse-open-csc-select-form",
   "auto": true,
   "contexts": [
     "waiting-open-csc-select-form",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

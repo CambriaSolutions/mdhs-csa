@@ -1,16 +1,16 @@
 {
   "id": "d78fa566-1947-476c-9d23-b6a83f351c39",
-  "name": "csa-contact-qa-number",
+  "name": "cse-contact-qa-number",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

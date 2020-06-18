@@ -1,10 +1,10 @@
 {
   "id": "d784939b-9f56-4d8a-bbee-ee6b4e2959c2",
-  "name": "csa-support-parent-receiving",
+  "name": "cse-support-parent-receiving",
   "auto": true,
   "contexts": [
     "waiting-support-parent-receiving",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -26,7 +26,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

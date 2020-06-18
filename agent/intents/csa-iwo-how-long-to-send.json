@@ -1,16 +1,16 @@
 {
   "id": "1a73fdcd-9748-4883-a84c-05ffcf4cb8e7",
-  "name": "csa-iwo-how-long-to-send",
+  "name": "cse-iwo-how-long-to-send",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

@@ -1,16 +1,16 @@
 {
   "id": "e86b8113-ee48-44f1-8553-27b49d84751b",
-  "name": "csa-account-balance",
+  "name": "cse-account-balance",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

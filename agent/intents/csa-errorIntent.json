@@ -1,16 +1,16 @@
 {
   "id": "a2ef37bb-2a40-4b50-910b-f402feb2c353",
-  "name": "csa-errorIntent",
+  "name": "cse-errorIntent",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

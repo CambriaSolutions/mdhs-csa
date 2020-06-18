@@ -1,16 +1,16 @@
 {
   "id": "c13f0dcb-ba3d-4bdd-a1c8-e51177b182c2",
-  "name": "csa-eppi-root",
+  "name": "cse-eppi-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

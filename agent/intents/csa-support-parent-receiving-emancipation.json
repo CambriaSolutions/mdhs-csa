@@ -1,16 +1,16 @@
 {
   "id": "0251d143-2623-479a-98bd-b9928c8c969e",
-  "name": "csa-support-parent-receiving-emancipation",
+  "name": "cse-support-parent-receiving-emancipation",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

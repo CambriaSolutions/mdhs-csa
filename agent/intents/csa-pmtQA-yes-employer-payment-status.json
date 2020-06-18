@@ -1,10 +1,10 @@
 {
   "id": "f9a88a21-1da4-4859-84a4-43d818dece86",
-  "name": "csa-pmtQA-yes-employer-payment-status",
+  "name": "cse-pmtQA-yes-employer-payment-status",
   "auto": true,
   "contexts": [
     "waiting-pmtqa-yes-employer-payment-status",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

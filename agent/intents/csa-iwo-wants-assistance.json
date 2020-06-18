@@ -1,10 +1,10 @@
 {
   "id": "63b11f45-33ad-4018-9cea-94ba7b833d4e",
-  "name": "csa-iwo-wants-assistance",
+  "name": "cse-iwo-wants-assistance",
   "auto": true,
   "contexts": [
     "waiting-iwo-wants-assistance",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

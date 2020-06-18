@@ -1,16 +1,16 @@
 {
   "id": "2a39904e-765d-4fa7-a067-6b34cc9cf9d0",
-  "name": "csa-dirDep-account-term",
+  "name": "cse-dirDep-account-term",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

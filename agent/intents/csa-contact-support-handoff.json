@@ -1,10 +1,10 @@
 {
   "id": "682fefdb-73ee-4f00-9712-4afadbd13604",
-  "name": "csa-contact-support-handoff",
+  "name": "cse-contact-support-handoff",
   "auto": true,
   "contexts": [
     "waiting-contact-support-handoff",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

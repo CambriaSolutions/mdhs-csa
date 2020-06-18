@@ -1,10 +1,10 @@
 {
   "id": "5947267a-75b2-463c-a675-0994cb5ddad2",
-  "name": "csa-support-no-phone-number",
+  "name": "cse-support-no-phone-number",
   "auto": true,
   "contexts": [
     "waiting-support-no-phone-number",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

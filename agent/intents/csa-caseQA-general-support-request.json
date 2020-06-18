@@ -1,10 +1,10 @@
 {
   "id": "3d4b2df6-f083-439d-b301-2b3a5cabbfa1",
-  "name": "csa-caseQA-general-support-request",
+  "name": "cse-caseQA-general-support-request",
   "auto": true,
   "contexts": [
     "waiting-caseQA-general-support-request",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

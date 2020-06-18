@@ -1,10 +1,10 @@
 {
   "id": "8b9b06b9-3554-44c6-8d1c-421da130b2f9",
-  "name": "csa-iwo-confirm-estimate",
+  "name": "cse-iwo-confirm-estimate",
   "auto": true,
   "contexts": [
     "waiting-iwo-confirm-estimate",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

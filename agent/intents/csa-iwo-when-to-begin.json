@@ -1,16 +1,16 @@
 {
   "id": "5cb86f2c-e6dc-4751-8773-04bd41f7aa2b",
-  "name": "csa-iwo-when-to-begin",
+  "name": "cse-iwo-when-to-begin",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

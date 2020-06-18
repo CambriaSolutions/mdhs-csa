@@ -1,10 +1,10 @@
 {
   "id": "4289a589-0ee5-4b7d-b0e6-89c9f38865eb",
-  "name": "csa-pmtMethods-paynearme",
+  "name": "cse-pmtMethods-paynearme",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-paynearme",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

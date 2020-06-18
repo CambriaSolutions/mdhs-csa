@@ -1,16 +1,16 @@
 {
   "id": "6cdd59c1-8859-4048-bdf5-e8a20b31f7b7",
-  "name": "csa-enforcement-unemployment",
+  "name": "cse-enforcement-unemployment",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

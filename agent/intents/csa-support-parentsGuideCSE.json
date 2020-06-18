@@ -1,16 +1,16 @@
 {
   "id": "43dff9ae-5500-43e5-9539-f286ce9dc6be",
-  "name": "csa-support-parentsGuideCSE",
+  "name": "cse-support-parentsGuideCSE",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

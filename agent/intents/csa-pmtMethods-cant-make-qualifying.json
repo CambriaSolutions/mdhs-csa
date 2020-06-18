@@ -1,10 +1,10 @@
 {
   "id": "3afe1d15-7472-4873-ab97-be661e411437",
-  "name": "csa-pmtMethods-cant-make-qualifying",
+  "name": "cse-pmtMethods-cant-make-qualifying",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-cant-make-qualifying",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

@@ -1,10 +1,10 @@
 {
   "id": "e8597266-1660-4b6e-9156-563e578d0a16",
-  "name": "csa-open-csc-employer-payments",
+  "name": "cse-open-csc-employer-payments",
   "auto": true,
   "contexts": [
     "waiting-open-csc-employer-payments",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

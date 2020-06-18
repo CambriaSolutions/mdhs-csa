@@ -1,10 +1,10 @@
 {
   "id": "f08cf351-06cd-482f-b3e3-7ca91342310b",
-  "name": "csa-support-restart",
+  "name": "cse-support-restart",
   "auto": true,
   "contexts": [
     "waiting-support-restart",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

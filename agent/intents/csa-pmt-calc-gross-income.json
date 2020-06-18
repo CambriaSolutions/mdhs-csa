@@ -1,10 +1,10 @@
 {
   "id": "dea6e094-d5fd-4e2c-a5e9-1eae648312fe",
-  "name": "csa-pmt-calc-gross-income",
+  "name": "cse-pmt-calc-gross-income",
   "auto": true,
   "contexts": [
     "waiting-pmt-calc-gross-income",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -26,7 +26,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

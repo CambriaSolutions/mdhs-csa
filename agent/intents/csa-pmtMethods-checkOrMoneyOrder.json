@@ -1,10 +1,10 @@
 {
   "id": "531c8256-350c-46dd-8f47-5472a9946da6",
-  "name": "csa-pmtMethods-checkOrMoneyOrder",
+  "name": "cse-pmtMethods-checkOrMoneyOrder",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-checkOrMoneyOrder",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -46,7 +46,7 @@
           "lifespan": 5
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

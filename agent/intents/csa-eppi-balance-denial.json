@@ -1,16 +1,16 @@
 {
   "id": "a1912578-aa76-4405-b9cd-e207d42da7f2",
-  "name": "csa-eppi-balance-denial",
+  "name": "cse-eppi-balance-denial",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

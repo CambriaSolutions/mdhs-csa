@@ -1,10 +1,10 @@
 {
   "id": "90810287-7d92-40af-b375-8cbe22f6e232",
-  "name": "csa-dirDep-confirm-form",
+  "name": "cse-dirDep-confirm-form",
   "auto": true,
   "contexts": [
     "waiting-dirDep-confirm-form",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

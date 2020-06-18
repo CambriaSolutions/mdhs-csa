@@ -1,17 +1,17 @@
 {
   "id": "f1072e3f-45f5-4628-b32e-c77cdf8b1610",
-  "name": "csa-eppi-faq",
+  "name": "cse-eppi-faq",
   "auto": true,
   "contexts": [
     "waiting-eppi-faq",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

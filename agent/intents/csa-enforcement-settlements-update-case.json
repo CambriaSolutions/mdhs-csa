@@ -1,10 +1,10 @@
 {
   "id": "5f42c851-63b4-401b-8b64-f25966b5fa1f",
-  "name": "csa-enforcement-settlements-update-case",
+  "name": "cse-enforcement-settlements-update-case",
   "auto": true,
   "contexts": [
     "waiting-enforcement-settlements-update-case",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

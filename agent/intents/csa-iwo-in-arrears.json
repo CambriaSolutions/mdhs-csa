@@ -1,10 +1,10 @@
 {
   "id": "f9450ca2-69fe-4efa-b41b-7640b88692ac",
-  "name": "csa-iwo-in-arrears",
+  "name": "cse-iwo-in-arrears",
   "auto": true,
   "contexts": [
     "waiting-iwo-in-arrears",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

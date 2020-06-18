@@ -1,16 +1,16 @@
 {
   "id": "d185621b-2905-4462-8904-989ef572ff1c",
-  "name": "csa-iwo-other-garnishments",
+  "name": "cse-iwo-other-garnishments",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

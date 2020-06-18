@@ -1,10 +1,10 @@
 {
   "id": "42833b8a-7885-4da6-aa44-19dd77e51801",
-  "name": "csa-open-csc-full-services",
+  "name": "cse-open-csc-full-services",
   "auto": true,
   "contexts": [
     "waiting-open-csc-full-services",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

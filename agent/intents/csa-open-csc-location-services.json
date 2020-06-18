@@ -1,10 +1,10 @@
 {
   "id": "b54c0093-0901-4469-bba3-1c646fff7571",
-  "name": "csa-open-csc-location-services",
+  "name": "cse-open-csc-location-services",
   "auto": true,
   "contexts": [
     "waiting-open-csc-location-services",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

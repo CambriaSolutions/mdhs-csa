@@ -1,10 +1,10 @@
 {
   "id": "62ffba87-baa8-4734-8c6f-71e8c2740d1a",
-  "name": "csa-contact-provide-phone-number",
+  "name": "cse-contact-provide-phone-number",
   "auto": true,
   "contexts": [
     "waiting-contact-provide-phone-number",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

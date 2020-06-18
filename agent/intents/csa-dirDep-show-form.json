@@ -1,10 +1,10 @@
 {
   "id": "d6dbfc32-23b8-42b0-814b-00fa9d15259c",
-  "name": "csa-dirDep-show-form",
+  "name": "cse-dirDep-show-form",
   "auto": true,
   "contexts": [
     "waiting-dirDep-show-form",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

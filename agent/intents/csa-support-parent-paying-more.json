@@ -1,10 +1,10 @@
 {
   "id": "65d4d466-fb20-4abe-8083-17e6862117ef",
-  "name": "csa-support-parent-paying-more",
+  "name": "cse-support-parent-paying-more",
   "auto": true,
   "contexts": [
     "waiting-support-parent-paying-more",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

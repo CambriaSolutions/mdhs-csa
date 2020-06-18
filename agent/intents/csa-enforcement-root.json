@@ -1,16 +1,16 @@
 {
   "id": "eafad64e-52d8-4565-81e1-ddd4e963d4de",
-  "name": "csa-enforcement-root",
+  "name": "cse-enforcement-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

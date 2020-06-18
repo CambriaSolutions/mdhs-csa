@@ -1,16 +1,16 @@
 {
   "id": "44ec156b-33a9-4e95-994f-bc05737412b8",
-  "name": "csa-support-qa-cp-pictureId",
+  "name": "cse-support-qa-cp-pictureId",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

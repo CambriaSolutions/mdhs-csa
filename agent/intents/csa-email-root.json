@@ -1,16 +1,16 @@
 {
   "id": "ff87e35b-2ebb-41e5-8b59-ddcb64fe3636",
-  "name": "csa-email-root",
+  "name": "cse-email-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

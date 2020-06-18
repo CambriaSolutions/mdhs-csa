@@ -1,10 +1,10 @@
 {
   "id": "982d153d-9a3c-4345-8972-4154384fd581",
-  "name": "csa-pmtMethods-debit-card",
+  "name": "cse-pmtMethods-debit-card",
   "auto": true,
   "contexts": [
     "waiting-pmtMethods-debit-card",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

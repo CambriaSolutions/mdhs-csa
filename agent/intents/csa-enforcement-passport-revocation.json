@@ -1,16 +1,16 @@
 {
   "id": "d0d113cb-d163-41be-9685-97876581cc17",
-  "name": "csa-enforcement-passport-revocation",
+  "name": "cse-enforcement-passport-revocation",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

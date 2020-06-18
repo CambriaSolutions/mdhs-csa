@@ -1,10 +1,10 @@
 {
   "id": "fd2029b7-c9de-4203-a432-8d340a5a8e0f",
-  "name": "csa-support-retry-phone-number",
+  "name": "cse-support-retry-phone-number",
   "auto": true,
   "contexts": [
     "waiting-support-retry-phone-number",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

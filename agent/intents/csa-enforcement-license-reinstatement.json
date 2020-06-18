@@ -1,10 +1,10 @@
 {
   "id": "872749be-9e90-4964-a044-cc7f822d3ef9",
-  "name": "csa-enforcement-license-reinstatement",
+  "name": "cse-enforcement-license-reinstatement",
   "auto": true,
   "contexts": [
     "waiting-license-reinstatement-learn-more",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

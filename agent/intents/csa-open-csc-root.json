@@ -1,16 +1,16 @@
 {
   "id": "ff47e2f8-15d8-4aa8-812a-0fb9d1b77fb8",
-  "name": "csa-open-csc-root",
+  "name": "cse-open-csc-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

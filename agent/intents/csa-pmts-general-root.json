@@ -1,10 +1,10 @@
 {
   "id": "54419142-fe42-4d7d-ae91-1456d9484e7d",
-  "name": "csa-pmts-general-root",
+  "name": "cse-pmts-general-root",
   "auto": true,
   "contexts": [
     "waiting-payment-calc",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

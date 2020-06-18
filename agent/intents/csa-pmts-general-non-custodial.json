@@ -1,10 +1,10 @@
 {
   "id": "e92c5714-8e46-430e-99ee-fa79c9613bf4",
-  "name": "csa-pmts-general-non-custodial",
+  "name": "cse-pmts-general-non-custodial",
   "auto": true,
   "contexts": [
     "waiting-pmts-general-non-custodial",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

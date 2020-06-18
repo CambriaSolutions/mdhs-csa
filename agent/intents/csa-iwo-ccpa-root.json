@@ -1,16 +1,16 @@
 {
   "id": "a9a567c5-4e4e-43e2-be4d-df46bfd36d6e",
-  "name": "csa-iwo-ccpa-root",
+  "name": "cse-iwo-ccpa-root",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

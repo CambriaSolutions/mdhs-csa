@@ -1,10 +1,10 @@
 {
   "id": "89f2fd35-e59b-4f07-aecd-f68b2ceee920",
-  "name": "csa-support-cancel",
+  "name": "cse-support-cancel",
   "auto": true,
   "contexts": [
     "waiting-support-cancel-issue",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -31,7 +31,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

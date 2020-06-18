@@ -1,16 +1,16 @@
 {
   "id": "ccccbca3-5b12-492c-bb5d-8e8c14e0e162",
-  "name": "csa-support-qa-who-can-apply",
+  "name": "cse-support-qa-who-can-apply",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

@@ -1,10 +1,10 @@
 {
   "id": "35586369-eec3-4523-b001-760852e3223c",
-  "name": "csa-support-no-new-employer",
+  "name": "cse-support-no-new-employer",
   "auto": true,
   "contexts": [
     "waiting-support-no-new-employer",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

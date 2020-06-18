@@ -1,16 +1,16 @@
 {
   "id": "4f546253-a528-4f8f-9f8d-879bb570d321",
-  "name": "csa-enforcement-license-suspension-non-compliance",
+  "name": "cse-enforcement-license-suspension-non-compliance",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

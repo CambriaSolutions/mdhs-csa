@@ -1,10 +1,10 @@
 {
   "id": "e255b0cd-76a4-4d2e-9b05-4da8c91aadc6",
-  "name": "csa-dirDep-no-learn-more-eppicard",
+  "name": "cse-dirDep-no-learn-more-eppicard",
   "auto": true,
   "contexts": [
     "waiting-dirDep-no-learn-more-eppicard",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

@@ -1,16 +1,16 @@
 {
   "id": "152d4cc7-5a95-44cd-817f-a4fb79ab2bf5",
-  "name": "csa-iwo-not-an-employee",
+  "name": "cse-iwo-not-an-employee",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

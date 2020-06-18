@@ -1,10 +1,10 @@
 {
   "id": "f2868116-cafc-47f3-a531-28e4b8a4d2ce",
-  "name": "csa-pmtQA-over-21-submit-request",
+  "name": "cse-pmtQA-over-21-submit-request",
   "auto": true,
   "contexts": [
     "waiting-pmtQA-over-21-submit-request",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

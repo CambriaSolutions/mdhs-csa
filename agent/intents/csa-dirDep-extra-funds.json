@@ -1,16 +1,16 @@
 {
   "id": "d040f754-52bb-4fd4-a207-a177ed48e11b",
-  "name": "csa-dirDep-extra-funds",
+  "name": "cse-dirDep-extra-funds",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

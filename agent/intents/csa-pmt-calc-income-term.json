@@ -1,10 +1,10 @@
 {
   "id": "c9aa16c2-4c83-41c3-a7a2-8043d0aebff0",
-  "name": "csa-pmt-calc-income-term",
+  "name": "cse-pmt-calc-income-term",
   "auto": true,
   "contexts": [
     "waiting-pmt-calc-income-term",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

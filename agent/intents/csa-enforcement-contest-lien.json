@@ -1,16 +1,16 @@
 {
   "id": "e45f5937-38d8-42b5-96ac-963869cde167",
-  "name": "csa-enforcement-contest-lien",
+  "name": "cse-enforcement-contest-lien",
   "auto": true,
   "contexts": [
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

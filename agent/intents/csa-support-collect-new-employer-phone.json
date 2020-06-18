@@ -1,10 +1,10 @@
 {
   "id": "56fdf134-08fc-4cb0-a723-dc3d6b14925c",
-  "name": "csa-support-collect-new-employer-phone",
+  "name": "cse-support-collect-new-employer-phone",
   "auto": true,
   "contexts": [
     "waiting-support-collect-new-employer-phone",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -16,7 +16,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }

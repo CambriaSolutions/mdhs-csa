@@ -1,10 +1,10 @@
 {
   "id": "15587156-a1c3-4840-b77c-8bb53dab839f",
-  "name": "csa-pmt-calc-child-support",
+  "name": "cse-pmt-calc-child-support",
   "auto": true,
   "contexts": [
     "waiting-pmt-calc-child-support",
-    "csa-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {
@@ -21,7 +21,7 @@
           "lifespan": 0
         },
         {
-          "name": "csa-subject-matter",
+          "name": "cse-subject-matter",
           "parameters": {},
           "lifespan": 99
         }
