@@ -3,8 +3,8 @@
   "name": "cse-support-submitSupportRequest",
   "auto": true,
   "contexts": [
-    "csa-subject-matter",
-    "csa-support-submitSupportRequest"
+    "cse-subject-matter",
+    "cse-support-submitSupportRequest"
   ],
   "responses": [
     {
