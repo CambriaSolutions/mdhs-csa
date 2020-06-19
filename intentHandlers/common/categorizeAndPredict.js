@@ -132,7 +132,7 @@ const categorizeAndPredict = async query => {
   }
 }
 
-exports.handleUnhandled = async agent => {
+exports.autoMlFallback = async agent => {
   try {
     const { query } = agent
     let categories
@@ -183,16 +183,6 @@ exports.handleUnhandled = async agent => {
         await defaultUnhandledResponse(agent)
       }
     }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.noneOfThese = async agent => {
-  // TODO For now, treat as unhandled w/o ML.
-  // In the future record the phrase, category, and suggestions not selected.
-  try {
-    await defaultUnhandledResponse(agent)
   } catch (err) {
     console.error(err)
   }
