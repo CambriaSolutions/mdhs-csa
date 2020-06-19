@@ -1,0 +1,58 @@
+{
+  "id": "6bf75707-c750-4dfb-9751-62ee778fd2d6",
+  "name": "cse-pmtQA-yes-payment-reduction",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtqa-yes-payment-reduction",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmtqa-yes-payment-reduction",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [
+        {
+          "id": "db186aeb-4a69-4584-bf08-97e462a3de13",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "continuePaymentReduction",
+          "value": "$continuePaymentReduction",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

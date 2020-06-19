@@ -1,0 +1,75 @@
+{
+  "id": "35586369-eec3-4523-b001-760852e3223c",
+  "name": "cse-support-no-new-employer",
+  "auto": true,
+  "contexts": [
+    "waiting-support-no-new-employer",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-no-new-employer",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-collect-new-employer-name",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [
+        {
+          "id": "5fa97bd7-78fd-43ba-830e-e92405d6b347",
+          "required": false,
+          "dataType": "@employmentStatus",
+          "name": "employmentStatus",
+          "value": "$employmentStatus",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "id": "e71e3363-3983-4fc2-b690-4d6db4db4e9c",
+          "required": false,
+          "dataType": "@dont-know",
+          "name": "dont-know",
+          "value": "$dont-know",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
