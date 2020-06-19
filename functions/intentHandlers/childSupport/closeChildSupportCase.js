@@ -1,8 +1,8 @@
-const { supportRequestCaseClosure } = require('./support.js')
+const { supportType } = require('./support.js')
 
 exports.closeCSCQACloseCase = async agent => {
   try {
-    await supportRequestCaseClosure(agent)
+    await supportType(agent, 'request case closure')
   } catch (err) {
     console.error(err)
   }

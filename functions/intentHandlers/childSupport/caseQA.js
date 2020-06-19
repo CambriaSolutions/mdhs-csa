@@ -2,7 +2,7 @@ const { Suggestion } = require('dialogflow-fulfillment')
 const {
   supportReviewPayments,
   supportInquiries,
-  supportChangePersonalInfo,
+  supportType,
 } = require('./support.js')
 
 exports.caseQAIncreaseReview = async agent => {
@@ -19,10 +19,13 @@ exports.caseQAGeneral = async agent => {
       'I cannot provide you case specific information at this time. You may submit an support request or call <a href="tel:+18778824916">877-882-4916</a>.'
     )
     await agent.add(new Suggestion('Submit Support Request'))
+
     await agent.context.set({
-      name: 'waiting-caseQA-general-support-request',
-      lifespan: 2,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'inquiry'
     })
+
     await agent.context.set({
       name: 'waiting-restart-conversation',
       lifespan: 2,
@@ -42,7 +45,7 @@ exports.caseQAGeneralSupportRequest = async agent => {
 
 exports.caseQAChangePersonalInfo = async agent => {
   try {
-    await supportChangePersonalInfo(agent)
+    await supportType(agent, 'change personal information')
   } catch (err) {
     console.error(err)
   }

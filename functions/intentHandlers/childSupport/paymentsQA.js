@@ -54,21 +54,14 @@ exports.pmtQAOver21 = async agent => {
     )
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.context.set({
-      name: 'waiting-pmtQA-over-21-submit-request',
-      lifespan: 2,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'inquiry'
     })
     await agent.context.set({
       name: 'waiting-restart-conversation',
       lifespan: 2,
     })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtQAOver21SubmitRequest = async agent => {
-  try {
-    await supportInquiries(agent)
   } catch (err) {
     console.log(err)
   }
@@ -113,29 +106,20 @@ exports.pmtQAYesEmployerPaymentStatus = async agent => {
 
 exports.pmtQANCPPaymentStatus = async agent => {
   try {
-    await agent.add(
-      'Click <a href="https://www.eppicard.com/" target="_blank">here</a> to check your EPPI card statement.'
-    )
-    await agent.add(
-      'At this time, I cannot answer this question. However, I can help you get the answer to this question through submitting a support ticket.'
-    )
-    await agent.add(new Suggestion('Submit Support Ticket'))
+    await agent.add('Click <a href="https://www.eppicard.com/" target="_blank">here</a> to check your EPPI card statement.')
+    await agent.add('At this time, I cannot answer this question. However, I can help you get the answer to this question through submitting a support ticket.')
+
+    await agent.add(new Suggestion('Submit Support Request'))
+
     await agent.context.set({
-      name: 'waiting-pmtQA-ncp-payment-status-submit-request',
-      lifespan: 2,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'inquiry'
     })
     await agent.context.set({
       name: 'waiting-restart-conversation',
       lifespan: 2,
     })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-exports.pmtQANCPPaymentStatusSubmitRequest = async agent => {
-  try {
-    await supportInquiries(agent)
   } catch (err) {
     console.log(err)
   }

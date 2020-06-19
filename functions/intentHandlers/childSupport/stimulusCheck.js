@@ -10,8 +10,9 @@ exports.stimulusCheck = async agent => {
     await agent.add(new Suggestion('Submit Support Request'))
 
     await agent.context.set({
-      name: 'waiting-caseQA-general-support-request',
-      lifespan: 2,
+      name: 'waiting-support-submitSupportRequest',
+      lifespan: 1,
+      supportType: 'inquiry'
     })
 
     await agent.context.set({
