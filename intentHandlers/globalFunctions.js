@@ -120,26 +120,6 @@ exports.formatCurrency = num => {
   )
 }
 
-// Handle startOfConversation
-exports.startRootConversation = async agent => {
-  try {
-    await agent.add('What can I help you with?')
-    await agent.add(new Suggestion('Common Requests'))
-    await agent.add(new Suggestion('Appointments'))
-    await agent.add(new Suggestion('Payments'))
-    await agent.add(new Suggestion('Employer'))
-    await agent.add(new Suggestion('Opening a Child Support Case'))
-    await agent.add(new Suggestion('Office Locations'))
-    await agent.add(new Suggestion('Policy Manual'))
-    await agent.add(new Suggestion('Stimulus Check'))
-    await agent.add(new Suggestion('Cooperation'))
-    await agent.add(new Suggestion('Visitation'))
-    await agent.add(new Suggestion('Enforcement Action'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 // Send a payload to disable user input and require suggestion selection
 exports.disableInput = async agent => {
   try {
@@ -190,20 +170,6 @@ exports.restartConversation = async agent => {
   }
 }
 
-exports.acknowledgePrivacyStatement = async agent => {
-  try {
-    // TODO!!!! NEED TO DELETE THIS!!!! Only a bandaid fix while we implement a proper solution
-    await agent.context.set({
-      name: 'cse-subject-matter',
-      lifespan: 999,
-    })
-
-    await this.startRootConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.globalRestart = async agent => {
   try {
     await this.startRootConversation(agent)
@@ -216,18 +182,24 @@ exports.globalRestart = async agent => {
 exports.welcome = async agent => {
   try {
     await agent.add(
-      'Hi, I\'m Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?'
+      'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP or TANF requests.'
     )
+
+    await agent.add(
+      'The information I provide is not legal advice. Also, please do not enter SSN or DOB information at any time during your conversations with me.'
+    )
+
+    await agent.add(
+      'By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website \
+      Disclaimers, Terms, and Conditions found here, and that you wish to continue.'
+    )
+
     await this.disableInput(agent)
-    await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion('No'))
+    await agent.add(new Suggestion('I ACKNOWLEDGE'))
+
     await agent.context.set({
-      name: 'waiting-not-child-support',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-yes-child-support',
-      lifespan: 2,
+      name: 'waiting-acknowledge-privacy-statement',
+      lifespan: 1,
     })
   } catch (err) {
     console.error(err)
@@ -244,20 +216,57 @@ exports.fallback = async agent => {
   }
 }
 
-exports.yesChildSupport = async agent => {
+exports.acknowledgePrivacyStatement = async agent => {
   try {
-    await agent.add(
-      'Great! I can assist you by providing general information about the child support program or by directing common child support requests to the appropriate MDHS team for handling. The information I provide is not legal advice. MDHS does not provide legal representation. Also, please do not enter SSN or DOB in at any time during your conversations.'
-    )
-    await agent.add(
-      'By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website Disclaimers, Terms, and Conditions found <a href="https://www.mdhs.ms.gov/privacy-disclaimer/" target="_blank">here</a>, and that you wish to continue.'
-    )
-    await agent.add(new Suggestion('I Acknowledge'))
+    await agent.add('Great! Select one of the options below.')
+
+    await agent.add(new Suggestion('Child Support'))
+    await agent.add(new Suggestion('TANF'))
+    await agent.add(new Suggestion('SNAP'))
+
     await this.disableInput(agent)
+
     await agent.context.set({
-      name: 'waiting-acknowledge-privacy-statement',
-      lifespan: 2,
+      name: 'cse-subject-matter',
+      lifespan: 0,
     })
+
+    await agent.context.set({
+      name: 'tanf-subject-matter',
+      lifespan: 0,
+    })
+
+    await agent.context.set({
+      name: 'snap-subject-matter',
+      lifespan: 0,
+    })
+
+    await agent.context.set({
+      name: 'waiting-subjectMatter',
+      lifespan: 1,
+    })
+
+    // await this.startRootConversation(agent)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+// Handle startOfConversation
+exports.startRootConversation = async agent => {
+  try {
+    await agent.add('What can I help you with?')
+    await agent.add(new Suggestion('Common Requests'))
+    await agent.add(new Suggestion('Appointments'))
+    await agent.add(new Suggestion('Payments'))
+    await agent.add(new Suggestion('Employer'))
+    await agent.add(new Suggestion('Opening a Child Support Case'))
+    await agent.add(new Suggestion('Office Locations'))
+    await agent.add(new Suggestion('Policy Manual'))
+    await agent.add(new Suggestion('Stimulus Check'))
+    await agent.add(new Suggestion('Cooperation'))
+    await agent.add(new Suggestion('Visitation'))
+    await agent.add(new Suggestion('Enforcement Action'))
   } catch (err) {
     console.error(err)
   }

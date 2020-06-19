@@ -6,6 +6,8 @@ const home = require('../intentHandlers/home')
 const globalIntentHandlers = require('../utils/globalIntentHandlers')
 const commonIntentHandlers = require('../utils/commonIntentHandlers')
 const childSupportIntentHandlers = require('../utils/childSupportIntentHandlers')
+const tanfIntentHandlers = require('../utils/tanfIntentHandlers')
+const snapIntentHandlers = require('../utils/snapIntentHandlers')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -26,7 +28,13 @@ exports = module.exports = functions
       json: true,
     })
 
-    let intentHandlers = { ...globalIntentHandlers, ...commonIntentHandlers, ...childSupportIntentHandlers }
+    let intentHandlers = {
+      ...globalIntentHandlers,
+      ...commonIntentHandlers,
+      ...childSupportIntentHandlers,
+      ...tanfIntentHandlers,
+      ...snapIntentHandlers
+    }
 
     // List of intents what will reset the back button context
     const resetBackIntentList = [
@@ -39,11 +47,9 @@ exports = module.exports = functions
     await backIntent(agent, intentHandlers, resetBackIntentList)
     await home(agent, intentHandlers, [
       'Default Welcome Intent',
-      'yes-child-support',
       'restart-conversation',
       'global-restart',
       'acknowledge-privacy-statement',
-      'not-child-support-root',
     ])
 
     await agent.handleRequest(new Map(Object.entries(intentHandlers)))
