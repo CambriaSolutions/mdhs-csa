@@ -1,11 +1,11 @@
 const functions = require('firebase-functions')
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
-const backIntent = require('./intentHandlers/back')
-const home = require('./intentHandlers/home')
-const globalIntentHandlers = require('./globalIntentHandlers')
-const commonIntentHandlers = require('./commonIntentHandlers')
-const childSupportIntentHandlers = require('./childSupportIntentHandlers')
+const backIntent = require('../intentHandlers/back')
+const home = require('../intentHandlers/home')
+const globalIntentHandlers = require('../utils/globalIntentHandlers')
+const commonIntentHandlers = require('../utils/commonIntentHandlers')
+const childSupportIntentHandlers = require('../utils/childSupportIntentHandlers')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
