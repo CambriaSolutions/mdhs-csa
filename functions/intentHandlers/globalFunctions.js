@@ -132,6 +132,7 @@ exports.startRootConversation = async agent => {
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
     await agent.add(new Suggestion('Stimulus Check'))
+    await agent.add(new Suggestion('Cooperation'))
     await agent.add(new Suggestion('Visitation'))
     await agent.add(new Suggestion('Enforcement Action'))
   } catch (err) {
@@ -193,7 +194,7 @@ exports.acknowledgePrivacyStatement = async agent => {
   try {
     // TODO!!!! NEED TO DELETE THIS!!!! Only a bandaid fix while we implement a proper solution
     await agent.context.set({
-      name: 'csa-subject-matter',
+      name: 'cse-subject-matter',
       lifespan: 999,
     })
 
