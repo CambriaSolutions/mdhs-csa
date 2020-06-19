@@ -1,6 +1,5 @@
 [
   {
-    "id": "13da0e3b-ba19-446e-8fb9-1599cd71f93e",
     "data": [
       {
         "text": "Submit Support Request",
@@ -9,6 +8,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

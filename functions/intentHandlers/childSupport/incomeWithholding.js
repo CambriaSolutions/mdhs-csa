@@ -6,7 +6,7 @@ const {
   disableInput,
 } = require('../globalFunctions')
 const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
-const { supportPaymentHistory } = require('./support.js')
+const { supportType } = require('./support.js')
 
 exports.iwoRoot = async agent => {
   try {
@@ -66,7 +66,7 @@ exports.iwoCcpaRoot = async agent => {
   } catch (err) {
     console.error(err)
   }
-} 
+}
 
 exports.iwoNoAssistance = async agent => {
   try {
@@ -384,7 +384,7 @@ exports.iwoHowLongToSend = async agent => {
 
 exports.iwoQAArrearsBalance = async agent => {
   try {
-    await supportPaymentHistory(agent)
+    await supportType(agent, 'request payment history or record')
   } catch (err) {
     console.error(err)
   }

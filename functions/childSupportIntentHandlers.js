@@ -117,7 +117,6 @@ const { closeCSCQACloseCase } = require('./intentHandlers/childSupport/closeChil
 const {
   caseQAIncreaseReview,
   caseQAGeneral,
-  caseQAGeneralSupportRequest,
   caseQAChangePersonalInfo,
   caseQACompliance,
   caseQAComplianceSupportRequest,
@@ -183,7 +182,8 @@ const {
   // supportReviseIssue,
   supportSumbitIssue,
   supportCancel,
-  supportParentsGuideCSE
+  supportParentsGuideCSE,
+  supportSubmitSupportRequest
 } = require('./intentHandlers/childSupport/support.js')
 
 // Map intents
@@ -299,11 +299,9 @@ const {
   pmtQAPaymentReduction,
   pmtQAYesPaymentReduction,
   pmtQAOver21,
-  pmtQAOver21SubmitRequest,
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
   pmtQANCPPaymentStatus,
-  pmtQANCPPaymentStatusSubmitRequest,
 } = require('./intentHandlers/childSupport/paymentsQA.js')
 
 // Stimulus Check
@@ -537,11 +535,11 @@ module.exports = {
   'cse-support-parentsGuideCSE': supportParentsGuideCSE,
   'cse-support-edit-provider-employment': supportEditProviderEmployment,
   'cse-support-report-provider-employment': supportReportProviderEmployment,
+  'cse-support-submitSupportRequest': supportSubmitSupportRequest,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
   'cse-caseQA-general': caseQAGeneral,
-  'cse-caseQA-general-support-request': caseQAGeneralSupportRequest,
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
   'cse-caseQA-compliance': caseQACompliance,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
@@ -597,11 +595,9 @@ module.exports = {
   'cse-pmtQA-payment-reduction': pmtQAPaymentReduction,
   'cse-pmtQA-yes-payment-reduction': pmtQAYesPaymentReduction,
   'cse-pmtQA-over-21': pmtQAOver21,
-  'cse-pmtQA-over-21-submit-request': pmtQAOver21SubmitRequest,
   'cse-pmtQA-employer-payment-status': pmtQAEmployerPaymentStatus,
   'cse-pmtQA-yes-employer-payment-status': pmtQAYesEmployerPaymentStatus,
   'cse-pmtQA-NCP-payment-status': pmtQANCPPaymentStatus,
-  'cse-pmtQA-NCP-payment-status-submit-request': pmtQANCPPaymentStatusSubmitRequest,
 
   // Support QA intents
   'cse-support-qa-cp-pictureId': supportQACpPictureId,
