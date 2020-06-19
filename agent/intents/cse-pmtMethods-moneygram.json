@@ -1,0 +1,50 @@
+{
+  "id": "32d071f8-f97b-4861-a7c1-eb7111e02c4c",
+  "name": "cse-pmtMethods-moneygram",
+  "auto": true,
+  "contexts": [
+    "waiting-pmtMethods-moneygram",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmtMethods-moneygram",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmtMethods-paynearme",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,39 @@
+{
+  "id": "341e919e-57ad-46ae-b89d-8441357a3418",
+  "name": "cse-visitation-prosepackets",
+  "auto": true,
+  "contexts": [
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

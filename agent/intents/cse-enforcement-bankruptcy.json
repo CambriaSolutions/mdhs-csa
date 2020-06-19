@@ -1,0 +1,39 @@
+{
+  "id": "2ac210d4-526e-449d-8e1d-3c1a1875914c",
+  "name": "cse-enforcement-bankruptcy",
+  "auto": true,
+  "contexts": [
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

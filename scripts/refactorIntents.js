@@ -28,9 +28,9 @@ const getIntentFilenames = (agentDirectory) => {
 const addCsaKbContext = (file, name) => {
     const intent = require(file);
     intent.name = name;
-    intent.contexts.push('csa-subject-matter');
+    intent.contexts.push('cse-subject-matter');
     intent.responses[0].affectedContexts.push({
-        "name": "csa-subject-matter",
+        "name": "cse-subject-matter",
         "parameters": {},
         "lifespan": 99
     });
@@ -53,7 +53,7 @@ const doIntentRenames = (intents) => {
         const pathElements = value.split('/');
         const currentFilename = pathElements.pop().split('.')[0];
         addCsaKbContext(value, currentFilename);
-        const renamedFilename = `csa-${currentFilename}`;
+        const renamedFilename = `cse-${currentFilename}`;
         renatedIntents[currentFilename] = renamedFilename;
         const path = pathElements.join('/');
 

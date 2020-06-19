@@ -1,0 +1,40 @@
+{
+  "id": "9d53906a-1321-4fc3-bb36-3cade00d875a",
+  "name": "cse-eppi-get-card",
+  "auto": true,
+  "contexts": [
+    "waiting-eppi-get-card",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

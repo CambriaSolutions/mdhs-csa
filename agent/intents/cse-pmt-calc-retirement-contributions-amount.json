@@ -1,0 +1,63 @@
+{
+  "id": "e2155d58-b142-4c17-b752-7940afd15092",
+  "name": "cse-pmt-calc-retirement-contributions-amount",
+  "auto": true,
+  "contexts": [
+    "waiting-pmt-calc-retirement-contributions-amount",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-pmt-calc-retirement-contributions-amount",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-pmt-calc-child-support-no-retirement",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [
+        {
+          "id": "979c8777-417a-4b3c-bee7-ebb580b54084",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "hasRetirementContributions",
+          "value": "$hasRetirementContributions",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

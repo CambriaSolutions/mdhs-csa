@@ -194,7 +194,7 @@ exports.acknowledgePrivacyStatement = async agent => {
   try {
     // TODO!!!! NEED TO DELETE THIS!!!! Only a bandaid fix while we implement a proper solution
     await agent.context.set({
-      name: 'csa-subject-matter',
+      name: 'cse-subject-matter',
       lifespan: 999,
     })
 
