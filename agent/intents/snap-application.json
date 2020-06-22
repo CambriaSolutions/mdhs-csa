@@ -3,7 +3,7 @@
   "name": "snap-application",
   "auto": true,
   "contexts": [
-    "snap-subjectMatter"
+    "snap-subject-matter"
   ],
   "responses": [
     {

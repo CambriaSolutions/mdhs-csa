@@ -3,7 +3,7 @@
   "name": "tanf-application",
   "auto": true,
   "contexts": [
-    "tanf-subjectMatter"
+    "tanf-subject-matter"
   ],
   "responses": [
     {

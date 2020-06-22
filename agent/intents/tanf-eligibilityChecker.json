@@ -3,7 +3,7 @@
   "name": "tanf-eligibilityChecker",
   "auto": true,
   "contexts": [
-    "tanf-subjectMatter"
+    "tanf-subject-matter"
   ],
   "responses": [
     {
