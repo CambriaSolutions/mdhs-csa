@@ -12,12 +12,11 @@ exports.cseRoot = async agent => {
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Policy Manual'))
     await agent.add(new Suggestion('Enforcement Action'))
+    await agent.add(new Suggestion('Visitation'))
+    await agent.add(new Suggestion('Stimulus Check'))
 
     // TODO do we really want to comment these out???? Not in lucid charts
-    // await agent.add(new Suggestion('Stimulus Check'))
     // await agent.add(new Suggestion('Cooperation'))
-    // await agent.add(new Suggestion('Visitation'))
-    // await agent.add(new Suggestion('Submit Support Request'))
     // await agent.add(new Suggestion('Parent\'s Guide to CSE'))
 
     await agent.context.set({
