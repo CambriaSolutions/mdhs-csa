@@ -1,26 +1,24 @@
 {
   "id": "7ec6f1f7-cad0-4ac1-87cb-fb5808542836",
-  "name": "cse-support-submitSupportRequest",
+  "name": "cse-support-submitSupportRequest-inquiry",
   "auto": true,
   "contexts": [
-    "cse-subject-matter",
-    "waiting-support-submitSupportRequest"
+    "waiting-support-submitSupportRequest-inquiry"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
