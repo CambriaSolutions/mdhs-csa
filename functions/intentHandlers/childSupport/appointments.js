@@ -1,6 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
-const { mapRoot } = require('./map.js')
+const { mapRoot } = require('../common/map.js')
 
 exports.apptsRoot = async agent => {
   try {

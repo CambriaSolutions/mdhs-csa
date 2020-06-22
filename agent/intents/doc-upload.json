@@ -1,20 +1,12 @@
 {
-  "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5a",
-  "name": "cse-map-root",
+  "id": "5f009368-a5c9-48f8-a97b-ae5650728f2e",
+  "name": "doc-upload",
   "auto": true,
-  "contexts": [
-    "cse-subject-matter"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {

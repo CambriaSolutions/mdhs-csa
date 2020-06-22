@@ -7,7 +7,7 @@ const {
 
 const { apptsRoot } = require('./appointments.js')
 const { employerRoot } = require('./employer.js')
-const { mapRoot } = require('./map.js')
+const { mapRoot } = require('../common/map.js')
 const { openCSCRoot } = require('./openChildSupportCase.js')
 const { pmtsGeneralRoot } = require('./paymentsGeneral.js')
 const { supportRoot } = require('./support.js')

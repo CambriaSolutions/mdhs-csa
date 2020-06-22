@@ -3,7 +3,7 @@
   "name": "snap-eligibilityChecker",
   "auto": true,
   "contexts": [
-    "snap-subjectMatter"
+    "snap-subject-matter"
   ],
   "responses": [
     {

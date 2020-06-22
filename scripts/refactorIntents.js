@@ -9,6 +9,9 @@ const blackListedIntents = [
   'acknowledge-privacy-statement',
   'casey-handoff',
   'Default Fallback Intent',
+  'doc-upload',
+  'map-root',
+  'map-deliver-map',
   'none-of-these',
 ]
 

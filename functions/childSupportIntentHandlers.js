@@ -189,9 +189,6 @@ const {
   supportSubmitSupportRequest
 } = require('./intentHandlers/childSupport/support.js')
 
-// Map intents
-const { mapRoot, mapDeliverMap } = require('./intentHandlers/childSupport/map.js')
-
 // Direct deposit intents
 const {
   dirDepRoot,
@@ -548,9 +545,6 @@ module.exports = {
   'cse-caseQA-compliance': caseQACompliance,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
 
-  // Map intents
-  'cse-map-root': mapRoot,
-  'cse-map-deliver-map': mapDeliverMap,
 
   // Direct deposit intents
   'cse-dirDep-root': dirDepRoot,

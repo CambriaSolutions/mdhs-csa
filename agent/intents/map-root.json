@@ -1,26 +1,22 @@
 {
-  "id": "7ec6f1f7-cad0-4ac1-87cb-fb5808542836",
-  "name": "cse-support-submitSupportRequest",
+  "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5a",
+  "name": "map-root",
   "auto": true,
-  "contexts": [
-    "cse-subject-matter",
-    "waiting-support-submitSupportRequest"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
