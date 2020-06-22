@@ -383,8 +383,10 @@ exports.supportType = async (agent, supportType) => {
 
 exports.supportSubmitSupportRequest = async (agent) => {
   try {
+    console.log('supportSubmitSupportRequest, agent:', agent)
     await agent.contexts.forEach(async context => {
       if (context.name === 'waiting-support-submitSupportRequest') {
+        console.log('supportSubmitSupportRequest, context.name === "waiting-support-submitSupportRequest", context.supportType: ', context.supportType)
         await this.supportType(agent, context.supportType)
       }
     })
