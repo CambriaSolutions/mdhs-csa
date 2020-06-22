@@ -1,14 +1,14 @@
 const { defaultFallback } = require('../globalFunctions')
 const { autoMlFallback } = require('./categorizeAndPredict')
 
-const determineSubjectMatter = async agent => {
-  const cse = agent.context.get('cse-subject-matter')
-  if (cse) {
-    return 'cse'
-  }
+// const determineSubjectMatter = async agent => {
+//   const cse = agent.context.get('cse-subject-matter')
+//   if (cse) {
+//     return 'cse'
+//   }
 
-  return 'none'
-}
+//   return 'none'
+// }
 
 exports.noneOfThese = async agent => {
   // TODO For now, treat as unhandled w/o ML.
@@ -21,9 +21,11 @@ exports.noneOfThese = async agent => {
 }
 
 exports.commonFallback = async agent => {
-  if (determineSubjectMatter(agent) === 'cse') {
-    return autoMlFallback(agent)
-  } else {
-    return defaultFallback(agent)
-  }
+  //if (determineSubjectMatter(agent) === 'cse') {
+  const cseContext = agent.context.get('cse-subject-matter')
+  console.log('CSE Context', cseContext)
+  return autoMlFallback(agent)
+  //} else {
+//    return defaultFallback(agent)
+//  }
 }
