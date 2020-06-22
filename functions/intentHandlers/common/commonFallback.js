@@ -12,7 +12,7 @@ exports.noneOfThese = async agent => {
 }
 
 exports.commonFallback = async agent => {
-  if (agent.context.get('cse-subject-matter')) {
+  if (agent.context.get('cse-subject-matter') !== undefined) {
     return autoMlFallback(agent)
   } else {
     return defaultFallback(agent)
