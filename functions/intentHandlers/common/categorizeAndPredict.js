@@ -1,7 +1,7 @@
 require('dotenv').config()
 const automl = require('@google-cloud/automl')
 const { Suggestion } = require('dialogflow-fulfillment')
-const { defaultUnhandledResponse } = require('../globalFunctions')
+const { defaultFallback } = require('../globalFunctions')
 
 // Instantiate autoML client
 const client = new automl.v1beta1.PredictionServiceClient({
@@ -180,7 +180,7 @@ exports.autoMlFallback = async agent => {
       } else {
         // The query did not return any suggestions
         // handle with default fallback language
-        await defaultUnhandledResponse(agent)
+        await defaultFallback(agent)
       }
     }
   } catch (err) {
