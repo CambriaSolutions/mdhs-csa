@@ -4,7 +4,7 @@
   "auto": true,
   "contexts": [
     "cse-subject-matter",
-    "cse-support-submitSupportRequest"
+    "waiting-support-submitSupportRequest"
   ],
   "responses": [
     {
