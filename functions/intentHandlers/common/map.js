@@ -1,6 +1,6 @@
 const { Payload } = require('dialogflow-fulfillment')
 const validator = require('validator')
-const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
+const { getGeocode, getNearestThreeLocations } = require('../childSupport/calculateGeo.js')
 const locations = require('./coordinates.json')
 const { handleEndConversation } = require('../globalFunctions')
 
