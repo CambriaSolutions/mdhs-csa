@@ -50,7 +50,7 @@ jobs:
           command: cd scripts && node populateFirestore
   deploy_functions:
     docker:
-      - image: circleci/node:10.15.0
+      - image: circleci/node
     working_directory: ~/repo/
     parameters:
       jsonKey:
@@ -109,7 +109,6 @@ jobs:
       - run:
           name: "Run geocode script"
           command: cd functions && node retrieveCoordinates
-      - run: sudo chown -R $USER /usr/local/lib/node_modules
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P << parameters.firebaseProjectID >> --only functions --token $FIREBASE_DEPLOY_TOKEN
 workflows:
