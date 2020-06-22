@@ -1,3 +1,6 @@
+const { cseRoot } = require('./intentHandlers/childSupport/cseRoot.js')
+
+// TODO REMOVE THESE???
 // Not child support intents
 const {
   notChildSupportRoot,
@@ -301,7 +304,7 @@ const {
   pmtQAOver21,
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
-  pmtQANCPPaymentStatus,
+  pmtQANCPPaymentStatus
 } = require('./intentHandlers/childSupport/paymentsQA.js')
 
 // Stimulus Check
@@ -373,6 +376,7 @@ const {
 } = require('./intentHandlers/childSupport/visitation.js')
 
 module.exports = {
+  'cse-root': cseRoot,
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
   'cse-contact-provide-phone-number': contactProvidePhoneNumber,
