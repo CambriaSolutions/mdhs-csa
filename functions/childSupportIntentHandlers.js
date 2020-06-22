@@ -186,7 +186,10 @@ const {
   supportSumbitIssue,
   supportCancel,
   supportParentsGuideCSE,
-  supportSubmitSupportRequest
+  supportSubmitSupportRequestCooperation,
+  supportSubmitSupportRequestInquiry,
+  supportSubmitSupportRequestSafety,
+  supportSubmitSupportRequestGoodCause
 } = require('./intentHandlers/childSupport/support.js')
 
 // Direct deposit intents
@@ -536,7 +539,10 @@ module.exports = {
   'cse-support-parentsGuideCSE': supportParentsGuideCSE,
   'cse-support-edit-provider-employment': supportEditProviderEmployment,
   'cse-support-report-provider-employment': supportReportProviderEmployment,
-  'cse-support-submitSupportRequest': supportSubmitSupportRequest,
+  'cse-support-submitSupportRequest-cooperation': supportSubmitSupportRequestCooperation,
+  'cse-support-submitSupportRequest-inquiry': supportSubmitSupportRequestInquiry,
+  'cse-support-submitSupportRequest-safety': supportSubmitSupportRequestSafety,
+  'cse-support-submitSupportRequest-goodCause': supportSubmitSupportRequestGoodCause,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,

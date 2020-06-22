@@ -122,9 +122,8 @@ exports.supportGoodCause = async agent => {
 
     // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
     await agent.context.set({
-      name: 'waiting-support-submitSupportRequest',
-      lifespan: 1,
-      supportType: 'good cause'
+      name: 'waiting-support-submitSupportRequest-goodCause',
+      lifespan: 1
     })
 
     await agent.context.set({
@@ -381,15 +380,33 @@ exports.supportType = async (agent, supportType) => {
   }
 }
 
-exports.supportSubmitSupportRequest = async (agent) => {
+exports.supportSubmitSupportRequestInquiry = async (agent) => {
   try {
-    console.log('supportSubmitSupportRequest, agent:', agent)
-    await agent.contexts.forEach(async context => {
-      if (context.name === 'waiting-support-submitSupportRequest') {
-        console.log('supportSubmitSupportRequest, context.name === "waiting-support-submitSupportRequest", context.supportType: ', context.supportType)
-        await this.supportType(agent, context.supportType)
-      }
-    })
+    await this.supportType(agent, 'inquiry')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+exports.supportSubmitSupportRequestCooperation = async (agent) => {
+  try {
+    await this.supportType(agent, 'cooperation')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+exports.supportSubmitSupportRequestSafety = async (agent) => {
+  try {
+    await this.supportType(agent, 'safety')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+exports.supportSubmitSupportRequestGoodCause = async (agent) => {
+  try {
+    await this.supportType(agent, 'good cause')
   } catch (e) {
     console.error(e)
   }
@@ -1006,9 +1023,8 @@ exports.supportParentReceivingCooperation = async agent => {
     await agent.add(new Suggestion('Good Cause'))
 
     await agent.context.set({
-      name: 'waiting-support-submitSupportRequest',
-      lifespan: 1,
-      supportType: 'cooperation'
+      name: 'waiting-support-submitSupportRequest-cooperation',
+      lifespan: 1
     })
 
     await agent.context.set({

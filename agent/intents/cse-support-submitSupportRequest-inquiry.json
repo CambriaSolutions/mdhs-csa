@@ -1,0 +1,33 @@
+{
+  "id": "7ec6f1f7-cad0-4ac1-87cb-fb5808542836",
+  "name": "cse-support-submitSupportRequest-inquiry",
+  "auto": true,
+  "contexts": [
+    "waiting-support-submitSupportRequest-inquiry"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

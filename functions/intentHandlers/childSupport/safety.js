@@ -30,9 +30,8 @@ exports.safety = async agent => {
     await agent.add(new Suggestion('Parent\'s Guide to CSE'))
 
     await agent.context.set({
-      name: 'waiting-support-submitSupportRequest',
-      lifespan: 1,
-      supportType: 'safety'
+      name: 'waiting-support-submitSupportRequest-safety',
+      lifespan: 1
     })
   } catch (err) {
     console.error(err)
