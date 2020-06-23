@@ -98,9 +98,7 @@ jobs:
           paths:
             - functions/node_modules
       - run:
-          name: "Add env variables and deploy"
-          # TODO: What variables can we get rid of?
-          # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
+          name: "Add env variables to functions folder"
           command: cd functions && echo
             "GOOGLE_MAPS_KEY=<< parameters.googleMapsKey >>
             SERVICE_DESK_KEY=<< parameters.serviceDeskKey >>
