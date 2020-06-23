@@ -17,14 +17,14 @@ jobs:
       agentClientEmail:
         type: string
     steps:
-      - checkout
-      - restore_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-      - run: cd scripts && npm install
-      - save_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - scripts/node_modules
+      # - checkout
+      # - restore_cache:
+      #     key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      # - run: cd scripts && npm install
+      # - save_cache:
+      #     key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      #     paths:
+      #       - scripts/node_modules
       - run:
           name: "test env variables"
           command: echo "<< parameters.agentProject >>" ${DEV_AGENT_PROJECT}
