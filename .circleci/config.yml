@@ -26,30 +26,30 @@ jobs:
           paths:
             - scripts/node_modules
       - run:
-          name: "Add env variables"
-          # TODO: Can we remove agent variables?
-          # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
-          command: cd scripts && echo
-            "AGENT_PROJECT=<< parameters.agentProject >>
-
-            AGENT_PRIVATE_KEY=<< parameters.agentPrivateKey >>
-
-            AGENT_CLIENT_EMAIL= ${<< parameters.agentClientEmail >>}
-
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
-      - run:
-          name: "Add json key file"
-          command: cd scripts && echo
-            "<< parameters.jsonKey >>" > mdhs-key.json
-      - run:
-          name: "Agent configuration"
-          command: cd agent && mv agent.<< parameters.env >>.json agent.json
-      - run:
-          name: "Restore to << parameters.env >> Dialogflow"
-          command: cd scripts && node restoreDialogflow
-      - run:
-          name: "Populate Firestore"
-          command: cd scripts && node populateFirestore
+          name: "test env variables"
+          command: echo "<< parameters.agentProject >>" ${DEV_AGENT_PROJECT}
+      # - run:
+      #     name: "Add env variables"
+      #     # TODO: Can we remove agent variables?
+      #     # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
+      #     command: cd scripts && echo
+      #       "AGENT_PROJECT=<< parameters.agentProject >>
+      #       AGENT_PRIVATE_KEY=<< parameters.agentPrivateKey >>
+      #       AGENT_CLIENT_EMAIL=<< parameters.agentClientEmail >>
+      #       GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
+      # - run:
+      #     name: "Add json key file"
+      #     command: cd scripts && echo
+      #       "<< parameters.jsonKey >>" > mdhs-key.json
+      # - run:
+      #     name: "Agent configuration"
+      #     command: cd agent && mv agent.<< parameters.env >>.json agent.json
+      # - run:
+      #     name: "Restore to << parameters.env >> Dialogflow"
+      #     command: cd scripts && node restoreDialogflow
+      # - run:
+      #     name: "Populate Firestore"
+      #     command: cd scripts && node populateFirestore
   deploy_functions:
     docker:
       - image: circleci/node
@@ -123,36 +123,36 @@ workflows:
   build_deploy:
     jobs:
       - deploy_dialogflow_agent:
-          jsonKey: $DEV_MDHS_CSA_KEY_JSON
+          jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
-          agentProject: $DEV_AGENT_PROJECT
-          agentPrivateKey: $DEV_AGENT_PRIVATE_KEY
-          agentClientEmail: $DEV_AGENT_CLIENT_EMAIL
+          agentProject: DEV_AGENT_PROJECT
+          agentPrivateKey: ${DEV_AGENT_PRIVATE_KEY}
+          agentClientEmail: ${DEV_AGENT_CLIENT_EMAIL}
           filters:
             branches:
               only:
                 - development
-      - deploy_functions:
-          jsonKey: $DEV_MDHS_CSA_KEY_JSON
-          env: "dev"
-          firebaseProjectID: $DEV_FIREBASE_PROJECT_ID
-          googleMapsKey: $DEV_GOOGLE_MAPS_KEY
-          serviceDeskKey: $DEV_SERVICE_DESK_KEY
-          serviceDeskURI: $DEV_SERVICE_DESK_URI
-          serviceDeskID: $DEV_SERVICE_DESK_ID
-          requestTypeID: $DEV_REQUEST_TYPE_ID
-          serviceDeskEnv: $DEV_SERVICE_DESK_ENV
-          analyticsURI: $DEV_ANALYTICS_URI
-          autoMLProject: $DEV_AUTOML_PROJECT
-          autoMLLocation: $DEV_AUTOML_LOCATION
-          autoMLSMModel: $DEV_AUTOML_SM_MODEL
-          autoMLCatModel: $DEV_AUTOML_CAT_MODEL
-          autoMLPrivateKey: $DEV_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: $DEV_AUTOML_CLIENT_EMAIL
-          filters:
-            branches:
-              only:
-                - development
+      # - deploy_functions:
+      #     jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
+      #     env: "dev"
+      #     firebaseProjectID: ${DEV_FIREBASE_PROJECT_ID}
+      #     googleMapsKey: ${DEV_GOOGLE_MAPS_KEY}
+      #     serviceDeskKey: ${DEV_SERVICE_DESK_KEY}
+      #     serviceDeskURI: ${DEV_SERVICE_DESK_URI}
+      #     serviceDeskID: ${DEV_SERVICE_DESK_ID}
+      #     requestTypeID: ${DEV_REQUEST_TYPE_ID}
+      #     serviceDeskEnv: ${DEV_SERVICE_DESK_ENV}
+      #     analyticsURI: ${DEV_ANALYTICS_URI}
+      #     autoMLProject: ${DEV_AUTOML_PROJECT}
+      #     autoMLLocation: ${DEV_AUTOML_LOCATION}
+      #     autoMLSMModel: ${DEV_AUTOML_SM_MODEL}
+      #     autoMLCatModel: ${DEV_AUTOML_CAT_MODEL}
+      #     autoMLPrivateKey: ${DEV_AUTOML_PRIVATE_KEY}
+      #     autoMLClientEmail: ${DEV_AUTOML_CLIENT_EMAIL}
+      #     filters:
+      #       branches:
+      #         only:
+      #           - development
       - deploy_dialogflow_agent:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
