@@ -127,7 +127,7 @@ workflows:
     jobs:
       - deploy_dialogflow_agent:
           jsonKey: DEV_MDHS_CSA_KEY_JSON
-          env: "dev"
+          env: dev
           agentProject: DEV_AGENT_PROJECT
           agentPrivateKey: DEV_AGENT_PRIVATE_KEY
           agentClientEmail: DEV_AGENT_CLIENT_EMAIL
@@ -137,7 +137,7 @@ workflows:
                 - development
       - deploy_functions:
           jsonKey: DEV_MDHS_CSA_KEY_JSON
-          env: "dev"
+          env: dev
           firebaseProjectID: DEV_FIREBASE_PROJECT_ID
           googleMapsKey: DEV_GOOGLE_MAPS_KEY
           serviceDeskKey: DEV_SERVICE_DESK_KEY
@@ -158,7 +158,7 @@ workflows:
                 - development
       - deploy_dialogflow_agent:
           jsonKey: ISD_MDHS_CSA_KEY_JSON
-          env: "isd"
+          env: isd
           agentProject: ISD_AGENT_PROJECT
           agentPrivateKey: ISD_AGENT_PRIVATE_KEY
           agentClientEmail: ISD_AGENT_CLIENT_EMAIL
@@ -168,7 +168,7 @@ workflows:
                 - isd
       - deploy_functions:
           jsonKey: ISD_MDHS_CSA_KEY_JSON
-          env: "isd"
+          env: isd
           firebaseProjectID: ISD_FIREBASE_PROJECT_ID
           googleMapsKey: STAGE_GOOGLE_MAPS_KEY
           serviceDeskKey: ISD_SERVICE_DESK_KEY
@@ -189,7 +189,7 @@ workflows:
                 - isd
       - deploy_dialogflow_agent:
           jsonKey: STAGE_MDHS_CSA_KEY_JSON
-          env: "stage"
+          env: stage
           agentProject: STAGE_AGENT_PROJECT
           agentPrivateKey: STAGE_AGENT_PRIVATE_KEY
           agentClientEmail: STAGE_AGENT_CLIENT_EMAIL
@@ -199,7 +199,7 @@ workflows:
                 - stage
       - deploy_functions:
           jsonKey: STAGE_MDHS_CSA_KEY_JSON
-          env: "stage"
+          env: stage
           firebaseProjectID: STAGE_FIREBASE_PROJECT_ID
           googleMapsKey: STAGE_GOOGLE_MAPS_KEY
           serviceDeskKey: STAGE_SERVICE_DESK_KEY
@@ -220,7 +220,7 @@ workflows:
                 - stage
       - deploy_dialogflow_agent:
           jsonKey: PROD_MDHS_CSA_KEY_JSON
-          env: "prod"
+          env: prod
           agentProject: PROD_AGENT_PROJECT
           agentPrivateKey: PROD_AGENT_PRIVATE_KEY
           agentClientEmail: PROD_AGENT_CLIENT_EMAIL
@@ -230,7 +230,7 @@ workflows:
                 - master
       - deploy_functions:
           jsonKey: PROD_MDHS_CSA_KEY_JSON
-          env: "prod"
+          env: prod
           firebaseProjectID: PROD_FIREBASE_PROJECT_ID
           googleMapsKey: PROD_GOOGLE_MAPS_KEY
           serviceDeskKey: PROD_SERVICE_DESK_KEY
