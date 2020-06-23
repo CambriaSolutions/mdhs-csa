@@ -46,9 +46,9 @@ jobs:
             "${<< parameters.jsonKey >>}" > mdhs-key.json
       - run:
           name: "Agent configuration"
-          command: cd agent && mv agent.${<< parameters.env >>}.json agent.json
+          command: cd agent && mv agent.<< parameters.env >>.json agent.json
       - run:
-          name: "Restore to ${<< parameters.env >>} Dialogflow"
+          name: "Restore to << parameters.env >> Dialogflow"
           command: cd scripts && node restoreDialogflow
       - run:
           name: "Populate Firestore"
