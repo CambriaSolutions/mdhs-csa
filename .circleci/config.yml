@@ -10,11 +10,13 @@ jobs:
         type: string # string? "${DEV_MDHS_CSA_KEY_JSON}"
       env:
         type: string # e.g. dev,
-      project:
-        type: string # e.g. csa, snap, dispatcher
+      agentProject:
+        type: string
+      agentPrivateKey:
+        type: string
+      agentClientEmail:
+        type: string
     steps:
-      - run:
-          command: echo << parameters.env >> << parameters.project >>
       - checkout
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -28,11 +30,11 @@ jobs:
           # TODO: Can we remove agent variables?
           # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
           command: cd scripts && echo
-            "AGENT_PROJECT=${DEV_AGENT_PROJECT}
+            "AGENT_PROJECT=<< parameters.agentProject >>
 
-            AGENT_PRIVATE_KEY=${DEV_AGENT_PRIVATE_KEY}
+            AGENT_PRIVATE_KEY=<< parameters.agentPrivateKey >>
 
-            AGENT_CLIENT_EMAIL=${DEV_AGENT_CLIENT_EMAIL}
+            AGENT_CLIENT_EMAIL=<< parameters.agentClientEmail >>
 
             GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
@@ -43,7 +45,7 @@ jobs:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
       - run:
-          name: "Restore to Dev Dialogflow"
+          name: "Restore to << parameters.env >> Dialogflow"
           command: cd scripts && node restoreDialogflow
       - run:
           name: "Populate Firestore"
@@ -57,17 +59,36 @@ jobs:
         description: "The key json object specified in the environment variables."
         type: string # string? "${DEV_MDHS_CSA_KEY_JSON}"
       env:
-        type: string # e.g. dev,
-      envCap:
-        type: string
-      project:
-        type: string # e.g. csa, snap, dispatcher
+        type: string # e.g. dev
       firebaseProjectID:
         type: string # e.g. mdhs-csa-dev, mdhs-csa-isd-273818 (random number used for example)
+      googleMapsKey:
+        type: string
+      serviceDeskKey:
+        type: string
+      serviceDeskURI:
+        type: string
+      serviceDeskID:
+        type: string
+      requestTypeID:
+        type: string
+      serviceDeskEnv:
+        type: string
+      analyticsURI:
+        type: string
+      autoMLProject:
+        type: string
+      autoMLLocation:
+        type: string
+      autoMLSMModel:
+        type: string
+      autoMLCatModel:
+        type: string
+      autoMLPrivateKey:
+        type: string
+      autoMLClientEmail:
+        type: string
     steps:
-      - run:
-          name: "Test dynamic parameters"
-          command: echo ${<< parameters.envCap >>_AUTOML_PROJECT}
       - checkout
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -81,31 +102,19 @@ jobs:
           # TODO: What variables can we get rid of?
           # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
           command: cd functions && echo
-            "GOOGLE_MAPS_KEY=${DEV_GOOGLE_MAPS_KEY}
-
-            SERVICE_DESK_KEY=${DEV_SERVICE_DESK_KEY}
-
-            SERVICE_DESK_URI=${DEV_SERVICE_DESK_URI}
-
-            SERVICE_DESK_ID=${DEV_SERVICE_DESK_ID}
-
-            REQUEST_TYPE_ID=${DEV_REQUEST_TYPE_ID}
-
-            SERVICE_DESK_ENV=${DEV_SERVICE_DESK_ENV}
-
-            ANALYTICS_URI=${DEV_ANALYTICS_URI}
-
-            AUTOML_PROJECT=${DEV_AUTOML_PROJECT}
-
-            AUTOML_LOCATION=${DEV_AUTOML_LOCATION}
-
-            AUTOML_SM_MODEL=${DEV_AUTOML_SM_MODEL}
-
-            AUTOML_CAT_MODEL=${DEV_AUTOML_CAT_MODEL}
-
-            AUTOML_PRIVATE_KEY=${DEV_AUTOML_PRIVATE_KEY}
-
-            AUTOML_CLIENT_EMAIL=${DEV_AUTOML_CLIENT_EMAIL}" > .env
+            "GOOGLE_MAPS_KEY=<< parameters.googleMapsKey >>
+            SERVICE_DESK_KEY=<< parameters.serviceDeskKey >>
+            SERVICE_DESK_URI=<< parameters.serviceDeskURI >>
+            SERVICE_DESK_ID=<< parameters.serviceDeskID >>
+            REQUEST_TYPE_ID=<< parameters.requestTypeID >>
+            SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>
+            ANALYTICS_URI=<< parameters.analyticsURI >>
+            AUTOML_PROJECT=<< parameters.autoMLProject >>
+            AUTOML_LOCATION=<< parameters.autoMLLocation >>
+            AUTOML_SM_MODEL=<< parameters.autoMLSMModel >>
+            AUTOML_CAT_MODEL=<< parameters.autoMLCatModel >>
+            AUTOML_PRIVATE_KEY=<< parameters.autoMLPrivateKey >>
+            AUTOML_CLIENT_EMAIL=<< parameters.autoMLClientEmail >>" > .env
       - run:
           name: "Run geocode script"
           command: cd functions && node retrieveCoordinates
@@ -118,7 +127,9 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
-          project: "csa"
+          agentProject: ${DEV_AGENT_PROJECT}
+          agentPrivateKey: ${DEV_AGENT_PRIVATE_KEY}
+          agentClientEmail: ${DEV_AGENT_CLIENT_EMAIL}
           filters:
             branches:
               only:
@@ -126,9 +137,20 @@ workflows:
       - deploy_functions:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
-          envCap: "DEV"
-          project: "csa"
-          firebaseProjectID: ${DEV_CSA_FIREBASE_PROJECT_ID}
+          firebaseProjectID: ${DEV_FIREBASE_PROJECT_ID}
+          googleMapsKey: ${DEV_GOOGLE_MAPS_KEY}
+          serviceDeskKey: ${DEV_SERVICE_DESK_KEY}
+          serviceDeskURI: ${DEV_SERVICE_DESK_URI}
+          serviceDeskID: ${DEV_SERVICE_DESK_ID}
+          requestTypeID: ${DEV_REQUEST_TYPE_ID}
+          serviceDeskEnv: ${DEV_SERVICE_DESK_ENV}
+          analyticsURI: ${DEV_ANALYTICS_URI}
+          autoMLProject: ${DEV_AUTOML_PROJECT}
+          autoMLLocation: ${DEV_AUTOML_LOCATION}
+          autoMLSMModel: ${DEV_AUTOML_SM_MODEL}
+          autoMLCatModel: ${DEV_AUTOML_CAT_MODEL}
+          autoMLPrivateKey: ${DEV_AUTOML_PRIVATE_KEY}
+          autoMLClientEmail: ${DEV_AUTOML_CLIENT_EMAIL}
           filters:
             branches:
               only:
@@ -136,7 +158,9 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
-          project: "csa"
+          agentProject: ${ISD_AGENT_PROJECT}
+          agentPrivateKey: ${ISD_AGENT_PRIVATE_KEY}
+          agentClientEmail: ${ISD_AGENT_CLIENT_EMAIL}
           filters:
             branches:
               only:
@@ -144,65 +168,83 @@ workflows:
       - deploy_functions:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
-          envCap: "ISD"
-          project: "csa"
           firebaseProjectID: ${ISD_FIREBASE_PROJECT_ID}
+          googleMapsKey: ${ISD_GOOGLE_MAPS_KEY}
+          serviceDeskKey: ${ISD_SERVICE_DESK_KEY}
+          serviceDeskURI: ${ISD_SERVICE_DESK_URI}
+          serviceDeskID: ${ISD_SERVICE_DESK_ID}
+          requestTypeID: ${ISD_REQUEST_TYPE_ID}
+          serviceDeskEnv: ${ISD_SERVICE_DESK_ENV}
+          analyticsURI: ${ISD_ANALYTICS_URI}
+          autoMLProject: ${DEV_AUTOML_PROJECT}
+          autoMLLocation: ${DEV_AUTOML_LOCATION}
+          autoMLSMModel: ${DEV_AUTOML_SM_MODEL}
+          autoMLCatModel: ${DEV_AUTOML_CAT_MODEL}
+          autoMLPrivateKey: ${DEV_AUTOML_PRIVATE_KEY}
+          autoMLClientEmail: ${DEV_AUTOML_CLIENT_EMAIL}
           filters:
             branches:
               only:
                 - isd
-      # - deploy_dev_snap_dialogflow_agent:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_dev_dispatcher_dialogflow_agent:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_dev_csa_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_dev_snap_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_dev_dispatcher_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - development
-      # - deploy_isd_dialogflow_agent:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - isd
-      # - deploy_isd_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - isd
-      # - deploy_stage_dialogflow_agent:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - stage
-      # - deploy_stage_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - stage
-      # - deploy_prod_dialogflow_agent:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      # - deploy_prod_functions:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - deploy_dialogflow_agent:
+          jsonKey: ${STAGE_MDHS_CSA_KEY_JSON}
+          env: "stage"
+          agentProject: ${STAGE_AGENT_PROJECT}
+          agentPrivateKey: ${STAGE_AGENT_PRIVATE_KEY}
+          agentClientEmail: ${STAGE_AGENT_CLIENT_EMAIL}
+          filters:
+            branches:
+              only:
+                - stage
+      - deploy_functions:
+          jsonKey: ${STAGE_MDHS_CSA_KEY_JSON}
+          env: "stage"
+          firebaseProjectID: ${STAGE_FIREBASE_PROJECT_ID}
+          googleMapsKey: ${STAGE_GOOGLE_MAPS_KEY}
+          serviceDeskKey: ${STAGE_SERVICE_DESK_KEY}
+          serviceDeskURI: ${STAGE_SERVICE_DESK_URI}
+          serviceDeskID: ${STAGE_SERVICE_DESK_ID}
+          requestTypeID: ${STAGE_REQUEST_TYPE_ID}
+          serviceDeskEnv: ${STAGE_SERVICE_DESK_ENV}
+          analyticsURI: ${STAGE_ANALYTICS_URI}
+          autoMLProject: ${STAGE_AUTOML_PROJECT}
+          autoMLLocation: ${STAGE_AUTOML_LOCATION}
+          autoMLSMModel: ${STAGE_AUTOML_SM_MODEL}
+          autoMLCatModel: ${STAGE_AUTOML_CAT_MODEL}
+          autoMLPrivateKey: ${STAGE_AUTOML_PRIVATE_KEY}
+          autoMLClientEmail: ${STAGE_AUTOML_CLIENT_EMAIL}
+          filters:
+            branches:
+              only:
+                - stage
+      - deploy_dialogflow_agent:
+          jsonKey: ${PROD_MDHS_CSA_KEY_JSON}
+          env: "prod"
+          agentProject: ${PROD_AGENT_PROJECT}
+          agentPrivateKey: ${PROD_AGENT_PRIVATE_KEY}
+          agentClientEmail: ${PROD_AGENT_CLIENT_EMAIL}
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_functions:
+          jsonKey: ${PROD_MDHS_CSA_KEY_JSON}
+          env: "prod"
+          firebaseProjectID: ${PROD_FIREBASE_PROJECT_ID}
+          googleMapsKey: ${PROD_GOOGLE_MAPS_KEY}
+          serviceDeskKey: ${PROD_SERVICE_DESK_KEY}
+          serviceDeskURI: ${PROD_SERVICE_DESK_URI}
+          serviceDeskID: ${PROD_SERVICE_DESK_ID}
+          requestTypeID: ${PROD_REQUEST_TYPE_ID}
+          serviceDeskEnv: ${PROD_SERVICE_DESK_ENV}
+          analyticsURI: ${PROD_ANALYTICS_URI}
+          autoMLProject: ${PROD_AUTOML_PROJECT}
+          autoMLLocation: ${PROD_AUTOML_LOCATION}
+          autoMLSMModel: ${PROD_AUTOML_SM_MODEL}
+          autoMLCatModel: ${PROD_AUTOML_CAT_MODEL}
+          autoMLPrivateKey: ${PROD_AUTOML_PRIVATE_KEY}
+          autoMLClientEmail: ${PROD_AUTOML_CLIENT_EMAIL}
+          filters:
+            branches:
+              only:
+                - master

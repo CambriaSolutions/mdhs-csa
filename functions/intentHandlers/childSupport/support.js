@@ -1039,7 +1039,10 @@ exports.supportParentReceivingCooperation = async agent => {
 exports.supportParentReceivingCooperationQ1 = async agent => {
   try {
     await agent.add(
-      'Parents are generally required to cooperate with child support to be eligible to receive or continuing receiving certain other benefits such as TANF, food stamps (SNAP), Medicaid, child-care, housing, and other types of benefits. The application fee for child support services does not apply to TANF, food stamps (SNAP) or Medicaid cases. Cooperation is defined as the joint action of working toward a common goal. Parents and child support staff must work together to ensure children receive the financial support they deserve. '
+      'Parents are generally required to cooperate with child support to be eligible to receive or continuing receiving certain other \
+      benefits such as TANF, food stamps (SNAP), Medicaid, child-care, housing, and other types of benefits. The application fee for \
+      child support services does not apply to TANF, food stamps (SNAP) or Medicaid cases. Cooperation is defined as the joint action \
+      of working toward a common goal. Parents and child support staff must work together to ensure children receive the financial support they deserve. '
     )
   } catch (err) {
     console.error(err)
@@ -1049,109 +1052,27 @@ exports.supportParentReceivingCooperationQ1 = async agent => {
 exports.supportParentReceivingCooperationQ2 = async agent => {
   try {
     await agent.add(
-      'The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.'
-    )
-
-    await agent.add(
-      'Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights. '
-    )
-
-    await agent.add(
-      'Child support payments help provide financial security for the child. '
-    )
-
-    await agent.add(
-      'Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. '
+      '<ul>\
+        <li>The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and \
+          psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.</li>\
+        <li>Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, \
+          and/or other government benefits, as well as inheritance rights.</li>\
+        <li>Child support payments help provide financial security for the child.</li>\
+        <li>Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. </li>\
+      </ul>'
     )
   } catch (err) {
     console.error(err)
   }
 }
-
 
 exports.supportParentReceivingCooperationQ3 = async agent => {
   try {
+    const link = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a>'
     await agent.add(
-      'The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.'
-    )
-
-    await agent.add(
-      'Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights. '
-    )
-
-    await agent.add(
-      'Child support payments help provide financial security for the child. '
-    )
-
-    await agent.add(
-      'Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. '
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-
-exports.supportParentReceivingCooperationQ4 = async agent => {
-  try {
-    await agent.add(
-      'The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.'
-    )
-
-    await agent.add(
-      'Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights. '
-    )
-
-    await agent.add(
-      'Child support payments help provide financial security for the child. '
-    )
-
-    await agent.add(
-      'Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. '
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperationQ5 = async agent => {
-  try {
-    await agent.add(
-      'The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.'
-    )
-
-    await agent.add(
-      'Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights. '
-    )
-
-    await agent.add(
-      'Child support payments help provide financial security for the child. '
-    )
-
-    await agent.add(
-      'Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. '
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperationQ6 = async agent => {
-  try {
-    await agent.add(
-      'If you fail to keep appointments, provide the requested information, or fail to appear for court or genetic testing and you are a recipient of TANF (Temporary Assistance for Needy Families) benefits, TANF assistance will be terminated for the family who fails, without good  cause, to  cooperate  with  child  support  enforcement  activities  to  establish  paternity  and  to obtain  support.  If  the  TANF  case  is  closed  because  of  failure  to  cooperate  with  child  support without  good  cause,  the  family  will  not  be  approved  for  TANF  upon  reapplication  until  child support  compliance/cooperation  is  verified  by  child  support,  or  the  family  becomes  exempt for good cause. The child support case may also be closed for non-cooperation. '
-    )
-
-    await agent.add(
-      'If you participate in SNAP (Supplemental Nutritional Assistance Program), your SNAP benefits may be reduced for failing to cooperate.  Only  the  individual  who  fails  to  cooperate with child support without good  cause,  will be disqualified for SNAP benefits in the household. The child support case may also be closed for non-cooperation.'
-    )
-
-    await agent.add(
-      'If you do not cooperate with child support, and you are not a TANF/SNAP client, your child support case will be closed.'
-    )
-
-    await agent.add(
-      'Other benefits may be impacted for failure to cooperate.'
+      `If you participate in some public assistance programs, such as TANF or SNAP (food stamps), you are generally required \
+      to cooperate with the child support program unless you have an approved good cause claim. To learn more about \
+      cooperation, good cause, and family violence protections, please ${link}.`
     )
   } catch (err) {
     console.error(err)
