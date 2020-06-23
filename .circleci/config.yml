@@ -34,8 +34,11 @@ jobs:
           # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
           command: cd scripts && echo
             "AGENT_PROJECT=${<< parameters.agentProject >>}
+
             AGENT_PRIVATE_KEY=${<< parameters.agentPrivateKey >>}
+
             AGENT_CLIENT_EMAIL=${<< parameters.agentClientEmail >>}
+
             GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
           name: "echo .env"
@@ -109,17 +112,29 @@ jobs:
           name: "Add env variables to functions folder"
           command: cd functions && echo
             "GOOGLE_MAPS_KEY=${<< parameters.googleMapsKey >>}
+
             SERVICE_DESK_KEY=${<< parameters.serviceDeskKey >>}
+
             SERVICE_DESK_URI=${<< parameters.serviceDeskURI >>}
+
             SERVICE_DESK_ID=${<< parameters.serviceDeskID >>}
+
             REQUEST_TYPE_ID=${<< parameters.requestTypeID >>}
+
             SERVICE_DESK_ENV=${<< parameters.serviceDeskEnv >>}
+
             ANALYTICS_URI=${<< parameters.analyticsURI >>}
+
             AUTOML_PROJECT=${<< parameters.autoMLProject >>}
+
             AUTOML_LOCATION=${<< parameters.autoMLLocation >>}
+
             AUTOML_SM_MODEL=${<< parameters.autoMLSMModel >>}
+
             AUTOML_CAT_MODEL=${<< parameters.autoMLCatModel >>}
+
             AUTOML_PRIVATE_KEY=${<< parameters.autoMLPrivateKey >>}
+
             AUTOML_CLIENT_EMAIL=${<< parameters.autoMLClientEmail >>}" > .env
       - run:
           name: "Run geocode script"

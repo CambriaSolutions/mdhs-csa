@@ -3,8 +3,8 @@ const fs = require('fs')
 const dialogflow = require('dialogflow')
 const JSZip = require('jszip')
 
-const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-const projectId = keyFile.project_id;
+const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+const projectId = keyFile.project_id
 const client = new dialogflow.v2.AgentsClient()
 const zip = new JSZip()
 
@@ -27,7 +27,7 @@ entityFiles.forEach(entityFile => {
 
 zip.generateAsync({ type: 'uint8array' })
   .then(function (content) {
-    console.log('Agent files zipped')    
+    console.log('Agent files zipped')
     client.restoreAgent({ parent: `projects/${projectId}`, agentContent: content })
       .then(responses => {
         const [operation] = responses
