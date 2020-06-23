@@ -1052,11 +1052,12 @@ exports.supportParentReceivingCooperationQ1 = async agent => {
 exports.supportParentReceivingCooperationQ2 = async agent => {
   try {
     await agent.add(
-      '<ul>\
-        <li>The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.</li>\
-        <li>Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights.</li>\
-        <li>Child support payments help provide financial security for the child.</li>\
-        <li>Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. </li>\
+      'The benefits of cooperation are: \
+      <ul> \
+        <li>The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.</li> \
+        <li>Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights.</li> \
+        <li>Child support payments help provide financial security for the child.</li> \
+        <li>Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. </li> \
       </ul>'
     )
   } catch (err) {
