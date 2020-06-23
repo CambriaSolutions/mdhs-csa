@@ -34,7 +34,7 @@ jobs:
 
             AGENT_PRIVATE_KEY=<< parameters.agentPrivateKey >>
 
-            AGENT_CLIENT_EMAIL=<< parameters.agentClientEmail >>
+            AGENT_CLIENT_EMAIL= ${<< parameters.agentClientEmail >>}
 
             GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
@@ -123,32 +123,32 @@ workflows:
   build_deploy:
     jobs:
       - deploy_dialogflow_agent:
-          jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
+          jsonKey: $DEV_MDHS_CSA_KEY_JSON
           env: "dev"
-          agentProject: ${DEV_AGENT_PROJECT}
-          agentPrivateKey: ${DEV_AGENT_PRIVATE_KEY}
-          agentClientEmail: ${DEV_AGENT_CLIENT_EMAIL}
+          agentProject: $DEV_AGENT_PROJECT
+          agentPrivateKey: $DEV_AGENT_PRIVATE_KEY
+          agentClientEmail: $DEV_AGENT_CLIENT_EMAIL
           filters:
             branches:
               only:
                 - development
       - deploy_functions:
-          jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
+          jsonKey: $DEV_MDHS_CSA_KEY_JSON
           env: "dev"
-          firebaseProjectID: ${DEV_FIREBASE_PROJECT_ID}
-          googleMapsKey: ${DEV_GOOGLE_MAPS_KEY}
-          serviceDeskKey: ${DEV_SERVICE_DESK_KEY}
-          serviceDeskURI: ${DEV_SERVICE_DESK_URI}
-          serviceDeskID: ${DEV_SERVICE_DESK_ID}
-          requestTypeID: ${DEV_REQUEST_TYPE_ID}
-          serviceDeskEnv: ${DEV_SERVICE_DESK_ENV}
-          analyticsURI: ${DEV_ANALYTICS_URI}
-          autoMLProject: ${DEV_AUTOML_PROJECT}
-          autoMLLocation: ${DEV_AUTOML_LOCATION}
-          autoMLSMModel: ${DEV_AUTOML_SM_MODEL}
-          autoMLCatModel: ${DEV_AUTOML_CAT_MODEL}
-          autoMLPrivateKey: ${DEV_AUTOML_PRIVATE_KEY}
-          autoMLClientEmail: ${DEV_AUTOML_CLIENT_EMAIL}
+          firebaseProjectID: $DEV_FIREBASE_PROJECT_ID
+          googleMapsKey: $DEV_GOOGLE_MAPS_KEY
+          serviceDeskKey: $DEV_SERVICE_DESK_KEY
+          serviceDeskURI: $DEV_SERVICE_DESK_URI
+          serviceDeskID: $DEV_SERVICE_DESK_ID
+          requestTypeID: $DEV_REQUEST_TYPE_ID
+          serviceDeskEnv: $DEV_SERVICE_DESK_ENV
+          analyticsURI: $DEV_ANALYTICS_URI
+          autoMLProject: $DEV_AUTOML_PROJECT
+          autoMLLocation: $DEV_AUTOML_LOCATION
+          autoMLSMModel: $DEV_AUTOML_SM_MODEL
+          autoMLCatModel: $DEV_AUTOML_CAT_MODEL
+          autoMLPrivateKey: $DEV_AUTOML_PRIVATE_KEY
+          autoMLClientEmail: $DEV_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
