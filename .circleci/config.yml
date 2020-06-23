@@ -169,7 +169,7 @@ workflows:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
           firebaseProjectID: ${ISD_FIREBASE_PROJECT_ID}
-          googleMapsKey: ${ISD_GOOGLE_MAPS_KEY}
+          googleMapsKey: ${STAGE_GOOGLE_MAPS_KEY}
           serviceDeskKey: ${ISD_SERVICE_DESK_KEY}
           serviceDeskURI: ${ISD_SERVICE_DESK_URI}
           serviceDeskID: ${ISD_SERVICE_DESK_ID}
