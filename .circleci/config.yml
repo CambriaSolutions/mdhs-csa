@@ -10,8 +10,6 @@ jobs:
         type: string # string? "${DEV_MDHS_CSA_KEY_JSON}"
       env:
         type: string # e.g. dev,
-      projectSM:
-        type: string # e.g. cse, snap, dispatcher
       agentProject:
         type: string
       agentPrivateKey:
@@ -19,8 +17,6 @@ jobs:
       agentClientEmail:
         type: string
     steps:
-      - run:
-          command: echo << parameters.env >> << parameters.projectSM >>
       - checkout
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -63,11 +59,7 @@ jobs:
         description: "The key json object specified in the environment variables."
         type: string # string? "${DEV_MDHS_CSA_KEY_JSON}"
       env:
-        type: string # e.g. dev,
-      envCap:
-        type: string
-      projectSM:
-        type: string # e.g. csa, snap, dispatcher
+        type: string # e.g. dev
       firebaseProjectID:
         type: string # e.g. mdhs-csa-dev, mdhs-csa-isd-273818 (random number used for example)
       googleMapsKey:
@@ -97,9 +89,6 @@ jobs:
       autoMLClientEmail:
         type: string
     steps:
-      - run:
-          name: "Test dynamic parameters"
-          command: echo ${<< parameters.envCap >>_AUTOML_PROJECT}
       - checkout
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -138,7 +127,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
-          projectSM: "csa"
           agentProject: ${DEV_AGENT_PROJECT}
           agentPrivateKey: ${DEV_AGENT_PRIVATE_KEY}
           agentClientEmail: ${DEV_AGENT_CLIENT_EMAIL}
@@ -149,9 +137,7 @@ workflows:
       - deploy_functions:
           jsonKey: ${DEV_MDHS_CSA_KEY_JSON}
           env: "dev"
-          envCap: "DEV"
-          projectSM: "csa"
-          firebaseProjectID: ${DEV_CSA_FIREBASE_PROJECT_ID}
+          firebaseProjectID: ${DEV_FIREBASE_PROJECT_ID}
           googleMapsKey: ${DEV_GOOGLE_MAPS_KEY}
           serviceDeskKey: ${DEV_SERVICE_DESK_KEY}
           serviceDeskURI: ${DEV_SERVICE_DESK_URI}
@@ -172,7 +158,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
-          projectSM: "csa"
           agentProject: ${ISD_AGENT_PROJECT}
           agentPrivateKey: ${ISD_AGENT_PRIVATE_KEY}
           agentClientEmail: ${ISD_AGENT_CLIENT_EMAIL}
@@ -183,8 +168,6 @@ workflows:
       - deploy_functions:
           jsonKey: ${ISD_MDHS_CSA_KEY_JSON}
           env: "isd"
-          envCap: "ISD"
-          projectSM: "csa"
           firebaseProjectID: ${ISD_FIREBASE_PROJECT_ID}
           googleMapsKey: ${ISD_GOOGLE_MAPS_KEY}
           serviceDeskKey: ${ISD_SERVICE_DESK_KEY}
@@ -206,7 +189,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${STAGE_MDHS_CSA_KEY_JSON}
           env: "stage"
-          projectSM: "csa"
           agentProject: ${STAGE_AGENT_PROJECT}
           agentPrivateKey: ${STAGE_AGENT_PRIVATE_KEY}
           agentClientEmail: ${STAGE_AGENT_CLIENT_EMAIL}
@@ -217,8 +199,6 @@ workflows:
       - deploy_functions:
           jsonKey: ${STAGE_MDHS_CSA_KEY_JSON}
           env: "stage"
-          envCap: "STAGE"
-          projectSM: "csa"
           firebaseProjectID: ${STAGE_FIREBASE_PROJECT_ID}
           googleMapsKey: ${STAGE_GOOGLE_MAPS_KEY}
           serviceDeskKey: ${STAGE_SERVICE_DESK_KEY}
@@ -240,7 +220,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ${PROD_MDHS_CSA_KEY_JSON}
           env: "prod"
-          projectSM: "csa"
           agentProject: ${PROD_AGENT_PROJECT}
           agentPrivateKey: ${PROD_AGENT_PRIVATE_KEY}
           agentClientEmail: ${PROD_AGENT_CLIENT_EMAIL}
@@ -250,9 +229,7 @@ workflows:
                 - master
       - deploy_functions:
           jsonKey: ${PROD_MDHS_CSA_KEY_JSON}
-          env: "stage"
-          envCap: "PROD"
-          projectSM: "csa"
+          env: "prod"
           firebaseProjectID: ${PROD_FIREBASE_PROJECT_ID}
           googleMapsKey: ${PROD_GOOGLE_MAPS_KEY}
           serviceDeskKey: ${PROD_SERVICE_DESK_KEY}
