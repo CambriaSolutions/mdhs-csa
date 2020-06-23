@@ -42,8 +42,10 @@ jobs:
           command: cd scripts && cat .env
       - run:
           name: "Add json key file"
-          command: cd scripts && echo
-            "${<< parameters.jsonKey >>}" > mdhs-key.json
+          command: cd scripts && echo "<< parameters.jsonKey >>" > mdhs-key.json
+      - run:
+          name: "echo mdhs-key.json"
+          command: cd scripts && cat mdhs-key.json
       - run:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
