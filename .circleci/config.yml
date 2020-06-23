@@ -29,9 +29,6 @@ jobs:
           name: "test env variables"
           command: echo ${<< parameters.agentProject >>} ${DEV_AGENT_PROJECT}
       - run:
-          name: "test env variables"
-          command: echo ${<< parameters.agentProject >>} ${DEV_AGENT_PROJECT}
-      - run:
           name: "Add env variables"
           # TODO: Can we remove agent variables?
           # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
@@ -40,6 +37,9 @@ jobs:
             AGENT_PRIVATE_KEY=${<< parameters.agentPrivateKey >>}
             AGENT_CLIENT_EMAIL=${<< parameters.agentClientEmail >>}
             GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
+      - run:
+          name: "echo .env"
+          command: cd scripts && cat .env
       - run:
           name: "Add json key file"
           command: cd scripts && echo
