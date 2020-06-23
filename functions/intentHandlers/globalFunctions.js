@@ -206,36 +206,38 @@ exports.welcome = async agent => {
   }
 }
 
+exports.selectSubjectMatter = async agent => {
+  await agent.add(new Suggestion('Child Support'))
+  await agent.add(new Suggestion('TANF'))
+  await agent.add(new Suggestion('SNAP'))
+
+  await this.disableInput(agent)
+
+  await agent.context.set({
+    name: 'cse-subject-matter',
+    lifespan: 0,
+  })
+
+  await agent.context.set({
+    name: 'tanf-subject-matter',
+    lifespan: 0,
+  })
+
+  await agent.context.set({
+    name: 'snap-subject-matter',
+    lifespan: 0,
+  })
+
+  await agent.context.set({
+    name: 'waiting-subjectMatter',
+    lifespan: 1,
+  })
+}
+
 exports.acknowledgePrivacyStatement = async agent => {
   try {
     await agent.add('Great! Select one of the options below.')
-
-    await agent.add(new Suggestion('Child Support'))
-    await agent.add(new Suggestion('TANF'))
-    await agent.add(new Suggestion('SNAP'))
-
-    await this.disableInput(agent)
-
-    await agent.context.set({
-      name: 'cse-subject-matter',
-      lifespan: 0,
-    })
-
-    await agent.context.set({
-      name: 'tanf-subject-matter',
-      lifespan: 0,
-    })
-
-    await agent.context.set({
-      name: 'snap-subject-matter',
-      lifespan: 0,
-    })
-
-    await agent.context.set({
-      name: 'waiting-subjectMatter',
-      lifespan: 1,
-    })
-
+    await this.selectSubjectMatter(agent)
     // await this.startRootConversation(agent)
   } catch (err) {
     console.error(err)
@@ -245,18 +247,9 @@ exports.acknowledgePrivacyStatement = async agent => {
 // Handle startOfConversation
 exports.startRootConversation = async agent => {
   try {
-    await agent.add('What can I help you with?')
-    await agent.add(new Suggestion('Common Requests'))
-    await agent.add(new Suggestion('Appointments'))
-    await agent.add(new Suggestion('Payments'))
-    await agent.add(new Suggestion('Employer'))
-    await agent.add(new Suggestion('Opening a Child Support Case'))
-    await agent.add(new Suggestion('Office Locations'))
-    await agent.add(new Suggestion('Policy Manual'))
-    await agent.add(new Suggestion('Stimulus Check'))
-    await agent.add(new Suggestion('Cooperation'))
-    await agent.add(new Suggestion('Visitation'))
-    await agent.add(new Suggestion('Enforcement Action'))
+    await agent.add('Select one of the options below.')
+    await this.selectSubjectMatter(agent)
+    // await this.startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
