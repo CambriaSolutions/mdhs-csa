@@ -109,7 +109,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
   const prevIntents = agent.context.get('previous-agent-states')
 
   const maskFunction = async agent => {
-    await currentIntentFulfillmentFunction(agent)
+    await currentIntentFullfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
       lifespan: 1,
