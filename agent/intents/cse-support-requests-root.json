@@ -1,0 +1,60 @@
+{
+  "id": "f03b1c46-180e-4c35-a70b-24320333476d",
+  "name": "cse-support-requests-root",
+  "auto": true,
+  "contexts": [
+    "waiting-support-requests",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-support-requests",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-payments",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-general",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-support-change",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

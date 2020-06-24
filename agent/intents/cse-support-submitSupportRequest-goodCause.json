@@ -1,0 +1,33 @@
+{
+  "id": "779e971e-7488-42ee-b118-0c43db427061",
+  "name": "cse-support-submitSupportRequest-goodCause",
+  "auto": true,
+  "contexts": [
+    "waiting-support-submitSupportRequest-goodCause"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
