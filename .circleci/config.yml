@@ -41,17 +41,8 @@ jobs:
 
             GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
-          name: "echo .env"
-          command: cd scripts && cat .env
-      - run:
-          name: "echo jsonKey"
-          command: echo ${<< parameters.jsonKey >>}
-      - run:
           name: "echo mdhs-key.json"
           command: cd scripts && echo "${<< parameters.jsonKey >>}" > mdhs-key.json
-      - run:
-          name: "echo mdhs-key.json"
-          command: cd scripts && cat mdhs-key.json
       - run:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
