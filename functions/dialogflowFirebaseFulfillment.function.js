@@ -14,17 +14,10 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-const isActionRequested = (agent, action) => {
-  if (agent.parameters !== undefined) {
-    const values = Object.values(agent.parameters)
-    for (const index in values) {
-      const value = values[index]
-      if (value !== undefined && (typeof value === 'string' || value instanceof String)) {
-        if(value.toLowerCase() === action.toLowerCase()) {
-          return true
-        }
-      }
-    }
+const isActionRequested = (body, action) => {
+  if (body.queryResult !== undefined && body.queryResult.queryText !== undefined)
+  {
+    return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
   }
 
   return false
@@ -65,9 +58,9 @@ exports = module.exports = functions
 
       // Check to see if we need to override the target intent
       // In case of Home and Go Back this may be needed during parameter entry.
-      if (isActionRequested(agent, 'Home')) {
+      if (isActionRequested(request.body, 'Home') && agent.contexts.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
-      } else if (isActionRequested(agent, 'Go Back')) {
+      } else if (isActionRequested(request.body, 'Go Back') && agent.contexts.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       } 
       
