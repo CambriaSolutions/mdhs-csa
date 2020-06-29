@@ -17,8 +17,11 @@ const runtimeOpts = {
 const isRestartRequested = (agent) => {
   if (agent.parameters !== undefined) {
     for (const key in Object.keys(agent.parameters)) {
-      if(agent.parameters[key].toLowerCase() === 'home') {
-        return true
+      const val = agent.parameters[key]
+      if (val !== undefined && (typeof val === 'string' || val instanceof String)) {
+        if(val.toLowerCase() === 'home') {
+          return true
+        }
       }
     }
   }
