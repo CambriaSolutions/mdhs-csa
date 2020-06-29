@@ -58,9 +58,9 @@ exports = module.exports = functions
 
       // Check to see if we need to override the target intent
       // In case of Home and Go Back this may be needed during parameter entry.
-      if (isActionRequested(request.body, 'Home') && agent.contexts.get('waiting-global-restart') !== undefined) {
+      if (isActionRequested(request.body, 'Home') && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
-      } else if (isActionRequested(request.body, 'Go Back') && agent.contexts.get('waiting-go-back') !== undefined) {
+      } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       } 
       
