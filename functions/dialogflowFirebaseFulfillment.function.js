@@ -3,7 +3,7 @@ const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
-//const { globalRestart } = require('./intentHandlers/globalFunctions')
+const { globalRestart } = require('./intentHandlers/globalFunctions')
 const globalIntentHandlers = require('./globalIntentHandlers')
 const commonIntentHandlers = require('./commonIntentHandlers')
 const childSupportIntentHandlers = require('./childSupportIntentHandlers')
@@ -15,16 +15,13 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
-const isRestartRequested = (agent) => {
+const isActionRequested = (agent, action) => {
   if (agent.parameters !== undefined) {
     const values = Object.values(agent.parameters)
     for (const index in values) {
       const value = values[index]
-      console.log(`Parameter: ${value} is a ${typeof value}`)
       if (value !== undefined && (typeof value === 'string' || value instanceof String)) {
-        console.log(`Checking ${value} to look for 'home'`)
-        if(value.toLowerCase() === 'home') {
-          console.log('Restart triggered')
+        if(value.toLowerCase() === action.toLowerCase()) {
           return true
         }
       }
@@ -32,6 +29,14 @@ const isRestartRequested = (agent) => {
   }
 
   return false
+}
+
+const isRestartRequested = (agent) => {
+  return isActionRequested(agent, 'Home')
+}
+
+const isGoBackRequested = (agent) => {
+  return isActionRequested(agent, 'Go Back')
 }
 
 exports = module.exports = functions
@@ -69,10 +74,13 @@ exports = module.exports = functions
 
       if (isRestartRequested(agent)) {
         agent.intent = 'global-restart'
-        agent.parameters = {}
+        await agent.handleRequest(new Map([agent.intent, globalRestart]))
+      } else if (isGoBackRequested(agent)) {
+        agent.intent = 'go-back'
+        await agent.handleRequest(new Map([agent.intent, backIntent]))
+      } else {
+        await agent.handleRequest(new Map(Object.entries(intentHandlers)))
       }
-      
-      await agent.handleRequest(new Map(Object.entries(intentHandlers)))
       
     } catch (e) {
       console.error(e)
