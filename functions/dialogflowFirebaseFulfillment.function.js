@@ -3,7 +3,7 @@ const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
-const { globalRestart } = require('./intentHandlers/globalFunctions')
+//const { globalRestart } = require('./intentHandlers/globalFunctions')
 const globalIntentHandlers = require('./globalIntentHandlers')
 const commonIntentHandlers = require('./commonIntentHandlers')
 const childSupportIntentHandlers = require('./childSupportIntentHandlers')
@@ -68,10 +68,12 @@ exports = module.exports = functions
       ])
 
       if (isRestartRequested(agent)) {
-        await globalRestart(agent)
-      } else {
-        await agent.handleRequest(new Map(Object.entries(intentHandlers)))
+        agent.intent = 'global-restart'
+        agent.parameters = {}
       }
+      
+      await agent.handleRequest(new Map(Object.entries(intentHandlers)))
+      
     } catch (e) {
       console.error(e)
     }
