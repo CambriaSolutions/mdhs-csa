@@ -14,6 +14,15 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
+const isActionRequested = (body, action) => {
+  if (body.queryResult !== undefined && body.queryResult.queryText !== undefined)
+  {
+    return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
+  }
+
+  return false
+}
+
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest(async (request, response) => {
@@ -37,8 +46,8 @@ exports = module.exports = functions
         'cse-support-submit-issue',
       ]
 
-      const agent = new WebhookClient({ request, response })
-
+      let agent = new WebhookClient({ request, response })
+      
       await backIntent(agent, intentHandlers, resetBackIntentList)
       await home(agent, intentHandlers, [
         'Default Welcome Intent',
@@ -47,7 +56,15 @@ exports = module.exports = functions
         'acknowledge-privacy-statement'
       ])
 
-      await agent.handleRequest(new Map(Object.entries(intentHandlers)))
+      // Check to see if we need to override the target intent
+      // In case of Home and Go Back this may be needed during parameter entry.
+      if (isActionRequested(request.body, 'Home') && agent.context.get('waiting-global-restart') !== undefined) {
+        agent.intent = 'global-restart'
+      } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
+        agent.intent = 'go-back'
+      } 
+      
+      await agent.handleRequest(new Map(Object.entries(intentHandlers)))      
     } catch (e) {
       console.error(e)
     }

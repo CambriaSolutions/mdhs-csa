@@ -26,9 +26,6 @@ jobs:
           paths:
             - scripts/node_modules
       - run:
-          name: "test env variables"
-          command: echo ${<< parameters.agentProject >>} ${DEV_AGENT_PROJECT}
-      - run:
           name: "Add env variables"
           # TODO: Can we remove agent variables?
           # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
