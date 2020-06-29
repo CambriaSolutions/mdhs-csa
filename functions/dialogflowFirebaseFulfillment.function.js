@@ -17,6 +17,7 @@ const runtimeOpts = {
 const isRestartRequested = (agent) => {
   if (agent.parameters !== undefined) {
     for (const value in Object.values(agent.parameters)) {
+      console.log(`Parameter: ${value} is a ${typeof value}`)
       if (value !== undefined && (typeof value === 'string' || value instanceof String)) {
         console.log(`Checking ${value} to look for 'home'`)
         if(value.toLowerCase() === 'home') {
