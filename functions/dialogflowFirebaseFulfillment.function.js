@@ -16,11 +16,10 @@ const runtimeOpts = {
 
 const isRestartRequested = (agent) => {
   if (agent.parameters !== undefined) {
-    for (const key in Object.keys(agent.parameters)) {
-      const val = agent.parameters[key]
-      if (val !== undefined && (typeof val === 'string' || val instanceof String)) {
-        console.log(`Checking ${val} to look for 'home'`)
-        if(val.toLowerCase() === 'home') {
+    for (const value in Object.values(agent.parameters)) {
+      if (value !== undefined && (typeof value === 'string' || value instanceof String)) {
+        console.log(`Checking ${value} to look for 'home'`)
+        if(value.toLowerCase() === 'home') {
           console.log('Restart triggered')
           return true
         }
