@@ -14,6 +14,18 @@ const runtimeOpts = {
   memory: '2GB',
 }
 
+const isRestartRequested = (agent) => {
+  if (agent.parameters !== undefined) {
+    for (const key in Object.keys(agent.parameters)) {
+      if(agent.parameters[key].toLowerCase() === 'home') {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest(async (request, response) => {
@@ -38,8 +50,7 @@ exports = module.exports = functions
       ]
 
       const agent = new WebhookClient({ request, response })
-      console.log(`Incoming Intent: ${agent.intent} with ${JSON.stringify(agent.parameters)}`)
-
+      
       await backIntent(agent, intentHandlers, resetBackIntentList)
       await home(agent, intentHandlers, [
         'Default Welcome Intent',
@@ -47,6 +58,11 @@ exports = module.exports = functions
         'global-restart',
         'acknowledge-privacy-statement'
       ])
+
+      if (isRestartRequested(agent)) {
+        // Overrident incoming intent with global-restart
+        agent.intent.name = 'global-restart'
+      }
 
       await agent.handleRequest(new Map(Object.entries(intentHandlers)))
     } catch (e) {
