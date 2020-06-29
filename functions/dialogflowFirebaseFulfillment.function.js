@@ -19,7 +19,9 @@ const isRestartRequested = (agent) => {
     for (const key in Object.keys(agent.parameters)) {
       const val = agent.parameters[key]
       if (val !== undefined && (typeof val === 'string' || val instanceof String)) {
+        console.log(`Checking ${val} to look for 'home'`)
         if(val.toLowerCase() === 'home') {
+          console.log('Restart triggered')
           return true
         }
       }
