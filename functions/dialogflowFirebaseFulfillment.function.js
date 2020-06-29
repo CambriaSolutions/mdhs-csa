@@ -38,6 +38,7 @@ exports = module.exports = functions
       ]
 
       const agent = new WebhookClient({ request, response })
+      console.log(`Incoming Intent: ${agent.intent}`)
 
       await backIntent(agent, intentHandlers, resetBackIntentList)
       await home(agent, intentHandlers, [
