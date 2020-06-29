@@ -62,7 +62,7 @@ exports = module.exports = functions
         'cse-support-submit-issue',
       ]
 
-      const agent = new WebhookClient({ request, response })
+      let agent = new WebhookClient({ request, response })
       
       await backIntent(agent, intentHandlers, resetBackIntentList)
       await home(agent, intentHandlers, [
@@ -74,10 +74,14 @@ exports = module.exports = functions
 
       if (isRestartRequested(agent)) {
         agent.intent = 'global-restart'
-        await agent.handleRequest(new Map([agent.intent, globalRestart]))
+        let intentMap = new Map()
+        intentMap.set(agent.intent, globalRestart)
+        await agent.handleRequest(intentMap)
       } else if (isGoBackRequested(agent)) {
         agent.intent = 'go-back'
-        await agent.handleRequest(new Map([agent.intent, backIntent]))
+        let intentMap = new Map()
+        intentMap.set(agent.intent, backIntent)
+        await agent.handleRequest(intentMap)
       } else {
         await agent.handleRequest(new Map(Object.entries(intentHandlers)))
       }
