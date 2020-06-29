@@ -3,7 +3,6 @@ const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('./intentHandlers/back')
 const home = require('./intentHandlers/home')
-//const { globalRestart } = require('./intentHandlers/globalFunctions')
 const globalIntentHandlers = require('./globalIntentHandlers')
 const commonIntentHandlers = require('./commonIntentHandlers')
 const childSupportIntentHandlers = require('./childSupportIntentHandlers')
@@ -29,14 +28,6 @@ const isActionRequested = (agent, action) => {
   }
 
   return false
-}
-
-const isRestartRequested = (agent) => {
-  return isActionRequested(agent, 'Home')
-}
-
-const isGoBackRequested = (agent) => {
-  return isActionRequested(agent, 'Go Back')
 }
 
 exports = module.exports = functions
@@ -72,21 +63,15 @@ exports = module.exports = functions
         'acknowledge-privacy-statement'
       ])
 
-      if (isRestartRequested(agent)) {
+      // Check to see if we need to override the target intent
+      // In case of Home and Go Back this may be needed during parameter entry.
+      if (isActionRequested(agent, 'Home')) {
         agent.intent = 'global-restart'
-        // let intentMap = new Map()
-        // intentMap.set(agent.intent, globalRestart)
-        // await agent.handleRequest(intentMap)
-      } else if (isGoBackRequested(agent)) {
+      } else if (isActionRequested(agent, 'Go Back')) {
         agent.intent = 'go-back'
-        // let intentMap = new Map()
-        // intentMap.set(agent.intent, backIntent)
-        // await agent.handleRequest(intentMap)
       } 
-      // else {
-      await agent.handleRequest(new Map(Object.entries(intentHandlers)))
-      // }
       
+      await agent.handleRequest(new Map(Object.entries(intentHandlers)))      
     } catch (e) {
       console.error(e)
     }
