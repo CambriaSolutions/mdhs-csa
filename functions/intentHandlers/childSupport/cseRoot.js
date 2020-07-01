@@ -14,6 +14,7 @@ exports.cseRoot = async agent => {
     await agent.add(new Suggestion('Enforcement Action'))
     await agent.add(new Suggestion('Stimulus Check'))
     await agent.add(new Suggestion('Visitation'))
+    await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('Cooperation'))
 
     await agent.context.set({

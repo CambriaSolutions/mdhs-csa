@@ -42,6 +42,7 @@ exports.supportParentReceiving = async agent => {
     await agent.add(new Suggestion('Cooperation'))
     await agent.add(new Suggestion('Safety'))
     await agent.add(new Suggestion('Good Cause'))
+    await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('More'))
 
     await agent.context.set({
@@ -1020,6 +1021,7 @@ exports.supportParentReceivingCooperation = async agent => {
 
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.add(new Suggestion('Safety'))
+    await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('Good Cause'))
 
     await agent.context.set({
