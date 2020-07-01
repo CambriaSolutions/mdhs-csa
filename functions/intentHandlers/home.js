@@ -11,7 +11,7 @@ module.exports = async (agent, intentMap, exclusionList = []) => {
       // Necessary to overwrite @sys.any
       await agent.context.set({
         name: 'waiting-global-restart',
-        lifespan: 1,
+        lifespan: 999,
       })
     }
   }

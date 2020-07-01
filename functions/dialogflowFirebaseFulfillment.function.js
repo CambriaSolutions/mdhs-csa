@@ -46,15 +46,14 @@ exports = module.exports = functions
         'cse-support-submit-issue',
       ]
 
-      let agent = new WebhookClient({ request, response })
-      
-      await backIntent(agent, intentHandlers, resetBackIntentList)
-      await home(agent, intentHandlers, [
+      const resetHomeIntentList = [
         'Default Welcome Intent',
         'restart-conversation',
         'global-restart',
         'acknowledge-privacy-statement'
-      ])
+      ]
+
+      const agent = new WebhookClient({ request, response })
 
       // Check to see if we need to override the target intent
       // In case of Home and Go Back this may be needed during parameter entry.
@@ -63,6 +62,9 @@ exports = module.exports = functions
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       } 
+
+      await backIntent(agent, intentHandlers, resetBackIntentList)
+      await home(agent, intentHandlers, resetHomeIntentList)
       
       await agent.handleRequest(new Map(Object.entries(intentHandlers)))      
     } catch (e) {
