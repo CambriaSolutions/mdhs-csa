@@ -5,6 +5,8 @@
     "serve": "firebase serve --only functions --port=9000",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
+    "emulator-dev": "firebase emulators:start --only functions --project dev",
+    "emulator-dev-debug": "firebase emulators:start --only functions --project dev --inspect-functions",
     "deploy": "node retrieveCoordinates && firebase deploy --only functions",
     "deploy-dev": "node retrieveCoordinates && firebase deploy --only functions --project dev",
     "deploy-dev-beta": "node retrieveCoordinates && firebase deploy --only functions --project dev-beta",
