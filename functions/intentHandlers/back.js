@@ -112,7 +112,7 @@ const fullfillmentWrapper = (agent, intentMap) => {
     await currentIntentFullfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
-      lifespan: 1,
+      lifespan: 999,
     })
     if (prevIntents.parameters.userConversationPath.length > 1) {
       await agent.add(new Suggestion('Go Back'))

@@ -67,3 +67,6 @@ functions/analyticsKey.json
 **/keys/
 scripts/export/
 content/
+
+emulate-firebase.bat
+ngrok.bat
