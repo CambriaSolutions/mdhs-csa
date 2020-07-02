@@ -413,6 +413,14 @@ exports.supportSubmitSupportRequestGoodCause = async (agent) => {
   }
 }
 
+exports.supportSubmitSupportRequestVerification = async (agent) => {
+  try {
+    await this.supportType(agent, 'verification')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 exports.supportCollectFirstName = async agent => {
   const firstName = agent.parameters.firstName
   const ticketInfoParams = {
