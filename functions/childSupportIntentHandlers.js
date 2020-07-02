@@ -544,7 +544,7 @@ module.exports = {
   'cse-support-submitSupportRequest-inquiry': supportSubmitSupportRequestInquiry,
   'cse-support-submitSupportRequest-safety': supportSubmitSupportRequestSafety,
   'cse-support-submitSupportRequest-goodCause': supportSubmitSupportRequestGoodCause,
-  'cse-support-submitSupportRequest-vertification': supportSubmitSupportRequestVerification,
+  'cse-support-submitSupportRequest-verification': supportSubmitSupportRequestVerification,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
