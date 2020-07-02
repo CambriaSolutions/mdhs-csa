@@ -13,7 +13,7 @@ exports.verification = async agent => {
     await agent.add(new Suggestion('Submit Feedback'))    
 
     await agent.context.set({
-      name: 'waiting-support-submitSupportRequest-inquiry',
+      name: 'waiting-cse-support-submitSupportRequest-vertification',
       lifespan: 2
     })
     await agent.context.set({

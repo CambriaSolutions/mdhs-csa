@@ -1,0 +1,39 @@
+{
+  "id": "fcc5f3b4-a35a-4db5-bd06-27ccdc80353c",
+  "name": "cse-support-submitSupportRequest-vertification",
+  "auto": true,
+  "contexts": [
+    "waiting-cse-support-submitSupportRequest-vertification"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "waiting-cse-support-submitSupportRequest-vertification",
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
