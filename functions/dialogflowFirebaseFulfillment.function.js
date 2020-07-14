@@ -15,8 +15,7 @@ const runtimeOpts = {
 }
 
 const isActionRequested = (body, action) => {
-  if (body.queryResult !== undefined && body.queryResult.queryText !== undefined)
-  {
+  if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
   }
 
@@ -61,12 +60,12 @@ exports = module.exports = functions
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
-      } 
+      }
 
       await backIntent(agent, intentHandlers, resetBackIntentList)
       await home(agent, intentHandlers, resetHomeIntentList)
-      
-      await agent.handleRequest(new Map(Object.entries(intentHandlers)))      
+
+      await agent.handleRequest(new Map(Object.entries(intentHandlers)))
     } catch (e) {
       console.error(e)
     }
@@ -82,3 +81,4 @@ exports = module.exports = functions
       console.error(e)
     }
   })
+

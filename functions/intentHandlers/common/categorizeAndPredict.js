@@ -24,6 +24,7 @@ const predictCategories = async query => {
       process.env.AUTOML_LOCATION,
       process.env.AUTOML_CAT_MODEL
     )
+    
     const payload = {
       textSnippet: {
         content: query,
