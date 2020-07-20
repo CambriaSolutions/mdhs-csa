@@ -41,7 +41,7 @@ const cseLocations = [
 
 // Create an array of SNAP and TANF locations to send to the geocode api. SNAP and TANF have the same offices.
 const snapTanfLocations = [
-  '1901 Commonwealth Ln, Tallahassee, FL 32303'
+  '108 S. Whitworth Ave Brookhaven, MS 39601'
 ]
 
 // Send the address to the geocode api to return the latitude, longitude and placeId
