@@ -124,11 +124,36 @@ jobs:
             AUTOML_PRIVATE_KEY=${<< parameters.autoMLPrivateKey >>}
 
             AUTOML_CLIENT_EMAIL=${<< parameters.autoMLClientEmail >>}" > .env
-      - run:
-          name: "Run geocode script"
-          command: cd functions && node retrieveCoordinates
+
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P ${<< parameters.firebaseProjectID >>} --only functions --token $FIREBASE_DEPLOY_TOKEN
+
+generate_coordinates:
+  docker:
+    - image: circleci/node
+  working_directory: ~/repo/
+  steps:
+    - checkout
+    - restore_cache:
+        key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+    - run: cd functions && npm install
+    - save_cache:
+        key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+        paths:
+          - functions/node_modules
+    - run:
+        name: "Add env variables to scripts folder"
+        command: cd scripts && echo "GOOGLE_MAPS_KEY=${DEV_GOOGLE_MAPS_KEY}" > .env
+    - run:
+        name: "Run geocode script"
+        command: cd scripts && node generateCoordinates
+    - run:
+        name: "Print snap coordinates"
+        command: cd functions/coordinates && echo snap.json
+    - run:
+        name: "Print tanf coordinates"
+        command: cd functions/coordinates && echo tanf.json
+
 workflows:
   version: 2
   build_deploy:
@@ -257,3 +282,8 @@ workflows:
             branches:
               only:
                 - master
+      - generate_coordinates:
+          filters:
+            branches:
+              only:
+                - feature/354-office-locations-snaptanf
