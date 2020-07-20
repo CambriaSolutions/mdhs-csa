@@ -1,20 +1,14 @@
 {
-  "id": "3f583c4d-1d2f-4033-8a8c-8c89ed8964ff",
-  "name": "cse-emancipation-qa-age",
+  "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5t",
+  "name": "tanf-map-root",
   "auto": true,
   "contexts": [
-    "cse-subject-matter"
+    "tanf-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
