@@ -1,4 +1,5 @@
 const { cseRoot } = require('./intentHandlers/childSupport/cseRoot.js')
+const { mapRoot } = require('./intentHandlers/common/map.js')
 
 // TODO REMOVE THESE???
 // Not child support intents
@@ -719,4 +720,7 @@ module.exports = {
   'cse-visitation-petitiontocite': visitationPetitionToCite,
   'cse-visitation-prosepackets': visitationProSePacket,
   'cse-visitation-legalservices': visitationLegalServices,
+
+  // Map
+  'cse-map-root': mapRoot
 }
