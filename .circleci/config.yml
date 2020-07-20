@@ -148,10 +148,10 @@ jobs:
           command: cd scripts && node generateCoordinates
       - run:
           name: "Print snap coordinates"
-          command: cd functions/coordinates && echo snap.json
+          command: cd functions/coordinates && cat snap.json
       - run:
           name: "Print tanf coordinates"
-          command: cd functions/coordinates && echo tanf.json
+          command: cd functions/coordinates && cat tanf.json
 workflows:
   version: 2
   build_deploy:

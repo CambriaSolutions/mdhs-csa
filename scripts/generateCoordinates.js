@@ -130,6 +130,10 @@ const coordinatesRequests = (locations) => locations.map(async location => {
 
     // Try to retrieve the coordinates again without the troubling address components
     coordinates = await retrieveCoordinates(cleanedAddress)
+
+    console.log('cleanedAddress: ' + cleanedAddress)
+    console.log('coordinates: ' + JSON.stringify(coordinates))
+
     if (!coordinates) {
       // The call has failed again, throw an error to call attention to the address
       throw new Error(
