@@ -23,6 +23,9 @@ const callbackRequired = [
   'add authorized user',
   'employer report lump sum notification',
   'change personal information',
+  'cooperation',
+  'safety',
+  'good cause'
 ]
 
 exports.sendToServiceDesk = async requestFieldValues => {
