@@ -1,3 +1,5 @@
+const { handleEndConversation } = require('../globalFunctions')
+
 exports.tanfApplication = async agent => {
   try {
     const link = '<a href="https://www.access.ms.gov/Application" target="_blank">click here</a>'
@@ -9,6 +11,7 @@ exports.tanfApplication = async agent => {
     )
     
     await agent.add(`Please ${link} to start a new TANF application.`)
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
