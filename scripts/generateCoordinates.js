@@ -242,21 +242,14 @@ Promise.all([
   coordinatesRequests(cseLocations),
   coordinatesRequests(snapTanfLocations)
 ]).then(responses => {
-  const comment = '\
-    /* ******************************************************************\n\
-    * This is auto generated code by running "generateCoordinates.js".\n\
-    * Do NOT make changes to this file directly!!\n\
-    * ******************************************************************\n\
-    */\n'
-
   // CSE
-  fs.writeFileSync('../functions/coordinates/cse.json', comment + JSON.stringify(responses[0]))
+  fs.writeFileSync('../functions/coordinates/cse.json', JSON.stringify(responses[0]))
 
   // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/tanf.json', comment + JSON.stringify(responses[1]))
+  fs.writeFileSync('../functions/coordinates/tanf.json', JSON.stringify(responses[1]))
 
   // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/snap.json', comment + JSON.stringify(responses[1]))
+  fs.writeFileSync('../functions/coordinates/snap.json', JSON.stringify(responses[1]))
 
   console.log('Coordinates retrieved - files created!')
 })
