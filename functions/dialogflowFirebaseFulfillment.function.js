@@ -8,6 +8,10 @@ const commonIntentHandlers = require('./commonIntentHandlers')
 const childSupportIntentHandlers = require('./childSupportIntentHandlers')
 const tanfIntentHandlers = require('./tanfIntentHandlers')
 const snapIntentHandlers = require('./snapIntentHandlers')
+const { mapDeliverMap } = require('./intentHandlers/common/map.js')
+const cseLocations = require('./coordinates/cse.json')
+const snapLocations = require('./coordinates/snap.json')
+const tanfLocations = require('./coordinates/tanf.json')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -22,6 +26,25 @@ const isActionRequested = (body, action) => {
   return false
 }
 
+const subjectMatterLocations = {
+  'cse': cseLocations,
+  'snap': snapLocations,
+  'tanf': tanfLocations
+}
+
+// Gets the subject matter from active context
+const getSubjectMatter = (agent) => {
+  if (agent.context.get('cse-subject-matter')) {
+    return 'cse'
+  } else if (agent.context.get('tanf-subject-matter')) {
+    return 'tanf'
+  } else if (agent.context.get('snap-subject-matter')) {
+    return 'snap'
+  } else {
+    return ''
+  }
+}
+
 exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest(async (request, response) => {
@@ -31,12 +54,17 @@ exports = module.exports = functions
       )
       console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
+      const agent = new WebhookClient({ request, response })
+
+      const subjectMatter = getSubjectMatter(agent)
+
       let intentHandlers = {
         ...globalIntentHandlers,
         ...commonIntentHandlers,
         ...childSupportIntentHandlers,
         ...tanfIntentHandlers,
-        ...snapIntentHandlers
+        ...snapIntentHandlers,
+        'map-deliver-map': mapDeliverMap(subjectMatterLocations[subjectMatter])
       }
 
       // List of intents what will reset the back button context
@@ -51,8 +79,6 @@ exports = module.exports = functions
         'global-restart',
         'acknowledge-privacy-statement'
       ]
-
-      const agent = new WebhookClient({ request, response })
 
       // Check to see if we need to override the target intent
       // In case of Home and Go Back this may be needed during parameter entry.
