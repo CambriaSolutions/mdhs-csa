@@ -250,13 +250,13 @@ Promise.all([
     */\n'
 
   // CSE
-  fs.writeFileSync('../functions/coordinates/cse.jsonc', comment + JSON.stringify(responses[0]))
+  fs.writeFileSync('../functions/coordinates/cse.json', comment + JSON.stringify(responses[0]))
 
   // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/tanf.jsonc', comment + JSON.stringify(responses[1]))
+  fs.writeFileSync('../functions/coordinates/tanf.json', comment + JSON.stringify(responses[1]))
 
   // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/snap.jsonc', comment + JSON.stringify(responses[1]))
+  fs.writeFileSync('../functions/coordinates/snap.json', comment + JSON.stringify(responses[1]))
 
   console.log('Coordinates retrieved - files created!')
 })
