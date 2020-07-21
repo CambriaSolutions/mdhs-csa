@@ -121,6 +121,8 @@ exports.supportGoodCause = async agent => {
 
     await agent.add(new Suggestion('Submit Support Request'))
 
+    await handleEndConversation(agent)
+
     // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
     await agent.context.set({
       name: 'waiting-support-submitSupportRequest-goodCause',
@@ -1031,6 +1033,8 @@ exports.supportParentReceivingCooperation = async agent => {
     await agent.add(new Suggestion('Safety'))
     await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('Good Cause'))
+
+    await handleEndConversation(agent)
 
     await agent.context.set({
       name: 'waiting-support-submitSupportRequest-cooperation',

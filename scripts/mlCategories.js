@@ -119,10 +119,6 @@ exports.categoriesWithIntents = {
     intent: 'cse-open-csc-root',
     suggestionText: 'Open case'
   },
-  other: {
-    intent: 'cse-other-root',
-    suggestionText: 'Other'
-  },
   paternity: {
     intent: 'cse-geneticTesting-request',
     suggestionText: 'Genetic testing',

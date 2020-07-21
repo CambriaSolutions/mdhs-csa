@@ -1,3 +1,5 @@
+const { handleEndConversation } = require('../globalFunctions')
+
 exports.eligibilityChecker = async agent => {
   try {
     const link = '<a href="https://www.access.ms.gov/Prescreen/Start" target="_blank">click here</a>'
@@ -7,6 +9,7 @@ exports.eligibilityChecker = async agent => {
       possible, however estimates are allowed.'
     )
     await agent.add(`You may ${link} to start the pre-assessment to check the eligibility.`)
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
