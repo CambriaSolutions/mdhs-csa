@@ -9,9 +9,9 @@ const childSupportIntentHandlers = require('./childSupportIntentHandlers')
 const tanfIntentHandlers = require('./tanfIntentHandlers')
 const snapIntentHandlers = require('./snapIntentHandlers')
 const { mapDeliverMap } = require('./intentHandlers/common/map.js')
-const cseLocations = require('./coordinates/cse.json')
-const snapLocations = require('./coordinates/snap.json')
-const tanfLocations = require('./coordinates/tanf.json')
+const cseLocations = require('./coordinates/cse.jsonc')
+const snapLocations = require('./coordinates/snap.jsonc')
+const tanfLocations = require('./coordinates/tanf.jsonc')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
