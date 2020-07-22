@@ -40,7 +40,7 @@ exports.categoriesWithIntents = {
     suggestionText: 'Child care'
   }, // Suggest child care intent
   complaints: {
-    intent: 'cse-feedback-root',
+    intent: 'feedback-root',
     suggestionText: 'Complaints'
   }, // Suggest complaints intent
   contactHuman: {
