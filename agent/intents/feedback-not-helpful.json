@@ -1,34 +1,23 @@
 {
-  "id": "8a4c1352-04ee-4be2-bb84-e24328d5e453",
-  "name": "cse-feedback-root",
+  "id": "6b9ff954-9faf-4376-ad5a-f7332137cad5",
+  "name": "feedback-not-helpful",
   "auto": true,
   "contexts": [
-    "waiting-feedback-root",
-    "cse-subject-matter"
+    "waiting-feedback-not-helpful"
   ],
   "responses": [
     {
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "waiting-restart-conversation",
+          "name": "waiting-feedback-not-helpful",
           "parameters": {},
           "lifespan": 0
-        },
-        {
-          "name": "waiting-feedback-root",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
-          "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
         }
       ],
       "parameters": [
         {
-          "id": "0bec3fa3-7612-4188-bec8-861daeda6339",
+          "id": "cf40df97-72ff-4820-a5e2-f9887d2c2dfa",
           "required": false,
           "dataType": "@yes-no",
           "name": "yes-no",
