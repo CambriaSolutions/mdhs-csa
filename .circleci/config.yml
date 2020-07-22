@@ -145,6 +145,9 @@ jobs:
         type: string
     steps:
       - checkout
+      - run:
+          name: "Add npmrc to interface folder"
+          command: cd interface && echo "${ALL_NPM_AUTH_TOKEN}" > .npmrc
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - run: cd interface && npm install
