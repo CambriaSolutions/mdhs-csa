@@ -1043,7 +1043,7 @@ exports.supportParentReceivingCooperation = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-report-provider-employment',
-      lifespan: 3,
+      lifespan: 1,
     })
   } catch (err) {
     console.error(err)
