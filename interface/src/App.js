@@ -24,8 +24,6 @@ const activationText = 'Talk to Gen'
 
 class App extends Component {
   render() {
-    console.log('Process.env', process.env)
-
     return (
       <Chatframe
         primaryColor='#6497AD'
