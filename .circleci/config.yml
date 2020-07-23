@@ -238,12 +238,12 @@ workflows:
           requestTypeID: DEV_REQUEST_TYPE_ID
           serviceDeskEnv: DEV_SERVICE_DESK_ENV
           analyticsURI: ISD_ANALYTICS_URI
-          autoMLProject: DEV_AUTOML_PROJECT
-          autoMLLocation: DEV_AUTOML_LOCATION
-          autoMLSMModel: DEV_AUTOML_SM_MODEL
-          autoMLCatModel: DEV_AUTOML_CAT_MODEL
-          autoMLPrivateKey: DEV_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: DEV_AUTOML_CLIENT_EMAIL
+          autoMLProject: ISD_AUTOML_PROJECT
+          autoMLLocation: ISD_AUTOML_LOCATION
+          autoMLSMModel: ISD_AUTOML_SM_MODEL
+          autoMLCatModel: ISD_AUTOML_CAT_MODEL
+          autoMLPrivateKey: ISD_AUTOML_PRIVATE_KEY
+          autoMLClientEmail: ISD_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
