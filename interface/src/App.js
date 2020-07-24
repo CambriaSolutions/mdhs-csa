@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import Chatframe from '@cambriasolutions/chatframe'
 import './App.css'
-// TODO NEED TO MAKR THIS NOT BE HARDCODED
-const dfWebhookOptions = {
-  eventUrl:
-    'https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/eventRequest',
-  textUrl: 'https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/textRequest',
+
+const options = {
+  eventUrl: process.env.REACT_APP_EVENT_URL,
+  textUrl: process.env.REACT_APP_TEXT_URL
 }
 
-const policyText =
-  'Please do not enter any personally identifiable information such as SSN or Date of Birth.'
+const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL
 
-const feedbackUrl =
-  'https://us-central1-webchat-analytics-dev.cloudfunctions.net/storeFeedback'
+const privacyPolicy =
+  'Please do not enter any personally identifiable information such as SSN or Date of Birth'
 
-export const mapConfig = {
+const mapConfig = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
   centerCoordinates: {
     lat: 32.777025,
@@ -22,7 +20,7 @@ export const mapConfig = {
   },
 }
 
-export const activationText = 'Talk to Gen'
+const activationText = 'Talk to Gen'
 
 class App extends Component {
   render() {
@@ -31,15 +29,15 @@ class App extends Component {
         primaryColor='#6497AD'
         secondaryColor='#6497AD'
         headerColor='#6497AD'
-        title='Gen'
+        title='Gen (TEST CHAT)'
         client='Dialogflow'
-        clientOptions={dfWebhookOptions}
+        clientOptions={options}
         fullscreen={false}
         initialActive={false}
-        policyText={policyText}
+        policyText={privacyPolicy}
         mapConfig={mapConfig}
-        feedbackUrl={feedbackUrl}
         activationText={activationText}
+        feedbackUrl={feedbackUrl}
       />
     )
   }

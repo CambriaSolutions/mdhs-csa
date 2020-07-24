@@ -1,14 +1,13 @@
 {
-  "id": "57c9981f-2a25-4c5b-886c-f3d72f931986",
-  "name": "snap-eligibilityChecker",
+  "id": "e23348ca-4511-4c7a-bc5f-9e6b70317d97",
+  "name": "feedback-complete",
   "auto": true,
-  "contexts": [
-    "snap-subject-matter"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+      ],
       "parameters": [],
       "messages": [
         {

@@ -1,4 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { handleEndConversation } = require('../globalFunctions')
 
 /**
  * visitation-root
@@ -20,6 +21,7 @@ exports.visitationRoot = async agent => {
     await agent.add(new Suggestion('Pro Se Packets'))
     await agent.add(new Suggestion('Petition to cite'))
     await agent.add(new Suggestion('Legal Services'))
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }
@@ -40,6 +42,7 @@ exports.visitationPetitionToCite = async agent => {
 
     await agent.add(new Suggestion('Pro Se Packets'))
     await agent.add(new Suggestion('Legal Services'))
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }
@@ -60,6 +63,7 @@ exports.visitationProSePacket = async agent => {
 
     await agent.add(new Suggestion('Petition to cite'))
     await agent.add(new Suggestion('Legal Services'))
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }
@@ -76,6 +80,7 @@ exports.visitationLegalServices = async agent => {
 
     await agent.add(new Suggestion('Pro Se Packets'))
     await agent.add(new Suggestion('Petition to cite'))
+    await handleEndConversation(agent)
   } catch (err) {
     console.log(err)
   }

@@ -1,4 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { handleEndConversation } = require('../globalFunctions')
 
 exports.safety = async agent => {
   try {
@@ -28,6 +29,8 @@ exports.safety = async agent => {
 
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.add(new Suggestion('Parent\'s Guide to CSE'))
+
+    await handleEndConversation(agent)
 
     await agent.context.set({
       name: 'waiting-support-submitSupportRequest-safety',

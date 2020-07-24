@@ -180,6 +180,8 @@ exports.globalRestart = async agent => {
 
 
 exports.welcome = async agent => {
+  const termsAndConditionsLink = 'https://www.mdhs.ms.gov/privacy-disclaimer'
+
   try {
     await agent.add(
       'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP or TANF requests.'
@@ -190,8 +192,8 @@ exports.welcome = async agent => {
     )
 
     await agent.add(
-      'By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website \
-      Disclaimers, Terms, and Conditions found here, and that you wish to continue.'
+      `By clicking "I Acknowledge" below you are acknowledging receipt and understanding of these statements and the MDHS Website \
+      Disclaimers, Terms, and Conditions found <a href="${termsAndConditionsLink}" target="_blank">here</a>, and that you wish to continue.`
     )
 
     await this.disableInput(agent)

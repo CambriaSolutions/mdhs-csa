@@ -15,21 +15,7 @@
           "lifespan": 99
         }
       ],
-      "parameters": [
-        {
-          "id": "d5893adf-d48b-4c46-a021-8525687de293",
-          "required": false,
-          "dataType": "@sys.number",
-          "value": "$number",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        }
-      ],
+      "parameters": [],
       "messages": [
         {
           "type": "0",

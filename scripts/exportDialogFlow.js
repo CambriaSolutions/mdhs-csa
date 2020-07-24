@@ -5,6 +5,7 @@ const JSZip = require('jszip')
 const IntentComparator = require('./intentComparator.js')
 
 const client = new dialogflow.v2.AgentsClient()
+const keyFile = require(`${process.env.GOOGLE_APPLICATION_CREDENTIALS}`)
 
 const setupExportDir = (path) => {
   fs.mkdirSync(path)
@@ -29,7 +30,7 @@ const cleanExportDir = (path) => {
 }
 
 console.log('Exporting...')
-client.exportAgent({ parent: `projects/${process.env.AGENT_PROJECT}` })
+client.exportAgent({ parent: `projects/${keyFile.project_id}` })
   .then(responses => {
     const [operation] = responses
 

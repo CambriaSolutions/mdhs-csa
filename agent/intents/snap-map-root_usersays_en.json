@@ -39,7 +39,7 @@
     "id": "289205c0-7a4f-49d4-aa75-4709280029d6",
     "data": [
       {
-        "text": "where do i find my an office",
+        "text": "where do i find an office",
         "userDefined": false
       }
     ],
@@ -112,6 +112,66 @@
     "data": [
       {
         "text": "office locations",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a5ef1588-eb45-4232-bd1e-9023818e628e",
+    "data": [
+      {
+        "text": "Where can I find the closest office to my location?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "a9de4518-7c2a-455d-ae6d-39a98dc99438",
+    "data": [
+      {
+        "text": "Where to go for SNAP?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2907af19-9ed7-4969-839f-cc60373eac78",
+    "data": [
+      {
+        "text": "Where can I go to talk to someone about SNAP?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "22cdb4fb-eec5-47b4-bd7d-5d2fb47236a6",
+    "data": [
+      {
+        "text": "SNAP locations in my area?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ff443af6-7c3b-4fde-877f-8f8091723467",
+    "data": [
+      {
+        "text": "Offices in my area.",
         "userDefined": false
       }
     ],
