@@ -9,5 +9,5 @@ module.exports = {
   'snap-application': snapApplication,
 
   // Map
-  'snap-map-root': mapRoot
+  'snap-map-root': mapRoot('snap')
 }
