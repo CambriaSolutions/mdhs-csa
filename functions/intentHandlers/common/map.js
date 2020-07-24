@@ -3,12 +3,18 @@ const validator = require('validator')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const { handleEndConversation } = require('../globalFunctions')
 
-exports.mapRoot = async agent => {
+exports.mapRoot = (subjectMatter) => async agent => {
   try {
     await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case')
+
+    if (subjectMatter !== 'cse') {
+      await agent.add('Due to COVID-19, all our county offices are closed to the public until further notice.')
+    }
+
     await agent.add(
       'I can help locate the nearest office to you, what is your address?'
     )
+
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
       lifespan: 2,
