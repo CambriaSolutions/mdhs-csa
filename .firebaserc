@@ -4,6 +4,7 @@
     "prod": "mdhs-csa",
     "dev": "mdhs-csa-dev",
     "dev-beta": "mdhs-csa-dev-beta",
-    "isd": "mdhs-csa-isd-273818"
+    "isd": "mdhs-csa-isd-273818",
+    "default": "mdhs-csa-dev"
   }
 }

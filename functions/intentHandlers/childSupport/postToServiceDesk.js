@@ -23,6 +23,9 @@ const callbackRequired = [
   'add authorized user',
   'employer report lump sum notification',
   'change personal information',
+  'cooperation',
+  'safety',
+  'good cause'
 ]
 
 exports.sendToServiceDesk = async requestFieldValues => {
@@ -118,6 +121,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     requestObjectToDeliver = requestFieldBody
   }
 
+
   const options = {
     method: 'POST',
     uri: process.env.SERVICE_DESK_URI,
@@ -133,6 +137,8 @@ exports.sendToServiceDesk = async requestFieldValues => {
     },
     json: true,
   }
+  
+  console.log('Sending Service Request', JSON.stringify(options))
 
   const serviceRequest = rp(options)
     .then(response => {

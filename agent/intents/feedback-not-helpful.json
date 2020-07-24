@@ -1,10 +1,9 @@
 {
   "id": "6b9ff954-9faf-4376-ad5a-f7332137cad5",
-  "name": "cse-feedback-not-helpful",
+  "name": "feedback-not-helpful",
   "auto": true,
   "contexts": [
-    "waiting-feedback-not-helpful",
-    "cse-subject-matter"
+    "waiting-feedback-not-helpful"
   ],
   "responses": [
     {
@@ -14,11 +13,6 @@
           "name": "waiting-feedback-not-helpful",
           "parameters": {},
           "lifespan": 0
-        },
-        {
-          "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
         }
       ],
       "parameters": [

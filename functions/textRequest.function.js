@@ -9,8 +9,8 @@ const dialogflow = require('dialogflow')
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
 
-// // For local testing uncomment below and comment out sessionClient
-// // above.
+// For local testing uncomment below and comment out sessionClient
+// above.
 // const sessionClient = new dialogflow.SessionsClient({
 //   keyFilename: process.env.GOOGLE_SERVICE_ACCOUNT,
 // })
@@ -28,36 +28,40 @@ exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest(async (req, res) => {
     return cors(req, res, async () => {
-      if (!req.query || !req.query.query) {
-        return 'The "query" parameter is required'
-      }
-      if (!req.query || !req.query.uuid) {
-        return 'The "uuid" parameter is required'
-      }
-      const query = req.query.query
-      const sessionId = req.query.uuid
-      // The text query request.
-      const sessionPath = sessionClient.sessionPath(projectId, sessionId)
-      const dfRequest = {
-        session: sessionPath,
-        queryInput: { text: { text: query, languageCode: languageCode } },
-      }
+      try {
+        if (!req.query || !req.query.query) {
+          return 'The "query" parameter is required'
+        }
+        if (!req.query || !req.query.uuid) {
+          return 'The "uuid" parameter is required'
+        }
+        const query = req.query.query
+        const sessionId = req.query.uuid
+        // The text query request.
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId)
+        const dfRequest = {
+          session: sessionPath,
+          queryInput: { text: { text: query, languageCode: languageCode } },
+        }
 
-      const detectIntentPromise = new Promise((resolve, reject) => {
-        sessionClient
-          .detectIntent(dfRequest)
-          .then(responses => {
-            // return responses[0]
-            responses[0].session = sessionPath
-            res.json(responses[0])
-            resolve()
-          })
-          .catch(err => {
-            console.error('textRequest.function.js: ', err)
-            reject(`Dialogflow error: ${err}`)
-          })
-      })
+        const detectIntentPromise = new Promise((resolve, reject) => {
+          sessionClient
+            .detectIntent(dfRequest)
+            .then(responses => {
+              // return responses[0]
+              responses[0].session = sessionPath
+              res.json(responses[0])
+              resolve()
+            })
+            .catch(err => {
+              console.error('textRequest.function.js: ', err)
+              reject(`Dialogflow error: ${err}`)
+            })
+        })
 
-      return detectIntentPromise
+        return detectIntentPromise
+      } catch (e) {
+        console.error(`textRequest.js error ${new Date() + e} `)
+      }
     })
   })

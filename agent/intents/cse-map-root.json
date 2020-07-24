@@ -1,9 +1,9 @@
 {
-  "id": "57c9981f-2a25-4c5b-886c-f3d72f931986",
-  "name": "snap-eligibilityChecker",
+  "id": "55db9d62-a232-4822-b1d0-da6cc25c8e5a",
+  "name": "cse-map-root",
   "auto": true,
   "contexts": [
-    "snap-subject-matter"
+    "cse-subject-matter"
   ],
   "responses": [
     {

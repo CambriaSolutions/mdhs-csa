@@ -42,6 +42,7 @@ exports.supportParentReceiving = async agent => {
     await agent.add(new Suggestion('Cooperation'))
     await agent.add(new Suggestion('Safety'))
     await agent.add(new Suggestion('Good Cause'))
+    await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('More'))
 
     await agent.context.set({
@@ -119,6 +120,8 @@ exports.supportGoodCause = async agent => {
       for more information, or you may call 1-877-882-4916. Please ${link} to learn what documentation is required for good cause exemptions.`)
 
     await agent.add(new Suggestion('Submit Support Request'))
+
+    await handleEndConversation(agent)
 
     // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
     await agent.context.set({
@@ -407,6 +410,14 @@ exports.supportSubmitSupportRequestSafety = async (agent) => {
 exports.supportSubmitSupportRequestGoodCause = async (agent) => {
   try {
     await this.supportType(agent, 'good cause')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+exports.supportSubmitSupportRequestVerification = async (agent) => {
+  try {
+    await this.supportType(agent, 'verification')
   } catch (e) {
     console.error(e)
   }
@@ -1020,7 +1031,10 @@ exports.supportParentReceivingCooperation = async agent => {
 
     await agent.add(new Suggestion('Submit Support Request'))
     await agent.add(new Suggestion('Safety'))
+    await agent.add(new Suggestion('Verification'))
     await agent.add(new Suggestion('Good Cause'))
+
+    await handleEndConversation(agent)
 
     await agent.context.set({
       name: 'waiting-support-submitSupportRequest-cooperation',
@@ -1029,7 +1043,7 @@ exports.supportParentReceivingCooperation = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-report-provider-employment',
-      lifespan: 3,
+      lifespan: 1,
     })
   } catch (err) {
     console.error(err)

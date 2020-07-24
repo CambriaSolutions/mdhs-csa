@@ -40,7 +40,7 @@ exports.categoriesWithIntents = {
     suggestionText: 'Child care'
   }, // Suggest child care intent
   complaints: {
-    intent: 'cse-feedback-root',
+    intent: 'feedback-root',
     suggestionText: 'Complaints'
   }, // Suggest complaints intent
   contactHuman: {
@@ -118,10 +118,6 @@ exports.categoriesWithIntents = {
   openCase: {
     intent: 'cse-open-csc-root',
     suggestionText: 'Open case'
-  },
-  other: {
-    intent: 'cse-other-root',
-    suggestionText: 'Other'
   },
   paternity: {
     intent: 'cse-geneticTesting-request',

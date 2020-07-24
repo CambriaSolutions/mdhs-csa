@@ -1,7 +1,6 @@
 const { Payload } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
-const locations = require('./coordinates.json')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.mapRoot = async agent => {
@@ -20,7 +19,9 @@ exports.mapRoot = async agent => {
   }
 }
 
-exports.mapDeliverMap = async agent => {
+// First pass in the locations to be used in the method. This will return the intent 
+// handler function that you would normally use
+exports.mapDeliverMap = (locations) => async agent => {
   try {
     let currentLocation = null
     let userAddress = ''

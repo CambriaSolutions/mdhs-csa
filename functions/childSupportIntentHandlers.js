@@ -1,4 +1,5 @@
 const { cseRoot } = require('./intentHandlers/childSupport/cseRoot.js')
+const { mapRoot } = require('./intentHandlers/common/map.js')
 
 // TODO REMOVE THESE???
 // Not child support intents
@@ -189,7 +190,8 @@ const {
   supportSubmitSupportRequestCooperation,
   supportSubmitSupportRequestInquiry,
   supportSubmitSupportRequestSafety,
-  supportSubmitSupportRequestGoodCause
+  supportSubmitSupportRequestGoodCause,
+  supportSubmitSupportRequestVerification,
 } = require('./intentHandlers/childSupport/support.js')
 
 // Direct deposit intents
@@ -255,14 +257,6 @@ const {
   iwoPaymentsHandoff,
   iwoQAArrearsBalance,
 } = require('./intentHandlers/childSupport/incomeWithholding.js')
-
-// Feedback
-const {
-  feedbackRoot,
-  feedbackHelpful,
-  feedbackNotHelpful,
-  feedbackComplete,
-} = require('./intentHandlers/childSupport/feedback.js')
 
 // Genetic Testing
 const {
@@ -543,6 +537,7 @@ module.exports = {
   'cse-support-submitSupportRequest-inquiry': supportSubmitSupportRequestInquiry,
   'cse-support-submitSupportRequest-safety': supportSubmitSupportRequestSafety,
   'cse-support-submitSupportRequest-goodCause': supportSubmitSupportRequestGoodCause,
+  'cse-support-submitSupportRequest-verification': supportSubmitSupportRequestVerification,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
@@ -583,12 +578,6 @@ module.exports = {
   'cse-eppi-surcharge': eppiSurcharge,
   'cse-eppi-learn-more': eppiLearnMore,
   'cse-eppi-balance-denial': eppiBalanceDenial,
-
-  // Feedback intents
-  'cse-feedback-root': feedbackRoot,
-  'cse-feedback-helpful': feedbackHelpful,
-  'cse-feedback-not-helpful': feedbackNotHelpful,
-  'cse-feedback-complete': feedbackComplete,
 
   // Genetic Testing intents
   'cse-geneticTesting-request': geneticTestingRequest,
@@ -658,9 +647,6 @@ module.exports = {
   // Childcare
   'cse-childCare-root': childCare,
 
-  // Complaints
-  'cse-complaints-root': feedbackRoot,
-
   // Documentation
   'cse-documentation-root': documentation,
 
@@ -717,4 +703,7 @@ module.exports = {
   'cse-visitation-petitiontocite': visitationPetitionToCite,
   'cse-visitation-prosepackets': visitationProSePacket,
   'cse-visitation-legalservices': visitationLegalServices,
+
+  // Map
+  'cse-map-root': mapRoot
 }

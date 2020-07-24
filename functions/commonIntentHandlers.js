@@ -1,11 +1,25 @@
 const { commonFallback, noneOfThese } = require('./intentHandlers/common/commonFallback.js')
-const { mapRoot, mapDeliverMap } = require('./intentHandlers/common/map.js')
 const { docUpload } = require('./intentHandlers/common/docUpload.js')
+
+// Feedback
+const {
+  feedbackRoot,
+  feedbackHelpful,
+  feedbackNotHelpful,
+  feedbackComplete,
+} = require('./intentHandlers/common/feedback.js')
 
 module.exports = {
   'none-of-these': noneOfThese,
   'Default Fallback Intent': commonFallback,
   'doc-upload': docUpload,
-  'map-root': mapRoot,
-  'map-deliver-map': mapDeliverMap
+  
+  // Feedback intents
+  'feedback-root': feedbackRoot,
+  'feedback-helpful': feedbackHelpful,
+  'feedback-not-helpful': feedbackNotHelpful,
+  'feedback-complete': feedbackComplete,
+
+  // Complaints
+  'complaints-root': feedbackRoot,
 }
