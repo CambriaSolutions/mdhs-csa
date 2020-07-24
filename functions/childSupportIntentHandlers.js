@@ -705,5 +705,5 @@ module.exports = {
   'cse-visitation-legalservices': visitationLegalServices,
 
   // Map
-  'cse-map-root': mapRoot
+  'cse-map-root': mapRoot('cse')
 }
