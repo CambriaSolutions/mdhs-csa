@@ -6,8 +6,7 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
