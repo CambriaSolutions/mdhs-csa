@@ -9,5 +9,5 @@ module.exports = {
   'tanf-application': tanfApplication,
 
   // Map
-  'tanf-map-root': mapRoot
+  'tanf-map-root': mapRoot('tanf')
 }
