@@ -1,4 +1,5 @@
 const { Suggestion, Payload } = require('dialogflow-fulfillment')
+const getSubjectMatter = require('../utils/getSubjectMatter')
 
 exports.handleEndConversation = async agent => {
   const helpMessage = 'Is there anything else I can help you with today?'
@@ -153,14 +154,25 @@ exports.caseyHandoff = async agent => {
 // Handles default unhandled intent when no categories are found
 exports.defaultFallback = async agent => {
   try {
-    await agent.add(
-      'I’m sorry, I’m not familiar with that right now, but I’m still learning! I can help answer a wide variety of questions about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.'
-    )
+    const subjectMatter = getSubjectMatter(agent)
+    // This is the default message, but it should never be used. There should always be a subject matter
+    let message = 'I\'m sorry, I\'m not familiar with that right now, but I\'m still learning! I can help answer a wide variety of questions; \
+    <strong>please try rephrasing</strong> or click on one of the options provided.'
+
+    if (subjectMatter === 'cse') {
+      message = 'I\'m sorry, I\'m not familiar with that right now, but I\'m still learning! I can help answer a wide variety of questions \
+      about Child Support; <strong>please try rephrasing</strong> or click on one of the options provided. If you need immediate assistance, \
+      please contact the Child Support Call Center at <a href="tel:+18778824916">877-882-4916</a>.'
+    } else if (subjectMatter === 'snap' || subjectMatter === 'tanf') {
+      message = `I'm sorry, I'm not familiar with that right now, but I'm still learning! I can help answer a wide variety of questions \
+      about ${subjectMatter.toUpperCase()}; please try rephrasing or click on the options provided.`
+    }
+
+    await agent.add(message)
   } catch (err) {
     console.error(err)
   }
 }
-
 
 exports.restartConversation = async agent => {
   try {
