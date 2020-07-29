@@ -1,6 +1,5 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
-const functions = require('firebase-functions')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
@@ -11,21 +10,14 @@ const automl = require('@google-cloud/automl')
 const store = admin.firestore()
 
 // Google Cloud Storage Setup
-const storage = new Storage({
-  projectId: process.env.AUTOML_MDHS_PROJECT_ID,
-  keyFilename: './mdhs-key.json'
-})
-
-const client = new automl.v1beta1.AutoMlClient({
-  projectId: process.env.AUTOML_MDHS_PROJECT_ID,
-  keyFilename: './mdhs-key.json'
-})
+const storage = new Storage()
+const client = new automl.v1beta1.AutoMlClient()
 
 /***
  * Retrieve new query and category pairs if occurrences >10
  * and import dataset into category model
  */
-async function main(subjectMatter) {
+const importDataset = async (subjectMatter) => {
   console.log('retrieving query data...')
 
   const storeRef = store.collection(
@@ -125,7 +117,7 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
       inputConfig: inputConfig,
     }
 
-    console.log(`Processing Category dataset import`)
+    console.log('Processing Category dataset import')
     console.log('datasetPath: ' + JSON.stringify(datasetPath))
     console.log('inputConfig: ' + JSON.stringify(inputConfig))
     console.log('request: ' + JSON.stringify(request))
@@ -133,10 +125,10 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
     // Import dataset from input config
     const [operation] = await client.importData(request)
 
-    console.log(`Finished Category dataset import`)
+    console.log('Finished Category dataset import')
 
     await store
-      .collection(`/subjectMatters/`)
+      .collection('/subjectMatters/')
       .doc(subjectMatter)
       .update({
         isImportProcessing: true,
@@ -146,12 +138,12 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
 
     // The final result of the operation.
     if (operationResponses) {
-      console.log(`Operation Response Below:`)
+      console.log('Operation Response Below:')
       console.log(operationResponses)
 
       // Save import status in db
       await store
-        .collection(`/subjectMatters/`)
+        .collection('/subjectMatters/')
         .doc(subjectMatter)
         .update({
           isImportProcessing: false,
@@ -175,7 +167,7 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
 
     // Save import status in db
     await store
-      .collection(`/subjectMatters/`)
+      .collection('/subjectMatters/')
       .doc(`${subjectMatter}`)
       .update({
         isImportProcessing: false,
@@ -183,24 +175,10 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
   }
 }
 
-exports = module.exports = functions
-  .runWith({
-    // TODO this does not seem to be working as intended
-    timeoutSeconds: 540
-  })
-  .pubsub
-  .schedule('0 20 * * *')
-  .timeZone('America/Los_Angeles')
-  .onRun(async (context) => {
-    const subjectMatters = ['cse']
+module.exports = async () => {
+  const subjectMatters = ['cse']
 
-    //for (const subjectMatterIndex in subjectMatters) {
-    const subjectMatter = subjectMatters[0]
-
-    try {
-      await main(subjectMatter)
-    } catch (err) {
-      console.log(err)
-    }
-    //}
-  })
+  //for (const subjectMatterIndex in subjectMatters) {
+  const subjectMatter = subjectMatters[0]
+  await importDataset(subjectMatter)
+}

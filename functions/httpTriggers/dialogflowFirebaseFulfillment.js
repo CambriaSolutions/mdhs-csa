@@ -12,6 +12,7 @@ const cseLocations = require('../coordinates/cse.json')
 const snapLocations = require('../coordinates/snap.json')
 const tanfLocations = require('../coordinates/tanf.json')
 const getSubjectMatter = require('../utils/getSubjectMatter.js')
+const storeAnalytics = require('./storeAnalytics')
 
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
@@ -71,11 +72,7 @@ module.exports = async (request, response) => {
   await home(agent, intentHandlers, resetHomeIntentList)
 
   await agent.handleRequest(new Map(Object.entries(intentHandlers)))
+  await storeAnalytics(request.body)
 
-  req({
-    method: 'POST',
-    uri: process.env.ANALYTICS_URI,
-    body: request.body,
-    json: true,
-  })
+  response.status(200).send()
 }

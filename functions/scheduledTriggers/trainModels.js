@@ -1,5 +1,4 @@
 require('dotenv').config()
-const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const automl = require('@google-cloud/automl')
 const format = require('date-fns/format')
@@ -11,56 +10,37 @@ const client = new automl.v1beta1.AutoMlClient({
   keyFilename: './mdhs-key.json'
 })
 
-const runtimeOpts = {
-  timeoutSeconds: 60,
-  memory: '256MB',
-}
-
 /**
  * Trigger training weekly
  **/
-exports = module.exports = functions
-  .runWith(runtimeOpts)
-  .pubsub
-  .schedule('0 21 * * 1') // Every Monday at 1 AM CST
-  .timeZone('America/Los_Angeles')
-  .onRun(async (context) => {
-    try {
-      const subjectMatter = 'cse'
-      await store
-        .collection(
-          `/subjectMatters/${subjectMatter}/queriesForTraining/`
-        )
-        .where('occurrences', '>=', 10)
-        .where('categoryModelTrained', '==', false)
-        .get()
-        .then(async (snap) => {
-          const queriesToTrain = snap.size;
-          console.log(`Identified ${queriesToTrain} queries to train.`);
+module.exports = async () => {
+  const subjectMatter = 'cse'
+  const snap = await store
+    .collection(`/subjectMatters/${subjectMatter}/queriesForTraining/`)
+    .where('occurrences', '>=', 10)
+    .where('categoryModelTrained', '==', false)
+    .get()
 
-          if (queriesToTrain > 0) {
-            // Train the model
-            await trainCategoryModel(subjectMatter)
+  const queriesToTrain = snap.size
+  console.log(`Identified ${queriesToTrain} queries to train.`)
 
-            // Update training status in individual queries
-            snap.forEach(async doc => {
-              await store
-                .collection(
-                  `/subjectMatters/${subjectMatter}/queriesForTraining`
-                )
-                .doc(doc.id)
-                .update({ categoryModelTrained: true }, { merge: true })
-            })
-          } else {
-            console.log("Training was skipped.")
-          }
+  if (queriesToTrain > 0) {
+    // Train the model
+    await trainCategoryModel(subjectMatter)
 
-          return
-        })
-    } catch (err) {
-      console.log(err)
-    }
-  })
+    // Update training status in individual queries
+    const docUpdatePromises = []
+    snap.forEach(async doc => {
+      docUpdatePromises.push(store
+        .collection(`/subjectMatters/${subjectMatter}/queriesForTraining`)
+        .doc(doc.id)
+        .update({ categoryModelTrained: true }, { merge: true }))
+    })
+    await Promise.all(docUpdatePromises)
+  } else {
+    console.log('Training was skipped.')
+  }
+}
 
 // --------------------------------  TRAIN CATEGORY MODEL  --------------------------------
 
@@ -90,11 +70,11 @@ async function trainCategoryModel(subjectMatter) {
     })
 
     console.log(`Training operation name: ${initialApiResponse.name}`)
-    console.log(`Training started...`)
+    console.log('Training started...')
 
     // Update training status in db
     await store
-      .collection(`/subjectMatters/`)
+      .collection('/subjectMatters/')
       .doc(`${subjectMatter}`)
       .update({
         isTrainingProcessing: true,
@@ -103,21 +83,21 @@ async function trainCategoryModel(subjectMatter) {
     const [model] = await operation.promise()
 
     // Retrieve deployment state.
-    let deploymentState = ``
+    let deploymentState = ''
 
     if (model.deploymentState === 1) {
-      deploymentState = `deployed`
+      deploymentState = 'deployed'
 
       // Update training status in db
       await store
-        .collection(`/subjectMatters/`)
+        .collection('/subjectMatters/')
         .doc(`${subjectMatter}`)
         .update({
           isTrainingProcessing: false,
           lastTrained: admin.firestore.Timestamp.now(),
         })
     } else if (model.deploymentState === 2) {
-      deploymentState = `undeployed`
+      deploymentState = 'undeployed'
     }
 
     // Model information needed to review details in the GCP console
@@ -127,7 +107,7 @@ async function trainCategoryModel(subjectMatter) {
     console.log(err)
 
     await store
-      .collection(`/subjectMatters/`)
+      .collection('/subjectMatters/')
       .doc(`${subjectMatter}`)
       .update({
         isTrainingProcessing: false,

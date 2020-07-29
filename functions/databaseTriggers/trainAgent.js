@@ -1,5 +1,4 @@
 require('dotenv').config()
-const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const dialogflow = require('dialogflow')
 
@@ -18,23 +17,21 @@ const intentsClient = new dialogflow.IntentsClient(dfConfig)
  * Trigger function on 'queriesForTraining' collection updates
  * to determine occurrence threshold for DF agent training
  */
-exports = module.exports = functions.firestore
-  .document(`/subjectMatters/{subjectMatter}/queriesForTraining/{id}`)
-  .onUpdate(async (change, context) => {
-    const docId = context.params.id
-    const subjectMatter = context.params.subjectMatter
-    const afterUpdateFields = change.after.data()
-    const agentTrained = afterUpdateFields.agentTrained
-    const occurrences = afterUpdateFields.occurrences
-    const phrase = afterUpdateFields.phrase
-    const intentId = afterUpdateFields.intent.id
-    const intentName = afterUpdateFields.intent.name
-    // If occurrences reaches 10 and agent is not trained
-    if (occurrences >= 10 && agentTrained === false) {
-      await trainAgent(phrase, intentId, docId, intentName, subjectMatter)
-    }
-    return afterUpdateFields
-  })
+module.exports = async (change, context) => {
+  const docId = context.params.id
+  const subjectMatter = context.params.subjectMatter
+  const afterUpdateFields = change.after.data()
+  const agentTrained = afterUpdateFields.agentTrained
+  const occurrences = afterUpdateFields.occurrences
+  const phrase = afterUpdateFields.phrase
+  const intentId = afterUpdateFields.intent.id
+  const intentName = afterUpdateFields.intent.name
+  // If occurrences reaches 10 and agent is not trained
+  if (occurrences >= 10 && agentTrained === false) {
+    await trainAgent(phrase, intentId, docId, intentName, subjectMatter)
+  }
+  return afterUpdateFields
+}
 
 /**
  * Train DF agent
@@ -60,13 +57,18 @@ async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
 
     try {
       // updates the intent with intent object containing the new training phrase
-      let updatedIntent = await updateIntent(intent)
+      const request = {
+        intent: intent,
+        intentView: 'INTENT_VIEW_FULL',
+      }
+      
+      await intentsClient.updateIntent(request)
       console.log('Updated intent with new training phrase.')
 
       // set agentTrained to true after we updated the intent
       await store
         .collection(
-          `/subjectMatters/cse/queriesForTraining/`
+          '/subjectMatters/cse/queriesForTraining/'
         )
         .doc(docId)
         .update({ agentTrained: true })
@@ -78,9 +80,9 @@ async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
           intent: intentName,
           learnedPhrase: phrase,
         })
-        .then(() =>
-          console.log(`${intentName} learned ${phrase} as a training phrase`)
-        )
+        
+      console.log(`${intentName} learned ${phrase} as a training phrase`)
+        
     } catch (e) {
       console.log('Unable to train intent: ' + e)
     }
@@ -103,22 +105,6 @@ async function getIntent(intentId) {
     return response
   } catch (err) {
     console.log(`Unable to retrieve intent [${intentId}] from Dialogflow: ` + err)
-    return err
-  }
-}
-/**
- * Update DF agent
- * @param {*} intent
- */
-async function updateIntent(intent) {
-  const request = {
-    intent: intent,
-    intentView: 'INTENT_VIEW_FULL',
-  }
-  try {
-    return (responses = await intentsClient.updateIntent(request))
-  } catch (err) {
-    console.log(`Unable to update intent [${intentId}] from Dialogflow: ` + err)
     return err
   }
 }
