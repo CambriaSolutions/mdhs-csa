@@ -1,4 +1,3 @@
-const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('../intentHandlers/back')
 const home = require('../intentHandlers/home')
