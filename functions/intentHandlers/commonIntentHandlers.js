@@ -1,5 +1,5 @@
-const { commonFallback, noneOfThese } = require('./intentHandlers/common/commonFallback.js')
-const { docUpload } = require('./intentHandlers/common/docUpload.js')
+const { commonFallback, noneOfThese } = require('./common/commonFallback.js')
+const { docUpload } = require('./common/docUpload.js')
 
 // Feedback
 const {
@@ -7,7 +7,7 @@ const {
   feedbackHelpful,
   feedbackNotHelpful,
   feedbackComplete,
-} = require('./intentHandlers/common/feedback.js')
+} = require('./common/feedback.js')
 
 module.exports = {
   'none-of-these': noneOfThese,

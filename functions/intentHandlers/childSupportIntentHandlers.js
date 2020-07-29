@@ -1,5 +1,5 @@
-const { cseRoot } = require('./intentHandlers/childSupport/cseRoot.js')
-const { mapRoot } = require('./intentHandlers/common/map.js')
+const { cseRoot } = require('./childSupport/cseRoot.js')
+const { mapRoot } = require('./common/map.js')
 
 // TODO REMOVE THESE???
 // Not child support intents
@@ -7,7 +7,7 @@ const {
   notChildSupportRoot,
   handleChildSupportRetry,
   handleAcknowledgementAfterRetry,
-} = require('./intentHandlers/childSupport/notChildSupport.js')
+} = require('./childSupport/notChildSupport.js')
 
 // General enforcement intents
 const {
@@ -40,7 +40,7 @@ const {
   enforcementSubmitInquiry,
   enforcementBankruptcy,
   enforcementContempt
-} = require('./intentHandlers/childSupport/enforcement.js')
+} = require('./childSupport/enforcement.js')
 
 // General payment intents
 const {
@@ -48,7 +48,7 @@ const {
   pmtsGeneralNonCustodial,
   pmtsGeneralReceivePayments,
   pmtsGeneralMakePayments,
-} = require('./intentHandlers/childSupport/paymentsGeneral.js')
+} = require('./childSupport/paymentsGeneral.js')
 
 // Employer intents
 const {
@@ -59,9 +59,9 @@ const {
   employerChecksMoneyOrders,
   employerIWOHandoff,
   employerBillsAndNotices
-} = require('./intentHandlers/childSupport/employer.js')
+} = require('./childSupport/employer.js')
 
-const { calcRoot } = require('./intentHandlers/childSupport/calculator.js')
+const { calcRoot } = require('./childSupport/calculator.js')
 
 // Payment calculator intents
 const {
@@ -85,7 +85,7 @@ const {
   pmtCalcUnknownDeductions,
   pmtCalcFinalEstimation,
   pmtCalcFinalEstimationNoOtherChildren,
-} = require('./intentHandlers/childSupport/paymentsCalculator.js')
+} = require('./childSupport/paymentsCalculator.js')
 
 // Payment methods intents
 const {
@@ -102,7 +102,7 @@ const {
   pmtMethodsCantMakeQualifyingNoHelp,
   pmtMethodsDebitCard,
   pmtMethodsNCPWithhold,
-} = require('./intentHandlers/childSupport/paymentMethods.js')
+} = require('./childSupport/paymentMethods.js')
 
 // Open Child Support Case
 const {
@@ -112,10 +112,10 @@ const {
   openCSCLocationServices,
   openCSCCollectionEmployer,
   openCSCNoService,
-} = require('./intentHandlers/childSupport/openChildSupportCase.js')
+} = require('./childSupport/openChildSupportCase.js')
 
 // Close Child Support Case
-const { closeCSCQACloseCase } = require('./intentHandlers/childSupport/closeChildSupportCase.js')
+const { closeCSCQACloseCase } = require('./childSupport/closeChildSupportCase.js')
 
 // Case specific intents
 const {
@@ -124,7 +124,7 @@ const {
   caseQAChangePersonalInfo,
   caseQACompliance,
   caseQAComplianceSupportRequest,
-} = require('./intentHandlers/childSupport/caseQA.js')
+} = require('./childSupport/caseQA.js')
 
 // Appointments intents
 const {
@@ -136,7 +136,7 @@ const {
   apptsGuidelines,
   apptsQAOfficeHours,
   apptsQAMissedAppt,
-} = require('./intentHandlers/childSupport/appointments.js')
+} = require('./childSupport/appointments.js')
 
 // Support intents
 const {
@@ -192,7 +192,7 @@ const {
   supportSubmitSupportRequestSafety,
   supportSubmitSupportRequestGoodCause,
   supportSubmitSupportRequestVerification,
-} = require('./intentHandlers/childSupport/support.js')
+} = require('./childSupport/support.js')
 
 // Direct deposit intents
 const {
@@ -211,7 +211,7 @@ const {
   dirDepPaymentClosedAccount,
   dirDepLearnMoreEppiCard,
   dirDepNoLearnMoreEppiCard,
-} = require('./intentHandlers/childSupport/directDeposit.js')
+} = require('./childSupport/directDeposit.js')
 
 // EppiCard intents
 const {
@@ -228,7 +228,7 @@ const {
   eppiSurcharge,
   eppiLearnMore,
   eppiBalanceDenial,
-} = require('./intentHandlers/childSupport/eppiCard.js')
+} = require('./childSupport/eppiCard.js')
 
 // IWO intents
 const {
@@ -256,18 +256,18 @@ const {
   iwoEmployerSubmitPayments,
   iwoPaymentsHandoff,
   iwoQAArrearsBalance,
-} = require('./intentHandlers/childSupport/incomeWithholding.js')
+} = require('./childSupport/incomeWithholding.js')
 
 // Genetic Testing
 const {
   safety
-} = require('./intentHandlers/childSupport/safety.js')
+} = require('./childSupport/safety.js')
 
 // Genetic Testing
 const {
   geneticTestingRequest,
   geneticTestingResults,
-} = require('./intentHandlers/childSupport/geneticTesting.js')
+} = require('./childSupport/geneticTesting.js')
 
 // Support QA
 const {
@@ -275,20 +275,20 @@ const {
   supportQAWhoCanApply,
   supportQAOtherState,
   supportQANcpPrison,
-} = require('./intentHandlers/childSupport/supportQA.js')
+} = require('./childSupport/supportQA.js')
 
 // Emancipation QA
-const { emancipationAge } = require('./intentHandlers/childSupport/emancipationQA.js')
+const { emancipationAge } = require('./childSupport/emancipationQA.js')
 
 // Contact QA
 const {
   contactQANumber,
   contactSupportHandoff,
   contactProvidePhoneNumber,
-} = require('./intentHandlers/childSupport/contactQA.js')
+} = require('./childSupport/contactQA.js')
 
 // Terminate 
-const { terminateRoot } = require('./intentHandlers/childSupport/terminate.js')
+const { terminateRoot } = require('./childSupport/terminate.js')
 
 // Payments QA
 const {
@@ -299,67 +299,67 @@ const {
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
   pmtQANCPPaymentStatus
-} = require('./intentHandlers/childSupport/paymentsQA.js')
+} = require('./childSupport/paymentsQA.js')
 
 // Stimulus Check
-const { stimulusCheck } = require('./intentHandlers/childSupport/stimulusCheck.js')
+const { stimulusCheck } = require('./childSupport/stimulusCheck.js')
 
 // Account information
-const { accountInformation } = require('./intentHandlers/childSupport/accountInformation.js')
+const { accountInformation } = require('./childSupport/accountInformation.js')
 
 // Childcare
-const { childCare } = require('./intentHandlers/childSupport/childCare.js')
+const { childCare } = require('./childSupport/childCare.js')
 
 // Documentation
-const { documentation } = require('./intentHandlers/childSupport/documentation.js')
+const { documentation } = require('./childSupport/documentation.js')
 
 // Email
-const { email } = require('./intentHandlers/childSupport/email.js')
+const { email } = require('./childSupport/email.js')
 
 // Fax
-const { fax } = require('./intentHandlers/childSupport/fax.js')
+const { fax } = require('./childSupport/fax.js')
 
 // Fee
-const { fee } = require('./intentHandlers/childSupport/fee.js')
+const { fee } = require('./childSupport/fee.js')
 
 // Gratitude not answering
-const { gratitude } = require('./intentHandlers/childSupport/gratitude.js')
+const { gratitude } = require('./childSupport/gratitude.js')
 
 // Interstate
-const { interstate } = require('./intentHandlers/childSupport/interstate.js')
+const { interstate } = require('./childSupport/interstate.js')
 
 // Legal
-const { legal } = require('./intentHandlers/childSupport/legal.js')
+const { legal } = require('./childSupport/legal.js')
 
 // Login
-const { login } = require('./intentHandlers/childSupport/login.js')
+const { login } = require('./childSupport/login.js')
 
 // Online action
-const { onlineAction } = require('./intentHandlers/childSupport/onlineAction.js')
+const { onlineAction } = require('./childSupport/onlineAction.js')
 
 // Other
-const { other } = require('./intentHandlers/childSupport/other.js')
+const { other } = require('./childSupport/other.js')
 
 // Payment Timelines
-const { paymentTimelines } = require('./intentHandlers/childSupport/paymentTimelines.js')
+const { paymentTimelines } = require('./childSupport/paymentTimelines.js')
 
 // Phone number
-const { phoneNumber } = require('./intentHandlers/childSupport/phoneNumber.js')
+const { phoneNumber } = require('./childSupport/phoneNumber.js')
 
 // Refund
-const { refund } = require('./intentHandlers/childSupport/refund.js')
+const { refund } = require('./childSupport/refund.js')
 
 // Snap
-const { snap } = require('./intentHandlers/childSupport/snap.js')
+const { snap } = require('./childSupport/snap.js')
 
 // Tanf
-const { tanf } = require('./intentHandlers/childSupport/tanf.js')
+const { tanf } = require('./childSupport/tanf.js')
 
 // Taxes
-const { taxes } = require('./intentHandlers/childSupport/taxes.js')
+const { taxes } = require('./childSupport/taxes.js')
 
 // Verification
-const { verification } = require('./intentHandlers/childSupport/verification.js')
+const { verification } = require('./childSupport/verification.js')
 
 // Visitation
 const {
@@ -367,7 +367,7 @@ const {
   visitationPetitionToCite,
   visitationProSePacket,
   visitationLegalServices
-} = require('./intentHandlers/childSupport/visitation.js')
+} = require('./childSupport/visitation.js')
 
 module.exports = {
   'cse-root': cseRoot,
