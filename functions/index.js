@@ -25,6 +25,7 @@ Object.entries(httpTriggers).forEach(([endpointName, trigger]) => {
         }
       } catch (e) {
         console.error(e)
+        res.status(500).send()
       }
     })
 })
