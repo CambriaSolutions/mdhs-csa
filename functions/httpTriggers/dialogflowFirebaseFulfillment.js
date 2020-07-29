@@ -1,16 +1,17 @@
 const req = require('request')
 const { WebhookClient } = require('dialogflow-fulfillment')
-const backIntent = require('./intentHandlers/back')
-const home = require('./intentHandlers/home')
-const globalIntentHandlers = require('./intentHandlers/globalIntentHandlers')
-const commonIntentHandlers = require('./intentHandlers/commonIntentHandlers')
-const childSupportIntentHandlers = require('./childSupportIntentHandlers')
-const tanfIntentHandlers = require('./intentHandlers/tanfIntentHandlers')
-const snapIntentHandlers = require('./intentHandlers/snapIntentHandlers')
-const { mapDeliverMap } = require('./intentHandlers/common/map.js')
-const cseLocations = require('./coordinates/cse.json')
-const snapLocations = require('./coordinates/snap.json')
-const tanfLocations = require('./coordinates/tanf.json')
+const backIntent = require('../intentHandlers/back')
+const home = require('../intentHandlers/home')
+const globalIntentHandlers = require('../intentHandlers/globalIntentHandlers')
+const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
+const childSupportIntentHandlers = require('../intentHandlers/childSupportIntentHandlers')
+const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
+const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
+const { mapDeliverMap } = require('../intentHandlers/common/map.js')
+const cseLocations = require('../coordinates/cse.json')
+const snapLocations = require('../coordinates/snap.json')
+const tanfLocations = require('../coordinates/tanf.json')
+const getSubjectMatter = require('../utils/getSubjectMatter.js')
 
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
@@ -24,19 +25,6 @@ const subjectMatterLocations = {
   'cse': cseLocations,
   'snap': snapLocations,
   'tanf': tanfLocations
-}
-
-// Gets the subject matter from active context
-const getSubjectMatter = (agent) => {
-  if (agent.context.get('cse-subject-matter')) {
-    return 'cse'
-  } else if (agent.context.get('tanf-subject-matter')) {
-    return 'tanf'
-  } else if (agent.context.get('snap-subject-matter')) {
-    return 'snap'
-  } else {
-    return ''
-  }
 }
 
 module.exports = async (request, response) => {
@@ -91,4 +79,3 @@ module.exports = async (request, response) => {
     json: true,
   })
 }
-
