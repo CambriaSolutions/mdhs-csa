@@ -12,6 +12,7 @@ const { mapDeliverMap } = require('./intentHandlers/common/map.js')
 const cseLocations = require('./coordinates/cse.json')
 const snapLocations = require('./coordinates/snap.json')
 const tanfLocations = require('./coordinates/tanf.json')
+const getSubjectMatter = require('./utils/getSubjectMatter.js')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -30,19 +31,6 @@ const subjectMatterLocations = {
   'cse': cseLocations,
   'snap': snapLocations,
   'tanf': tanfLocations
-}
-
-// Gets the subject matter from active context
-const getSubjectMatter = (agent) => {
-  if (agent.context.get('cse-subject-matter')) {
-    return 'cse'
-  } else if (agent.context.get('tanf-subject-matter')) {
-    return 'tanf'
-  } else if (agent.context.get('snap-subject-matter')) {
-    return 'snap'
-  } else {
-    return ''
-  }
 }
 
 exports = module.exports = functions
