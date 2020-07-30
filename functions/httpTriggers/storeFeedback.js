@@ -62,10 +62,11 @@ module.exports = async (req, res) => {
     const currDate = new Date()
     const dateKey = format(currDate, 'MM-DD-YYYY')
   
-    const doc = await store.collection(`${context}/metrics`).doc(dateKey).get()
+    const metricRef = store.collection(`${context}/metrics`).doc(dateKey)
+    const metricDoc = await metricRef.get()
   
-    if (doc.exists) {
-      const currMetric = doc.data()
+    if (metricDoc.exists) {
+      const currMetric = metricDoc.data()
       if (currMetric.feedback) {
         if (wasHelpful) {
           currMetric.feedback.positive++
@@ -89,7 +90,7 @@ module.exports = async (req, res) => {
               currMetric.feedback.helpful.push(newFeedbackType)
             }
           }
-          await doc.update({ feedback: currMetric.feedback })
+          await metricRef.update({ feedback: currMetric.feedback })
         } else {
           currMetric.feedback.negative++
           if (!currMetric.feedback.notHelpful)
@@ -113,7 +114,7 @@ module.exports = async (req, res) => {
               currMetric.feedback.notHelpful.push(newFeedbackType)
             }
           }
-          await doc.update({ feedback: currMetric.feedback })
+          await metricRef.update({ feedback: currMetric.feedback })
         }
       } else {
         feedbackList = feedbackList.map(feedback => ({
@@ -121,7 +122,7 @@ module.exports = async (req, res) => {
           occurrences: 1,
         }))
         // Create new metric entry with feedback and empty intent & supportRequest
-        await doc.update({
+        await metricRef.update({
           feedback: {
             helpful: wasHelpful ? feedbackList : [],
             notHelpful: wasHelpful ? [] : feedbackList,
