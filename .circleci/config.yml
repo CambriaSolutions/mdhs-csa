@@ -10,12 +10,6 @@ jobs:
         type: string # string? "${DEV_MDHS_CSA_KEY_JSON}"
       env:
         type: string # e.g. dev,
-      agentProject:
-        type: string
-      agentPrivateKey:
-        type: string
-      agentClientEmail:
-        type: string
     steps:
       - checkout
       - restore_cache:
@@ -27,16 +21,7 @@ jobs:
             - scripts/node_modules
       - run:
           name: "Add env variables"
-          # TODO: Can we remove agent variables?
-          # TODO: Whatever variables we keep, need to make env and proj part of it parameterized
-          command: cd scripts && echo
-            "AGENT_PROJECT=${<< parameters.agentProject >>}
-
-            AGENT_PRIVATE_KEY=${<< parameters.agentPrivateKey >>}
-
-            AGENT_CLIENT_EMAIL=${<< parameters.agentClientEmail >>}
-
-            GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
+          command: cd scripts && echo "GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
           name: "Create mdhs key file for scripts"
           command: cd scripts && echo "${<< parameters.jsonKey >>}" > mdhs-key.json
@@ -73,20 +58,6 @@ jobs:
         type: string
       serviceDeskEnv:
         type: string
-      analyticsURI:
-        type: string
-      autoMLProject:
-        type: string
-      autoMLLocation:
-        type: string
-      autoMLSMModel:
-        type: string
-      autoMLCatModel:
-        type: string
-      autoMLPrivateKey:
-        type: string
-      autoMLClientEmail:
-        type: string
     steps:
       - checkout
       - restore_cache:
@@ -109,21 +80,7 @@ jobs:
 
             REQUEST_TYPE_ID=${<< parameters.requestTypeID >>}
 
-            SERVICE_DESK_ENV=${<< parameters.serviceDeskEnv >>}
-
-            ANALYTICS_URI=${<< parameters.analyticsURI >>}
-
-            AUTOML_PROJECT=${<< parameters.autoMLProject >>}
-
-            AUTOML_LOCATION=${<< parameters.autoMLLocation >>}
-
-            AUTOML_SM_MODEL=${<< parameters.autoMLSMModel >>}
-
-            AUTOML_CAT_MODEL=${<< parameters.autoMLCatModel >>}
-
-            AUTOML_PRIVATE_KEY=${<< parameters.autoMLPrivateKey >>}
-
-            AUTOML_CLIENT_EMAIL=${<< parameters.autoMLClientEmail >>}" > .env
+            SERVICE_DESK_ENV=${<< parameters.serviceDeskEnv >>}" > .env
 
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy -P ${<< parameters.firebaseProjectID >>} --only functions --token $FIREBASE_DEPLOY_TOKEN
@@ -179,9 +136,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: DEV_MDHS_CSA_KEY_JSON
           env: dev
-          agentProject: DEV_AGENT_PROJECT
-          agentPrivateKey: DEV_AGENT_PRIVATE_KEY
-          agentClientEmail: DEV_AGENT_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -196,13 +150,6 @@ workflows:
           serviceDeskID: DEV_SERVICE_DESK_ID
           requestTypeID: DEV_REQUEST_TYPE_ID
           serviceDeskEnv: DEV_SERVICE_DESK_ENV
-          analyticsURI: DEV_ANALYTICS_URI
-          autoMLProject: DEV_AUTOML_PROJECT
-          autoMLLocation: DEV_AUTOML_LOCATION
-          autoMLSMModel: DEV_AUTOML_SM_MODEL
-          autoMLCatModel: DEV_AUTOML_CAT_MODEL
-          autoMLPrivateKey: DEV_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: DEV_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -212,7 +159,7 @@ workflows:
           googleMapsKey: DEV_GOOGLE_MAPS_KEY
           eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
-          feedbackURL: https://us-central1-webchat-analytics-dev.cloudfunctions.net/storeFeedback
+          feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
           filters:
             branches:
               only:
@@ -220,9 +167,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: ISD_MDHS_CSA_KEY_JSON
           env: isd
-          agentProject: ISD_AGENT_PROJECT
-          agentPrivateKey: ISD_AGENT_PRIVATE_KEY
-          agentClientEmail: ISD_AGENT_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -237,13 +181,6 @@ workflows:
           serviceDeskID: DEV_SERVICE_DESK_ID
           requestTypeID: DEV_REQUEST_TYPE_ID
           serviceDeskEnv: DEV_SERVICE_DESK_ENV
-          analyticsURI: ISD_ANALYTICS_URI
-          autoMLProject: ISD_AUTOML_PROJECT
-          autoMLLocation: ISD_AUTOML_LOCATION
-          autoMLSMModel: ISD_AUTOML_SM_MODEL
-          autoMLCatModel: ISD_AUTOML_CAT_MODEL
-          autoMLPrivateKey: ISD_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: ISD_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -253,7 +190,7 @@ workflows:
           googleMapsKey: STAGE_GOOGLE_MAPS_KEY
           eventUrl: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/textRequest
-          feedbackURL: https://us-central1-webchat-analytics-isd-273819.cloudfunctions.net/storeFeedback
+          feedbackURL: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/storeFeedback
           filters:
             branches:
               only:
@@ -261,9 +198,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: STAGE_MDHS_CSA_KEY_JSON
           env: stage
-          agentProject: STAGE_AGENT_PROJECT
-          agentPrivateKey: STAGE_AGENT_PRIVATE_KEY
-          agentClientEmail: STAGE_AGENT_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -278,13 +212,6 @@ workflows:
           serviceDeskID: STAGE_SERVICE_DESK_ID
           requestTypeID: STAGE_REQUEST_TYPE_ID
           serviceDeskEnv: STAGE_SERVICE_DESK_ENV
-          analyticsURI: STAGE_ANALYTICS_URI
-          autoMLProject: STAGE_AUTOML_PROJECT
-          autoMLLocation: STAGE_AUTOML_LOCATION
-          autoMLSMModel: STAGE_AUTOML_SM_MODEL
-          autoMLCatModel: STAGE_AUTOML_CAT_MODEL
-          autoMLPrivateKey: STAGE_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: STAGE_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -294,7 +221,7 @@ workflows:
           googleMapsKey: STAGE_GOOGLE_MAPS_KEY
           eventUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/textRequest
-          feedbackURL: https://us-central1-webchat-analytics-stage.cloudfunctions.net/storeFeedback
+          feedbackURL: https://us-central1-mdhs-csa-stage.cloudfunctions.net/storeFeedback
           filters:
             branches:
               only:
@@ -302,9 +229,6 @@ workflows:
       - deploy_dialogflow_agent:
           jsonKey: PROD_MDHS_CSA_KEY_JSON
           env: prod
-          agentProject: PROD_AGENT_PROJECT
-          agentPrivateKey: PROD_AGENT_PRIVATE_KEY
-          agentClientEmail: PROD_AGENT_CLIENT_EMAIL
           filters:
             branches:
               only:
@@ -319,16 +243,19 @@ workflows:
           serviceDeskID: PROD_SERVICE_DESK_ID
           requestTypeID: PROD_REQUEST_TYPE_ID
           serviceDeskEnv: PROD_SERVICE_DESK_ENV
-          analyticsURI: PROD_ANALYTICS_URI
-          autoMLProject: PROD_AUTOML_PROJECT
-          autoMLLocation: PROD_AUTOML_LOCATION
-          autoMLSMModel: PROD_AUTOML_SM_MODEL
-          autoMLCatModel: PROD_AUTOML_CAT_MODEL
-          autoMLPrivateKey: PROD_AUTOML_PRIVATE_KEY
-          autoMLClientEmail: PROD_AUTOML_CLIENT_EMAIL
           filters:
             branches:
               only:
                 - master
+      - deploy_hosting:
+          firebaseProjectID: PROD_FIREBASE_PROJECT_ID
+          googleMapsKey: PROD_GOOGLE_MAPS_KEY
+          eventUrl: https://us-central1-mdhs-csa.cloudfunctions.net/eventRequest
+          textUrl: https://us-central1-mdhs-csa.cloudfunctions.net/textRequest
+          feedbackURL: https://us-central1-mdhs-csa.cloudfunctions.net/storeFeedback
+          filters:
+            branches:
+              only:
+                - stage
       # We do NOT deploy hosting for the master branch because the prod site is
       # a wordpress site and requires gen to be implemented via a plug in.

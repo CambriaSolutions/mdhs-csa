@@ -1,5 +1,6 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
+const projectId = admin.instanceId().app.options.projectId
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
@@ -30,6 +31,8 @@ const importDataset = async (subjectMatter) => {
     .where('smModelTrained', '==', false)
     .get()
 
+  const autoMlSettings = await store.collection('subjectMatters').doc(subjectMatter).get()
+
   const phraseCategory = []
 
   // add new phrase category pairs to phraseCategory array
@@ -59,7 +62,7 @@ const importDataset = async (subjectMatter) => {
       console.log('Uploading file to GS bucket')
       // Uploads csv file to bucket for AutoML dataset import
 
-      const bucket = storage.bucket('gs://' + process.env.MDHS_GCS_URI)
+      const bucket = storage.bucket('gs://' + autoMlSettings.gcsUri)
 
       console.log('GS bucket instantiated')
       console.log('tempFilePath: ' + tempFilePath)
@@ -79,7 +82,7 @@ const importDataset = async (subjectMatter) => {
         console.log('File uploaded successfully. phraseCategory[]: ' + JSON.stringify(phraseCategory))
 
         // import phrases and categories to AutoML category dataset
-        await updateCategoryModel(fileName, phraseCategory, subjectMatter)
+        await updateCategoryModel(fileName, phraseCategory, subjectMatter, autoMlSettings)
       }
     } catch (err) {
       console.error(err)
@@ -94,11 +97,11 @@ const importDataset = async (subjectMatter) => {
  * @param {*} fileName
  * @param {*} phraseCategory
  */
-async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
+async function updateCategoryModel(fileName, phraseCategory, subjectMatter, autoMlSettings) {
   const datasetPath = client.datasetPath(
-    process.env.AUTOML_MDHS_PROJECT_ID,
-    process.env.AUTOML_LOCATION,
-    process.env.AUTOML_MDHS_DATASET_ID
+    projectId,
+    autoMlSettings.location,
+    autoMlSettings.dataset
   )
 
   try {
@@ -107,7 +110,7 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter) {
     // Get Google Cloud Storage URI
     const inputConfig = {
       gcsSource: {
-        inputUris: [`gs://${process.env.MDHS_GCS_URI}/${fileName}`],
+        inputUris: [`gs://${autoMlSettings.gcsUri}/${fileName}`],
       },
     }
 

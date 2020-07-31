@@ -2,18 +2,24 @@ require('dotenv').config()
 const automl = require('@google-cloud/automl')
 const fs = require('fs')
 
+const admin = require('firebase-admin')
+admin.initializeApp()
+
+const projectId = admin.instanceId().app.options.projectId
+const db = admin.firestore()
+
 // Instantiate autoML client
 const client = new automl.v1beta1.PredictionServiceClient()
 
 
 // Query the category model to return category predictions
-const predictCategories = async query => {
+const predictCategories = async (location, catModel, query) => {
   //try {
   // Define the location of the category prediction model
   const categoryModelPath = client.modelPath(
-    process.env.AUTOML_PROJECT,
-    process.env.AUTOML_LOCATION,
-    process.env.AUTOML_CAT_MODEL
+    projectId,
+    location,
+    catModel
   )
   const payload = {
     textSnippet: {
@@ -51,11 +57,13 @@ const predictAll = async () => {
     //console.log(data)
     //console.log(queries)
 
+    const autoMlSettings = await db.collection('subjectMatters').doc('cse').get()
+
     let queriesWithCategories = ''
     var index
     for (index = 1; index <= 5600; index++) {
       try {
-        const categories = await predictCategories(queries[index])
+        const categories = await predictCategories(autoMlSettings.location, autoMlSettings.catModel, queries[index])
         queriesWithCategories += queries[index].replace(',', 'COMMAGOESHERE') + ',' + categories + '\n'
       } catch (e) {
         console.error('ERROR!!!!!!', queries[index], index, e)

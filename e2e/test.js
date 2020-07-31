@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const dialogflow = require('dialogflow');
+const projectId = admin.instanceId().app.options.projectId
 const { v4: uuidv4 } = require('uuid');
 
 require('dotenv').config();
@@ -14,7 +15,7 @@ describe('Gen responds to me', () => {
 
     beforeEach(async () => {
         sessionId = uuidv4();
-        sessionPath = sessionClient.sessionPath(process.env.AGENT_PROJECT, sessionId);
+        sessionPath = sessionClient.sessionPath(projectId, sessionId);
     });
 
     test('Gen welcomes me', async () => {

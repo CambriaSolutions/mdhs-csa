@@ -3,15 +3,7 @@ const admin = require('firebase-admin')
 const dialogflow = require('dialogflow')
 
 const store = admin.firestore()
-
-const dfConfig = {
-  credentials: {
-    private_key: `${(process.env.AGENT_PRIVATE_KEY || '').replace(/\\n/g, '\n')}`,
-    client_email: `${process.env.AGENT_CLIENT_EMAIL}`
-  }
-}
-
-const intentsClient = new dialogflow.IntentsClient(dfConfig)
+const intentsClient = new dialogflow.IntentsClient()
 
 /**
  * Trigger function on 'queriesForTraining' collection updates

@@ -1,14 +1,12 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
+const projectId = admin.instanceId().app.options.projectId
 const automl = require('@google-cloud/automl')
 const format = require('date-fns/format')
 const store = admin.firestore()
 
 // Instantiate autoML client
-const client = new automl.v1beta1.AutoMlClient({
-  projectId: process.env.AUTOML_MDHS_PROJECT_ID,
-  keyFilename: './mdhs-key.json'
-})
+const client = new automl.v1beta1.AutoMlClient()
 
 /**
  * Trigger training weekly
@@ -49,11 +47,12 @@ module.exports = async () => {
  * @param {*} intent
  */
 async function trainCategoryModel(subjectMatter) {
-  const datasetId = process.env.AUTOML_MDHS_DATASET_ID
+  const autoMlSettings = await store.collection('subjectMatters').doc(subjectMatter).get()
+  const datasetId = autoMlSettings.dataset
   const date = format(new Date(), 'MM_DD_YYYY')
   const modelName = `mdhs_${subjectMatter}_${date}`
 
-  const projectLocation = client.locationPath(process.env.AUTOML_MDHS_PROJECT_ID, 'us-central1')
+  const projectLocation = client.locationPath(projectId, 'us-central1')
 
   // Set model name and model metadata for the dataset.
   const modelData = {
