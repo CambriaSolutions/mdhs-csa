@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cambriasolutions/chatframe": "1.19.6",
+    "@cambriasolutions/chatframe": "1.19.12",
     "latest": "^0.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -15,6 +15,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy-dev": "firebase deploy --only hosting --project dev",
+    "deploy-isd": "firebase deploy --only hosting --project isd",
     "deploy-prod": "firebase deploy --only hosting --project prod",
     "deploy-stage": "firebase deploy --only hosting --project stage"
   },

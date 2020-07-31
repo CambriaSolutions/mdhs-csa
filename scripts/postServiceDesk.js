@@ -1,5 +1,4 @@
 require('dotenv').config()
-const rp = require('request-promise')
 const request = require('request')
 
 const serviceDeskFields = {
@@ -122,7 +121,7 @@ const sendToServiceDesk = async fieldValues => {
     json: true,
   }
 
-  request(options, function(error, response, body) {
+  request(options, function (error, response, body) {
     if (error) throw new Error(error)
     console.log(
       'Response: ' + response.statusCode + ' ' + response.statusMessage

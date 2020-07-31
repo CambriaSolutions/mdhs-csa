@@ -1,0 +1,50 @@
+{
+  "id": "d6dbfc32-23b8-42b0-814b-00fa9d15259c",
+  "name": "cse-dirDep-show-form",
+  "auto": true,
+  "contexts": [
+    "waiting-dirDep-show-form",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-dirDep-show-form",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-dirDep-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

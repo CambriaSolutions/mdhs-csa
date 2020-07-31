@@ -1,0 +1,98 @@
+[
+  {
+    "id": "f5aa740f-7381-4773-9d05-1c470190b3e4",
+    "data": [
+      {
+        "text": "I want to apply for food stamps.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "83747815-480b-43b0-902d-201bb82697ce",
+    "data": [
+      {
+        "text": "I\u0027m here to find out about food stamps.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "0bb58a20-edb2-4a61-804d-ae1dbf393aed",
+    "data": [
+      {
+        "text": "I\u0027m trying to apply for food stamps.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e79af66e-9d0e-4016-bb8a-d235c35bcab2",
+    "data": [
+      {
+        "text": "How to reapply for snap online?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ba0df9f3-f126-4279-8afc-74941b6db761",
+    "data": [
+      {
+        "text": "Can I start a new application?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "1e26aab5-0a65-44d7-a45d-ff93a9a10e01",
+    "data": [
+      {
+        "text": "New application.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "3300f6b8-eef8-4b9f-aba2-4032ae4aca57",
+    "data": [
+      {
+        "text": "How can I apply?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "973980ae-10e9-4538-afe2-8ad5d41c0e73",
+    "data": [
+      {
+        "text": "Application",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

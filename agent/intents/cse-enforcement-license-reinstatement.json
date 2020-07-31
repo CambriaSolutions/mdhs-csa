@@ -1,0 +1,50 @@
+{
+  "id": "872749be-9e90-4964-a044-cc7f822d3ef9",
+  "name": "cse-enforcement-license-reinstatement",
+  "auto": true,
+  "contexts": [
+    "waiting-license-reinstatement-learn-more",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "waiting-license-reinstatement-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-license-suspension-learn-more",
+          "parameters": {},
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

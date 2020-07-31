@@ -13,7 +13,7 @@ const populateMLCategoriesCollection = async () => {
 
   const snapshot = await db.collection('mlCategories').get()
 
-  const allMLCategoriesInDB = snapshot.docs.map(doc => doc.id);
+  const allMLCategoriesInDB = snapshot.docs.map(doc => doc.id)
 
   const mlCategoriesUpdated = []
 
@@ -23,7 +23,7 @@ const populateMLCategoriesCollection = async () => {
   }
 
   for (const i in categories) {
-    console.log(`Saving category:`, categories[i][0])
+    console.log('Saving category:', categories[i][0])
 
     mlCategoriesUpdated.push(categories[i][0])
 
@@ -80,7 +80,7 @@ const populateIntentsCollection = async () => {
 
   const snapshot = await db.collection('intents').get()
 
-  const allIntentsInDB = snapshot.docs.map(doc => doc.id);
+  const allIntentsInDB = snapshot.docs.map(doc => doc.id)
 
   const intentsUpdated = []
 
@@ -109,8 +109,13 @@ const populateIntentsCollection = async () => {
 }
 
 const populateFirestore = async () => {
-  await populateMLCategoriesCollection()
-  await populateIntentsCollection()
+  try {
+    await populateMLCategoriesCollection()
+    await populateIntentsCollection()
+  } catch (e) {
+    console.error(e)
+    process.exitCode = 1
+  }
 }
 
-populateFirestore()
+populateFirestore() 

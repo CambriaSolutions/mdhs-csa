@@ -57,6 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+.firebase
+
 # next.js build output
 .next
 agent/.DS_Store
@@ -66,3 +68,7 @@ functions/analyticsKey.json
 *keys.json
 **/keys/
 scripts/export/
+content/
+
+emulate-firebase.bat
+ngrok.bat

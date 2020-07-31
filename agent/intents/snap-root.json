@@ -1,8 +1,10 @@
 {
-  "id": "fb71570e-dc39-49fa-9dc8-c0066009500f",
+  "id": "148c25f3-35ff-4e5c-b2cd-db031a119d15",
   "name": "snap-root",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "waiting-subjectMatter"
+  ],
   "responses": [
     {
       "resetContexts": false,

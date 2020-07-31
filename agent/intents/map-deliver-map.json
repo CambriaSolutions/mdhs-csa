@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "6e2e82de-9b9e-4017-a1c3-8d98085c9d70",
+          "id": "9ca28de2-0c78-4959-888c-32eeda505fb9",
           "required": false,
           "dataType": "@sys.address",
           "name": "userAddress",
@@ -35,7 +35,7 @@
           "isList": false
         },
         {
-          "id": "d44175b2-a0d7-4196-8393-7bca2aef59c7",
+          "id": "71ad17e2-ca5f-4e4c-9b71-11adde9ac3a7",
           "required": false,
           "dataType": "@sys.geo-city",
           "name": "userCity",
@@ -53,7 +53,7 @@
           "isList": false
         },
         {
-          "id": "89333d90-e075-4b5e-a592-94d3efd69402",
+          "id": "3a7f7d89-f110-4c4e-8dd0-869a467bb0df",
           "required": false,
           "dataType": "@sys.zip-code",
           "name": "userZip",
