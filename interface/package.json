@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@cambriasolutions/chatframe": "1.19.13",
-=======
     "@cambriasolutions/chatframe": "1.19.16",
->>>>>>> 340cd1de415cb011028b36a9516a60b388baf026
     "latest": "^0.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
