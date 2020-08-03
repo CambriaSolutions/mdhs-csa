@@ -194,7 +194,7 @@ workflows:
       - deploy_functions:
           firebaseProjectId: mdhs-csa-dev
           googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
-          serviceDeskKey: DEV_SERVICE_DESK_KEY
+          serviceDeskKey: SERVICE_DESK_KEY
           serviceDeskURI: https://msdhs.atlassian.net/rest/servicedeskapi/request
           serviceDeskID: 7
           requestTypeID: 75
@@ -239,7 +239,7 @@ workflows:
       - deploy_functions:
           firebaseProjectId: mdhs-csa-isd-273818
           googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
-          serviceDeskKey: DEV_SERVICE_DESK_KEY
+          serviceDeskKey: SERVICE_DESK_KEY
           serviceDeskURI: https://msdhs.atlassian.net/rest/servicedeskapi/request
           serviceDeskID: 7
           requestTypeID: 75
@@ -284,7 +284,7 @@ workflows:
       - deploy_functions:
           firebaseProjectId: mdhs-csa-stage
           googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
-          serviceDeskKey: STAGE_SERVICE_DESK_KEY
+          serviceDeskKey: SERVICE_DESK_KEY
           serviceDeskURI: https://msdhs.atlassian.net/rest/servicedeskapi/request
           serviceDeskID: 7
           requestTypeID: 75
@@ -329,7 +329,7 @@ workflows:
       - deploy_functions:
           firebaseProjectId: mdhs-csa
           googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
-          serviceDeskKey: PROD_SERVICE_DESK_KEY
+          serviceDeskKey: SERVICE_DESK_KEY
           serviceDeskURI: https://msdhs.atlassian.net/rest/servicedeskapi/request
           serviceDeskID: 7
           requestTypeID: 75
