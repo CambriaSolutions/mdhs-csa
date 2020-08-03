@@ -209,7 +209,7 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
-          testHarnessHostedUrl: tbd
+          testHarnessHostedUrl: mdhs-csa-dev-test-harness
           filters:
             branches:
               only:
@@ -223,7 +223,7 @@ workflows:
           firebaseMessagingSenderId: 390034944383
           firebaseAppId: 1:390034944383:web:6cefab99af945d7876aa4a
           downloadExportUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/downloadExport
-          analyticsHostedUrl: tbd
+          analyticsHostedUrl: mdhs-csa-dev-analytics
           filters:
             branches:
               only:
