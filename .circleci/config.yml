@@ -65,20 +65,20 @@ jobs:
       - run:
           name: "Add env variables to functions folder"
           command: cd functions && echo
-            "GOOGLE_MAPS_KEY=${<< parameters.googleMapsKey >>}
+            "GOOGLE_MAPS_KEY=<< parameters.googleMapsKey >>
 
             SERVICE_DESK_KEY=${<< parameters.serviceDeskKey >>}
 
-            SERVICE_DESK_URI=${<< parameters.serviceDeskURI >>}
+            SERVICE_DESK_URI=<< parameters.serviceDeskURI >>
 
-            SERVICE_DESK_ID=${<< parameters.serviceDeskID >>}
+            SERVICE_DESK_ID=<< parameters.serviceDeskID >>
 
-            REQUEST_TYPE_ID=${<< parameters.requestTypeID >>}
+            REQUEST_TYPE_ID=<< parameters.requestTypeID >>
 
-            SERVICE_DESK_ENV=${<< parameters.serviceDeskEnv >>}" > .env
+            SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>" > .env
 
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy --only functions --token $FIREBASE_DEPLOY_TOKEN -P ${<< parameters.firebaseProjectId >>}
+      - run: firebase deploy --only functions --token $FIREBASE_DEPLOY_TOKEN -P << parameters.firebaseProjectId >>
 
   deploy_hosting_test_harness:
     docker:
@@ -112,7 +112,7 @@ jobs:
       - run:
           name: "Add env variables to interface folder"
           command: cd interface/testHarness && echo
-            "REACT_APP_GOOGLE_MAPS_KEY=${<< parameters.googleMapsKey >>}
+            "REACT_APP_GOOGLE_MAPS_KEY=<< parameters.googleMapsKey >>
 
             REACT_APP_EVENT_URL=<< parameters.eventUrl >>
 
@@ -124,7 +124,7 @@ jobs:
           name: "Add env variables to interface folder"
           command: cd interface/testHarness && npm run build
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy --only hosting:testHarness --token $FIREBASE_DEPLOY_TOKEN -P ${<< parameters.firebaseProjectId >>}
+      - run: firebase deploy --only hosting:testHarness --token $FIREBASE_DEPLOY_TOKEN -P << parameters.firebaseProjectId >>
 
   deploy_hosting_analytics:
     docker:
@@ -163,17 +163,17 @@ jobs:
           name: "Add env variables & build"
           command: |
             cd interface/analytics  
-            export REACT_APP_FIREBASE_API_KEY=${<< parameters.firebaseApiKey >>}
-            export REACT_APP_FIREBASE_AUTH_DOMAIN=${<< parameters.firebaseAuthDomain >>}
-            export REACT_APP_FIREBASE_DATABASE_URL=${<< parameters.firebaseDatabaseUrl >>}
-            export REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${<< parameters.firebaseMessagingSenderId >>}
-            export REACT_APP_FIREBASE_PROJECT_ID=${<< parameters.firebaseProjectId >>}
-            export REACT_APP_FIREBASE_STORAGE_BUCKET=${<< parameters.firebaseStorageBucket >>}
-            export REACT_APP_FIREBASE_APP_ID=${<< parameters.firebaseAppId >>}
-            export REACT_APP_DOWNLOAD_EXPORT_FUNCTION_URL=${<< parameters.downloadExportUrl >>}
+            export REACT_APP_FIREBASE_API_KEY=<< parameters.firebaseApiKey >>
+            export REACT_APP_FIREBASE_AUTH_DOMAIN=<< parameters.firebaseAuthDomain >>
+            export REACT_APP_FIREBASE_DATABASE_URL=<< parameters.firebaseDatabaseUrl >>
+            export REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<< parameters.firebaseMessagingSenderId >>
+            export REACT_APP_FIREBASE_PROJECT_ID=<< parameters.firebaseProjectId >>
+            export REACT_APP_FIREBASE_STORAGE_BUCKET=<< parameters.firebaseStorageBucket >>
+            export REACT_APP_FIREBASE_APP_ID=<< parameters.firebaseAppId >>
+            export REACT_APP_DOWNLOAD_EXPORT_FUNCTION_URL=<< parameters.downloadExportUrl >>
             CI=false npm run build
       - run: sudo npm install -g firebase-tools
-      - run: firebase deploy --only hosting:analytics --token $FIREBASE_DEPLOY_TOKEN -P ${<< parameters.firebaseProjectId >>}
+      - run: firebase deploy --only hosting:analytics --token $FIREBASE_DEPLOY_TOKEN -P << parameters.firebaseProjectId >>
 
 workflows:
   version: 2
