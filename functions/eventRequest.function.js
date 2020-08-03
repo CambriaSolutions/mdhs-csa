@@ -28,29 +28,40 @@ exports = module.exports = functions
   .runWith(runtimeOpts)
   .https.onRequest((req, res) => {
     return cors(req, res, () => {
-      if (!req.query || !req.query.query) {
-        return 'The "query" parameter is required'
-      }
-      if (!req.query || !req.query.uuid) {
-        return 'The "uuid" parameter is required'
-      }
-      const query = req.query.query
-      const sessionId = req.query.uuid
-      // The event query request.
-      const sessionPath = sessionClient.sessionPath(projectId, sessionId)
-      const dfRequest = {
-        session: sessionPath,
-        queryInput: { event: { name: query, languageCode: languageCode } },
-      }
+      try {
+        if (!req.query || !req.query.query) {
+          return 'The "query" parameter is required'
+        }
+        if (!req.query || !req.query.uuid) {
+          return 'The "uuid" parameter is required'
+        }
+        const query = req.query.query
+        const sessionId = req.query.uuid
+        // The event query request.
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId)
+        const dfRequest = {
+          session: sessionPath,
+          queryInput: { event: { name: query, languageCode: languageCode } },
+        }
 
-      return sessionClient
-        .detectIntent(dfRequest)
-        .then(responses => {
-          responses[0].session = sessionPath
-          res.json(responses[0])
+        const detectIntentPromise = new Promise((resolve, reject) => {
+          sessionClient
+            .detectIntent(dfRequest)
+            .then(responses => {
+              // return responses[0]
+              responses[0].session = sessionPath
+              res.json(responses[0])
+              resolve()
+            })
+            .catch(err => {
+              console.error('eventRequest.function.js: ', err)
+              reject(`Dialogflow error: ${err}`)
+            })
         })
-        .catch(err => {
-          return `Dialogflow error: ${err}`
-        })
+
+        return detectIntentPromise
+      } catch (e) {
+        console.error(`eventRequest.js error ${(new Date()).toString()} ${e}`)
+      }
     })
   })
