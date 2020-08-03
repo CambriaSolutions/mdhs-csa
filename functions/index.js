@@ -74,13 +74,13 @@ Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
   const document = functions.firestore.document(databaseTrigger.path)
 
   let cloudFunction
-  if (databaseTrigger === 'onCreate') {
+  if (databaseTrigger.event === 'onCreate') {
     cloudFunction = document.onCreate(async (snapshot, context) => databaseTriggerWrapper(databaseTrigger.handler, snapshot, context))
-  } else if (databaseTrigger === 'onUpdate') {
+  } else if (databaseTrigger.event === 'onUpdate') {
     cloudFunction = document.onUpdate(async (change, context) => databaseTriggerWrapper(databaseTrigger.handler, change, context))
-  } else if (databaseTrigger === 'onWrite') {
+  } else if (databaseTrigger.event === 'onWrite') {
     cloudFunction = document.onWrite(async (change, context) => databaseTriggerWrapper(databaseTrigger.handler, change, context))
-  } else if (databaseTrigger === 'onDelete') {
+  } else if (databaseTrigger.event === 'onDelete') {
     cloudFunction = document.onDelete(async (snapshot, context) => databaseTriggerWrapper(databaseTrigger.handler, snapshot, context))
   } else {
     console.error('Unknown event type for database trigger', databaseTrigger)
