@@ -9,12 +9,7 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [
-        {
-          "name": "wfd-subject-matter",
-          "lifespan": 5
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
