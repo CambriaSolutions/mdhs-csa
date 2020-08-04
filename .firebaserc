@@ -17,6 +17,16 @@
           "mdhs-csa-dev-test-harness"
         ]
       }
+    },
+    "mdhs-csa-isd-273818": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-isd-analytics"
+        ],
+        "testHarness": [
+          "mdhs-csa-isd-test-harness"
+        ]
+      }
     }
   }
 }
