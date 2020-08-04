@@ -112,6 +112,4 @@ module.exports = async (request, response) => {
 
   await agent.handleRequest(new Map(Object.entries(intentHandlers)))
   await storeAnalytics(request.body)
-
-  response.status(200).send()
 }
