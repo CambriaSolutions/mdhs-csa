@@ -1,5 +1,7 @@
 const { Suggestion, Payload } = require('dialogflow-fulfillment')
 const getSubjectMatter = require('../utils/getSubjectMatter')
+const { subjectMatterContexts, subjectMatterLabels } = require('../constants/constants')
+const { map } = require('lodash')
 
 exports.handleEndConversation = async agent => {
   const helpMessage = 'Is there anything else I can help you with today?'
@@ -221,31 +223,25 @@ exports.welcome = async agent => {
 }
 
 exports.selectSubjectMatter = async agent => {
-  await agent.add(new Suggestion('Child Support'))
-  await agent.add(new Suggestion('TANF'))
-  await agent.add(new Suggestion('SNAP'))
-
   await this.disableInput(agent)
 
-  await agent.context.set({
-    name: 'cse-subject-matter',
-    lifespan: 0,
-  })
+  // Add a suggestion for each of the system's subject matters
+  const suggestionPromises = map(subjectMatterLabels, async label => agent.add(new Suggestion(label)))
 
-  await agent.context.set({
-    name: 'tanf-subject-matter',
-    lifespan: 0,
-  })
-
-  await agent.context.set({
-    name: 'snap-subject-matter',
-    lifespan: 0,
-  })
+  // Remove all subject matter related contexts
+  const contextPromises = map(subjectMatterContexts, async context => (
+    agent.context.set({
+      name: context,
+      lifespan: 0
+    })
+  ))
 
   await agent.context.set({
     name: 'waiting-subjectMatter',
     lifespan: 1,
   })
+
+  await Promise.all([...suggestionPromises, ...contextPromises])
 }
 
 exports.acknowledgePrivacyStatement = async agent => {
