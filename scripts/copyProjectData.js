@@ -1,6 +1,6 @@
 require('dotenv').config()
-const mdhsCsaKey = require('./keys/mdhs-csa-dev.json')
-const webchatKey = require('./keys/webchat-analytics-dev-key.json')
+const mdhsCsaKey = require('./keys/mdhs-csa-isd-key.json')
+const webchatKey = require('./keys/webchat-analytics-isd-key.json')
 
 const admin = require('firebase-admin')
 const mdhs = admin.initializeApp({
