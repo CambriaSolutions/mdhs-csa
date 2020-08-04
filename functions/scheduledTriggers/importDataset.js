@@ -179,6 +179,7 @@ async function updateCategoryModel(fileName, phraseCategory, subjectMatter, auto
 }
 
 module.exports = async () => {
+  // TODO - hardcoded cse
   const subjectMatters = ['cse']
 
   //for (const subjectMatterIndex in subjectMatters) {

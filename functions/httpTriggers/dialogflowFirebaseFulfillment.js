@@ -7,13 +7,11 @@ const childSupportIntentHandlers = require('../intentHandlers/childSupportIntent
 const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
 const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
 const { mapDeliverMap } = require('../intentHandlers/common/map.js')
-const cseLocations = require('../coordinates/cse.json')
-const snapLocations = require('../coordinates/snap.json')
-const tanfLocations = require('../coordinates/tanf.json')
 const getSubjectMatter = require('../utils/getSubjectMatter.js')
 const _ = require('lodash')
 const { Suggestion } = require('dialogflow-fulfillment')
 const storeAnalytics = require('./storeAnalytics')
+const { subjectMatterLocations } = require('../constants/constants.js')
 
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
@@ -21,12 +19,6 @@ const isActionRequested = (body, action) => {
   }
 
   return false
-}
-
-const subjectMatterLocations = {
-  'cse': cseLocations,
-  'snap': snapLocations,
-  'tanf': tanfLocations
 }
 
 // If a request comes in with responses set in dialogflow, or a custom payload specifying

@@ -12,6 +12,7 @@ const client = new automl.v1beta1.AutoMlClient()
  * Trigger training weekly
  **/
 module.exports = async () => {
+  // TODO - hardcoded cse
   const subjectMatter = 'cse'
   const snap = await store
     .collection(`/subjectMatters/${subjectMatter}/queriesForTraining/`)
