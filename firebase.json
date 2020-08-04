@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "analytics",
-      "public": "interface/analytics/build",
+      "public": "hosting/analytics/build",
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -11,7 +11,7 @@
     },
     {
       "target": "testHarness",
-      "public": "interface/testHarness/build",
+      "public": "hosting/testHarness/build",
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -48,5 +48,8 @@
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
