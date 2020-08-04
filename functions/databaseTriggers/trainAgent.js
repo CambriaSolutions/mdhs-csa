@@ -53,11 +53,12 @@ async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
         intent: intent,
         intentView: 'INTENT_VIEW_FULL',
       }
-      
+
       await intentsClient.updateIntent(request)
       console.log('Updated intent with new training phrase.')
 
       // set agentTrained to true after we updated the intent
+      // TODO - hardcoded cse
       await store
         .collection(
           '/subjectMatters/cse/queriesForTraining/'
@@ -72,9 +73,9 @@ async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
           intent: intentName,
           learnedPhrase: phrase,
         })
-        
+
       console.log(`${intentName} learned ${phrase} as a training phrase`)
-        
+
     } catch (e) {
       console.log('Unable to train intent: ' + e)
     }
