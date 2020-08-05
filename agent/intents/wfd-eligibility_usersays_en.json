@@ -1,9 +1,9 @@
 [
   {
-    "id": "e254b8ce-d43b-4543-8ccf-91527609c313",
+    "id": "39bdb604-8c40-4569-9a3c-863e8d177028",
     "data": [
       {
-        "text": "Can you help me with a job?",
+        "text": "Can I still receive UI and participate?",
         "userDefined": false
       }
     ],
@@ -13,10 +13,10 @@
     "updated": 0
   },
   {
-    "id": "26309062-c72c-4a72-887d-62c78ea27df2",
+    "id": "1d27874a-1a56-4363-b08d-7d071bff9201",
     "data": [
       {
-        "text": "What to do to earn more money?",
+        "text": "If I have a balance, or owe the school, can I still participate in available S2W program(s)?",
         "userDefined": false
       }
     ],
@@ -26,10 +26,10 @@
     "updated": 0
   },
   {
-    "id": "f2bf2b56-fec1-43c6-942d-e70280705158",
+    "id": "2534dba9-de4a-43c4-a494-6b46cbbec249",
     "data": [
       {
-        "text": "Workforce development info.",
+        "text": "What do I need to qualify?",
         "userDefined": false
       }
     ],
@@ -39,10 +39,10 @@
     "updated": 0
   },
   {
-    "id": "60d2717c-d9d1-4f61-942a-2ae28d87ae14",
+    "id": "233700b3-4bb0-4caa-9fc9-b6170fc4fb57",
     "data": [
       {
-        "text": "If I\u0027m a SNAP receiver, can I start a training and earn money?",
+        "text": "What will I have to pay for?",
         "userDefined": false
       }
     ],
@@ -52,10 +52,10 @@
     "updated": 0
   },
   {
-    "id": "8087baa5-4505-40f1-897a-9764afa38b33",
+    "id": "07fe4da9-222f-4c3a-8717-328eee76344e",
     "data": [
       {
-        "text": "Can I enroll in a program?",
+        "text": "How old do I have to be to participate in a program?",
         "userDefined": false
       }
     ],
@@ -65,10 +65,10 @@
     "updated": 0
   },
   {
-    "id": "010459a0-a216-40cd-9160-2949e7a83ce8",
+    "id": "53fd74b0-b698-4031-ae33-73071adf13f3",
     "data": [
       {
-        "text": "What programs do you have?",
+        "text": "Can I participate if I am taking classes part-time?",
         "userDefined": false
       }
     ],
@@ -78,10 +78,10 @@
     "updated": 0
   },
   {
-    "id": "727a9341-2685-4c3b-8481-484067af6894",
+    "id": "4e7c8d1a-3929-427b-b866-723ad90f5e3d",
     "data": [
       {
-        "text": "Can I start my career with you?",
+        "text": "If I have a disability, can I still  participate?",
         "userDefined": false
       }
     ],
@@ -91,10 +91,10 @@
     "updated": 0
   },
   {
-    "id": "a7155239-d357-4465-812e-7dd4cc0b2d29",
+    "id": "fc4c4ae5-5942-4809-a49a-953b07a48d4c",
     "data": [
       {
-        "text": "I want to work?",
+        "text": "If I have a part-time job, can I participate?",
         "userDefined": false
       }
     ],
@@ -104,10 +104,10 @@
     "updated": 0
   },
   {
-    "id": "f27effc8-bb91-4f65-84fe-17c704f72afc",
+    "id": "2fbb7ae3-09e8-430f-a1c1-95f9ceba5b15",
     "data": [
       {
-        "text": "I need a job.",
+        "text": "Do I have to be receiving SNAP?",
         "userDefined": false
       }
     ],
@@ -117,10 +117,23 @@
     "updated": 0
   },
   {
-    "id": "b05c1bd4-9b9f-4cfd-ad38-43ff4510bc79",
+    "id": "bcdee0a5-f83d-42da-afce-400992437359",
     "data": [
       {
-        "text": "What is work force development?",
+        "text": "Can I volunteer to participate in a S2W program?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "224fe62d-fc4f-429d-9dab-caabe3bd256c",
+    "data": [
+      {
+        "text": "Can I participate if I receive TANF benefits?",
         "userDefined": false
       }
     ],

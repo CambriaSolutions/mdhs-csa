@@ -1,0 +1,49 @@
+{
+  "id": "661539a3-5538-403e-86d8-eab5ea775484",
+  "name": "wfd-eligibility",
+  "auto": true,
+  "contexts": [
+    "wfd-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "You may qualify for Skills2Work if you are a SNAP-only recipient and you are: \nBetween the ages of 18-59.\nRequired to register for work as a condition of SNAP eligibility or a recipient of Unemployment Insurance (UI).\nEnrolled or accepted for enrollment in a career/technical program of study or workforce skills training program at a participating Skills2Work provider."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "SUBMIT FEEDBACK"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
