@@ -30,7 +30,7 @@ const storeConversationFeedback = async (
 module.exports = async (req, res) => {
   //const reqData = req.body
   console.log(`Store Feedback was called, ${req.method}`)
-  res.send()
+  
   // if (!reqData) {
   //   res.status(500).send('The request body doesn\'t contain expected parameters')
   // } else if (!reqData.session || typeof reqData.wasHelpful === 'undefined') {
