@@ -133,6 +133,6 @@ module.exports = async (req, res) => {
       }
     }
   
-    return res.status(200).send('Feedback stored successfully')
+    return res.send(200, 'Feedback stored successfully')
   }
 }
