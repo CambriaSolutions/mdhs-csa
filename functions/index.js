@@ -44,7 +44,7 @@ const cors = require('cors')({
 const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
   try {
     if (corsEnabled) {
-      return cors()(req, res, handler(req, res))
+      return cors(req, res, () => { handler(req, res) })
     } else {
       return handler(req, res)
     }
