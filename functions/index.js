@@ -39,6 +39,7 @@ const scheduledTriggers = {
 // Register HTTP Triggers
 const cors = require('cors')({
   origin: true,
+  methods: ['GET', 'POST']
 })
 
 const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
