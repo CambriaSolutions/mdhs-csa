@@ -38,13 +38,13 @@ const scheduledTriggers = {
 
 // Register HTTP Triggers
 const cors = require('cors')({
-  origin: '*'
+  origin: true
 })
 
 const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
   try {
     if (corsEnabled) {
-      return cors(req, res, handler(req, res))
+      return cors()(req, res, handler(req, res))
     } else {
       return handler(req, res)
     }
