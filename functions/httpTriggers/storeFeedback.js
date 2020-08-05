@@ -30,10 +30,10 @@ const storeConversationFeedback = async (
 module.exports = async (req, res) => {
   const reqData = req.body
   if (!reqData) {
-    res.send(500, 'The request body doesn\'t contain expected parameters')
+    res.status(500).send('The request body doesn\'t contain expected parameters')
   } else if (!reqData.session || typeof reqData.wasHelpful === 'undefined') {
     // Check that feedback data exists on the request
-    res.send(500, 'Missing feedback parameters')
+    res.status(500).send('Missing feedback parameters')
   } else {
     console.log('reqData: ' + JSON.stringify(reqData))
 
@@ -133,6 +133,6 @@ module.exports = async (req, res) => {
       }
     }
   
-    return res.send(200, 'Feedback stored successfully')
+    return res.status(200).send('Feedback stored successfully')
   }
 }
