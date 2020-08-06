@@ -198,7 +198,7 @@ exports.welcome = async agent => {
 
   try {
     await agent.add(
-      'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP or TANF requests.'
+      'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP, TANF or Workforce Development requests.'
     )
 
     await agent.add(
