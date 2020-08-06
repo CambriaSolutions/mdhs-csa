@@ -6,6 +6,7 @@ const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
 const childSupportIntentHandlers = require('../intentHandlers/childSupportIntentHandlers')
 const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
 const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
+const wfdIntentHandlers = require('../intentHandlers/wfdIntentHandlers')
 const { mapDeliverMap } = require('../intentHandlers/common/map.js')
 const getSubjectMatter = require('../utils/getSubjectMatter.js')
 const _ = require('lodash')
@@ -46,6 +47,7 @@ module.exports = async (request, response) => {
   console.log(
     'Dialogflow Request headers: ' + JSON.stringify(request.headers)
   )
+
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
   if (request.body.queryResult.fulfillmentMessages) {
@@ -73,6 +75,7 @@ module.exports = async (request, response) => {
     ...childSupportIntentHandlers,
     ...tanfIntentHandlers,
     ...snapIntentHandlers,
+    ...wfdIntentHandlers,
     'map-deliver-map': mapDeliverMap(subjectMatterLocations[subjectMatter])
   }
 
