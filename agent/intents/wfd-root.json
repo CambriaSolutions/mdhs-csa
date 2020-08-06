@@ -1,5 +1,5 @@
 {
-  "id": "41707757-11fe-40b1-9699-4806a68f96bd",
+  "id": "012cd091-b575-4bd6-9873-e86918266335",
   "name": "wfd-root",
   "auto": true,
   "contexts": [
@@ -27,7 +27,17 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Placeholder. Workforce development root."
+            "Did you know receiving SNAP benefits may help you improve your chances of securing a rewarding job? As a SNAP recipient, you may be eligible for access to skill-building education and training programs to help you earn credentials employers are seeking. If eligible, you can even earn stackable credentials that lead to a career and self-sustaining wage!"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Select the option below or ask me your question."
           ],
           "condition": ""
         },
@@ -36,7 +46,7 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "Skills2work"
+              "SKILLS2WORK"
             ]
           },
           "textToSpeech": "",

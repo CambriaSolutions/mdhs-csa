@@ -1,28 +1,15 @@
 {
-  "id": "5a354084-5e8a-4b10-8131-3b254ce649f4",
-  "name": "snap-switchFromCse",
+  "id": "27c631de-0532-4041-a5b4-4f50f917b082",
+  "name": "wfd-map-root",
   "auto": true,
   "contexts": [
-    "snap-switchFromCse"
+    "wfd-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [
-        {
-          "name": "snap-switchFromCse",
-          "lifespan": 0
-        },
-        {
-          "name": "cse-subject-matter",
-          "lifespan": 0
-        },
-        {
-          "name": "snap-subject-matter",
-          "lifespan": 999
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
@@ -31,23 +18,18 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "What can I help you with?"
+            "You may contact a MDHS county office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain additional information about S2W."
           ],
           "condition": ""
         },
         {
-          "type": "4",
+          "type": "0",
           "title": "",
-          "payload": {
-            "suggestions": [
-              "Application",
-              "Doc Upload",
-              "Office Locations",
-              "Eligibility Checker"
-            ]
-          },
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "I can help locate the nearest office to you, what is your address?"
+          ],
           "condition": ""
         }
       ],
