@@ -28,6 +28,13 @@ const Dropdown = styled(Select)`
   }
 `
 
+const CustomMenuItem = styled(MenuItem)`
+  && {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom: 0px;
+  }
+`
+
 class DateFilter extends Component {
   constructor(props) {
     super(props)
@@ -58,6 +65,7 @@ class DateFilter extends Component {
           <MenuItem value={'Last 90 days'}>Last 90 days</MenuItem>
           <MenuItem value={'Last quarter'}>Last quarter</MenuItem>
           <MenuItem value={'Last 12 months'}>Last 12 months</MenuItem>
+          <CustomMenuItem value={'Custom'}>Custom</CustomMenuItem>
         </Dropdown>
         {isCustomDateRange && <CustomDateDialog />}
       </>

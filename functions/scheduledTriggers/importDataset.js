@@ -31,7 +31,7 @@ const importDataset = async (subjectMatter) => {
     .where('smModelTrained', '==', false)
     .get()
 
-  const autoMlSettings = await store.collection('subjectMatters').doc(subjectMatter).get()
+  const autoMlSettings = (await store.collection('subjectMatters').doc(subjectMatter).get()).data()
 
   const phraseCategory = []
 

@@ -18,7 +18,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "You may qualify for Skills2Work if you are a SNAP-only recipient and you are: \nBetween the ages of 18-59.\nRequired to register for work as a condition of SNAP eligibility or a recipient of Unemployment Insurance (UI).\nEnrolled or accepted for enrollment in a career/technical program of study or workforce skills training program at a participating Skills2Work provider."
+            "You may qualify for Skills2Work if you are a SNAP-only recipient and you are: \u003cul\u003e\u003cli\u003eBetween the ages of 18-59.\u003c/li\u003e\u003cli\u003eRequired to register for work as a condition of SNAP eligibility or a recipient of Unemployment Insurance (UI).\u003c/li\u003e\u003cli\u003eEnrolled or accepted for enrollment in a career/technical program of study or workforce skills training program at a participating Skills2Work provider.\u003c/li\u003e\u003c/ul\u003e"
           ],
           "condition": ""
         },

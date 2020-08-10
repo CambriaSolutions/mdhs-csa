@@ -1,5 +1,5 @@
 import { keyBy, map, reduce, orderBy, mapValues } from 'lodash'
-import format from 'date-fns/format/index.js'
+import { format, differenceInCalendarDays, differenceInCalendarMonths, startOfWeek } from 'date-fns'
 
 const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 
@@ -23,7 +23,7 @@ const determineStartDate = (date, dateFilter) => {
   }
 }
 
-const determineNumberOfDaysInFilter = (date, dateFilter) => {
+const determineNumberOfDaysInFilter = (date, dateFilter, filterStartDate = null, filterEndDate = null) => {
   if (dateFilter === 'Today') {
     return 1
   } else if (dateFilter === 'Yesterday') {
@@ -46,18 +46,21 @@ const determineNumberOfDaysInFilter = (date, dateFilter) => {
     } else {
       return 92
     }
-  } else {
+  } else if (dateFilter === 'Last 12 months') {
     // 'Last 12 months'
     return 365
+  } else {
+    // dateFilter === 'Custom'
+    return differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate))
   }
 }
 
 // If a day has no data (maybe it was the weekend), then we fill in that data with zeroes.
 // NOTE - This will not fill in the specific support requests types with zeroes.
-const fillMissingData = (metrics, dateFilter) => {
+const fillMissingData = (metrics, dateFilter, filterStartDate = null, filterEndDate = null) => {
   const metricsByDate = keyBy(metrics, x => x.id)
-  const startDate = determineStartDate(new Date(), dateFilter)
-  const numberOfDaysInFilter = determineNumberOfDaysInFilter(new Date(), dateFilter)
+  const startDate = dateFilter !== 'Custom' ? determineStartDate(new Date(), dateFilter) : new Date(filterStartDate)
+  const numberOfDaysInFilter = determineNumberOfDaysInFilter(new Date(), dateFilter, filterStartDate, filterEndDate)
 
   let cleanedData = []
 
@@ -106,8 +109,8 @@ const sortAndFillSupportRequestBlanks = (data, typesOfSupportRequests) => {
   }
 }
 
-const prepareDataForComposedChartByDay = (rawData, dateFilter) => {
-  const data = fillMissingData(rawData, dateFilter)
+const prepareDataForComposedChartByDay = (rawData, dateFilter, filterStartDate = null, filterEndDate = null) => {
+  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
   const typesOfSupportRequests = new Set()
   const mappedData = map(data, day => ({
     id: day.id,
@@ -127,13 +130,23 @@ const prepareDataForComposedChartByDay = (rawData, dateFilter) => {
   return sortAndFillSupportRequestBlanks(mappedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChartByMonth = (data) => {
+const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, dateFilter, filterStartDate, filterEndDate) => {
+  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
+
   // We need to know how many different types of support requests were submitted so the line graph can be dynamic and future proof.
   const typesOfSupportRequests = new Set()
 
-  const dataByMonth = reduce(data, function (result, day) {
-    // Create an object where each key is the year and month eg '2020-1'
-    const key = `${new Date(day.id).getFullYear()}-${new Date(day.id).getMonth() + 1}`
+  const aggregatedData = reduce(data, function (result, day) {
+    let key = ''
+
+    if (aggregationType === 'monthly') {
+      key = `${new Date(day.id).getFullYear()}-${new Date(day.id).getMonth() + 1}`
+    } else if (aggregationType === 'weekly') {
+      const _startOfWeek = startOfWeek(new Date(day.id))
+
+      // Create an object where each key is the year and month eg '2020-1'
+      key = `${_startOfWeek.getMonth() + 1}-${_startOfWeek.getDate()}`
+    }
 
     // Create this property (year and month) if it doesn't exist yet
     if (!result[key]) {
@@ -148,11 +161,11 @@ const prepareDataForComposedChartByMonth = (data) => {
     const monthNumConversationsWithDuration = !!result[key].numConversationsWithDuration ? result[key].numConversationsWithDuration : 0
     const dayNumConversationsWithDuration = !!day.numConversationsWithDuration ? day.numConversationsWithDuration : 0
 
-    // Add the metrics of that day to the overall month
+    // Add the metrics of that day to the overall month/week
     result[key].numConversations = monthNumConversations + dayNumConversations
     result[key].numConversationsWithDuration = monthNumConversationsWithDuration + dayNumConversationsWithDuration
 
-    // Add the support request metrics of that day to the overall month
+    // Add the support request metrics of that day to the overall month/week
     if (!!day.supportRequests) {
       day.supportRequests.forEach(x => {
         // Add to collection of types of support requests
@@ -165,14 +178,22 @@ const prepareDataForComposedChartByMonth = (data) => {
     return result;
   }, {})
 
-  return sortAndFillSupportRequestBlanks(dataByMonth, typesOfSupportRequests)
+  return sortAndFillSupportRequestBlanks(aggregatedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChart = (data, dateFilter) => {
+const prepareDataForComposedChart = (data, dateFilter, filterStartDate, filterEndDate) => {
+  const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate))
+
+  // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
+  // If it spans 3 or more, we display monthly.
   if (dateFilter === 'Last 12 months') {
-    return prepareDataForComposedChartByMonth(data)
+    return prepareDataForComposedChartByAggregationType('monthly', data, 'Last 12 months')
+  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 1 && totalCalendarMonths < 3) {
+    return prepareDataForComposedChartByAggregationType('weekly', data, 'Custom', filterStartDate, filterEndDate)
+  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 3) {
+    return prepareDataForComposedChartByAggregationType('monthly', data, 'Custom', filterStartDate, filterEndDate)
   } else {
-    return prepareDataForComposedChartByDay(data, dateFilter)
+    return prepareDataForComposedChartByDay(data, dateFilter, filterStartDate, filterEndDate)
   }
 }
 

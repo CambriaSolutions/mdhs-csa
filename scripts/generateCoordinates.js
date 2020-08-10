@@ -11,8 +11,8 @@ const mapsKey = process.env.GOOGLE_MAPS_KEY
 
 console.log('\n', 'Retrieving address coordinates ...', '\n')
 
-// Create an array of cse locations to send to the geocode api
-const cseLocations = [
+// Create an array of CSE locations to send to the geocode api
+const locationsSet1 = [
   '108 S. Whitworth Ave Brookhaven, MS 39601',
   '157 Issaquena Ave Clarksdale, MS 38614',
   '822 N Davis Ave Cleveland, MS 38732',
@@ -39,8 +39,8 @@ const cseLocations = [
   '128 W. Jefferson St Yazoo City, MS 39194',
 ]
 
-// Create an array of SNAP and TANF locations to send to the geocode api. SNAP and TANF have the same offices.
-const snapTanfLocations = [
+// Create an array of SNAP, TANF, and WFD locations to send to the geocode api. SNAP, TANF, and WFD have the same offices.
+const locationsSet2 = [
   '150 EAST FRANKLIN NATCHEZ, MS 39120',
   '2690 S HARPER ROAD CORINTH, MS 38834',
   '185 IRENE ST LIBERTY, MS 39645',
@@ -239,17 +239,14 @@ const coordinatesRequests = async (locations) => {
 // the functions directory. We will use these to populate the custom payload for the
 // map intent fulfillment
 Promise.all([
-  coordinatesRequests(cseLocations),
-  coordinatesRequests(snapTanfLocations)
+  coordinatesRequests(locationsSet1), // CSE
+  coordinatesRequests(locationsSet2) // SNAP, TANF, WFD
 ]).then(responses => {
   // CSE
-  fs.writeFileSync('../functions/coordinates/cse.json', JSON.stringify(responses[0]))
+  fs.writeFileSync('../functions/coordinates/coordinatesSet1.json', JSON.stringify(responses[0]))
 
-  // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/tanf.json', JSON.stringify(responses[1]))
-
-  // SNAP and TANF have the same offices
-  fs.writeFileSync('../functions/coordinates/snap.json', JSON.stringify(responses[1]))
+  // SNAP, TANF, WFD have the same offices
+  fs.writeFileSync('../functions/coordinates/coordinatesSet2.json', JSON.stringify(responses[1]))
 
   console.log('Coordinates retrieved - files created!')
 })

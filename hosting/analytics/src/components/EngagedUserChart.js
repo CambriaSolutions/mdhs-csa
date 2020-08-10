@@ -4,7 +4,7 @@ import prepareDataForComposedChart from '../scripts/metricUtil'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Line, Legend, Tooltip } from 'recharts'
-import {contrastingColors} from '../common/helper'
+import { contrastingColors } from '../common/helper'
 
 const Header = styled.h3`
   display: flex
@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const EngagedUserChart = props => {
-  const { data } = prepareDataForComposedChart(props.metrics, props.filterLabel)
+  const { data } = prepareDataForComposedChart(props.metrics, props.filterLabel, props.filterStartDate, props.filterEndDate)
   const [ darkestColor ] = contrastingColors(props.colors)
 
   return (
@@ -61,6 +61,8 @@ const mapStateToProps = state => {
   return {
     showEngagedUser: state.filters.showEngagedUser,
     filterLabel: state.filters.filterLabel,
+    filterStartDate: state.filters.dateFilters.start,
+    filterEndDate: state.filters.dateFilters.end,
     metrics: state.metrics.dailyMetrics
   }
 }
