@@ -1,7 +1,6 @@
 const { map } = require('lodash')
-const cseLocations = require('../coordinates/cse.json')
-const snapLocations = require('../coordinates/snap.json')
-const tanfLocations = require('../coordinates/tanf.json')
+const coordinatesSet1 = require('../coordinates/coordinatesSet1.json')
+const coordinatesSet2 = require('../coordinates/coordinatesSet2.json')
 
 exports.subjectMatters = [
   'cse',
@@ -19,8 +18,10 @@ exports.subjectMatterLabels = [
 
 exports.subjectMatterContexts = map(this.subjectMatters, sm => `${sm}-subject-matter`)
 
+// SNAP, TANF, WFD have the same locations. CSE locations are separate.
 exports.subjectMatterLocations = {
-  'cse': cseLocations,
-  'snap': snapLocations,
-  'tanf': tanfLocations
+  'cse': coordinatesSet1,
+  'snap': coordinatesSet2,
+  'tanf': coordinatesSet2,
+  'wfd': coordinatesSet2
 }
