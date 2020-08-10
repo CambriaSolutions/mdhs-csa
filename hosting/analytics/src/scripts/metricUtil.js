@@ -1,5 +1,5 @@
 import { keyBy, map, reduce, orderBy, mapValues } from 'lodash'
-import format from 'date-fns/format/index.js'
+import { format, differenceInCalendarDays } from 'date-fns'
 
 const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 
@@ -23,7 +23,7 @@ const determineStartDate = (date, dateFilter) => {
   }
 }
 
-const determineNumberOfDaysInFilter = (date, dateFilter) => {
+const determineNumberOfDaysInFilter = (date, dateFilter, filterStartDate = null, filterEndDate = null) => {
   if (dateFilter === 'Today') {
     return 1
   } else if (dateFilter === 'Yesterday') {
@@ -46,18 +46,21 @@ const determineNumberOfDaysInFilter = (date, dateFilter) => {
     } else {
       return 92
     }
-  } else {
+  } else if (dateFilter === 'Last quarter') {
     // 'Last 12 months'
     return 365
+  } else {
+    // dateFilter === 'Custom'
+    return differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate))
   }
 }
 
 // If a day has no data (maybe it was the weekend), then we fill in that data with zeroes.
 // NOTE - This will not fill in the specific support requests types with zeroes.
-const fillMissingData = (metrics, dateFilter) => {
+const fillMissingData = (metrics, dateFilter, filterStartDate = null, filterEndDate = null) => {
   const metricsByDate = keyBy(metrics, x => x.id)
-  const startDate = determineStartDate(new Date(), dateFilter)
-  const numberOfDaysInFilter = determineNumberOfDaysInFilter(new Date(), dateFilter)
+  const startDate = dateFilter !== 'Custom' ? determineStartDate(new Date(), dateFilter) : new Date(filterStartDate)
+  const numberOfDaysInFilter = determineNumberOfDaysInFilter(new Date(), dateFilter, filterStartDate, filterEndDate)
 
   let cleanedData = []
 
@@ -106,8 +109,8 @@ const sortAndFillSupportRequestBlanks = (data, typesOfSupportRequests) => {
   }
 }
 
-const prepareDataForComposedChartByDay = (rawData, dateFilter) => {
-  const data = fillMissingData(rawData, dateFilter)
+const prepareDataForComposedChartByDay = (rawData, dateFilter, filterStartDate = null, filterEndDate = null) => {
+  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
   const typesOfSupportRequests = new Set()
   const mappedData = map(data, day => ({
     id: day.id,
@@ -168,11 +171,11 @@ const prepareDataForComposedChartByMonth = (data) => {
   return sortAndFillSupportRequestBlanks(dataByMonth, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChart = (data, dateFilter) => {
+const prepareDataForComposedChart = (data, dateFilter, filterStartDate, filterEndDate) => {
   if (dateFilter === 'Last 12 months') {
     return prepareDataForComposedChartByMonth(data)
   } else {
-    return prepareDataForComposedChartByDay(data, dateFilter)
+    return prepareDataForComposedChartByDay(data, dateFilter, filterStartDate, filterEndDate)
   }
 }
 
