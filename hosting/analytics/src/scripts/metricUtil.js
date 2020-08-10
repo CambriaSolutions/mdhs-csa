@@ -1,5 +1,5 @@
 import { keyBy, map, reduce, orderBy, mapValues } from 'lodash'
-import { format, differenceInCalendarDays } from 'date-fns'
+import { format, differenceInCalendarDays, differenceInCalendarMonths, startOfWeek } from 'date-fns'
 
 const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 
@@ -130,13 +130,23 @@ const prepareDataForComposedChartByDay = (rawData, dateFilter, filterStartDate =
   return sortAndFillSupportRequestBlanks(mappedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChartByMonth = (data) => {
+const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, dateFilter, filterStartDate, filterEndDate) => {
+  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
+
   // We need to know how many different types of support requests were submitted so the line graph can be dynamic and future proof.
   const typesOfSupportRequests = new Set()
 
-  const dataByMonth = reduce(data, function (result, day) {
-    // Create an object where each key is the year and month eg '2020-1'
-    const key = `${new Date(day.id).getFullYear()}-${new Date(day.id).getMonth() + 1}`
+  const aggregatedData = reduce(data, function (result, day) {
+    let key = ''
+
+    if (aggregationType === 'monthly') {
+      key = `${new Date(day.id).getFullYear()}-${new Date(day.id).getMonth() + 1}`
+    } else if (aggregationType === 'weekly') {
+      const _startOfWeek = startOfWeek(new Date(day.id))
+
+      // Create an object where each key is the year and month eg '2020-1'
+      key = `${_startOfWeek.getMonth() + 1}-${_startOfWeek.getDate()}`
+    }
 
     // Create this property (year and month) if it doesn't exist yet
     if (!result[key]) {
@@ -151,11 +161,11 @@ const prepareDataForComposedChartByMonth = (data) => {
     const monthNumConversationsWithDuration = !!result[key].numConversationsWithDuration ? result[key].numConversationsWithDuration : 0
     const dayNumConversationsWithDuration = !!day.numConversationsWithDuration ? day.numConversationsWithDuration : 0
 
-    // Add the metrics of that day to the overall month
+    // Add the metrics of that day to the overall month/week
     result[key].numConversations = monthNumConversations + dayNumConversations
     result[key].numConversationsWithDuration = monthNumConversationsWithDuration + dayNumConversationsWithDuration
 
-    // Add the support request metrics of that day to the overall month
+    // Add the support request metrics of that day to the overall month/week
     if (!!day.supportRequests) {
       day.supportRequests.forEach(x => {
         // Add to collection of types of support requests
@@ -168,12 +178,20 @@ const prepareDataForComposedChartByMonth = (data) => {
     return result;
   }, {})
 
-  return sortAndFillSupportRequestBlanks(dataByMonth, typesOfSupportRequests)
+  return sortAndFillSupportRequestBlanks(aggregatedData, typesOfSupportRequests)
 }
 
 const prepareDataForComposedChart = (data, dateFilter, filterStartDate, filterEndDate) => {
+  const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate))
+
+  // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
+  // If it spans 3 or more, we display monthly.
   if (dateFilter === 'Last 12 months') {
-    return prepareDataForComposedChartByMonth(data)
+    return prepareDataForComposedChartByAggregationType('monthly', data, 'Custom', filterStartDate, filterEndDate)
+  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 1 && totalCalendarMonths < 3) {
+    return prepareDataForComposedChartByAggregationType('weekly', data, 'Custom', filterStartDate, filterEndDate)
+  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 3) {
+    return prepareDataForComposedChartByAggregationType('monthly', data, 'Custom', filterStartDate, filterEndDate)
   } else {
     return prepareDataForComposedChartByDay(data, dateFilter, filterStartDate, filterEndDate)
   }
