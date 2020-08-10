@@ -31,6 +31,7 @@ const Dropdown = styled(Select)`
 const CustomMenuItem = styled(MenuItem)`
   && {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom: 0px;
   }
 `
 

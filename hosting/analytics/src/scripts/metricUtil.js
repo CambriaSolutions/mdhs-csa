@@ -46,7 +46,7 @@ const determineNumberOfDaysInFilter = (date, dateFilter, filterStartDate = null,
     } else {
       return 92
     }
-  } else if (dateFilter === 'Last quarter') {
+  } else if (dateFilter === 'Last 12 months') {
     // 'Last 12 months'
     return 365
   } else {
