@@ -57,7 +57,7 @@ const predictAll = async () => {
     //console.log(data)
     //console.log(queries)
 
-    const autoMlSettings = await db.collection('subjectMatters').doc('cse').get()
+    const autoMlSettings = (await db.collection('subjectMatters').doc('cse').get()).data()
 
     let queriesWithCategories = ''
     var index
