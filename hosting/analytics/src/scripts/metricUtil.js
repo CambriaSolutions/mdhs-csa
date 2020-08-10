@@ -187,7 +187,7 @@ const prepareDataForComposedChart = (data, dateFilter, filterStartDate, filterEn
   // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
   // If it spans 3 or more, we display monthly.
   if (dateFilter === 'Last 12 months') {
-    return prepareDataForComposedChartByAggregationType('monthly', data, 'Custom', filterStartDate, filterEndDate)
+    return prepareDataForComposedChartByAggregationType('monthly', data, 'Last 12 months')
   } else if (dateFilter === 'Custom' && totalCalendarMonths >= 1 && totalCalendarMonths < 3) {
     return prepareDataForComposedChartByAggregationType('weekly', data, 'Custom', filterStartDate, filterEndDate)
   } else if (dateFilter === 'Custom' && totalCalendarMonths >= 3) {
