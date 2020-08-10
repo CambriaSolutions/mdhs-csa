@@ -48,12 +48,12 @@ module.exports = async () => {
  * @param {*} intent
  */
 async function trainCategoryModel(subjectMatter) {
-  const autoMlSettings = await store.collection('subjectMatters').doc(subjectMatter).get()
+  const autoMlSettings = (await store.collection('subjectMatters').doc(subjectMatter).get()).data()
   const datasetId = autoMlSettings.dataset
   const date = format(new Date(), 'MM_DD_YYYY')
   const modelName = `mdhs_${subjectMatter}_${date}`
 
-  const projectLocation = client.locationPath(projectId, 'us-central1')
+  const projectLocation = client.locationPath(projectId, autoMlSettings.location)
 
   // Set model name and model metadata for the dataset.
   const modelData = {
