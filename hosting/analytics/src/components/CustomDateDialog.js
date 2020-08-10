@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { KeyboardDatePicker } from '@material-ui/pickers'
-import { format, isValid } from 'date-fns'
+import { format, isValid, endOfDay } from 'date-fns'
 import styled from 'styled-components'
 
 import {
@@ -93,7 +93,7 @@ function CustomDateDialog(props) {
               value={endDate}
               invalidDateMessage='Try mm/dd/yy'
               minDate={startDate ? startDate : false}
-              onChange={date => setEndDate(date)}
+              onChange={date => setEndDate(endOfDay(date))}
             />
           </PickerContainer>
         </DialogContent>
