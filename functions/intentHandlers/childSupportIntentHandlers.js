@@ -1,4 +1,3 @@
-const { cseRoot } = require('./childSupport/cseRoot.js')
 const { mapRoot } = require('./common/map.js')
 
 // TODO REMOVE THESE???
@@ -106,11 +105,7 @@ const {
 
 // Open Child Support Case
 const {
-  openCSCRoot,
-  openCSCFullServices,
   openCSCSelectForm,
-  openCSCLocationServices,
-  openCSCCollectionEmployer,
   openCSCNoService,
 } = require('./childSupport/openChildSupportCase.js')
 
@@ -325,17 +320,11 @@ const { fee } = require('./childSupport/fee.js')
 // Gratitude not answering
 const { gratitude } = require('./childSupport/gratitude.js')
 
-// Interstate
-const { interstate } = require('./childSupport/interstate.js')
-
 // Legal
 const { legal } = require('./childSupport/legal.js')
 
 // Login
 const { login } = require('./childSupport/login.js')
-
-// Online action
-const { onlineAction } = require('./childSupport/onlineAction.js')
 
 // Other
 const { other } = require('./childSupport/other.js')
@@ -370,7 +359,6 @@ const {
 } = require('./childSupport/visitation.js')
 
 module.exports = {
-  'cse-root': cseRoot,
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
   'cse-contact-provide-phone-number': contactProvidePhoneNumber,
@@ -466,11 +454,7 @@ module.exports = {
   'cse-pmtMethods-cant-make-qualifying-no-help': pmtMethodsCantMakeQualifyingNoHelp,
 
   // Open a Child Support Case
-  'cse-open-csc-root': openCSCRoot,
-  'cse-open-csc-full-services': openCSCFullServices,
   'cse-open-csc-select-form': openCSCSelectForm,
-  'cse-open-csc-location-services': openCSCLocationServices,
-  'cse-open-csc-employer-payments': openCSCCollectionEmployer,
   'cse-open-csc-no-service': openCSCNoService,
 
   // Open a Child Support Case
@@ -662,17 +646,11 @@ module.exports = {
   // Gratitude not answering
   'cse-gratitude-root': gratitude,
 
-  // Interstate
-  'cse-interstate-root': interstate,
-
   // Legal
   'cse-legal-root': legal,
 
   // Login
   'cse-login-root': login,
-
-  // Online action
-  'cse-onlineAction-root': onlineAction,
 
   // Other
   'cse-other-root': other,
