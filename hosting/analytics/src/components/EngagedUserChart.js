@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const EngagedUserChart = props => {
-  const { data } = prepareDataForComposedChart(props.metrics, props.filterLabel, props.filterStartDate, props.filterEndDate)
+  const { data } = prepareDataForComposedChart(props.metrics, props.filterStartDate, props.filterEndDate)
   const [ darkestColor ] = contrastingColors(props.colors)
 
   return (
