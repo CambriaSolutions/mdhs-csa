@@ -9,7 +9,12 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 999
+        }
+      ],
       "parameters": [],
       "messages": [
         {
