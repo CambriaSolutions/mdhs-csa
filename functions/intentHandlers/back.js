@@ -1,11 +1,13 @@
 const { Suggestion } = require('dialogflow-fulfillment')
+const { map, first, filter, find } = require('lodash')
+const { genericHandler } = require('../utils/fulfillmentMessages.js')
 
 /************************************************************************************************
  * The snapshotCurrentState takes the agent as a parameter and continually appends the current
  *  intent information to the userConversationPath parameter of the 'previous-agent-states' context.
  ************************************************************************************************/
 
-const snapshotCurrentState = async agent => {
+const snapshotCurrentState = async (agent, fulfillmentMessages) => {
   // Grab all the existing contexts except for 'previous-agent-states'
   let currentContexts = []
   await agent.contexts.forEach(context => {
@@ -19,15 +21,17 @@ const snapshotCurrentState = async agent => {
     name: agent.intent,
     parameters: agent.parameters || {},
     contexts: currentContexts,
+    content: map(filter(fulfillmentMessages, fm => fm.text && fm.text.text[0]), fm => first(fm.text.text)),
+    suggestions: find(fulfillmentMessages, fm => fm.payload) ? find(fulfillmentMessages, fm => fm.payload).payload.suggestions : [],
   }
   // Get the 'previous-intent' context
   const previousContexts = agent.context.get('previous-agent-states')
 
   /* If the 'previous-intent' context is undefined aka it is the first time
-	the context is being set, set 'previous-agent-states' to the an array with
-	the first element as the current intent name and parameters. Else,
-	append the current intent name and parameters to the the 
-	userConversationPath parameter.*/
+  the context is being set, set 'previous-agent-states' to the an array with
+  the first element as the current intent name and parameters. Else,
+  append the current intent name and parameters to the the 
+  userConversationPath parameter.*/
   if (previousContexts === undefined) {
     await agent.context.set({
       name: 'previous-agent-states',
@@ -82,6 +86,8 @@ const backFunction = (agent, intentMap) => {
       // the function and call that function.
       const conversationPathLength = userConversationPath.length
       const lastIntent = userConversationPath[conversationPathLength - 1]
+
+
       agent.intent = lastIntent.name
       agent.parameters = lastIntent.parameters
       lastIntent.contexts.forEach(context => {
@@ -89,7 +95,13 @@ const backFunction = (agent, intentMap) => {
           agent.context.set(context)
         }
       })
-      const previousIntent = intentMap[lastIntent.name]
+
+      // Intent handler may not exist for this intent because content and 
+      // suggestions are set directly in dialogflow. So we "handle" the intent 
+      // using the "content" and "suggestions" data stored in the last intent
+      // in "userConversationPath"
+      const previousIntent = intentMap[lastIntent.name] ? intentMap[lastIntent.name] : genericHandler(agent, lastIntent.content, lastIntent.suggestions)
+
       await previousIntent(agent)
     } catch (err) {
       console.error(err)
@@ -131,8 +143,8 @@ const fullfillmentWrapper = (agent, intentMap) => {
  * training phrase and create 'Go Back' suggestion button.
  ************************************************************************************************/
 
-const backIntentCycle = async (agent, intentMap, name) => {
-  await snapshotCurrentState(agent)
+const backIntentCycle = async (agent, intentMap, name, fulfillmentMessages) => {
+  await snapshotCurrentState(agent, fulfillmentMessages)
   const back = backFunction(agent, intentMap)
   intentMap[name] = back
   fullfillmentWrapper(agent, intentMap)
@@ -160,12 +172,13 @@ module.exports = async (
   agent,
   intentMap,
   resetBackButtonIntentList = [],
-  backIntentName = 'go-back'
+  backIntentName = 'go-back',
+  fulfillmentMessages
 ) => {
   const currentIntent = agent.intent
   if (resetBackButtonIntentList.includes(currentIntent)) {
     agent.context.delete('previous-agent-states')
   } else {
-    await backIntentCycle(agent, intentMap, backIntentName)
+    await backIntentCycle(agent, intentMap, backIntentName, fulfillmentMessages)
   }
 }
