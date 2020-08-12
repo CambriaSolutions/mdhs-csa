@@ -5,7 +5,11 @@ const { handleEndConversation } = require('../globalFunctions')
 
 exports.mapRoot = (subjectMatter) => async agent => {
   try {
-    await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.')
+    if (subjectMatter === 'wfd') {
+      await agent.add('You may contact a MDHS county office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain additional information about S2W.')
+    } else {
+      await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.')
+    }
 
     if (subjectMatter !== 'cse') {
       await agent.add('Due to COVID-19, all our county offices are closed to the public until further notice.')
