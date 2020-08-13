@@ -44,7 +44,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const SupportRequestChart = props => {
-  const { data, typesOfSupportRequests } = prepareDataForComposedChart(props.metrics, props.filterLabel, props.filterStartDate, props.filterEndDate)
+  const { data, typesOfSupportRequests } = prepareDataForComposedChart(props.metrics, props.filterStartDate, props.filterEndDate)
   const [filter, setFilter] = useState(typesOfSupportRequests[0])
 
   return (
