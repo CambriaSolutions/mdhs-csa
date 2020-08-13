@@ -32,7 +32,7 @@ exports.employerEFT = async agent => {
 exports.employerIPayOnline = async agent => {
   try {
     await agent.add(
-      'You can manage child support payments through iPayOnline.<a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.'
+      'You can manage child support payments through iPayOnline. <a href="https://ipayonline.mssdu.net/iPayOnline/" target="_blank">Click here</a> to get started.'
     )
     await handleEndConversation(agent)
   } catch (err) {
