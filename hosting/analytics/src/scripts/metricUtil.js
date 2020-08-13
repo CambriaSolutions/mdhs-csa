@@ -3,64 +3,12 @@ import { format, differenceInCalendarDays, differenceInCalendarMonths, startOfWe
 
 const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 
-const determineStartDate = (date, dateFilter) => {
-  if (dateFilter === 'Today') {
-    return new Date()
-  } else if (dateFilter === 'Yesterday') {
-    return dateAdd(date, -1)
-  } else if (dateFilter === 'Last 7 days') {
-    return dateAdd(date, -7)
-  } else if (dateFilter === 'Last 30 days') {
-    return dateAdd(date, -30)
-  } else if (dateFilter === 'Last 90 days') {
-    return dateAdd(date, -90)
-  } else if (dateFilter === 'Last quarter') {
-    const quarterMonthStart = Math.floor((date.getMonth() - 1) / 3) * 3 // 0 = Jan, 1 = Feb
-    return new Date(date.getFullYear(), quarterMonthStart, 1);
-  } else {
-    // dateFilter === 'Last 12 months'
-    return new Date(date.getFullYear() - 1, date.getMonth() - 1, 1);
-  }
-}
-
-const determineNumberOfDaysInFilter = (date, dateFilter, filterStartDate = null, filterEndDate = null) => {
-  if (dateFilter === 'Today') {
-    return 1
-  } else if (dateFilter === 'Yesterday') {
-    return 1
-  } else if (dateFilter === 'Last 7 days') {
-    return 7
-  } else if (dateFilter === 'Last 30 days') {
-    return 30
-  } else if (dateFilter === 'Last 90 days') {
-    return 90
-  } else if (dateFilter === 'Last quarter') {
-    const quarterMonthStart = Math.floor((date.getMonth() - 1) / 3) * 3 // 0 = Jan, 1 = Feb
-
-    if (quarterMonthStart === 0) {
-      return 90
-    } else if (quarterMonthStart === 3) {
-      return 91
-    } else if (quarterMonthStart === 6) {
-      return 92
-    } else {
-      return 92
-    }
-  } else if (dateFilter === 'Last 12 months') {
-    // 'Last 12 months'
-    return 365
-  } else {
-    // dateFilter === 'Custom'
-    return differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate))
-  }
-}
-
 // If a day has no data (maybe it was the weekend), then we fill in that data with zeroes.
 // NOTE - This will not fill in the specific support requests types with zeroes.
-const fillMissingData = (metrics, dateFilter, filterStartDate = null, filterEndDate = null) => {
+const fillMissingData = (metrics, filterStartDate, filterEndDate) => {
   const metricsByDate = keyBy(metrics, x => x.id)
-  const startDate = dateFilter !== 'Custom' ? determineStartDate(new Date(), dateFilter) : new Date(filterStartDate)
-  const numberOfDaysInFilter = determineNumberOfDaysInFilter(new Date(), dateFilter, filterStartDate, filterEndDate)
+  const startDate = new Date(filterStartDate)
+  const numberOfDaysInFilter = differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate))
 
   let cleanedData = []
 
@@ -109,8 +57,8 @@ const sortAndFillSupportRequestBlanks = (data, typesOfSupportRequests) => {
   }
 }
 
-const prepareDataForComposedChartByDay = (rawData, dateFilter, filterStartDate = null, filterEndDate = null) => {
-  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
+const prepareDataForComposedChartByDay = (rawData, filterStartDate, filterEndDate) => {
+  const data = fillMissingData(rawData, filterStartDate, filterEndDate)
   const typesOfSupportRequests = new Set()
   const mappedData = map(data, day => ({
     id: day.id,
@@ -130,8 +78,8 @@ const prepareDataForComposedChartByDay = (rawData, dateFilter, filterStartDate =
   return sortAndFillSupportRequestBlanks(mappedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, dateFilter, filterStartDate, filterEndDate) => {
-  const data = fillMissingData(rawData, dateFilter, filterStartDate, filterEndDate)
+const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, filterStartDate, filterEndDate) => {
+  const data = fillMissingData(rawData, filterStartDate, filterEndDate)
 
   // We need to know how many different types of support requests were submitted so the line graph can be dynamic and future proof.
   const typesOfSupportRequests = new Set()
@@ -181,19 +129,17 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
   return sortAndFillSupportRequestBlanks(aggregatedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChart = (data, dateFilter, filterStartDate, filterEndDate) => {
-  const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate))
+const prepareDataForComposedChart = (data, filterStartDate, filterEndDate) => {
+  const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate)) + 1
 
   // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
   // If it spans 3 or more, we display monthly.
-  if (dateFilter === 'Last 12 months') {
-    return prepareDataForComposedChartByAggregationType('monthly', data, 'Last 12 months')
-  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 1 && totalCalendarMonths < 3) {
-    return prepareDataForComposedChartByAggregationType('weekly', data, 'Custom', filterStartDate, filterEndDate)
-  } else if (dateFilter === 'Custom' && totalCalendarMonths >= 3) {
-    return prepareDataForComposedChartByAggregationType('monthly', data, 'Custom', filterStartDate, filterEndDate)
+  if (totalCalendarMonths === 2) {
+    return prepareDataForComposedChartByAggregationType('weekly', data, filterStartDate, filterEndDate)
+  } else if (totalCalendarMonths >= 3) {
+    return prepareDataForComposedChartByAggregationType('monthly', data, filterStartDate, filterEndDate)
   } else {
-    return prepareDataForComposedChartByDay(data, dateFilter, filterStartDate, filterEndDate)
+    return prepareDataForComposedChartByDay(data, filterStartDate, filterEndDate)
   }
 }
 
