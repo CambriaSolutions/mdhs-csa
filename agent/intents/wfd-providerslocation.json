@@ -9,7 +9,13 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-feedback-root",
+          "parameters": {},
+          "lifespan": 1
+        }
+      ],
       "parameters": [
         {
           "id": "21c10ec5-96ff-452a-a3e3-88a89843e9ba",
