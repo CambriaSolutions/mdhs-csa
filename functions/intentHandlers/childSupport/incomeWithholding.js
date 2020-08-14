@@ -56,7 +56,7 @@ exports.iwoCcpaRoot = async agent => {
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))
     await agent.context.set({
-      name: 'waiting-iwo-confirm-estimate',
+      name: 'waiting-iwo-wants-assistance',
       lifespan: 2,
     })
     await agent.context.set({
