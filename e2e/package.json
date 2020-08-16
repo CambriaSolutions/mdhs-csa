@@ -4,7 +4,7 @@
   "description": "",
   "main": "js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -12,9 +12,11 @@
     "dialogflow": "^0.12.2",
     "dotenv": "^6.2.0",
     "firebase-admin": "^8.12.1",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "xlsx": "^0.16.6"
   },
   "devDependencies": {
-    "jest": "^26.0.1"
+    "chai": "^4.2.0",
+    "mocha": "^8.1.1"
   }
 }

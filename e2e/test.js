@@ -1,65 +1,35 @@
-const admin = require('firebase-admin');
-const dialogflow = require('dialogflow');
-const projectId = admin.instanceId().app.options.projectId
-const { v4: uuidv4 } = require('uuid');
+require('dotenv').config()
+const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+const parseIntentDataFromExcelDocument = require('./parseIntentDataFromExcelDocument')
+const admin = require('firebase-admin')
+admin.initializeApp()
+const dialogflow = require('dialogflow')
+const projectId = keyFile.project_id
+const { v4: uuidv4 } = require('uuid')
 
-require('dotenv').config();
-admin.initializeApp();
+require('chai').should()
 
 const ask = require("./ask.js");
 
-describe('Gen responds to me', () => {
-    const sessionClient = new dialogflow.SessionsClient();
-    let sessionId;
-    let sessionPath;    
+const sessionClient = new dialogflow.SessionsClient();
 
-    beforeEach(async () => {
-        sessionId = uuidv4();
-        sessionPath = sessionClient.sessionPath(projectId, sessionId);
-    });
+const intents = parseIntentDataFromExcelDocument('./Master spreadsheet.xlsx', 'intent_context_content')
 
-    test('Gen welcomes me', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-    });
+const askGen = (intentName, phrase, intentData) => {
+    it(`Gen should reply with the [${intentName}] intent when asked [${phrase}]`, async () => {
+        const sessionId = uuidv4();
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+        const reply = await ask(sessionClient, sessionPath, phrase);
+        reply.intent.should.equal(intentName)        
+    })
+}
 
-    test('Gen asks me if I\'m asking about child support', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-        reply = await ask(sessionClient, sessionPath, 'Yes');
-        expect(reply.intent).toBe('yes-child-support');
-    });
-
-    test('Gen presents me with a privacy disclaimer', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-        reply = await ask(sessionClient, sessionPath, 'Yes');
-        expect(reply.intent).toBe('yes-child-support');
-        reply = await ask(sessionClient, sessionPath, 'I Acknowledge');
-        expect(reply.intent).toBe('acknowledge-privacy-statement');
-    });
-
-    test('Gen responds to Common Requests', async () => {
-        const reply = await ask(sessionClient, sessionPath, 'Common Requests');
-        expect(reply.intent).toBe('support-root');
-    });
-
-    test('Gen responds to Employer', async () => {
-        const reply = await ask(sessionClient, sessionPath, 'Employer');
-        expect(reply.intent).toBe('employer-root');
-    });
+describe('Gen Regression Testing', () => {
+    Object.entries(intents).forEach(([intentName, intentData]) => {
+        if(intentData.inputContexts.length === 0) {
+            intentData.trainingPhrases.forEach(phrase => {
+                askGen(intentName, phrase, intentData)
+            })
+        }
+    })
 })
-
-
-
-    // const errorCount = await conversation
-    //     .expectIntent('Default Welcome Intent')
-    //     .expectReply('Hi, I\'m Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?')
-    //     .expectContext('waiting-yes-child-support')
-    //     .expectContext('waiting-not-child-support')
-    //     .expectSuggestion('Yes')
-    //     .expectSuggestion('No')
-    //     .replyWith('Yes')
-    //     .expectReply('')
-    //     .converse();
-

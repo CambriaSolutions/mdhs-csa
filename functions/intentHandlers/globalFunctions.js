@@ -3,6 +3,9 @@ const getSubjectMatter = require('../utils/getSubjectMatter')
 const { subjectMatterContexts, subjectMatterLabels } = require('../constants/constants')
 const { map } = require('lodash')
 
+const admin = require('firebase-admin')
+const db = admin.firestore()
+
 exports.handleEndConversation = async agent => {
   const helpMessage = 'Is there anything else I can help you with today?'
 
@@ -23,6 +26,24 @@ exports.tbd = async agent => {
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
   await agent.add(tbdMessage)
   await this.handleEndConversation(agent)
+}
+
+exports.setContext = async agent => {
+  const preloadedContexts = await db.collection('preloadedContexts').doc(agent.session).get()
+  if (preloadedContexts.exists) {
+    const data = preloadedContexts.data()
+    const promises = []
+    data.contexts.forEach(context => {
+      promises.push(agent.context.set({
+        name: context,
+        lifespan: 1,
+      }))
+    })
+
+    await Promise.all(promises)
+  }
+  
+  this.tbd(agent)
 }
 
 // Used to calculate the percentage of income for employers to withhold
