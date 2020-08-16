@@ -75,3 +75,5 @@ content/
 
 emulate-firebase.bat
 ngrok.bat
+
+**mochawesome-report/

@@ -4,6 +4,7 @@
   "description": "",
   "main": "js",
   "scripts": {
+    "regression-report": "mocha test.js --reporter mochawesome",
     "test": "mocha"
   },
   "author": "",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.1",
+    "mochawesome": "^6.1.1"
   }
 }
