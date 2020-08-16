@@ -72,12 +72,14 @@ const parseTrainingPhrases = (data) => {
                 const newlineSplitPhrases = splitTrimTextRegex(splitPhrase, /\r\n/g)
                 newlineSplitPhrases.forEach(newlineSplitPhrase => {
                     if (newlineSplitPhrase.length > 1) {
+                        newlineSplitPhrase = newlineSplitPhrase.replace(' ,', '')
                         trainingPhrases.push(newlineSplitPhrase)
                     }
                 })
                 
             } else {
                 if (splitPhrase.length > 1) {
+                    splitPhrase = splitPhrase.replace(' ,', '')
                     trainingPhrases.push(splitPhrase)
                 }
             }

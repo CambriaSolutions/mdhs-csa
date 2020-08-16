@@ -7,7 +7,6 @@ const eventRequest = require('./httpTriggers/eventRequest')
 const textRequest = require('./httpTriggers/textRequest')
 const downloadExport = require('./httpTriggers/downloadExport')
 const storeFeedback = require('./httpTriggers/storeFeedback')
-const setContext = require('./httpTriggers/setContext')
 const trainAgent = require('./databaseTriggers/trainAgent')
 const importDataset = require('./scheduledTriggers/importDataset')
 const trainModels = require('./scheduledTriggers/trainModels')
@@ -24,7 +23,6 @@ const httpTriggers = {
   textRequest: {  handler: textRequest, corsEnabled: true },
   downloadExport: {  handler: downloadExport, corsEnabled: true },
   storeFeedback: {  handler: storeFeedback, corsEnabled: true },
-  setContext: {  handler: setContext, corsEnabled: true },
 }
 
 // Database Triggers
