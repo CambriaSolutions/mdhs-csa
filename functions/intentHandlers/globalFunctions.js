@@ -43,7 +43,7 @@ exports.setContext = async agent => {
     await Promise.all(promises)
   }
   
-  this.tbd(agent)
+  await this.tbd(agent)
 }
 
 // Used to calculate the percentage of income for employers to withhold
