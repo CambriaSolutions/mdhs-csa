@@ -6,6 +6,8 @@ const { map } = require('lodash')
 const admin = require('firebase-admin')
 const db = admin.firestore()
 
+const getSessionIdFromPath = path => /[^/]*$/.exec(path)[0]
+
 exports.handleEndConversation = async agent => {
   const helpMessage = 'Is there anything else I can help you with today?'
 
@@ -29,7 +31,8 @@ exports.tbd = async agent => {
 }
 
 exports.setContext = async agent => {
-  const preloadedContexts = await db.collection('preloadedContexts').doc(agent.session).get()
+  const sessionId = getSessionIdFromPath(agent.session)
+  const preloadedContexts = await db.collection('preloadedContexts').doc(sessionId).get()
   if (preloadedContexts.exists) {
     const data = preloadedContexts.data()
     //console.log(`Setting contexts for ${agent.session}`, data)
@@ -40,7 +43,7 @@ exports.setContext = async agent => {
       })
     })
   } else {
-    console.log(`Unable to fetch contexts for ${agent.session}, ${/[^/]*$/.exec(agent.session)[0]}`)
+    console.log(`Unable to fetch contexts for ${sessionId}`)
   }
   
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
