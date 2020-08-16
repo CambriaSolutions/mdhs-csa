@@ -8,6 +8,7 @@ module.exports = async (request, response) => {
     await db.collection('preloadedContexts').doc(session).set({
       contexts: contexts
     })
+    response.status(200).send()
   } else {
     response.status(500).send()
   }
