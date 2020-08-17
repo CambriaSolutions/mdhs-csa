@@ -74,7 +74,7 @@ const databaseTriggerWrapper = async (handler, doc, context) => {
 }
 
 Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
-  const document = functions.firestore.document(databaseTrigger.path)
+  const document = functions.runWith(runtimeOpts).firestore.document(databaseTrigger.path)
 
   let cloudFunction
   if (databaseTrigger.event === 'onCreate') {
