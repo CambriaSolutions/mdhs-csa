@@ -30,7 +30,7 @@ const httpTriggers = {
 // Database Triggers
 const databaseTriggers = {
   trainAgent: { event: 'onUpdate', path: '/subjectMatters/{subjectMatter}/queriesForTraining/{id}', handler: trainAgent },
-  storeAnalytics: { event: 'onCreate', path: '/subjectMatters/{subjectMatter}/requests', handler: storeAnalytics },
+  storeAnalytics: { event: 'onCreate', path: '/subjectMatters/{subjectMatter}/requests/{id}', handler: storeAnalytics },
 }
 
 // Scheduled Triggers
