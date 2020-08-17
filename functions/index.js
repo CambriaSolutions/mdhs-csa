@@ -8,6 +8,7 @@ const textRequest = require('./httpTriggers/textRequest')
 const downloadExport = require('./httpTriggers/downloadExport')
 const storeFeedback = require('./httpTriggers/storeFeedback')
 const trainAgent = require('./databaseTriggers/trainAgent')
+const storeAnalytics = require('./databaseTriggers/storeAnalytics')
 const importDataset = require('./scheduledTriggers/importDataset')
 const trainModels = require('./scheduledTriggers/trainModels')
 
@@ -28,6 +29,7 @@ const httpTriggers = {
 // Database Triggers
 const databaseTriggers = {
   trainAgent: { event: 'onUpdate', path: '/subjectMatters/{subjectMatter}/queriesForTraining/{id}', handler: trainAgent },
+  storeAnalytics: { event: 'onCreate', path: '/subjectMatters/{subjectMatter}/requests', handler: storeAnalytics },
 }
 
 // Scheduled Triggers

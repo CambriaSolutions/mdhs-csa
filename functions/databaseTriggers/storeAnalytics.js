@@ -384,34 +384,8 @@ const storeMetrics = async (
 }
 
 // Calculate metrics based on requests
-module.exports = async (reqData) => {
+const calculateMetrics = async (reqData, subjectMatter) => {
   const currTimestamp = new Date()
-
-  // If one of the context's name contains 'subject-matter' then this is the context 
-  // used to identify the subject matter. But name field has full format
-  // e.g. "projects/mdhs-csa-dev/agent/sessions/3c007146-2b0c-99e8-2806-563698d992d4/contexts/cse-subject-matter"
-  const outputContextObject = reqData.queryResult.outputContexts.find(x => x.name.indexOf('subject-matter') >= 0)
-
-  let subjectMatter = ''
-
-  // If no subject matter was found, then one has not been picked by user yet, or user is at SM root.
-  if (outputContextObject === undefined) {
-    const intentNameSplit = reqData.queryResult.intent.displayName.split('-')
-
-    // Check if the intent name has the format "[subjectMatter]-root"
-    // If true, and there is no "[subjectMatter]-subject-matter" context, then this is a sm root.
-    if (intentNameSplit.length === 2 && intentNameSplit[1] === 'root') {
-      subjectMatter = intentNameSplit[0]
-    } else {
-      subjectMatter = 'general'
-    }
-  } else {
-    const outputContextObjectNameSplit = outputContextObject.name.split('/')
-    const subjectMatterContext = outputContextObjectNameSplit[outputContextObjectNameSplit.length - 1]
-
-    // Take the first portion of the context name as the subject matter. e.g. for 'cse-account-balance', we use 'cse' 
-    subjectMatter = subjectMatterContext.split('-')[0]
-  }
 
   // const context = `projects/${projectName}`
   const context = `subjectMatters/${subjectMatter}`
@@ -466,12 +440,6 @@ module.exports = async (reqData) => {
       }
     }
   }
-
-  // Save request data, add timestamp
-  reqData.createdAt = admin.firestore.Timestamp.now()
-  reqData.intentId = intent.id
-
-  await store.collection(`${context}/requests`).add(reqData)
 
   // Store aggregate used on export: conversations with requests
   const aggregateRef = store
@@ -597,4 +565,17 @@ module.exports = async (reqData) => {
     isFallbackIntent,
     conversation.fallbackTriggeringQuery
   )
+}
+
+module.exports = async (snapshot, context) => {
+  try {
+    const subjectMatter = context.params.subjectMatter
+    if (subjectMatter === undefined) {
+      console.error('Subject matter was not found within trigger context.')
+    } else {
+      await calculateMetrics(snapshot.data(), subjectMatter)
+    }
+  } catch (e) {
+    console.error(e)
+  }
 }
