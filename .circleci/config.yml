@@ -53,6 +53,8 @@ jobs:
         type: integer
       serviceDeskEnv:
         type: string
+      healthCheckUrl:
+        type: string
     steps:
       - checkout
       - restore_cache:
@@ -75,7 +77,9 @@ jobs:
 
             REQUEST_TYPE_ID=<< parameters.requestTypeID >>
 
-            SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>" > .env
+            SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>
+            
+            HEALTH_CHECK_URL=<< parameters.healthCheckUrl >>" > .env
 
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy --only functions,firestore --token $FIREBASE_DEPLOY_TOKEN -P << parameters.firebaseProjectId >>
@@ -195,6 +199,7 @@ workflows:
           serviceDeskID: 7
           requestTypeID: 75
           serviceDeskEnv: Test
+          healthCheckUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/dialogflowFirebaseFulfillment?healthCheck=true
           filters:
             branches:
               only:
@@ -240,6 +245,7 @@ workflows:
           serviceDeskID: 7
           requestTypeID: 75
           serviceDeskEnv: Test
+          healthCheckUrl: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/dialogflowFirebaseFulfillment?healthCheck=true
           filters:
             branches:
               only:
@@ -285,6 +291,7 @@ workflows:
           serviceDeskID: 7
           requestTypeID: 75
           serviceDeskEnv: Test
+          healthCheckUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/dialogflowFirebaseFulfillment?healthCheck=true
           filters:
             branches:
               only:
@@ -330,6 +337,7 @@ workflows:
           serviceDeskID: 7
           requestTypeID: 75
           serviceDeskEnv: Production
+          healthCheckUrl: https://us-central1-mdhs-csa.cloudfunctions.net/dialogflowFirebaseFulfillment?healthCheck=true
           filters:
             branches:
               only:
