@@ -32,7 +32,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   reqData.createdAt = admin.firestore.Timestamp.now()
   reqData.intentId = intentId
 
-  return db.collection(`subjectMatters/${subjectMatter}/requests`).add(reqData)
+  return db.collection(`subjectMatters/${(subjectMatter === 'undefined' || subjectMatter.lengh === 0) ? 'general' : subjectMatter}/requests`).add(reqData)
 }
 
 module.exports = async (request, response) => {
