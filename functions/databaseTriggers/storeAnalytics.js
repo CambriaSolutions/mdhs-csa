@@ -568,6 +568,7 @@ const calculateMetrics = async (reqData, subjectMatter) => {
 }
 
 module.exports = async (snapshot, context) => {
+  console.log('Starting analytics trigger')
   try {
     const subjectMatter = context.params.subjectMatter
     if (subjectMatter === undefined) {
