@@ -19,6 +19,11 @@
           "name": "waiting-support-submitSupportRequest-inquiry",
           "lifespan": 1,
           "parameters": {}
+        },
+        {
+          "name": "waiting-feedback-root",
+          "parameters": {},
+          "lifespan": 1
         }
       ],
       "parameters": [
