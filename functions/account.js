@@ -1,5 +1,9 @@
 const { handleEndConversation, tbd } = require('./globalFunctions.js')
 
+// TODO ---- VERY IMPORTANT!!!!!
+// THIS NEEDS TO BE ADDRESSED. THE ACCOUNT BALANCE INTENT SEEMS TO BE MAPPED TO THE INCORRECT HANDLER, 
+// AND IS DISPLAYING THE WRONG CONTENT. NEED TO SORT THIS OUT AT SOME POINT.
+
 exports.accountBalance = async agent => {
   try {
     await agent.add(
