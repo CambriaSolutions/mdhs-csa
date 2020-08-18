@@ -25,7 +25,8 @@ const callbackRequired = [
   'change personal information',
   'cooperation',
   'safety',
-  'good cause'
+  'good cause',
+  'interstate'
 ]
 
 exports.sendToServiceDesk = async requestFieldValues => {

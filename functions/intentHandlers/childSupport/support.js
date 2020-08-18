@@ -423,6 +423,14 @@ exports.supportSubmitSupportRequestVerification = async (agent) => {
   }
 }
 
+exports.supportSubmitSupportRequestInterstate = async (agent) => {
+  try {
+    await this.supportType(agent, 'interstate')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 exports.supportCollectFirstName = async agent => {
   const firstName = agent.parameters.firstName
   const ticketInfoParams = {

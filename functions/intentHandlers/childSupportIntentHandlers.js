@@ -187,6 +187,7 @@ const {
   supportSubmitSupportRequestSafety,
   supportSubmitSupportRequestGoodCause,
   supportSubmitSupportRequestVerification,
+  supportSubmitSupportRequestInterstate,
 } = require('./childSupport/support.js')
 
 // Direct deposit intents
@@ -358,6 +359,8 @@ const {
   visitationLegalServices
 } = require('./childSupport/visitation.js')
 
+const { interstateRoot } = require('./childSupport/interstate.js')
+
 module.exports = {
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
@@ -522,6 +525,7 @@ module.exports = {
   'cse-support-submitSupportRequest-safety': supportSubmitSupportRequestSafety,
   'cse-support-submitSupportRequest-goodCause': supportSubmitSupportRequestGoodCause,
   'cse-support-submitSupportRequest-verification': supportSubmitSupportRequestVerification,
+  'cse-support-submitSupportRequest-interstate': supportSubmitSupportRequestInterstate,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
@@ -645,6 +649,9 @@ module.exports = {
 
   // Gratitude not answering
   'cse-gratitude-root': gratitude,
+
+  // Interstate
+  'cse-interstate-root': interstateRoot,
 
   // Legal
   'cse-legal-root': legal,

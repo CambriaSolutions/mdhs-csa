@@ -16,17 +16,17 @@
           "parameters": {}
         },
         {
-          "name": "waiting-support-submitSupportRequest-inquiry",
+          "name": "waiting-feedback-root",
           "lifespan": 1
         },
         {
-          "name": "waiting-feedback-root",
+          "name": "waiting-support-submitSupportRequest-interstate",
           "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "10d94c2c-65b9-4f7d-89c2-421546e33e95",
+          "id": "0e1d2377-3fc2-4301-9008-8884412c00f3",
           "name": "geo-state",
           "required": false,
           "dataType": "@sys.geo-state",
@@ -40,7 +40,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "fbbc5399-c451-4b7c-a0bb-fe9baff3b7ca",
+          "id": "48685487-c62e-462f-beb1-ad2548915f85",
           "name": "geo-city",
           "required": false,
           "dataType": "@sys.geo-city",
@@ -54,7 +54,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "bc692b82-9c68-4415-a9cf-f9091b5df3a1",
+          "id": "a159104d-2e66-4a84-bf4e-d4e5182ac6d5",
           "name": "date-time",
           "required": false,
           "dataType": "@sys.date-time",
@@ -68,51 +68,7 @@
           "outputDialogContexts": []
         }
       ],
-      "messages": [
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Sometimes, parents live in different states, or an order for support was established in Mississippi and then one or both parents have moved, or maybe an order was established in another state and one of the parents moved to Mississippi. Based on the unique facts and circumstances of your situation, Mississippi may be able to open a case and work with the other states involved to establish and/or enforce an order, or to provide information to the other state so that state may establish and/or enforce an order."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "If you have an existing interstate case, have more questions about interstate cases, or have received information from Mississippi and your child support case is in another state, please submit a request below, and someone will reach out to you to answer your questions or you may call 1-877-882-4916."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "If you are state child support worker from another state attempting to contact Mississippi, you may also use the request button below to submit a ticket if you have been unsuccessful in reaching us through other communication tools such as the federal child support portal."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "4",
-          "title": "",
-          "payload": {
-            "suggestions": [
-              "SUBMIT SUPPORT REQUEST",
-              "SUBMIT FEEDBACK"
-            ]
-          },
-          "textToSpeech": "",
-          "lang": "en",
-          "condition": ""
-        }
-      ],
+      "messages": [],
       "speech": []
     }
   ],
