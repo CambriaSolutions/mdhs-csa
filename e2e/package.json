@@ -4,8 +4,8 @@
   "description": "",
   "main": "js",
   "scripts": {
-    "regression-report": "mocha test.js --reporter mochawesome",
-    "test": "mocha"
+    "regression-report": "mocha test.js --reporter mochawesome --timeout 5000",
+    "test": "mocha --timeout 5000"
   },
   "author": "",
   "license": "ISC",
