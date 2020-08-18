@@ -359,8 +359,6 @@ const {
   visitationLegalServices
 } = require('./childSupport/visitation.js')
 
-const { interstateRoot } = require('./childSupport/interstate.js')
-
 module.exports = {
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
@@ -649,9 +647,6 @@ module.exports = {
 
   // Gratitude not answering
   'cse-gratitude-root': gratitude,
-
-  // Interstate
-  'cse-interstate-root': interstateRoot,
 
   // Legal
   'cse-legal-root': legal,
