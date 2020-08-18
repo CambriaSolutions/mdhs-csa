@@ -18,7 +18,6 @@ exports.mapRoot = (subjectMatter) => async agent => {
     await agent.add(
       'I can help locate the nearest office to you, what is your address?'
     )
-
     await agent.context.set({
       name: 'waiting-maps-deliver-map',
       lifespan: 2,

@@ -153,7 +153,7 @@ exports.enforcementTaxOffsetQ1 = async agent => {
 exports.enforcementTaxOffsetQ2Q3 = async agent => {
   try {
     await agent.add(
-      `Before issuing a refund, Mississippi’s Department of Revenue is required to check for any outstanding debt owed such as child support arrearages. If such debt is found, the amount owed may be deducted from your state refund. The Mississippi Department of Revenue sends collections intercepted from state income tax refunds to the child support agency for distribution. For more information ${taxOffsetGuideLink}.`
+      `MDHS sends child support arrears information electronically to the appropriate federal and state agencies for cases meeting the federal and state tax offset thresholds. These agencies withhold tax refunds up to the amount of the arrearage reported, and send the funds to MDHS. For more information ${taxOffsetGuideLink}.`
     )
 
     await handleEndConversation(agent)
@@ -294,7 +294,7 @@ exports.enforcementContestLien = async agent => {
     await agent.add(
       'Funds are held at the financial institution for 45 days to allow the account holder(s) to contest the lien by alleging mistaken identity or fact in regards to the child support account. Please submit a request or call <a href="tel:+18778824916">1-877-882-4916</a> to contest the lien. Please do NOT provide your financial account information in the request below.'
     )
-    await agent.add(new Suggestion('Submit Request'))
+    await agent.add(new Suggestion('Submit Inquiry'))
     await handleEndConversation(agent)
     await agent.context.set({
       name: 'waiting-enforcement-submit-inquiry',
