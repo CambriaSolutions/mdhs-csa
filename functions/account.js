@@ -15,6 +15,10 @@ exports.accountBalance = async agent => {
   }
 }
 
+// TODO ---- VERY IMPORTANT!!!!!
+// THIS NEEDS TO BE ADDRESSED. THIS FUNCTION EXISTED ONLY IN STAGE AND NOT ISD OR DEV
+// NEED TO INVESTIGATE THIS.
+
 exports.accountInformation = async agent => {
   try {
     await tbd(agent)
