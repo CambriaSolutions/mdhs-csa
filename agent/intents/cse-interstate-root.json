@@ -14,6 +14,11 @@
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
+        },
+        {
+          "name": "waiting-support-submitSupportRequest-inquiry",
+          "lifespan": 1,
+          "parameters": {}
         }
       ],
       "parameters": [
