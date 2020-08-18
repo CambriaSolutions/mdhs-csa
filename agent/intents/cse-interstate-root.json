@@ -17,18 +17,16 @@
         },
         {
           "name": "waiting-support-submitSupportRequest-inquiry",
-          "lifespan": 1,
-          "parameters": {}
+          "lifespan": 1
         },
         {
           "name": "waiting-feedback-root",
-          "parameters": {},
           "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "91d94df7-eb48-4869-8e55-305b7e5766a9",
+          "id": "10d94c2c-65b9-4f7d-89c2-421546e33e95",
           "name": "geo-state",
           "required": false,
           "dataType": "@sys.geo-state",
@@ -42,25 +40,11 @@
           "outputDialogContexts": []
         },
         {
-          "id": "14fc3985-9332-496d-bbb0-583140bf8d7c",
+          "id": "fbbc5399-c451-4b7c-a0bb-fe9baff3b7ca",
           "name": "geo-city",
           "required": false,
           "dataType": "@sys.geo-city",
           "value": "$geo-city",
-          "defaultValue": "",
-          "isList": true,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        },
-        {
-          "id": "5e7a8622-1dd3-4a4e-948f-5924adf1d070",
-          "name": "date-time",
-          "required": false,
-          "dataType": "@sys.date-time",
-          "value": "$date-time",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -70,11 +54,11 @@
           "outputDialogContexts": []
         },
         {
-          "id": "7d736059-1fae-4425-b1b0-9d5a789aa66b",
-          "name": "given-name",
+          "id": "bc692b82-9c68-4415-a9cf-f9091b5df3a1",
+          "name": "date-time",
           "required": false,
-          "dataType": "@sys.given-name",
-          "value": "$given-name",
+          "dataType": "@sys.date-time",
+          "value": "$date-time",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
