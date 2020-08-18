@@ -5,6 +5,7 @@ const {
   restartConversation,
   yesChildSupport,
   caseyHandoff,
+  setContext,
 } = require('./globalFunctions')
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   'restart-conversation': restartConversation,
   'yes-child-support': yesChildSupport,
   'casey-handoff': caseyHandoff,
+  'set-context': setContext,
 }

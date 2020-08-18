@@ -8,7 +8,10 @@ function ask(sessionClient, sessionPath, question) {
         sessionClient
             .detectIntent(dfRequest)
             .then(responses => {
-                let constructedReply = {};
+                let constructedReply = {
+                    replies: [],
+                    suggestions: []
+                };
                 constructedReply.intent = responses[0].queryResult.intent.displayName;
                 constructedReply.contexts = [];
                 for (const index in responses[0].queryResult.outputContexts) {
@@ -20,10 +23,10 @@ function ask(sessionClient, sessionPath, question) {
                     const message = responses[0].queryResult.fulfillmentMessages[index];
                     switch (message.message) {
                         case 'text':
-                            constructedReply.replies = message.text.text;
+                            constructedReply.replies.push(message.text.text);
                             break;
                         case 'quickReplies':
-                            constructedReply.suggestions = message.quickReplies.quickReplies;
+                            constructedReply.suggestions.push(message.quickReplies.quickReplies);
                             break;
                     }
                 }

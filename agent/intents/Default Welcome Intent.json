@@ -9,7 +9,20 @@
       "action": "input.welcome",
       "affectedContexts": [],
       "parameters": [],
-      "messages": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": [
+            "Hi! How are you doing?",
+            "Hello! How can I help you?",
+            "Good day! What can I do for you today?",
+            "Greetings! How can I assist?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
