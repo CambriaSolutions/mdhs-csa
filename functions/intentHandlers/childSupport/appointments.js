@@ -91,7 +91,7 @@ exports.apptsOfficeLocationsHandoff = async agent => {
   try {
     const wantsLocation = agent.parameters.wantsLocation
     if (wantsLocation === 'yes') {
-      await mapRoot(agent)
+      await mapRoot('cse')(agent)
     } else {
       await handleEndConversation(agent)
     }
