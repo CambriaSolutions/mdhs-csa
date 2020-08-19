@@ -23,10 +23,6 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
   const suggestions = dfContext.parameters.suggestions
   const userQuery = dfContext.parameters.originalQuery
 
-  console.log('----------------- dfContext.parameters: ' + JSON.stringify(dfContext.parameters))
-  console.log('----------------- userQuery: ' + JSON.stringify(userQuery))
-  console.log('----------------- query: ' + JSON.stringify(query))
-
   // Ignore "go back" queries
   if (userQuery.toLowerCase() !== 'go back') {
     // Check to see if any of the presented selections match the current query
@@ -76,18 +72,19 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
           await Promise.all(updatePromises)
         }
       } else {
-        // The user did not select any of our suggestions, so add the suggestions and
-        // query to a collection for human inspection
-        const createdAt = admin.firestore.Timestamp.now()
-        const docRef = await store.collection(`${context}/queriesForLabeling`).add({ suggestions, userQuery, createdAt })
+        if (query.toLowerCase() !== 'none of these') {
+          // The user did not select any of our suggestions, so add the suggestions and
+          // query to a collection for human inspection
+          const createdAt = admin.firestore.Timestamp.now()
+          const docRef = await store.collection(`${context}/queriesForLabeling`).add({ suggestions, userQuery, createdAt })
 
-        const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
-        const dateKey = format(currentDate, 'MM-DD-YYYY')
-        console.log(`Date Key ${dateKey}`)
-        await store.collection(`${context}/metrics`).doc(dateKey).update({
-          noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
-        })
-
+          const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
+          const dateKey = format(currentDate, 'MM-DD-YYYY')
+          console.log(`Date Key ${dateKey}`)
+          await store.collection(`${context}/metrics`).doc(dateKey).update({
+            noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
+          })
+        }
       }
     } catch (err) {
       console.error(err)
