@@ -16,7 +16,7 @@
           "parameters": {}
         },
         {
-          "name": "waiting-support-submitSupportRequest-inquiry",
+          "name": "waiting-support-submitSupportRequest-interstate",
           "lifespan": 1
         },
         {
@@ -26,7 +26,7 @@
       ],
       "parameters": [
         {
-          "id": "10d94c2c-65b9-4f7d-89c2-421546e33e95",
+          "id": "bb9bc076-7319-4a30-8543-2657ff21e876",
           "name": "geo-state",
           "required": false,
           "dataType": "@sys.geo-state",
@@ -40,7 +40,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "fbbc5399-c451-4b7c-a0bb-fe9baff3b7ca",
+          "id": "40f666f1-d587-4337-a06b-442e0ccb9057",
           "name": "geo-city",
           "required": false,
           "dataType": "@sys.geo-city",
@@ -54,7 +54,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "bc692b82-9c68-4415-a9cf-f9091b5df3a1",
+          "id": "4f171690-7c16-40b4-9c61-a4f131eefd07",
           "name": "date-time",
           "required": false,
           "dataType": "@sys.date-time",

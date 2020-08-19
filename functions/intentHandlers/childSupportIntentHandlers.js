@@ -187,6 +187,7 @@ const {
   supportSubmitSupportRequestSafety,
   supportSubmitSupportRequestGoodCause,
   supportSubmitSupportRequestVerification,
+  supportSubmitSupportRequestInterstate,
 } = require('./childSupport/support.js')
 
 // Direct deposit intents
@@ -522,6 +523,7 @@ module.exports = {
   'cse-support-submitSupportRequest-safety': supportSubmitSupportRequestSafety,
   'cse-support-submitSupportRequest-goodCause': supportSubmitSupportRequestGoodCause,
   'cse-support-submitSupportRequest-verification': supportSubmitSupportRequestVerification,
+  'cse-support-submitSupportRequest-interstate': supportSubmitSupportRequestInterstate,
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
