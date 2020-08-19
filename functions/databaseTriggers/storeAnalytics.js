@@ -25,6 +25,7 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
 
   console.log('----------------- dfContext.parameters: ' + JSON.stringify(dfContext.parameters))
   console.log('----------------- userQuery: ' + JSON.stringify(userQuery))
+  console.log('----------------- query: ' + JSON.stringify(query))
 
   // Ignore "go back" queries
   if (userQuery.toLowerCase() !== 'go back') {
