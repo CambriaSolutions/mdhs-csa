@@ -72,7 +72,7 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
           await Promise.all(updatePromises)
         }
       } else {
-        if (query.toLowerCase() !== 'none of these') {
+        if (query.toLowerCase() === 'none of these') {
           // The user did not select any of our suggestions, so add the suggestions and
           // query to a collection for human inspection
           const createdAt = admin.firestore.Timestamp.now()
