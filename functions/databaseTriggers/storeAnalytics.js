@@ -23,6 +23,9 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
   const suggestions = dfContext.parameters.suggestions
   const userQuery = dfContext.parameters.originalQuery
 
+  console.log('----------------- dfContext.parameters: ' + JSON.stringify(dfContext.parameters))
+  console.log('----------------- userQuery: ' + JSON.stringify(userQuery))
+
   // Ignore "go back" queries
   if (userQuery.toLowerCase() !== 'go back') {
     // Check to see if any of the presented selections match the current query
