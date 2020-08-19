@@ -49,8 +49,8 @@ const parseOutputContexts = (data) => {
             let preppedContext = parsedOutputContext.replace(';', '');
             let lifespan = 0
             if (preppedContext.match(/\([0-9]+\)/)) {
-                lifespan = parseInt(preppedContext.substring(preppedContext.indexOf('(') + 1, preppedContext.indexOf(')') - preppedContext.indexOf('(')))
-                preppedContext = preppedContext.substring(preppedContext.indexOf(')') + 1, preppedContext.length - preppedContext.indexOf(')'))
+                lifespan = parseInt(preppedContext.substring(preppedContext.indexOf('(') + 1, preppedContext.indexOf(')') - preppedContext.indexOf('(') + 1))
+                preppedContext = (preppedContext.substring(preppedContext.indexOf(')') + 1, preppedContext.length)).trim()
             }
             
             outputContexts.push({

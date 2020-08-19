@@ -4,6 +4,7 @@
   "description": "",
   "main": "js",
   "scripts": {
+    "reconciliation-report": "mocha reconciliation.js --reporter mochawesome --timeout 5000",
     "regression-report": "mocha test.js --reporter mochawesome --timeout 5000",
     "test": "mocha --timeout 5000"
   },
