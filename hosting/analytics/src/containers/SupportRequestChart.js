@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ComposedChart from '../components/ComposedChart'
-import prepareDataForComposedChart from '../scripts/metricUtil'
+import { prepareDataForComposedChart } from '../scripts/metricUtil'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import { map } from 'lodash'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { Line, Bar, Tooltip } from 'recharts'
+import { Line, Tooltip } from 'recharts'
 
 const Header = styled.h3`
   display: flex

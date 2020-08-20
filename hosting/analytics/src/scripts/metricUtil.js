@@ -17,15 +17,21 @@ const fillMissingData = (metrics, filterStartDate, filterEndDate) => {
     if (metricsByDate[formattedDate]) {
       cleanedData.push({
         id: formattedDate,
-        numConversations: metricsByDate[formattedDate].numConversations,
-        numConversationsWithDuration: metricsByDate[formattedDate].numConversationsWithDuration,
-        supportRequests: metricsByDate[formattedDate].supportRequests
+        numConversations: metricsByDate[formattedDate].numConversations ? metricsByDate[formattedDate].numConversations : 0,
+        numConversationsWithDuration: metricsByDate[formattedDate].numConversationsWithDuration ? metricsByDate[formattedDate].numConversationsWithDuration : 0,
+        supportRequests: metricsByDate[formattedDate].supportRequests ? metricsByDate[formattedDate].supportRequests : 0,
+        cpCount: metricsByDate[formattedDate].cpCount ? metricsByDate[formattedDate].cpCount : 0,
+        ncpCount: metricsByDate[formattedDate].ncpCount ? metricsByDate[formattedDate].ncpCount : 0,
+        employerCount: metricsByDate[formattedDate].cpCount ? metricsByDate[formattedDate].employerCount : 0,
       })
     } else {
       cleanedData.push({
         id: formattedDate,
         numConversations: 0,
         numConversationsWithDuration: 0,
+        cpCount: 0,
+        ncpCount: 0,
+        employerCount: 0,
         supportRequests: []
       })
     }
@@ -129,7 +135,7 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
   return sortAndFillSupportRequestBlanks(aggregatedData, typesOfSupportRequests)
 }
 
-const prepareDataForComposedChart = (data, filterStartDate, filterEndDate) => {
+export const prepareDataForComposedChart = (data, filterStartDate, filterEndDate) => {
   const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate)) + 1
 
   // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
@@ -143,4 +149,15 @@ const prepareDataForComposedChart = (data, filterStartDate, filterEndDate) => {
   }
 }
 
-export default prepareDataForComposedChart
+export const aggregatePersonaMetricsForPieChart = (dailyMetrics) => {
+  const aggregatedData = reduce(dailyMetrics, (result, dayMetrics) => {
+    return ({
+      Employer: result.Employer + (dayMetrics.employerCount ? dayMetrics.employerCount : 0),
+      CP: result.CP + (dayMetrics.cpCount ? dayMetrics.cpCount : 0),
+      NCP: result.NCP + (dayMetrics.ncpCount ? dayMetrics.ncpCount : 0)
+    })
+
+  }, { Employer: 0, CP: 0, NCP: 0 })
+
+  return map(aggregatedData, (value, key) => ({ name: key, count: value }))
+}

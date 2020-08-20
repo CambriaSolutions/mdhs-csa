@@ -5,7 +5,7 @@ const fs = require('fs')
 admin.initializeApp()
 
 const db = admin.firestore()
-const requestsRef = db.collection('projects/mdhs-csa/requests');
+const requestsRef = db.collection('subjectMatters/cse/requests');
 const personaMetrics = new Map()
 const sessionMetrics = new Map()
 
@@ -16,9 +16,9 @@ async function asyncForEach(array, callback) {
 }
 
 const queryAndGenerateOutpuFile = async (personaIntents, filename) => {
-    
+
   const snapshot = await requestsRef.where('queryResult.intent.displayName', 'in', personaIntents).get()
-  
+
   if (snapshot.empty) {
     console.warn('no records found')
   }
@@ -42,18 +42,12 @@ const queryAndGenerateOutpuFile = async (personaIntents, filename) => {
 
 const retrievePersonaMetrics = async () => {
   const personaIntentMappings = {
-    // 'cse-employer-root': 'Employer',
-    // 'cse-support-employer': 'Employer',
-    // 'cse-pmts-general-receive-payments': 'CP',
-    // 'cse-support-parent-receiving': 'CP',
-    // 'cse-pmts-general-non-custodial': 'NCP',
-    // 'cse-support-parent-paying': 'NCP',
-    'employer-root': 'Employer',
-    'support-employer': 'Employer',
-    'pmts-general-receive-payments': 'CP',
-    'support-parent-receiving': 'CP',
-    'pmts-general-non-custodial': 'NCP',
-    'support-parent-paying': 'NCP'
+    'cse-employer-root': 'Employer',
+    'cse-support-employer': 'Employer',
+    'cse-pmts-general-receive-payments': 'CP',
+    'cse-support-parent-receiving': 'CP',
+    'cse-pmts-general-non-custodial': 'NCP',
+    'cse-support-parent-paying': 'NCP'
   }
   const personaIntents = [...Object.keys(personaIntentMappings)]
   console.log('Starting')
@@ -82,14 +76,14 @@ const retrievePersonaMetrics = async () => {
         const persona = personaIntentMappings[intentName]
         if (personas === undefined || personas === null) {
           personas = [persona]
-          switch(persona) {
+          switch (persona) {
             case 'CP':
               metrics.cpCount += 1
               break
             case 'NCP':
               metrics.ncpCount += 1
               break
-            case 'Employer': 
+            case 'Employer':
               metrics.employerCount += 1
               break
             default:

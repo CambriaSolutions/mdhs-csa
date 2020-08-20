@@ -34,7 +34,6 @@ class ThemedApp extends Component {
 
 const mapStateToProps = state => {
   return {
-    filterLabel: state.filters.filterLabel,
     mainColor: state.filters.mainColor,
   }
 }
