@@ -237,7 +237,7 @@ class Dashboard extends Component {
                     value={this.state.autoMLAccuracy + ' %'}
                     label='Machine Learning (AutoML) Accuracy'
                     icon='check_circle_outline'
-                    tooltip={'Percentage of times users did not select the \'None of these\' option when Machine Learning (AutoML) was triggered.'}
+                    tooltip={'Percentage of times a user selects one of the three viable suggestions given by AutoML. (except when they take no action)'}
                   />
                 </Grid>}
             </Grid>
@@ -326,7 +326,7 @@ class Dashboard extends Component {
             </Grid>
             {this.props.subjectMatterName === 'cse' && <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`Displays the distribution of users as a percentage.`} arrow placement='top-start'>
+                <Tooltip TransitionComponent={Zoom} title={`Distribution of user/persona types as identified by the user.`} arrow placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <h3>Persona Metrics</h3>
