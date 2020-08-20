@@ -5,6 +5,7 @@ import {
 } from './realtimeActions'
 import db from '../../Firebase'
 
+// TODO - BA 8/20/2020 - Is this function not used at all? Could not find it called anywhere.
 export const fetchConversations = (dateRange, context) => {
   return (dispatch, getState) => {
     const useRealtimeUpdates = getState().config.updateRealtime

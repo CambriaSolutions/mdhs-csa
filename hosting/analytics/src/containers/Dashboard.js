@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from '../store/actions/index'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
+import { reduce } from 'lodash'
 import Settings from './Settings'
 
 // Material UI
@@ -32,6 +33,8 @@ import SupportRequestChart from './SupportRequestChart'
 
 // Helpers
 import { colorShades } from '../common/helper'
+import { aggregatePersonaMetricsForPieChart } from '../scripts/metricUtil.js'
+import db from '../Firebase'
 
 const getNameFromContext = context => /[^/]*$/.exec(context)[0]
 
@@ -56,6 +59,32 @@ const FeedbackButtonGroup = styled(ToggleButtonGroup)`
 `
 
 class Dashboard extends Component {
+  constructor() {
+    super()
+
+    // Fetch the autoML accuracy metrics as soon as component is created. 
+    // This metric will not depend on date filters, so no need to fetch it more than once.
+    // If autoML is ever added to other subject matters, this will need to be reworked.
+
+    const queriesForLabelingSnapshot = db.collection(`subjectMatters/cse/queriesForLabeling`).get()
+    const queriesForTrainingSnapshot = db.collection(`subjectMatters/cse/queriesForTraining`).get()
+
+    Promise.all([queriesForLabelingSnapshot, queriesForTrainingSnapshot])
+      .then((responses) => {
+        const queriesForLabeling = responses[0].docs
+        const queriesForTraining = responses[1].docs
+
+        const queriesForLabelingCount = queriesForLabeling.length
+        const queriesForTrainingCount = reduce(queriesForTraining, (result, doc) => {
+          return result + doc.data().occurrences
+        }, 0)
+
+        const autoMLAccuracy = Math.floor(Math.round(1000 * (1 - (queriesForLabelingCount / (queriesForLabelingCount + queriesForTrainingCount))))) / 10
+
+        this.setState((prevState) => ({ ...prevState, autoMLAccuracy }))
+      })
+  }
+
   feedbackTypeChange = (event, feedbackSelected) =>
     this.props.onFeedbackChange(feedbackSelected)
 
@@ -106,6 +135,7 @@ class Dashboard extends Component {
         <CircularProgress />
       </CenterDiv>
     )
+
     if (!this.props.loadingConversations) {
       if (this.props.conversationsTotal > 0) {
         // Remove welcome intent from frequent intents list & exit intents
@@ -116,6 +146,7 @@ class Dashboard extends Component {
         let welcomeExitIntent = this.props.exitIntents.filter(
           i => i.name === 'Default Welcome Intent'
         )[0]
+
         if (!welcomeExitIntent) welcomeExitIntent = { exits: 0 }
 
         let exitIntents = this.props.exitIntents
@@ -124,80 +155,93 @@ class Dashboard extends Component {
 
         dashboardUI = (
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={3}>
-              <Card
-                color={colorShades(this.props.mainColor, 50)}
-                value={
-                  this.props.showEngagedUser
-                    ? this.props.conversationsDurationTotal
-                    : this.props.conversationsTotal
-                }
-                label='Total Users'
-                notes=''
-                icon='account_circle'
-                tooltip={
-                  this.props.subjectMatterName === 'general'
-                  ? 'Counts the number of impressions when a user acknowledges the privacy statement.'
-                  : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`
-                }
-              />
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm>
+                <Card
+                  color={colorShades(this.props.mainColor, 50)}
+                  value={
+                    this.props.showEngagedUser
+                      ? this.props.conversationsDurationTotal
+                      : this.props.conversationsTotal
+                  }
+                  label='Total Users'
+                  notes=''
+                  icon='account_circle'
+                  tooltip={
+                    this.props.subjectMatterName === 'general'
+                      ? 'Counts the number of impressions when a user acknowledges the privacy statement.'
+                      : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm>
+                <Card
+                  color={colorShades(this.props.mainColor, 30)}
+                  value={
+                    this.props.showEngagedUser
+                      ? this.props.avgEngagedDuration
+                      : this.props.avgDuration
+                  }
+                  label='Avg. Conv Duration'
+                  notes=''
+                  icon='schedule'
+                  tooltip={
+                    this.props.subjectMatterName === 'general'
+                      ? 'The average time between Gen\'s first response and when a user selects a knowledge area.'
+                      : `The average time of each session for the ${this.props.subjectMatterName.toUpperCase()} knowledge area. A session is the time b/w when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from home screen and the last response that Gen gives them. This does not include the time b/w the last response and closing their browser window or Gen.`
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm>
+                <Card
+                  color={colorShades(this.props.mainColor, 20)}
+                  value={this.props.subjectMatterName === 'general' ? 'N/A' :
+                    (this.props.showEngagedUser
+                      ? `${this.props.supportEngagedRequestsPercentage}%`
+                      : `${this.props.supportRequestsPercentage}%`)
+                  }
+                  label='Support Requests'
+                  notes={this.props.subjectMatterName === 'general' ? '' : (
+                    this.props.supportRequestTotal > 0
+                      ? `${this.props.supportRequestTotal} requests`
+                      : '')
+                  }
+                  icon='contact_support'
+                  tooltip={
+                    this.props.subjectMatterName === 'general'
+                      ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
+                      : `Percentage of users submitting support tickets for the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm>
+                <Card
+                  color={colorShades(this.props.mainColor, 10)}
+                  value={this.props.subjectMatterName === 'general' ? 'N/A' : `${this.props.conversationsDurationTotal}`}
+                  label='Engaged Users'
+                  notes={this.props.subjectMatterName === 'general' ? '' : (`${this.props.conversationsTotal -
+                    this.props.conversationsDurationTotal} immediate exits`)}
+                  icon='speaker_notes'
+                  tooltip={
+                    this.props.subjectMatterName === 'general'
+                      ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
+                      : `Counts the number of times a user interacted with Gen in the ${this.props.subjectMatterName.toUpperCase()} knowledge area`
+                  }
+                />
+              </Grid>
+              {this.props.subjectMatterName === 'cse' &&
+                <Grid item xs={12} sm>
+                  <Card
+                    color={colorShades(this.props.mainColor, 10)}
+                    // value={aggregateAutoMLMetrics(this.props.dailyMetrics) + ' %'}
+                    value={this.state.autoMLAccuracy + ' %'}
+                    label='Machine Learning (AutoML) Accuracy'
+                    icon='check_circle_outline'
+                    tooltip={'Percentage of times users did not select the \'None of these\' option when Machine Learning (AutoML) was triggered.'}
+                  />
+                </Grid>}
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <Card
-                color={colorShades(this.props.mainColor, 30)}
-                value={
-                  this.props.showEngagedUser
-                    ? this.props.avgEngagedDuration
-                    : this.props.avgDuration
-                }
-                label='Avg. Conv Duration'
-                notes=''
-                icon='schedule'
-                tooltip={
-                  this.props.subjectMatterName === 'general'
-                  ? 'The average time between Gen\'s first response and when a user selects a knowledge area.'
-                  : `The average time of each session for the ${this.props.subjectMatterName.toUpperCase()} knowledge area. A session is the time b/w when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from home screen and the last response that Gen gives them. This does not include the time b/w the last response and closing their browser window or Gen.`
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Card
-                color={colorShades(this.props.mainColor, 20)}
-                value={ this.props.subjectMatterName === 'general' ? 'N/A' :
-                  (this.props.showEngagedUser
-                    ? `${this.props.supportEngagedRequestsPercentage}%`
-                    : `${this.props.supportRequestsPercentage}%`)
-                }
-                label='Support Requests'
-                notes={this.props.subjectMatterName === 'general' ? '' : (
-                  this.props.supportRequestTotal > 0
-                    ? `${this.props.supportRequestTotal} requests`
-                    : '')
-                }
-                icon='contact_support'
-                tooltip={
-                  this.props.subjectMatterName === 'general'
-                  ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                  : `Percentage of users submitting support tickets for the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Card
-                color={colorShades(this.props.mainColor, 10)}
-                value={this.props.subjectMatterName === 'general' ? 'N/A' : `${this.props.conversationsDurationTotal}`}
-                label='Engaged Users'
-                notes={this.props.subjectMatterName === 'general' ? '' : (`${this.props.conversationsTotal -
-                  this.props.conversationsDurationTotal} immediate exits`)}
-                icon='speaker_notes'
-                tooltip={
-                  this.props.subjectMatterName === 'general'
-                  ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                  : `Counts the number of times a user interacted with Gen in the ${this.props.subjectMatterName.toUpperCase()} knowledge area`
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={this.props.subjectMatterName === 'cse' ? 12 : 6}>
               <GraphWrap>
                 <Tooltip TransitionComponent={Zoom} title={`The number of engaged users who selected the [${this.props.subjectMatterName}] subject matter over time.`} arrow placement='top-start'>
                   <HelpOutlineIcon />
@@ -207,7 +251,7 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-              <Tooltip TransitionComponent={Zoom} title={`The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} arrow placement='top-start'>
+                <Tooltip TransitionComponent={Zoom} title={`The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} arrow placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <SupportRequestChart colors={this.props.colors} tooltip={`The number of support requests submitted over time for the [${this.props.subjectMatterName}] subject matter`} />
@@ -280,6 +324,19 @@ class Dashboard extends Component {
                 </FeedbackTotalsDiv>
               </GraphWrap>
             </Grid>
+            {this.props.subjectMatterName === 'cse' && <Grid item xs={12} sm={6}>
+              <GraphWrap>
+                <Tooltip TransitionComponent={Zoom} title={`Displays the distribution of users as a percentage.`} arrow placement='top-start'>
+                  <HelpOutlineIcon />
+                </Tooltip>
+                <h3>Persona Metrics</h3>
+                <PieChart
+                  data={aggregatePersonaMetricsForPieChart(this.props.dailyMetrics)}
+                  dataKey='count'
+                  colors={this.props.colors}
+                />
+              </GraphWrap>
+            </Grid>}
             <Grid item xs={12}>
               <EnhancedTable data={this.props.intents} />
             </Grid>
@@ -428,8 +485,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchConversations: () => dispatch(actions.fetchMetrics()),
-    onFetchMetrics: () => dispatch(actions.fetchMetrics()),
     onFeedbackChange: feedbackType =>
       dispatch(actions.updateFeedbackType(feedbackType)),
     onSettingsToggle: () => dispatch(actions.toggleSettings(false)),
