@@ -218,8 +218,6 @@ export const updateSubjectMatter = (subjectMatter, subjectMattersSettings = []) 
         hue: currSubjectMatter.primaryColor,
       })
 
-      console.log('COLORS', COLORS)
-
       dispatch({
         type: actionTypes.UPDATE_CONTEXT,
         context: context,
