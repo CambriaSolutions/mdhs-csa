@@ -57,7 +57,7 @@ const EngagedUserChart = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
+  
   return {
     showEngagedUser: state.filters.showEngagedUser,
     filterLabel: state.filters.filterLabel,

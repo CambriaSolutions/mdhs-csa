@@ -27,7 +27,7 @@ const StyledTooltipContent = styled.p`
 const capitalizeFirstLetter = string => {
   const strings = string.split(' ')
   const stringsCapitalized = map(strings, x => x.charAt(0).toUpperCase() + x.slice(1))
-  return stringsCapitalized.toString().replace(',', ' ')
+  return stringsCapitalized.join(' ')
 }
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -76,7 +76,7 @@ const SupportRequestChart = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
+  
   return {
     filterLabel: state.filters.filterLabel,
     filterStartDate: state.filters.dateFilters.start,

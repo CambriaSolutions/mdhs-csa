@@ -230,7 +230,7 @@ export const fetchMetricsSuccess = metrics => {
     let numSupportRequests = 0
 
     const exitIntents = []
-    console.log('metrics', metrics)
+    
     // Loop through metrics per day
     for (let metric of metrics) {
       avgConvoDuration += metric.averageConversationDuration * metric.numConversationsWithDuration
