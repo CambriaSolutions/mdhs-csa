@@ -72,19 +72,17 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
           await Promise.all(updatePromises)
         }
       } else {
-        if (query.toLowerCase() === 'none of these') {
-          // The user did not select any of our suggestions, so add the suggestions and
-          // query to a collection for human inspection
-          const createdAt = admin.firestore.Timestamp.now()
-          const docRef = await store.collection(`${context}/queriesForLabeling`).add({ suggestions, userQuery, createdAt })
+        // The user did not select any of our suggestions, so add the suggestions and
+        // query to a collection for human inspection
+        const createdAt = admin.firestore.Timestamp.now()
+        const docRef = await store.collection(`${context}/queriesForLabeling`).add({ suggestions, userQuery, createdAt })
 
-          const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
-          const dateKey = format(currentDate, 'MM-DD-YYYY')
-          console.log(`Date Key ${dateKey}`)
-          await store.collection(`${context}/metrics`).doc(dateKey).update({
-            noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
-          })
-        }
+        const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
+        const dateKey = format(currentDate, 'MM-DD-YYYY')
+        console.log(`Date Key ${dateKey}`)
+        await store.collection(`${context}/metrics`).doc(dateKey).update({
+          noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
+        })
       }
     } catch (err) {
       console.error(err)
