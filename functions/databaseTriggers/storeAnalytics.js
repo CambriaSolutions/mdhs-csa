@@ -83,7 +83,6 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
         await store.collection(`${context}/metrics`).doc(dateKey).update({
           noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
         })
-
       }
     } catch (err) {
       console.error(err)

@@ -1,6 +1,6 @@
 import React from 'react'
 import ComposedChart from './ComposedChart'
-import prepareDataForComposedChart from '../scripts/metricUtil'
+import {prepareDataForComposedChart} from '../scripts/metricUtil'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Line, Legend, Tooltip } from 'recharts'
@@ -57,7 +57,7 @@ const EngagedUserChart = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
+  
   return {
     showEngagedUser: state.filters.showEngagedUser,
     filterLabel: state.filters.filterLabel,

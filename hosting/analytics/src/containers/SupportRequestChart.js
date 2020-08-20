@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ComposedChart from '../components/ComposedChart'
-import prepareDataForComposedChart from '../scripts/metricUtil'
+import { prepareDataForComposedChart } from '../scripts/metricUtil'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import { map } from 'lodash'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { Line, Bar, Tooltip } from 'recharts'
+import { Line, Tooltip } from 'recharts'
 
 const Header = styled.h3`
   display: flex
@@ -27,7 +27,7 @@ const StyledTooltipContent = styled.p`
 const capitalizeFirstLetter = string => {
   const strings = string.split(' ')
   const stringsCapitalized = map(strings, x => x.charAt(0).toUpperCase() + x.slice(1))
-  return stringsCapitalized.toString().replace(',', ' ')
+  return stringsCapitalized.join(' ')
 }
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -76,7 +76,7 @@ const SupportRequestChart = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
+  
   return {
     filterLabel: state.filters.filterLabel,
     filterStartDate: state.filters.dateFilters.start,
