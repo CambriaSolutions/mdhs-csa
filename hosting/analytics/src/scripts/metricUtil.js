@@ -135,12 +135,12 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
   return sortAndFillSupportRequestBlanks(aggregatedData, typesOfSupportRequests)
 }
 
-export const prepareDataForComposedChart = (data, filterStartDate, filterEndDate) => {
+export const prepareDataForComposedChart = (data, filterLabel, filterStartDate, filterEndDate) => {
   const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate)) + 1
 
   // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
   // If it spans 3 or more, we display monthly.
-  if (totalCalendarMonths === 2) {
+  if (totalCalendarMonths === 2 && filterLabel !== 'Last 30 days') {
     return prepareDataForComposedChartByAggregationType('weekly', data, filterStartDate, filterEndDate)
   } else if (totalCalendarMonths >= 3) {
     return prepareDataForComposedChartByAggregationType('monthly', data, filterStartDate, filterEndDate)
