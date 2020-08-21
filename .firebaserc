@@ -27,6 +27,23 @@
           "mdhs-csa-isd-test-harness"
         ]
       }
+    },
+    "mdhs-csa-stage": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-stage-analytics"
+        ],
+        "testHarness": [
+          "mdhs-csa-dev-test-harness"
+        ]
+      }
+    },
+    "mdhs-csa": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-prod-analytics"
+        ]
+      }
     }
   }
 }
