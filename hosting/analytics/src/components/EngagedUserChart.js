@@ -1,6 +1,6 @@
 import React from 'react'
 import ComposedChart from './ComposedChart'
-import {prepareDataForComposedChart} from '../scripts/metricUtil'
+import { prepareDataForComposedChart } from '../scripts/metricUtil'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Line, Legend, Tooltip } from 'recharts'
@@ -35,8 +35,8 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const EngagedUserChart = props => {
-  const { data } = prepareDataForComposedChart(props.metrics, props.filterStartDate, props.filterEndDate)
-  const [ darkestColor ] = contrastingColors(props.colors)
+  const { data } = prepareDataForComposedChart(props.metrics, props.filterLabel, props.filterStartDate, props.filterEndDate)
+  const [darkestColor] = contrastingColors(props.colors)
 
   return (
     <>
@@ -57,7 +57,7 @@ const EngagedUserChart = props => {
 }
 
 const mapStateToProps = state => {
-  
+
   return {
     showEngagedUser: state.filters.showEngagedUser,
     filterLabel: state.filters.filterLabel,
