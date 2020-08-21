@@ -8,7 +8,7 @@ const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), da
 const fillMissingData = (metrics, filterStartDate, filterEndDate) => {
   const metricsByDate = keyBy(metrics, x => x.id)
   const startDate = new Date(filterStartDate)
-  const numberOfDaysInFilter = differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate))
+  const numberOfDaysInFilter = differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate)) + 1
 
   let cleanedData = []
 
