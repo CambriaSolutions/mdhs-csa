@@ -8,17 +8,50 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 999
+        }
+      ],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "speech": [
+            "What can I help you with?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "COMMON REQUESTS",
+              "APPOINTMENTS",
+              "PAYMENTS",
+              "EMPLOYER",
+              "OPENING A CHILD SUPPORT CASE",
+              "OFFICE LOCATIONS",
+              "POLICY MANUAL",
+              "ENFORCEMENT ACTION",
+              "STIMULUS CHECK",
+              "VISITATION",
+              "VERIFICATION",
+              "COOPERATION",
+              "INTERSTATE CASES"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

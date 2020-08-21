@@ -1,5 +1,12 @@
 const { Suggestion, Payload } = require('dialogflow-fulfillment')
 const getSubjectMatter = require('../utils/getSubjectMatter')
+const { subjectMatterContexts, subjectMatterLabels } = require('../constants/constants')
+const { map } = require('lodash')
+
+const admin = require('firebase-admin')
+const db = admin.firestore()
+
+const getSessionIdFromPath = path => /[^/]*$/.exec(path)[0]
 
 exports.handleEndConversation = async agent => {
   const helpMessage = 'Is there anything else I can help you with today?'
@@ -21,6 +28,26 @@ exports.tbd = async agent => {
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
   await agent.add(tbdMessage)
   await this.handleEndConversation(agent)
+}
+
+exports.setContext = async agent => {
+  const sessionId = getSessionIdFromPath(agent.session)
+  const preloadedContexts = await db.collection('preloadedContexts').doc(sessionId).get()
+  if (preloadedContexts.exists) {
+    const data = preloadedContexts.data()
+    //console.log(`Setting contexts for ${agent.session}`, data)
+    data.contexts.forEach(context => {
+      agent.context.set({
+        name: context,
+        lifespan: 1,
+      })
+    })
+  } else {
+    console.log(`Unable to fetch contexts for ${sessionId}`)
+  }
+  
+  const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
+  await agent.add(tbdMessage)
 }
 
 // Used to calculate the percentage of income for employers to withhold
@@ -196,7 +223,7 @@ exports.welcome = async agent => {
 
   try {
     await agent.add(
-      'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP or TANF requests.'
+      'Hi, I\'m Gen. I am not a real person, but I can help you with Child Support, SNAP, TANF or Workforce Development requests.'
     )
 
     await agent.add(
@@ -221,31 +248,25 @@ exports.welcome = async agent => {
 }
 
 exports.selectSubjectMatter = async agent => {
-  await agent.add(new Suggestion('Child Support'))
-  await agent.add(new Suggestion('TANF'))
-  await agent.add(new Suggestion('SNAP'))
-
   await this.disableInput(agent)
 
-  await agent.context.set({
-    name: 'cse-subject-matter',
-    lifespan: 0,
-  })
+  // Add a suggestion for each of the system's subject matters
+  const suggestionPromises = map(subjectMatterLabels, async label => agent.add(new Suggestion(label)))
 
-  await agent.context.set({
-    name: 'tanf-subject-matter',
-    lifespan: 0,
-  })
-
-  await agent.context.set({
-    name: 'snap-subject-matter',
-    lifespan: 0,
-  })
+  // Remove all subject matter related contexts
+  const contextPromises = map(subjectMatterContexts, async context => (
+    agent.context.set({
+      name: context,
+      lifespan: 0
+    })
+  ))
 
   await agent.context.set({
     name: 'waiting-subjectMatter',
     lifespan: 1,
   })
+
+  await Promise.all([...suggestionPromises, ...contextPromises])
 }
 
 exports.acknowledgePrivacyStatement = async agent => {

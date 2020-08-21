@@ -130,5 +130,18 @@
     "isTemplate": false,
     "count": 0,
     "updated": 0
+  },
+  {
+    "id": "7c2dc1a0-f9a2-4dcd-a465-32377ce6a13e",
+    "data": [
+      {
+        "text": "enforcement action",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
   }
 ]
