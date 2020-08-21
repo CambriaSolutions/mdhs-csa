@@ -34,7 +34,7 @@
           "mdhs-csa-stage-analytics"
         ],
         "testHarness": [
-          "mdhs-csa-dev-test-harness"
+          "mdhs-csa-stage-test-harness"
         ]
       }
     },
