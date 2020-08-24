@@ -306,9 +306,6 @@ const { accountInformation } = require('./childSupport/accountInformation.js')
 // Childcare
 const { childCare } = require('./childSupport/childCare.js')
 
-// Documentation
-const { documentation } = require('./childSupport/documentation.js')
-
 // Email
 const { email } = require('./childSupport/email.js')
 
@@ -344,9 +341,6 @@ const { snap } = require('./childSupport/snap.js')
 
 // Tanf
 const { tanf } = require('./childSupport/tanf.js')
-
-// Taxes
-const { taxes } = require('./childSupport/taxes.js')
 
 // Verification
 const { verification } = require('./childSupport/verification.js')
@@ -633,9 +627,6 @@ module.exports = {
   // Childcare
   'cse-childCare-root': childCare,
 
-  // Documentation
-  'cse-documentation-root': documentation,
-
   // Email
   'cse-email-root': email,
 
@@ -671,9 +662,6 @@ module.exports = {
 
   // Tanf
   'cse-tanf-root': tanf,
-
-  // Taxes
-  'cse-taxes-root': taxes,
 
   // Verification
   'cse-verification-root': verification,
