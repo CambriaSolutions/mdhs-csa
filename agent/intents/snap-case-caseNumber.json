@@ -1,9 +1,9 @@
 {
-  "id": "c786114b-e875-4c3b-a5d9-ff3b98e054b7",
-  "name": "cse-documentation-root",
+  "id": "ddeab9bb-7ced-4b73-968d-22b61bf35c0c",
+  "name": "tanf-case-caseNumber",
   "auto": true,
   "contexts": [
-    "cse-subject-matter"
+    "tanf-subject-matter"
   ],
   "responses": [
     {
@@ -11,25 +11,17 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-feedback-root",
-          "lifespan": 2
-        },
-        {
-          "name": "cse-subject-matter",
+          "name": "tanf-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-support-submitSupportRequest-inquiry",
-          "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "8853eed0-31ff-467e-bce7-cdbd1d41d504",
-          "name": "cadence",
+          "id": "0e9556f6-e4e0-4e6e-a794-5aa1e266b259",
+          "name": "yes-no",
           "required": false,
-          "dataType": "@cadence",
-          "value": "$cadence",
+          "dataType": "@yes-no",
+          "value": "$yes-no",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -46,7 +38,17 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Some forms are available on the MDHS website located \u003ca href\u003d\"https://www.mdhs.ms.gov/child-support/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for on the MDHS website, or if you would like to request copies of forms, or documents such as your court orders, please select the option to submit a request below and someone will contact you to provide further assistance."
+            "The case number is located on your card beneath the card number. The case number is nine (9) digits, while the card number is sixteen (16) digits. Your case number is on the right, across from your address on any communication received from your case worker."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Is there anything else I can help you with?"
           ],
           "condition": ""
         },
@@ -55,7 +57,6 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "SUBMIT SUPPORT REQUEST",
               "SUBMIT FEEDBACK"
             ]
           },

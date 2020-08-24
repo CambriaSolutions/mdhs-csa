@@ -16,7 +16,7 @@ exports.caseQAIncreaseReview = async agent => {
 exports.caseQAGeneral = async agent => {
   try {
     await agent.add(
-      'I cannot provide you case specific information at this time. You may submit an support request or call <a href="tel:+18778824916">877-882-4916</a>.'
+      'I cannot provide you case specific information at this time. You may submit a support request or call <a href="tel:+18778824916">877-882-4916</a>.'
     )
     await agent.add(new Suggestion('Submit Support Request'))
 
