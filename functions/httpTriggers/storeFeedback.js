@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
 const format = require('date-fns/format')
+const sanitizeHtml = require('sanitize-html')
 
 // Connect to DB
 const store = admin.firestore()
@@ -54,7 +55,7 @@ module.exports = async (req, res) => {
 
     const wasHelpful = reqData.wasHelpful
     let feedbackList = reqData.feedbackList
-    const feedbackComment = reqData.comment
+    const feedbackComment = sanitizeHtml(reqData.comment)
     // Get ID's from conversation (session)
     const conversationId = getIdFromPath(reqData.session)
 
