@@ -1,9 +1,9 @@
 {
   "id": "823272d4-46c9-46ae-a55a-e8c9a7491561",
-  "name": "tanf-case-general",
+  "name": "snap-case-general",
   "auto": true,
   "contexts": [
-    "tanf-subject-matter"
+    "snap-subject-matter"
   ],
   "responses": [
     {
@@ -11,7 +11,7 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "tanf-subject-matter",
+          "name": "snap-subject-matter",
           "lifespan": 99
         }
       ],
