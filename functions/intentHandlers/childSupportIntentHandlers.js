@@ -1,13 +1,5 @@
 const { mapRoot } = require('./common/map.js')
 
-// TODO REMOVE THESE???
-// Not child support intents
-const {
-  notChildSupportRoot,
-  handleChildSupportRetry,
-  handleAcknowledgementAfterRetry,
-} = require('./childSupport/notChildSupport.js')
-
 // General enforcement intents
 const {
   enforcementRoot,
@@ -125,10 +117,8 @@ const {
 const {
   apptsRoot,
   apptsSchedule,
-  apptsNoContacted,
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
-  apptsGuidelines,
   apptsQAOfficeHours,
   apptsQAMissedAppt,
 } = require('./childSupport/appointments.js')
@@ -300,9 +290,6 @@ const {
 // Stimulus Check
 const { stimulusCheck } = require('./childSupport/stimulusCheck.js')
 
-// Account information
-const { accountInformation } = require('./childSupport/accountInformation.js')
-
 // Childcare
 const { childCare } = require('./childSupport/childCare.js')
 
@@ -360,11 +347,6 @@ module.exports = {
 
   // Terminate intents
   'cse-terminate-root': terminateRoot,
-
-  // Not child support intents
-  'not-child-support-root': notChildSupportRoot,
-  'cse-handle-child-support-retry': handleChildSupportRetry,
-  'cse-acknowledgement-after-retry': handleAcknowledgementAfterRetry,
 
   'cse-calc-root': calcRoot,
 
@@ -433,7 +415,6 @@ module.exports = {
   'cse-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
-  'cse-account-balance': pmtMethodsEcheckDebit,
   'cse-pmtMethods-none': pmtMethodsNone,
   'cse-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
   'cse-pmtMethods-cash': pmtMethodsCash,
@@ -458,10 +439,8 @@ module.exports = {
   // Appointment intents
   'cse-appts-root': apptsRoot,
   'cse-appts-schedule': apptsSchedule,
-  'cse-appts-no-contacted': apptsNoContacted,
   'cse-appts-yes-contacted': apptsYesContacted,
   'cse-appts-office-locations-handoff': apptsOfficeLocationsHandoff,
-  'cse-appts-guidelines': apptsGuidelines,
   'cse-apptsQA-office-hours': apptsQAOfficeHours,
   'cse-apptsQA-missed-appt': apptsQAMissedAppt,
 
@@ -620,9 +599,6 @@ module.exports = {
 
   // Safety
   'cse-safety': safety,
-
-  // Account information
-  'cse-accountInformation-root': accountInformation,
 
   // Childcare
   'cse-childCare-root': childCare,

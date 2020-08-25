@@ -100,22 +100,6 @@ exports.apptsOfficeLocationsHandoff = async agent => {
   }
 }
 
-exports.apptsGuidelines = async agent => {
-  try {
-    await agent.add(
-      'You generally aren\'t required to schedule an appointment on your own. If you need to visit us, you will receive a notice to appear at a District office.'
-    )
-    await agent.add(
-      'If you have urgent questions, you can contact support at <a href="tel:+18778824916">1-877-882-4916</a>.'
-    )
-
-    // Ask the user if they need anything else, set appropriate contexts
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 exports.apptsQAOfficeHours = async agent => {
   try {
     await agent.context.set({
