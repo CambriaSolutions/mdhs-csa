@@ -52,8 +52,6 @@ const {
   employerBillsAndNotices
 } = require('./childSupport/employer.js')
 
-const { calcRoot } = require('./childSupport/calculator.js')
-
 // Payment calculator intents
 const {
   pmtCalcRoot,
@@ -109,17 +107,13 @@ const {
   caseQAIncreaseReview,
   caseQAGeneral,
   caseQAChangePersonalInfo,
-  caseQACompliance,
   caseQAComplianceSupportRequest,
 } = require('./childSupport/caseQA.js')
 
 // Appointments intents
 const {
-  apptsRoot,
-  apptsSchedule,
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
-  apptsQAOfficeHours,
   apptsQAMissedAppt,
 } = require('./childSupport/appointments.js')
 
@@ -348,8 +342,6 @@ module.exports = {
   // Terminate intents
   'cse-terminate-root': terminateRoot,
 
-  'cse-calc-root': calcRoot,
-
   // Payment calculation intents
   'cse-pmt-calc-root': pmtCalcRoot,
   'cse-pmt-calc-restart': pmtCalcRootRestart,
@@ -437,11 +429,8 @@ module.exports = {
   'cse-close-cscQA-close-case': closeCSCQACloseCase,
 
   // Appointment intents
-  'cse-appts-root': apptsRoot,
-  'cse-appts-schedule': apptsSchedule,
   'cse-appts-yes-contacted': apptsYesContacted,
   'cse-appts-office-locations-handoff': apptsOfficeLocationsHandoff,
-  'cse-apptsQA-office-hours': apptsQAOfficeHours,
   'cse-apptsQA-missed-appt': apptsQAMissedAppt,
 
   // Support intents
@@ -502,7 +491,6 @@ module.exports = {
   'cse-caseQA-increase-review': caseQAIncreaseReview,
   'cse-caseQA-general': caseQAGeneral,
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
-  'cse-caseQA-compliance': caseQACompliance,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
 
 
