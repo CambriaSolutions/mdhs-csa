@@ -12,8 +12,8 @@
       "affectedContexts": [
         {
           "name": "waiting-feedback-root",
-          "parameters": {},
-          "lifespan": 1
+          "lifespan": 1,
+          "parameters": {}
         }
       ],
       "parameters": [],
@@ -44,7 +44,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2019/04/GF-504-SNAP-ET-Application-with-NDS-Statement-Final-Fillable.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to open the  SNAP E\u0026T Skills2Work Application, and click the \"Providers Location\" below to find the appropriate submission location and contact information."
+            "Please \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2019/04/GF-504-SNAP-ET-Application-with-NDS-Statement-Final-Fillable.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to open the  SNAP E\u0026T Skills2Work Application, and click the \"Providers Location\" below to find the appropriate submission location and contact information. Completed applications must be submitted to designated SNAP E\u0026T Provider Location contact  person(s) for eligibility determination. Application submissions do not guarantee S2W program acceptance and/or SNAP approval."
           ],
           "condition": ""
         },
