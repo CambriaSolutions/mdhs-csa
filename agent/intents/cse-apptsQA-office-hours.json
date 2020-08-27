@@ -1,39 +1,78 @@
 {
-  "id": "539d0809-b8f7-4701-9f75-88f03a609359",
-  "name": "cse-apptsQA-office-hours",
-  "auto": true,
-  "contexts": [
-    "cse-subject-matter"
-  ],
-  "responses": [
-    {
-      "resetContexts": false,
-      "affectedContexts": [
+    "id": "539d0809-b8f7-4701-9f75-88f03a609359",
+    "name": "cse-apptsQA-office-hours",
+    "auto": true,
+    "contexts": [
+        "cse-subject-matter"
+    ],
+    "responses": [
         {
-          "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+            "resetContexts": false,
+            "action": "",
+            "affectedContexts": [
+                {
+                    "name": "waiting-appts-not-contacted",
+                    "lifespan": 2
+                },
+                {
+                    "name": "cse-subject-matter",
+                    "lifespan": 99
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "If you have urgent questions, you can contact support at <a href=\"tel:+18778824916\">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "Do you need help finding an office location?"
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "4",
+                    "title": "",
+                    "payload": {
+                        "suggestions": [
+                            "Yes"
+                        ]
+                    },
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "condition": ""
+                }
+            ],
+            "speech": []
         }
-      ],
-      "parameters": [],
-      "messages": [
-        {
-          "type": 0,
-          "lang": "en",
-          "condition": "",
-          "speech": []
-        }
-      ],
-      "defaultResponsePlatforms": {},
-      "speech": []
-    }
-  ],
-  "priority": 500000,
-  "webhookUsed": true,
-  "webhookForSlotFilling": false,
-  "fallbackIntent": false,
-  "events": [],
-  "conditionalResponses": [],
-  "condition": "",
-  "conditionalFollowupEvents": []
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
 }
