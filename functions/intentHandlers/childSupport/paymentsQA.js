@@ -6,35 +6,17 @@ const {
   supportEmploymentStatus,
 } = require('./support.js')
 
+// TODO ----- VERY IMPORTANT
+// THIS INTENT HANDLER SEEMS TO BE USED FOR AN INTENT THAT CAN ONLY BE REACHED WITH TRAINING PHRASES. NO BUTTONS. 
+// ALSO, THE CONTENT IN THIS HANDLER IS NOWHERE TO BE FOUND IN LUCIDCHART. NEED TO REVIEW. 
 exports.pmtQAHaventReceived = async agent => {
   try {
     await agent.add(
       'Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
-    await agent.add(
-      'Do you have any other questions?'
-    )
-    await agent.add(new Suggestion('Submit Support Request'))
-    await agent.add(new Suggestion('Submit Feedback'))
-
-    await agent.context.set({
-      name: 'waiting-feedback-root',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-pmtQA-havent-received-submit-request',
-      lifespan: 2,
-    })
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
-  }
-}
-
-exports.pmtQAHaventReceivedSubmitRequest = async agent => {
-  try {
-    await supportInquiries(agent)
-  } catch (err) {
-    console.log(err)
   }
 }
 

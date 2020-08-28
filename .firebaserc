@@ -6,5 +6,44 @@
     "dev-beta": "mdhs-csa-dev-beta",
     "isd": "mdhs-csa-isd-273818",
     "default": "mdhs-csa-dev"
+  },
+  "targets": {
+    "mdhs-csa-dev": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-dev-analytics"
+        ],
+        "testHarness": [
+          "mdhs-csa-dev-test-harness"
+        ]
+      }
+    },
+    "mdhs-csa-isd-273818": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-isd-analytics"
+        ],
+        "testHarness": [
+          "mdhs-csa-isd-test-harness"
+        ]
+      }
+    },
+    "mdhs-csa-stage": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-stage-analytics"
+        ],
+        "testHarness": [
+          "mdhs-csa-stage-test-harness"
+        ]
+      }
+    },
+    "mdhs-csa": {
+      "hosting": {
+        "analytics": [
+          "mdhs-csa-prod-analytics"
+        ]
+      }
+    }
   }
 }

@@ -9,28 +9,63 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-open-csc-location-services",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-open-csc-no-service",
+          "lifespan": 2
+        },
+        {
+          "name": "waiting-open-csc-select-form",
+          "lifespan": 2
         }
       ],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "speech": [
+            "MDHS works to find the parent responsible for paying child support. The applicant must attest that the request is related to establishing parentage, establishing or modifying a child support obligation, or enforcing a child support obligation, and provide evidence that he/she is the resident parent, legal guardian, or attorney or agent for the child.  There is no fee associated with this service. Information will not be disclosed if MDHS has reason to believe that the release of information may result in physical or emotional harm to the one of the parents or the child."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Is this the service you want?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "YES",
+              "NO"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

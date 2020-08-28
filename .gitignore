@@ -41,6 +41,7 @@ typings/
 
 # Optional npm cache directory
 .npm
+.npmrc
 
 # Optional eslint cache
 .eslintcache
@@ -70,5 +71,9 @@ functions/analyticsKey.json
 scripts/export/
 content/
 
+**/build
+
 emulate-firebase.bat
 ngrok.bat
+
+**mochawesome-report/

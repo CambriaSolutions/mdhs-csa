@@ -61,7 +61,6 @@ SERVICE_DESK_KEY=xxxxxxxxxxxxxxx
 SERVICE_DESK_URI=https://[service-desk-project]/rest/servicedeskapi/request
 SERVICE_DESK_ID=xx
 REQUEST_TYPE_ID=x
-ANALYTICS_URI=YOURANALYTICSURI
 ```
 
 #### Interface

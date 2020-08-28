@@ -1,64 +1,62 @@
-const admin = require('firebase-admin');
-const dialogflow = require('dialogflow');
-const { v4: uuidv4 } = require('uuid');
+require('dotenv').config()
+const request = require('request')
+const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+const parseIntentDataFromExcelDocument = require('./parseIntentDataFromExcelDocument')
+const admin = require('firebase-admin')
+admin.initializeApp()
+const db = admin.firestore()
+const dialogflow = require('dialogflow')
+const projectId = keyFile.project_id
+const { v4: uuidv4 } = require('uuid')
 
-require('dotenv').config();
-admin.initializeApp();
+require('chai').should()
 
 const ask = require("./ask.js");
 
-describe('Gen responds to me', () => {
-    const sessionClient = new dialogflow.SessionsClient();
-    let sessionId;
-    let sessionPath;    
+const sessionClient = new dialogflow.SessionsClient();
+const sessions = {}
 
-    beforeEach(async () => {
-        sessionId = uuidv4();
-        sessionPath = sessionClient.sessionPath(process.env.AGENT_PROJECT, sessionId);
-    });
+const startSessionsAndPreloadContexts = async (intents) => {
+    const promises = []
+    Object.entries(intents).forEach(([intentName, intentData]) => {
+        intentData.trainingPhrases.forEach(phrase => {
+            const sessionId = uuidv4();
+            sessions[intentName + "::" + phrase] = sessionId
+            promises.push(db.collection('preloadedContexts').doc(sessionId).set({
+                contexts: intentData.inputContexts
+            }))
+        })
+    })
 
-    test('Gen welcomes me', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-    });
+    await Promise.all(promises)
+}
 
-    test('Gen asks me if I\'m asking about child support', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-        reply = await ask(sessionClient, sessionPath, 'Yes');
-        expect(reply.intent).toBe('yes-child-support');
-    });
+const askGen = async (intentName, phrase, intentData) => {
+    it(`Gen should reply with the [${intentName}] intent when asked [${phrase}] with input contexts [${intentData.inputContexts}]`, async () => {
+        const sessionId = sessions[intentName + "::" + phrase]
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+        if (intentData.inputContexts.length > 0) {
+            await ask(sessionClient, sessionPath, 'set-context');
+        }
 
-    test('Gen presents me with a privacy disclaimer', async () => {
-        let reply = await ask(sessionClient, sessionPath, 'hi');
-        expect(reply.intent).toBe('Default Welcome Intent');
-        reply = await ask(sessionClient, sessionPath, 'Yes');
-        expect(reply.intent).toBe('yes-child-support');
-        reply = await ask(sessionClient, sessionPath, 'I Acknowledge');
-        expect(reply.intent).toBe('acknowledge-privacy-statement');
-    });
+        const reply = await ask(sessionClient, sessionPath, phrase);
+        reply.intent.should.equal(intentName)
+    })
+}
 
-    test('Gen responds to Common Requests', async () => {
-        const reply = await ask(sessionClient, sessionPath, 'Common Requests');
-        expect(reply.intent).toBe('support-root');
-    });
+describe('Gen Regression Testing', async () => {
+    const intents = parseIntentDataFromExcelDocument('./Master spreadsheet.xlsx', 'intent_context_content')
 
-    test('Gen responds to Employer', async () => {
-        const reply = await ask(sessionClient, sessionPath, 'Employer');
-        expect(reply.intent).toBe('employer-root');
-    });
+    before(async () => {
+        console.log('Preloading...')
+        await startSessionsAndPreloadContexts(intents)
+    })
+
+    describe('Running tests', async () => {
+        Object.entries(intents).forEach(([intentName, intentData]) => {
+            intentData.trainingPhrases.forEach(phrase => {
+                askGen(intentName, phrase, intentData)
+            })
+        })
+    })
 })
-
-
-
-    // const errorCount = await conversation
-    //     .expectIntent('Default Welcome Intent')
-    //     .expectReply('Hi, I\'m Gen. I am not a real person, but I can help you with common child support requests. Are you here to get help with Child Support?')
-    //     .expectContext('waiting-yes-child-support')
-    //     .expectContext('waiting-not-child-support')
-    //     .expectSuggestion('Yes')
-    //     .expectSuggestion('No')
-    //     .replyWith('Yes')
-    //     .expectReply('')
-    //     .converse();
-
