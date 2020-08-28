@@ -14,13 +14,12 @@ const client = new automl.v1beta1.PredictionServiceClient()
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
 
 // Query the category model to return category predictions
-const predictCategories = async (location, catModel, query) => {
-  console.log(`AutoML Settings, [location:${location}], [catModel: ${catModel}], [query:${query}]`)
+const predictCategories = async (autoMlSettings, query) => {
   // Define the location of the category prediction model
   const categoryModelPath = client.modelPath(
     projectId,
-    location,
-    catModel
+    autoMlSettings.location, 
+    autoMlSettings.catModel
   )
     
   const payload = {
@@ -68,7 +67,7 @@ const categorizeAndPredict = async (subjectMatter, query) => {
   console.log(`AutoML Settings Exist: ${autoMlSettingsRef.exists}`)
   const autoMlSettings = autoMlSettingsRef.data()
   console.log('AutoML Settings:', autoMlSettings)
-  const predictions = await predictCategories(autoMlSettings.location, autoMlSettings.catModel, query)
+  const predictions = await predictCategories(autoMlSettings, query)
   for (const category in predictions.categories) {
     const { name, confidence } = predictions.categories[category]
 
