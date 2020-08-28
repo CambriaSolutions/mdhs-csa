@@ -64,9 +64,9 @@ const categorizeAndPredict = async (subjectMatter, query) => {
   const categories = []
   
   const autoMlSettings = (await db.collection('subjectMatters').doc(subjectMatter).get()).data()
-  const location = autoMlSettings.location
+  const loc = autoMlSettings.location
   const catModel = autoMlSettings.catModel
-  console.log('AutoML Settings 1: ', [location, catModel, query])
+  console.log('AutoML Settings 1: ', [loc, catModel, query, autoMlSettings.location])
   const predictions = await predictCategories(location, catModel, query)
   for (const category in predictions.categories) {
     const { name, confidence } = predictions.categories[category]
