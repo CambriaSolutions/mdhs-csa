@@ -16,7 +16,9 @@ const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
 // Query the category model to return category predictions
 const predictCategories = async (autoMlSettings, query) => {
   console.log('AutoML Project ID:', projectId)
-  console.log('AutoML Settings 2:', autoMlSettings)
+  console.log('AutoML Settings 2:', [projectId,
+    autoMlSettings.location, 
+    autoMlSettings.catModel])
   // Define the location of the category prediction model
   const categoryModelPath = client.modelPath(
     projectId,
