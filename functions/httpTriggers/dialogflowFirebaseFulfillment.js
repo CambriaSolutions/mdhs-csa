@@ -45,7 +45,7 @@ module.exports = async (request, response) => {
     // Using a health check endpoint to keep the function warm
     response.status(200).send()
   } else {
-    console.time('--- Fulfillment function started')
+    console.time('--- Fulfillment function', 'Started')
 
     if (request.body.queryResult.fulfillmentMessages) {
       // If request contains a custom payload, it is necessary that each object in the fulfillmentMessages array
@@ -106,16 +106,16 @@ module.exports = async (request, response) => {
     await backIntent(agent, intentHandlers, resetBackIntentList, 'go-back', request.body.queryResult.fulfillmentMessages)
     await home(agent, intentHandlers, resetHomeIntentList)
 
-    console.timeLog('--- Fulfillment function adding back and home handlers finished ')
-    console.timeLog('--- Fulfillment function request handling started')
+    console.timeLog('--- Fulfillment function', 'Adding back and home handlers finished ')
+    console.timeLog('--- Fulfillment function', 'Request handling started')
 
     await agent.handleRequest(new Map(Object.entries(intentHandlers)))
 
-    console.timeLog('--- Fulfillment function request handing finished')
-    console.timeLog('--- Fulfillment function saving request started')
+    console.timeLog('--- Fulfillment function', 'Request handing finished')
+    console.timeLog('--- Fulfillment function', 'Saving request started')
 
     await savingRequest
 
-    console.timeEnd('--- Fulfillment function saving request finished, fulfillment function finished')
+    console.timeEnd('--- Fulfillment function', 'Saving request finished, fulfillment function finished')
   }
 }
