@@ -1,7 +1,8 @@
 import * as actionTypes from './actionTypes'
 import db from '../../Firebase'
 import { format } from 'date-fns'
-import { reduce, map, find, filter } from 'lodash'
+import { reduce, map, find, findIndex, filter, keyBy, cloneDeep } from 'lodash'
+import { subjectMatters } from '../../constants/constants.js'
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -44,7 +45,27 @@ const queryPersonaMetrics = async (context, dateRange, personaIntents) => {
   return personaData
 }
 
-const retrievePersonaMetrics = async (context, dateRange) => {
+export const getMetrics = async (dateRange, context) => {
+  // const timezoneOffset = getState().filters.timezoneOffset
+  const metricsRef = db.collection(`${context}/metrics`)
+  const startDate = new Date(dateRange.start)
+  let endDate = new Date(dateRange.end)
+
+  const metricsQuerySnapshot = await metricsRef
+    .where('date', '>=', startDate)
+    .where('date', '<=', endDate)
+    .get()
+
+  let fetchedMetrics = []
+
+  metricsQuerySnapshot.forEach(doc => {
+    fetchedMetrics.push({ ...doc.data(), id: doc.id })
+  })
+
+  return fetchedMetrics
+}
+
+const getPersonaMetrics = async (context, dateRange) => {
   const personaIntentMappings = {
     'cse-employer-root': 'Employer',
     'cse-support-employer': 'Employer',
@@ -143,10 +164,13 @@ const retrievePersonaMetrics = async (context, dateRange) => {
   }
 }
 
+// Fetch metrics for a specific subject matter
 export const fetchMetrics = (dateRange, context) => {
   return async (dispatch, getState) => {
     try {
       // const useRealtimeUpdates = getState().config.updateRealtime
+
+      dispatch(fetchMetricsStart())
 
       if (typeof dateRange === 'undefined') {
         dateRange = getState().filters.dateFilters
@@ -156,26 +180,9 @@ export const fetchMetrics = (dateRange, context) => {
         context = getState().filters.context
       }
 
-      // const timezoneOffset = getState().filters.timezoneOffset
-      const metricsRef = db.collection(`${context}/metrics`)
-      const startDate = new Date(dateRange.start)
-      let endDate = new Date(dateRange.end)
+      const fetchedMetrics = await getMetrics(dateRange, context)
 
-
-      dispatch(fetchMetricsStart())
-
-      const metricsQuerySnapshot = await metricsRef
-        .where('date', '>=', startDate)
-        .where('date', '<=', endDate)
-        .get()
-
-      const personaMetrics = await retrievePersonaMetrics(context, dateRange)
-
-      let fetchedMetrics = []
-
-      metricsQuerySnapshot.forEach(doc => {
-        fetchedMetrics.push({ ...doc.data(), id: doc.id })
-      })
+      const personaMetrics = await getPersonaMetrics(context, dateRange)
 
       // Combine the fetched daily metrics with the metrics calculated for daily requests
       const mergedMetrics = reduce(personaMetrics, (results, current) => {
@@ -216,6 +223,187 @@ export const fetchMetrics = (dateRange, context) => {
   }
 }
 
+// Fetch the aggregated daily metrics for all subject matters 
+export const fetchMetricsTotal = (dateRange) => {
+  return async (dispatch, getState) => {
+    try {
+      // const useRealtimeUpdates = getState().config.updateRealtime
+      if (typeof dateRange === 'undefined') {
+        dateRange = getState().filters.dateFilters
+      }
+
+      dispatch(fetchMetricsStart())
+
+      const promises = map(subjectMatters, sm => getMetrics(dateRange, `subjectMatters/${sm}`))
+
+      const generalMetrics = await getMetrics(dateRange, 'subjectMatters/general')
+
+      // subjectMatterMetrics is an array (subject matters) made up of another array of the daily metrics (for each subject matter)
+      const subjectMatterMetrics = await Promise.all(promises)
+
+      // The daily metrics inside of each subject matter are keyed by the ID (date). This makes it easier to aggregate the data
+      const subjectMatterMetricsById = map(subjectMatterMetrics, m => keyBy(m, dailyMetrics => dailyMetrics.id))
+
+      const dayDefaults = {
+        id: null,
+        cpCount: 0,
+        ncpCount: 0,
+        employerCount: 0,
+        averageConversationDuration: 0,
+        conversationsWithSupportRequests: [],
+        dailyExitIntents: {},
+        date: {},
+        exitIntents: [],
+        fallbackTriggeringQueries: [],
+        feedback: {
+          positive: 0,
+          negative: 0,
+          helpful: [],
+          notHelpful: [],
+        },
+        intents: [],
+        noneOfTheseCategories: [],
+        numConversationsWithSupportRequests: 0,
+        numFallbacks: 0,
+        numConversations: 0,
+        numConversationsWithDuration: 0,
+        supportRequests: []
+      }
+
+      const aggregatedSubjectMatterMetricsById = reduce(subjectMatterMetricsById, (subjectMatterResult, currentSubjectMatter) => {
+
+        // Take the current result object and construct a new object that includes the current subject matter's daily metrics
+        return reduce(currentSubjectMatter, (dayResult, dayMetrics) => {
+          // Temporarily key the support requests by name to facilitate aggregation
+          const aggregatedSupportRequests = reduce(dayMetrics.supportRequests, (supportResult, currentSupport) => {
+            const previousOccurrences = supportResult[currentSupport.name] ? supportResult[currentSupport.name].occurrences : 0
+
+            return ({
+              // Persist the other entries in the supportResult object
+              ...supportResult,
+              // Keying support requests by name
+              [currentSupport.name]: {
+                name: currentSupport.name,
+                // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
+                occurrences: previousOccurrences + currentSupport.occurrences
+              }
+            })
+          }, subjectMatterResult[dayMetrics.id] ? subjectMatterResult[dayMetrics.id].supportRequests : {})
+
+          // Temporarily key the intents by name to facilitate aggregation
+          const aggregatedIntents = reduce(dayMetrics.intents, (intentResult, currentIntent) => {
+            const previousOccurrences = intentResult[currentIntent.name] ? intentResult[currentIntent.name].occurrences : 0
+
+            return ({
+              // Persist the other entries in the intentResult object
+              ...intentResult,
+              // Keying intent requests by name
+              [currentIntent.name]: {
+                id: currentIntent.id,
+                conversations: [],
+                name: currentIntent.name,
+                sessions: 0,
+                // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
+                occurrences: previousOccurrences + currentIntent.occurrences
+              }
+            })
+          }, subjectMatterResult[dayMetrics.id] ? subjectMatterResult[dayMetrics.id].intents : {})
+
+          const aggregatedFeedback = dayResult[dayMetrics.id] && dayResult[dayMetrics.id].feedback ? cloneDeep(dayResult[dayMetrics.id].feedback) : cloneDeep(dayDefaults.feedback)
+
+          // Add the positive count
+          aggregatedFeedback.positive += dayMetrics.feedback && dayMetrics.feedback.positive ? dayMetrics.feedback.positive : 0
+
+          // Add the negative count
+          aggregatedFeedback.negative += dayMetrics.feedback && dayMetrics.feedback.negative ? dayMetrics.feedback.negative : 0
+
+          if (dayMetrics.feedback) {
+            // Aggregate the positive feedback
+            dayMetrics.feedback.helpful.forEach(h => {
+              const matchIndex = findIndex(aggregatedFeedback, fb => fb.name === h.name)
+
+              if (matchIndex >= 0) {
+                aggregatedFeedback.helpful[matchIndex].occurrences += h.occurrences
+              } else {
+                aggregatedFeedback.helpful.push({ ...h })
+              }
+            })
+
+            // Aggregate the negative feedback
+            dayMetrics.feedback.notHelpful.forEach(h => {
+              const matchIndex = findIndex(aggregatedFeedback, fb => fb.name === h.name)
+
+              if (matchIndex >= 0) {
+                aggregatedFeedback.notHelpful[matchIndex].occurrences += h.occurrences
+              } else {
+                aggregatedFeedback.notHelpful.push({ ...h })
+              }
+            })
+          }
+
+          return ({
+            ...dayResult,
+            [dayMetrics.id]: {
+              ...dayDefaults,
+              id: dayMetrics.id,
+              feedback: aggregatedFeedback,
+              supportRequests: aggregatedSupportRequests,
+              intents: aggregatedIntents
+            }
+          })
+        }, subjectMatterResult)
+      }, {})
+
+      // Merge the metrics from the "general" subject matter, and metrics from the actual subject matters.
+      // NOTE: we use user metrics from the "general" subject matter, but the support request metrics
+      // from the individual subject matters
+      const mergedMetrics = reduce(generalMetrics, (result, m) => ({
+        ...result,
+        [m.id]: {
+          // Add defaults just in case the days in the general and subject matter metrics 
+          // are not be the same and iterating through the general metrics collection ends 
+          // up adding a new date to the overall collection
+          ...dayDefaults,
+          // Persist the metrics for the day
+          ...aggregatedSubjectMatterMetricsById[m.id],
+          // Append the user metrics
+          numConversations: m.numConversations,
+          numConversationsWithDuration: m.numConversationsWithDuration
+        }
+      }), aggregatedSubjectMatterMetricsById)
+
+      // Undo the fact that daily metrics are keyed by date and support requests and intents are keyed by name
+      const aggregatedMetrics = map(mergedMetrics, m => ({
+        ...m,
+        supportRequests: map(m.supportRequests),
+        intents: map(m.intents)
+      }))
+
+      dispatch(fetchMetricsSuccess(aggregatedMetrics))
+
+      // BA 07/22/2020 #378 - Per Nibeer's request, we are temporarily disabling the live updates functionality
+      // const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+      // const isToday = today.startsWith(dateRange.start.slice(0, 10))
+      // // Only subscribe to real time updates and its the same day view
+      // if (useRealtimeUpdates && isToday) {
+      //   const dateWithSubjectMatterTimezone = getUTCDate(new Date(), timezoneOffset)
+      //   const dateKey = format(dateWithSubjectMatterTimezone, 'MM-dd-yyyy')
+
+      //   // Load data from today and continue listening for changes
+      //   const unsubscribeMetrics = metricsRef.doc(dateKey).onSnapshot(doc => {
+      //     const metric = doc.data()
+      //     if (metric) dispatch(fetchMetricsSuccess([metric]))
+      //   })
+
+      //   dispatch(storeMetricsSubscription(unsubscribeMetrics))
+      // }
+
+    } catch (err) {
+      dispatch(fetchMetricsFail(err))
+    }
+  }
+}
+
 export const fetchMetricsSuccess = metrics => {
   return dispatch => {
     // Retrieve intents & support requests from daily metrics
@@ -230,7 +418,7 @@ export const fetchMetricsSuccess = metrics => {
     let numSupportRequests = 0
 
     const exitIntents = []
-    
+
     // Loop through metrics per day
     for (let metric of metrics) {
       avgConvoDuration += metric.averageConversationDuration * metric.numConversationsWithDuration
