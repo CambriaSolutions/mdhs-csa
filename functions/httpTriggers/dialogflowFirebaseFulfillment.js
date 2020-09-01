@@ -45,7 +45,8 @@ module.exports = async (request, response) => {
     // Using a health check endpoint to keep the function warm
     response.status(200).send()
   } else {
-    console.time('--- Fulfillment function', 'Started')
+    console.time('--- Fulfillment function')
+    console.timeLog('--- Fulfillment function', 'Started')
 
     if (request.body.queryResult.fulfillmentMessages) {
       // If request contains a custom payload, it is necessary that each object in the fulfillmentMessages array
