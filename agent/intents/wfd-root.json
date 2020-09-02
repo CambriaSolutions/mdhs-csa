@@ -11,12 +11,20 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-subjectMatter",
+          "name": "wfd-subject-matter",
+          "lifespan": 999
+        },
+        {
+          "name": "tanf-subject-matter",
           "lifespan": 0
         },
         {
-          "name": "wfd-subject-matter",
-          "lifespan": 999
+          "name": "snap-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 0
         }
       ],
       "parameters": [],
