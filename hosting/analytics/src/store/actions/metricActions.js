@@ -3,14 +3,124 @@ import db from '../../Firebase'
 import { format } from 'date-fns'
 import { reduce, map, find, findIndex, filter, keyBy, cloneDeep } from 'lodash'
 import { subjectMatters } from '../../constants/constants.js'
+import { getUTCDate } from '../../common/helper'
+import { storeMetricsSubscription } from './realtimeActions'
 
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
-  }
+const personaIntentMappings = {
+  'cse-employer-root': 'Employer',
+  'cse-support-employer': 'Employer',
+  'cse-pmts-general-receive-payments': 'CP',
+  'cse-support-parent-receiving': 'CP',
+  'cse-pmts-general-non-custodial': 'NCP',
+  'cse-support-parent-paying': 'NCP',
 }
 
-const queryPersonaMetrics = async (context, dateRange, personaIntents) => {
+const personaIntents = [...Object.keys(personaIntentMappings)]
+
+const derivePersonaMetrics = (personaMetricsQueryResult) => {
+  const personaMetrics = {}
+  const sessionMetrics = {}
+
+  personaMetricsQueryResult.forEach(request => {
+    const intentName = request.intentName
+    if (personaIntents.includes(intentName)) {
+      const requestDate = new Date(request.createdAt.seconds * 1000)
+      const metricsKey = format(requestDate, 'MM-dd-yyyy')
+      let metrics = personaMetrics[metricsKey]
+
+      if (metrics === undefined || metrics === null) {
+        metrics = {
+          cpCount: 0,
+          ncpCount: 0,
+          employerCount: 0
+        }
+      }
+
+      let personas = sessionMetrics[request.sessionId]
+      const persona = personaIntentMappings[intentName]
+
+      if (personas === undefined || personas === null) {
+        personas = [persona]
+        switch (persona) {
+          case 'CP':
+            metrics.cpCount += 1
+            break
+          case 'NCP':
+            metrics.ncpCount += 1
+            break
+          case 'Employer':
+            metrics.employerCount += 1
+            break
+          default:
+            break
+        }
+      } else {
+        if (!personas.includes(persona)) {
+          switch (persona) {
+            case 'CP':
+              metrics.cpCount += 1
+              break
+            case 'NCP':
+              metrics.ncpCount += 1
+              break
+            case 'Employer':
+              metrics.employerCount += 1
+              break
+            default:
+              break
+          }
+          personas.push(persona)
+        }
+      }
+
+      sessionMetrics[request.sessionId] = personas
+      personaMetrics[metricsKey] = metrics
+    }
+  })
+
+  const rtn = map(personaMetrics, (pm, key) => ({
+    ...pm,
+    // Add the date as the id
+    id: key,
+    // Set some defaults so this object has the same structure as the other metrics objects. 
+    averageConversationDuration: 0,
+    conversationsWithSupportRequests: [],
+    dailyExitIntents: {},
+    date: {},
+    exitIntents: [],
+    fallbackTriggeringQueries: [],
+    intents: [],
+    noneOfTheseCategories: [],
+    numConversationsWithSupportRequests: 0,
+    numFallbacks: 0,
+    numConversations: 0,
+    numConversationsWithDuration: 0,
+    supportRequests: []
+  }))
+
+  return rtn
+}
+
+const formatPersonaQuerySnapshotDocuments = docs => {
+  return reduce(docs, (result, doc) => {
+    const request = doc.data()
+
+    const output = ({
+      id: doc.id,
+      createdAt: request.createdAt,
+      intentName: request.queryResult.intent.displayName,
+      sessionId: request.session.split('/').pop()
+    })
+
+    if (personaIntents.includes(output.intentName)) {
+      return [...result, output]
+    } else {
+      return result
+    }
+  }, [])
+}
+
+const queryPersonaMetrics = async (context, dateRange) => {
   const requestsRef = db.collection(`${context}/requests`)
 
   const startDate = new Date(dateRange.start)
@@ -26,36 +136,25 @@ const queryPersonaMetrics = async (context, dateRange, personaIntents) => {
     console.warn('no records found')
   }
 
-  let personaData = []
-
-  await asyncForEach(snapshot.docs, async doc => {
-    const request = doc.data()
-    const output = {
-      id: doc.id,
-      createdAt: request.createdAt,
-      intentName: request.queryResult.intent.displayName,
-      sessionId: request.session.split('/').pop()
-    }
-
-    if (personaIntents.includes(output.intentName)) {
-      personaData.push(output)
-    }
-  })
-
-  return personaData
+  return snapshot
 }
 
-export const getMetrics = async (dateRange, context) => {
-  // const timezoneOffset = getState().filters.timezoneOffset
-  const metricsRef = db.collection(`${context}/metrics`)
-  const startDate = new Date(dateRange.start)
-  let endDate = new Date(dateRange.end)
+const getPersonaMetrics = async (context, dateRange) => {
+  try {
 
-  const metricsQuerySnapshot = await metricsRef
-    .where('date', '>=', startDate)
-    .where('date', '<=', endDate)
-    .get()
+    const personaMetricsSnapshot = await queryPersonaMetrics(context, dateRange, personaIntents)
 
+    const personaMetricsQueryResult = formatPersonaQuerySnapshotDocuments(personaMetricsSnapshot.docs)
+
+    const personaMetrics = derivePersonaMetrics(personaMetricsQueryResult)
+
+    return personaMetrics
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const formatMetricsQuerySnapshotDocuments = metricsQuerySnapshot => {
   let fetchedMetrics = []
 
   metricsQuerySnapshot.forEach(doc => {
@@ -65,111 +164,43 @@ export const getMetrics = async (dateRange, context) => {
   return fetchedMetrics
 }
 
-const getPersonaMetrics = async (context, dateRange) => {
-  const personaIntentMappings = {
-    'cse-employer-root': 'Employer',
-    'cse-support-employer': 'Employer',
-    'cse-pmts-general-receive-payments': 'CP',
-    'cse-support-parent-receiving': 'CP',
-    'cse-pmts-general-non-custodial': 'NCP',
-    'cse-support-parent-paying': 'NCP',
-  }
+const queryMetrics = async (dateRange, context) => {
+  // const timezoneOffset = getState().filters.timezoneOffset
+  const metricsRef = db.collection(`${context}/metrics`)
+  const startDate = new Date(dateRange.start)
+  let endDate = new Date(dateRange.end)
 
-  const personaIntents = [...Object.keys(personaIntentMappings)]
+  const snapshot = await metricsRef
+    .where('date', '>=', startDate)
+    .where('date', '<=', endDate)
+    .get()
 
-  try {
-    const personaMetrics = {}
-    const sessionMetrics = {}
-    const personaMetricsQueryResult = await queryPersonaMetrics(context, dateRange, personaIntents)
-
-    personaMetricsQueryResult.forEach(request => {
-      const intentName = request.intentName
-      if (personaIntents.includes(intentName)) {
-        const requestDate = new Date(request.createdAt.seconds * 1000)
-        const metricsKey = format(requestDate, 'MM-dd-yyyy')
-        let metrics = personaMetrics[metricsKey]
-
-        if (metrics === undefined || metrics === null) {
-          metrics = {
-            cpCount: 0,
-            ncpCount: 0,
-            employerCount: 0
-          }
-        }
-
-        let personas = sessionMetrics[request.sessionId]
-        const persona = personaIntentMappings[intentName]
-
-        if (personas === undefined || personas === null) {
-          personas = [persona]
-          switch (persona) {
-            case 'CP':
-              metrics.cpCount += 1
-              break
-            case 'NCP':
-              metrics.ncpCount += 1
-              break
-            case 'Employer':
-              metrics.employerCount += 1
-              break
-            default:
-              break
-          }
-        } else {
-          if (!personas.includes(persona)) {
-            switch (persona) {
-              case 'CP':
-                metrics.cpCount += 1
-                break
-              case 'NCP':
-                metrics.ncpCount += 1
-                break
-              case 'Employer':
-                metrics.employerCount += 1
-                break
-              default:
-                break
-            }
-            personas.push(persona)
-          }
-        }
-
-        sessionMetrics[request.sessionId] = personas
-        personaMetrics[metricsKey] = metrics
-      }
-    })
-
-    const rtn = map(personaMetrics, (pm, key) => ({
-      ...pm,
-      // Add the date as the id
-      id: key,
-      // Set some defaults so this object has the same structure as the other metrics objects. 
-      averageConversationDuration: 0,
-      conversationsWithSupportRequests: [],
-      dailyExitIntents: {},
-      date: {},
-      exitIntents: [],
-      fallbackTriggeringQueries: [],
-      intents: [],
-      noneOfTheseCategories: [],
-      numConversationsWithSupportRequests: 0,
-      numFallbacks: 0,
-      numConversations: 0,
-      numConversationsWithDuration: 0,
-      supportRequests: []
-    }))
-    return rtn
-  } catch (e) {
-    console.error(e)
-  }
+  return snapshot
 }
+
+export const getMetrics = async (dateRange, context) => {
+  const metricsQuerySnapshot = await queryMetrics(dateRange, context)
+
+  return formatMetricsQuerySnapshotDocuments(metricsQuerySnapshot)
+}
+
+const mergeMetricsAndPersonaMetrics = (metrics, personaMetrics) => reduce(personaMetrics, (results, current) => {
+  const filteredResults = filter(results, x => x.id !== current.id)
+  const resultsDayMetrics = find(results, x => x.id === current.id)
+  return ([
+    ...filteredResults,
+    {
+      // Spread "current" first so the defaults are overwritten
+      ...current,
+      ...resultsDayMetrics
+    }
+  ])
+}, metrics)
 
 // Fetch metrics for a specific subject matter
 export const fetchMetrics = (dateRange, context) => {
   return async (dispatch, getState) => {
     try {
-      // const useRealtimeUpdates = getState().config.updateRealtime
-
       dispatch(fetchMetricsStart())
 
       if (typeof dateRange === 'undefined') {
@@ -180,42 +211,45 @@ export const fetchMetrics = (dateRange, context) => {
         context = getState().filters.context
       }
 
-      const fetchedMetrics = await getMetrics(dateRange, context)
+      const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+      const isToday = today.startsWith(dateRange.start.slice(0, 10))
+      const useRealtimeUpdates = getState().config.updateRealtime
 
-      const personaMetrics = await getPersonaMetrics(context, dateRange)
+      // If date filter is set to today, we fetch data and subscribe to enable automatic data updates on data changes in DB
+      if (useRealtimeUpdates && isToday) {
 
-      // Combine the fetched daily metrics with the metrics calculated for daily requests
-      const mergedMetrics = reduce(personaMetrics, (results, current) => {
-        const filteredResults = filter(results, x => x.id !== current.id)
-        const resultsDayMetrics = find(results, x => x.id === current.id)
-        return ([
-          ...filteredResults,
-          {
-            // Spread "current" first so the defaults are overwritten
-            ...current,
-            ...resultsDayMetrics
-          }
-        ])
-      }, fetchedMetrics)
+        const timezoneOffset = getState().filters.timezoneOffset
+        const metricsRef = db.collection(`${context}/metrics`)
+        const dateWithSubjectMatterTimezone = getUTCDate(new Date(), timezoneOffset)
+        const dateKey = format(dateWithSubjectMatterTimezone, 'MM-dd-yyyy')
 
-      dispatch(fetchMetricsSuccess(mergedMetrics))
+        // Load metric data from today and continue listening for changes
+        const unsubscribeMetrics = metricsRef.doc(dateKey).onSnapshot(async doc => {
+          const fetchedMetrics = formatMetricsQuerySnapshotDocuments([doc])
 
-      // BA 07/22/2020 #378 - Per Nibeer's request, we are temporarily disabling the live updates functionality
-      // const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-      // const isToday = today.startsWith(dateRange.start.slice(0, 10))
-      // // Only subscribe to real time updates and its the same day view
-      // if (useRealtimeUpdates && isToday) {
-      //   const dateWithSubjectMatterTimezone = getUTCDate(new Date(), timezoneOffset)
-      //   const dateKey = format(dateWithSubjectMatterTimezone, 'MM-dd-yyyy')
+          // If the metrics changed and triggered an update, need to refetch the persona metrics
+          // in order to merge both sets of metrics.
+          const personaMetrics = await getPersonaMetrics(context, dateRange)
 
-      //   // Load data from today and continue listening for changes
-      //   const unsubscribeMetrics = metricsRef.doc(dateKey).onSnapshot(doc => {
-      //     const metric = doc.data()
-      //     if (metric) dispatch(fetchMetricsSuccess([metric]))
-      //   })
+          // Combine the fetched daily metrics with the metrics calculated for daily requests
+          const mergedMetrics = mergeMetricsAndPersonaMetrics(fetchedMetrics, personaMetrics)
 
-      //   dispatch(storeMetricsSubscription(unsubscribeMetrics))
-      // }
+          dispatch(fetchMetricsSuccess(mergedMetrics))
+        })
+
+        dispatch(storeMetricsSubscription(unsubscribeMetrics))
+      } else {
+        // If date filter is not set to today, then we perform a regular fetch. 
+
+        const fetchedMetrics = await getMetrics(dateRange, context)
+
+        const personaMetrics = await getPersonaMetrics(context, dateRange)
+
+        // Combine the fetched daily metrics with the metrics calculated for daily requests
+        const mergedMetrics = mergeMetricsAndPersonaMetrics(fetchedMetrics, personaMetrics)
+
+        dispatch(fetchMetricsSuccess(mergedMetrics))
+      }
 
     } catch (err) {
       dispatch(fetchMetricsFail(err))
