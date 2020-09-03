@@ -1,9 +1,9 @@
 [
   {
-    "id": "32ad96f9-9faa-4acd-8a9b-af2998bd6dc2",
+    "id": "1fba69ea-b561-44f8-8245-b6769482b9eb",
     "data": [
       {
-        "text": "Can I get a print of the CS emailed to me or do I have to go to office?",
+        "text": "wfd",
         "userDefined": false
       }
     ],
@@ -13,15 +13,10 @@
     "updated": 0
   },
   {
-    "id": "f01b1ee1-9664-4b5e-bd88-77842cccf38b",
+    "id": "e96be0c2-27e3-4b6c-bb18-8b4a3bb3c5b2",
     "data": [
       {
-        "text": "I need a statement saying how much I receive ",
-        "userDefined": false
-      },
-      {
-        "text": "a month",
-        "meta": "@sys.ignore",
+        "text": "snap",
         "userDefined": false
       }
     ],
@@ -31,10 +26,10 @@
     "updated": 0
   },
   {
-    "id": "2886a694-3b88-426e-802c-a07adb7c133c",
+    "id": "1b540ceb-56ab-4da0-8a4e-2d49ef6c96c6",
     "data": [
       {
-        "text": "Trying to get a month to month print out of owed child support",
+        "text": "tanf",
         "userDefined": false
       }
     ],
@@ -44,15 +39,10 @@
     "updated": 0
   },
   {
-    "id": "f91f12da-0d84-4547-8fcf-326b1a10987f",
+    "id": "1b04c1c8-aea7-4ed9-bbd2-17cc0f122cca",
     "data": [
       {
-        "text": "I need a printout of child support payments from ",
-        "userDefined": false
-      },
-      {
-        "text": "the last year",
-        "meta": "@sys.ignore",
+        "text": "I\u0027m trying to apply for food stamps",
         "userDefined": false
       }
     ],
@@ -62,19 +52,10 @@
     "updated": 0
   },
   {
-    "id": "d1678c81-3615-41f1-9a51-2b59697d9cc6",
+    "id": "954d0d1a-12cc-492b-bbc9-26d5316db82c",
     "data": [
       {
-        "text": "I need a printout of the child support I received during ",
-        "userDefined": false
-      },
-      {
-        "text": "the month of June",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      },
-      {
-        "text": " DIGITS",
+        "text": "Food stamps",
         "userDefined": false
       }
     ],
@@ -84,10 +65,10 @@
     "updated": 0
   },
   {
-    "id": "a775919e-7946-4da5-9a1c-8d5862ef8518",
+    "id": "aab772b7-d849-4442-aa65-4e812d9a0807",
     "data": [
       {
-        "text": "Trying to get a copy of 1 year payments of child support",
+        "text": "Renew food stamp",
         "userDefined": false
       }
     ],
@@ -97,10 +78,10 @@
     "updated": 0
   },
   {
-    "id": "1c856d14-0de0-408c-ad06-aaf105e6e9cc",
+    "id": "7d21cb3b-85e3-4c9b-b88e-8f8155509a32",
     "data": [
       {
-        "text": "Trying to see how can I get a print out of my child support payments: payment record",
+        "text": "I receive food stamps",
         "userDefined": false
       }
     ],
@@ -110,25 +91,23 @@
     "updated": 0
   },
   {
-    "id": "d321becb-aadf-4c57-93f7-63a5971f4e13",
+    "id": "98793e09-fc25-4b0a-bd31-e841757e7a9b",
     "data": [
       {
-        "text": "Child Support Increase/Decrease",
-        "meta": "@sys.ignore",
-        "userDefined": true
+        "text": "snap please",
+        "userDefined": false
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "lang": "en",
     "updated": 0
   },
   {
-    "id": "53a9ac04-4cfe-4a9e-8728-08bcaf421701",
+    "id": "e490e226-9933-4f54-a0ef-ec9d76c76be6",
     "data": [
       {
-        "text": "Add Authorized User",
-        "meta": "@sys.ignore",
+        "text": "I\u0027m here for snap",
         "userDefined": false
       }
     ],
@@ -138,11 +117,10 @@
     "updated": 0
   },
   {
-    "id": "1a96ee4a-8274-4d17-a101-3947a9188695",
+    "id": "d34d0694-c50d-4d93-a0a2-5f0c32a9e221",
     "data": [
       {
-        "text": "Request Case Closure",
-        "meta": "@sys.ignore",
+        "text": "what\u0027s snap?",
         "userDefined": false
       }
     ],
@@ -152,11 +130,10 @@
     "updated": 0
   },
   {
-    "id": "119ecf59-d62d-46b8-8ded-afa6c328ab17",
+    "id": "436d15e0-a0b8-44f5-8f65-1937d08c432e",
     "data": [
       {
-        "text": "Request Contempt Action",
-        "meta": "@sys.ignore",
+        "text": "tanf please.",
         "userDefined": false
       }
     ],
@@ -166,39 +143,10 @@
     "updated": 0
   },
   {
-    "id": "cd1959dc-7588-4774-807d-023b5283d80c",
+    "id": "2f394ef4-8b7d-4d99-8b92-f84ddb54b332",
     "data": [
       {
-        "text": "child support increase decrease",
-        "meta": "@sys.ignore",
-        "userDefined": true
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "4aab908f-8252-4946-aa20-e00c5fef308a",
-    "data": [
-      {
-        "text": "Child Support Payment Increase/Decrease",
-        "meta": "@sys.ignore",
-        "userDefined": true
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "4e1c49a5-c9cf-49e0-87d1-4cfd4d25f383",
-    "data": [
-      {
-        "text": "Employer Report Lump Sum Notification",
-        "meta": "@sys.ignore",
+        "text": "I\u0027m here for tanf.",
         "userDefined": false
       }
     ],
@@ -208,11 +156,10 @@
     "updated": 0
   },
   {
-    "id": "cb1ba60d-1f2e-446a-8bfb-7a00095e2d74",
+    "id": "f470cf53-77e7-402f-9982-96984cb0245a",
     "data": [
       {
-        "text": "inquiries",
-        "meta": "@sys.ignore",
+        "text": "what\u0027s tanf?",
         "userDefined": false
       }
     ],
@@ -222,11 +169,10 @@
     "updated": 0
   },
   {
-    "id": "1350e8a8-43f1-4823-8f79-dba8e1f6d321",
+    "id": "8cd547d7-bcc2-4f21-a95f-2f75d917369c",
     "data": [
       {
-        "text": "Request Payment History",
-        "meta": "@sys.ignore",
+        "text": "What programs do you have?",
         "userDefined": false
       }
     ],
@@ -236,12 +182,11 @@
     "updated": 0
   },
   {
-    "id": "5261b691-eadc-4aef-b354-3bc97def8781",
+    "id": "d9264908-77c2-427c-b608-bd292ee4ff20",
     "data": [
       {
-        "text": "Change of Personal Information",
-        "meta": "@sys.ignore",
-        "userDefined": true
+        "text": "I want to apply for a job.",
+        "userDefined": false
       }
     ],
     "isTemplate": false,
@@ -250,11 +195,101 @@
     "updated": 0
   },
   {
-    "id": "fbb931d5-6d86-4bff-8f69-0236bd3cf2a7",
+    "id": "e5251ba0-9b6d-4f51-9074-fa39e2b98bef",
     "data": [
       {
-        "text": "Information about parent who pays child support",
-        "meta": "@sys.ignore",
+        "text": "Am I eligible for a training program?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "400c37fb-be42-442b-b038-c6da136199bd",
+    "data": [
+      {
+        "text": "Skills2work program.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "463a872b-b089-422f-8f2f-2c8ec90d715f",
+    "data": [
+      {
+        "text": "Training program.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dd93af52-0df5-4a7c-b31e-2cd46e2b92d3",
+    "data": [
+      {
+        "text": "I need a job?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8793f275-99b5-4dd1-a183-5d404eb5a26b",
+    "data": [
+      {
+        "text": "Renew food stamp.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "08ab84b1-746f-41e0-a7a7-f342c3cb68d3",
+    "data": [
+      {
+        "text": "tanf please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eac71ed0-e440-4eed-8802-d0bee435d99f",
+    "data": [
+      {
+        "text": "I\u0027m here for tanf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "83e0e3a2-94cb-46c7-a6c6-b861d01e5031",
+    "data": [
+      {
+        "text": "what\u0027s tanf",
         "userDefined": false
       }
     ],

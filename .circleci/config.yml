@@ -78,7 +78,7 @@ jobs:
             REQUEST_TYPE_ID=<< parameters.requestTypeID >>
 
             SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>
-            
+
             HEALTH_CHECK_URL=<< parameters.healthCheckUrl >>" > .env
 
       - run: sudo npm install -g firebase-tools

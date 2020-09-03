@@ -1,23 +1,9 @@
 import * as actionTypes from '../actions/actionTypes'
 
-export const storeConversationsSubscription = unsubscribeConversations => {
-  return {
-    type: actionTypes.STORE_CONVERSATIONS_SUBSCRIPTION,
-    unsubscribeConversations: unsubscribeConversations,
-  }
-}
-
 export const storeMetricsSubscription = unsubscribeMetrics => {
   return {
     type: actionTypes.STORE_METRICS_SUBSCRIPTION,
     unsubscribeMetrics: unsubscribeMetrics,
-  }
-}
-
-export const updateRealtimeConversations = currentConversations => {
-  return {
-    type: actionTypes.UPDATE_REALTIME_CONVERSATIONS,
-    currentConversations: currentConversations,
   }
 }
 

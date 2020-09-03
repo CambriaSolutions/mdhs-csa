@@ -1,9 +1,9 @@
 {
-  "id": "2f8c7829-904f-481a-9705-5a552ea73f07",
-  "name": "cse-enforcement-tax-offset-q9",
+  "id": "663ceae7-65e3-4544-a1da-f84d42873f26",
+  "name": "wfd-switchSubjectMatter",
   "auto": true,
   "contexts": [
-    "cse-subject-matter"
+    "wfd-subject-matter"
   ],
   "responses": [
     {
@@ -11,9 +11,8 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "name": "waiting-subjectMatter",
+          "lifespan": 1
         }
       ],
       "parameters": [],
@@ -21,6 +20,23 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "I\u0027m sorry, were you referring to one of the topics below?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "TANF",
+              "SNAP",
+              "Child Support"
+            ]
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
