@@ -1,62 +1,39 @@
 {
-    "id": "56c9aadf-437a-4a71-90f0-7d7af8f4f8d7",
-    "name": "cse-caseQA-compliance",
-    "auto": true,
-    "contexts": [
-        "cse-subject-matter"
-    ],
-    "responses": [
+  "id": "56c9aadf-437a-4a71-90f0-7d7af8f4f8d7",
+  "name": "cse-caseQA-compliance",
+  "auto": true,
+  "contexts": [
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "action": "",
-            "affectedContexts": [
-                {
-                    "name": "waiting-caseQA-compliance-support-request",
-                    "lifespan": 2
-                },
-                {
-                    "name": "waiting-restart-conversation",
-                    "lifespan": 2
-                },
-                {
-                    "name": "cse-subject-matter",
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "You may submit an action request here, or call the support number at <a href=\"tel:+18778824916\">877-882-4916</a>"
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "4",
-                    "title": "",
-                    "payload": {
-                        "suggestions": [
-                            "Submit Action Request"
-                        ]
-                    },
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "condition": ""
-                }
-            ],
-            "speech": []
+          "name": "cse-subject-matter",
+          "parameters": {},
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

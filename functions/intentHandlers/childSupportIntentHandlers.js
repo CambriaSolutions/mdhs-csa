@@ -1,5 +1,13 @@
 const { mapRoot } = require('./common/map.js')
 
+// TODO REMOVE THESE???
+// Not child support intents
+const {
+  notChildSupportRoot,
+  handleChildSupportRetry,
+  handleAcknowledgementAfterRetry,
+} = require('./childSupport/notChildSupport.js')
+
 // General enforcement intents
 const {
   enforcementRoot,
@@ -51,6 +59,8 @@ const {
   employerIWOHandoff,
   employerBillsAndNotices
 } = require('./childSupport/employer.js')
+
+const { calcRoot } = require('./childSupport/calculator.js')
 
 // Payment calculator intents
 const {
@@ -107,13 +117,19 @@ const {
   caseQAIncreaseReview,
   caseQAGeneral,
   caseQAChangePersonalInfo,
+  caseQACompliance,
   caseQAComplianceSupportRequest,
 } = require('./childSupport/caseQA.js')
 
 // Appointments intents
 const {
+  apptsRoot,
+  apptsSchedule,
+  apptsNoContacted,
   apptsYesContacted,
   apptsOfficeLocationsHandoff,
+  apptsGuidelines,
+  apptsQAOfficeHours,
   apptsQAMissedAppt,
 } = require('./childSupport/appointments.js')
 
@@ -284,8 +300,14 @@ const {
 // Stimulus Check
 const { stimulusCheck } = require('./childSupport/stimulusCheck.js')
 
+// Account information
+const { accountInformation } = require('./childSupport/accountInformation.js')
+
 // Childcare
 const { childCare } = require('./childSupport/childCare.js')
+
+// Documentation
+const { documentation } = require('./childSupport/documentation.js')
 
 // Email
 const { email } = require('./childSupport/email.js')
@@ -323,6 +345,9 @@ const { snap } = require('./childSupport/snap.js')
 // Tanf
 const { tanf } = require('./childSupport/tanf.js')
 
+// Taxes
+const { taxes } = require('./childSupport/taxes.js')
+
 // Verification
 const { verification } = require('./childSupport/verification.js')
 
@@ -341,6 +366,13 @@ module.exports = {
 
   // Terminate intents
   'cse-terminate-root': terminateRoot,
+
+  // Not child support intents
+  'not-child-support-root': notChildSupportRoot,
+  'cse-handle-child-support-retry': handleChildSupportRetry,
+  'cse-acknowledgement-after-retry': handleAcknowledgementAfterRetry,
+
+  'cse-calc-root': calcRoot,
 
   // Payment calculation intents
   'cse-pmt-calc-root': pmtCalcRoot,
@@ -407,6 +439,7 @@ module.exports = {
   'cse-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
+  'cse-account-balance': pmtMethodsEcheckDebit,
   'cse-pmtMethods-none': pmtMethodsNone,
   'cse-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
   'cse-pmtMethods-cash': pmtMethodsCash,
@@ -429,8 +462,13 @@ module.exports = {
   'cse-close-cscQA-close-case': closeCSCQACloseCase,
 
   // Appointment intents
+  'cse-appts-root': apptsRoot,
+  'cse-appts-schedule': apptsSchedule,
+  'cse-appts-no-contacted': apptsNoContacted,
   'cse-appts-yes-contacted': apptsYesContacted,
   'cse-appts-office-locations-handoff': apptsOfficeLocationsHandoff,
+  'cse-appts-guidelines': apptsGuidelines,
+  'cse-apptsQA-office-hours': apptsQAOfficeHours,
   'cse-apptsQA-missed-appt': apptsQAMissedAppt,
 
   // Support intents
@@ -491,6 +529,7 @@ module.exports = {
   'cse-caseQA-increase-review': caseQAIncreaseReview,
   'cse-caseQA-general': caseQAGeneral,
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
+  'cse-caseQA-compliance': caseQACompliance,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
 
 
@@ -588,8 +627,14 @@ module.exports = {
   // Safety
   'cse-safety': safety,
 
+  // Account information
+  'cse-accountInformation-root': accountInformation,
+
   // Childcare
   'cse-childCare-root': childCare,
+
+  // Documentation
+  'cse-documentation-root': documentation,
 
   // Email
   'cse-email-root': email,
@@ -626,6 +671,9 @@ module.exports = {
 
   // Tanf
   'cse-tanf-root': tanf,
+
+  // Taxes
+  'cse-taxes-root': taxes,
 
   // Verification
   'cse-verification-root': verification,

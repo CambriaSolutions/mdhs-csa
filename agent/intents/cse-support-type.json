@@ -9,59 +9,71 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-support-type",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-employment-status",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-parent-paying-more",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-parent-receiving-more",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-iwo-no-assistance",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-iwo-faqs",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-iwo-wants-assistance",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 99
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "129fb15d-9372-4053-9259-f25de80a51b5",
+          "required": false,
+          "dataType": "@action-requests",
+          "name": "supportType",
+          "value": "$supportType",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

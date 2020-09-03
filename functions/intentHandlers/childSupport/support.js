@@ -69,7 +69,6 @@ exports.supportParentPaying = async agent => {
       new Suggestion('Child Support Payment Increase or Decrease')
     )
     await agent.add(new Suggestion('Visitation'))
-    await agent.add(new Suggestion('Emancipation'))
     await agent.add(new Suggestion('More'))
     await agent.context.set({
       name: 'waiting-support-type',
