@@ -225,16 +225,21 @@ export const fetchMetrics = (dateRange, context) => {
 
         // Load metric data from today and continue listening for changes
         const unsubscribeMetrics = metricsRef.doc(dateKey).onSnapshot(async doc => {
-          const fetchedMetrics = formatMetricsQuerySnapshotDocuments([doc])
+          if (doc.exists) {
+            const fetchedMetrics = formatMetricsQuerySnapshotDocuments([doc])
 
-          // If the metrics changed and triggered an update, need to refetch the persona metrics
-          // in order to merge both sets of metrics.
-          const personaMetrics = await getPersonaMetrics(context, dateRange)
+            // If the metrics changed and triggered an update, need to refetch the persona metrics
+            // in order to merge both sets of metrics.
+            const personaMetrics = await getPersonaMetrics(context, dateRange)
 
-          // Combine the fetched daily metrics with the metrics calculated for daily requests
-          const mergedMetrics = mergeMetricsAndPersonaMetrics(fetchedMetrics, personaMetrics)
+            // Combine the fetched daily metrics with the metrics calculated for daily requests
+            const mergedMetrics = mergeMetricsAndPersonaMetrics(fetchedMetrics, personaMetrics)
 
-          dispatch(fetchMetricsSuccess(mergedMetrics))
+            dispatch(fetchMetricsSuccess(mergedMetrics))
+          } else {
+            dispatch(fetchMetricsSuccess([]))
+
+          }
         })
 
         dispatch(storeMetricsSubscription(unsubscribeMetrics))
