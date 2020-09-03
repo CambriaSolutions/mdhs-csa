@@ -1,44 +1,5 @@
 [
   {
-    "id": "9c90834a-321e-4d04-97bc-745162c0c18f",
-    "data": [
-      {
-        "text": "I need a statement showing that I don\u0027t any support payments.",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "f63078e6-d853-4c40-957f-5a96dab0932c",
-    "data": [
-      {
-        "text": "I can get a proof of child support from that place u sent me right",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "b25a7a3c-4b75-4147-924e-803f8274dcb4",
-    "data": [
-      {
-        "text": "I already have a active case. I just need some type of documentation that states how much I receive and how often.",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
     "id": "f1a7dbb6-47a1-4cba-ac01-bfb676e13505",
     "data": [
       {
@@ -48,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -61,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -74,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -87,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -100,7 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -113,7 +69,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -126,7 +81,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -139,7 +93,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -152,7 +105,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -165,7 +117,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -178,7 +129,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]
