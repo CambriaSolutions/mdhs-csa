@@ -19,22 +19,7 @@
           "lifespan": 0
         }
       ],
-      "parameters": [
-        {
-          "id": "364b5baf-0a1a-4324-995f-67d17fc0a03d",
-          "name": "yes-no",
-          "required": false,
-          "dataType": "@yes-no",
-          "value": "$yes-no",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        }
-      ],
+      "parameters": [],
       "messages": [
         {
           "type": "0",
