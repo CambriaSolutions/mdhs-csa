@@ -1049,11 +1049,6 @@ exports.supportParentReceivingCooperation = async agent => {
       name: 'waiting-support-submitSupportRequest-cooperation',
       lifespan: 1
     })
-
-    await agent.context.set({
-      name: 'waiting-support-report-provider-employment',
-      lifespan: 1,
-    })
   } catch (err) {
     console.error(err)
   }
