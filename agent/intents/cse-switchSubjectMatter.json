@@ -11,7 +11,7 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-subjectmatter",
+          "name": "waiting-subjectMatter",
           "lifespan": 1
         }
       ],
