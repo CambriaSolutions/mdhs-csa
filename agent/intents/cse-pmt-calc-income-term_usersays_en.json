@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "1",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,13 +19,14 @@
     "data": [
       {
         "text": "five",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -36,8 +38,8 @@
       },
       {
         "text": "two",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       },
       {
@@ -47,6 +49,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -54,13 +57,14 @@
     "data": [
       {
         "text": "two",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -72,8 +76,8 @@
       },
       {
         "text": "couple",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       },
       {
@@ -83,6 +87,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -94,13 +99,14 @@
       },
       {
         "text": "one",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -112,13 +118,14 @@
       },
       {
         "text": "1",
-        "alias": "numChildren",
         "meta": "@sys.number",
+        "alias": "numChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

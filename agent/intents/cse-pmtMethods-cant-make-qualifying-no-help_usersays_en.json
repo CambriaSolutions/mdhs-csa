@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "yes",
-        "alias": "needsInquiry",
         "meta": "@yes-no",
+        "alias": "needsInquiry",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
