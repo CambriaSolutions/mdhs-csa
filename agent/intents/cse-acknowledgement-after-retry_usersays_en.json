@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "i acknowledge",
-        "alias": "acknowledgement",
         "meta": "@acknowledgement",
+        "alias": "acknowledgement",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
+    "lang": "en",
     "updated": 0
   }
 ]
