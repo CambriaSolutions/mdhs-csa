@@ -1,7 +1,6 @@
 {
   "id": "fdd35d2d-0818-4026-a6ac-a248aa3eaf21",
   "name": "cse-handle-child-support-retry",
-  "auto": false,
   "contexts": [
     "waiting-not-child-support-retry",
     "cse-subject-matter"
@@ -9,41 +8,44 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-not-child-support-retry",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "c34e4447-9495-42b4-a7d8-ba6d2d770b28",
+          "name": "childSupportRequests",
           "required": false,
           "dataType": "@child-support-requests",
-          "name": "childSupportRequests",
           "value": "$childSupportRequests",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
