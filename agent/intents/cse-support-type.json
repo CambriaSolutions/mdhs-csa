@@ -55,15 +55,17 @@
       "parameters": [
         {
           "id": "129fb15d-9372-4053-9259-f25de80a51b5",
+          "name": "supportType",
           "required": false,
           "dataType": "@action-requests",
-          "name": "supportType",
           "value": "$supportType",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
