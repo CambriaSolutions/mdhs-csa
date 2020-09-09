@@ -9,49 +9,46 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-pmt-calc-tax-deductions",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-pmt-calc-unknown-income",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 99
         }
       ],
       "parameters": [
         {
           "id": "2aa65379-7841-458d-9c65-525a4de6030e",
-          "name": "grossIncome",
           "required": false,
           "dataType": "@sys.number",
+          "name": "grossIncome",
           "value": "$grossIncome",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": []
+          "outputDialogContexts": [],
+          "isList": false
         }
       ],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

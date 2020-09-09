@@ -9,44 +9,41 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-support-collect-new-employer-phone",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 99
         }
       ],
       "parameters": [
         {
           "id": "ea8b1558-8d8f-4cc4-9dd1-56608b442d1b",
-          "name": "newEmployerPhone",
           "required": false,
           "dataType": "@sys.phone-number",
+          "name": "newEmployerPhone",
           "value": "$newEmployerPhone",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": []
+          "outputDialogContexts": [],
+          "isList": false
         }
       ],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

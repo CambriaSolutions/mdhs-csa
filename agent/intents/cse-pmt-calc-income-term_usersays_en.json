@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "1",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -19,14 +18,13 @@
     "data": [
       {
         "text": "five",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,8 +36,8 @@
       },
       {
         "text": "two",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -49,7 +47,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -57,14 +54,13 @@
     "data": [
       {
         "text": "two",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -76,8 +72,8 @@
       },
       {
         "text": "couple",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -87,7 +83,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -99,14 +94,13 @@
       },
       {
         "text": "one",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -118,14 +112,13 @@
       },
       {
         "text": "1",
-        "meta": "@sys.number",
         "alias": "numChildren",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

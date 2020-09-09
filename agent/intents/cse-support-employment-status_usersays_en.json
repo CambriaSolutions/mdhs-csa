@@ -9,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -17,14 +16,13 @@
     "data": [
       {
         "text": "got a job",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -32,14 +30,13 @@
     "data": [
       {
         "text": "change of employment information",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -53,7 +50,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -61,14 +57,13 @@
     "data": [
       {
         "text": "lost my job",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -80,14 +75,13 @@
       },
       {
         "text": "full time to part time",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

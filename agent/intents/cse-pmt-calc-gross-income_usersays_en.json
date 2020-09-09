@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "every other week",
-        "meta": "@cadence",
         "alias": "incomeTerm",
+        "meta": "@cadence",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -19,14 +18,13 @@
     "data": [
       {
         "text": "Weekly",
-        "meta": "@cadence",
         "alias": "incomeTerm",
+        "meta": "@cadence",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,14 +32,13 @@
     "data": [
       {
         "text": "Bi-Weekly",
-        "meta": "@cadence",
         "alias": "incomeTerm",
+        "meta": "@cadence",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -49,14 +46,13 @@
     "data": [
       {
         "text": "Monthly",
-        "meta": "@cadence",
         "alias": "incomeTerm",
+        "meta": "@cadence",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -64,14 +60,13 @@
     "data": [
       {
         "text": "Annually",
-        "meta": "@cadence",
         "alias": "incomeTerm",
+        "meta": "@cadence",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

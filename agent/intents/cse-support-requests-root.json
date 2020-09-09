@@ -9,44 +9,43 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-support-requests",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-payments",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-general",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-support-change",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 99
         }
       ],
       "parameters": [],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "95821",
-        "meta": "@sys.zip-code",
         "alias": "userZip",
+        "meta": "@sys.zip-code",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -19,14 +18,13 @@
     "data": [
       {
         "text": "510 george street jackson",
-        "meta": "@sys.address",
         "alias": "userAddress",
+        "meta": "@sys.address",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,14 +32,13 @@
     "data": [
       {
         "text": "718 E Fifteenth St Yazoo City",
-        "meta": "@sys.address",
         "alias": "userAddress",
+        "meta": "@sys.address",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -49,14 +46,13 @@
     "data": [
       {
         "text": "1050 20th street",
-        "meta": "@sys.address",
         "alias": "userAddress",
+        "meta": "@sys.address",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -64,14 +60,13 @@
     "data": [
       {
         "text": "sacramento",
-        "meta": "@sys.geo-city",
         "alias": "userCity",
+        "meta": "@sys.geo-city",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -83,14 +78,13 @@
       },
       {
         "text": "1050 20th st sacramento",
-        "meta": "@sys.address",
         "alias": "userAddress",
+        "meta": "@sys.address",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -98,8 +92,8 @@
     "data": [
       {
         "text": "1050 20th street",
-        "meta": "@sys.address",
         "alias": "userAddress",
+        "meta": "@sys.address",
         "userDefined": true
       },
       {
@@ -108,14 +102,13 @@
       },
       {
         "text": "sacramento",
-        "meta": "@sys.geo-city",
         "alias": "userCity",
+        "meta": "@sys.geo-city",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

@@ -9,39 +9,38 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-dirDep-start",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-dirDep-change",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "waiting-dirDep-stop",
-          "lifespan": 0,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "parameters": {},
+          "lifespan": 99
         }
       ],
       "parameters": [],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

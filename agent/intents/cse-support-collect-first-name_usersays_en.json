@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "John",
-        "meta": "@sys.any",
         "alias": "firstName",
+        "meta": "@sys.any",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   }
 ]

@@ -9,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -22,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -35,7 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -48,7 +45,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -61,7 +57,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -74,7 +69,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -86,8 +80,8 @@
       },
       {
         "text": "one",
-        "meta": "@sys.number",
         "alias": "number",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -97,7 +91,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -110,7 +103,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -123,7 +115,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -136,7 +127,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -149,7 +139,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   }
 ]

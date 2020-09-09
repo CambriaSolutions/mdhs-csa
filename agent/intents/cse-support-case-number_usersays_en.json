@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "i dont have one",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
       },
       {
         "text": "gotten one",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,14 +36,13 @@
     "data": [
       {
         "text": "i dont know",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -57,14 +54,13 @@
       },
       {
         "text": "i dont know it",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -72,14 +68,13 @@
     "data": [
       {
         "text": "123456",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -91,14 +86,13 @@
       },
       {
         "text": "098765",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -106,14 +100,13 @@
     "data": [
       {
         "text": "62345678a",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -125,14 +118,13 @@
       },
       {
         "text": "123456",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -140,14 +132,13 @@
     "data": [
       {
         "text": "612345678a",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -155,14 +146,13 @@
     "data": [
       {
         "text": "123",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -170,14 +160,13 @@
     "data": [
       {
         "text": "556677",
-        "meta": "@sys.any",
         "alias": "caseNumber",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

@@ -8,14 +8,13 @@
       },
       {
         "text": "not",
-        "meta": "@yes-no",
         "alias": "inArrears",
+        "meta": "@yes-no",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
     "data": [
       {
         "text": "nope",
-        "meta": "@yes-no",
         "alias": "inArrears",
+        "meta": "@yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,14 +36,13 @@
     "data": [
       {
         "text": "no",
-        "meta": "@yes-no",
         "alias": "inArrears",
+        "meta": "@yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -53,14 +50,13 @@
     "data": [
       {
         "text": "yes",
-        "meta": "@yes-no",
         "alias": "inArrears",
+        "meta": "@yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

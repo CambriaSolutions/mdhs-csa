@@ -8,14 +8,13 @@
       },
       {
         "text": "got fired",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -28,7 +27,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -36,14 +34,13 @@
     "data": [
       {
         "text": "i dont have one",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -55,14 +52,13 @@
       },
       {
         "text": "lost my job",
-        "meta": "@employmentStatus",
         "alias": "employmentStatus",
+        "meta": "@employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -75,7 +71,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -83,8 +78,8 @@
     "data": [
       {
         "text": "i don\u0027t know",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       },
       {
@@ -94,7 +89,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -107,7 +101,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -120,7 +113,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -133,7 +125,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

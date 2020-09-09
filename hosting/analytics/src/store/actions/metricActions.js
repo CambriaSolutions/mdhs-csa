@@ -1,15 +1,126 @@
 import * as actionTypes from './actionTypes'
 import db from '../../Firebase'
 import { format } from 'date-fns'
-import { reduce, map, find, filter } from 'lodash'
+import { reduce, map, find, findIndex, filter, keyBy, cloneDeep } from 'lodash'
+import { subjectMatters } from '../../constants/constants.js'
+import { getUTCDate } from '../../common/helper'
+import { storeMetricsSubscription } from './realtimeActions'
 
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
-  }
+const personaIntentMappings = {
+  'cse-employer-root': 'Employer',
+  'cse-support-employer': 'Employer',
+  'cse-pmts-general-receive-payments': 'CP',
+  'cse-support-parent-receiving': 'CP',
+  'cse-pmts-general-non-custodial': 'NCP',
+  'cse-support-parent-paying': 'NCP',
 }
 
-const queryPersonaMetrics = async (context, dateRange, personaIntents) => {
+const personaIntents = [...Object.keys(personaIntentMappings)]
+
+const derivePersonaMetrics = (personaMetricsQueryResult) => {
+  const personaMetrics = {}
+  const sessionMetrics = {}
+
+  personaMetricsQueryResult.forEach(request => {
+    const intentName = request.intentName
+    if (personaIntents.includes(intentName)) {
+      const requestDate = new Date(request.createdAt.seconds * 1000)
+      const metricsKey = format(requestDate, 'MM-dd-yyyy')
+      let metrics = personaMetrics[metricsKey]
+
+      if (metrics === undefined || metrics === null) {
+        metrics = {
+          cpCount: 0,
+          ncpCount: 0,
+          employerCount: 0
+        }
+      }
+
+      let personas = sessionMetrics[request.sessionId]
+      const persona = personaIntentMappings[intentName]
+
+      if (personas === undefined || personas === null) {
+        personas = [persona]
+        switch (persona) {
+          case 'CP':
+            metrics.cpCount += 1
+            break
+          case 'NCP':
+            metrics.ncpCount += 1
+            break
+          case 'Employer':
+            metrics.employerCount += 1
+            break
+          default:
+            break
+        }
+      } else {
+        if (!personas.includes(persona)) {
+          switch (persona) {
+            case 'CP':
+              metrics.cpCount += 1
+              break
+            case 'NCP':
+              metrics.ncpCount += 1
+              break
+            case 'Employer':
+              metrics.employerCount += 1
+              break
+            default:
+              break
+          }
+          personas.push(persona)
+        }
+      }
+
+      sessionMetrics[request.sessionId] = personas
+      personaMetrics[metricsKey] = metrics
+    }
+  })
+
+  const rtn = map(personaMetrics, (pm, key) => ({
+    ...pm,
+    // Add the date as the id
+    id: key,
+    // Set some defaults so this object has the same structure as the other metrics objects. 
+    averageConversationDuration: 0,
+    conversationsWithSupportRequests: [],
+    dailyExitIntents: {},
+    date: {},
+    exitIntents: [],
+    fallbackTriggeringQueries: [],
+    intents: [],
+    noneOfTheseCategories: [],
+    numConversationsWithSupportRequests: 0,
+    numFallbacks: 0,
+    numConversations: 0,
+    numConversationsWithDuration: 0,
+    supportRequests: []
+  }))
+
+  return rtn
+}
+
+const formatPersonaQuerySnapshotDocuments = docs => {
+  return reduce(docs, (result, doc) => {
+    const request = doc.data()
+
+    const output = ({
+      id: doc.id,
+      createdAt: request.createdAt,
+      intentName: request.queryResult.intent.displayName,
+      sessionId: request.session.split('/').pop()
+    })
+
+    if (personaIntents.includes(output.intentName)) {
+      return [...result, output]
+    } else {
+      return result
+    }
+  }, [])
+}
+
+const queryPersonaMetrics = async (context, dateRange) => {
   const requestsRef = db.collection(`${context}/requests`)
 
   const startDate = new Date(dateRange.start)
@@ -25,128 +136,72 @@ const queryPersonaMetrics = async (context, dateRange, personaIntents) => {
     console.warn('no records found')
   }
 
-  let personaData = []
-
-  await asyncForEach(snapshot.docs, async doc => {
-    const request = doc.data()
-    const output = {
-      id: doc.id,
-      createdAt: request.createdAt,
-      intentName: request.queryResult.intent.displayName,
-      sessionId: request.session.split('/').pop()
-    }
-
-    if (personaIntents.includes(output.intentName)) {
-      personaData.push(output)
-    }
-  })
-
-  return personaData
+  return snapshot
 }
 
-const retrievePersonaMetrics = async (context, dateRange) => {
-  const personaIntentMappings = {
-    'cse-employer-root': 'Employer',
-    'cse-support-employer': 'Employer',
-    'cse-pmts-general-receive-payments': 'CP',
-    'cse-support-parent-receiving': 'CP',
-    'cse-pmts-general-non-custodial': 'NCP',
-    'cse-support-parent-paying': 'NCP',
-  }
-
-  const personaIntents = [...Object.keys(personaIntentMappings)]
-
+const getPersonaMetrics = async (context, dateRange) => {
   try {
-    const personaMetrics = {}
-    const sessionMetrics = {}
-    const personaMetricsQueryResult = await queryPersonaMetrics(context, dateRange, personaIntents)
 
-    personaMetricsQueryResult.forEach(request => {
-      const intentName = request.intentName
-      if (personaIntents.includes(intentName)) {
-        const requestDate = new Date(request.createdAt.seconds * 1000)
-        const metricsKey = format(requestDate, 'MM-dd-yyyy')
-        let metrics = personaMetrics[metricsKey]
+    const personaMetricsSnapshot = await queryPersonaMetrics(context, dateRange, personaIntents)
 
-        if (metrics === undefined || metrics === null) {
-          metrics = {
-            cpCount: 0,
-            ncpCount: 0,
-            employerCount: 0
-          }
-        }
+    const personaMetricsQueryResult = formatPersonaQuerySnapshotDocuments(personaMetricsSnapshot.docs)
 
-        let personas = sessionMetrics[request.sessionId]
-        const persona = personaIntentMappings[intentName]
+    const personaMetrics = derivePersonaMetrics(personaMetricsQueryResult)
 
-        if (personas === undefined || personas === null) {
-          personas = [persona]
-          switch (persona) {
-            case 'CP':
-              metrics.cpCount += 1
-              break
-            case 'NCP':
-              metrics.ncpCount += 1
-              break
-            case 'Employer':
-              metrics.employerCount += 1
-              break
-            default:
-              break
-          }
-        } else {
-          if (!personas.includes(persona)) {
-            switch (persona) {
-              case 'CP':
-                metrics.cpCount += 1
-                break
-              case 'NCP':
-                metrics.ncpCount += 1
-                break
-              case 'Employer':
-                metrics.employerCount += 1
-                break
-              default:
-                break
-            }
-            personas.push(persona)
-          }
-        }
-
-        sessionMetrics[request.sessionId] = personas
-        personaMetrics[metricsKey] = metrics
-      }
-    })
-
-    const rtn = map(personaMetrics, (pm, key) => ({
-      ...pm,
-      // Add the date as the id
-      id: key,
-      // Set some defaults so this object has the same structure as the other metrics objects. 
-      averageConversationDuration: 0,
-      conversationsWithSupportRequests: [],
-      dailyExitIntents: {},
-      date: {},
-      exitIntents: [],
-      fallbackTriggeringQueries: [],
-      intents: [],
-      noneOfTheseCategories: [],
-      numConversationsWithSupportRequests: 0,
-      numFallbacks: 0,
-      numConversations: 0,
-      numConversationsWithDuration: 0,
-      supportRequests: []
-    }))
-    return rtn
+    return personaMetrics
   } catch (e) {
     console.error(e)
   }
 }
 
+const formatMetricsQuerySnapshotDocuments = metricsQuerySnapshot => {
+  let fetchedMetrics = []
+
+  metricsQuerySnapshot.forEach(doc => {
+    fetchedMetrics.push({ ...doc.data(), id: doc.id })
+  })
+
+  return fetchedMetrics
+}
+
+const queryMetrics = async (dateRange, context) => {
+  // const timezoneOffset = getState().filters.timezoneOffset
+  const metricsRef = db.collection(`${context}/metrics`)
+  const startDate = new Date(dateRange.start)
+  let endDate = new Date(dateRange.end)
+
+  const snapshot = await metricsRef
+    .where('date', '>=', startDate)
+    .where('date', '<=', endDate)
+    .get()
+
+  return snapshot
+}
+
+export const getMetrics = async (dateRange, context) => {
+  const metricsQuerySnapshot = await queryMetrics(dateRange, context)
+
+  return formatMetricsQuerySnapshotDocuments(metricsQuerySnapshot)
+}
+
+const mergeMetricsAndPersonaMetrics = (metrics, personaMetrics) => reduce(personaMetrics, (results, current) => {
+  const filteredResults = filter(results, x => x.id !== current.id)
+  const resultsDayMetrics = find(results, x => x.id === current.id)
+  return ([
+    ...filteredResults,
+    {
+      // Spread "current" first so the defaults are overwritten
+      ...current,
+      ...resultsDayMetrics
+    }
+  ])
+}, metrics)
+
+// Fetch metrics for a specific subject matter
 export const fetchMetrics = (dateRange, context) => {
   return async (dispatch, getState) => {
     try {
-      // const useRealtimeUpdates = getState().config.updateRealtime
+      dispatch(fetchMetricsStart())
 
       if (typeof dateRange === 'undefined') {
         dateRange = getState().filters.dateFilters
@@ -156,10 +211,9 @@ export const fetchMetrics = (dateRange, context) => {
         context = getState().filters.context
       }
 
-      // const timezoneOffset = getState().filters.timezoneOffset
-      const metricsRef = db.collection(`${context}/metrics`)
-      const startDate = new Date(dateRange.start)
-      let endDate = new Date(dateRange.end)
+      const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+      const isToday = today.startsWith(dateRange.start.slice(0, 10))
+      const useRealtimeUpdates = getState().config.updateRealtime
 
       // If date filter is set to today, we fetch data and subscribe to enable automatic data updates on data changes in DB
       if (useRealtimeUpdates && isToday) {
@@ -219,34 +273,152 @@ export const fetchMetricsTotal = (dateRange) => {
 
       dispatch(fetchMetricsStart())
 
-      const metricsQuerySnapshot = await metricsRef
-        .where('date', '>=', startDate)
-        .where('date', '<=', endDate)
-        .get()
+      const promises = map(subjectMatters, sm => getMetrics(dateRange, `subjectMatters/${sm}`))
 
-      const personaMetrics = await retrievePersonaMetrics(context, dateRange)
+      const generalMetrics = await getMetrics(dateRange, 'subjectMatters/general')
 
-      let fetchedMetrics = []
+      // subjectMatterMetrics is an array (subject matters) made up of another array of the daily metrics (for each subject matter)
+      const subjectMatterMetrics = await Promise.all(promises)
 
-      metricsQuerySnapshot.forEach(doc => {
-        fetchedMetrics.push({ ...doc.data(), id: doc.id })
-      })
+      // The daily metrics inside of each subject matter are keyed by the ID (date). This makes it easier to aggregate the data
+      const subjectMatterMetricsById = map(subjectMatterMetrics, m => keyBy(m, dailyMetrics => dailyMetrics.id))
 
-      // Combine the fetched daily metrics with the metrics calculated for daily requests
-      const mergedMetrics = reduce(personaMetrics, (results, current) => {
-        const filteredResults = filter(results, x => x.id !== current.id)
-        const resultsDayMetrics = find(results, x => x.id === current.id)
-        return ([
-          ...filteredResults,
-          {
-            // Spread "current" first so the defaults are overwritten
-            ...current,
-            ...resultsDayMetrics
+      const dayDefaults = {
+        id: null,
+        cpCount: 0,
+        ncpCount: 0,
+        employerCount: 0,
+        averageConversationDuration: 0,
+        conversationsWithSupportRequests: [],
+        dailyExitIntents: {},
+        date: {},
+        exitIntents: [],
+        fallbackTriggeringQueries: [],
+        feedback: {
+          positive: 0,
+          negative: 0,
+          helpful: [],
+          notHelpful: [],
+        },
+        intents: [],
+        noneOfTheseCategories: [],
+        numConversationsWithSupportRequests: 0,
+        numFallbacks: 0,
+        numConversations: 0,
+        numConversationsWithDuration: 0,
+        supportRequests: []
+      }
+
+      const aggregatedSubjectMatterMetricsById = reduce(subjectMatterMetricsById, (subjectMatterResult, currentSubjectMatter) => {
+
+        // Take the current result object and construct a new object that includes the current subject matter's daily metrics
+        return reduce(currentSubjectMatter, (dayResult, dayMetrics) => {
+          // Temporarily key the support requests by name to facilitate aggregation
+          const aggregatedSupportRequests = reduce(dayMetrics.supportRequests, (supportResult, currentSupport) => {
+            const previousOccurrences = supportResult[currentSupport.name] ? supportResult[currentSupport.name].occurrences : 0
+
+            return ({
+              // Persist the other entries in the supportResult object
+              ...supportResult,
+              // Keying support requests by name
+              [currentSupport.name]: {
+                name: currentSupport.name,
+                // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
+                occurrences: previousOccurrences + currentSupport.occurrences
+              }
+            })
+          }, subjectMatterResult[dayMetrics.id] ? subjectMatterResult[dayMetrics.id].supportRequests : {})
+
+          // Temporarily key the intents by name to facilitate aggregation
+          const aggregatedIntents = reduce(dayMetrics.intents, (intentResult, currentIntent) => {
+            const previousOccurrences = intentResult[currentIntent.name] ? intentResult[currentIntent.name].occurrences : 0
+
+            return ({
+              // Persist the other entries in the intentResult object
+              ...intentResult,
+              // Keying intent requests by name
+              [currentIntent.name]: {
+                id: currentIntent.id,
+                conversations: [],
+                name: currentIntent.name,
+                sessions: 0,
+                // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
+                occurrences: previousOccurrences + currentIntent.occurrences
+              }
+            })
+          }, subjectMatterResult[dayMetrics.id] ? subjectMatterResult[dayMetrics.id].intents : {})
+
+          const aggregatedFeedback = dayResult[dayMetrics.id] && dayResult[dayMetrics.id].feedback ? cloneDeep(dayResult[dayMetrics.id].feedback) : cloneDeep(dayDefaults.feedback)
+
+          // Add the positive count
+          aggregatedFeedback.positive += dayMetrics.feedback && dayMetrics.feedback.positive ? dayMetrics.feedback.positive : 0
+
+          // Add the negative count
+          aggregatedFeedback.negative += dayMetrics.feedback && dayMetrics.feedback.negative ? dayMetrics.feedback.negative : 0
+
+          if (dayMetrics.feedback) {
+            // Aggregate the positive feedback
+            dayMetrics.feedback.helpful.forEach(h => {
+              const matchIndex = findIndex(aggregatedFeedback, fb => fb.name === h.name)
+
+              if (matchIndex >= 0) {
+                aggregatedFeedback.helpful[matchIndex].occurrences += h.occurrences
+              } else {
+                aggregatedFeedback.helpful.push({ ...h })
+              }
+            })
+
+            // Aggregate the negative feedback
+            dayMetrics.feedback.notHelpful.forEach(h => {
+              const matchIndex = findIndex(aggregatedFeedback, fb => fb.name === h.name)
+
+              if (matchIndex >= 0) {
+                aggregatedFeedback.notHelpful[matchIndex].occurrences += h.occurrences
+              } else {
+                aggregatedFeedback.notHelpful.push({ ...h })
+              }
+            })
           }
-        ])
-      }, fetchedMetrics)
 
-      dispatch(fetchMetricsSuccess(mergedMetrics))
+          return ({
+            ...dayResult,
+            [dayMetrics.id]: {
+              ...dayDefaults,
+              id: dayMetrics.id,
+              feedback: aggregatedFeedback,
+              supportRequests: aggregatedSupportRequests,
+              intents: aggregatedIntents
+            }
+          })
+        }, subjectMatterResult)
+      }, {})
+
+      // Merge the metrics from the "general" subject matter, and metrics from the actual subject matters.
+      // NOTE: we use user metrics from the "general" subject matter, but the support request metrics
+      // from the individual subject matters
+      const mergedMetrics = reduce(generalMetrics, (result, m) => ({
+        ...result,
+        [m.id]: {
+          // Add defaults just in case the days in the general and subject matter metrics 
+          // are not be the same and iterating through the general metrics collection ends 
+          // up adding a new date to the overall collection
+          ...dayDefaults,
+          // Persist the metrics for the day
+          ...aggregatedSubjectMatterMetricsById[m.id],
+          // Append the user metrics
+          numConversations: m.numConversations,
+          numConversationsWithDuration: m.numConversationsWithDuration
+        }
+      }), aggregatedSubjectMatterMetricsById)
+
+      // Undo the fact that daily metrics are keyed by date and support requests and intents are keyed by name
+      const aggregatedMetrics = map(mergedMetrics, m => ({
+        ...m,
+        supportRequests: map(m.supportRequests),
+        intents: map(m.intents)
+      }))
+
+      dispatch(fetchMetricsSuccess(aggregatedMetrics))
 
       // BA 07/22/2020 #378 - Per Nibeer's request, we are temporarily disabling the live updates functionality
       // const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
@@ -285,7 +457,7 @@ export const fetchMetricsSuccess = metrics => {
     let numSupportRequests = 0
 
     const exitIntents = []
-    
+
     // Loop through metrics per day
     for (let metric of metrics) {
       avgConvoDuration += metric.averageConversationDuration * metric.numConversationsWithDuration

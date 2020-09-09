@@ -8,14 +8,13 @@
       },
       {
         "text": "jtran@cambriasolutions.com",
-        "meta": "@sys.email",
         "alias": "email",
+        "meta": "@sys.email",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
     "data": [
       {
         "text": "cfreeman@cambriasolutions.com",
-        "meta": "@sys.email",
         "alias": "email",
+        "meta": "@sys.email",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -42,14 +40,13 @@
       },
       {
         "text": "cfreeman@cambriasolutions.com",
-        "meta": "@sys.email",
         "alias": "email",
+        "meta": "@sys.email",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -61,14 +58,13 @@
       },
       {
         "text": "cc.freem@yahoo.com",
-        "meta": "@sys.email",
         "alias": "email",
+        "meta": "@sys.email",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

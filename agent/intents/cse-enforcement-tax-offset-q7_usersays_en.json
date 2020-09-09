@@ -9,7 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -22,7 +21,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -34,8 +32,8 @@
       },
       {
         "text": "not",
-        "meta": "@yes-no",
         "alias": "yes-no",
+        "meta": "@yes-no",
         "userDefined": false
       },
       {
@@ -45,7 +43,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

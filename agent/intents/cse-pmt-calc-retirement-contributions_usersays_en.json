@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "5000",
-        "meta": "@sys.number",
         "alias": "ssDeductions",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
       },
       {
         "text": "90",
-        "meta": "@sys.number",
         "alias": "ssDeductions",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,8 +36,8 @@
     "data": [
       {
         "text": "250",
-        "meta": "@sys.number",
         "alias": "ssDeductions",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -49,7 +47,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -57,14 +54,13 @@
     "data": [
       {
         "text": "fifty",
-        "meta": "@sys.number",
         "alias": "ssDeductions",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

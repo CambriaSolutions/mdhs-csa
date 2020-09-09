@@ -4,8 +4,8 @@
     "data": [
       {
         "text": "i don\u0027t know",
-        "meta": "@dont-know",
         "alias": "dontKnow",
+        "meta": "@dont-know",
         "userDefined": false
       },
       {
@@ -15,7 +15,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
     "data": [
       {
         "text": "i dont have one",
-        "meta": "@dont-know",
         "alias": "dontKnow",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,14 +36,13 @@
     "data": [
       {
         "text": "i dont know it",
-        "meta": "@dont-know",
         "alias": "dontKnow",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

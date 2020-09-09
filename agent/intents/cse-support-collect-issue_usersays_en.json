@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "i got yelled at on the phone",
-        "meta": "@sys.any",
         "alias": "request",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -19,14 +18,13 @@
     "data": [
       {
         "text": "i have a big issue",
-        "meta": "@sys.any",
         "alias": "request",
+        "meta": "@sys.any",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

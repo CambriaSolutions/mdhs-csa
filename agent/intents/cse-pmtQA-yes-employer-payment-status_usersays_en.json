@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "yes",
-        "meta": "@yes-no",
         "alias": "reportCSE",
+        "meta": "@yes-no",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

@@ -4,14 +4,13 @@
     "data": [
       {
         "text": "not sure",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -19,8 +18,8 @@
     "data": [
       {
         "text": "i dont know",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       },
       {
@@ -30,7 +29,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -42,8 +40,8 @@
       },
       {
         "text": "haven\u0027t received",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": true
       },
       {
@@ -53,7 +51,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -65,14 +62,13 @@
       },
       {
         "text": "no idea",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -80,14 +76,13 @@
     "data": [
       {
         "text": "don\u0027t know",
-        "meta": "@dont-know",
         "alias": "dont-know",
+        "meta": "@dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]

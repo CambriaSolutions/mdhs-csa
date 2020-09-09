@@ -4,8 +4,8 @@
     "data": [
       {
         "text": "10",
-        "meta": "@sys.number",
         "alias": "disposableIncome",
+        "meta": "@sys.number",
         "userDefined": true
       },
       {
@@ -15,7 +15,6 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -23,14 +22,13 @@
     "data": [
       {
         "text": "10",
-        "meta": "@sys.number",
         "alias": "disposableIncome",
+        "meta": "@sys.number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -38,8 +36,8 @@
     "data": [
       {
         "text": "five hundred",
-        "meta": "@sys.number",
         "alias": "disposableIncome",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -49,7 +47,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -57,8 +54,8 @@
     "data": [
       {
         "text": "thousand",
-        "meta": "@sys.number",
         "alias": "disposableIncome",
+        "meta": "@sys.number",
         "userDefined": false
       },
       {
@@ -68,7 +65,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]
