@@ -1,126 +1,16 @@
 [
   {
-    "id": "32ad96f9-9faa-4acd-8a9b-af2998bd6dc2",
-    "data": [
-      {
-        "text": "Can I get a print of the CS emailed to me or do I have to go to office?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "f01b1ee1-9664-4b5e-bd88-77842cccf38b",
-    "data": [
-      {
-        "text": "I need a statement saying how much I receive ",
-        "userDefined": false
-      },
-      {
-        "text": "a month",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "2886a694-3b88-426e-802c-a07adb7c133c",
-    "data": [
-      {
-        "text": "Trying to get a month to month print out of owed child support",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "f91f12da-0d84-4547-8fcf-326b1a10987f",
-    "data": [
-      {
-        "text": "I need a printout of child support payments from ",
-        "userDefined": false
-      },
-      {
-        "text": "the last year",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "d1678c81-3615-41f1-9a51-2b59697d9cc6",
-    "data": [
-      {
-        "text": "I need a printout of the child support I received during ",
-        "userDefined": false
-      },
-      {
-        "text": "the month of June",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      },
-      {
-        "text": " DIGITS",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "a775919e-7946-4da5-9a1c-8d5862ef8518",
-    "data": [
-      {
-        "text": "Trying to get a copy of 1 year payments of child support",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "1c856d14-0de0-408c-ad06-aaf105e6e9cc",
-    "data": [
-      {
-        "text": "Trying to see how can I get a print out of my child support payments: payment record",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
     "id": "d321becb-aadf-4c57-93f7-63a5971f4e13",
     "data": [
       {
         "text": "Child Support Increase/Decrease",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -128,13 +18,13 @@
     "data": [
       {
         "text": "Add Authorized User",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -142,13 +32,13 @@
     "data": [
       {
         "text": "Request Case Closure",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -156,13 +46,13 @@
     "data": [
       {
         "text": "Request Contempt Action",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -170,13 +60,13 @@
     "data": [
       {
         "text": "child support increase decrease",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -184,13 +74,13 @@
     "data": [
       {
         "text": "Child Support Payment Increase/Decrease",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -198,13 +88,13 @@
     "data": [
       {
         "text": "Employer Report Lump Sum Notification",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -212,13 +102,13 @@
     "data": [
       {
         "text": "inquiries",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -226,13 +116,13 @@
     "data": [
       {
         "text": "Request Payment History",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -240,13 +130,13 @@
     "data": [
       {
         "text": "Change of Personal Information",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   },
   {
@@ -254,13 +144,13 @@
     "data": [
       {
         "text": "Information about parent who pays child support",
-        "meta": "@sys.ignore",
+        "alias": "supportType",
+        "meta": "@action-requests",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "lang": "en",
     "updated": 0
   }
 ]
