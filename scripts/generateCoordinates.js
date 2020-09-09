@@ -124,7 +124,8 @@ const locationsSet2 = [
   '1391 HWY 61 SOUTH WOODVILLE, MS 39669',
   'R 165 VANCE ST LOUISVILLE, MS 39339',
   '217 FROSTLAND DR WATER VALLEY, MS 38965',
-  '1315 GRADY AVE YAZOO CITY, MS 39194'
+  '1315 GRADY AVE YAZOO CITY, MS 39194',
+  '1002 Warren Krout Rd, McComb, MS 39648'
 ]
 
 // Send the address to the geocode api to return the latitude, longitude and placeId
