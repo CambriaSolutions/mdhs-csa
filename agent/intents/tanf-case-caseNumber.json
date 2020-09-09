@@ -1,9 +1,9 @@
 {
-  "id": "012cd091-b575-4bd6-9873-e86918266335",
-  "name": "wfd-root",
+  "id": "f36f339d-beaf-4a2e-8933-429394f9206e",
+  "name": "tanf-case-caseNumber",
   "auto": true,
   "contexts": [
-    "waiting-subjectMatter"
+    "tanf-subject-matter"
   ],
   "responses": [
     {
@@ -11,23 +11,26 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "wfd-subject-matter",
-          "lifespan": 999
-        },
-        {
           "name": "tanf-subject-matter",
-          "lifespan": 0
-        },
-        {
-          "name": "snap-subject-matter",
-          "lifespan": 0
-        },
-        {
-          "name": "cse-subject-matter",
-          "lifespan": 0
+          "lifespan": 99
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "0e9556f6-e4e0-4e6e-a794-5aa1e266b258",
+          "name": "yes-no",
+          "required": false,
+          "dataType": "@yes-no",
+          "value": "$yes-no",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
       "messages": [
         {
           "type": "0",
@@ -35,7 +38,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Did you know receiving SNAP benefits may help you improve your chances of securing a rewarding job? As a SNAP recipient, you may be eligible for access to skill-building education and training programs to help you earn credentials employers are seeking. If eligible, you can even earn stackable credentials that lead to a career and self-sustaining wage!"
+            "The case number is located on your EBT card beneath the card number. The case number is nine (9) digits, while the card number is sixteen (16) digits.Your case number is on the right, across from your address on any communication received from your case worker."
           ],
           "condition": ""
         },
@@ -45,7 +48,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Select the option below or ask me your question."
+            "Is there anything else I can help you with?"
           ],
           "condition": ""
         },
@@ -54,7 +57,7 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "SKILLS2WORK"
+              "SUBMIT FEEDBACK"
             ]
           },
           "textToSpeech": "",

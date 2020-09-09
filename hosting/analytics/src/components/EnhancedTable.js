@@ -64,37 +64,6 @@ function getSorting(order, orderBy) {
     : (a, b) => -desc(a, b, orderBy)
 }
 
-const rows = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: false,
-    label: 'Intent Name',
-    toolTip: 'Sort by the name of the intent',
-  },
-  {
-    id: 'occurrences',
-    numeric: true,
-    disablePadding: false,
-    label: 'Count',
-    toolTip: 'Sort by the number of times the intent was triggered',
-  },
-  {
-    id: 'sessions',
-    numeric: true,
-    disablePadding: false,
-    label: 'Conversations',
-    toolTip: 'Sort by the number of conversations in which the intent occurred',
-  },
-  {
-    id: 'exits',
-    numeric: true,
-    disablePadding: false,
-    label: 'Exits',
-    toolTip:
-      'Sort by the number of times the intent was the last intent of the conversation',
-  },
-]
 
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
@@ -104,10 +73,48 @@ class EnhancedTableHead extends React.Component {
   render() {
     const { order, orderBy } = this.props
 
+    let columns = [
+      {
+        id: 'name',
+        numeric: false,
+        disablePadding: false,
+        label: 'Intent Name',
+        toolTip: 'Sort by the name of the intent',
+      },
+      {
+        id: 'occurrences',
+        numeric: true,
+        disablePadding: false,
+        label: 'Count',
+        toolTip: 'Sort by the number of times the intent was triggered',
+      }
+    ]
+
+    if (!this.props.selectedSubjectMatter || this.props.selectedSubjectMatter.toLowerCase() !== 'total') {
+      columns = [
+        ...columns,
+        {
+          id: 'sessions',
+          numeric: true,
+          disablePadding: false,
+          label: 'Conversations',
+          toolTip: 'Sort by the number of conversations in which the intent occurred',
+        },
+        {
+          id: 'exits',
+          numeric: true,
+          disablePadding: false,
+          label: 'Exits',
+          toolTip:
+            'Sort by the number of times the intent was the last intent of the conversation',
+        }
+      ]
+    }
+
     return (
       <TableHead>
         <TableRow>
-          {rows.map(
+          {columns.map(
             row => (
               <CustomTableCell
                 key={row.id}
@@ -194,6 +201,7 @@ class EnhancedTable extends React.Component {
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby='tableTitle'>
             <EnhancedTableHead
+              selectedSubjectMatter={this.props.selectedSubjectMatter}
               order={order}
               orderBy={orderBy}
               onRequestSort={this.handleRequestSort}
@@ -216,8 +224,10 @@ class EnhancedTable extends React.Component {
                         {row.name}
                       </TableCell>
                       <TableCell align='right'>{row.occurrences}</TableCell>
-                      <TableCell align='right'>{row.sessions}</TableCell>
-                      <TableCell align='right'>{row.exits}</TableCell>
+                      {(!this.props.selectedSubjectMatter || this.props.selectedSubjectMatter.toLowerCase() !== 'total') && <>
+                        <TableCell align='right'>{row.sessions}</TableCell>
+                        <TableCell align='right'>{row.exits}</TableCell>
+                      </>}
                     </TableRow>
                   )
                 })}
