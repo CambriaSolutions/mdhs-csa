@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
-import { fetchMetrics, fetchMetricsTotal } from './metricActions'
+import { fetchMetrics } from './metricActions'
 import { updateSubjectMatterColor } from './configActions'
 import { clearSubscriptions } from './realtimeActions'
 import randomColor from 'randomcolor'
@@ -14,9 +14,6 @@ import {
   isSameDay,
 } from 'date-fns'
 import { getUTCDate } from '../../common/helper'
-
-// Regex to retrieve text after last "/" on a context
-const getSubjectMatterFromContext = context => /[^/]*$/.exec(context)[0]
 
 const formatDate = (date, timezoneOffset = null) => {
   if (timezoneOffset) {
@@ -88,7 +85,7 @@ const getDateFilters = (newFilter, timezoneOffset = -7) => {
   return dateRange
 }
 
-export const updateFilters = (event) => {
+export const updateFilters = event => {
   return (dispatch, getState) => {
     const offset = getState().filters.timezoneOffset
 
@@ -96,23 +93,14 @@ export const updateFilters = (event) => {
     // format the date filter and dispatch data retrieval actions
     if (event.target.value.toLowerCase() !== 'custom') {
       const dateFilters = getDateFilters(event.target.value, offset)
-
       dispatch(clearSubscriptions())
-
-      const subjectMatter = getSubjectMatterFromContext(getState().filters.context)
-
-      if (subjectMatter.toLowerCase() === 'total') {
-        dispatch(fetchMetricsTotal(dateFilters))
-      } else {
-        dispatch(fetchMetrics(dateFilters))
-      }
+      dispatch(fetchMetrics(dateFilters))
 
       dispatch({
         type: actionTypes.UPDATE_FILTERS,
         filterLabel: event.target.value,
         dateFilters: dateFilters,
       })
-
       dispatch(setIsCustomDateRange(false))
     } else {
       // The user has specified that they would like to select a custom
@@ -145,14 +133,8 @@ export const updateFiltersWithRange = (startDate, endDate) => {
       }
     }
 
-    const subjectMatter = getSubjectMatterFromContext(getState().filters.context)
-
     // Fetch the data based on the range
-    if (subjectMatter.toLowerCase() === 'total') {
-      dispatch(fetchMetricsTotal(selectedDateFilters))
-    } else {
-      dispatch(fetchMetrics(selectedDateFilters))
-    }
+    dispatch(fetchMetrics(selectedDateFilters))
 
     // Update the filters
     dispatch({
@@ -211,30 +193,25 @@ export const updateEngagedUserToggle = showEngagedUser => {
 
 // Change subjectMatter/context and retrieve new metrics & conversations
 export const updateSubjectMatter = (subjectMatter, subjectMattersSettings = []) => {
+  const context = `subjectMatters/${subjectMatter}`
+
   return (dispatch, getState) => {
-
     dispatch(clearSubscriptions())
-
-    const context = `subjectMatters/${subjectMatter}`
 
     // Get subjectMatter's settings based on the given context
     if (!subjectMattersSettings.length === 0) {
       subjectMattersSettings = getState().config.subjectMattersSettings
     }
 
-    const currSubjectMatter = subjectMattersSettings.filter(p => p.name === subjectMatter)[0]
 
+    const currSubjectMatter = subjectMattersSettings.filter(p => p.name === subjectMatter)[0]
     if (currSubjectMatter) {
       const dateFilters = getDateFilters(
         getState().filters.filterLabel,
         currSubjectMatter.timezone.offset
       )
 
-      if (currSubjectMatter.name.toLowerCase() === 'total') {
-        dispatch(fetchMetricsTotal(dateFilters))
-      } else {
-        dispatch(fetchMetrics(dateFilters, context))
-      }
+      dispatch(fetchMetrics(dateFilters, context))
 
       const COLORS = randomColor({
         count: 10,

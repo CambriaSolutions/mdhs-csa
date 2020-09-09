@@ -1,9 +1,9 @@
 {
-  "id": "3e8797f2-79f9-4ce0-832b-9c39085e4f6c",
-  "name": "snap-switchSubjectMatter",
+  "id": "5a354084-5e8a-4b10-8131-3b254ce649f4",
+  "name": "snap-switchFromCse",
   "auto": true,
   "contexts": [
-    "snap-subject-matter"
+    "snap-switchFromCse"
   ],
   "responses": [
     {
@@ -23,7 +23,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "I\u0027m sorry, were you referring to one of the topics below?"
+            "What can I help you with?"
           ],
           "condition": ""
         },

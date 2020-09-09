@@ -9,22 +9,20 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-appts-office-locations-handoff",
-          "lifespan": 2
-        },
-        {
           "name": "waiting-appts-yes-contacted",
+          "parameters": {},
           "lifespan": 0
         },
         {
           "name": "waiting-appts-not-contacted",
+          "parameters": {},
           "lifespan": 0
         },
         {
           "name": "cse-subject-matter",
+          "parameters": {},
           "lifespan": 99
         }
       ],
@@ -44,49 +42,13 @@
       ],
       "messages": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
+          "type": 0,
           "lang": "en",
-          "speech": [
-            "You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "If you have urgent questions, you can contact support at <a href=\"tel:+18778824916\">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Do you need help finding an office location?"
-          ],
-          "condition": ""
-        },
-        {
-          "type": "4",
-          "title": "",
-          "payload": {
-            "suggestions": [
-              "Yes",
-              "No"
-            ]
-          },
-          "textToSpeech": "",
-          "lang": "en",
-          "condition": ""
+          "condition": "",
+          "speech": []
         }
       ],
+      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
