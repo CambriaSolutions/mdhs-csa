@@ -8,13 +8,14 @@
       },
       {
         "text": "21",
-        "alias": "number",
         "meta": "@sys.number",
+        "alias": "number",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -26,8 +27,8 @@
       },
       {
         "text": "21",
-        "alias": "number",
         "meta": "@sys.number",
+        "alias": "number",
         "userDefined": false
       },
       {
@@ -37,6 +38,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -48,8 +50,8 @@
       },
       {
         "text": "21",
-        "alias": "number",
         "meta": "@sys.number",
+        "alias": "number",
         "userDefined": false
       },
       {
@@ -59,6 +61,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

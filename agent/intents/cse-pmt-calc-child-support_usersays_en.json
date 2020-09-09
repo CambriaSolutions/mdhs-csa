@@ -4,8 +4,8 @@
     "data": [
       {
         "text": "1500",
-        "alias": "retirementContributions",
         "meta": "@sys.number",
+        "alias": "retirementContributions",
         "userDefined": false
       },
       {
@@ -15,6 +15,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -22,13 +23,14 @@
     "data": [
       {
         "text": "seventy",
-        "alias": "retirementContributions",
         "meta": "@sys.number",
+        "alias": "retirementContributions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -40,13 +42,14 @@
       },
       {
         "text": "60",
-        "alias": "retirementContributions",
         "meta": "@sys.number",
+        "alias": "retirementContributions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

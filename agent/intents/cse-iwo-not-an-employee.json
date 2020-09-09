@@ -8,48 +8,53 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "ecc537d0-9482-4304-a881-8bb31b622611",
+          "name": "guardianship",
           "required": false,
           "dataType": "@guardianship",
-          "name": "guardianship",
           "value": "$guardianship",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         },
         {
           "id": "8513cad4-13e7-4d64-9707-82e9818b46f2",
+          "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
-          "name": "yes-no",
           "value": "$yes-no",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

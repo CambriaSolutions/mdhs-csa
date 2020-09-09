@@ -9,41 +9,44 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-pmtMethods-cant-make-qualifying-help",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "f962e579-22ce-4653-8273-b2b2aa427ada",
+          "name": "needsHelp",
           "required": false,
           "dataType": "@yes-no",
-          "name": "needsHelp",
           "value": "$needsHelp",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

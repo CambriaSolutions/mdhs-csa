@@ -8,36 +8,39 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "e9f1ffb3-cf0a-45e5-b853-3819ab4c2044",
+          "name": "cadence",
           "required": false,
           "dataType": "@cadence",
-          "name": "cadence",
           "value": "$cadence",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

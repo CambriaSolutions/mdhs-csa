@@ -8,13 +8,14 @@
       },
       {
         "text": "cambridge solutions",
-        "alias": "companyName",
         "meta": "@sys.any",
+        "alias": "companyName",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -22,13 +23,14 @@
     "data": [
       {
         "text": "mississippi department of human services",
-        "alias": "companyName",
         "meta": "@sys.any",
+        "alias": "companyName",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -36,13 +38,14 @@
     "data": [
       {
         "text": "Cambria solutions",
-        "alias": "companyName",
         "meta": "@sys.any",
+        "alias": "companyName",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

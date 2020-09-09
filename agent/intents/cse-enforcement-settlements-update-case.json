@@ -9,41 +9,44 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-enforcement-settlements-update-case",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "9a198d98-cb51-4ba6-b507-a48dea8ab030",
+          "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
-          "name": "yes-no",
           "value": "$yes-no",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

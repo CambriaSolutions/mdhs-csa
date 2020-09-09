@@ -9,46 +9,49 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-open-csc-select-form",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "waiting-open-csc-no-service",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "8958bece-5b96-4846-a81a-9c461b76c5f2",
+          "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
-          "name": "yes-no",
           "value": "$yes-no",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

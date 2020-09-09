@@ -9,58 +9,63 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-support-case-number",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "waiting-support-no-case-number",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         },
         {
           "name": "cse-subject-matter",
-          "parameters": {},
-          "lifespan": 99
+          "lifespan": 99,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "74baa9cc-14ad-4766-a4a1-480798566279",
+          "name": "dont-know",
           "required": false,
           "dataType": "@dont-know",
-          "name": "dont-know",
           "value": "$dont-know",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         },
         {
           "id": "8151cbda-9840-4e46-be54-359a17c9e8de",
+          "name": "caseNumber",
           "required": false,
           "dataType": "@sys.any",
-          "name": "caseNumber",
           "value": "$caseNumber",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

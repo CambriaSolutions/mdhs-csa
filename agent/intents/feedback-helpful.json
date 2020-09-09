@@ -8,36 +8,39 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-feedback-helpful",
-          "parameters": {},
-          "lifespan": 5
+          "lifespan": 5,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "855e2580-45ce-41b4-bac5-29a9201703fd",
+          "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
-          "name": "yes-no",
           "value": "$yes-no",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

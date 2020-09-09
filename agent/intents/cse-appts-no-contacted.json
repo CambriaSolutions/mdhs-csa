@@ -1,88 +1,101 @@
 {
-    "id": "cb68b0fb-fbc2-494d-8959-95d7f533f87b",
-    "name": "cse-appts-no-contacted",
-    "auto": true,
-    "contexts": [
-        "waiting-appts-not-contacted",
-        "cse-subject-matter"
-    ],
-    "responses": [
+  "id": "cb68b0fb-fbc2-494d-8959-95d7f533f87b",
+  "name": "cse-appts-no-contacted",
+  "auto": true,
+  "contexts": [
+    "waiting-appts-not-contacted",
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "action": "",
-            "affectedContexts": [
-                {
-                    "name": "waiting-appts-office-locations-handoff",
-                    "lifespan": 2
-                },
-                {
-                    "name": "waiting-appts-yes-contacted",
-                    "lifespan": 0
-                },
-                {
-                    "name": "waiting-appts-not-contacted",
-                    "lifespan": 0
-                },
-                {
-                    "name": "cse-subject-matter",
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office."
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "If you have urgent questions, you can contact support at <a href=\"tel:+18778824916\">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case."
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "Do you need help finding an office location?"
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "4",
-                    "title": "",
-                    "payload": {
-                        "suggestions": [
-                            "Yes",
-                            "No"
-                        ]
-                    },
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "condition": ""
-                }
-            ],
-            "speech": []
+          "name": "waiting-appts-office-locations-handoff",
+          "lifespan": 2
+        },
+        {
+          "name": "waiting-appts-yes-contacted",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-appts-not-contacted",
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [
+        {
+          "id": "d63e19b2-2c10-4dc4-9774-6f2462fd9225",
+          "required": false,
+          "dataType": "@yes-no",
+          "name": "yes-no",
+          "value": "$yes-no",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "You generally aren't required to schedule an appointment on your own.<br/><br/>If we require an appointment, you will receive a notice letter to appear at a District office."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If you have urgent questions, you can contact support at <a href=\"tel:+18778824916\">1-877-882-4916</a>.<br/><br/>You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Do you need help finding an office location?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Yes",
+              "No"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
