@@ -114,8 +114,8 @@
     "data": [
       {
         "text": "Child Support Increase/Decrease",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": true
       }
     ],
@@ -129,8 +129,8 @@
     "data": [
       {
         "text": "Add Authorized User",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -144,8 +144,8 @@
     "data": [
       {
         "text": "Request Case Closure",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -159,8 +159,8 @@
     "data": [
       {
         "text": "Request Contempt Action",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -174,8 +174,8 @@
     "data": [
       {
         "text": "child support increase decrease",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": true
       }
     ],
@@ -189,8 +189,8 @@
     "data": [
       {
         "text": "Child Support Payment Increase/Decrease",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": true
       }
     ],
@@ -204,8 +204,8 @@
     "data": [
       {
         "text": "Employer Report Lump Sum Notification",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -219,8 +219,8 @@
     "data": [
       {
         "text": "inquiries",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -234,8 +234,8 @@
     "data": [
       {
         "text": "Request Payment History",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -249,8 +249,8 @@
     "data": [
       {
         "text": "Change of Personal Information",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": true
       }
     ],
@@ -264,8 +264,8 @@
     "data": [
       {
         "text": "Information about parent who pays child support",
-        "alias": "supportType",
         "meta": "@action-requests",
+        "alias": "supportType",
         "userDefined": false
       }
     ],

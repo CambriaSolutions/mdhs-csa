@@ -1,73 +1,73 @@
 {
-    "id": "e86b8113-ee48-44f1-8553-27b49d84751b",
-    "name": "cse-account-balance",
-    "auto": true,
-    "contexts": [
-        "cse-subject-matter"
-    ],
-    "responses": [
+  "id": "e86b8113-ee48-44f1-8553-27b49d84751b",
+  "name": "cse-account-balance",
+  "auto": true,
+  "contexts": [
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "action": "",
-            "affectedContexts": [
-                {
-                    "name": "waiting-feedback-root",
-                    "lifespan": 2
-                },
-                {
-                    "name": "waiting-restart-conversation",
-                    "lifespan": 2
-                },
-                {
-                    "name": "cse-subject-matter",
-                    "lifespan": 99
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "You can make payments online using Mississippi iPayOnline. <a href=\"https://ipayonline.mssdu.net/iPayOnline/\" target=\"_blank\">Click here</a> to get started."
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "Is there anything else I can help you with today?"
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "4",
-                    "title": "",
-                    "payload": {
-                        "suggestions": [
-                            "Submit Feedback",
-                            "Other Options"
-                        ]
-                    },
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "condition": ""
-                }
-            ],
-            "speech": []
+          "name": "waiting-feedback-root",
+          "lifespan": 2
+        },
+        {
+          "name": "waiting-restart-conversation",
+          "lifespan": 2
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "You can make payments online using Mississippi iPayOnline. \u003ca href\u003d\"https://ipayonline.mssdu.net/iPayOnline/\" target\u003d\"_blank\"\u003eClick here\u003c/a\u003e to get started."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Is there anything else I can help you with today?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Submit Feedback",
+              "Other Options"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }
