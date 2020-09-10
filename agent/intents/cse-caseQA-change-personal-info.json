@@ -16,7 +16,22 @@
           "parameters": {}
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "cf9ef49e-6e77-40ad-89da-fe6480961ef4",
+          "name": "action-requests",
+          "required": false,
+          "dataType": "@action-requests",
+          "value": "$action-requests",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
       "messages": [
         {
           "type": "0",
