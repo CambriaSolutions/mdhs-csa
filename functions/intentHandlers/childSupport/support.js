@@ -364,7 +364,7 @@ const formatRequest = (supportType) => {
  */
 exports.supportType = async (agent, supportType) => {
   try {
-    const _supportType = supportType ? supportType : agent.parameters.supportType.toLowerCase()
+    const _supportType = supportType ? supportType : (agent.parameters.supportType ? agent.parameters.supportType.toLowerCase() : 'inquiry')
     const formattedRequest = formatRequest(supportType)
 
     await agent.add(
