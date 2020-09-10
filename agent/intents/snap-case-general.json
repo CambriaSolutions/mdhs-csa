@@ -1,5 +1,5 @@
 {
-  "id": "bbd8fc5f-5214-43bb-b630-78e0c6af7b8c",
+  "id": "32e84697-3931-4c78-a3cc-cf04ed6c6713",
   "name": "snap-case-general",
   "auto": true,
   "contexts": [
@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "a08a0913-a8d9-4ea3-bc01-19cf55a6c7de",
+          "id": "56e9b466-82e0-4934-8dcd-f0c8c2fc1f44",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "d4cac049-b84b-4276-855b-f240a5f3453e",
+          "id": "20ca5969-0bf1-4373-a325-4bae1d60cee9",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",
@@ -45,7 +45,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "487fc7f7-bead-4d20-81d0-08ae099c2522",
+          "id": "c94134f9-0040-47d7-925b-a487c29f8df2",
           "name": "geo-state",
           "required": false,
           "dataType": "@sys.geo-state",
@@ -59,7 +59,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "75d2ae6a-3ac4-436b-ae3b-d848bf6ed03b",
+          "id": "f47d6181-c7b6-4314-90b0-dc84aee50a17",
           "name": "dont-know",
           "required": false,
           "dataType": "@dont-know",
@@ -73,7 +73,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "bde89d84-9eb5-4f36-bc07-539f37b7a0af",
+          "id": "57dbc69b-2ef7-4925-9e7f-088a911d7126",
           "name": "phone-number",
           "required": false,
           "dataType": "@sys.phone-number",
