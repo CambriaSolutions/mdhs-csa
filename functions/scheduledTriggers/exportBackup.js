@@ -24,7 +24,7 @@ const exportingFirestore = async (bucket) => {
 }
 
 const exportingDialogflow = async (bucket) => {
-  const dialogflowBucket = `${bucket}/dialogflow`
+  const dialogflowBucket = `${bucket}/dialogflow.zip`
   console.log('Exporting to: ', dialogflowBucket)
   const responses = await dialogflowClient.exportAgent({ parent: `projects/${projectId}`, 'agentUri': dialogflowBucket })
 
