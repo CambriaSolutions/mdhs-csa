@@ -164,10 +164,6 @@ exports.supportMoreOptions = async (agent, option) => {
       await agent.add(new Suggestion('None of These'))
     }
     await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'waiting-support-general-inquiries',
       lifespan: 3,
     })

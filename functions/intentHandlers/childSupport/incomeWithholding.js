@@ -36,10 +36,6 @@ exports.iwoRoot = async agent => {
       name: 'waiting-iwo-faqs',
       lifespan: 2,
     })
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
