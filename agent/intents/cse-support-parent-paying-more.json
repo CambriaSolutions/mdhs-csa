@@ -17,11 +17,6 @@
           "parameters": {}
         },
         {
-          "name": "waiting-support-type",
-          "lifespan": 0,
-          "parameters": {}
-        },
-        {
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
