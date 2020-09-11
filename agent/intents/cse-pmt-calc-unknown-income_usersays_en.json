@@ -9,6 +9,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -16,13 +17,14 @@
     "data": [
       {
         "text": "I\u0027m not certain",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -34,13 +36,14 @@
       },
       {
         "text": "dunno",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -48,13 +51,14 @@
     "data": [
       {
         "text": "i dont know",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -62,13 +66,14 @@
     "data": [
       {
         "text": "no idea",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -76,8 +81,8 @@
     "data": [
       {
         "text": "I don\u0027t know",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": false
       },
       {
@@ -87,6 +92,7 @@
     ],
     "isTemplate": false,
     "count": 1,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -94,13 +100,14 @@
     "data": [
       {
         "text": "dont know",
-        "alias": "dont-know",
         "meta": "@dont-know",
+        "alias": "dont-know",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

@@ -3,7 +3,6 @@
   "name": "cse-support-type",
   "auto": true,
   "contexts": [
-    "waiting-support-type",
     "cse-subject-matter"
   ],
   "responses": [
@@ -11,11 +10,6 @@
       "resetContexts": false,
       "action": "",
       "affectedContexts": [
-        {
-          "name": "waiting-support-type",
-          "lifespan": 0,
-          "parameters": {}
-        },
         {
           "name": "waiting-support-employment-status",
           "lifespan": 0,
@@ -54,16 +48,46 @@
       ],
       "parameters": [
         {
-          "id": "129fb15d-9372-4053-9259-f25de80a51b5",
+          "id": "122f2b07-3f44-447b-970e-f4847f172e20",
+          "name": "duration",
           "required": false,
-          "dataType": "@action-requests",
-          "name": "supportType",
-          "value": "$supportType",
+          "dataType": "@sys.duration",
+          "value": "$duration",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
+        },
+        {
+          "id": "f7fd53bc-7a72-4ec5-9172-b3e762639528",
+          "name": "date-period",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "value": "$date-period",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "977d35dc-16d9-4298-9447-612d65be184d",
+          "name": "supporttype",
+          "required": false,
+          "dataType": "@action-requests",
+          "value": "$supporttype",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
         }
       ],
       "messages": [

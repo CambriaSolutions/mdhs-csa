@@ -474,7 +474,6 @@ module.exports = {
   'cse-support-case-number': supportCaseNumber,
   'cse-support-no-case-number': supportNoCaseNumber,
   'cse-support-collect-issue': supportCollectIssue,
-  // 'cse-support-summarize-issue': supportSummarizeIssue,
   // 'support-revise-issue': supportReviseIssue,
   'cse-support-submit-issue': supportSumbitIssue,
   'cse-support-parentsGuideCSE': supportParentsGuideCSE,

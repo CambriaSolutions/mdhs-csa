@@ -12,8 +12,8 @@
       "affectedContexts": [
         {
           "name": "waiting-feedback-root",
-          "parameters": {},
-          "lifespan": 1
+          "lifespan": 1,
+          "parameters": {}
         }
       ],
       "parameters": [],

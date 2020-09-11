@@ -3,7 +3,6 @@
   "name": "cse-enforcement-license-reinstatement",
   "auto": true,
   "contexts": [
-    "waiting-license-reinstatement-learn-more",
     "cse-subject-matter"
   ],
   "responses": [

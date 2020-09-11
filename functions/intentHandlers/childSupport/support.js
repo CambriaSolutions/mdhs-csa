@@ -46,10 +46,6 @@ exports.supportParentReceiving = async agent => {
     await agent.add(new Suggestion('More'))
 
     await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'waiting-support-parent-receiving-more',
       lifespan: 3,
     })
@@ -71,10 +67,7 @@ exports.supportParentPaying = async agent => {
     await agent.add(new Suggestion('Visitation'))
     await agent.add(new Suggestion('Emancipation'))
     await agent.add(new Suggestion('More'))
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
+
     await agent.context.set({
       name: 'waiting-support-employment-status',
       lifespan: 3,
@@ -92,10 +85,6 @@ exports.supportEmployer = async agent => {
   try {
     await agent.add('Click below to get started with a Lump Sum Notification.')
     await agent.add(new Suggestion('Employer Report Lump Sum Notification'))
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -157,10 +146,6 @@ exports.supportParentReceivingEmancipation = async agent => {
       lifespan: 2,
     })
     await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
-    await agent.context.set({
       name: 'waiting-support-parent-receiving-more',
       lifespan: 3,
     })
@@ -183,10 +168,6 @@ exports.supportNoOptionsSelected = async agent => {
       'Would you like to submit an inquiry or go back to support options?'
     )
     await agent.add(new Suggestion('Inquiry'))
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -364,7 +345,7 @@ const formatRequest = (supportType) => {
  */
 exports.supportType = async (agent, supportType) => {
   try {
-    const _supportType = supportType ? supportType : agent.parameters.supportType.toLowerCase()
+    const _supportType = supportType ? supportType : (agent.parameters.supportType ? agent.parameters.supportType.toLowerCase() : 'inquiry')
     const formattedRequest = formatRequest(supportType)
 
     await agent.add(

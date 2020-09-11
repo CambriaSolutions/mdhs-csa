@@ -1,5 +1,5 @@
 {
-  "id": "ddeab9bb-7ced-4b73-968d-22b61bf35c0c",
+  "id": "15353b17-bf05-45a9-97e7-9128bc3f2f8e",
   "name": "snap-case-caseNumber",
   "auto": true,
   "contexts": [
@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "0e9556f6-e4e0-4e6e-a794-5aa1e266b259",
+          "id": "b30cd788-5856-415b-a331-ed1d9622dc0c",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
