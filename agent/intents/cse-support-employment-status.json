@@ -17,11 +17,6 @@
           "parameters": {}
         },
         {
-          "name": "waiting-support-type",
-          "lifespan": 0,
-          "parameters": {}
-        },
-        {
           "name": "waiting-support-parent-paying-more",
           "lifespan": 0,
           "parameters": {}
