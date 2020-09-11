@@ -100,7 +100,7 @@ class Header extends Component {
             </FilterTitle>
           </Hidden>
           <DateFilter />
-          <FormGroup row>
+          {this.props.subjectMatterName.toLowerCase() !== 'total' && <FormGroup row>
             <FormControlLabel
               control={
                 <Switch
@@ -113,7 +113,7 @@ class Header extends Component {
               labelPlacement='start'
               label='Engaged Users'
             />
-          </FormGroup>
+          </FormGroup>}
           <IconButton
             color='inherit'
             onClick={() => this.props.onSettingsToggle(true)}
