@@ -1,13 +1,5 @@
 const { mapRoot } = require('./common/map.js')
 
-// General payment intents
-const {
-  pmtsGeneralRoot,
-  pmtsGeneralNonCustodial,
-  pmtsGeneralReceivePayments,
-  pmtsGeneralMakePayments,
-} = require('./childSupport/paymentsGeneral.js')
-
 // Employer intents
 const {
   employerRoot,
@@ -280,12 +272,6 @@ module.exports = {
   'cse-iwo-disposable-income': iwoDisposableIncome,
   'cse-iwo-payments-handoff': iwoPaymentsHandoff,
   'cse-iwoQA-arrears-balance': iwoQAArrearsBalance,
-
-  // General payment intents
-  'cse-pmts-general-root': pmtsGeneralRoot,
-  'cse-pmts-general-non-custodial': pmtsGeneralNonCustodial,
-  'cse-pmts-general-make-payments': pmtsGeneralMakePayments,
-  'cse-pmts-general-receive-payments': pmtsGeneralReceivePayments,
 
   // Employer intents
   'cse-employer-root': employerRoot,
