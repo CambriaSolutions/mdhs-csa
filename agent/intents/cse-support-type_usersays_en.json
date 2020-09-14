@@ -5,7 +5,7 @@
       {
         "text": "Information about parent who pays child support",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -20,7 +20,7 @@
       {
         "text": "Change of Personal Information",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -35,7 +35,7 @@
       {
         "text": "Request Payment History",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -50,7 +50,7 @@
       {
         "text": "inquiries",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -65,7 +65,7 @@
       {
         "text": "Employer Report Lump Sum Notification",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -80,7 +80,7 @@
       {
         "text": "Child Support Payment Increase/Decrease",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -95,7 +95,7 @@
       {
         "text": "child support increase decrease",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -110,7 +110,7 @@
       {
         "text": "Request Contempt Action",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -125,7 +125,7 @@
       {
         "text": "Request Case Closure",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -140,7 +140,7 @@
       {
         "text": "Add Authorized User",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
@@ -155,7 +155,7 @@
       {
         "text": "Child Support Increase/Decrease",
         "meta": "@action-requests",
-        "alias": "supporttype",
+        "alias": "supportType",
         "userDefined": false
       }
     ],
