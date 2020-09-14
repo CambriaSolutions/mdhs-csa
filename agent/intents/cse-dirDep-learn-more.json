@@ -12,6 +12,21 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-dirDep-start",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-dirDep-change",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-dirDep-stop",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-dirDep-learn-more",
           "lifespan": 0,
           "parameters": {}
@@ -32,6 +47,24 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Which would you like to do?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Start",
+              "Change",
+              "Stop/Terminate"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

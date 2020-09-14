@@ -133,25 +133,6 @@ const {
   supportSubmitSupportRequestInterstate,
 } = require('./childSupport/support.js')
 
-// Direct deposit intents
-const {
-  dirDepRoot,
-  dirDepConfirmForm,
-  dirDepShowForm,
-  dirDepLearnMore,
-  dirDepChange,
-  dirDepStart,
-  dirDepStop,
-  dirDepChecking,
-  dirDepSavings,
-  dirDepAccountTerm,
-  dirDepTakeEffect,
-  dirDepExtraFunds,
-  dirDepPaymentClosedAccount,
-  dirDepLearnMoreEppiCard,
-  dirDepNoLearnMoreEppiCard,
-} = require('./childSupport/directDeposit.js')
-
 // EppiCard intents
 const { eppiFees } = require('./childSupport/eppiCard.js')
 
@@ -392,24 +373,6 @@ module.exports = {
   'cse-caseQA-general': caseQAGeneral,
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
-
-
-  // Direct deposit intents
-  'cse-dirDep-root': dirDepRoot,
-  'cse-dirDep-confirm-form': dirDepConfirmForm,
-  'cse-dirDep-show-form': dirDepShowForm,
-  'cse-dirDep-learn-more': dirDepLearnMore,
-  'cse-dirDep-change': dirDepChange,
-  'cse-dirDep-start': dirDepStart,
-  'cse-dirDep-stop': dirDepStop,
-  'cse-dirDep-checking': dirDepChecking,
-  'cse-dirDep-savings': dirDepSavings,
-  'cse-dirDep-account-term': dirDepAccountTerm,
-  'cse-dirDep-take-effect': dirDepTakeEffect,
-  'cse-dirDep-extra-funds': dirDepExtraFunds,
-  'cse-dirDep-payment-closed-account': dirDepPaymentClosedAccount,
-  'cse-dirDep-learn-more-eppicard': dirDepLearnMoreEppiCard,
-  'cse-dirDep-no-learn-more-eppicard': dirDepNoLearnMoreEppiCard,
 
   // EppiCard intents
   'cse-eppi-fees': eppiFees,
