@@ -11,6 +11,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-license-suspension-learn-more",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-license-reinstatement-learn-more",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
@@ -21,6 +31,33 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "MDHS may suspend driver's licenses and professional licenses to enforce child support when arrears are owed."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "To learn more about when a license may be suspended or how to get a suspended license reinstated, select one of the options below."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "License Suspension",
+              "License Reinstatement"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
