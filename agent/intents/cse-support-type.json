@@ -77,10 +77,10 @@
         },
         {
           "id": "977d35dc-16d9-4298-9447-612d65be184d",
-          "name": "supporttype",
+          "name": "supportType",
           "required": false,
           "dataType": "@action-requests",
-          "value": "$supporttype",
+          "value": "$supportType",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
