@@ -69,22 +69,6 @@ exports.eppiActivateCard = async agent => {
   }
 }
 
-exports.eppiFees = async agent => {
-  try {
-    await agent.add(
-      new Card({
-        title: 'ATM Withdrawals "in-network"',
-        text: `
-        Total of three (3) free each calendar month; $1.75 each for any additional.
-       `,
-      })
-    )
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 exports.eppiNotifications = async agent => {
   try {
     await agent.add(
@@ -159,7 +143,7 @@ exports.eppiWithdrawCash = async agent => {
 exports.eppiSurcharge = async agent => {
   try {
     await agent.add(
-      'The easisest way to avoid surcharges is to use "In-network" banks. "In-network" is defined as Hancock Bank, Regions Bank, or Trustmark Bank ATM locations. Each month you are allowed unlimited cash withdrawals at MasterCard member Bank teller windows. Bank ATMs outside of these "in-network" bank ATMs may apply a surcharge. Always read ATM messages carefully to determine if a bank ATM is applying fees to the transaction.'
+      'The easiest way to avoid surcharges is to use "In-network" banks. "In-network" is defined as Hancock Bank, Regions Bank, or Trustmark Bank ATM locations. Each month you are allowed unlimited cash withdrawals at MasterCard member Bank teller windows. Bank ATMs outside of these "in-network" bank ATMs may apply a surcharge. Always read ATM messages carefully to determine if a bank ATM is applying fees to the transaction.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -185,6 +169,22 @@ exports.eppiBalanceDenial = async agent => {
     )
     await agent.add(
       'You are allowed a total of three (3) free denials each calendar month for insufficient funds at "in-network" bank ATM locations. Denials are assessed a fee of $0.50 each after this. Denials from banks not "in-network" are assessed a fee of $0.50.'
+    )
+    await handleEndConversation(agent)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+exports.eppiFees = async agent => {
+  try {
+    await agent.add(
+      new Card({
+        title: 'ATM Withdrawals "in-network"',
+        text: `
+        Total of three (3) free each calendar month; $1.75 each for any additional.
+       `,
+      })
     )
     await handleEndConversation(agent)
   } catch (err) {
