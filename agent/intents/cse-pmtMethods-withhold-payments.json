@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-support-employment-status",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmtMethods-withhold-payments",
           "lifespan": 0,
           "parameters": {}
@@ -42,6 +47,22 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "MDHS can assist you with having your payments deducted from your pay. <br/><br/>Click below to submit your employer information."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Employer Information"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

@@ -198,7 +198,7 @@ const constructIntentFileContents = (intentData) => (
 const doExtract = async () => {
   const intents = getIntentFileNames('../agent')
 
-  const intentPartialName = 'cse-eppi'
+  const intentPartialName = 'cse-pmtMethods'
 
   await filter(intents, x => x.split('/').pop().split('.')[0].indexOf(intentPartialName) >= 0).forEach(async (intent) => {
     try {

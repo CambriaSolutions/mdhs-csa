@@ -45,19 +45,11 @@ const {
 
 // Payment methods intents
 const {
-  pmtMethodsNone,
-  pmtMethodsCheckOrMoneyOrder,
-  pmtMethodsCash,
-  pmtMethodsEcheckDebit,
-  pmtMethodsMailAddress,
-  pmtMethodsMoneygram,
-  pmtMethodsPayNearMe,
-  pmtMethodsCantMake,
   pmtMethodsCantMakeQualifying,
   pmtMethodsCantMakeQualifyingHelp,
   pmtMethodsCantMakeQualifyingNoHelp,
-  pmtMethodsDebitCard,
-  pmtMethodsNCPWithhold,
+  pmtMethodsCheckOrMoneyOrder,
+  pmtMethodsMailAddress
 } = require('./childSupport/paymentMethods.js')
 
 // Open Child Support Case
@@ -324,16 +316,8 @@ module.exports = {
   'cse-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
-  'cse-pmtMethods-none': pmtMethodsNone,
   'cse-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
-  'cse-pmtMethods-cash': pmtMethodsCash,
-  'cse-pmtMethods-eCheckDebit': pmtMethodsEcheckDebit,
   'cse-pmtMethods-mail-address': pmtMethodsMailAddress,
-  'cse-pmtMethods-moneygram': pmtMethodsMoneygram,
-  'cse-pmtMethods-paynearme': pmtMethodsPayNearMe,
-  'cse-pmtMethods-cant-make': pmtMethodsCantMake,
-  'cse-pmtMethods-debit-card': pmtMethodsDebitCard,
-  'cse-pmtMethods-withhold-payments': pmtMethodsNCPWithhold,
   'cse-pmtMethods-cant-make-qualifying': pmtMethodsCantMakeQualifying,
   'cse-pmtMethods-cant-make-qualifying-help': pmtMethodsCantMakeQualifyingHelp,
   'cse-pmtMethods-cant-make-qualifying-no-help': pmtMethodsCantMakeQualifyingNoHelp,
