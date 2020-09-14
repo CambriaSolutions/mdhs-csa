@@ -198,7 +198,7 @@ const constructIntentFileContents = (intentData) => (
 const doExtract = async () => {
   const intents = getIntentFileNames('../agent')
 
-  const intentPartialName = 'cse-iwo'
+  const intentPartialName = 'cse-eppi'
 
   await filter(intents, x => x.split('/').pop().split('.')[0].indexOf(intentPartialName) >= 0).forEach(async (intent) => {
     try {

@@ -161,21 +161,7 @@ const {
 } = require('./childSupport/directDeposit.js')
 
 // EppiCard intents
-const {
-  eppiRoot,
-  eppiGetCard,
-  eppiActivateCard,
-  eppiFees,
-  eppiNotifications,
-  eppiReplaceReport,
-  eppiFAQ,
-  eppiPaymentHistory,
-  eppiUseCard,
-  eppiWithdrawCash,
-  eppiSurcharge,
-  eppiLearnMore,
-  eppiBalanceDenial,
-} = require('./childSupport/eppiCard.js')
+const { eppiFees } = require('./childSupport/eppiCard.js')
 
 // IWO intents
 const {
@@ -442,19 +428,7 @@ module.exports = {
   'cse-dirDep-no-learn-more-eppicard': dirDepNoLearnMoreEppiCard,
 
   // EppiCard intents
-  'cse-eppi-root': eppiRoot,
-  'cse-eppi-get-card': eppiGetCard,
-  'cse-eppi-activate-card': eppiActivateCard,
   'cse-eppi-fees': eppiFees,
-  'cse-eppi-notifications': eppiNotifications,
-  'cse-eppi-replace-report': eppiReplaceReport,
-  'cse-eppi-faq': eppiFAQ,
-  'cse-eppi-payment-history': eppiPaymentHistory,
-  'cse-eppi-use-card': eppiUseCard,
-  'cse-eppi-withdraw-cash': eppiWithdrawCash,
-  'cse-eppi-surcharge': eppiSurcharge,
-  'cse-eppi-learn-more': eppiLearnMore,
-  'cse-eppi-balance-denial': eppiBalanceDenial,
 
   // Genetic Testing intents
   'cse-geneticTesting-request': geneticTestingRequest,
