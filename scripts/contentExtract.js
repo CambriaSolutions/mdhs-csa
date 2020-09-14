@@ -165,7 +165,7 @@ const constructIntentFileContents = (intentData) => (
       {
         'resetContexts': false,
         'action': '',
-        'affectedContexts': map(intentData.outputContexts, c => ({ name: c.name, lifespan: c.lifespan })),
+        'affectedContexts': map(intentData.outputContexts, c => ({ name: c.name, lifespan: c.lifespan, parameters: {} })),
         'parameters': [],
         'messages': [
           ...map(intentData.responsePhrases, p => constructMessage(p)),
@@ -198,7 +198,9 @@ const constructIntentFileContents = (intentData) => (
 const doExtract = async () => {
   const intents = getIntentFileNames('../agent')
 
-  await filter(intents, x => x.split('/').pop().split('.')[0].indexOf('enforcement') >= 0).forEach(async (intent) => {
+  const intentPartialName = 'cse-iwo'
+
+  await filter(intents, x => x.split('/').pop().split('.')[0].indexOf(intentPartialName) >= 0).forEach(async (intent) => {
     try {
       const pathElements = intent.split('/')
       const intentName = pathElements.pop().split('.')[0]
