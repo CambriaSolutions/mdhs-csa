@@ -1,38 +1,5 @@
 const { mapRoot } = require('./common/map.js')
 
-// General enforcement intents
-const {
-  enforcementRoot,
-  enforcementLicenseSuspensionReinstatement,
-  enforcementLicenseSuspension,
-  enforcementLicenseSuspensionNonCompliance,
-  enforcementLicenseReinstatement,
-  enforcementTaxOffset,
-  enforcementTaxOffsetQ1,
-  enforcementTaxOffsetQ2Q3,
-  enforcementTaxOffsetQ4,
-  enforcementTaxOffsetQ5,
-  enforcementTaxOffsetQ6,
-  enforcementTaxOffsetQ7,
-  enforcementTaxOffsetQ8,
-  enforcementTaxOffsetQ9,
-  enforcementTaxOffsetQ10,
-  enforcementLiens,
-  enforcementContestLien,
-  enforcementFinancialAccountUpdateCase,
-  enforcementPersonalInjury,
-  enforcementSettlementsUpdateCase,
-  enforcementSettlementsNoUpdateCase,
-  enforcementPassportRevocation,
-  enforcementPassportReinstatement,
-  enforcementCreditBureauReporting,
-  enforcementReportError,
-  enforcementUnemployment,
-  enforcementSubmitInquiry,
-  enforcementBankruptcy,
-  enforcementContempt
-} = require('./childSupport/enforcement.js')
-
 // General payment intents
 const {
   pmtsGeneralRoot,
@@ -550,37 +517,7 @@ module.exports = {
   // Contact QA intents
   'cse-contact-qa-number': contactQANumber,
 
-  // Enforcement intents
-  'cse-enforcement-root': enforcementRoot,
-  'cse-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
-  'cse-enforcement-license-suspension': enforcementLicenseSuspension,
-  'cse-enforcement-license-suspension-non-compliance': enforcementLicenseSuspensionNonCompliance,
-  'cse-enforcement-license-reinstatement': enforcementLicenseReinstatement,
-  'cse-enforcement-tax-offset': enforcementTaxOffset,
-  'cse-enforcement-tax-offset-q1': enforcementTaxOffsetQ1,
-  'cse-enforcement-tax-offset-q2q3': enforcementTaxOffsetQ2Q3,
-  'cse-enforcement-tax-offset-q4': enforcementTaxOffsetQ4,
-  'cse-enforcement-tax-offset-q5': enforcementTaxOffsetQ5,
-  'cse-enforcement-tax-offset-q6': enforcementTaxOffsetQ6,
-  'cse-enforcement-tax-offset-q7': enforcementTaxOffsetQ7,
-  'cse-enforcement-tax-offset-q8': enforcementTaxOffsetQ8,
-  'cse-enforcement-tax-offset-q9': enforcementTaxOffsetQ9,
-  'cse-enforcement-tax-offset-q10': enforcementTaxOffsetQ10,
-  'cse-enforcement-liens': enforcementLiens,
-  'cse-enforcement-contest-lien': enforcementContestLien,
-  'cse-enforcement-financial-account-update-case': enforcementFinancialAccountUpdateCase,
-  'cse-enforcement-personal-injury': enforcementPersonalInjury,
-  'cse-enforcement-settlements-update-case': enforcementSettlementsUpdateCase,
-  'cse-enforcement-settlements-no-update-case': enforcementSettlementsNoUpdateCase,
-  'cse-enforcement-passport-revocation': enforcementPassportRevocation,
-  'cse-enforcement-passport-reinstatement': enforcementPassportReinstatement,
-  'cse-enforcement-credit-bureau-reporting': enforcementCreditBureauReporting,
-  'cse-enforcement-report-error': enforcementReportError,
-  'cse-enforcement-unemployment': enforcementUnemployment,
-  'cse-enforcement-submit-inquiry': enforcementSubmitInquiry,
   'cse-stimulusCheck-root': stimulusCheck,
-  'cse-enforcement-bankruptcy': enforcementBankruptcy,
-  'cse-enforcement-contempt': enforcementContempt,
   // Cancel intent
   'cse-support-cancel': supportCancel,
 
