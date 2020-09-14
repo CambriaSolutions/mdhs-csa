@@ -338,7 +338,7 @@ const formatRequest = (supportType) => {
   }
 
   return formattedRequest
-}
+} 
 
 /**
  * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
@@ -400,6 +400,14 @@ exports.supportSubmitSupportRequestGoodCause = async (agent) => {
 exports.supportSubmitSupportRequestVerification = async (agent) => {
   try {
     await this.supportType(agent, 'verification')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+exports.supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
+  try {
+    await this.supportType(agent, 'request payment history')
   } catch (e) {
     console.error(e)
   }
