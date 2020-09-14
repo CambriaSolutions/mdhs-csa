@@ -5,7 +5,6 @@ const {
   formatCurrency,
   disableInput,
 } = require('../globalFunctions')
-const { pmtsGeneralMakePayments } = require('./paymentsGeneral')
 const { supportType } = require('./support.js')
 
 exports.iwoConfirmEstimate = async agent => {
@@ -111,7 +110,37 @@ exports.iwoDisposableIncome = async agent => {
 
 exports.iwoPaymentsHandoff = async agent => {
   try {
-    await pmtsGeneralMakePayments(agent)
+    await agent.add(
+      'Parents who pay support have a variety of methods to make payments.<br/><br/>For payment options other than having payments withheld from your pay, select one of the following to learn more.<br/><br/>The date the payment is received is the date of collection. Payments cannot be posted for a prior month.<br/><br/>Payments are not considered to be received by MDHS until all payment processing has occurred.'
+    )
+
+    await agent.add(new Suggestion('Cash'))
+    await agent.add(new Suggestion('Estimate Payments'))
+    await agent.add(new Suggestion('Withhold Payments'))
+    await agent.add(new Suggestion('eCheck/Bank Account Debit'))
+    await agent.add(new Suggestion('Check or Money Order'))
+    await agent.add(new Suggestion('Can\'t Make Payments'))
+
+    await agent.context.set({
+      name: 'waiting-pmtMethods-checkOrMoneyOrder',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-pmtMethods-cash',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-pmtMethods-eCheckDebit',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-pmtMethods-withhold-payments',
+      lifespan: 2,
+    })
+    await agent.context.set({
+      name: 'waiting-pmtMethods-cant-make',
+      lifespan: 2,
+    })
   } catch (err) {
     console.error(err)
   }
