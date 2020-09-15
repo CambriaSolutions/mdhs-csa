@@ -16,17 +16,39 @@ const storeConversationFeedback = async (
   comment
 ) => {
   // Update the conversation with a feedback entry
-  await store
+  const conversationRef = await store
     .collection(`${context}/conversations`)
     .doc(`${conversationId}`)
-    .update({
+    .get()
+
+  const feedbackProvided = {
+    helpful: wasHelpful,
+    feedback: feedbackList,
+    comment: comment
+  }
+  
+  if (!conversationRef.exists) {
+    const conversationDoc = {
       hasFeedback: true,
-      feedback: admin.firestore.FieldValue.arrayUnion({
-        helpful: wasHelpful,
-        feedback: feedbackList,
-        comment
-      })
-    })
+      feedback: [feedbackProvided]
+    }
+    await store
+      .collection(`${context}/conversations`)
+      .doc(`${conversationId}`)
+      .set(conversationDoc)
+  } else {
+    const conversationDoc = conversationRef.data()
+
+    if (!Array.isArray(conversationDoc.feedback)) {
+      conversationDoc.feedback = [conversationDoc.feedback]
+    }
+
+    conversationDoc.feedback.push(feedbackProvided)
+    await store
+      .collection(`${context}/conversations`)
+      .doc(`${conversationId}`)
+      .update(conversationDoc)
+  }
 }
 
 // Store feedback from conversations
