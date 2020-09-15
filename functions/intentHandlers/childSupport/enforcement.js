@@ -512,10 +512,6 @@ exports.enforcementContempt = async agent => {
       'If you would like to submit a request for contempt action on your case, please select "Request Contempt Action" below.'
     )
     await agent.add(new Suggestion('Request Contempt Action'))
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }

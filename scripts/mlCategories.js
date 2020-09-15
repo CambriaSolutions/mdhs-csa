@@ -89,7 +89,7 @@ exports.categoriesWithIntents = {
   },
   interstate: {
     intent: 'cse-interstate-root',
-    suggestionText: 'Interstate'
+    suggestionText: 'Interstate Cases'
   }, // Suggest interstate intent
   legal: {
     intent: 'cse-legal-root',
@@ -113,7 +113,7 @@ exports.categoriesWithIntents = {
   },
   onlineAction: {
     intent: 'cse-onlineAction-root',
-    suggestionText: 'Online issue'
+    suggestionText: 'Online Action'
   }, // suggest online action intent
   openCase: {
     intent: 'cse-open-csc-root',

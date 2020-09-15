@@ -169,9 +169,9 @@ class Dashboard extends Component {
                   icon='account_circle'
                   tooltip={
                     this.props.subjectMatterName.toLowerCase() === 'general'
-                      ? 'Counts the number of impressions when a user acknowledges the privacy statement.'
+                      ? 'Counts the total number of times when a user acknowledges the privacy statement and enters Gen\'s home screen.'
                       : (this.props.subjectMatterName.toLowerCase() === 'total'
-                        ? 'Counts the total number of times when a user acknowledges the privacy statement and enters Gen\'s home screen.'
+                        ? 'Counts the total number of impressions when a user click on Gen on the MDHS website'
                         : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`)
                   }
                 />
@@ -230,7 +230,7 @@ class Dashboard extends Component {
                     this.props.subjectMatterName.toLowerCase() === 'general'
                       ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
                       : (this.props.subjectMatterName.toLowerCase() === 'total'
-                        ? 'Counts the total number of times when a user acknowledges the privacy statement and enters Gen\'s home screen.'
+                        ? 'Counts the total number of times when a user acknowledges the privacy statement.'
                         : `Counts the number of times a user interacted with Gen in the ${this.props.subjectMatterName.toUpperCase()} knowledge area`)
                   }
                 />
@@ -249,7 +249,13 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={this.props.subjectMatterName === 'cse' ? 12 : 6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`The number of engaged users who selected the [${this.props.subjectMatterName}] subject matter over time.`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'Counts the total number of times when a user acknowledges the privacy statement.'
+                    : `The number of engaged users who selected the [${this.props.subjectMatterName}] subject matter over time.`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <EngagedUserChart colors={this.props.colors} />
@@ -257,15 +263,31 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'The total number of support requests submitted through Gen'
+                    : `The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
-                <SupportRequestChart colors={this.props.colors} tooltip={`The number of support requests submitted over time for the [${this.props.subjectMatterName}] subject matter`} />
+                <SupportRequestChart
+                  colors={this.props.colors}
+                  tooltip={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'The total number of support requests submitted through Gen'
+                    : `The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} />
               </GraphWrap>
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`Intents being triggered the most number of times for the [${this.props.subjectMatterName}] subject matter`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'Intents being triggered the most number of times in Gen'
+                    : `Intents being triggered the most number of times for the [${this.props.subjectMatterName}] subject matter`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <h3>Frequently used intents</h3>
@@ -276,7 +298,8 @@ class Dashboard extends Component {
                 />
               </GraphWrap>
             </Grid>
-            {this.props.subjectMatterName.toLowerCase() !== 'total' &&
+            {
+              this.props.subjectMatterName.toLowerCase() !== 'total' &&
               <Grid item xs={12} sm={6}>
                 <GraphWrap>
                   <Tooltip TransitionComponent={Zoom} title={`Intents specific to the [${this.props.subjectMatterName}] subject matter after which users exit Gen`} arrow placement='top-start'>

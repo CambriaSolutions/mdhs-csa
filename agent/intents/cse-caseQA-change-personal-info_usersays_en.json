@@ -30,7 +30,8 @@
     "data": [
       {
         "text": "change address",
-        "meta": "@sys.ignore",
+        "meta": "@action-requests",
+        "alias": "action-requests",
         "userDefined": false
       }
     ],
