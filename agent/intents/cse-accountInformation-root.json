@@ -8,23 +8,56 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-feedback-root",
+          "lifespan": 2
+        },
+        {
+          "name": "waiting-restart-conversation",
+          "lifespan": 2
+        },
+        {
           "name": "cse-subject-matter",
-          "parameters": {},
           "lifespan": 99
         }
       ],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "speech": [
+            "At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us \u003ca href\u003d\"https://www.mdhs.ms.gov/contact/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Is there anything else I can help you with today?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Submit Feedback"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

@@ -9,6 +9,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -30,42 +31,7 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "4dbe4883-cbba-47fa-bde6-e6b1fe7a1a49",
-    "data": [
-      {
-        "text": "They took my spouse taxes, do you take mine too?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "8a80c362-fbda-4b27-b07d-abbc53ed968b",
-    "data": [
-      {
-        "text": "I filed with my wife, is she responsible for my child support?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 0
-  },
-  {
-    "id": "b82acf3e-615d-49ff-9e4b-3e5f276c53f4",
-    "data": [
-      {
-        "text": "I filed with my wife, does she have to pay my child support?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -78,6 +44,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -90,6 +57,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -102,6 +70,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -114,6 +83,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -126,6 +96,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -138,6 +109,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -150,6 +122,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

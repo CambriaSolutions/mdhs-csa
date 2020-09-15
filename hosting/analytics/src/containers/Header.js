@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  updateFilters,
   updateSubjectMatter,
   updateEngagedUserToggle,
 } from '../store/actions/filterActions'
@@ -48,8 +47,16 @@ const Dropdown = styled(Select)`
     color: #fff;
   }
 `
+
+const CustomMenuItem = styled(MenuItem)`
+  && {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom: 0px;
+  }
+`
+
 // Regex to retrieve text after last "/" on a context
-const getNameFromContext = context => /[^/]*$/.exec(context)[0]
+const getSubjectMatterFromContext = context => /[^/]*$/.exec(context)[0]
 
 class Header extends Component {
   render() {
@@ -63,7 +70,7 @@ class Header extends Component {
             onChange={event => this.props.onSubjectMatterChange(event.target.value, this.props.subjectMattersSettings)}
             name='subjectMatter'
           >
-            {filter(this.props.subjectMattersSettings, x => x.name.toLowerCase() !== 'general').map(subjectMatter =>
+            {filter(this.props.subjectMattersSettings, x => x.name.toLowerCase() !== 'general' && x.name.toLowerCase() !== 'total').map(subjectMatter =>
               (
                 <MenuItem value={subjectMatter.name} key={subjectMatter.name}>
                   {subjectMatter.name}
@@ -73,6 +80,7 @@ class Header extends Component {
             <MenuItem value='general' key='general'>
               general
             </MenuItem>
+            <CustomMenuItem value={'total'}>Total</CustomMenuItem>
           </Dropdown>
         </Hidden>
       )
@@ -92,7 +100,7 @@ class Header extends Component {
             </FilterTitle>
           </Hidden>
           <DateFilter />
-          <FormGroup row>
+          {this.props.subjectMatterName.toLowerCase() !== 'total' && <FormGroup row>
             <FormControlLabel
               control={
                 <Switch
@@ -105,7 +113,7 @@ class Header extends Component {
               labelPlacement='start'
               label='Engaged Users'
             />
-          </FormGroup>
+          </FormGroup>}
           <IconButton
             color='inherit'
             onClick={() => this.props.onSettingsToggle(true)}
@@ -125,13 +133,12 @@ const mapStateToProps = state => {
     showEngagedUser: state.filters.showEngagedUser,
     mainColor: state.filters.mainColor,
     subjectMattersSettings: state.config.subjectMattersSettings,
-    subjectMatterName: getNameFromContext(state.filters.context),
+    subjectMatterName: getSubjectMatterFromContext(state.filters.context),
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFilterChange: newFilter => dispatch(updateFilters(newFilter)),
     onSubjectMatterChange: (newSubjectMatter, subjectMattersSettings) => dispatch(updateSubjectMatter(newSubjectMatter, subjectMattersSettings)),
     onEngagedUserToggle: showEngagedUser =>
       dispatch(updateEngagedUserToggle(showEngagedUser)),

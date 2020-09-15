@@ -63,7 +63,7 @@ exports.formatConfirmationResponse = async agent => {
     confimationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
   }
   // Request payment history
-  else if (supportType === 'request payment history or record') {
+  else if (supportType === 'request payment history or record' || supportType === 'request payment history') {
     confimationResponse = 'Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.'
   }
   // Information about parent who pays child support
@@ -163,10 +163,6 @@ exports.supportMoreOptions = async (agent, option) => {
       await agent.add(new Suggestion('License Reinstatement'))
       await agent.add(new Suggestion('None of These'))
     }
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
     await agent.context.set({
       name: 'waiting-support-general-inquiries',
       lifespan: 3,

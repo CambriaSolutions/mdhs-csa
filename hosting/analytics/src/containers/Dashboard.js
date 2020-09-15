@@ -168,52 +168,56 @@ class Dashboard extends Component {
                   notes=''
                   icon='account_circle'
                   tooltip={
-                    this.props.subjectMatterName === 'general'
-                      ? 'Counts the number of impressions when a user acknowledges the privacy statement.'
-                      : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`
+                    this.props.subjectMatterName.toLowerCase() === 'general'
+                      ? 'Counts the total number of times when a user acknowledges the privacy statement and enters Gen\'s home screen.'
+                      : (this.props.subjectMatterName.toLowerCase() === 'total'
+                        ? 'Counts the total number of impressions when a user click on Gen on the MDHS website'
+                        : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`)
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm>
-                <Card
-                  color={colorShades(this.props.mainColor, 30)}
-                  value={
-                    this.props.showEngagedUser
-                      ? this.props.avgEngagedDuration
-                      : this.props.avgDuration
-                  }
-                  label='Avg. Conv Duration'
-                  notes=''
-                  icon='schedule'
-                  tooltip={
-                    this.props.subjectMatterName === 'general'
-                      ? 'The average time between Gen\'s first response and when a user selects a knowledge area.'
-                      : `The average time of each session for the ${this.props.subjectMatterName.toUpperCase()} knowledge area. A session is the time b/w when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from home screen and the last response that Gen gives them. This does not include the time b/w the last response and closing their browser window or Gen.`
-                  }
-                />
-              </Grid>
-              <Grid item xs={12} sm>
-                <Card
-                  color={colorShades(this.props.mainColor, 20)}
-                  value={this.props.subjectMatterName === 'general' ? 'N/A' :
-                    (this.props.showEngagedUser
-                      ? `${this.props.supportEngagedRequestsPercentage}%`
-                      : `${this.props.supportRequestsPercentage}%`)
-                  }
-                  label='Support Requests'
-                  notes={this.props.subjectMatterName === 'general' ? '' : (
-                    this.props.supportRequestTotal > 0
-                      ? `${this.props.supportRequestTotal} requests`
-                      : '')
-                  }
-                  icon='contact_support'
-                  tooltip={
-                    this.props.subjectMatterName === 'general'
-                      ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                      : `Percentage of users submitting support tickets for the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                  }
-                />
-              </Grid>
+              {this.props.subjectMatterName.toLowerCase() !== 'total' &&
+                < Grid item xs={12} sm>
+                  <Card
+                    color={colorShades(this.props.mainColor, 30)}
+                    value={
+                      this.props.showEngagedUser
+                        ? this.props.avgEngagedDuration
+                        : this.props.avgDuration
+                    }
+                    label='Avg. Conv Duration'
+                    notes=''
+                    icon='schedule'
+                    tooltip={
+                      this.props.subjectMatterName === 'general'
+                        ? 'The average time between Gen\'s first response and when a user selects a knowledge area.'
+                        : `The average time of each session for the ${this.props.subjectMatterName.toUpperCase()} knowledge area. A session is the time b/w when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from home screen and the last response that Gen gives them. This does not include the time b/w the last response and closing their browser window or Gen.`
+                    }
+                  />
+                </Grid>}
+              {this.props.subjectMatterName && this.props.subjectMatterName.toLowerCase() !== 'total' &&
+                <Grid item xs={12} sm>
+                  <Card
+                    color={colorShades(this.props.mainColor, 20)}
+                    value={this.props.subjectMatterName === 'general' ? 'N/A' :
+                      (this.props.showEngagedUser
+                        ? `${this.props.supportEngagedRequestsPercentage}%`
+                        : `${this.props.supportRequestsPercentage}%`)
+                    }
+                    label='Support Requests'
+                    notes={this.props.subjectMatterName === 'general' ? '' : (
+                      this.props.supportRequestTotal > 0
+                        ? `${this.props.supportRequestTotal} requests`
+                        : '')
+                    }
+                    icon='contact_support'
+                    tooltip={
+                      this.props.subjectMatterName === 'general'
+                        ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
+                        : `Percentage of users submitting support tickets for the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
+                    }
+                  />
+                </Grid>}
               <Grid item xs={12} sm>
                 <Card
                   color={colorShades(this.props.mainColor, 10)}
@@ -223,9 +227,11 @@ class Dashboard extends Component {
                     this.props.conversationsDurationTotal} immediate exits`)}
                   icon='speaker_notes'
                   tooltip={
-                    this.props.subjectMatterName === 'general'
+                    this.props.subjectMatterName.toLowerCase() === 'general'
                       ? `This metric is not applicable to the ${this.props.subjectMatterName.toUpperCase()} knowledge area.`
-                      : `Counts the number of times a user interacted with Gen in the ${this.props.subjectMatterName.toUpperCase()} knowledge area`
+                      : (this.props.subjectMatterName.toLowerCase() === 'total'
+                        ? 'Counts the total number of times when a user acknowledges the privacy statement.'
+                        : `Counts the number of times a user interacted with Gen in the ${this.props.subjectMatterName.toUpperCase()} knowledge area`)
                   }
                 />
               </Grid>
@@ -243,7 +249,13 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={this.props.subjectMatterName === 'cse' ? 12 : 6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`The number of engaged users who selected the [${this.props.subjectMatterName}] subject matter over time.`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'Counts the total number of times when a user acknowledges the privacy statement.'
+                    : `The number of engaged users who selected the [${this.props.subjectMatterName}] subject matter over time.`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <EngagedUserChart colors={this.props.colors} />
@@ -251,15 +263,31 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'The total number of support requests submitted through Gen'
+                    : `The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
-                <SupportRequestChart colors={this.props.colors} tooltip={`The number of support requests submitted over time for the [${this.props.subjectMatterName}] subject matter`} />
+                <SupportRequestChart
+                  colors={this.props.colors}
+                  tooltip={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'The total number of support requests submitted through Gen'
+                    : `The number of support requests submitted for the [${this.props.subjectMatterName}] subject matter over time`} />
               </GraphWrap>
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`Intents being triggered the most number of times for the [${this.props.subjectMatterName}] subject matter`} arrow placement='top-start'>
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title={this.props.subjectMatterName.toLowerCase() === 'total'
+                    ? 'Intents being triggered the most number of times in Gen'
+                    : `Intents being triggered the most number of times for the [${this.props.subjectMatterName}] subject matter`}
+                  arrow
+                  placement='top-start'>
                   <HelpOutlineIcon />
                 </Tooltip>
                 <h3>Frequently used intents</h3>
@@ -270,20 +298,23 @@ class Dashboard extends Component {
                 />
               </GraphWrap>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`Intents specific to the [${this.props.subjectMatterName}] subject matter after which users exit Gen`} arrow placement='top-start'>
-                  <HelpOutlineIcon />
-                </Tooltip>
-                <h3>Top exit intents on conversations</h3>
-                <BarChart
-                  data={exitIntents}
-                  dataKey='exits'
-                  colors={this.props.colors}
-                  emptyMsg='No exit intents found'
-                />
-              </GraphWrap>
-            </Grid>
+            {
+              this.props.subjectMatterName.toLowerCase() !== 'total' &&
+              <Grid item xs={12} sm={6}>
+                <GraphWrap>
+                  <Tooltip TransitionComponent={Zoom} title={`Intents specific to the [${this.props.subjectMatterName}] subject matter after which users exit Gen`} arrow placement='top-start'>
+                    <HelpOutlineIcon />
+                  </Tooltip>
+                  <h3>Top exit intents on conversations</h3>
+                  <BarChart
+                    data={exitIntents}
+                    dataKey='exits'
+                    colors={this.props.colors}
+                    emptyMsg='No exit intents found'
+                  />
+                </GraphWrap>
+              </Grid>
+            }
             <Grid item xs={12} sm={6}>
               <SupportRequestsTile
                 supportRequests={this.props.supportRequests}
@@ -324,23 +355,28 @@ class Dashboard extends Component {
                 </FeedbackTotalsDiv>
               </GraphWrap>
             </Grid>
-            {this.props.subjectMatterName === 'cse' && <Grid item xs={12} sm={6}>
-              <GraphWrap>
-                <Tooltip TransitionComponent={Zoom} title={`Distribution of user/persona types as identified by the user.`} arrow placement='top-start'>
-                  <HelpOutlineIcon />
-                </Tooltip>
-                <h3>Persona Metrics</h3>
-                <PieChart
-                  data={aggregatePersonaMetricsForPieChart(this.props.dailyMetrics)}
-                  dataKey='count'
-                  colors={this.props.colors}
-                />
-              </GraphWrap>
-            </Grid>}
+            {
+              this.props.subjectMatterName === 'cse' && <Grid item xs={12} sm={6}>
+                <GraphWrap>
+                  <Tooltip TransitionComponent={Zoom} title={`Distribution of user/persona types as identified by the user.`} arrow placement='top-start'>
+                    <HelpOutlineIcon />
+                  </Tooltip>
+                  <h3>Persona Metrics</h3>
+                  <PieChart
+                    data={aggregatePersonaMetricsForPieChart(this.props.dailyMetrics)}
+                    dataKey='count'
+                    colors={this.props.colors}
+                  />
+                </GraphWrap>
+              </Grid>
+            }
             <Grid item xs={12}>
-              <EnhancedTable data={this.props.intents} />
+              <EnhancedTable
+                data={this.props.intents}
+                selectedSubjectMatter={this.props.subjectMatterName}
+              />
             </Grid>
-          </Grid>
+          </Grid >
         )
       } else {
         dashboardUI = (

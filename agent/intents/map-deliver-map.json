@@ -8,20 +8,23 @@
   "responses": [
     {
       "resetContexts": false,
+      "action": "",
       "affectedContexts": [
         {
           "name": "waiting-maps-deliver-map",
-          "parameters": {},
-          "lifespan": 0
+          "lifespan": 0,
+          "parameters": {}
         }
       ],
       "parameters": [
         {
           "id": "9ca28de2-0c78-4959-888c-32eeda505fb9",
+          "name": "userAddress",
           "required": false,
           "dataType": "@sys.address",
-          "name": "userAddress",
           "value": "$userAddress",
+          "defaultValue": "",
+          "isList": false,
           "prompts": [
             {
               "lang": "en",
@@ -31,15 +34,16 @@
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         },
         {
           "id": "71ad17e2-ca5f-4e4c-9b71-11adde9ac3a7",
+          "name": "userCity",
           "required": false,
           "dataType": "@sys.geo-city",
-          "name": "userCity",
           "value": "$userCity",
+          "defaultValue": "",
+          "isList": false,
           "prompts": [
             {
               "lang": "en",
@@ -49,31 +53,32 @@
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         },
         {
           "id": "3a7f7d89-f110-4c4e-8dd0-869a467bb0df",
+          "name": "userZip",
           "required": false,
           "dataType": "@sys.zip-code",
-          "name": "userZip",
           "value": "$userZip",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
+          "outputDialogContexts": []
         }
       ],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

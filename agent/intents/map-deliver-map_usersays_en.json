@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "95821",
-        "alias": "userZip",
         "meta": "@sys.zip-code",
+        "alias": "userZip",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,13 +19,14 @@
     "data": [
       {
         "text": "510 george street jackson",
-        "alias": "userAddress",
         "meta": "@sys.address",
+        "alias": "userAddress",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -32,13 +34,14 @@
     "data": [
       {
         "text": "718 E Fifteenth St Yazoo City",
-        "alias": "userAddress",
         "meta": "@sys.address",
+        "alias": "userAddress",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -46,13 +49,14 @@
     "data": [
       {
         "text": "1050 20th street",
-        "alias": "userAddress",
         "meta": "@sys.address",
+        "alias": "userAddress",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -60,13 +64,14 @@
     "data": [
       {
         "text": "sacramento",
-        "alias": "userCity",
         "meta": "@sys.geo-city",
+        "alias": "userCity",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -78,13 +83,14 @@
       },
       {
         "text": "1050 20th st sacramento",
-        "alias": "userAddress",
         "meta": "@sys.address",
+        "alias": "userAddress",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -92,8 +98,8 @@
     "data": [
       {
         "text": "1050 20th street",
-        "alias": "userAddress",
         "meta": "@sys.address",
+        "alias": "userAddress",
         "userDefined": true
       },
       {
@@ -102,13 +108,14 @@
       },
       {
         "text": "sacramento",
-        "alias": "userCity",
         "meta": "@sys.geo-city",
+        "alias": "userCity",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

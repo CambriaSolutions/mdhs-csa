@@ -8,17 +8,35 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "snap-subject-matter",
+          "lifespan": 999
+        },
+        {
+          "name": "tanf-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-subject-matter",
+          "lifespan": 0
+        }
+      ],
       "parameters": [],
       "messages": [
         {
-          "type": 0,
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
           "lang": "en",
-          "condition": "",
-          "speech": []
+          "condition": ""
         }
       ],
-      "defaultResponsePlatforms": {},
       "speech": []
     }
   ],

@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "yeah",
-        "alias": "hasRetirementContributions",
         "meta": "@yes-no",
+        "alias": "hasRetirementContributions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,13 +19,14 @@
     "data": [
       {
         "text": "I think so",
-        "alias": "hasRetirementContributions",
         "meta": "@yes-no",
+        "alias": "hasRetirementContributions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -32,13 +34,14 @@
     "data": [
       {
         "text": "Yes",
-        "alias": "hasRetirementContributions",
         "meta": "@yes-no",
+        "alias": "hasRetirementContributions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
+    "lang": "en",
     "updated": 0
   }
 ]

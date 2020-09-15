@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "jack in the box",
-        "alias": "newEmployerName",
         "meta": "@sys.any",
+        "alias": "newEmployerName",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,13 +19,14 @@
     "data": [
       {
         "text": "mcdonals",
-        "alias": "newEmployerName",
         "meta": "@sys.any",
+        "alias": "newEmployerName",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -32,13 +34,14 @@
     "data": [
       {
         "text": "denny\u0027s",
-        "alias": "newEmployerName",
         "meta": "@sys.any",
+        "alias": "newEmployerName",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -46,13 +49,14 @@
     "data": [
       {
         "text": "hamburger palace",
-        "alias": "newEmployerName",
         "meta": "@sys.any",
+        "alias": "newEmployerName",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

@@ -1,6 +1,6 @@
 {
   "id": "fb719cd6-a644-43fb-9dea-41f9ea493362",
-  "name": "cse-switchToTanfSnap",
+  "name": "cse-switchSubjectMatter",
   "auto": true,
   "contexts": [
     "cse-subject-matter"
@@ -11,16 +11,7 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "cse-subject-matter",
-          "lifespan": 0,
-          "parameters": {}
-        },
-        {
-          "name": "tanf-switchFromCse",
-          "lifespan": 1
-        },
-        {
-          "name": "snap-switchFromCse",
+          "name": "waiting-subjectMatter",
           "lifespan": 1
         }
       ],
@@ -42,7 +33,8 @@
           "payload": {
             "suggestions": [
               "TANF",
-              "SNAP"
+              "SNAP",
+              "WORKFORCE DEVELOPMENT"
             ]
           },
           "textToSpeech": "",

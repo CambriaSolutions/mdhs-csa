@@ -8,13 +8,14 @@
       },
       {
         "text": "add employer",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -26,13 +27,14 @@
       },
       {
         "text": "add employer",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -40,13 +42,14 @@
     "data": [
       {
         "text": "change of employer",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -54,13 +57,14 @@
     "data": [
       {
         "text": "part time to full time",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -68,13 +72,14 @@
     "data": [
       {
         "text": "change of employment information",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -82,13 +87,14 @@
     "data": [
       {
         "text": "full time to part time",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -96,13 +102,14 @@
     "data": [
       {
         "text": "add employer",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -110,13 +117,14 @@
     "data": [
       {
         "text": "loss of employer",
-        "alias": "employmentStatus",
         "meta": "@employmentStatus",
+        "alias": "employmentStatus",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

@@ -12,6 +12,7 @@ const storeAnalytics = require('./databaseTriggers/storeAnalytics')
 const importDataset = require('./scheduledTriggers/importDataset')
 const trainModels = require('./scheduledTriggers/trainModels')
 const healthCheck = require('./scheduledTriggers/healthCheck')
+const exportBackup = require('./scheduledTriggers/exportBackup')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -38,6 +39,7 @@ const scheduledTriggers = {
   importDataset: {  schedule: '0 20 * * *', timezone: 'America/Los_Angeles', handler: importDataset},
   trainModels: {  schedule: '0 21 * * 1', timezone: 'America/Los_Angeles', handler: trainModels}, // Every Monday at 1 AM CST
   healthCheck: {  schedule: '*/10 * * * *', timezone: 'America/Los_Angeles', handler: healthCheck}, // every 10 minutes
+  exportBackup: {  schedule: '0 1 * * *', timezone: 'America/Los_Angeles', handler: exportBackup}, // every day 1 AM PST
 }
 
 // Register HTTP Triggers

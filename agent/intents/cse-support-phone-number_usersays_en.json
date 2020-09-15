@@ -8,13 +8,14 @@
       },
       {
         "text": "9167990766",
-        "alias": "phoneNumber",
         "meta": "@sys.phone-number",
+        "alias": "phoneNumber",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -22,13 +23,14 @@
     "data": [
       {
         "text": "9167990766",
-        "alias": "phoneNumber",
         "meta": "@sys.phone-number",
+        "alias": "phoneNumber",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
