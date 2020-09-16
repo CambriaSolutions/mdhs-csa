@@ -43,7 +43,11 @@ const storeConversationFeedback = async (
       conversationDoc.feedback = [conversationDoc.feedback]
     }
 
-    conversationDoc.feedback = [...conversationDoc.feedback, feedbackProvided]
+    if (!conversationDoc.feedback) {
+      conversationDoc.feedback = [feedbackProvided]
+    } else {
+      conversationDoc.feedback = [...conversationDoc.feedback, feedbackProvided]
+    }
 
     await store
       .collection(`${context}/conversations`)
