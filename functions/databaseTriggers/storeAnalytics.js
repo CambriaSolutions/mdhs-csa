@@ -543,6 +543,7 @@ const calculateMetrics = async (reqData, subjectMatter) => {
     conversation.supportRequests =
       hasSupportRequest && supportType !== '' ? [supportType] : []
     conversation.fallbackTriggeringQuery = ''
+    conversation.feedback = []
 
     await conversationRef.set(conversation)
   }
