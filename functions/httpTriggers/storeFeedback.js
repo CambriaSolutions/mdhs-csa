@@ -26,7 +26,7 @@ const storeConversationFeedback = async (
     feedback: feedbackList,
     comment: comment
   }
-  
+
   if (!conversationRef.exists) {
     const conversationDoc = {
       hasFeedback: true,
@@ -43,7 +43,8 @@ const storeConversationFeedback = async (
       conversationDoc.feedback = [conversationDoc.feedback]
     }
 
-    conversationDoc.feedback.push(feedbackProvided)
+    conversationDoc.feedback = [...conversationDoc.feedback, feedbackProvided]
+
     await store
       .collection(`${context}/conversations`)
       .doc(`${conversationId}`)
@@ -83,14 +84,11 @@ module.exports = async (req, res) => {
 
     // Store feedback directly on the conversation
     await storeConversationFeedback(context, conversationId, wasHelpful, feedbackList, feedbackComment)
-
     // Create/Update metric entry
     const currDate = new Date()
     const dateKey = format(currDate, 'MM-DD-YYYY')
-
     const metricRef = store.collection(`${context}/metrics`).doc(dateKey)
     const metricDoc = await metricRef.get()
-
     if (metricDoc.exists) {
       const currMetric = metricDoc.data()
       if (currMetric.feedback) {
