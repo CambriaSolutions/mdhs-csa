@@ -11,9 +11,9 @@ const SUBJECT_MATTER_DEFAULT_TIMEZONE = {
 
 // Date FNS imports
 const format = require('date-fns/format')
-const addHours = require('date-fns/add_hours')
-const differenceInSeconds = require('date-fns/difference_in_seconds')
-const isSameDay = require('date-fns/is_same_day')
+const addHours = require('date-fns/addHours')
+const differenceInSeconds = require('date-fns/differenceInSeconds')
+const isSameDay = require('date-fns/isSameDay')
 
 const fallbackIntents = ['Default Fallback Intent']
 
