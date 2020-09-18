@@ -3,7 +3,7 @@ const projectId = admin.instanceId().app.options.projectId
 const languageCode = 'en-US'
 
 // Instantiate a Dialogflow client.
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
