@@ -4,7 +4,7 @@ const admin = require('firebase-admin')
 const projectId = admin.instanceId().app.options.projectId
 const firestore = require('@google-cloud/firestore')
 const firestoreClient = new firestore.v1.FirestoreAdminClient()
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 const dialogflowClient = new dialogflow.v2.AgentsClient()
 
 const exportingFirestore = async (bucket) => {

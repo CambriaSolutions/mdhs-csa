@@ -1,6 +1,6 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 
 const store = admin.firestore()
 const intentsClient = new dialogflow.IntentsClient()
