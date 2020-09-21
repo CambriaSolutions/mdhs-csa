@@ -23,6 +23,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "Please contact DHS customer support at <a href=\"tel:+18778824916\">1-877-882-4916</a> to help with this request."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

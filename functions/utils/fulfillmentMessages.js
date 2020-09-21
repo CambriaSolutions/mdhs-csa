@@ -13,6 +13,13 @@ exports.getSuggestions = (fulfillmentMessages) => {
   return customPayload ? customPayload.suggestions : []
 }
 
+exports.shouldHandleEndConversation = (fulfillmentMessages) => {
+  // There should only ever be one payload object in the fulfillmentMessage object
+  const customPayload = find(fulfillmentMessages, x => x.payload) ? find(fulfillmentMessages, x => x.payload).payload : null
+
+  return customPayload ? customPayload.handleEndConversation : false
+}
+
 // If a request comes in with responses set in dialogflow, or a custom payload specifying
 // which suggestions to include, this function will handle it.
 exports.genericHandler = (agent, textResponses, suggestions) => {

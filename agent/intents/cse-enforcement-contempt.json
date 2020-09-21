@@ -38,6 +38,32 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "After all other appropriate enforcement actions have been attempted and an ability to pay assessment has been conducted, MDHS may petition the court to hold the parent who owes support in contempt.This may result in the incarceration of the parent who owes support until a lump sum payment is made on his/her behalf."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If you would like to submit a request for contempt action on your case, please select \"Request Contempt Action\" below."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Request Contempt Action"
+            ],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

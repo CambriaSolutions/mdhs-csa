@@ -38,6 +38,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "There are three reasons to dispute a tax offset: <ul><li>If you are not the person listed on the Notice.</li><li>If the Notice contains an incorrect social security number.</li><li>If you do not believe you owe past-due child support.</li></ul> For more information <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target=\"_blank\">click here</a>."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

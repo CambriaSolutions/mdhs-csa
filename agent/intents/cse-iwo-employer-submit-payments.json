@@ -34,6 +34,40 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "Employers can make payments electronically through iPayOnline or EFT payments."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "For information on how to enroll, you can call <a href=\"tel:+1-769-777-6111\">1-769-777-6111</a> or by emailing <a href=\"mailto:MSSDUOutreach@informatixinc.com\">MSSDUOutreach@informatixinc.com</a>"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "The employer may submit payments to the State Disbursement Unit per the Income Withholding Order. Submit payments to:\n         MDHS/SDU\n         PO Box 23094\n         Jackson, MS 39225\n        "
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

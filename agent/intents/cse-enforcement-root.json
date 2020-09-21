@@ -23,6 +23,31 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "MDHS has multiple enforcement tools to enforce child support orders. Click on one of the suggestions below to learn more."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "License Suspension/Reinstatement",
+              "Tax Offset",
+              "Liens",
+              "Settlements",
+              "Passport Revocation",
+              "Credit Bureau Reporting",
+              "Unemployment Benefits",
+              "Bankruptcy",
+              "Income Withholding Order Information",
+              "Contempt"
+            ],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

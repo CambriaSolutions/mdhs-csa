@@ -4,6 +4,7 @@ const db = admin.firestore()
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('../intentHandlers/back')
 const home = require('../intentHandlers/home')
+const handleEndConversation = require('../intentHandlers/globalFunctions')
 const globalIntentHandlers = require('../intentHandlers/globalIntentHandlers')
 const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
 const childSupportIntentHandlers = require('../intentHandlers/childSupportIntentHandlers')
@@ -13,7 +14,7 @@ const wfdIntentHandlers = require('../intentHandlers/wfdIntentHandlers')
 const { mapDeliverMap } = require('../intentHandlers/common/map.js')
 const getSubjectMatter = require('../utils/getSubjectMatter.js')
 const { subjectMatterLocations } = require('../constants/constants.js')
-const { getTextResponses, getSuggestions, genericHandler } = require('../utils/fulfillmentMessages.js')
+const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = require('../utils/fulfillmentMessages.js')
 
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
@@ -73,6 +74,10 @@ module.exports = async (request, response) => {
         const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
 
         genericHandler(agent, dialogflowTextResponses, dialogflowSuggestions)
+
+        if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
+          handleEndConversation(agent)
+        }
       },
       ...globalIntentHandlers,
       ...commonIntentHandlers,

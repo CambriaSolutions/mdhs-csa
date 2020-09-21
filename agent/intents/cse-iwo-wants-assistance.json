@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-iwo-is-supporting",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-iwo-wants-assistance",
           "lifespan": 0,
           "parameters": {}
@@ -47,6 +52,23 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Is your employee supporting a family other than the one(s) for whom support is being withheld?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Yes",
+              "No"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

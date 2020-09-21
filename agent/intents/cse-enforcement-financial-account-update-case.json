@@ -23,6 +23,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "If you have information about the financial accounts of the parent who owes support, please call <a href=\"tel:+18778824916\">1-877-882-4916</a> to update your case. Please do NOT provide financial account information through this platform."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

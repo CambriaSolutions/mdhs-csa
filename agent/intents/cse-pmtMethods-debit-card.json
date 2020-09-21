@@ -29,6 +29,32 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "MDHS will issue Child Support payments to a debit card, unless the custodial parent chooses to receive payments via direct deposit."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "For information about fees associated with the debit card or other information, visit <a href=\"https://www.eppicard.com\" target=\"_blank\">here</a> or call their support line at <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Tell me about EPPICARD"
+            ],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

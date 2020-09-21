@@ -23,6 +23,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "By signing the Authorization Agreement for Direct Deposit, you have given DCSE permission to recover the money from future child support payments."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

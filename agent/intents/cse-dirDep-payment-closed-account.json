@@ -11,6 +11,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-dirDep-learn-more-eppicard",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-dirDep-no-learn-more-eppicard",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
@@ -21,6 +31,32 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "When the payment is returned or rejected by the financial institution, your payment will be reissued to an EPPICard."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Would you like to learn more about the EPPICard?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Learn More"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
