@@ -23,7 +23,10 @@ module.exports = async (req, res) => {
   const query = req.query.query
   const sessionId = req.query.uuid
   // The text query request.
-  const sessionPath = sessionClient.sessionPath(projectId, sessionId)
+  const sessionPath = sessionClient.projectAgentSessionPath(
+    projectId,
+    sessionId
+  )
   const dfRequest = {
     session: sessionPath,
     queryInput: { text: { text: query, languageCode: languageCode } },
