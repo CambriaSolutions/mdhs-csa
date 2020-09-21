@@ -171,7 +171,7 @@ class Dashboard extends Component {
                     this.props.subjectMatterName.toLowerCase() === 'general'
                       ? 'Counts the total number of times when a user acknowledges the privacy statement and enters Gen\'s home screen.'
                       : (this.props.subjectMatterName.toLowerCase() === 'total'
-                        ? 'Counts the number of impressions when a user acknowledges the privacy statement.'
+                        ? 'Counts the total number of impressions when a user click on Gen on the MDHS website'
                         : `Counts the number of impressions when a user selects the ${this.props.subjectMatterName.toUpperCase()} option from the home screen.`)
                   }
                 />

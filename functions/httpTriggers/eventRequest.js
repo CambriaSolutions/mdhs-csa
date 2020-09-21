@@ -3,7 +3,7 @@ const projectId = admin.instanceId().app.options.projectId
 const languageCode = 'en-US'
 
 // Instantiate a Dialogflow client.
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
@@ -18,7 +18,10 @@ module.exports = async (req, res) => {
   const query = req.query.query
   const sessionId = req.query.uuid
   // The event query request.
-  const sessionPath = sessionClient.sessionPath(projectId, sessionId)
+  const sessionPath = sessionClient.projectAgentSessionPath(
+    projectId,
+    sessionId
+  )
   const dfRequest = {
     session: sessionPath,
     queryInput: { event: { name: query, languageCode: languageCode } },
