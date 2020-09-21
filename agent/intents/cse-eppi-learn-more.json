@@ -24,6 +24,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "Please <a href=\"https://www.eppicard.com/\" target=\"_blank\">click here</a> to access the EPPICard website."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

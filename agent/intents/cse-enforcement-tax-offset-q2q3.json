@@ -23,6 +23,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "MDHS sends child support arrears information electronically to the appropriate federal and state agencies for cases meeting the federal and state tax offset thresholds. These agencies withhold tax refunds up to the amount of the arrearage reported, and send the funds to MDHS. For more information <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target=\"_blank\">click here</a>."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

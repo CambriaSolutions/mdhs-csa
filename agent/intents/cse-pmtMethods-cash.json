@@ -12,6 +12,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmtMethods-paynearme",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-pmtMethods-moneygram",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmtMethods-checkOrMoneyOrder",
           "lifespan": 0,
           "parameters": {}
@@ -47,6 +57,24 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "You can pay with cash with MoneyGram and PayNearMe. Which would you like to learn more about?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "MoneyGram",
+              "PayNearMe",
+              "Other Options"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

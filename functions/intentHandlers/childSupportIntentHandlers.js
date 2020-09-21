@@ -1,46 +1,5 @@
 const { mapRoot } = require('./common/map.js')
 
-// General enforcement intents
-const {
-  enforcementRoot,
-  enforcementLicenseSuspensionReinstatement,
-  enforcementLicenseSuspension,
-  enforcementLicenseSuspensionNonCompliance,
-  enforcementLicenseReinstatement,
-  enforcementTaxOffset,
-  enforcementTaxOffsetQ1,
-  enforcementTaxOffsetQ2Q3,
-  enforcementTaxOffsetQ4,
-  enforcementTaxOffsetQ5,
-  enforcementTaxOffsetQ6,
-  enforcementTaxOffsetQ7,
-  enforcementTaxOffsetQ8,
-  enforcementTaxOffsetQ9,
-  enforcementTaxOffsetQ10,
-  enforcementLiens,
-  enforcementContestLien,
-  enforcementFinancialAccountUpdateCase,
-  enforcementPersonalInjury,
-  enforcementSettlementsUpdateCase,
-  enforcementSettlementsNoUpdateCase,
-  enforcementPassportRevocation,
-  enforcementPassportReinstatement,
-  enforcementCreditBureauReporting,
-  enforcementReportError,
-  enforcementUnemployment,
-  enforcementSubmitInquiry,
-  enforcementBankruptcy,
-  enforcementContempt
-} = require('./childSupport/enforcement.js')
-
-// General payment intents
-const {
-  pmtsGeneralRoot,
-  pmtsGeneralNonCustodial,
-  pmtsGeneralReceivePayments,
-  pmtsGeneralMakePayments,
-} = require('./childSupport/paymentsGeneral.js')
-
 // Employer intents
 const {
   employerRoot,
@@ -78,19 +37,11 @@ const {
 
 // Payment methods intents
 const {
-  pmtMethodsNone,
-  pmtMethodsCheckOrMoneyOrder,
-  pmtMethodsCash,
-  pmtMethodsEcheckDebit,
-  pmtMethodsMailAddress,
-  pmtMethodsMoneygram,
-  pmtMethodsPayNearMe,
-  pmtMethodsCantMake,
   pmtMethodsCantMakeQualifying,
   pmtMethodsCantMakeQualifyingHelp,
   pmtMethodsCantMakeQualifyingNoHelp,
-  pmtMethodsDebitCard,
-  pmtMethodsNCPWithhold,
+  pmtMethodsCheckOrMoneyOrder,
+  pmtMethodsMailAddress
 } = require('./childSupport/paymentMethods.js')
 
 // Open Child Support Case
@@ -175,66 +126,15 @@ const {
   supportSubmitSupportRequestRequestPaymentHistory,
 } = require('./childSupport/support.js')
 
-// Direct deposit intents
-const {
-  dirDepRoot,
-  dirDepConfirmForm,
-  dirDepShowForm,
-  dirDepLearnMore,
-  dirDepChange,
-  dirDepStart,
-  dirDepStop,
-  dirDepChecking,
-  dirDepSavings,
-  dirDepAccountTerm,
-  dirDepTakeEffect,
-  dirDepExtraFunds,
-  dirDepPaymentClosedAccount,
-  dirDepLearnMoreEppiCard,
-  dirDepNoLearnMoreEppiCard,
-} = require('./childSupport/directDeposit.js')
-
 // EppiCard intents
-const {
-  eppiRoot,
-  eppiGetCard,
-  eppiActivateCard,
-  eppiFees,
-  eppiNotifications,
-  eppiReplaceReport,
-  eppiFAQ,
-  eppiPaymentHistory,
-  eppiUseCard,
-  eppiWithdrawCash,
-  eppiSurcharge,
-  eppiLearnMore,
-  eppiBalanceDenial,
-} = require('./childSupport/eppiCard.js')
+const { eppiFees } = require('./childSupport/eppiCard.js')
 
 // IWO intents
 const {
-  iwoRoot,
-  iwoCcpaRoot,
-  iwoFAQs,
-  iwoWantsAssistance,
-  iwoNoAssistance,
   iwoIsSupporting,
   iwoInArrears,
   iwoConfirmEstimate,
-  iwoRequestDisposableIncome,
-  iwoDefineDisposableIncome,
   iwoDisposableIncome,
-  iwoWhereToSubmit,
-  iwoAdministrativeFee,
-  iwoOtherGarnishments,
-  iwoOtherState,
-  iwoInsuranceCoverage,
-  iwoNotAnEmployee,
-  iwoFireEmployee,
-  iwoEmployerObligation,
-  iwoHowLongToSend,
-  iwoWhenToBegin,
-  iwoEmployerSubmitPayments,
   iwoPaymentsHandoff,
   iwoQAArrearsBalance,
 } = require('./childSupport/incomeWithholding.js')
@@ -367,36 +267,12 @@ module.exports = {
   'cse-pmt-calc-final-estimation-no-other-children': pmtCalcFinalEstimationNoOtherChildren,
 
   // IWO intents
-  'cse-iwo-root': iwoRoot,
-  'cse-iwo-ccpa-root': iwoCcpaRoot,
-  'cse-iwo-faqs': iwoFAQs,
-  'cse-iwo-wants-assistance': iwoWantsAssistance,
-  'cse-iwo-no-assistance': iwoNoAssistance,
+  'cse-iwo-confirm-estimate': iwoConfirmEstimate,
   'cse-iwo-is-supporting': iwoIsSupporting,
   'cse-iwo-in-arrears': iwoInArrears,
-  'cse-iwo-confirm-estimate': iwoConfirmEstimate,
-  'cse-iwo-request-disposable-income': iwoRequestDisposableIncome,
-  'cse-iwo-define-disposable-income': iwoDefineDisposableIncome,
   'cse-iwo-disposable-income': iwoDisposableIncome,
-  'cse-iwo-where-to-submit': iwoWhereToSubmit,
-  'cse-iwo-administrative-fee': iwoAdministrativeFee,
-  'cse-iwo-other-garnishments': iwoOtherGarnishments,
-  'cse-iwo-other-state': iwoOtherState,
-  'cse-iwo-insurance-coverage': iwoInsuranceCoverage,
-  'cse-iwo-not-an-employee': iwoNotAnEmployee,
-  'cse-iwo-fire-employee': iwoFireEmployee,
-  'cse-iwo-employer-obligation': iwoEmployerObligation,
-  'cse-iwo-when-to-begin': iwoWhenToBegin,
-  'cse-iwo-how-long-to-send': iwoHowLongToSend,
-  'cse-iwo-employer-submit-payments': iwoEmployerSubmitPayments,
   'cse-iwo-payments-handoff': iwoPaymentsHandoff,
   'cse-iwoQA-arrears-balance': iwoQAArrearsBalance,
-
-  // General payment intents
-  'cse-pmts-general-root': pmtsGeneralRoot,
-  'cse-pmts-general-non-custodial': pmtsGeneralNonCustodial,
-  'cse-pmts-general-make-payments': pmtsGeneralMakePayments,
-  'cse-pmts-general-receive-payments': pmtsGeneralReceivePayments,
 
   // Employer intents
   'cse-employer-root': employerRoot,
@@ -408,16 +284,8 @@ module.exports = {
   'cse-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
-  'cse-pmtMethods-none': pmtMethodsNone,
   'cse-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
-  'cse-pmtMethods-cash': pmtMethodsCash,
-  'cse-pmtMethods-eCheckDebit': pmtMethodsEcheckDebit,
   'cse-pmtMethods-mail-address': pmtMethodsMailAddress,
-  'cse-pmtMethods-moneygram': pmtMethodsMoneygram,
-  'cse-pmtMethods-paynearme': pmtMethodsPayNearMe,
-  'cse-pmtMethods-cant-make': pmtMethodsCantMake,
-  'cse-pmtMethods-debit-card': pmtMethodsDebitCard,
-  'cse-pmtMethods-withhold-payments': pmtMethodsNCPWithhold,
   'cse-pmtMethods-cant-make-qualifying': pmtMethodsCantMakeQualifying,
   'cse-pmtMethods-cant-make-qualifying-help': pmtMethodsCantMakeQualifyingHelp,
   'cse-pmtMethods-cant-make-qualifying-no-help': pmtMethodsCantMakeQualifyingNoHelp,
@@ -494,38 +362,8 @@ module.exports = {
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
 
-
-  // Direct deposit intents
-  'cse-dirDep-root': dirDepRoot,
-  'cse-dirDep-confirm-form': dirDepConfirmForm,
-  'cse-dirDep-show-form': dirDepShowForm,
-  'cse-dirDep-learn-more': dirDepLearnMore,
-  'cse-dirDep-change': dirDepChange,
-  'cse-dirDep-start': dirDepStart,
-  'cse-dirDep-stop': dirDepStop,
-  'cse-dirDep-checking': dirDepChecking,
-  'cse-dirDep-savings': dirDepSavings,
-  'cse-dirDep-account-term': dirDepAccountTerm,
-  'cse-dirDep-take-effect': dirDepTakeEffect,
-  'cse-dirDep-extra-funds': dirDepExtraFunds,
-  'cse-dirDep-payment-closed-account': dirDepPaymentClosedAccount,
-  'cse-dirDep-learn-more-eppicard': dirDepLearnMoreEppiCard,
-  'cse-dirDep-no-learn-more-eppicard': dirDepNoLearnMoreEppiCard,
-
   // EppiCard intents
-  'cse-eppi-root': eppiRoot,
-  'cse-eppi-get-card': eppiGetCard,
-  'cse-eppi-activate-card': eppiActivateCard,
   'cse-eppi-fees': eppiFees,
-  'cse-eppi-notifications': eppiNotifications,
-  'cse-eppi-replace-report': eppiReplaceReport,
-  'cse-eppi-faq': eppiFAQ,
-  'cse-eppi-payment-history': eppiPaymentHistory,
-  'cse-eppi-use-card': eppiUseCard,
-  'cse-eppi-withdraw-cash': eppiWithdrawCash,
-  'cse-eppi-surcharge': eppiSurcharge,
-  'cse-eppi-learn-more': eppiLearnMore,
-  'cse-eppi-balance-denial': eppiBalanceDenial,
 
   // Genetic Testing intents
   'cse-geneticTesting-request': geneticTestingRequest,
@@ -552,37 +390,7 @@ module.exports = {
   // Contact QA intents
   'cse-contact-qa-number': contactQANumber,
 
-  // Enforcement intents
-  'cse-enforcement-root': enforcementRoot,
-  'cse-enforcement-license-suspension-and-reinstatement': enforcementLicenseSuspensionReinstatement,
-  'cse-enforcement-license-suspension': enforcementLicenseSuspension,
-  'cse-enforcement-license-suspension-non-compliance': enforcementLicenseSuspensionNonCompliance,
-  'cse-enforcement-license-reinstatement': enforcementLicenseReinstatement,
-  'cse-enforcement-tax-offset': enforcementTaxOffset,
-  'cse-enforcement-tax-offset-q1': enforcementTaxOffsetQ1,
-  'cse-enforcement-tax-offset-q2q3': enforcementTaxOffsetQ2Q3,
-  'cse-enforcement-tax-offset-q4': enforcementTaxOffsetQ4,
-  'cse-enforcement-tax-offset-q5': enforcementTaxOffsetQ5,
-  'cse-enforcement-tax-offset-q6': enforcementTaxOffsetQ6,
-  'cse-enforcement-tax-offset-q7': enforcementTaxOffsetQ7,
-  'cse-enforcement-tax-offset-q8': enforcementTaxOffsetQ8,
-  'cse-enforcement-tax-offset-q9': enforcementTaxOffsetQ9,
-  'cse-enforcement-tax-offset-q10': enforcementTaxOffsetQ10,
-  'cse-enforcement-liens': enforcementLiens,
-  'cse-enforcement-contest-lien': enforcementContestLien,
-  'cse-enforcement-financial-account-update-case': enforcementFinancialAccountUpdateCase,
-  'cse-enforcement-personal-injury': enforcementPersonalInjury,
-  'cse-enforcement-settlements-update-case': enforcementSettlementsUpdateCase,
-  'cse-enforcement-settlements-no-update-case': enforcementSettlementsNoUpdateCase,
-  'cse-enforcement-passport-revocation': enforcementPassportRevocation,
-  'cse-enforcement-passport-reinstatement': enforcementPassportReinstatement,
-  'cse-enforcement-credit-bureau-reporting': enforcementCreditBureauReporting,
-  'cse-enforcement-report-error': enforcementReportError,
-  'cse-enforcement-unemployment': enforcementUnemployment,
-  'cse-enforcement-submit-inquiry': enforcementSubmitInquiry,
   'cse-stimulusCheck-root': stimulusCheck,
-  'cse-enforcement-bankruptcy': enforcementBankruptcy,
-  'cse-enforcement-contempt': enforcementContempt,
   // Cancel intent
   'cse-support-cancel': supportCancel,
 

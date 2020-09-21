@@ -45,8 +45,12 @@
       ],
       "messages": [
         {
-          "type": "0",
+          "type": "4",
           "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

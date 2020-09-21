@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmtMethods-moneygram",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmtMethods-paynearme",
           "lifespan": 0,
           "parameters": {}
@@ -32,6 +37,23 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "You can pay MDHS Child Support with cash at PayNearMe locations. A small fee applies.<br/><br/>PayNearMe is available at CVS/Pharmacy, Family Dollar, Fidelity Express, ACE Cash Express and 7-Eleven.<br/><br/>Payments may take 3 to 4 banking days to be posted to your child support account.<br/><br/><a href=\"http://paynearme.com/mississippi\" target=\"_blank\">Click here</a> to find the nearest location to you.<br/><br/><a href=\"http://www.mdhs.ms.gov/wp-content/uploads/2018/01/Mississippi-Child-Support-MDHS-FAQ.pdf\" target=\"_blank\">Click here</a> for frequently asked questions."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "MoneyGram",
+              "Other Options"
+            ],
+            "handleEndConversation": true
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
