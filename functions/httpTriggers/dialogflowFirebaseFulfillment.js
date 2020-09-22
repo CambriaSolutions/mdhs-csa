@@ -69,14 +69,14 @@ module.exports = async (request, response) => {
       // The current intent always needs a handler, so we create a default placeholder
       // If the intent has an actual handler, the default will be overwritten by the proceeding
       // spread objects
-      [intentName]: () => {
+      [intentName]: async (_agent) => {
         const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
         const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
 
-        genericHandler(agent, dialogflowTextResponses, dialogflowSuggestions)
+        await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
 
         if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
-          handleEndConversation(agent)
+          await handleEndConversation(_agent)
         }
       },
       ...globalIntentHandlers,
