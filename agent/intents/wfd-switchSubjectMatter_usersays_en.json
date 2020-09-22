@@ -1,0 +1,197 @@
+[
+  {
+    "id": "d71980e2-dc36-4230-b4a2-f5bd35b6bced",
+    "data": [
+      {
+        "text": "CHILD CARE APPLICATION",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "294578d3-ca5a-4584-9e7f-9033f1ec1f6a",
+    "data": [
+      {
+        "text": "I need to know about my child support case?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "12ae12e9-c4e3-4b8c-8264-74c9be482706",
+    "data": [
+      {
+        "text": "Child support",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c094a2ff-7326-4d06-8fde-90eeb973d237",
+    "data": [
+      {
+        "text": "I\u0027m trying to apply for food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c09b6b18-b075-4b93-86aa-e0c096aeee77",
+    "data": [
+      {
+        "text": "Food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f6323aff-3def-4baa-bed4-772cfddb3366",
+    "data": [
+      {
+        "text": "Renew food stamp",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f32ef2e5-fd5d-4f16-bd20-86bf0191da25",
+    "data": [
+      {
+        "text": "I receive food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "121b67c1-62d2-47dc-9d29-29344c2b5691",
+    "data": [
+      {
+        "text": "snap please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f43b87a9-53b8-425d-8b94-0a77fb03de6f",
+    "data": [
+      {
+        "text": "snap",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eec9422c-5e6f-42f0-a155-2d96af8c10d1",
+    "data": [
+      {
+        "text": "I\u0027m here for snap",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1b9ff5d5-1179-4de4-98a9-b880e97cb070",
+    "data": [
+      {
+        "text": "what\u0027s snap?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c930b6f1-0088-49f0-993f-c1afd3e46a69",
+    "data": [
+      {
+        "text": "tanf please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c53caa7d-9abf-4459-a733-2b863c2589d2",
+    "data": [
+      {
+        "text": "Tanf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f5a9ffc0-76a5-4413-91b9-2612c4485a15",
+    "data": [
+      {
+        "text": "I\u0027m here for tanf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5dcb2228-0c52-4a85-8b9b-5fcdc6d298f4",
+    "data": [
+      {
+        "text": "what\u0027s tanf?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

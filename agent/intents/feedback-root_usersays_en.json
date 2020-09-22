@@ -9,6 +9,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -28,13 +29,7 @@
     "id": "be000318-1265-4688-92bf-b6ebd75fd43d",
     "data": [
       {
-        "text": "no",
-        "meta": "@yes-no",
-        "alias": "yes-no",
-        "userDefined": false
-      },
-      {
-        "text": " thanks",
+        "text": "no thanks",
         "userDefined": false
       }
     ],
@@ -74,8 +69,6 @@
     "data": [
       {
         "text": "no",
-        "meta": "@yes-no",
-        "alias": "yes-no",
         "userDefined": false
       }
     ],

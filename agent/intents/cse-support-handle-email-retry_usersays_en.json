@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "cfreeman@cambriasolutions.com",
-        "alias": "email",
         "meta": "@sys.email",
+        "alias": "email",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

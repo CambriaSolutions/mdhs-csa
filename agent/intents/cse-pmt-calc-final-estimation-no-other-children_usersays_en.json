@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "No",
-        "alias": "otherChildren",
         "meta": "@yes-no",
+        "alias": "otherChildren",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

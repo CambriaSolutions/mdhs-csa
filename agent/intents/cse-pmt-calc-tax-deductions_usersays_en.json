@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "twenty",
-        "alias": "grossIncome",
         "meta": "@sys.number",
+        "alias": "grossIncome",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,8 +19,8 @@
     "data": [
       {
         "text": "100",
-        "alias": "grossIncome",
         "meta": "@sys.number",
+        "alias": "grossIncome",
         "userDefined": true
       },
       {
@@ -29,6 +30,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -40,13 +42,14 @@
       },
       {
         "text": "2000",
-        "alias": "grossIncome",
         "meta": "@sys.number",
+        "alias": "grossIncome",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

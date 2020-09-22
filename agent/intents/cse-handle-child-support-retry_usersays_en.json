@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "Common Child Support Requests",
-        "alias": "childSupportRequests",
         "meta": "@child-support-requests",
+        "alias": "childSupportRequests",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

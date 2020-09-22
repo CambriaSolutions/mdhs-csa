@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "sure",
-        "alias": "wantsLocation",
         "meta": "@yes-no",
+        "alias": "wantsLocation",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,13 +19,14 @@
     "data": [
       {
         "text": "no",
-        "alias": "wantsLocation",
         "meta": "@yes-no",
+        "alias": "wantsLocation",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -32,13 +34,14 @@
     "data": [
       {
         "text": "yes",
-        "alias": "wantsLocation",
         "meta": "@yes-no",
+        "alias": "wantsLocation",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

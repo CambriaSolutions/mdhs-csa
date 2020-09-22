@@ -232,13 +232,13 @@ exports.enforcementTaxOffsetQ8 = async agent => {
 exports.enforcementTaxOffsetQ9 = async agent => {
   try {
     await agent.add(
-      `If you are the spouse of the person responsible for child support, you may file an <a href="https://www.irs.gov/pub/irs-pdf/f8379.pdf" target="_blank">IRS Form 8379</a> with the IRS for federal taxes. 
-      For state taxes, once you receive notification from the MS Department of Revenue, you may request a review by submitting a request in writing to: 
-      <br/>MS Department of Human Services Attention: Child Support Tax Offset
-      <br/>P.O. Box 352
-      <br/>Jackson, MS 39205
-      <br/>For more information, ${taxOffsetGuideLink}.`
+      'If you are the spouse of the person responsible for child support, you may file an <a href="https://www.irs.gov/pub/irs-pdf/f8379.pdf" target="_blank">IRS Form 8379</a> with the IRS for federal taxes.\
+      For state taxes, once you receive notification from the MS Department of Revenue, you may request a review by submitting a request in writing to:\
+      <br/>MS Department of Human Services Attention: Child Support Tax Offset\
+      <br/>P.O. Box 352\
+      <br/>Jackson, MS 39205'
     )
+    await agent.add(`For more information, ${taxOffsetGuideLink}.`)
 
     await handleEndConversation(agent)
   } catch (err) {
@@ -512,10 +512,6 @@ exports.enforcementContempt = async agent => {
       'If you would like to submit a request for contempt action on your case, please select "Request Contempt Action" below.'
     )
     await agent.add(new Suggestion('Request Contempt Action'))
-    await agent.context.set({
-      name: 'waiting-support-type',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }

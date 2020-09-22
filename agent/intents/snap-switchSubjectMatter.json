@@ -1,9 +1,9 @@
 {
-  "id": "5a354084-5e8a-4b10-8131-3b254ce649f4",
-  "name": "snap-switchFromCse",
+  "id": "3e8797f2-79f9-4ce0-832b-9c39085e4f6c",
+  "name": "snap-switchSubjectMatter",
   "auto": true,
   "contexts": [
-    "snap-switchFromCse"
+    "snap-subject-matter"
   ],
   "responses": [
     {
@@ -11,16 +11,8 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "snap-switchFromCse",
-          "lifespan": 0
-        },
-        {
-          "name": "cse-subject-matter",
-          "lifespan": 0
-        },
-        {
-          "name": "snap-subject-matter",
-          "lifespan": 999
+          "name": "waiting-subjectMatter",
+          "lifespan": 1
         }
       ],
       "parameters": [],
@@ -31,7 +23,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "What can I help you with?"
+            "I\u0027m sorry, were you referring to one of the topics below?"
           ],
           "condition": ""
         },
@@ -40,10 +32,9 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "Application",
-              "Doc Upload",
-              "Office Locations",
-              "Eligibility Checker"
+              "TANF",
+              "Child Support",
+              "WORKFORCE DEVELOPMENT"
             ]
           },
           "textToSpeech": "",

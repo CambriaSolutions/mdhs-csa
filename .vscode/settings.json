@@ -1,0 +1,30 @@
+{
+  "csharp.format.enable": true,
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "git.suggestSmartCommit": false,
+  "gitlens.views.repositories.files.layout": "tree",
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "gitlens.advanced.blame.customArguments": [
+    "--no-merges"
+  ],
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "cSpell.userWords": [
+    "TANF",
+    "automl",
+    "dialogflow",
+    "firestore",
+    "pubsub",
+    "uuidv",
+    "webhook"
+  ],
+  "git.autofetch": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+}

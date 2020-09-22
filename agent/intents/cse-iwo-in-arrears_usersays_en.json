@@ -8,13 +8,14 @@
       },
       {
         "text": "not",
-        "alias": "inArrears",
         "meta": "@yes-no",
+        "alias": "inArrears",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -22,13 +23,14 @@
     "data": [
       {
         "text": "nope",
-        "alias": "inArrears",
         "meta": "@yes-no",
+        "alias": "inArrears",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -36,13 +38,14 @@
     "data": [
       {
         "text": "no",
-        "alias": "inArrears",
         "meta": "@yes-no",
+        "alias": "inArrears",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -50,13 +53,14 @@
     "data": [
       {
         "text": "yes",
-        "alias": "inArrears",
         "meta": "@yes-no",
+        "alias": "inArrears",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

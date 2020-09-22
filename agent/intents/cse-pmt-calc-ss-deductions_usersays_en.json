@@ -4,13 +4,14 @@
     "data": [
       {
         "text": "ten",
-        "alias": "taxDeductions",
         "meta": "@sys.number",
+        "alias": "taxDeductions",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -18,8 +19,8 @@
     "data": [
       {
         "text": "200",
-        "alias": "taxDeductions",
         "meta": "@sys.number",
+        "alias": "taxDeductions",
         "userDefined": true
       },
       {
@@ -29,6 +30,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -40,13 +42,14 @@
       },
       {
         "text": "1000",
-        "alias": "taxDeductions",
         "meta": "@sys.number",
+        "alias": "taxDeductions",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

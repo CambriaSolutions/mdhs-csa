@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
 const format = require('date-fns/format')
+const sanitizeHtml = require('sanitize-html')
 
 // Connect to DB
 const store = admin.firestore()
@@ -11,19 +12,48 @@ const storeConversationFeedback = async (
   context,
   conversationId,
   wasHelpful,
-  feedbackList
+  feedbackList,
+  comment
 ) => {
   // Update the conversation with a feedback entry
-  await store
+  const conversationRef = await store
     .collection(`${context}/conversations`)
     .doc(`${conversationId}`)
-    .update({
+    .get()
+
+  const feedbackProvided = {
+    helpful: wasHelpful,
+    feedback: feedbackList,
+    comment: comment
+  }
+
+  if (!conversationRef.exists) {
+    const conversationDoc = {
       hasFeedback: true,
-      feedback: admin.firestore.FieldValue.arrayUnion({
-        helpful: wasHelpful,
-        feedback: feedbackList,
-      })
-    })
+      feedback: [feedbackProvided]
+    }
+    await store
+      .collection(`${context}/conversations`)
+      .doc(`${conversationId}`)
+      .set(conversationDoc)
+  } else {
+    const conversationDoc = conversationRef.data()
+
+    if (!Array.isArray(conversationDoc.feedback)) {
+      conversationDoc.feedback = [conversationDoc.feedback]
+    }
+
+    if (!conversationDoc.feedback) {
+      conversationDoc.feedback = [feedbackProvided]
+    } else {
+      conversationDoc.feedback = [...conversationDoc.feedback, feedbackProvided]
+    }
+
+    await store
+      .collection(`${context}/conversations`)
+      .doc(`${conversationId}`)
+      .update(conversationDoc)
+  }
 }
 
 // Store feedback from conversations
@@ -41,37 +71,35 @@ module.exports = async (req, res) => {
     // used to identify the subject matter. But name field has full format
     // e.g. "projects/mdhs-csa-dev/agent/sessions/3c007146-2b0c-99e8-2806-563698d992d4/contexts/cse-subject-matter"
     const outputContextObject = reqData.outputContexts.find(x => x.name.indexOf('subject-matter') >= 0)
-  
+
     const subjectMatterContext = outputContextObject.name.split('/').pop()
-  
+
     // Take the first portion of the context name as the subject matter. e.g. for 'cse-account-balance', we use 'cse' 
     const subjectMatter = subjectMatterContext.split('-')[0]
-  
+
     // const context = `projects/${projectName}`
     const context = `subjectMatters/${subjectMatter}`
-  
+
     const wasHelpful = reqData.wasHelpful
     let feedbackList = reqData.feedbackList
+    const feedbackComment = sanitizeHtml(reqData.comment)
     // Get ID's from conversation (session)
     const conversationId = getIdFromPath(reqData.session)
-  
+
     // Store feedback directly on the conversation
-    await storeConversationFeedback(context, conversationId, wasHelpful, feedbackList)
-  
+    await storeConversationFeedback(context, conversationId, wasHelpful, feedbackList, feedbackComment)
     // Create/Update metric entry
     const currDate = new Date()
     const dateKey = format(currDate, 'MM-DD-YYYY')
-  
     const metricRef = store.collection(`${context}/metrics`).doc(dateKey)
     const metricDoc = await metricRef.get()
-  
     if (metricDoc.exists) {
       const currMetric = metricDoc.data()
       if (currMetric.feedback) {
         if (wasHelpful) {
           currMetric.feedback.positive++
           if (!currMetric.feedback.helpful) currMetric.feedback.helpful = []
-  
+
           // Loop through feedback sent and update occurrences on DB
           for (let feedbackType of feedbackList) {
             // Check if current feedback type is already on the list
@@ -95,7 +123,7 @@ module.exports = async (req, res) => {
           currMetric.feedback.negative++
           if (!currMetric.feedback.notHelpful)
             currMetric.feedback.notHelpful = []
-  
+
           // Loop through feedback sent and update occurrences on DB
           for (let feedbackType of feedbackList) {
             // Check if current feedback type is already on the list

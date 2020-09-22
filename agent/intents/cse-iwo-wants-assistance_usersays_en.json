@@ -9,6 +9,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -16,13 +17,14 @@
     "data": [
       {
         "text": "yup",
-        "alias": "wantsAssistance",
         "meta": "@yes-no",
+        "alias": "wantsAssistance",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -30,13 +32,14 @@
     "data": [
       {
         "text": "sure",
-        "alias": "wantsAssistance",
         "meta": "@yes-no",
+        "alias": "wantsAssistance",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -44,13 +47,14 @@
     "data": [
       {
         "text": "i think so",
-        "alias": "wantsAssistance",
         "meta": "@yes-no",
+        "alias": "wantsAssistance",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -58,13 +62,14 @@
     "data": [
       {
         "text": "correct",
-        "alias": "wantsAssistance",
         "meta": "@yes-no",
+        "alias": "wantsAssistance",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -72,13 +77,14 @@
     "data": [
       {
         "text": "yes",
-        "alias": "wantsAssistance",
         "meta": "@yes-no",
+        "alias": "wantsAssistance",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]

@@ -8,13 +8,14 @@
       },
       {
         "text": "mississippi",
-        "alias": "geo-state",
         "meta": "@sys.geo-state",
+        "alias": "geo-state",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -26,13 +27,14 @@
       },
       {
         "text": "alabama",
-        "alias": "geo-state",
         "meta": "@sys.geo-state",
+        "alias": "geo-state",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -44,13 +46,14 @@
       },
       {
         "text": "ms",
-        "alias": "geo-state",
         "meta": "@sys.geo-state",
+        "alias": "geo-state",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -63,6 +66,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -75,6 +79,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -87,6 +92,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   },
   {
@@ -99,6 +105,7 @@
     ],
     "isTemplate": false,
     "count": 0,
+    "lang": "en",
     "updated": 0
   }
 ]
