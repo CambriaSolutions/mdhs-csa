@@ -13,6 +13,10 @@
         {
           "name": "tanf-subject-matter",
           "lifespan": 99
+        },
+        {
+          "name": "waiting-feedback-root",
+          "lifespan": 2
         }
       ],
       "parameters": [
