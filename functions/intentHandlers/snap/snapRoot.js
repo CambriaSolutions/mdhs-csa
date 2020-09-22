@@ -8,6 +8,7 @@ exports.snapRoot = async agent => {
     await agent.add(new Suggestion('Doc Upload'))
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Eligibility Checker'))
+    await agent.add(new Suggestion('SNAP Online Purchasing'))
 
     await agent.context.set({
       name: 'snap-subject-matter',
