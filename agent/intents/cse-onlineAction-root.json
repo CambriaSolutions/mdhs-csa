@@ -14,6 +14,10 @@
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
+        },
+        {
+          "name": "waiting-feedback-root",
+          "lifespan": 2
         }
       ],
       "parameters": [],
