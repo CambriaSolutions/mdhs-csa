@@ -1,6 +1,6 @@
 {
-  "id": "f36f339d-beaf-4a2e-8933-429394f9206e",
-  "name": "tanf-case-caseNumber",
+  "id": "e22ef8a9-5173-4170-a11b-2ecd36180e00",
+  "name": "tanf-docs",
   "auto": true,
   "contexts": [
     "tanf-subject-matter"
@@ -13,19 +13,15 @@
         {
           "name": "tanf-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-feedback-root",
-          "lifespan": 2
         }
       ],
       "parameters": [
         {
-          "id": "0e9556f6-e4e0-4e6e-a794-5aa1e266b258",
-          "name": "yes-no",
+          "id": "36e35085-f009-432d-933b-0c92ad4bf000",
+          "name": "number",
           "required": false,
-          "dataType": "@yes-no",
-          "value": "$yes-no",
+          "dataType": "@sys.number",
+          "value": "$number",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -42,17 +38,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "The case number is located on your EBT card beneath the card number. The case number is nine (9) digits, while the card number is sixteen (16) digits.Your case number is on the right, across from your address on any communication received from your case worker."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Is there anything else I can help you with?"
+            "Some forms are available on the MDHS website located \u003ca target\u003d\"_blank\" href\u003d\"https://www.mdhs.ms.gov/\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for or if you would like to request copies of forms, or documents, please contact your local office. If you need to find the closest office near you, click the option below."
           ],
           "condition": ""
         },
@@ -60,8 +46,9 @@
           "type": "4",
           "title": "",
           "payload": {
+            "handleEndConversation": true,
             "suggestions": [
-              "SUBMIT FEEDBACK"
+              "Office Location"
             ]
           },
           "textToSpeech": "",

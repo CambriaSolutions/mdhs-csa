@@ -1,9 +1,9 @@
 {
-  "id": "f36f339d-beaf-4a2e-8933-429394f9206e",
-  "name": "tanf-case-caseNumber",
+  "id": "c0d8d014-0d3b-4c3d-b65a-5f4c7686eb9a",
+  "name": "snap-docs",
   "auto": true,
   "contexts": [
-    "tanf-subject-matter"
+    "snap-subject-matter"
   ],
   "responses": [
     {
@@ -11,21 +11,17 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "tanf-subject-matter",
+          "name": "snap-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-feedback-root",
-          "lifespan": 2
         }
       ],
       "parameters": [
         {
-          "id": "0e9556f6-e4e0-4e6e-a794-5aa1e266b258",
-          "name": "yes-no",
+          "id": "a1ac038f-3ca2-4d57-8697-83a7e1247df1",
+          "name": "number",
           "required": false,
-          "dataType": "@yes-no",
-          "value": "$yes-no",
+          "dataType": "@sys.number",
+          "value": "$number",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -42,17 +38,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "The case number is located on your EBT card beneath the card number. The case number is nine (9) digits, while the card number is sixteen (16) digits.Your case number is on the right, across from your address on any communication received from your case worker."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Is there anything else I can help you with?"
+            "Some forms are available on the MDHS website located \u003ca target\u003d\"_blank\" href\u003d\"https://www.mdhs.ms.gov/\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for or if you would like to request copies of forms, or documents, please contact your local office. If you need to find the closest office near you, click the option below."
           ],
           "condition": ""
         },
@@ -61,8 +47,9 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "SUBMIT FEEDBACK"
-            ]
+              "Office Location"
+            ],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
