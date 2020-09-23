@@ -3,7 +3,7 @@
   "name": "wfd-root",
   "auto": true,
   "contexts": [
-    "waiting-subjectMatter"
+    "wfd-enableHome"
   ],
   "responses": [
     {
@@ -24,6 +24,22 @@
         },
         {
           "name": "cse-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-enableHome",
+          "lifespan": 99
+        },
+        {
+          "name": "cse-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "tanf-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "snap-enableHome",
           "lifespan": 0
         }
       ],
