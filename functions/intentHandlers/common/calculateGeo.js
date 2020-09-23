@@ -3,6 +3,17 @@ const URL = require('url').URL
 const fetch = require('node-fetch')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
+const extractCounty = (geocode) => {
+  const countyName = geocode.address_components.find(addressComponent => {
+    if (addressComponent.types.includes('administrative_area_level_2')
+      && addressComponent.types.includes('political')) {
+      return addressComponent.long_name
+    }
+  })
+
+  return countyName
+}
+
 exports.getGeocode = async address => {
   if (!address) {
     console.log('No address provided to fetch geocode.')
@@ -18,9 +29,11 @@ exports.getGeocode = async address => {
   const response = await fetch(url)
   const json = await response.json()
   if (json.results.length !== 0) {
+    const county = extractCounty(json.results[0])
     const geoCode = {
       lat: json.results[0].geometry.location.lat,
       lng: json.results[0].geometry.location.lng,
+      county: county
     }
     return geoCode
   }
@@ -29,10 +42,8 @@ exports.getGeocode = async address => {
 exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
   if (currentCoordinates !== null) {
     const results = await Promise.all(
-      locations.map(async function(place) {
-        const url = new URL(
-            'https://maps.googleapis.com/maps/api/distancematrix/json'
-          ),
+      locations.map(async function (place) {
+        const url = new URL('https://maps.googleapis.com/maps/api/distancematrix/json'),
           params = {
             units: 'imperial',
             origins: `${currentCoordinates.lat},${currentCoordinates.lng}`,

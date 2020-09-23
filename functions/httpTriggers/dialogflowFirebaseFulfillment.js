@@ -11,7 +11,7 @@ const childSupportIntentHandlers = require('../intentHandlers/childSupportIntent
 const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
 const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
 const wfdIntentHandlers = require('../intentHandlers/wfdIntentHandlers')
-const { mapDeliverMap } = require('../intentHandlers/common/map.js')
+const { mapDeliverMap, mapDeliverMapAndCountyOffice } = require('../intentHandlers/common/map.js')
 const getSubjectMatter = require('../utils/getSubjectMatter.js')
 const { subjectMatterLocations } = require('../constants/constants.js')
 const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = require('../utils/fulfillmentMessages.js')
@@ -85,7 +85,8 @@ module.exports = async (request, response) => {
       ...tanfIntentHandlers,
       ...snapIntentHandlers,
       ...wfdIntentHandlers,
-      'map-deliver-map': mapDeliverMap(subjectMatterLocations[subjectMatter])
+      'map-deliver-map': mapDeliverMap(subjectMatterLocations[subjectMatter]),
+      'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatterLocations[subjectMatter])
     }
 
     // List of intents what will reset the back button context
