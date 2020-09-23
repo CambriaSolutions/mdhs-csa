@@ -31,6 +31,9 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "For additional information like a specific fax number or email address for a county office, please type your address below."
+          ],
           "condition": ""
         }
       ],
