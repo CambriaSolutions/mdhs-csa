@@ -90,7 +90,7 @@ module.exports = async (req, res) => {
     await storeConversationFeedback(context, conversationId, wasHelpful, feedbackList, feedbackComment)
     // Create/Update metric entry
     const currDate = new Date()
-    const dateKey = format(currDate, 'MM-DD-YYYY')
+    const dateKey = format(currDate, 'MM-dd-YYYY')
     const metricRef = store.collection(`${context}/metrics`).doc(dateKey)
     const metricDoc = await metricRef.get()
     if (metricDoc.exists) {
