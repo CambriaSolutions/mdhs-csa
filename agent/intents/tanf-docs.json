@@ -48,7 +48,7 @@
           "payload": {
             "handleEndConversation": true,
             "suggestions": [
-              "Office Location"
+              "Office Locations"
             ]
           },
           "textToSpeech": "",
