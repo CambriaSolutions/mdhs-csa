@@ -8,6 +8,7 @@ exports.tanfRoot = async agent => {
     await agent.add(new Suggestion('Doc Upload'))
     await agent.add(new Suggestion('Office Locations'))
     await agent.add(new Suggestion('Eligibility Checker'))
+    await agent.add(new Suggestion('Change Reporting'))
 
     await agent.context.set({
       name: 'tanf-subject-matter',

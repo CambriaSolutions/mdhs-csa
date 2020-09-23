@@ -34,7 +34,7 @@ const exportingDialogflow = async (bucket) => {
 
 module.exports = async () => {
   try {
-    const dateKey = format(new Date(), 'MM-DD-YYYY')
+    const dateKey = format(new Date(), 'MM-dd-YYYY')
     const bucket = `gs://${projectId}.appspot.com/backups/${dateKey}`
 
     await Promise.all([

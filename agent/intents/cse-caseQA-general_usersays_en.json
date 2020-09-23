@@ -1,5 +1,18 @@
 [
   {
+    "id": "b964e2ae-1678-4e13-90b1-4e2308286e8a",
+    "data": [
+      {
+        "text": "Case Number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "5fe0b90f-76a2-48da-8ceb-043039a38dd7",
     "data": [
       {

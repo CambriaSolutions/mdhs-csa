@@ -1,6 +1,6 @@
 {
-  "id": "c0d8d014-0d3b-4c3d-b65a-5f4c7686eb9a",
-  "name": "snap-docs",
+  "id": "5229aa7a-44fb-4168-ac2b-9098689684c0",
+  "name": "snap-abusiveLanguage",
   "auto": true,
   "contexts": [
     "snap-subject-matter"
@@ -17,11 +17,11 @@
       ],
       "parameters": [
         {
-          "id": "a1ac038f-3ca2-4d57-8697-83a7e1247df1",
-          "name": "number",
+          "id": "59245d7b-2784-404c-801f-f286fd944040",
+          "name": "geo-state",
           "required": false,
-          "dataType": "@sys.number",
-          "value": "$number",
+          "dataType": "@sys.geo-state",
+          "value": "$geo-state",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -38,21 +38,8 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Some forms are available on the MDHS website located \u003ca target\u003d\"_blank\" href\u003d\"https://www.mdhs.ms.gov/\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for or if you would like to request copies of forms, or documents, please contact your local office. If you need to find the closest office near you, click the option below."
+            "I\u0027m sorry you feel that way. I\u0027m learning everyday and apologize that I cannot help you right now. If you need further assistance with your request please try to rephrase your question or call 800-948-3050."
           ],
-          "condition": ""
-        },
-        {
-          "type": "4",
-          "title": "",
-          "payload": {
-            "suggestions": [
-              "Office Locations"
-            ],
-            "handleEndConversation": true
-          },
-          "textToSpeech": "",
-          "lang": "en",
           "condition": ""
         }
       ],

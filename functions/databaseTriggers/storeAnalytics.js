@@ -78,7 +78,7 @@ const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) =
         const docRef = await store.collection(`${context}/queriesForLabeling`).add({ suggestions, userQuery, createdAt })
 
         const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
-        const dateKey = format(currentDate, 'MM-DD-YYYY')
+        const dateKey = format(currentDate, 'MM-dd-YYYY')
         console.log(`Date Key ${dateKey}`)
         await store.collection(`${context}/metrics`).doc(dateKey).update({
           noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
@@ -151,7 +151,7 @@ const storeMetrics = async (
   fallbackTriggeringQuery
 ) => {
   const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
-  const dateKey = format(currentDate, 'MM-DD-YYYY')
+  const dateKey = format(currentDate, 'MM-dd-YYYY')
 
   const metricsRef = store.collection(`${context}/metrics`).doc(dateKey)
   const metricsDoc = await metricsRef.get()
