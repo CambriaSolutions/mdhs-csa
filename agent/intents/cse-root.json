@@ -3,7 +3,7 @@
   "name": "cse-root",
   "auto": true,
   "contexts": [
-    "waiting-subjectMatter"
+    "cse-enableHome"
   ],
   "responses": [
     {
@@ -13,6 +13,34 @@
         {
           "name": "cse-subject-matter",
           "lifespan": 999
+        },
+        {
+          "name": "tanf-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "snap-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "tanf-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "snap-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "waiting-subjectMatter",
+          "lifespan": 0
         }
       ],
       "parameters": [],

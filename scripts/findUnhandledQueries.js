@@ -25,7 +25,7 @@ store
       const queryDoc = query.data()
       const queryText = queryDoc.queryResult.queryText
       const createdAt = queryDoc.createdAt.toDate()
-      const createdAtFormatted = format(createdAt, 'MM-dd-YYYY')
+      const createdAtFormatted = format(createdAt, 'MM-dd-yyyy')
       const intentDisplayName = queryDoc.queryResult.intent.displayName
 
       fs.writeSync(f, `${queryText}\n`)

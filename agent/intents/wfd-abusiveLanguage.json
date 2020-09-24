@@ -38,7 +38,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "I\u0027m sorry you feel that way. I\u0027m learning everyday and apologize that I cannot help you right now. If you need further assistance with your request please try to rephrase your question or call 601.359.4500."
+            "I\u0027m sorry you feel that way. I\u0027m learning everyday and apologize that I cannot help you right now. If you need further assistance with your request please try to rephrase your question or call \u003ca href\u003d\"tel:+16013594500\"\u003e1-601-359-4500\u003c/a\u003e."
           ],
           "condition": ""
         }
