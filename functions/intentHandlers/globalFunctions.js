@@ -282,7 +282,7 @@ exports.selectSubjectMatter = async agent => {
   })
 
   await agent.context.set({
-    name: 'wfd-enableHom',
+    name: 'wfd-enableHome',
     lifespan: 1,
   })
 
