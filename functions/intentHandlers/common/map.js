@@ -34,16 +34,20 @@ const determiningGeocode = async agent => {
   let userCity = ''
   let userZip = ''
 
-  if (agent.parameters.userAddress) {
-    userAddress = agent.parameters.userAddress.toLowerCase()
+  const addressParameter = agent.parameters.userAddress || agent.parameters.address
+  if (addressParameter) {
+    userAddress = addressParameter.toLowerCase()
   }
-  if (agent.parameters.userCity) {
-    userCity = agent.parameters.userCity.toLowerCase()
+
+  const cityParameter = agent.parameters.userCity || agent.parameters['geo-city']
+  if (cityParameter) {
+    userCity = cityParameter.toLowerCase()
   }
   // validate zip code before defining it in userZip
-  if (agent.parameters.userZip) {
-    if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
-      userZip = agent.parameters.userZip
+  const zipParamter = agent.parameters.userZip || agent.parameters['zip-code']
+  if (zipParamter) {
+    if (validator.isPostalCode(`${zipParamter}`, 'US')) {
+      userZip = zipParamter
     }
   }
   // build current location string
@@ -114,14 +118,7 @@ exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
       const mapInfo = { locations, currentGeocode, nearestLocations }
       const mapPayload = JSON.stringify(mapInfo)
       if (countyInformation) {
-        await agent.add(`
-        ${currentGeocode.county} County \
-        <ul>\
-          <li>Phone Number: ${countyInformation.phone}</li>\
-          <li>Email Address: ${countyInformation.email}</li>\
-          <li>Fax Number: ${countyInformation.fax}</li>\
-        </ul>
-        `)
+        await agent.add(`${currentGeocode.county.toUpperCase()} COUNTY \u003cbr\u003e - Phone Number: ${countyInformation.phone} \u003cbr\u003e - Email Address: ${countyInformation.email} \u003cbr\u003e - Fax Number: ${countyInformation.fax}`)
       }
       await agent.add(
         new Payload(

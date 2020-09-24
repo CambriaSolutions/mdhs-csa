@@ -4,14 +4,23 @@ const fetch = require('node-fetch')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
 const extractCounty = (geocode) => {
-  const countyName = geocode.address_components.find(addressComponent => {
+  const county = geocode.address_components.find(addressComponent => {
     if (addressComponent.types.includes('administrative_area_level_2')
       && addressComponent.types.includes('political')) {
-      return addressComponent.long_name
+      return addressComponent
     }
   })
 
-  return countyName
+  if (county) {
+    const countyName = county.long_name.
+      toLowerCase()
+      .replace('county', '')
+      .trim()
+
+    return countyName
+  } else {
+    return null
+  }
 }
 
 exports.getGeocode = async address => {
