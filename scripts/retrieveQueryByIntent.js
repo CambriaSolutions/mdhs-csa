@@ -43,7 +43,7 @@ const performQuery = (start, end, intent) => {
             }))
             : [],
           conversationId: getIdFromPath(tempData.session),
-          createdAt: format(tempData.createdAt.toDate(), 'MM-DD-YYYY'),
+          createdAt: format(tempData.createdAt.toDate(), 'MM-dd-yyyy'),
         })
         intentQueries.push(tempData.queryResult.queryText)
       })
