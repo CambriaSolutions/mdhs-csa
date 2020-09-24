@@ -118,7 +118,7 @@ exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
       const mapInfo = { locations, currentGeocode, nearestLocations }
       const mapPayload = JSON.stringify(mapInfo)
       if (countyInformation) {
-        await agent.add(`${currentGeocode.county.toUpperCase()} COUNTY \u003cbr\u003e - Phone Number: <a href="tel:+${countyInformation.phone.replace('.', '')}">${countyInformation.phone}</a> \u003cbr\u003e - Email Address: <a href="mailto:${countyInformation.email}">${countyInformation.email}</a> \u003cbr\u003e - Fax Number: ${countyInformation.fax}`)
+        await agent.add(`${currentGeocode.county.toUpperCase()} COUNTY \u003cbr\u003e - Phone Number: <a href="tel:+${countyInformation.phone.replaceAll('.', '')}">${countyInformation.phone}</a> \u003cbr\u003e - Email Address: <a href="mailto:${countyInformation.email}">${countyInformation.email}</a> \u003cbr\u003e - Fax Number: ${countyInformation.fax}`)
       }
       await agent.add(
         new Payload(
