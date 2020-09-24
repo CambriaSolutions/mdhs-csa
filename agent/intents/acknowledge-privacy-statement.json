@@ -14,6 +14,22 @@
           "name": "waiting-acknowledge-privacy-statement",
           "lifespan": 0,
           "parameters": {}
+        },
+        {
+          "name": "cse-enableHome",
+          "lifespan": 1
+        },
+        {
+          "name": "tanf-enableHome",
+          "lifespan": 1
+        },
+        {
+          "name": "snap-enableHome",
+          "lifespan": 1
+        },
+        {
+          "name": "wfd-enableHome",
+          "lifespan": 1
         }
       ],
       "parameters": [],

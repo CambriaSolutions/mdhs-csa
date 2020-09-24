@@ -48,7 +48,7 @@ const importDataset = async (subjectMatter) => {
     try {
       console.log('File beginning to write in GS bucket')
 
-      const date = format(new Date(), 'MM-dd-YYYY')
+      const date = format(new Date(), 'MM-dd-yyyy')
       const fileName = `${date}-${subjectMatter}-category-training.csv`
       const tempFilePath = path.join(os.tmpdir(), fileName)
       let f = fs.openSync(tempFilePath, 'w')
