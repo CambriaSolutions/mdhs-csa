@@ -120,13 +120,14 @@ module.exports = async (request, response) => {
       await home(agent, intentHandlers, resetHomeIntentList)
 
       console.timeLog('--- Fulfillment function', 'Adding back and home handlers finished ')
-      console.timeLog('--- Fulfillment function', 'Request handling started')
 
+      console.timeLog('--- Fulfillment function', 'Saving Request await reached')
       await savingRequest
+      console.timeLog('--- Fulfillment function', 'Saving Request finished')
 
-      console.timeEnd('--- Fulfillment function', 'Saving request finished, fulfillment function finished')
-
+      console.timeLog('--- Fulfillment function', 'Request handling started')
       await agent.handleRequest(new Map(Object.entries(intentHandlers)))
+      console.timeEnd('--- Fulfillment function', 'Request handling  finished, fulfillment function finished')
     }
   }
   catch (e) {
