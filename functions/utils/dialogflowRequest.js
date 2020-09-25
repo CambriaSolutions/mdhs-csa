@@ -9,7 +9,7 @@ const dialogflow = require('@google-cloud/dialogflow')
 const sessionClient = new dialogflow.SessionsClient()
 
 module.exports = async (req, reqType) => {
-  console.time(`-X- ${reqType} Request', 'Starting detectIntent`)
+  console.time(`-X- ${reqType} Request`, 'Starting detectIntent')
 
   if (!req.query || !req.query.query) {
     return 'The "query" parameter is required'
@@ -37,19 +37,21 @@ module.exports = async (req, reqType) => {
     queryInput,
   }
 
-  console.timeLog(`-X- ${reqType} Request', 'Starting detectIntent`)
+  console.timeLog(`-X- ${reqType} Request`, 'Starting detectIntent')
 
   const responses = await sessionClient.detectIntent(dfRequest)
+
+  console.log('webhookResponse' + JSON.stringify(responses[0].webhookStatus))
 
   if (responses[0].webhookStatus.code !== 200) {
     console.error(responses[0].webhookStatus.message)
   }
 
-  console.timeLog(`-X- ${reqType} Request', 'Finished detectIntent`)
+  console.timeLog(`-X- ${reqType} Request`, 'Finished detectIntent')
 
   responses[0].session = sessionPath
 
-  console.timeEnd(`-X- ${reqType} Request', 'Finished ${reqType}Request`)
+  console.timeEnd(`-X- ${reqType} Request`, 'Finished ${reqType}Request')
 
   return ({
     ...responses[0],
