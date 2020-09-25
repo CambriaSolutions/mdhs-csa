@@ -41,7 +41,7 @@ module.exports = async (req, reqType) => {
 
   const responses = await sessionClient.detectIntent(dfRequest)
 
-  console.log('webhookResponse' + JSON.stringify(responses[0].webhookStatus))
+  console.log('webhookResponse: ' + JSON.stringify(responses[0].webhookStatus))
 
   if (responses[0].webhookStatus.code !== 200) {
     console.error(responses[0].webhookStatus.message)
