@@ -15,7 +15,7 @@ const healthCheck = require('./scheduledTriggers/healthCheck')
 const exportBackup = require('./scheduledTriggers/exportBackup')
 
 const runtimeOpts = {
-  timeoutSeconds: 5000,
+  timeoutSeconds: 300,
   memory: '2GB',
 }
 
