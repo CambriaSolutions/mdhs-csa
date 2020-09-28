@@ -1,4 +1,5 @@
 require('dotenv').config()
+const rp = require('request-promise')
 
 var options = {
   method: 'GET',
@@ -6,8 +7,6 @@ var options = {
 }
 
 module.exports = async () => {
-  const rp = require('request-promise')
-
   try {
     await rp(options)
   } catch (e) {

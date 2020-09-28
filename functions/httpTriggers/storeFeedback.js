@@ -1,8 +1,14 @@
+const admin = require('firebase-admin')
+const format = require('date-fns/format')
+const sanitizeHtml = require('sanitize-html')
+
+// Connect to DB
+const store = admin.firestore()
+
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
 const storeConversationFeedback = async (
-  store,
   context,
   conversationId,
   wasHelpful,
@@ -52,11 +58,6 @@ const storeConversationFeedback = async (
 
 // Store feedback from conversations
 module.exports = async (req, res) => {
-  const admin = require('firebase-admin')
-  const store = admin.firestore()
-  const format = require('date-fns/format')
-  const sanitizeHtml = require('sanitize-html')
-
   const reqData = req.body
   if (!reqData) {
     res.status(500).send('The request body doesn\'t contain expected parameters')
@@ -86,7 +87,7 @@ module.exports = async (req, res) => {
     const conversationId = getIdFromPath(reqData.session)
 
     // Store feedback directly on the conversation
-    await storeConversationFeedback(store, context, conversationId, wasHelpful, feedbackList, feedbackComment)
+    await storeConversationFeedback(context, conversationId, wasHelpful, feedbackList, feedbackComment)
     // Create/Update metric entry
     const currDate = new Date()
     const dateKey = format(currDate, 'MM-dd-yyyy')

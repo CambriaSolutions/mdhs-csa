@@ -1,9 +1,7 @@
-// Date FNS imports
-const format = require('date-fns/format')
-const addHours = require('date-fns/addHours')
-const differenceInSeconds = require('date-fns/differenceInSeconds')
-const isSameDay = require('date-fns/isSameDay')
+const admin = require('firebase-admin')
 
+// Connect to DB
+const store = admin.firestore()
 // Subject Matter Default Settings
 const SUBJECT_MATTER_DEFAULT_PRIMARY_COLOR = '#6497AD'
 const SUBJECT_MATTER_DEFAULT_TIMEZONE = {
@@ -11,11 +9,17 @@ const SUBJECT_MATTER_DEFAULT_TIMEZONE = {
   offset: -7,
 }
 
+// Date FNS imports
+const format = require('date-fns/format')
+const addHours = require('date-fns/addHours')
+const differenceInSeconds = require('date-fns/differenceInSeconds')
+const isSameDay = require('date-fns/isSameDay')
+
 const fallbackIntents = ['Default Fallback Intent']
 
 // Inspect the query against suggestions in context to determine whether or
 // not the agent and ml models should be updated
-const inspectForMl = async (admin, store, query, intent, dfContext, context, timezoneOffset) => {
+const inspectForMl = async (query, intent, dfContext, context, timezoneOffset) => {
   const suggestions = dfContext.parameters.suggestions
   const userQuery = dfContext.parameters.originalQuery
 
@@ -97,7 +101,7 @@ const getDateWithSubjectMatterTimezone = timezoneOffset => {
   return new Date(currDate.getTime() + tzDifference * 60 * 1000)
 }
 
-const getSubjectMatterSettings = async (store, subjectMatterName) => {
+const getSubjectMatterSettings = async subjectMatterName => {
   const settingsRef = store.collection('settings').doc(subjectMatterName)
   const doc = await settingsRef.get()
 
@@ -115,7 +119,7 @@ const getSubjectMatterSettings = async (store, subjectMatterName) => {
 }
 
 // Aggregate & clean up request data
-const aggregateRequest = async (admin, store, context, reqData, conversationId, intent) => {
+const aggregateRequest = async (context, reqData, conversationId, intent) => {
   const aggregateData = {
     conversationId,
     createdAt: admin.firestore.Timestamp.now(),
@@ -133,8 +137,6 @@ const aggregateRequest = async (admin, store, context, reqData, conversationId, 
 // - Store intent from conversation & increase occurrences in metric
 // - Store support request submitted & increase occurrences
 const storeMetrics = async (
-  admin,
-  store,
   context,
   conversationId,
   currIntent,
@@ -381,7 +383,7 @@ const storeMetrics = async (
 }
 
 // Calculate metrics based on requests
-const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
+const calculateMetrics = async (reqData, subjectMatter) => {
   const currTimestamp = new Date()
 
   // const context = `projects/${projectName}`
@@ -396,7 +398,7 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
   }
 
   // Get subject matter settings
-  const settings = await getSubjectMatterSettings(store, subjectMatter)
+  const settings = await getSubjectMatterSettings(subjectMatter)
   const timezoneOffset = settings.timezone.offset
 
   // Check if the query has the should-inspect-for-ml parameter
@@ -405,8 +407,6 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
     for (const dfContext of reqData.queryResult.outputContexts) {
       if (getIdFromPath(dfContext.name) === 'should-inspect-for-ml') {
         inspections.push(inspectForMl(
-          admin,
-          store,
           reqData.queryResult.queryText.toLowerCase(),
           intent,
           dfContext,
@@ -461,7 +461,7 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
   }
 
   // Store request within aggregate conversation
-  await aggregateRequest(admin, store, context, reqData, conversationId, intent)
+  await aggregateRequest(context, reqData, conversationId, intent)
 
   // Store conversation metrics
   const conversationRef = store
@@ -552,8 +552,6 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
 
   // Keep record of intents & support requests usage
   await storeMetrics(
-    admin,
-    store,
     context,
     conversationId,
     intent,
@@ -572,15 +570,11 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
 module.exports = async (snapshot, context) => {
   console.log('Starting analytics trigger')
   try {
-    const admin = require('firebase-admin')
-    // Connect to DB
-    const store = admin.firestore()
-
     const subjectMatter = context.params.subjectMatter
     if (subjectMatter === undefined) {
       console.error('Subject matter was not found within trigger context.')
     } else {
-      await calculateMetrics(admin, store, snapshot.data(), subjectMatter)
+      await calculateMetrics(snapshot.data(), subjectMatter)
     }
   } catch (e) {
     console.error(e)
