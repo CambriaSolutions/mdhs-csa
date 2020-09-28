@@ -110,7 +110,9 @@ module.exports = async (request, response) => {
 
       // Check to see if we need to override the target intent
       // In case of Start Over and Go Back this may be needed during parameter entry.
-      if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
+      // Home and Start Over are essentially the same button, but which we
+      // receive is based the version of the front end plug in. That is why we check for both
+      if ((isActionRequested(request.body, 'Start Over') || isActionRequested(request.body, 'Home')) && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
