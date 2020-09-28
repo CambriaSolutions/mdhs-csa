@@ -3,7 +3,7 @@ const db = admin.firestore()
 
 const { WebhookClient } = require('dialogflow-fulfillment')
 const backIntent = require('../intentHandlers/back')
-const home = require('../intentHandlers/home')
+const globalRestart = require('../intentHandlers/globalRestart')
 const { handleEndConversation } = require('../intentHandlers/globalFunctions')
 const globalIntentHandlers = require('../intentHandlers/globalIntentHandlers')
 const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
@@ -101,7 +101,7 @@ module.exports = async (request, response) => {
         'cse-support-submit-issue',
       ]
 
-      const resetHomeIntentList = [
+      const resetStartOverIntentList = [
         'Default Welcome Intent',
         'restart-conversation',
         'global-restart',
@@ -109,17 +109,17 @@ module.exports = async (request, response) => {
       ]
 
       // Check to see if we need to override the target intent
-      // In case of Home and Go Back this may be needed during parameter entry.
-      if (isActionRequested(request.body, 'Home') && agent.context.get('waiting-global-restart') !== undefined) {
+      // In case of Start Over and Go Back this may be needed during parameter entry.
+      if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       }
 
       await backIntent(agent, intentHandlers, resetBackIntentList, 'go-back', request.body.queryResult.fulfillmentMessages)
-      await home(agent, intentHandlers, resetHomeIntentList)
+      await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
-      console.timeLog('--- Fulfillment function', 'Adding back and home handlers finished ')
+      console.timeLog('--- Fulfillment function', 'Adding back and start over handlers finished ')
 
       console.timeLog('--- Fulfillment function', 'Saving Request await reached')
       await savingRequest
