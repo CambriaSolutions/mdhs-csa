@@ -6,7 +6,7 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 const db = admin.firestore()
-const filterStartDate = new Date(2020, 8, 11, 0, 0, 0, 0)
+const filterStartDate = new Date(2020, 8, 18, 0, 0, 0, 0)
 
 const getMetrics = async (subjectMatter) => {
   const dbRef = await db.collection(`subjectMatters/${subjectMatter}/metrics`).get()
