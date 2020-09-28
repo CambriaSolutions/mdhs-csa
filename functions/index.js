@@ -1,6 +1,6 @@
 const admin = require('firebase-admin')
 const functions = require('firebase-functions')
-admin.initializeApp()
+admin.initializeApp(functions.config().firebase)
 
 const dialogflowFirebaseFulfillment = require('./httpTriggers/dialogflowFirebaseFulfillment')
 const eventRequest = require('./httpTriggers/eventRequest')
@@ -60,7 +60,6 @@ const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
 }
 
 Object.entries(httpTriggers).forEach(([triggerName, httpTrigger]) => {
-  console.log('Index function is running')
   exports[triggerName] = functions
     .runWith(runtimeOpts)
     .https
