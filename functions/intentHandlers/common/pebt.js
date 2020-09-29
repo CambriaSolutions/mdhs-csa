@@ -1,7 +1,7 @@
-const { handleEndConversation } = require('../globalFunctions')
-
 exports.pebtRoot = async agent => {
   try {
+    const { handleEndConversation } = require('../globalFunctions')
+
     await agent.add('Together the Mississippi Department of Human Services (MDHS) and Mississippi Department of Education \
     (MDE) will provide Pandemic Electronic Benefit Transfer (P-EBT) benefits to Supplemental Nutrition Assistance Program \
      (SNAP) and non-SNAP households for children who have temporarily lost access to free or reduced-price school meals due \

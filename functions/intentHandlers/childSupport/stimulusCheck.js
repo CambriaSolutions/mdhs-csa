@@ -1,8 +1,8 @@
-const { handleEndConversation } = require('../globalFunctions')
-const { Suggestion } = require('dialogflow-fulfillment')
-
 exports.stimulusCheck = async agent => {
   try {
+    const { handleEndConversation } = require('../globalFunctions')
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add('To learn more about the Economic Impact (Stimulus) Payments and collecting child support arrears through the Treasury Offset Program, <a href="https://www.mdhs.ms.gov/faqs-on-economic-impact-stimulus-payments-and-the-treasury-offset-program/" target="_blank">click here.</a>')
 
     await handleEndConversation(agent)

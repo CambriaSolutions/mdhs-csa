@@ -1,5 +1,3 @@
-const isNumber = require('lodash/isNumber')
-
 // Determine the ratio multiplier required to convert income from
 // any cadence to monthly. For example:
 // Income: 1,000
@@ -32,6 +30,8 @@ const getIncomeMultiplier = cadence => {
 // Determine what percentage of annual income is required to be
 // contributed toward child support payments
 const getSupportBracket = numChildren => {
+  const isNumber = require('lodash/isNumber')
+
   if (!isNumber(numChildren)) {
     throw new Error('numChildren must be a number for estimation')
   }
@@ -71,10 +71,10 @@ exports.validateIncomeAndDeductions = ({
 
   return (
     annualIncome -
-      taxDeductions -
-      ssDeductions -
-      retirementContributions -
-      otherChildSupport >
+    taxDeductions -
+    ssDeductions -
+    retirementContributions -
+    otherChildSupport >
     0
   )
 }

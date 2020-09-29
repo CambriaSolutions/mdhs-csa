@@ -1,9 +1,7 @@
-const { Suggestion } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('../globalFunctions')
-
-
 const startCSCConvo = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add(
       'Sure, I can help you with finding the type of service you desire. I can also help you with information, instructions and a link to the application to open a child support case.'
     )
@@ -39,8 +37,11 @@ const startCSCConvo = async agent => {
 exports.openCSCRoot = async agent => {
   await startCSCConvo(agent)
 }
+
 exports.openCSCSelectForm = async agent => {
   try {
+    const { handleEndConversation } = require('../globalFunctions')
+
     await agent.add(
       'Click <a href="http://www.mdhs.ms.gov/wp-content/uploads/2018/11/CSE_675-Application-11-2-18.pdf" target="_blank">here</a> to access the Child Support Service Application form. The form will open in a web browser and you can print it off from there.'
     )

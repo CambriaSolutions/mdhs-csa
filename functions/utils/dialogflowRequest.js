@@ -1,14 +1,14 @@
+const admin = require('firebase-admin')
+const projectId = admin.instanceId().app.options.projectId
+
+// Instantiate a Dialogflow client.
+const dialogflow = require('@google-cloud/dialogflow')
+
+// For deployment
+const sessionClient = new dialogflow.SessionsClient()
 module.exports = async (req, reqType) => {
   console.time(`-X- ${reqType} Request`, 'Starting detectIntent')
 
-  const admin = require('firebase-admin')
-  const projectId = admin.instanceId().app.options.projectId
-
-  // Instantiate a Dialogflow client.
-  const dialogflow = require('@google-cloud/dialogflow')
-
-  // For deployment
-  const sessionClient = new dialogflow.SessionsClient()
   const languageCode = 'en-US'
 
   if (!req.query || !req.query.query) {

@@ -1,4 +1,3 @@
-const { Suggestion } = require('dialogflow-fulfillment')
 const {
   supportReviewPayments,
   supportInquiries,
@@ -15,6 +14,8 @@ exports.caseQAIncreaseReview = async agent => {
 
 exports.caseQAGeneral = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add(
       'I cannot provide you case specific information at this time. You may submit a support request or call <a href="tel:+18778824916">877-882-4916</a>.'
     )
