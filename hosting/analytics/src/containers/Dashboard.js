@@ -159,11 +159,7 @@ class Dashboard extends Component {
               <Grid item xs={12} sm>
                 <Card
                   color={colorShades(this.props.mainColor, 50)}
-                  value={
-                    this.props.showEngagedUser
-                      ? this.props.conversationsDurationTotal
-                      : this.props.conversationsTotal
-                  }
+                  value={this.props.conversationsDurationTotal}
                   label='Total Users'
                   notes=''
                   icon='account_circle'
@@ -180,11 +176,7 @@ class Dashboard extends Component {
                 < Grid item xs={12} sm>
                   <Card
                     color={colorShades(this.props.mainColor, 30)}
-                    value={
-                      this.props.showEngagedUser
-                        ? this.props.avgEngagedDuration
-                        : this.props.avgDuration
-                    }
+                    value={this.props.avgEngagedDuration}
                     label='Avg. Conv Duration'
                     notes=''
                     icon='schedule'
@@ -199,11 +191,7 @@ class Dashboard extends Component {
                 <Grid item xs={12} sm>
                   <Card
                     color={colorShades(this.props.mainColor, 20)}
-                    value={this.props.subjectMatterName === 'general' ? 'N/A' :
-                      (this.props.showEngagedUser
-                        ? `${this.props.supportEngagedRequestsPercentage}%`
-                        : `${this.props.supportRequestsPercentage}%`)
-                    }
+                    value={this.props.subjectMatterName === 'general' ? 'N/A' : `${this.props.supportEngagedRequestsPercentage}%`}
                     label='Support Requests'
                     notes={this.props.subjectMatterName === 'general' ? '' : (
                       this.props.supportRequestTotal > 0
@@ -483,7 +471,6 @@ const mapStateToProps = state => {
 
   return {
     dailyMetrics: state.metrics.dailyMetrics,
-    showEngagedUser: state.filters.showEngagedUser,
     loadingConversations: state.metrics.loading,
     loadingIntents: state.metrics.loading,
     loadingIntentDetails: state.config.loadingIntentDetails,

@@ -59,7 +59,6 @@ const EngagedUserChart = props => {
 const mapStateToProps = state => {
 
   return {
-    showEngagedUser: state.filters.showEngagedUser,
     filterLabel: state.filters.filterLabel,
     filterStartDate: state.filters.dateFilters.start,
     filterEndDate: state.filters.dateFilters.end,
