@@ -1,8 +1,9 @@
-const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.employerRoot = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add('What can I help you with?')
     await agent.add(new Suggestion('EFT'))
     await agent.add(new Suggestion('iPayOnline'))
@@ -70,6 +71,8 @@ exports.employerChecksMoneyOrders = async agent => {
 
 exports.employerIWOHandoff = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add(
       'MDHS is required by law to submit Income Withholding Orders to employers to withhold child support and any arrears obligation.'
     )

@@ -1,8 +1,8 @@
-const { Card } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('../globalFunctions')
-
 exports.eppiFees = async agent => {
   try {
+    const { Card } = require('dialogflow-fulfillment')
+    const { handleEndConversation } = require('../globalFunctions')
+
     await agent.add(
       new Card({
         title: 'ATM Withdrawals "in-network"',

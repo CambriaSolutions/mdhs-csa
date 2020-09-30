@@ -1,6 +1,5 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
-const { supportInquiries } = require('./support.js')
 
 const taxOffsetGuideLink = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a>'
 /**
@@ -476,6 +475,8 @@ exports.enforcementReportError = async agent => {
 
 exports.enforcementSubmitInquiry = async agent => {
   try {
+    const { supportInquiries } = require('./support.js')
+
     await supportInquiries(agent)
   } catch (err) {
     console.error(err)

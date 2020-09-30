@@ -1,7 +1,4 @@
 const { Payload } = require('dialogflow-fulfillment')
-const validator = require('validator')
-const countyOfficeContactInformation = require('../common/countyOfficeContactInformation.json')
-const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.mapRoot = (subjectMatter) => async agent => {
@@ -29,6 +26,10 @@ exports.mapRoot = (subjectMatter) => async agent => {
 }
 
 const determiningGeocode = async agent => {
+  const { getGeocode } = require('./calculateGeo.js')
+
+  const validator = require('validator')
+
   let currentLocation = null
   let userAddress = ''
   let userCity = ''
@@ -70,6 +71,7 @@ const determiningGeocode = async agent => {
 // handler function that you would normally use
 exports.mapDeliverMap = (locations) => async agent => {
   try {
+    const { getNearestThreeLocations } = require('./calculateGeo.js')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
@@ -107,9 +109,12 @@ exports.mapDeliverMap = (locations) => async agent => {
 
 exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
   try {
+    const { getNearestThreeLocations } = require('./calculateGeo.js')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
+      const countyOfficeContactInformation = require('../common/countyOfficeContactInformation.json')
+
       const countyInformation = countyOfficeContactInformation[currentGeocode.county]
       const nearestLocations = await getNearestThreeLocations(
         currentGeocode,

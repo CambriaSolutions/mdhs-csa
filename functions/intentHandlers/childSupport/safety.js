@@ -1,8 +1,8 @@
-const { Suggestion } = require('dialogflow-fulfillment')
-const { handleEndConversation } = require('../globalFunctions')
-
 exports.safety = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+    const { handleEndConversation } = require('../globalFunctions')
+
     await agent.add(
       'MDHS takes safety of families very seriously and can modify some processes to help with safety concerns. Reporting your safety concerns is not a criminal allegation against any party in a case, nor a request for MDHS to avoid pursuing services. Instead, this information is used by MDHS to better manage your case and protect your information. MDHS treats this information as confidential, and will not reveal it to any other party, including another parent.'
     )

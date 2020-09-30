@@ -1,6 +1,4 @@
-const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
-const { mapRoot } = require('../common/map.js')
 
 exports.apptsYesContacted = async agent => {
   try {
@@ -23,6 +21,8 @@ exports.apptsYesContacted = async agent => {
 
 exports.apptsOfficeLocationsHandoff = async agent => {
   try {
+    const { mapRoot } = require('../common/map.js')
+
     const wantsLocation = agent.parameters.wantsLocation
     if (wantsLocation === 'yes') {
       await mapRoot('cse')(agent)

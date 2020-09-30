@@ -5,7 +5,6 @@ const {
   formatCurrency,
   disableInput,
 } = require('../globalFunctions')
-const { supportType } = require('./support.js')
 
 exports.iwoConfirmEstimate = async agent => {
   try {
@@ -148,6 +147,8 @@ exports.iwoPaymentsHandoff = async agent => {
 
 exports.iwoQAArrearsBalance = async agent => {
   try {
+    const { supportType } = require('./support.js')
+
     await supportType(agent, 'request payment history or record')
   } catch (err) {
     console.error(err)

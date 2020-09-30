@@ -1,15 +1,15 @@
 const admin = require('firebase-admin')
 const projectId = admin.instanceId().app.options.projectId
-const languageCode = 'en-US'
 
 // Instantiate a Dialogflow client.
 const dialogflow = require('@google-cloud/dialogflow')
 
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
-
 module.exports = async (req, reqType) => {
   console.time(`-X- ${reqType} Request`, 'Starting detectIntent')
+
+  const languageCode = 'en-US'
 
   if (!req.query || !req.query.query) {
     return 'The "query" parameter is required'

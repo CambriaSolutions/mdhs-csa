@@ -1,6 +1,7 @@
-const admin = require('firebase-admin')
+require('dotenv').config()
 const functions = require('firebase-functions')
-admin.initializeApp(functions.config().firebase)
+const admin = require('firebase-admin')
+admin.initializeApp()
 
 const dialogflowFirebaseFulfillment = require('./httpTriggers/dialogflowFirebaseFulfillment')
 const eventRequest = require('./httpTriggers/eventRequest')
