@@ -1,16 +1,5 @@
 const { mapRoot } = require('./common/map.js')
 
-// Employer intents
-const {
-  employerRoot,
-  employerEFT,
-  employerIPayOnline,
-  employerGuide,
-  employerChecksMoneyOrders,
-  employerIWOHandoff,
-  employerBillsAndNotices
-} = require('./childSupport/employer.js')
-
 // Payment calculator intents
 const {
   pmtCalcRoot,
@@ -236,6 +225,17 @@ const {
 } = require('./childSupport/visitation.js')
 
 module.exports = {
+  'cse-account-balance': () => { },
+  'cse-accountInformation-root': () => { },
+  'cse-acknowledgement-after-retry': () => { },
+  'cse-appts-guidelines': () => { },
+  'cse-appts-no-contacted': () => { },
+  'cse-appts-root': () => { },
+  'cse-appts-schedule': () => { },
+  'cse-apptsQA-office-hours': () => { },
+  'cse-calc-root': () => { },
+  'cse-caseQA-compliance': () => { },
+
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
   'cse-contact-provide-phone-number': contactProvidePhoneNumber,
@@ -273,15 +273,6 @@ module.exports = {
   'cse-iwo-disposable-income': iwoDisposableIncome,
   'cse-iwo-payments-handoff': iwoPaymentsHandoff,
   'cse-iwoQA-arrears-balance': iwoQAArrearsBalance,
-
-  // Employer intents
-  'cse-employer-root': employerRoot,
-  'cse-employer-eft': employerEFT,
-  'cse-employer-iPayOnline': employerIPayOnline,
-  'cse-employer-guide': employerGuide,
-  'cse-employer-checksMoneyOrders': employerChecksMoneyOrders,
-  'cse-employer-iwo-handoff': employerIWOHandoff,
-  'cse-employer-billsAndNotices': employerBillsAndNotices,
 
   // Payment methods intents
   'cse-pmtMethods-checkOrMoneyOrder': pmtMethodsCheckOrMoneyOrder,
