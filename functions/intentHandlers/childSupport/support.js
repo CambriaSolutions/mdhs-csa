@@ -27,166 +27,12 @@ exports.supportRoot = async agent => {
   await startSupportConvo(agent)
 }
 
-exports.supportParentReceiving = async agent => {
-  try {
-    await agent.add(
-      'I can help parents receiving payments with the following requests. If you don\'t see what you need, select "More".'
-    )
-    await agent.add(new Suggestion('Request Contempt Action'))
-    await agent.add(
-      new Suggestion('Child Support Payment Increase or Decrease')
-    )
-    await agent.add(new Suggestion('Change of Personal Information'))
-    await agent.add(new Suggestion('Request Case Closure'))
-    await agent.add(new Suggestion('Emancipation'))
-    await agent.add(new Suggestion('Cooperation'))
-    await agent.add(new Suggestion('Safety'))
-    await agent.add(new Suggestion('Good Cause'))
-    await agent.add(new Suggestion('Verification'))
-    await agent.add(new Suggestion('More'))
-
-    await agent.context.set({
-      name: 'waiting-support-parent-receiving-more',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentPaying = async agent => {
-  try {
-    await agent.add(
-      'I can help parents making payments with the following requests. If you don\'t see what you need, select "More".'
-    )
-    await agent.add(new Suggestion('Change of Personal Information'))
-    await agent.add(new Suggestion('Change of Employment Status'))
-    await agent.add(
-      new Suggestion('Child Support Payment Increase or Decrease')
-    )
-    await agent.add(new Suggestion('Visitation'))
-    await agent.add(new Suggestion('Emancipation'))
-    await agent.add(new Suggestion('More'))
-
-    await agent.context.set({
-      name: 'waiting-support-employment-status',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-support-parent-paying-more',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportEmployer = async agent => {
-  try {
-    await agent.add('Click below to get started with a Lump Sum Notification.')
-    await agent.add(new Suggestion('Employer Report Lump Sum Notification'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportGoodCause = async agent => {
-  try {
-    const link = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a>'
-    await agent.add(
-      'If you were referred to child support by another program that requires cooperation with child support, you may be excused from cooperating with child support \
-      if one of the following circumstances applies to your family: \
-      <ul> \
-        <li>The other parent has caused physical or emotional harm to the child.</li> \
-        <li>The other parent has caused physical or emotional harm which affects your ability to care for the child(ren).</li> \
-        <li>There is a protective order against the other parent. </li> \
-        <li>The child(ren) were conceived of either rape or incest.</li> \
-        <li>Legal proceedings for the adoption of the child are pending before a court of competent jurisdiction.</li> \
-        <li>You are receiving assistance from a public or licensed private social service agency to help determine whether you should allow your child(ren) to be adopted.</li>\
-      </ul>'
-    )
-
-    await agent.add(`If one of these exemptions applies to your family, please submit a request below and a representative will reach out to you \
-      for more information, or you may call 1-877-882-4916. Please ${link} to learn what documentation is required for good cause exemptions.`)
-
-    await agent.add(new Suggestion('Submit Support Request'))
-
-    await handleEndConversation(agent)
-
-    // TODO!!! Still need to properly implement the support request feature and create a new ticket type for good cause
-    await agent.context.set({
-      name: 'waiting-support-submitSupportRequest-goodCause',
-      lifespan: 1
-    })
-
-    await agent.context.set({
-      name: 'waiting-support-parent-receiving-more',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingEmancipation = async agent => {
-  try {
-    await agent.add(
-      'Unless otherwise ordered by the court, child support generally continues in Mississippi until the child emancipates when a child: 1) reaches the age of 21; 2) marries; 3) joins and serves in the military on a full time basis; or 4) is convicted of a felony and is sentenced to incarceration of at least 2 years. A court may emancipate a child for other reasons allowable under law. Emancipation does not terminate the obligation to satisfy child support arrears that exist at the time of emancipation.'
-    )
-
-    await agent.add(
-      'Please <a href="https://www.acf.hhs.gov/css/irg-state-map" target="_blank">click here</a> for emancipation information from other states.'
-    )
-
-    await agent.add(new Suggestion('Submit Feedback'))
-    await agent.add(new Suggestion('Request Case Closure'))
-
-    await agent.context.set({
-      name: 'waiting-feedback-root',
-      lifespan: 2,
-    })
-    await agent.context.set({
-      name: 'waiting-support-parent-receiving-more',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportParentReceivingMore = async agent => {
   await supportMoreOptions(agent, 'receiving')
 }
 
 exports.supportParentPayingMore = async agent => {
   await supportMoreOptions(agent, 'paying')
-}
-
-exports.supportNoOptionsSelected = async agent => {
-  try {
-    await agent.add(
-      'Would you like to submit an inquiry or go back to support options?'
-    )
-    await agent.add(new Suggestion('Inquiry'))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportEmploymentStatus = async agent => {
-  try {
-    await agent.add('Which of the following applies to you?')
-    await agent.add(new Suggestion('Full Time to Part Time'))
-    await agent.add(new Suggestion('Part Time to Full Time'))
-    await agent.add(new Suggestion('Loss of Employer'))
-    await agent.add(new Suggestion('Change or Add Employer'))
-    await agent.context.set({
-      name: 'waiting-support-handle-employment-status',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
 }
 
 exports.supportHandleEmploymentStatus = async agent => {
@@ -338,7 +184,7 @@ const formatRequest = (supportType) => {
   }
 
   return formattedRequest
-} 
+}
 
 /**
  * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
@@ -704,36 +550,10 @@ exports.supportNoEmail = async agent => {
   }
 }
 
-exports.supportRetryPhoneNumber = async agent => {
-  try {
-    await agent.add(
-      '**Starting with area code**, what is your **phone number**?'
-    )
-    await agent.context.set({
-      name: 'waiting-support-handle-phone-retry',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportHandlePhoneRetry = async agent => {
   const isLumpSum = await checkForLumpSum(agent)
   try {
     await handleContactCollection(agent, 'phone', isLumpSum)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportRetryEmail = async agent => {
-  try {
-    await agent.add('What is your **email address**?')
-    await agent.context.set({
-      name: 'waiting-support-handle-email-retry',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -935,30 +755,6 @@ exports.supportSumbitIssue = async agent => {
   }
 }
 
-exports.supportCancel = async agent => {
-  try {
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentPayingEmploymentInfo = async agent => {
-  try {
-    await agent.add(
-      'Would you like to change or edit information about your employment status?'
-    )
-    await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion('No'))
-    await agent.context.set({
-      name: 'waiting-support-edit-provider-employment',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 exports.supportEditProviderEmployment = async agent => {
   try {
     const yesNo = agent.parameters['yes-no']
@@ -980,106 +776,6 @@ exports.supportReportProviderEmployment = async agent => {
     } else {
       await handleEndConversation(agent)
     }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingEmploymentInfo = async agent => {
-  try {
-    await agent.add(
-      'Would you like to report information about the parent who provides support?'
-    )
-    await agent.add(new Suggestion('Yes'))
-    await agent.add(new Suggestion('No'))
-    await agent.context.set({
-      name: 'waiting-support-report-provider-employment',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentsGuideCSE = async agent => {
-  try {
-    await agent.add('The purpose of the child support program is to secure financial, medical and emotional support for children and families, thereby, contributing to a family’s ability to become self-sufficient and maintain self-sufficiency. The Mississippi Department of Human Services, Division of Child Support Enforcement exists to provide these services to the families of Mississippi.')
-
-    await agent.add('Please <a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a> to open the Parent\'s Guide to CSE for more information')
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperation = async agent => {
-  try {
-    const cooperationLink = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a>'
-
-    await agent.add(
-      'Parents are generally required to cooperate with child support to be eligible to receive or continue receiving certain other benefits such as TANF, food stamps (SNAP), Medicaid, child-care, housing, and other types of benefits. The application fee for child support services does not apply to TANF, food stamps (SNAP) or Medicaid cases.'
-    )
-
-    await agent.add(
-      'If cooperating with child support causes concern for your safety or the safety of your child(ren), please click an option below to learn how the child support program takes precautions to ensure your safety, or click on good cause to see if you may qualify to be exempt from cooperation requirements. You should report safety concerns to child support immediately at 1-877-882-4916 or by submitting a request through the options below.'
-    )
-
-    await agent.add(
-      `To learn more about cooperation and the benefits of cooperation, ${cooperationLink} or ask me your questions.`
-    )
-
-    await agent.add(new Suggestion('Submit Support Request'))
-    await agent.add(new Suggestion('Safety'))
-    await agent.add(new Suggestion('Verification'))
-    await agent.add(new Suggestion('Good Cause'))
-
-    await handleEndConversation(agent)
-
-    await agent.context.set({
-      name: 'waiting-support-submitSupportRequest-cooperation',
-      lifespan: 1
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperationQ1 = async agent => {
-  try {
-    await agent.add(
-      'Parents are generally required to cooperate with child support to be eligible to receive or continuing receiving certain other \
-      benefits such as TANF, food stamps (SNAP), Medicaid, child-care, housing, and other types of benefits. The application fee for \
-      child support services does not apply to TANF, food stamps (SNAP) or Medicaid cases. Cooperation is defined as the joint action \
-      of working toward a common goal. Parents and child support staff must work together to ensure children receive the financial support they deserve. '
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperationQ2 = async agent => {
-  try {
-    await agent.add(
-      'The benefits of cooperation are: \
-      <ul> \
-        <li>The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.</li> \
-        <li>Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights.</li> \
-        <li>Child support payments help provide financial security for the child.</li> \
-        <li>Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. </li> \
-      </ul>'
-    )
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-exports.supportParentReceivingCooperationQ3 = async agent => {
-  try {
-    const link = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf" target="_blank">click here</a>'
-    await agent.add(
-      `If you participate in some public assistance programs, such as TANF or SNAP (food stamps), you are generally required \
-      to cooperate with the child support program unless you have an approved good cause claim. To learn more about \
-      cooperation, good cause, and family violence protections, please ${link}.`
-    )
   } catch (err) {
     console.error(err)
   }
