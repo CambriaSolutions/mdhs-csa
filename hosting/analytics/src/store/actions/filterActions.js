@@ -216,7 +216,9 @@ export const updateSubjectMatter = (subjectMatter, subjectMattersSettings = []) 
     const currSubjectMatter = subjectMattersSettings.filter(p => p.name === subjectMatter)[0]
 
     if (currSubjectMatter) {
-      const dateFilters = getDateFilters(
+      const stateDateFilters = getState().filters.dateFilters
+
+      const dateFilters = stateDateFilters.start ? stateDateFilters : getDateFilters(
         getState().filters.filterLabel,
         currSubjectMatter.timezone.offset
       )
