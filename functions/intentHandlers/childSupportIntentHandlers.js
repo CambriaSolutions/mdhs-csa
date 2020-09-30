@@ -114,9 +114,6 @@ const {
   contactSupportHandoff,
 } = require('./childSupport/contactQA.js')
 
-// Terminate 
-const { terminateRoot } = require('./childSupport/terminate.js')
-
 // Payments QA
 const {
   pmtQAHaventReceived,
@@ -162,9 +159,6 @@ module.exports = {
 
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
-
-  // Terminate intents
-  'cse-terminate-root': terminateRoot,
 
   // Payment calculation intents
   'cse-pmt-calc-root': pmtCalcRoot,
