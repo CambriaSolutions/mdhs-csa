@@ -1,4 +1,6 @@
 require('dotenv').config()
+const Logger = require('../../utils/Logger')
+const log = new Logger('AutoML')
 
 // Mapping ML categories to intent suggestions
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
@@ -130,6 +132,6 @@ exports.autoMlFallback = async agent => {
       }
     }
   } catch (err) {
-    console.error(err)
+    log.fatal('Unable to generate suggestions', err)
   }
 }

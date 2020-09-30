@@ -29,6 +29,8 @@ const callbackRequired = [
 
 exports.sendToServiceDesk = async requestFieldValues => {
   const rp = require('request-promise')
+  const Logger = require('../../utils/Logger')
+  const log = new Logger('JIRA Service Desk')
 
   const {
     environment,
@@ -146,8 +148,8 @@ exports.sendToServiceDesk = async requestFieldValues => {
       return response
     })
     .catch(err => {
+      log.fatal('Unable to connect to Service Desk', err)
       console.log(requestObjectToDeliver)
-      console.error(err)
       return err
     })
 
