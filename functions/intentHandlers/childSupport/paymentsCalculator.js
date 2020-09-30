@@ -40,19 +40,6 @@ const startCalculationProcess = async agent => {
   }
 }
 
-// User moves on to questions needed for payment calculations
-exports.pmtCalcNumChildren = async agent => {
-  try {
-    await agent.add('First, how many children are part of this case?')
-    await agent.context.set({
-      name: 'waiting-pmt-calc-income-term',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 // User has provided the number of children
 exports.pmtCalcIncomeTerm = async agent => {
   try {
@@ -105,18 +92,6 @@ exports.pmtCalcIncomeTerm = async agent => {
         lifespan: 3,
       })
     }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User has replied that they do not know their income
-exports.pmtCalcUnknownIncome = async agent => {
-  try {
-    await agent.add(
-      'You can find your income statement on documents like a paystub or W-2 form. I can only estimate your child support payments if you know your income.'
-    )
-    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -214,50 +189,6 @@ exports.pmtCalcTaxDeductions = async agent => {
   }
 }
 
-// User doesn't know it's federal/state taxes
-exports.pmtCalcUnknownTaxDeductions = async agent => {
-  try {
-    await agent.add(
-      'Please provide an estimate of your federal and state taxes to continue with the estimation.'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-ss-deductions',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-deductions',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User can't provide or doesn't even know an estimate of their deductions/contributions
-exports.pmtCalcUnknownDeductions = async agent => {
-  try {
-    await agent.add(
-      'I can only estimate your child support payments if you know your income & deductions.'
-    )
-    await agent.add(
-      'For more information, please call <a href="tel:+18778824916">1-877-882-4916</a> or visit a local child support office.'
-    )
-    // Clear out the payment factors context
-    await agent.context.set({
-      name: 'payment-factors',
-      lifespan: 0,
-    })
-    // Keep option to recalculate payment open
-    await agent.context.set({
-      name: 'waiting-pmt-calc-restart',
-      lifespan: 2,
-    })
-    await handleEndConversation(agent)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 // User provided their tax deductions
 exports.pmtCalcSSDeductions = async agent => {
   try {
@@ -295,25 +226,6 @@ exports.pmtCalcSSDeductions = async agent => {
   }
 }
 
-// User doesn't know how much is substracted for their social security contributions
-exports.pmtCalcUnknownSSDeductions = async agent => {
-  try {
-    await agent.add(
-      'Please provide an estimate of your <strong>social security contributions</strong> to continue with the estimation.'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-retirement-contributions',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-deductions',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 const invalidDeductions = async agent => {
   await agent.add(
     'Your deductions exceed your gross income, please start over with updated values.'
@@ -334,7 +246,6 @@ const invalidDeductions = async agent => {
   })
   await handleEndConversation(agent)
 }
-
 // User provided their social security deductions
 exports.pmtCalcRetirementContributions = async agent => {
   try {
@@ -369,44 +280,6 @@ exports.pmtCalcRetirementContributions = async agent => {
     } else {
       await invalidDeductions(agent)
     }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User is required to contribute to a retirement account
-exports.pmtCalcRetirementContributionsAmount = async agent => {
-  try {
-    await agent.add(
-      'How much is subtracted from your gross income for this purpose?'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-child-support',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-retirement-contributions',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User doesn't know how much is substracted for their social security contributions
-exports.pmtCalcUnknownRetirementContributions = async agent => {
-  try {
-    await agent.add(
-      'Please provide an estimate of how much your employer requires you to contribute to a retirement account to continue with the estimation.'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-child-support',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-deductions',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
@@ -453,44 +326,6 @@ const existingChildSupport = async (agent, retirementContributions) => {
     } else {
       await invalidDeductions(agent)
     }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User is already paying for child support for other children
-exports.pmtCalcChildSupportAmount = async agent => {
-  try {
-    await agent.add(
-      'What are your <strong>monthly</strong> child support obligations?'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-final-estimation',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-other-child-support',
-      lifespan: 3,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// User doesn't know how much is substracted for their social security contributions
-exports.pmtCalcUnknownOtherChildSupport = async agent => {
-  try {
-    await agent.add(
-      'Please provide an estimate of your current child support obligations to continue with the estimation.'
-    )
-    await agent.context.set({
-      name: 'waiting-pmt-calc-final-estimation',
-      lifespan: 3,
-    })
-    await agent.context.set({
-      name: 'waiting-pmt-calc-unknown-deductions',
-      lifespan: 3,
-    })
   } catch (err) {
     console.error(err)
   }
