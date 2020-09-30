@@ -114,11 +114,6 @@ const {
 
 // Genetic Testing
 const {
-  safety
-} = require('./childSupport/safety.js')
-
-// Genetic Testing
-const {
   geneticTestingRequest,
   geneticTestingResults,
 } = require('./childSupport/geneticTesting.js')
@@ -155,50 +150,17 @@ const {
   pmtQANCPPaymentStatus
 } = require('./childSupport/paymentsQA.js')
 
-// Stimulus Check
-const { stimulusCheck } = require('./childSupport/stimulusCheck.js')
-
-// Childcare
+// TBD
 const { childCare } = require('./childSupport/childCare.js')
-
-// Email
 const { email } = require('./childSupport/email.js')
-
-// Fax
 const { fax } = require('./childSupport/fax.js')
-
-// Fee
 const { fee } = require('./childSupport/fee.js')
-
-// Gratitude not answering
-const { gratitude } = require('./childSupport/gratitude.js')
-
-// Legal
 const { legal } = require('./childSupport/legal.js')
-
-// Login
 const { login } = require('./childSupport/login.js')
-
-// Other
 const { other } = require('./childSupport/other.js')
-
-// Payment Timelines
 const { paymentTimelines } = require('./childSupport/paymentTimelines.js')
-
-// Phone number
 const { phoneNumber } = require('./childSupport/phoneNumber.js')
-
-// Refund
 const { refund } = require('./childSupport/refund.js')
-
-// Snap
-const { snap } = require('./childSupport/snap.js')
-
-// Tanf
-const { tanf } = require('./childSupport/tanf.js')
-
-// Verification
-const { verification } = require('./childSupport/verification.js')
 
 // Visitation
 const {
@@ -351,12 +313,8 @@ module.exports = {
   // Contact QA intents
   'cse-contact-qa-number': contactQANumber,
 
-  'cse-stimulusCheck-root': stimulusCheck,
   // Cancel intent
   'cse-support-cancel': supportCancel,
-
-  // Safety
-  'cse-safety': safety,
 
   // Childcare
   'cse-childCare-root': childCare,
@@ -369,9 +327,6 @@ module.exports = {
 
   // Fee
   'cse-fee-root': fee,
-
-  // Gratitude not answering
-  'cse-gratitude-root': gratitude,
 
   // Legal
   'cse-legal-root': legal,
@@ -390,15 +345,6 @@ module.exports = {
 
   // Refund
   'cse-refund-root': refund,
-
-  // Snap
-  'cse-snap-root': snap,
-
-  // Tanf
-  'cse-tanf-root': tanf,
-
-  // Verification
-  'cse-verification-root': verification,
 
   // Visitation
   'cse-visitation-root': visitationRoot,
