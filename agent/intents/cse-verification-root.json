@@ -1,40 +1,79 @@
 {
-  "id": "54a79550-68e1-47ee-a06d-2a4cbb64ad1d",
-  "name": "cse-verification-root",
-  "auto": true,
-  "contexts": [
-    "cse-subject-matter"
-  ],
-  "responses": [
-    {
-      "resetContexts": false,
-      "action": "",
-      "affectedContexts": [
+    "id": "54a79550-68e1-47ee-a06d-2a4cbb64ad1d",
+    "name": "cse-verification-root",
+    "auto": true,
+    "contexts": [
+        "cse-subject-matter"
+    ],
+    "responses": [
         {
-          "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+            "resetContexts": false,
+            "action": "",
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-submitSupportRequest-verification",
+                    "lifespan": 2,
+                    "parameters": {}
+                },
+                {
+                    "name": "waiting-feedback-root",
+                    "lifespan": 2,
+                    "parameters": {}
+                },
+                {
+                    "name": "cse-subject-matter",
+                    "lifespan": 99,
+                    "parameters": {}
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "If you need to verify that you are cooperating with child support, please <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/06/Form-617-Verification-of-Services.pdf\" target=\"_blank\">click here</a> to access the verification of services form and submit the form to mscsecallcenter@mdhs.ms.gov or you may submit a support request below for more assistance."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "If you need a statement of accounting to show your balance, please submit the “request payment history” option below."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "4",
+                    "title": "",
+                    "payload": {
+                        "suggestions": [
+                            "Submit Support Request",
+                            "Request Payment History",
+                            "Cooperation",
+                            "Submit Feedback"
+                        ],
+                        "handleEndConversation": false
+                    },
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "condition": ""
+                }
+            ],
+            "speech": []
         }
-      ],
-      "parameters": [],
-      "messages": [
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "condition": ""
-        }
-      ],
-      "speech": []
-    }
-  ],
-  "priority": 500000,
-  "webhookUsed": true,
-  "webhookForSlotFilling": false,
-  "fallbackIntent": false,
-  "events": [],
-  "conditionalResponses": [],
-  "condition": "",
-  "conditionalFollowupEvents": []
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
 }
