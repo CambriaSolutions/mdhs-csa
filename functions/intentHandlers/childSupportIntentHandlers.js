@@ -109,12 +109,6 @@ const {
   iwoQAArrearsBalance,
 } = require('./childSupport/incomeWithholding.js')
 
-// Genetic Testing
-const {
-  geneticTestingRequest,
-  geneticTestingResults,
-} = require('./childSupport/geneticTesting.js')
-
 // Support QA
 const {
   supportQACpPictureId,
@@ -282,9 +276,6 @@ module.exports = {
   // EppiCard intents
   'cse-eppi-fees': eppiFees,
 
-  // Genetic Testing intents
-  'cse-geneticTesting-request': geneticTestingRequest,
-  'cse-geneticTesting-results': geneticTestingResults,
 
   // Payments QA intents
   'cse-pmtQA-havent-received': pmtQAHaventReceived,
