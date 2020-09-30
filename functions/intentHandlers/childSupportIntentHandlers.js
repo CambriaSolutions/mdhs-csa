@@ -24,12 +24,6 @@ const {
   pmtMethodsMailAddress
 } = require('./childSupport/paymentMethods.js')
 
-// Open Child Support Case
-const {
-  openCSCSelectForm,
-  openCSCNoService,
-} = require('./childSupport/openChildSupportCase.js')
-
 // Close Child Support Case
 const { closeCSCQACloseCase } = require('./childSupport/closeChildSupportCase.js')
 
@@ -262,10 +256,6 @@ module.exports = {
   'cse-pmtMethods-cant-make-qualifying': pmtMethodsCantMakeQualifying,
   'cse-pmtMethods-cant-make-qualifying-help': pmtMethodsCantMakeQualifyingHelp,
   'cse-pmtMethods-cant-make-qualifying-no-help': pmtMethodsCantMakeQualifyingNoHelp,
-
-  // Open a Child Support Case
-  'cse-open-csc-select-form': openCSCSelectForm,
-  'cse-open-csc-no-service': openCSCNoService,
 
   // Open a Child Support Case
   'cse-close-cscQA-close-case': closeCSCQACloseCase,
