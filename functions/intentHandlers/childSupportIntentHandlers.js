@@ -109,14 +109,6 @@ const {
   iwoQAArrearsBalance,
 } = require('./childSupport/incomeWithholding.js')
 
-// Support QA
-const {
-  supportQACpPictureId,
-  supportQAWhoCanApply,
-  supportQAOtherState,
-  supportQANcpPrison,
-} = require('./childSupport/supportQA.js')
-
 // Emancipation QA
 const { emancipationAge } = require('./childSupport/emancipationQA.js')
 
@@ -285,12 +277,6 @@ module.exports = {
   'cse-pmtQA-employer-payment-status': pmtQAEmployerPaymentStatus,
   'cse-pmtQA-yes-employer-payment-status': pmtQAYesEmployerPaymentStatus,
   'cse-pmtQA-NCP-payment-status': pmtQANCPPaymentStatus,
-
-  // Support QA intents
-  'cse-support-qa-cp-pictureId': supportQACpPictureId,
-  'cse-support-qa-who-can-apply': supportQAWhoCanApply,
-  'cse-support-qa-other-state': supportQAOtherState,
-  'cse-support-qa-ncp-prison': supportQANcpPrison,
 
   // Emancipation QA intents
   'cse-emancipation-qa-age': emancipationAge,
