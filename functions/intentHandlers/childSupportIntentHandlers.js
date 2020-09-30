@@ -137,14 +137,6 @@ const { paymentTimelines } = require('./childSupport/paymentTimelines.js')
 const { phoneNumber } = require('./childSupport/phoneNumber.js')
 const { refund } = require('./childSupport/refund.js')
 
-// Visitation
-const {
-  visitationRoot,
-  visitationPetitionToCite,
-  visitationProSePacket,
-  visitationLegalServices
-} = require('./childSupport/visitation.js')
-
 module.exports = {
   'cse-account-balance': () => { },
   'cse-accountInformation-root': () => { },
@@ -299,12 +291,6 @@ module.exports = {
 
   // Refund
   'cse-refund-root': refund,
-
-  // Visitation
-  'cse-visitation-root': visitationRoot,
-  'cse-visitation-petitiontocite': visitationPetitionToCite,
-  'cse-visitation-prosepackets': visitationProSePacket,
-  'cse-visitation-legalservices': visitationLegalServices,
 
   // Map
   'cse-map-root': mapRoot('cse')
