@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  updateSubjectMatter,
-  updateEngagedUserToggle,
+  updateSubjectMatter
 } from '../store/actions/filterActions'
 import { toggleSettings } from '../store/actions/configActions'
 import styled from 'styled-components'
@@ -15,9 +14,6 @@ import Typography from '@material-ui/core/Typography'
 import Select from '@material-ui/core/Select'
 import IconButton from '@material-ui/core/IconButton'
 import MenuItem from '@material-ui/core/MenuItem'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 
 // Icons
 import InsertChartOutlined from '@material-ui/icons/InsertChartOutlined'
@@ -100,20 +96,6 @@ class Header extends Component {
             </FilterTitle>
           </Hidden>
           <DateFilter />
-          {this.props.subjectMatterName.toLowerCase() !== 'total' && <FormGroup row>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.props.showEngagedUser}
-                  onChange={event =>
-                    this.props.onEngagedUserToggle(!this.props.showEngagedUser)
-                  }
-                />
-              }
-              labelPlacement='start'
-              label='Engaged Users'
-            />
-          </FormGroup>}
           <IconButton
             color='inherit'
             onClick={() => this.props.onSettingsToggle(true)}
@@ -130,7 +112,6 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     filterLabel: state.filters.filterLabel,
-    showEngagedUser: state.filters.showEngagedUser,
     mainColor: state.filters.mainColor,
     subjectMattersSettings: state.config.subjectMattersSettings,
     subjectMatterName: getSubjectMatterFromContext(state.filters.context),
@@ -140,8 +121,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubjectMatterChange: (newSubjectMatter, subjectMattersSettings) => dispatch(updateSubjectMatter(newSubjectMatter, subjectMattersSettings)),
-    onEngagedUserToggle: showEngagedUser =>
-      dispatch(updateEngagedUserToggle(showEngagedUser)),
     onSettingsToggle: showSettings => dispatch(toggleSettings(showSettings)),
   }
 }
