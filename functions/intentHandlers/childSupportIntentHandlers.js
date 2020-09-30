@@ -30,7 +30,6 @@ const { closeCSCQACloseCase } = require('./childSupport/closeChildSupportCase.js
 // Case specific intents
 const {
   caseQAIncreaseReview,
-  caseQAGeneral,
   caseQAChangePersonalInfo,
   caseQAComplianceSupportRequest,
 } = require('./childSupport/caseQA.js')
@@ -321,7 +320,6 @@ module.exports = {
 
   // Case specific intents
   'cse-caseQA-increase-review': caseQAIncreaseReview,
-  'cse-caseQA-general': caseQAGeneral,
   'cse-caseQA-change-personal-info': caseQAChangePersonalInfo,
   'cse-caseQA-compliance-support-request': caseQAComplianceSupportRequest,
 
