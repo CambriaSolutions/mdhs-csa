@@ -1,32 +1,69 @@
 {
-  "id": "c7204ea3-bc22-498f-afd1-b1a9f5b8127a",
-  "name": "cse-support-goodCause",
-  "auto": true,
-  "contexts": [],
-  "responses": [
-    {
-      "resetContexts": false,
-      "action": "",
-      "affectedContexts": [],
-      "parameters": [],
-      "messages": [
+    "id": "c7204ea3-bc22-498f-afd1-b1a9f5b8127a",
+    "name": "cse-support-goodCause",
+    "auto": true,
+    "contexts": [],
+    "responses": [
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "condition": ""
+            "resetContexts": false,
+            "action": "",
+            "affectedContexts": [
+                {
+                    "name": "waiting-support-submitSupportRequest-goodCause",
+                    "lifespan": 1,
+                    "parameters": {}
+                },
+                {
+                    "name": "waiting-support-parent-receiving-more",
+                    "lifespan": 3,
+                    "parameters": {}
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "If you were referred to child support by another program that requires cooperation with child support, you may be excused from cooperating with child support       if one of the following circumstances applies to your family:       <ul>         <li>The other parent has caused physical or emotional harm to the child.</li>         <li>The other parent has caused physical or emotional harm which affects your ability to care for the child(ren).</li>         <li>There is a protective order against the other parent. </li>         <li>The child(ren) were conceived of either rape or incest.</li>         <li>Legal proceedings for the adoption of the child are pending before a court of competent jurisdiction.</li>         <li>You are receiving assistance from a public or licensed private social service agency to help determine whether you should allow your child(ren) to be adopted.</li>      </ul>"
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "If one of these exemptions applies to your family, please submit a request below and a representative will reach out to you       for more information, or you may call 1-877-882-4916. Please <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf\" target=\"_blank\">click here</a> to learn what documentation is required for good cause exemptions."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "4",
+                    "title": "",
+                    "payload": {
+                        "suggestions": [
+                            "Submit Support Request"
+                        ],
+                        "handleEndConversation": true
+                    },
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "condition": ""
+                }
+            ],
+            "speech": []
         }
-      ],
-      "speech": []
-    }
-  ],
-  "priority": 500000,
-  "webhookUsed": true,
-  "webhookForSlotFilling": false,
-  "fallbackIntent": false,
-  "events": [],
-  "conditionalResponses": [],
-  "condition": "",
-  "conditionalFollowupEvents": []
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
 }

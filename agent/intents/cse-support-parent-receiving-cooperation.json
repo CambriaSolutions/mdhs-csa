@@ -7,7 +7,13 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "waiting-support-submitSupportRequest-cooperation",
+          "lifespan": 1,
+          "parameters": {}
+        }
+      ],
       "parameters": [
         {
           "id": "f7bc55b8-c602-4bea-a0a9-32b44cbfecdd",
@@ -56,6 +62,45 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Parents are generally required to cooperate with child support to be eligible to receive or continue receiving certain other benefits such as TANF, food stamps (SNAP), Medicaid, child-care, housing, and other types of benefits. The application fee for child support services does not apply to TANF, food stamps (SNAP) or Medicaid cases."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If cooperating with child support causes concern for your safety or the safety of your child(ren), please click an option below to learn how the child support program takes precautions to ensure your safety, or click on good cause to see if you may qualify to be exempt from cooperation requirements. You should report safety concerns to child support immediately at 1-877-882-4916 or by submitting a request through the options below."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "To learn more about cooperation and the benefits of cooperation, <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf\" target=\"_blank\">click here</a> or ask me your questions."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Submit Support Request",
+              "Safety",
+              "Verification",
+              "Good Cause"
+            ],
+            "handleEndConversation": true
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
