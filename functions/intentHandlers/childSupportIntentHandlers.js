@@ -36,9 +36,7 @@ const {
 
 // Appointments intents
 const {
-  apptsYesContacted,
   apptsOfficeLocationsHandoff,
-  apptsQAMissedAppt,
 } = require('./childSupport/appointments.js')
 
 // Support intents
@@ -108,7 +106,6 @@ const {
   iwoInArrears,
   iwoConfirmEstimate,
   iwoDisposableIncome,
-  iwoPaymentsHandoff,
   iwoQAArrearsBalance,
 } = require('./childSupport/incomeWithholding.js')
 
@@ -208,7 +205,6 @@ module.exports = {
   'cse-iwo-is-supporting': iwoIsSupporting,
   'cse-iwo-in-arrears': iwoInArrears,
   'cse-iwo-disposable-income': iwoDisposableIncome,
-  'cse-iwo-payments-handoff': iwoPaymentsHandoff,
   'cse-iwoQA-arrears-balance': iwoQAArrearsBalance,
 
   // Payment methods intents
@@ -222,9 +218,7 @@ module.exports = {
   'cse-close-cscQA-close-case': closeCSCQACloseCase,
 
   // Appointment intents
-  'cse-appts-yes-contacted': apptsYesContacted,
   'cse-appts-office-locations-handoff': apptsOfficeLocationsHandoff,
-  'cse-apptsQA-missed-appt': apptsQAMissedAppt,
 
   // Support intents
   'cse-support-root': supportRoot,
