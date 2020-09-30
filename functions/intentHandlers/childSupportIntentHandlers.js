@@ -109,14 +109,9 @@ const {
   iwoQAArrearsBalance,
 } = require('./childSupport/incomeWithholding.js')
 
-// Emancipation QA
-const { emancipationAge } = require('./childSupport/emancipationQA.js')
-
 // Contact QA
 const {
-  contactQANumber,
   contactSupportHandoff,
-  contactProvidePhoneNumber,
 } = require('./childSupport/contactQA.js')
 
 // Terminate 
@@ -167,7 +162,6 @@ module.exports = {
 
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
-  'cse-contact-provide-phone-number': contactProvidePhoneNumber,
 
   // Terminate intents
   'cse-terminate-root': terminateRoot,
@@ -278,11 +272,6 @@ module.exports = {
   'cse-pmtQA-yes-employer-payment-status': pmtQAYesEmployerPaymentStatus,
   'cse-pmtQA-NCP-payment-status': pmtQANCPPaymentStatus,
 
-  // Emancipation QA intents
-  'cse-emancipation-qa-age': emancipationAge,
-
-  // Contact QA intents
-  'cse-contact-qa-number': contactQANumber,
 
   // Cancel intent
   'cse-support-cancel': supportCancel,
