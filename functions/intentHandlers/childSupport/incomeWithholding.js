@@ -101,7 +101,7 @@ exports.iwoDisposableIncome = async agent => {
       )
       await handleEndConversation(agent)
     } catch (err) {
-      console.log(err)
+      logger.error(err.message, err)
     }
   } else {
     await agent.add(

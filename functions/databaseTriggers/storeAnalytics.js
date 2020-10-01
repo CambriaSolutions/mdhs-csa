@@ -78,7 +78,7 @@ const inspectForMl = async (admin, store, query, intent, dfContext, context, tim
 
         const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
         const dateKey = format(currentDate, 'MM-dd-yyyy')
-        console.log(`Date Key ${dateKey}`)
+        logger.info(`Date Key ${dateKey}`)
         await store.collection(`${context}/metrics`).doc(dateKey).update({
           noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
         })
@@ -573,7 +573,7 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
 }
 
 module.exports = async (snapshot, context) => {
-  console.log('Starting analytics trigger')
+  logger.info('Starting analytics trigger')
   try {
     const admin = require('firebase-admin')
     // Connect to DB

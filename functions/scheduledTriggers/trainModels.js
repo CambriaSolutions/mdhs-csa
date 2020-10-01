@@ -1,5 +1,8 @@
 require('dotenv').config()
 
+const Logger = require('../utils/Logger')
+const logger = new Logger('Train Model')
+
 /**
  * Trigger training weekly
  **/
@@ -21,7 +24,7 @@ module.exports = async () => {
     .get()
 
   const queriesToTrain = snap.size
-  console.log(`Identified ${queriesToTrain} queries to train.`)
+  logger.info(`Identified ${queriesToTrain} queries to train.`)
 
   if (queriesToTrain > 0) {
     // Train the model
@@ -37,7 +40,7 @@ module.exports = async () => {
     })
     await Promise.all(docUpdatePromises)
   } else {
-    console.log('Training was skipped.')
+    logger.info('Training was skipped.')
   }
 }
 
@@ -71,8 +74,8 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
       model: modelData,
     })
 
-    console.log(`Training operation name: ${initialApiResponse.name}`)
-    console.log('Training started...')
+    logger.info(`Training operation name: ${initialApiResponse.name}`)
+    logger.info('Training started...')
 
     // Update training status in db
     await store
@@ -103,10 +106,10 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
     }
 
     // Model information needed to review details in the GCP console
-    console.log(`Model name: ${model.name}`)
-    console.log(`Model deployment state: ${deploymentState}`)
+    logger.info(`Model name: ${model.name}`)
+    logger.info(`Model deployment state: ${deploymentState}`)
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
 
     await store
       .collection('/subjectMatters/')

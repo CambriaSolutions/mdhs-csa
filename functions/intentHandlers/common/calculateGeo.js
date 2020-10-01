@@ -3,6 +3,9 @@ const URL = require('url').URL
 const fetch = require('node-fetch')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Calculate Geo')
+
 const extractCounty = (geocode) => {
   const county = geocode.address_components.find(addressComponent => {
     if (addressComponent.types.includes('administrative_area_level_2')
@@ -25,7 +28,7 @@ const extractCounty = (geocode) => {
 
 exports.getGeocode = async address => {
   if (!address) {
-    console.log('No address provided to fetch geocode.')
+    logger.info('No address provided to fetch geocode.')
     return
   }
 
@@ -77,7 +80,7 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
             distance,
           }
         } else {
-          console.log('No results returned from Distance Matrix calculation.')
+          logger.info('No results returned from Distance Matrix calculation.')
         }
       })
     )
@@ -87,6 +90,6 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
     const nearestThreeLocations = sortedResults.slice(0, 3)
     return nearestThreeLocations
   } else {
-    console.log('Unable to fetch nearest location from invalid coordinates.')
+    logger.info('Unable to fetch nearest location from invalid coordinates.')
   }
 }

@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('EPPI Card')
+
 exports.eppiFees = async agent => {
   try {
     const { Card } = require('dialogflow-fulfillment')
@@ -13,6 +16,6 @@ exports.eppiFees = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }

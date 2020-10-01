@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Payment Methods')
+
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 const { supportInquiries, supportReviewPayments } = require('./support.js')
@@ -27,7 +30,7 @@ exports.pmtMethodsCantMakeQualifying = async agent => {
       })
     }
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -43,7 +46,7 @@ exports.pmtMethodsCantMakeQualifyingNoHelp = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -56,7 +59,7 @@ exports.pmtMethodsCantMakeQualifyingHelp = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -76,7 +79,7 @@ exports.pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
       await agent.add(new Suggestion('Other Options'))
     }
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 

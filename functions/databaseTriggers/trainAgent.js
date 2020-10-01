@@ -1,5 +1,8 @@
 require('dotenv').config()
 
+const Logger = require('../utils/Logger')
+const logger = new Logger('Train Agent')
+
 /**
  * Trigger function on 'queriesForTraining' collection updates
  * to determine occurrence threshold for DF agent training
@@ -56,7 +59,7 @@ async function trainAgent(store, intentsClient, phrase, intentId, docId, intentN
       }
 
       await intentsClient.updateIntent(request)
-      console.log('Updated intent with new training phrase.')
+      logger.info('Updated intent with new training phrase.')
 
       // set agentTrained to true after we updated the intent
       // TODO - hardcoded cse
@@ -75,13 +78,13 @@ async function trainAgent(store, intentsClient, phrase, intentId, docId, intentN
           learnedPhrase: phrase,
         })
 
-      console.log(`${intentName} learned ${phrase} as a training phrase`)
+      logger.info(`${intentName} learned ${phrase} as a training phrase`)
 
     } catch (e) {
-      console.log('Unable to train intent: ' + e)
+      logger.fatal('Unable to train intent', e)
     }
   } catch (err) {
-    console.log('Unable to get intent: ' + err)
+    logger.fatal('Unable to get intent', err)
   }
 }
 
@@ -98,7 +101,7 @@ async function getIntent(intentsClient, intentId) {
     const response = responses[0]
     return response
   } catch (err) {
-    console.log(`Unable to retrieve intent [${intentId}] from Dialogflow: ` + err)
+    logger.error(`Unable to retrieve intent [${intentId}] from Dialogflow`, err)
     return err
   }
 }

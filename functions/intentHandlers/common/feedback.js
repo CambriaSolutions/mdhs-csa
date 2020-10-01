@@ -1,3 +1,5 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Feedback')
 const { Payload } = require('dialogflow-fulfillment')
 
 const {
@@ -21,7 +23,7 @@ exports.feedbackRoot = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -64,7 +66,7 @@ exports.feedbackNotHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -106,7 +108,7 @@ exports.feedbackHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -114,6 +116,6 @@ exports.feedbackComplete = async agent => {
   try {
     await agent.add('To start over just say hello!')
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }

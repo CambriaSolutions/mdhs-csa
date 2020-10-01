@@ -38,7 +38,6 @@ exports.setContext = async agent => {
   const preloadedContexts = await db.collection('preloadedContexts').doc(sessionId).get()
   if (preloadedContexts.exists) {
     const data = preloadedContexts.data()
-    //console.log(`Setting contexts for ${agent.session}`, data)
     data.contexts.forEach(context => {
       agent.context.set({
         name: context,
@@ -46,7 +45,7 @@ exports.setContext = async agent => {
       })
     })
   } else {
-    console.log(`Unable to fetch contexts for ${sessionId}`)
+    logger.info(`Unable to fetch contexts for ${sessionId}`)
   }
 
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'

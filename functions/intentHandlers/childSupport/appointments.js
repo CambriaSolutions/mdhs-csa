@@ -1,3 +1,5 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Appointments')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.apptsOfficeLocationsHandoff = async agent => {
@@ -11,6 +13,6 @@ exports.apptsOfficeLocationsHandoff = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    logger.error(err.message, err)
   }
 }

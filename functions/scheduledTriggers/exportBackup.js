@@ -18,7 +18,7 @@ const exportingFirestore = async (projectId, bucket) => {
   })
 
   const response = responses[0]
-  console.log(`Firestore Operation Name: ${response['name']}`)
+  logger.info(`Firestore Operation Name: ${response['name']}`)
 }
 
 const exportingDialogflow = async (projectId, bucket) => {
@@ -26,11 +26,11 @@ const exportingDialogflow = async (projectId, bucket) => {
   const dialogflowClient = new dialogflow.v2.AgentsClient()
 
   const dialogflowBucket = `${bucket}/dialogflow.zip`
-  console.log('Exporting to: ', dialogflowBucket)
+  logger.info('Exporting to: ', dialogflowBucket)
   const responses = await dialogflowClient.exportAgent({ parent: `projects/${projectId}`, 'agentUri': dialogflowBucket })
 
   const response = responses[0]
-  console.log(`Dialogflow Operation Name: ${response['name']}`)
+  logger.info(`Dialogflow Operation Name: ${response['name']}`)
 }
 
 module.exports = async () => {
@@ -48,7 +48,7 @@ module.exports = async () => {
       exportingDialogflow(projectId, bucket)
     ])
 
-    console.log(`Backups initiated for ${dateKey}`)
+    logger.info(`Backups initiated for ${dateKey}`)
   } catch (err) {
     logger.error(err.message, err)
   }

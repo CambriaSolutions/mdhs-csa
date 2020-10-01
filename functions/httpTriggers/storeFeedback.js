@@ -1,3 +1,5 @@
+const { logger } = require('firebase-functions')
+
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
@@ -64,7 +66,7 @@ module.exports = async (req, res) => {
     // Check that feedback data exists on the request
     res.status(500).send('Missing feedback parameters')
   } else {
-    console.log('reqData: ' + JSON.stringify(reqData))
+    logger.info('reqData: ' + JSON.stringify(reqData))
 
     // If one of the context's name contains 'subject-matter' then this is the context 
     // used to identify the subject matter. But name field has full format

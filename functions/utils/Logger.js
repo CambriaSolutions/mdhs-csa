@@ -1,5 +1,10 @@
 require('dotenv').config()
 
+const admin = require('firebase-admin')
+const projectId = admin.instanceId().app.options.projectId
+
+const raiseAlerts = (process.env.RAISE_ALERTS.toLowerCase() === 'true')
+
 const priority = {
   Critical: 'P1',
   High: 'P2',
@@ -9,26 +14,28 @@ const priority = {
 }
 
 const publishAlert = async (priority, source, message, exception) => {
-  const fetch = require('node-fetch')
-  const request = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: process.env.OPSGENIE_API_KEY,
-    },
-    body: JSON.stringify({
-      'message': message,
-      'description': `${exception ? exception.stack : 'An error has occurred'}`,
-      'priority': priority,
-      'alias': `${source}:${message}`.substring(0, 512).trim()
-    }),
-    json: true,
-  }
+  if (raiseAlerts) {
+    const fetch = require('node-fetch')
+    const request = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: process.env.OPSGENIE_API_KEY,
+      },
+      body: JSON.stringify({
+        'message': message,
+        'description': `${exception ? exception.stack : 'An error has occurred'}`,
+        'priority': priority,
+        'alias': `${projectId}::${source}:${message}`.substring(0, 512).trim()
+      }),
+      json: true,
+    }
 
-  const response = await fetch(process.env.OPSGENIE_URI, request)
-  if (response.status !== 202) {
-    console.error(response.status, response.statusText)
+    const response = await fetch(process.env.OPSGENIE_URI, request)
+    if (response.status !== 202) {
+      console.error(response.status, response.statusText)
+    }
   }
 }
 
