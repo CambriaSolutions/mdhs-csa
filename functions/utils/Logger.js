@@ -27,7 +27,8 @@ const publishAlert = async (priority, source, message, exception) => {
         'message': message,
         'description': `${exception ? exception.stack : 'An error has occurred'}`,
         'priority': priority,
-        'alias': `${projectId}::${source}:${message}`.substring(0, 512).trim()
+        'alias': `${projectId}::${source}:${message}`.substring(0, 512).trim(),
+        'source': projectId
       }),
       json: true,
     }
