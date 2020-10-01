@@ -12,6 +12,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmt-calc-final-estimation",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-pmt-calc-unknown-other-child-support",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmt-calc-child-support-amount",
           "lifespan": 0,
           "parameters": {}
@@ -47,6 +57,20 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "What are your <strong>monthly</strong> child support obligations?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

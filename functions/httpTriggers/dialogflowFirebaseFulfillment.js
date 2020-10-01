@@ -1,21 +1,3 @@
-const admin = require('firebase-admin')
-const db = admin.firestore()
-
-const { WebhookClient } = require('dialogflow-fulfillment')
-const backIntent = require('../intentHandlers/back')
-const globalRestart = require('../intentHandlers/globalRestart')
-const { handleEndConversation } = require('../intentHandlers/globalFunctions')
-const globalIntentHandlers = require('../intentHandlers/globalIntentHandlers')
-const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
-const childSupportIntentHandlers = require('../intentHandlers/childSupportIntentHandlers')
-const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
-const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
-const wfdIntentHandlers = require('../intentHandlers/wfdIntentHandlers')
-const { mapDeliverMap, mapDeliverMapAndCountyOffice } = require('../intentHandlers/common/map.js')
-const getSubjectMatter = require('../utils/getSubjectMatter.js')
-const { subjectMatterLocations } = require('../constants/constants.js')
-const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = require('../utils/fulfillmentMessages.js')
-
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
@@ -28,6 +10,9 @@ const isActionRequested = (body, action) => {
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
 const saveRequest = async (reqData, subjectMatter) => {
+  const admin = require('firebase-admin')
+  const db = admin.firestore()
+
   const intentId = getIdFromPath(reqData.queryResult.intent.name)
   const _reqData = {
     ...reqData,
@@ -49,8 +34,21 @@ module.exports = async (request, response) => {
       // Using a health check endpoint to keep the function warm
       response.status(200).send()
     } else {
-      console.time('--- Fulfillment function')
-      console.timeLog('--- Fulfillment function', 'Started')
+      // Doing all imports inside of function to hopefully minimize cold start issues
+      const { WebhookClient } = require('dialogflow-fulfillment')
+      const backIntent = require('../intentHandlers/back')
+      const globalRestart = require('../intentHandlers/globalRestart')
+      const { handleEndConversation } = require('../intentHandlers/globalFunctions')
+      const globalIntentHandlers = require('../intentHandlers/globalIntentHandlers')
+      const commonIntentHandlers = require('../intentHandlers/commonIntentHandlers')
+      const childSupportIntentHandlers = require('../intentHandlers/childSupportIntentHandlers')
+      const tanfIntentHandlers = require('../intentHandlers/tanfIntentHandlers')
+      const snapIntentHandlers = require('../intentHandlers/snapIntentHandlers')
+      const wfdIntentHandlers = require('../intentHandlers/wfdIntentHandlers')
+      const { mapDeliverMap, mapDeliverMapAndCountyOffice } = require('../intentHandlers/common/map.js')
+      const getSubjectMatter = require('../utils/getSubjectMatter.js')
+      const { subjectMatterLocations } = require('../constants/constants.js')
+      const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = require('../utils/fulfillmentMessages.js')
 
       if (request.body.queryResult.fulfillmentMessages) {
         // If request contains a custom payload, it is necessary that each object in the fulfillmentMessages array
@@ -64,8 +62,6 @@ module.exports = async (request, response) => {
       const agent = new WebhookClient({ request, response })
 
       const subjectMatter = getSubjectMatter(agent)
-
-      console.timeLog('--- Fulfillment function', 'Saving request started')
 
       const savingRequest = saveRequest(request.body, subjectMatter)
 
@@ -121,19 +117,13 @@ module.exports = async (request, response) => {
       await backIntent(agent, intentHandlers, resetBackIntentList, 'go-back', request.body.queryResult.fulfillmentMessages)
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
-      console.timeLog('--- Fulfillment function', 'Adding back and start over handlers finished ')
-
-      console.timeLog('--- Fulfillment function', 'Saving Request await reached')
       await savingRequest
-      console.timeLog('--- Fulfillment function', 'Saving Request finished')
 
-      console.timeLog('--- Fulfillment function', 'Request handling started')
       await agent.handleRequest(new Map(Object.entries(intentHandlers)))
-      console.timeEnd('--- Fulfillment function', 'Request handling  finished, fulfillment function finished')
     }
   }
   catch (e) {
-    response.status(500).send(e.message)
     console.error(e.message)
+    response.status(500).send(e.message)
   }
 }

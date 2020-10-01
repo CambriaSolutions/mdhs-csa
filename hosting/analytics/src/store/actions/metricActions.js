@@ -420,23 +420,6 @@ export const fetchMetricsTotal = (dateRange) => {
 
       dispatch(fetchMetricsSuccess(aggregatedMetrics))
 
-      // BA 07/22/2020 #378 - Per Nibeer's request, we are temporarily disabling the live updates functionality
-      // const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-      // const isToday = today.startsWith(dateRange.start.slice(0, 10))
-      // // Only subscribe to real time updates and its the same day view
-      // if (useRealtimeUpdates && isToday) {
-      //   const dateWithSubjectMatterTimezone = getUTCDate(new Date(), timezoneOffset)
-      //   const dateKey = format(dateWithSubjectMatterTimezone, 'MM-dd-yyyy')
-
-      //   // Load data from today and continue listening for changes
-      //   const unsubscribeMetrics = metricsRef.doc(dateKey).onSnapshot(doc => {
-      //     const metric = doc.data()
-      //     if (metric) dispatch(fetchMetricsSuccess([metric]))
-      //   })
-
-      //   dispatch(storeMetricsSubscription(unsubscribeMetrics))
-      // }
-
     } catch (err) {
       dispatch(fetchMetricsFail(err))
     }

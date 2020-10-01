@@ -1,5 +1,4 @@
 const { Payload } = require('dialogflow-fulfillment')
-const { Suggestion } = require('dialogflow-fulfillment')
 
 const {
   disableInput,
@@ -7,6 +6,8 @@ const {
 
 exports.feedbackRoot = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+
     await agent.add('Was Gen helpful?')
     await agent.add(new Suggestion('Yes'))
     await agent.add(new Suggestion('No'))

@@ -1,5 +1,3 @@
-const rp = require('request-promise')
-
 const serviceDeskFields = {
   environment: 'customfield_10109',
   division: 'customfield_10140',
@@ -30,6 +28,8 @@ const callbackRequired = [
 ]
 
 exports.sendToServiceDesk = async requestFieldValues => {
+  const rp = require('request-promise')
+
   const {
     environment,
     division,
@@ -138,7 +138,7 @@ exports.sendToServiceDesk = async requestFieldValues => {
     },
     json: true,
   }
-  
+
   console.log('Sending Service Request', JSON.stringify(options))
 
   const serviceRequest = rp(options)

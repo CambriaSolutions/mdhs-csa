@@ -1,7 +1,8 @@
-const { handleEndConversation } = require('../globalFunctions')
 
 exports.docUpload = async agent => {
   try {
+    const { handleEndConversation } = require('../globalFunctions')
+
     const link = '<a href="https://ea-upload.mdhs.ms.gov/" target="_blank">click here</a>'
 
     await agent.add('You have the option to upload documentation for your SNAP and TANF cases.')

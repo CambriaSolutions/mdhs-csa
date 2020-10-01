@@ -1,19 +1,10 @@
-const admin = require('firebase-admin')
-const get = require('lodash/get')
-const camelCase = require('camelcase')
-
-// // Add the service account key and uncomment below for local testing
-// // to grant read access to database
-// const serviceAccount = require('./dev-beta-service-key.json')
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: 'https://mdhs-csa-dev-beta.firebaseio.com',
-// })
-
-let db = admin.firestore()
-
 // Retrieve suggestion text to display to users depending on the categetory/intent mapping
 const retrieveIntentData = async category => {
+  const admin = require('firebase-admin')
+  const get = require('lodash/get')
+  const camelCase = require('camelcase')
+  const db = admin.firestore()
+
   // Format the category returned from ml models to match our db naming convention
   const formattedCategory = camelCase(category)
 
