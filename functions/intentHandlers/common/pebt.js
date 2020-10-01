@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('PEBT')
+
 exports.pebtRoot = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')
@@ -9,6 +12,6 @@ exports.pebtRoot = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

@@ -1,4 +1,6 @@
 require('dotenv').config()
+const Logger = require('../utils/Logger')
+const logger = new Logger('Import Dataset')
 
 /***
  * Retrieve new query and category pairs if occurrences >10
@@ -76,7 +78,7 @@ const importDataset = async (subjectMatter) => {
 
       // TODO better way to check for fail/success here
       if (!file) {
-        console.error('Error upload file to GS bucket. requestResponse: ' + JSON.stringify(requestResponse))
+        logger.error('Error upload file to GS bucket. requestResponse: ' + JSON.stringify(requestResponse))
       } else {
         console.log('File uploaded successfully. phraseCategory[]: ' + JSON.stringify(phraseCategory))
 
@@ -84,7 +86,7 @@ const importDataset = async (subjectMatter) => {
         await updateCategoryModel(admin, store, projectId, fileName, phraseCategory, subjectMatter, autoMlSettings)
       }
     } catch (err) {
-      console.error(err)
+      logger.error(err.message, err)
     }
   } else {
     console.log('No new data to import.')
@@ -168,7 +170,7 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
       )
     }
   } catch (err) {
-    console.error('updateCategoryModel failed: ' + err)
+    logger.error('updateCategoryModel failed', err)
 
     // Save import status in db
     await store

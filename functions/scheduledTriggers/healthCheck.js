@@ -1,5 +1,8 @@
 require('dotenv').config()
 
+const Logger = require('../utils/Logger')
+const logger = new Logger('Health Check')
+
 var options = {
   method: 'GET',
   url: process.env.HEALTH_CHECK_URL,
@@ -10,7 +13,7 @@ module.exports = async () => {
 
   try {
     await rp(options)
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    logger.fatal(err.message, err)
   }
 }

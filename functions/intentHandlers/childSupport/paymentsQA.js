@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Payments QA')
+
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 const {
@@ -16,7 +19,7 @@ exports.pmtQAHaventReceived = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -33,7 +36,7 @@ exports.pmtQAPaymentReduction = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 

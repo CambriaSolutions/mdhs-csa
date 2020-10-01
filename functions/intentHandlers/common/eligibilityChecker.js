@@ -1,4 +1,7 @@
 
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Eligibility Checker')
+
 exports.eligibilityChecker = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')
@@ -12,6 +15,6 @@ exports.eligibilityChecker = async agent => {
     await agent.add(`You may ${link} to start the pre-assessment to check the eligibility.`)
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

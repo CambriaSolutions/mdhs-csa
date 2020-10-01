@@ -1,4 +1,6 @@
 require('dotenv').config()
+const Logger = require('../utils/Logger')
+const logger = new Logger('Export Backup')
 
 const exportingFirestore = async (projectId, bucket) => {
   const firestore = require('@google-cloud/firestore')
@@ -47,7 +49,7 @@ module.exports = async () => {
     ])
 
     console.log(`Backups initiated for ${dateKey}`)
-  } catch (e) {
-    console.error(e.message, e.stack)
+  } catch (err) {
+    logger.error(err.message, err)
   }
 }

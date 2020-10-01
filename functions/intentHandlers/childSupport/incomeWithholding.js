@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Income Witholding')
+
 const { Suggestion } = require('dialogflow-fulfillment')
 const {
   calculatePercentage,
@@ -19,7 +22,7 @@ exports.iwoConfirmEstimate = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -40,7 +43,7 @@ exports.iwoIsSupporting = async agent => {
       lifespan: 100,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -77,7 +80,7 @@ exports.iwoInArrears = async agent => {
       parameters: iwoFactorsParams,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -113,6 +116,6 @@ exports.iwoQAArrearsBalance = async agent => {
 
     await supportType(agent, 'request payment history or record')
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

@@ -6,6 +6,9 @@ const { map } = require('lodash')
 const admin = require('firebase-admin')
 const db = admin.firestore()
 
+const Logger = require('../utils/Logger')
+const logger = new Logger('Global Functions')
+
 const getSessionIdFromPath = path => /[^/]*$/.exec(path)[0]
 
 exports.handleEndConversation = async agent => {
@@ -162,7 +165,7 @@ exports.disableInput = async agent => {
       )
     )
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -174,7 +177,7 @@ exports.caseyHandoff = async agent => {
     )
     await this.handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -197,7 +200,7 @@ exports.defaultFallback = async agent => {
 
     await agent.add(message)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -205,7 +208,7 @@ exports.restartConversation = async agent => {
   try {
     await this.startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -213,7 +216,7 @@ exports.globalRestart = async agent => {
   try {
     await this.startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -243,7 +246,7 @@ exports.welcome = async agent => {
       lifespan: 1,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -295,7 +298,7 @@ exports.acknowledgePrivacyStatement = async agent => {
     await this.selectSubjectMatter(agent)
     // await this.startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -306,6 +309,6 @@ exports.startRootConversation = async agent => {
     await this.selectSubjectMatter(agent)
     // await this.startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

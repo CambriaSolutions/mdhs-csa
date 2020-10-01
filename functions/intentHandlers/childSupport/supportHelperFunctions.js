@@ -1,3 +1,6 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Support Helper Functions')
+
 const validator = require('validator')
 const { Suggestion } = require('dialogflow-fulfillment')
 
@@ -32,7 +35,7 @@ exports.startSupportConvo = async agent => {
       lifespan: 0,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -119,7 +122,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
         parameters: ticketInfoParams,
       })
     } catch (err) {
-      console.error(err)
+      logger.error(err.message, err)
     }
   } else {
     try {
@@ -133,7 +136,7 @@ exports.handleCaseNumber = async (descriptionText, agent, caseNumber) => {
         parameters: ticketInfoParams,
       })
     } catch (err) {
-      console.error(err)
+      logger.error(err.message, err)
     }
   }
 }
@@ -169,7 +172,7 @@ exports.supportMoreOptions = async (agent, option) => {
       lifespan: 3,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -201,7 +204,7 @@ const requestCaseNumber = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -215,7 +218,7 @@ const requestCompany = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 
@@ -249,7 +252,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
             parameters: ticketInfoParams,
           })
         } catch (err) {
-          console.error(err)
+          logger.error(err.message, err)
         }
       } else {
         // Its a lump sum reporting, so we collect the company name
@@ -260,7 +263,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
             parameters: ticketInfoParams,
           })
         } catch (err) {
-          console.error(err)
+          logger.error(err.message, err)
         }
       }
     } else {
@@ -274,7 +277,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           lifespan: 3,
         })
       } catch (err) {
-        console.error(err)
+        logger.error(err.message, err)
       }
     }
   } else if (type === 'email') {
@@ -296,7 +299,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
             parameters: ticketInfoParams,
           })
         } catch (err) {
-          console.error(err)
+          logger.error(err.message, err)
         }
       } else {
         // Its a lump sum reporting, so we collect the company name
@@ -307,7 +310,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
             parameters: ticketInfoParams,
           })
         } catch (err) {
-          console.error(err)
+          logger.error(err.message, err)
         }
       }
     } else {
@@ -321,7 +324,7 @@ exports.handleContactCollection = async (agent, type, isLumpSum) => {
           lifespan: 3,
         })
       } catch (err) {
-        console.error(err)
+        logger.error(err.message, err)
       }
     }
   }

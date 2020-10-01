@@ -1,3 +1,5 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('SNAP Root')
 const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.snapRoot = async agent => {
@@ -16,6 +18,6 @@ exports.snapRoot = async agent => {
       lifespan: 999,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

@@ -1,3 +1,5 @@
+const Logger = require('../../utils/Logger')
+const logger = new Logger('TANF Root')
 const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.tanfRoot = async agent => {
@@ -15,6 +17,6 @@ exports.tanfRoot = async agent => {
       lifespan: 999,
     })
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }

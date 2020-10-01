@@ -14,6 +14,9 @@ const importDataset = require('./scheduledTriggers/importDataset')
 const trainModels = require('./scheduledTriggers/trainModels')
 const healthCheck = require('./scheduledTriggers/healthCheck')
 const exportBackup = require('./scheduledTriggers/exportBackup')
+const Logger = require('./utils/Logger')
+
+const logger = new Logger('Index')
 
 const runtimeOpts = {
   timeoutSeconds: 300,
@@ -56,7 +59,7 @@ const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
       return handler(req, res)
     }
   } catch (e) {
-    console.error(e)
+    logger.error(e.message, e)
   }
 }
 
@@ -72,7 +75,7 @@ const databaseTriggerWrapper = async (handler, doc, context) => {
   try {
     return handler(doc, context)
   } catch (e) {
-    console.error(e)
+    logger.error(e.message, e)
   }
 }
 
@@ -89,7 +92,7 @@ Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
   } else if (databaseTrigger.event === 'onDelete') {
     cloudFunction = document.onDelete(async (snapshot, context) => databaseTriggerWrapper(databaseTrigger.handler, snapshot, context))
   } else {
-    console.error('Unknown event type for database trigger', databaseTrigger)
+    logger.error('Unknown event type for database trigger')
   }
 
   if (cloudFunction) {
@@ -102,7 +105,7 @@ const scheduledTriggerWrapper = (handler, context) => {
   try {
     return handler(context)
   } catch (e) {
-    console.error(e)
+    logger.error(e.message, e)
   }
 }
 

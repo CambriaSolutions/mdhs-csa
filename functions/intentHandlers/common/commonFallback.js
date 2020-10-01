@@ -1,4 +1,6 @@
 const { defaultFallback } = require('../globalFunctions')
+const Logger = require('../../utils/Logger')
+const logger = new Logger('Common Fallback')
 
 exports.noneOfThese = async agent => {
   // TODO For now, treat as unhandled w/o ML.
@@ -6,7 +8,7 @@ exports.noneOfThese = async agent => {
   try {
     await defaultFallback(agent)
   } catch (err) {
-    console.error(err)
+    logger.error(err.message, err)
   }
 }
 

@@ -1,7 +1,7 @@
 const { Payload } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 const Logger = require('../../utils/Logger')
-const log = new Logger('Google Maps')
+const logger = new Logger('Maps')
 
 exports.mapRoot = (subjectMatter) => async agent => {
   try {
@@ -22,8 +22,8 @@ exports.mapRoot = (subjectMatter) => async agent => {
       name: 'waiting-maps-deliver-map',
       lifespan: 2,
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    logger.error(err.message, err)
   }
 }
 
@@ -105,7 +105,7 @@ exports.mapDeliverMap = (locations) => async agent => {
       })
     }
   } catch (error) {
-    log.fatal('Unable to query locations', error)
+    logger.fatal('Unable to query locations', error)
   }
 }
 
@@ -148,6 +148,6 @@ exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
       })
     }
   } catch (error) {
-    log.fatal('Unable to query locations and county', error)
+    logger.fatal('Unable to query locations and county', error)
   }
 }

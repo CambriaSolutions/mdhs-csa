@@ -3,6 +3,9 @@ const format = require('date-fns/format')
 const addHours = require('date-fns/addHours')
 const differenceInSeconds = require('date-fns/differenceInSeconds')
 const isSameDay = require('date-fns/isSameDay')
+const Logger = require('../utils/Logger')
+
+const logger = new Logger('Store Analytics')
 
 // Subject Matter Default Settings
 const SUBJECT_MATTER_DEFAULT_PRIMARY_COLOR = '#6497AD'
@@ -81,7 +84,7 @@ const inspectForMl = async (admin, store, query, intent, dfContext, context, tim
         })
       }
     } catch (err) {
-      console.error(err)
+      logger.error(err.message, err)
     }
   }
 }
@@ -578,11 +581,11 @@ module.exports = async (snapshot, context) => {
 
     const subjectMatter = context.params.subjectMatter
     if (subjectMatter === undefined) {
-      console.error('Subject matter was not found within trigger context.')
+      logger.error('Subject matter was not found within trigger context.')
     } else {
       await calculateMetrics(admin, store, snapshot.data(), subjectMatter)
     }
   } catch (e) {
-    console.error(e)
+    logger.error(e.message, e)
   }
 }
