@@ -30,11 +30,15 @@
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
+        },
+        {
+          "name": "waiting-support-parent-receiving-more",
+          "lifespan": 3
         }
       ],
       "parameters": [
         {
-          "id": "4608d2d9-b69a-4340-8c15-f5da87d3ec44",
+          "id": "c8817e5b-cbc7-47e6-94a5-d4ee0891e40a",
           "name": "guardianship",
           "required": false,
           "dataType": "@guardianship",
@@ -52,6 +56,30 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "I can help parents receiving payments with the following requests. If you don\u0027t see what you need, select \"More\"."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Request Contempt Action",
+              "Child Support Payment Increase or Decrease",
+              "Change of Personal Information",
+              "Request Case Closure",
+              "Emancipation",
+              "Cooperation",
+              "Safety",
+              "Good Cause",
+              "Verification",
+              "More"
+            ]
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""
