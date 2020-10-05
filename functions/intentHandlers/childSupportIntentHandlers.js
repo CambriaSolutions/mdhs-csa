@@ -118,17 +118,6 @@ const { phoneNumber } = require('./childSupport/phoneNumber.js')
 const { refund } = require('./childSupport/refund.js')
 
 module.exports = {
-  'cse-account-balance': () => { },
-  'cse-accountInformation-root': () => { },
-  'cse-acknowledgement-after-retry': () => { },
-  'cse-appts-guidelines': () => { },
-  'cse-appts-no-contacted': () => { },
-  'cse-appts-root': () => { },
-  'cse-appts-schedule': () => { },
-  'cse-apptsQA-office-hours': () => { },
-  'cse-calc-root': () => { },
-  'cse-caseQA-compliance': () => { },
-
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
 
