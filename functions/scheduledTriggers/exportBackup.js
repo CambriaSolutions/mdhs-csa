@@ -1,13 +1,9 @@
 require('dotenv').config()
-const format = require('date-fns/format')
-const admin = require('firebase-admin')
-const projectId = admin.instanceId().app.options.projectId
-const firestore = require('@google-cloud/firestore')
-const firestoreClient = new firestore.v1.FirestoreAdminClient()
-const dialogflow = require('dialogflow')
-const dialogflowClient = new dialogflow.v2.AgentsClient()
 
-const exportingFirestore = async (bucket) => {
+const exportingFirestore = async (projectId, bucket) => {
+  const firestore = require('@google-cloud/firestore')
+  const firestoreClient = new firestore.v1.FirestoreAdminClient()
+
   const firestoreBucket = `${bucket}/firestore`
   const databaseName = firestoreClient.databasePath(projectId, '(default)')
   const responses = await firestoreClient.exportDocuments({
@@ -23,7 +19,10 @@ const exportingFirestore = async (bucket) => {
   console.log(`Firestore Operation Name: ${response['name']}`)
 }
 
-const exportingDialogflow = async (bucket) => {
+const exportingDialogflow = async (projectId, bucket) => {
+  const dialogflow = require('@google-cloud/dialogflow')
+  const dialogflowClient = new dialogflow.v2.AgentsClient()
+
   const dialogflowBucket = `${bucket}/dialogflow.zip`
   console.log('Exporting to: ', dialogflowBucket)
   const responses = await dialogflowClient.exportAgent({ parent: `projects/${projectId}`, 'agentUri': dialogflowBucket })
@@ -34,12 +33,17 @@ const exportingDialogflow = async (bucket) => {
 
 module.exports = async () => {
   try {
-    const dateKey = format(new Date(), 'MM-DD-YYYY')
+    const format = require('date-fns/format')
+    const admin = require('firebase-admin')
+    const projectId = admin.instanceId().app.options.projectId
+
+
+    const dateKey = format(new Date(), 'MM-dd-yyyy')
     const bucket = `gs://${projectId}.appspot.com/backups/${dateKey}`
 
     await Promise.all([
-      exportingFirestore(bucket),
-      exportingDialogflow(bucket)
+      exportingFirestore(projectId, bucket),
+      exportingDialogflow(projectId, bucket)
     ])
 
     console.log(`Backups initiated for ${dateKey}`)

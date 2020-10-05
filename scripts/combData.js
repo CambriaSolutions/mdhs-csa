@@ -26,7 +26,7 @@ const performQuery = async (conversationsRef, startDate, endDate) => {
 
         const data = doc.data()
 
-        const day = format(data.createdAt.toDate(), 'MM-DD-YYYY')
+        const day = format(data.createdAt.toDate(), 'MM-dd-yyyy')
 
         // // Make a new day in the daily metric
         if (dailyMetric.hasOwnProperty(day)) {

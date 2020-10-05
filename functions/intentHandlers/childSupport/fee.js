@@ -1,6 +1,6 @@
-const { tbd } = require('../globalFunctions')
-
 exports.fee = async agent => {
+  const { tbd } = require('../globalFunctions')
+
   try {
     await tbd(agent)
   } catch (err) {

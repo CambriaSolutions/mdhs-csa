@@ -15,7 +15,7 @@ store
     `/subjectMatters/${subjectMatter}/requests/`
   )
   .where('intentId', '==', intentId)
-  .where('createdAt', '<=', new Date(2020, 8, 1, 0, 0, 0, 0))
+  .where('createdAt', '<=', new Date(2020, 9, 11, 0, 0, 0, 0))
   .get()
   .then(values => {
     console.log('Number of results:', values.docs.length)
@@ -25,7 +25,7 @@ store
       const queryDoc = query.data()
       const queryText = queryDoc.queryResult.queryText
       const createdAt = queryDoc.createdAt.toDate()
-      const createdAtFormatted = format(createdAt, 'MM-DD-YYYY')
+      const createdAtFormatted = format(createdAt, 'MM-dd-yyyy')
       const intentDisplayName = queryDoc.queryResult.intent.displayName
 
       fs.writeSync(f, `${queryText}\n`)

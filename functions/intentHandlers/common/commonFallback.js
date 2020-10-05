@@ -1,5 +1,4 @@
 const { defaultFallback } = require('../globalFunctions')
-const { autoMlFallback } = require('./categorizeAndPredict')
 
 exports.noneOfThese = async agent => {
   // TODO For now, treat as unhandled w/o ML.
@@ -13,6 +12,8 @@ exports.noneOfThese = async agent => {
 
 exports.commonFallback = async agent => {
   if (agent.context.get('cse-subject-matter') !== undefined) {
+    const { autoMlFallback } = require('./categorizeAndPredict')
+
     return autoMlFallback(agent)
   } else {
     return defaultFallback(agent)

@@ -23,6 +23,22 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "MDHS automatically sends notice to the major credit bureaus when the parent who owes support is delinquent more than 60 days."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "What if this was done in error?"
+            ],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

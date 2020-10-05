@@ -12,6 +12,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-iwo-disposable-income",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-iwo-define-disposable-income",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-iwo-request-disposable-income",
           "lifespan": 0,
           "parameters": {}
@@ -27,6 +37,22 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "What is the employee's disposable income?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Disposable Income Definition"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

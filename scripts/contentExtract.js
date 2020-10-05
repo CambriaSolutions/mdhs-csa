@@ -1,7 +1,8 @@
 const fs = require('fs')
-const globalIntentHandlers = require('../utils/globalIntentHandlers')
-const commonIntentHandlers = require('../utils/commonIntentHandlers')
-const childSupportIntentHandlers = require('../utils/childSupportIntentHandlers')
+const globalIntentHandlers = require('../functions/intentHandlers/globalIntentHandlers')
+const commonIntentHandlers = require('../functions/intentHandlers/commonIntentHandlers')
+const childSupportIntentHandlers = require('../functions/intentHandlers/childSupportIntentHandlers')
+const { map, filter } = require('lodash')
 
 const intentHandlers = {
   ...globalIntentHandlers,
@@ -34,7 +35,7 @@ function parameters() {
 function context() {
   this.contexts = []
   this.get = () => {
-    return { parameters: new parameters() }
+    console.warn('--- Current handler is trying to access contexts! ---')
   }
   this.set = (ctx) => {
     this.contexts.push(ctx)
@@ -64,7 +65,7 @@ function agent() {
   this.context = new context()
 }
 
-const getIntentFilenames = (agentDirectory) => {
+const getIntentFileNames = (agentDirectory) => {
   const intents = []
   fs.readdirSync(`${agentDirectory}/intents`).forEach(function (file) {
     const filename = file.split('/').pop()
@@ -93,12 +94,16 @@ const getTrainingPhrases = (intentFile) => {
 const getResponseData = async (intentName) => {
   const handler = intentHandlers[intentName]
   const agt = new agent()
+
+  agt.handleEndConversation = false
+
   await handler(agt)
 
   return {
     phrases: agt.phrases,
     suggestions: agt.suggestions,
-    contexts: agt.context.contexts
+    contexts: agt.context.contexts,
+    handleEndConversation: agt.handleEndConversation
   }
 }
 
@@ -112,8 +117,10 @@ const generateOutputFile = async (intentFile) => {
   output.trainingPhrases = getTrainingPhrases(intentFile)
 
   const responseData = await getResponseData(intent.name)
+
   output.responsePhrases = responseData.phrases
   output.suggestions = responseData.suggestions
+  output.handleEndConversation = responseData.handleEndConversation
 
   output.outputContexts = []
   responseData.contexts.forEach((handlerAffectedContext) => {
@@ -137,18 +144,76 @@ const generateOutputFile = async (intentFile) => {
 
 //fs.writeFileSync(handlerFile, content);
 
+const constructMessage = text => ({
+  'type': '0',
+  'title': '',
+  'textToSpeech': '',
+  'lang': 'en',
+  'speech': [
+    text
+  ],
+  'condition': ''
+})
+
+const constructIntentFileContents = (intentData) => (
+  {
+    'id': intentData.id,
+    'name': intentData.intentName,
+    'auto': true,
+    'contexts': intentData.inputContexts,
+    'responses': [
+      {
+        'resetContexts': false,
+        'action': '',
+        'affectedContexts': map(intentData.outputContexts, c => ({ name: c.name, lifespan: c.lifespan, parameters: {} })),
+        'parameters': [],
+        'messages': [
+          ...map(intentData.responsePhrases, p => constructMessage(p)),
+          {
+            'type': '4',
+            'title': '',
+            'payload': {
+              'suggestions': intentData.suggestions,
+              'handleEndConversation': !!intentData.handleEndConversation
+            },
+            'textToSpeech': '',
+            'lang': 'en',
+            'condition': ''
+          }
+        ],
+        'speech': []
+      }
+    ],
+    'priority': 500000,
+    'webhookUsed': true,
+    'webhookForSlotFilling': false,
+    'fallbackIntent': false,
+    'events': [],
+    'conditionalResponses': [],
+    'condition': '',
+    'conditionalFollowupEvents': []
+  }
+)
+
 const doExtract = async () => {
-  const intents = getIntentFilenames('../agent')
-  await intents.forEach(async (intent) => {
+  const intents = getIntentFileNames('../agent')
+
+  const intentPartialName = 'cse-dirDep'
+
+  await filter(intents, x => x.split('/').pop().split('.')[0].indexOf(intentPartialName) >= 0).forEach(async (intent) => {
     try {
-      if (!intent.includes('handleUnhandled')) {
+      const pathElements = intent.split('/')
+      const intentName = pathElements.pop().split('.')[0]
+      console.log(intentName)
+      if (!intent.includes('handleUnhandled') && intentHandlers[intentName]) {
         const extract = await generateOutputFile(intent)
-        fs.writeFileSync(`../content/${extract.intentName}.json`, JSON.stringify(extract, null, 4), 'utf-8')
+        const intentFileContents = constructIntentFileContents(extract)
+        fs.writeFileSync(`../content/${extract.intentName}.json`, JSON.stringify(intentFileContents, null, 4), 'utf-8')
       }
     } catch (err) {
       const pathElements = intent.split('/')
       const intentName = pathElements.pop().split('.')[0]
-      fs.writeFileSync(`../content/ERROR-${intentName}-ERROR.txt`, err, 'utf-8')
+      fs.writeFileSync(`../content/ERROR-${intentName}-ERROR.txt`, err.message, 'utf-8')
     }
   })
 }

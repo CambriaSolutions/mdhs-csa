@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-iwo-disposable-income",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-iwo-define-disposable-income",
           "lifespan": 0,
           "parameters": {}
@@ -27,6 +32,40 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Disposable income = gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers' compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Note: Disposable income is not necessarily the same as net pay. For more detailed information, <a href=\"https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice\" target=\"_blank\">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "What is the employee's disposable income?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

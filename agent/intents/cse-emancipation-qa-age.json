@@ -1,40 +1,54 @@
 {
-  "id": "3f583c4d-1d2f-4033-8a8c-8c89ed8964ff",
-  "name": "cse-emancipation-qa-age",
-  "auto": true,
-  "contexts": [
-    "cse-subject-matter"
-  ],
-  "responses": [
-    {
-      "resetContexts": false,
-      "action": "",
-      "affectedContexts": [
+    "id": "3f583c4d-1d2f-4033-8a8c-8c89ed8964ff",
+    "name": "cse-emancipation-qa-age",
+    "auto": true,
+    "contexts": [
+        "cse-subject-matter"
+    ],
+    "responses": [
         {
-          "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+            "resetContexts": false,
+            "action": "",
+            "affectedContexts": [
+                {
+                    "name": "cse-subject-matter",
+                    "lifespan": 99,
+                    "parameters": {}
+                }
+            ],
+            "parameters": [],
+            "messages": [
+                {
+                    "type": "0",
+                    "title": "",
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "speech": [
+                        "The age of emancipation is 21 years old in MS. For other states, ages may vary. Click <a href=\"https://www.acf.hhs.gov/css/irg-state-map\" target=\"_blank\">here</a> for emancipation information from other states."
+                    ],
+                    "condition": ""
+                },
+                {
+                    "type": "4",
+                    "title": "",
+                    "payload": {
+                        "suggestions": [],
+                        "handleEndConversation": true
+                    },
+                    "textToSpeech": "",
+                    "lang": "en",
+                    "condition": ""
+                }
+            ],
+            "speech": []
         }
-      ],
-      "parameters": [],
-      "messages": [
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "condition": ""
-        }
-      ],
-      "speech": []
-    }
-  ],
-  "priority": 500000,
-  "webhookUsed": true,
-  "webhookForSlotFilling": false,
-  "fallbackIntent": false,
-  "events": [],
-  "conditionalResponses": [],
-  "condition": "",
-  "conditionalFollowupEvents": []
+    ],
+    "priority": 500000,
+    "webhookUsed": true,
+    "webhookForSlotFilling": false,
+    "fallbackIntent": false,
+    "events": [],
+    "conditionalResponses": [],
+    "condition": "",
+    "conditionalFollowupEvents": []
 }

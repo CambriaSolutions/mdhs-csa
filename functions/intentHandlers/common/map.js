@@ -1,6 +1,4 @@
 const { Payload } = require('dialogflow-fulfillment')
-const validator = require('validator')
-const { getGeocode, getNearestThreeLocations } = require('./calculateGeo.js')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.mapRoot = (subjectMatter) => async agent => {
@@ -27,40 +25,54 @@ exports.mapRoot = (subjectMatter) => async agent => {
   }
 }
 
+const determiningGeocode = async agent => {
+  const { getGeocode } = require('./calculateGeo.js')
+
+  const validator = require('validator')
+
+  let currentLocation = null
+  let userAddress = ''
+  let userCity = ''
+  let userZip = ''
+
+  const addressParameter = agent.parameters.userAddress || agent.parameters.address
+  if (addressParameter) {
+    userAddress = addressParameter.toLowerCase()
+  }
+
+  const cityParameter = agent.parameters.userCity || agent.parameters['geo-city']
+  if (cityParameter) {
+    userCity = cityParameter.toLowerCase()
+  }
+  // validate zip code before defining it in userZip
+  const zipParamter = agent.parameters.userZip || agent.parameters['zip-code']
+  if (zipParamter) {
+    if (validator.isPostalCode(`${zipParamter}`, 'US')) {
+      userZip = zipParamter
+    }
+  }
+  // build current location string
+  if (userZip !== '' || userCity !== '' || userAddress !== '') {
+    currentLocation = `${userAddress} ${userCity} ${userZip}`
+
+    if (
+      !currentLocation.includes(' ms') ||
+      !currentLocation.includes(' mississippi')
+    ) {
+      currentLocation += ' ms'
+    }
+  }
+
+  // retrieve long and lat coordinates from current location
+  return getGeocode(currentLocation)
+}
+
 // First pass in the locations to be used in the method. This will return the intent 
 // handler function that you would normally use
 exports.mapDeliverMap = (locations) => async agent => {
   try {
-    let currentLocation = null
-    let userAddress = ''
-    let userCity = ''
-    let userZip = ''
-
-    if (agent.parameters.userAddress) {
-      userAddress = agent.parameters.userAddress.toLowerCase()
-    }
-    if (agent.parameters.userCity) {
-      userCity = agent.parameters.userCity.toLowerCase()
-    }
-    // validate zip code before defining it in userZip
-    if (agent.parameters.userZip) {
-      if (validator.isPostalCode(`${agent.parameters.userZip}`, 'US')) {
-        userZip = agent.parameters.userZip
-      }
-    }
-    // build current location string
-    if (userZip !== '' || userCity !== '' || userAddress !== '') {
-      currentLocation = `${userAddress} ${userCity} ${userZip}`
-
-      if (
-        !currentLocation.includes(' ms') ||
-        !currentLocation.includes(' mississippi')
-      ) {
-        currentLocation += ' ms'
-      }
-    }
-    // retrieve long and lat coordinates from current location
-    const currentGeocode = await getGeocode(currentLocation)
+    const { getNearestThreeLocations } = require('./calculateGeo.js')
+    const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
       const nearestLocations = await getNearestThreeLocations(
@@ -88,6 +100,49 @@ exports.mapDeliverMap = (locations) => async agent => {
       await agent.context.set({
         name: 'waiting-maps-deliver-map',
         lifespan: 2,
+      })
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
+  try {
+    const { getNearestThreeLocations } = require('./calculateGeo.js')
+    const currentGeocode = await determiningGeocode(agent)
+
+    if (currentGeocode) {
+      const countyOfficeContactInformation = require('../common/countyOfficeContactInformation.json')
+
+      const countyInformation = countyOfficeContactInformation[currentGeocode.county]
+      const nearestLocations = await getNearestThreeLocations(
+        currentGeocode,
+        locations
+      )
+      const mapInfo = { locations, currentGeocode, nearestLocations }
+      const mapPayload = JSON.stringify(mapInfo)
+      if (countyInformation) {
+        await agent.add(`${currentGeocode.county.toUpperCase()} COUNTY \u003cbr\u003e - Phone Number: <a href="tel:+${countyInformation.phone.replace('.', '').replace('.', '')}">${countyInformation.phone}</a> \u003cbr\u003e - Email Address: <a href="mailto:${countyInformation.email}">${countyInformation.email}</a> \u003cbr\u003e - Fax Number: ${countyInformation.fax}`)
+      }
+      await agent.add(
+        new Payload(
+          agent.UNSPECIFIED,
+          { mapPayload },
+          {
+            sendAsMessage: true,
+            rawPayload: true,
+          }
+        )
+      )
+      await handleEndConversation(agent)
+    } else {
+      await agent.add(
+        'Sorry, I couldn\'t find that address. Could you say that again?'
+      )
+      await agent.context.set({
+        name: 'waiting-maps-deliver-map-county-office',
+        lifespan: 1,
       })
     }
   } catch (error) {

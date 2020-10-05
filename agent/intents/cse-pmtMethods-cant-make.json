@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmtMethods-cant-make-qualifying",
+          "lifespan": 1,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmtMethods-cant-make",
           "lifespan": 0,
           "parameters": {}
@@ -27,6 +32,34 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "First, click <a href=\"https://www.mississippiworks.org/\" target=\"_blank\">here</a> to visit MS Works for help with employment."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Second, have any of the following occurred?\n    <br/>• Change in employment status\n    <br/>• Recently incarcerated\n    <br/>• Income reduced\n    <br/>• Lost a job\n    <br/>• Been injured"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Yes",
+              "No",
+              "Other Options"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

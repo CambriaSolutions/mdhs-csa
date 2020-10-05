@@ -1,17 +1,17 @@
 require('dotenv').config()
-const admin = require('firebase-admin')
-const projectId = admin.instanceId().app.options.projectId
-const automl = require('@google-cloud/automl')
-const format = require('date-fns/format')
-const store = admin.firestore()
-
-// Instantiate autoML client
-const client = new automl.v1beta1.AutoMlClient()
 
 /**
  * Trigger training weekly
  **/
 module.exports = async () => {
+  const admin = require('firebase-admin')
+  const projectId = admin.instanceId().app.options.projectId
+  const automl = require('@google-cloud/automl')
+  const store = admin.firestore()
+
+  // Instantiate autoML client
+  const client = new automl.v1beta1.AutoMlClient()
+
   // TODO - hardcoded cse
   const subjectMatter = 'cse'
   const snap = await store
@@ -25,7 +25,7 @@ module.exports = async () => {
 
   if (queriesToTrain > 0) {
     // Train the model
-    await trainCategoryModel(subjectMatter)
+    await trainCategoryModel(store, admin, client, projectId, subjectMatter)
 
     // Update training status in individual queries
     const docUpdatePromises = []
@@ -47,7 +47,9 @@ module.exports = async () => {
  * Train Category Model
  * @param {*} intent
  */
-async function trainCategoryModel(subjectMatter) {
+async function trainCategoryModel(store, admin, client, projectId, subjectMatter) {
+  const format = require('date-fns/format')
+
   const autoMlSettings = (await store.collection('subjectMatters').doc(subjectMatter).get()).data()
   const datasetId = autoMlSettings.dataset
   const date = format(new Date(), 'MM_DD_YYYY')

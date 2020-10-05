@@ -1,27 +1,21 @@
 require('dotenv').config()
-const automl = require('@google-cloud/automl')
-const { Suggestion } = require('dialogflow-fulfillment')
-const { defaultFallback } = require('../globalFunctions')
-const getSubjectMatter = require('../../utils/getSubjectMatter')
-const admin = require('firebase-admin')
-const projectId = admin.instanceId().app.options.projectId
-const db = admin.firestore()
-
-// Instantiate autoML client
-const client = new automl.v1beta1.PredictionServiceClient()
 
 // Mapping ML categories to intent suggestions
 const { mapCategoryToIntent } = require('./mapCategoryToIntent.js')
 
 // Query the category model to return category predictions
-const predictCategories = async (location, catModel, query) => {
+const predictCategories = async (location, projectId, catModel, query) => {
+  const automl = require('@google-cloud/automl')
+  // Instantiate autoML client
+  const client = new automl.v1beta1.PredictionServiceClient()
+
   // Define the location of the category prediction model
   const categoryModelPath = client.modelPath(
     projectId,
     location,
     catModel
   )
-    
+
   const payload = {
     textSnippet: {
       content: query,
@@ -59,11 +53,11 @@ const predictCategories = async (location, catModel, query) => {
 // Query both models to determine
 // 1. Is this applicable to the subject matter we handle?
 // 2. What category is the query most likely to match?
-const categorizeAndPredict = async (subjectMatter, query) => {
+const categorizeAndPredict = async (db, projectId, subjectMatter, query) => {
   const categories = []
-  
+
   const autoMlSettings = (await db.collection('subjectMatters').doc(subjectMatter).get()).data()
-  const predictions = await predictCategories(autoMlSettings.location, autoMlSettings.catModel, query)
+  const predictions = await predictCategories(autoMlSettings.location, projectId, autoMlSettings.catModel, query)
   for (const category in predictions.categories) {
     const { name, confidence } = predictions.categories[category]
 
@@ -73,11 +67,18 @@ const categorizeAndPredict = async (subjectMatter, query) => {
   }
 
   return categories
-  
+
 }
 
 exports.autoMlFallback = async agent => {
   try {
+    const { Suggestion } = require('dialogflow-fulfillment')
+    const { defaultFallback } = require('../globalFunctions')
+    const getSubjectMatter = require('../../utils/getSubjectMatter')
+    const admin = require('firebase-admin')
+    const projectId = admin.instanceId().app.options.projectId
+    const db = admin.firestore()
+
     const { query } = agent
     let categories
     // If agent.parameters.mlCategories is populated, it means this intent is being fired by the "go-back" intent, so the 
@@ -87,7 +88,7 @@ exports.autoMlFallback = async agent => {
     } else {
       // Send the user's query to interact with our custom machine learning models
       const subjectMatter = getSubjectMatter(agent)
-      categories = await categorizeAndPredict(subjectMatter, query)
+      categories = await categorizeAndPredict(db, projectId, subjectMatter, query)
 
       // Save the categories to the agent parameters because if we click "go back" we will need them to display them again.
       agent.parameters.mlCategories = categories
