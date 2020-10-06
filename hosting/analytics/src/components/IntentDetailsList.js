@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { VariableSizeList as List } from 'react-window'
-import useCellMeasurer from '../common/useCellMeasurer'
 import { convertHex } from '../common/helper'
 import { format, addHours } from 'date-fns'
 
@@ -23,9 +21,6 @@ const DetailDate = styled.div`
   text-align: right;
   font-size: 0.8em;
   color: #999;
-`
-const StyledList = styled(List)`
-  border-radius: 8px;
 `
 
 // Remove waiting text from all context
@@ -72,24 +67,13 @@ const IntentDetailsList = props => {
     )
   })
 
-  const cellMeasurerProps = useCellMeasurer({ items })
-
   return (
     <React.Fragment>
       <DialogTitle>
         {beautifyContext(props.data[0].intentName)} details
       </DialogTitle>
       <StyledDialogContent>
-        <StyledList
-          height={420}
-          width={props.width - 40}
-          {...cellMeasurerProps}
-        >
-          {({ index, style }) => {
-            const item = items[index]
-            return <div style={style}>{item}</div>
-          }}
-        </StyledList>
+        {items.map((item, index) => <div key={index}>{item}</div>)}
       </StyledDialogContent>
     </React.Fragment>
   )

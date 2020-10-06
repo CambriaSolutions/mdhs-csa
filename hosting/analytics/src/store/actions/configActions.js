@@ -108,55 +108,115 @@ export const fetchSubjectMatterSettingsStart = () => {
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
-export const showIntentDetails = intent => {
-  return (dispatch, getState) => {
-    const context = getState().filters.context
-    const dateRange = getState().filters.dateFilters
+// pagination = null, 'next' or 'previous'
+export const showIntentDetails = (intent, pagination, paginationPage) => {
+  return async (dispatch, getState) => {
+    try {
+      const context = getState().filters.context
+      const dateRange = getState().filters.dateFilters
 
-    dispatch(fetchIntentDetailsStart())
-    db.collection(`${context}/requests`)
-      .where('createdAt', '>', new Date(dateRange.start))
-      .where('createdAt', '<', new Date(dateRange.end))
-      .where('intentId', '==', intent.id)
-      .orderBy('createdAt', 'desc')
-      .get()
-      .then(querySnapshot => {
-        let intentDetails = []
-        querySnapshot.forEach(doc => {
-          let tempData = doc.data()
+      dispatch(fetchIntentDetailsStart())
 
-          intentDetails.push({
-            createdAt: tempData.createdAt.toDate(),
-            intentId: intent.id,
-            intentName: tempData.queryResult.intent.displayName,
-            intentDetectionConfidence:
-              tempData.queryResult.intentDetectionConfidence,
-            messageText: tempData.queryResult.queryText,
-            outputContexts: tempData.queryResult.outputContexts
-              ? tempData.queryResult.outputContexts.map(o => ({
-                ...o,
-                context: getIdFromPath(o.name),
-              }))
-              : [],
-            conversationId: getIdFromPath(tempData.session),
-            botResponse: tempData.queryResult.fulfillmentText,
-          })
-        })
+      const previousFirstDocumentSnapshot = getState().config.firstDocumentSnapshot
+      const previousLastDocumentSnapshot = getState().config.lastDocumentSnapshot
 
-        dispatch(fetchIntentDetailsSuccess(intentDetails))
+      let snapshot = db.collection(`${context}/requests`)
+        .where('createdAt', '>', new Date(dateRange.start))
+        .where('createdAt', '<', new Date(dateRange.end))
+        .where('intentId', '==', intent.id)
+
+      const totalIntentDetailCountPromise = snapshot.get()
+
+      const queryLimit = 4
+
+      if (previousLastDocumentSnapshot && pagination === 'next') {
+        snapshot = snapshot.orderBy('createdAt', 'desc').startAfter(previousLastDocumentSnapshot).limit(queryLimit)
+      } else if (previousLastDocumentSnapshot && pagination === 'previous') {
+        snapshot = snapshot
+          .orderBy('createdAt', 'asc')
+          .startAfter(previousFirstDocumentSnapshot)
+          .limit(queryLimit)
+      } else {
+        snapshot = snapshot.orderBy('createdAt', 'desc').limit(queryLimit)
+      }
+
+      const snapshotPromise = snapshot.get()
+
+      const snapshotPromiseResponse = await snapshotPromise
+
+      let intentDetails = []
+      let newFirstDocumentSnapshot = null
+      let newLastDocumentSnapshot = null
+
+      let index = 0
+
+      snapshotPromiseResponse.forEach((doc) => {
+        let tempData = doc.data()
+
+        if (index === 0) {
+          newFirstDocumentSnapshot = doc
+        } else if (index === queryLimit - 1) {
+          newLastDocumentSnapshot = doc
+        }
+
+        index++
+
+        const newIntentDetails = {
+          createdAt: tempData.createdAt.toDate(),
+          intentId: intent.id,
+          intentName: tempData.queryResult.intent.displayName,
+          intentDetectionConfidence:
+            tempData.queryResult.intentDetectionConfidence,
+          messageText: tempData.queryResult.queryText,
+          outputContexts: tempData.queryResult.outputContexts
+            ? tempData.queryResult.outputContexts.map(o => ({
+              ...o,
+              context: getIdFromPath(o.name),
+            }))
+            : [],
+          conversationId: getIdFromPath(tempData.session),
+          botResponse: tempData.queryResult.fulfillmentText,
+        }
+
+        // Insert in reverse order
+        if (previousLastDocumentSnapshot && pagination === 'previous') {
+          intentDetails = [newIntentDetails, ...intentDetails]
+        } else {
+          intentDetails.push(newIntentDetails)
+        }
       })
-      .catch(err => {
-        dispatch(fetchIntentDetailsFail(err))
-      })
 
-    dispatch(toggleIntentsModal(true))
+      const totalIntentDetailCountPromiseResponse = await totalIntentDetailCountPromise
+
+      const totalIntentDetailsCount = totalIntentDetailCountPromiseResponse.size
+
+      dispatch(
+        fetchIntentDetailsSuccess(
+          intent,
+          intentDetails,
+          newFirstDocumentSnapshot,
+          newLastDocumentSnapshot,
+          totalIntentDetailsCount,
+          paginationPage
+        ))
+
+      dispatch(toggleIntentsModal(true))
+    }
+    catch (e) {
+      dispatch(fetchIntentDetailsFail(e))
+    }
   }
 }
 
-export const fetchIntentDetailsSuccess = intentDetails => {
+export const fetchIntentDetailsSuccess = (intent, intentDetails, firstDocumentSnapshot, lastDocumentSnapshot, totalIntentDetailsCount, paginationPage) => {
   return {
     type: actionTypes.FETCH_INTENT_DETAILS_SUCCESS,
-    intentDetails: intentDetails,
+    intentDetailsIntent: intent,
+    intentDetails,
+    firstDocumentSnapshot,
+    lastDocumentSnapshot,
+    totalIntentDetailsCount,
+    intentDetailsPaginationPage: paginationPage
   }
 }
 
@@ -299,7 +359,7 @@ export const downloadExport = () => {
       }),
     })
       .then(response => {
-        // Convert the ReadableStream reponse into a Blob
+        // Convert the ReadableStream response into a Blob
         if (response.status === 200) {
           return response.blob()
         } else if (response.status === 204 || response.status === 404) {
