@@ -227,7 +227,7 @@ exports.welcome = async agent => {
     )
 
     await agent.add(
-      'The information I provide is not legal advice. Also, <b>please do not enter SSN or DOB information at any time during your conversations with me.</b>'
+      'The information I provide is not legal advice. Also, <b>please do not enter SSN or DOB information at any time during your conversations with me</b>.'
     )
 
     await agent.add(
