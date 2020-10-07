@@ -17,13 +17,13 @@
       ],
       "parameters": [
         {
-          "id": "2a1e8223-ca52-4724-981b-e14ccdc6fcef",
+          "id": "bda075c4-f208-4e63-93df-9173edb8bfad",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
           "value": "$yes-no",
           "defaultValue": "",
-          "isList": false,
+          "isList": true,
           "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "1135b64f-602b-4601-967a-42fd2bf28d15",
+          "id": "1fdee42a-ea9e-4486-9ed7-b156d65c03b8",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",

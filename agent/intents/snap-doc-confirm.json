@@ -19,7 +19,22 @@
           "lifespan": 1
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "edff19b1-5bfb-4ef9-8e21-805937223c4e",
+          "name": "phone-number",
+          "required": false,
+          "dataType": "@sys.phone-number",
+          "value": "$phone-number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
       "messages": [
         {
           "type": "0",
