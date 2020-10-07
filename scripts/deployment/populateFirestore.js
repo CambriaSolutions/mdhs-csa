@@ -51,7 +51,7 @@ const populateIntentsCollection = async () => {
   const intentsClient = new dialogflow.IntentsClient()
 
   // // The path to identify the agent that owns the intents.
-  const projectAgentPath = intentsClient.projectAgentPath(projectId)
+  const projectAgentPath = intentsClient.agentPath(projectId)
 
   const request = {
     parent: projectAgentPath,
