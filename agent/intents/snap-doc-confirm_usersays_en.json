@@ -1,5 +1,210 @@
 [
   {
+    "id": "e01caf4f-46a3-4a97-96b8-b2128f88e566",
+    "data": [
+      {
+        "text": "Can u help me send documents",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8441cc51-6381-4656-aeb7-6668bf0a86f3",
+    "data": [
+      {
+        "text": "do you have a valid fax number or email address that i can send my information to?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8ec1b335-1127-4d2a-9b3e-2cd1074cdeb8",
+    "data": [
+      {
+        "text": "i tried to fax my n4 at ",
+        "userDefined": false
+      },
+      {
+        "text": "601-364-3024",
+        "meta": "@sys.phone-number",
+        "alias": "phone-number",
+        "userDefined": false
+      },
+      {
+        "text": " but the number is not valid?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6c0318b9-f1c5-4189-afc1-a4730e99b4c3",
+    "data": [
+      {
+        "text": "I need the email address for mrs. Crystal chandler please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "057779ee-bf82-4f3f-9414-cffe1f8e6287",
+    "data": [
+      {
+        "text": "I need an email",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1ae92091-3761-4c12-b9bb-ff7ced49ca11",
+    "data": [
+      {
+        "text": "Need help with my documents",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dd8c6476-8621-481c-99eb-af1ca6c07b51",
+    "data": [
+      {
+        "text": "I provide documents in my Caseworker don\u0027t have any information about my documents",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "47419f8f-0da1-4ebd-801d-7870c6df3c61",
+    "data": [
+      {
+        "text": "I need a email for tunica dhs so I can submit documents",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1354f75a-52af-4a03-b84f-0b7a1213c6f5",
+    "data": [
+      {
+        "text": "Need email address to email information into my case worker",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "795a01cc-5def-412c-8cf1-71453b56367c",
+    "data": [
+      {
+        "text": "I need mdgs fax number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d0e8bc99-b95b-40f5-9f88-46c9dcae6529",
+    "data": [
+      {
+        "text": "Fax number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "26173a56-eaf1-4397-bc34-0aee8d64b751",
+    "data": [
+      {
+        "text": "Yes what us the email address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d5aa1384-c84c-4160-b1e2-b8be8e07b512",
+    "data": [
+      {
+        "text": "fax number to jackson county food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0d355030-0c5e-4744-a1bf-c837bef38333",
+    "data": [
+      {
+        "text": "Email address for customer service",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a822dc05-baba-4cc6-9c5b-2497d5d2d1a0",
+    "data": [
+      {
+        "text": "A general email address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "13de0c01-7b30-41a2-af21-f1c1c1c62944",
     "data": [
       {
@@ -238,19 +443,6 @@
     "data": [
       {
         "text": "I need a fax number to send info over please",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "d3800ce5-3815-4c48-aa73-8e3988f5c67a",
-    "data": [
-      {
-        "text": "Fax number",
         "userDefined": false
       }
     ],
