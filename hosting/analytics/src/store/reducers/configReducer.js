@@ -10,6 +10,9 @@ const initialState = {
   snackbarOpen: false,
   snackbarMessage: '',
   intentDetails: [],
+  intentDetailsIntent: '',
+  intentDetailsPaginationPage: 1,
+  totalIntentDetailsCount: 0,
   loadingIntentDetails: false,
   showIntentModal: false,
   updateRealtime: true,
@@ -38,8 +41,13 @@ const fetchIntentDetailsStart = (state) => {
 const fetchIntentDetailsSuccess = (state, action) => {
   return {
     ...state,
+    intentDetailsIntent: action.intentDetailsIntent,
     intentDetails: action.intentDetails,
+    firstDocumentSnapshot: action.firstDocumentSnapshot,
+    lastDocumentSnapshot: action.lastDocumentSnapshot,
     loadingIntentDetails: false,
+    totalIntentDetailsCount: action.totalIntentDetailsCount,
+    intentDetailsPaginationPage: state.intentDetailsIntent === action.intentDetailsIntent ? action.intentDetailsPaginationPage : 1
   }
 }
 

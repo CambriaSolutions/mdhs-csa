@@ -36,6 +36,8 @@ import { colorShades } from '../common/helper'
 import { aggregatePersonaMetricsForPieChart } from '../scripts/metricUtil.js'
 import db from '../Firebase'
 
+import { showIntentDetails } from '../store/actions/configActions'
+
 const getNameFromContext = context => /[^/]*$/.exec(context)[0]
 
 const rootStyles = {
@@ -393,9 +395,13 @@ class Dashboard extends Component {
           aria-labelledby='intent_details_title'>
           <IntentDetails
             loading={this.props.loadingIntentDetails}
+            totalIntentDetailsCount={this.props.totalIntentDetailsCount}
             data={this.props.intentDetails}
             color={this.props.mainColor}
             timezoneOffset={this.props.timezoneOffset}
+            previousPage={() => this.props.onIntentDetailsPreviousPage(this.props.intentDetailsIntent, this.props.intentDetailsPaginationPage - 1)}
+            nextPage={() => this.props.onIntentDetailsNextPage(this.props.intentDetailsIntent, this.props.intentDetailsPaginationPage + 1)}
+            paginationPage={this.props.intentDetailsPaginationPage}
           />
         </Dialog>
       </div>
@@ -500,7 +506,10 @@ const mapStateToProps = state => {
     mainColor: state.filters.mainColor,
     showSettings: state.config.showSettings,
     showIntentModal: state.config.showIntentModal,
+    intentDetailsIntent: state.config.intentDetailsIntent,
     intentDetails: state.config.intentDetails,
+    intentDetailsPaginationPage: state.config.intentDetailsPaginationPage,
+    totalIntentDetailsCount: state.config.totalIntentDetailsCount,
     timezoneOffset: state.filters.timezoneOffset,
     subjectMatterName: getNameFromContext(state.filters.context)
   }
@@ -512,6 +521,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.updateFeedbackType(feedbackType)),
     onSettingsToggle: () => dispatch(actions.toggleSettings(false)),
     onIntentsModalClose: () => dispatch(actions.toggleIntentsModal(false)),
+    onIntentDetailsPreviousPage: (intentDetailsIntent, intentDetailsPaginationPage) => dispatch(showIntentDetails(intentDetailsIntent, 'previous', intentDetailsPaginationPage)),
+    onIntentDetailsNextPage: (intentDetailsIntent, intentDetailsPaginationPage) => dispatch(showIntentDetails(intentDetailsIntent, 'next', intentDetailsPaginationPage))
   }
 }
 
