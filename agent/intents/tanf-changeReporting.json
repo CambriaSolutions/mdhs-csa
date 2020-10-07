@@ -17,13 +17,13 @@
       ],
       "parameters": [
         {
-          "id": "54ce6070-5eea-43a0-9048-b8dabda5c6c0",
+          "id": "c28ae58b-3f23-4bee-a7d8-bb45e0c54467",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
           "value": "$yes-no",
           "defaultValue": "",
-          "isList": false,
+          "isList": true,
           "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "bee038af-3738-4b44-8d99-fa091b5ae83d",
+          "id": "36feb21b-196b-4594-a146-e67793bfd401",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",
@@ -80,8 +80,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
