@@ -47,9 +47,7 @@
           "title": "",
           "payload": {
             "handleEndConversation": true,
-            "suggestions": [
-              "Office Locations"
-            ]
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",
