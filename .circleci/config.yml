@@ -21,7 +21,7 @@ jobs:
             - scripts/node_modules
       - run:
           name: "Add env variables"
-          command: cd scripts && echo "GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
+          command: cd scripts/deployment && echo "GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
           name: "Create mdhs key file for scripts"
           command: cd scripts/deployment && echo "${<< parameters.jsonKey >>}" > mdhs-key.json
