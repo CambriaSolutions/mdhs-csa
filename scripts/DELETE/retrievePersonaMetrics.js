@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 require('dotenv').config()
 const admin = require('firebase-admin')
 const fs = require('fs')
@@ -5,13 +6,13 @@ const fs = require('fs')
 admin.initializeApp()
 
 const db = admin.firestore()
-const requestsRef = db.collection('subjectMatters/cse/requests');
+const requestsRef = db.collection('subjectMatters/cse/requests')
 const personaMetrics = new Map()
 const sessionMetrics = new Map()
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
+    await callback(array[index], index, array)
   }
 }
 
@@ -23,9 +24,9 @@ const queryAndGenerateOutpuFile = async (personaIntents, filename) => {
     console.warn('no records found')
   }
 
-  let stream = fs.createWriteStream(filename, { flags: 'a' });
+  let stream = fs.createWriteStream(filename, { flags: 'a' })
   await asyncForEach(snapshot.docs, async doc => {
-    const request = doc.data();
+    const request = doc.data()
     const output = {
       id: doc.id,
       createdAt: request.createdAt,
@@ -37,7 +38,7 @@ const queryAndGenerateOutpuFile = async (personaIntents, filename) => {
       stream.write(JSON.stringify(output) + ',')
     }
   })
-  stream.end();
+  stream.end()
 }
 
 const retrievePersonaMetrics = async () => {
@@ -106,4 +107,4 @@ const retrievePersonaMetrics = async () => {
   console.log('Finished')
 }
 
-retrievePersonaMetrics();
+retrievePersonaMetrics()

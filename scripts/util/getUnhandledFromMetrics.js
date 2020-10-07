@@ -6,7 +6,7 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 const db = admin.firestore()
-const filterStartDate = new Date(2020, 8, 18, 0, 0, 0, 0)
+const filterStartDate = new Date(2020, 1, 1, 0, 0, 0, 0)
 
 const getMetrics = async (subjectMatter) => {
   const dbRef = await db.collection(`subjectMatters/${subjectMatter}/metrics`).get()
@@ -17,7 +17,7 @@ const getMetrics = async (subjectMatter) => {
     const docDate = new Date(doc.id)
     if (metric.fallbackTriggeringQueries && docDate >= filterStartDate) {
       metric.fallbackTriggeringQueries.forEach(fallbackTriggeringQuery => {
-        fs.writeSync(f, `${fallbackTriggeringQuery.queryText}\n`)
+        fs.writeSync(f, `${fallbackTriggeringQuery.queryText},${doc.id}\n`)
         console.log(`Query Text: (${fallbackTriggeringQuery.queryText}), Created At: (${doc.id})`)
       })
     }
