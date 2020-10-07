@@ -13,23 +13,22 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/automl": "^2.2.0",
-    "@google-cloud/language": "^4.1.0",
-    "date-fns": "^2.15.0",
-    "dialogflow": "^0.12.2",
-    "dotenv": "^6.2.0",
-    "firebase": "^7.17.1",
-    "firebase-admin": "^8.7.0",
-    "firebase-functions": "^3.8.0",
+    "date-fns": "^2.16.1",
+    "dialogflow": "^4.0.3",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.22.1",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
     "fs": "0.0.1-security",
-    "jszip": "^3.4.0",
-    "node-fetch": "^2.3.0",
+    "jszip": "^3.5.0",
+    "node-fetch": "^2.6.1",
     "parse-address": "^1.1.2",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "uuid": "^3.3.2"
+    "request-promise": "^4.2.6",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
-    "eslint": "^7.2.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-promise": "^4.2.1"
   }
 }
