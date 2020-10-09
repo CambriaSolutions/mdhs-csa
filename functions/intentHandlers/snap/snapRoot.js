@@ -1,8 +1,8 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.snapRoot = async agent => {
-  const spanishGuideLink = ''
-  const vietnameseGuideLink = ''
+  const spanishGuideLink = '#'
+  const vietnameseGuideLink = '#'
 
   try {
     await agent.add('What can I help you with?')
