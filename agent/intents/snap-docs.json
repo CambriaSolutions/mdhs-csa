@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "1f53966e-8877-4f8f-a11f-9bbdeeefbe53",
+          "id": "c3936763-1a63-45ef-9c71-fd39bbd43db3",
           "name": "number",
           "required": false,
           "dataType": "@sys.number",
@@ -46,10 +46,10 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
             "suggestions": [
               "Office Locations"
-            ]
+            ],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",

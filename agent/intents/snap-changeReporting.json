@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "bda075c4-f208-4e63-93df-9173edb8bfad",
+          "id": "3f8a80fa-9d73-42fb-8404-d0e0ea73c59e",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "1fdee42a-ea9e-4486-9ed7-b156d65c03b8",
+          "id": "c80b2f3b-96ba-462f-8ae0-67711821a518",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",
@@ -80,8 +80,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
