@@ -1,5 +1,83 @@
 [
   {
+    "id": "e04c228e-d019-4cf1-8652-daf8262f46a0",
+    "data": [
+      {
+        "text": "food stamps income change",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "89ef419c-6752-4855-9229-87e0854f6d42",
+    "data": [
+      {
+        "text": "How do I report income change for food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6d6856fd-7b6f-4409-9eba-faac9e45aac2",
+    "data": [
+      {
+        "text": "change form for food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2e88fbb0-3a97-4781-9726-cad1614fa3d5",
+    "data": [
+      {
+        "text": "food stamps report change form.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8289dd87-4d34-48ad-ad89-51025b2f22b5",
+    "data": [
+      {
+        "text": "food stamps form for a change in household.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a3a9ba8a-f835-4431-b98b-055decff146c",
+    "data": [
+      {
+        "text": "I need to change my address on my food stamps case",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "f9993714-2008-456c-b67c-683a0cc4346d",
     "data": [
       {
