@@ -23,7 +23,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please \u003c a href\u003d\"#\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to find resources near you."
+            "Please \u003ca href\u003d\"#\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to find resources near you."
           ],
           "condition": ""
         },
