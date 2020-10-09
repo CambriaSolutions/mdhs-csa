@@ -28,16 +28,6 @@
           "condition": ""
         },
         {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Is there anything else I can help you with?"
-          ],
-          "condition": ""
-        },
-        {
           "type": "4",
           "title": "",
           "payload": {
