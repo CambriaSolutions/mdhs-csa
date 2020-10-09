@@ -1,8 +1,8 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.snapRoot = async agent => {
-  const spanishGuideLink = '#'
-  const vietnameseGuideLink = '#'
+  const spanishGuideLink = 'https://www.mdhs.ms.gov/wp-content/uploads/2020/08/12377.7363_TARGET-Spanish_SNAP-facts-for-language-1.pdf'
+  const vietnameseGuideLink = 'https://www.mdhs.ms.gov/wp-content/uploads/2020/08/12377.7363_TARGET-Vietnamese_SNAP-facts-for-language-1.pdf'
 
   try {
     await agent.add('What can I help you with?')
