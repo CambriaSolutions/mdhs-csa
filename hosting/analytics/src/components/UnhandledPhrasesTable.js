@@ -79,13 +79,6 @@ class UnhandledTableHead extends React.Component {
         disablePadding: false,
         label: 'Unhandled Phrase',
         toolTip: 'Sort by the unhandled phrase',
-      },
-      {
-        id: 'occurrences',
-        numeric: true,
-        disablePadding: false,
-        label: 'Count',
-        toolTip: 'Sort by the number of times the phrase was entered',
       }
     ]
 
@@ -198,7 +191,6 @@ class UnhandledTable extends React.Component {
                       key={row.id}
                     >
                       <TableCell component='th' scope='row'>{row.queryText}</TableCell>
-                      <TableCell align='right'>{row.occurrences}</TableCell>
                     </TableRow>
                   )
                 })}

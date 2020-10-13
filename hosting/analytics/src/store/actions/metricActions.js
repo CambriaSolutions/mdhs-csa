@@ -573,7 +573,7 @@ export const fetchMetricsSuccess = metrics => {
     fallbackTriggeringQueries = Object.keys(fallbackTriggeringQueries).map(key => ({
       queryText: key,
       id: key,
-      occurrences: fallbackTriggeringQueries[key]
+      // occurrences: fallbackTriggeringQueries[key]
     }))
 
     dispatch({
