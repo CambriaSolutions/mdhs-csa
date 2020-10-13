@@ -21,7 +21,7 @@
       ],
       "parameters": [
         {
-          "id": "edff19b1-5bfb-4ef9-8e21-805937223c4e",
+          "id": "eaae4dfc-625e-46c1-a183-4443265a5062",
           "name": "phone-number",
           "required": false,
           "dataType": "@sys.phone-number",
@@ -52,7 +52,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please \u003ca href\u003d\"https://ea-upload.mdhs.ms.gov/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to upload documents for your case."
+            "Please click \u003ca href\u003d\"https://ea-upload.mdhs.ms.gov/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to upload documents for your case."
           ],
           "condition": ""
         },
