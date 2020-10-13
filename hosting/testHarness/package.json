@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cambriasolutions/chatframe": "1.19.49",
+    "@cambriasolutions/chatframe": "1.19.50",
     "@types/googlemaps": "^3.0.0",
     "@types/markerclustererplus": "^2.1.29",
     "react": "^16.6.3",
