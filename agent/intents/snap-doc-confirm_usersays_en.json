@@ -130,7 +130,7 @@
     "id": "795a01cc-5def-412c-8cf1-71453b56367c",
     "data": [
       {
-        "text": "I need mdgs fax number",
+        "text": "I need mdhs fax number",
         "userDefined": false
       }
     ],
@@ -391,6 +391,19 @@
     "data": [
       {
         "text": "I need local fax number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4ee43ded-9e6f-4226-beb5-7e1ddda148a8",
+    "data": [
+      {
+        "text": "email",
         "userDefined": false
       }
     ],

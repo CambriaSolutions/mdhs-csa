@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "bda075c4-f208-4e63-93df-9173edb8bfad",
+          "id": "99c9f4b2-9e2d-4968-82d9-7a9eb14b4409",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "1fdee42a-ea9e-4486-9ed7-b156d65c03b8",
+          "id": "804b82e8-11b0-42a9-ad68-38dd789718d3",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",
@@ -62,7 +62,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "SNAP households receiving substantial gambling or lottery winnings of $3,500 or more must report this change within 10 days of receipt of the winnings. Households receiving substantial gambling or lottery winnings are ineligible to receive SNAP.If the household fails to report a required change and receives extra SNAP benefits, the value of these benefits will have to be repaid. The person could also be prosecuted for fraud."
+            "SNAP households receiving substantial gambling or lottery winnings of $3,500 or more must report this change within 10 days of receipt of the winnings. Households receiving substantial gambling or lottery winnings are ineligible to receive SNAP. If the household fails to report a required change and receives extra SNAP benefits, the value of these benefits will have to be repaid. The person could also be prosecuted for fraud."
           ],
           "condition": ""
         },
