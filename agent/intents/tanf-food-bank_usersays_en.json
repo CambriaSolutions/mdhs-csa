@@ -1,9 +1,9 @@
 [
   {
-    "id": "0de80885-4aa2-4600-8670-70a52d14ede5",
+    "id": "1d9eee86-8e83-423a-8e64-b136fc195d9e",
     "data": [
       {
-        "text": "Can I get food stamps going to school?",
+        "text": "I\u0027ve applied for food stamps and I need more food.",
         "userDefined": false
       }
     ],
@@ -13,10 +13,10 @@
     "updated": 0
   },
   {
-    "id": "bebd41b6-4f5d-4dd7-b7c4-1850a53041ff",
+    "id": "11877f72-b306-49e7-94bd-e027b5c5fac9",
     "data": [
       {
-        "text": "How can I check if I can get food stamps?",
+        "text": "I need food now",
         "userDefined": false
       }
     ],
@@ -26,10 +26,10 @@
     "updated": 0
   },
   {
-    "id": "79625ccb-a36f-4a81-b352-a6673d40448e",
+    "id": "4438159f-e20a-48e4-be6b-c6aea5489b1a",
     "data": [
       {
-        "text": "Can I get food stamps for my grand children?",
+        "text": "I\u0027ve applied for snap but need more food",
         "userDefined": false
       }
     ],
@@ -39,10 +39,10 @@
     "updated": 0
   },
   {
-    "id": "32d894e4-6e0f-4068-aceb-ea6a269e6baf",
+    "id": "fce761f6-8985-4f0c-9f22-7fbb59307e38",
     "data": [
       {
-        "text": "Can I work and get food stamps?",
+        "text": "pantry",
         "userDefined": false
       }
     ],
@@ -52,10 +52,10 @@
     "updated": 0
   },
   {
-    "id": "53c8be5d-951e-4b2b-99de-4b93c1bc19d3",
+    "id": "d648ea67-4ab2-42f8-a311-9baa9966a1eb",
     "data": [
       {
-        "text": "Can I get  going SNAP to school?",
+        "text": "hot meals",
         "userDefined": false
       }
     ],
@@ -65,10 +65,10 @@
     "updated": 0
   },
   {
-    "id": "0252458d-dd40-4092-a23b-01921c8c3784",
+    "id": "4820446b-c5a1-4c5e-a25f-1cb3d0379b22",
     "data": [
       {
-        "text": "How can I check if I can get SNAP?",
+        "text": "free food",
         "userDefined": false
       }
     ],
@@ -78,10 +78,10 @@
     "updated": 0
   },
   {
-    "id": "1323c505-a6e3-4272-816b-2bf5553189bf",
+    "id": "9cf35a51-9b06-41de-bc7b-5784ab83ae14",
     "data": [
       {
-        "text": "What do I need to provide?",
+        "text": "where can my family get food?",
         "userDefined": false
       }
     ],
@@ -91,10 +91,10 @@
     "updated": 0
   },
   {
-    "id": "99838001-9dac-4bd4-af81-e4dc1c5b2cce",
+    "id": "55c1abf6-92d4-4096-b392-14ba86a05947",
     "data": [
       {
-        "text": "Can I get SNAP for my grand children?",
+        "text": "soup kitchens",
         "userDefined": false
       }
     ],
@@ -104,10 +104,10 @@
     "updated": 0
   },
   {
-    "id": "1e76bc40-267f-4028-a1d5-da62d0902258",
+    "id": "bb5530bd-9dbd-4383-9b89-295a36145b34",
     "data": [
       {
-        "text": "Can I work and get SNAP?",
+        "text": "food banks",
         "userDefined": false
       }
     ],
@@ -117,10 +117,10 @@
     "updated": 0
   },
   {
-    "id": "d8734ecd-ee02-4bac-9cf1-8bb13fce6bbb",
+    "id": "847c725f-66f3-4a58-a653-aabbafab6640",
     "data": [
       {
-        "text": "Eligibility Checker",
+        "text": "food pantry",
         "userDefined": false
       }
     ],

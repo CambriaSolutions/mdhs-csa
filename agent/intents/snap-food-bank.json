@@ -1,9 +1,9 @@
 {
-  "id": "c17448fd-5549-430f-bc87-32e3c82ed542",
-  "name": "cse-tbd",
+  "id": "1de1a81b-cb3b-4c31-9a8f-feded231ca30",
+  "name": "snap-food-bank",
   "auto": true,
   "contexts": [
-    "cse-subject-matter"
+    "snap-subject-matter"
   ],
   "responses": [
     {
@@ -11,9 +11,8 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "cse-subject-matter",
-          "lifespan": 99,
-          "parameters": {}
+          "name": "snap-subject-matter",
+          "lifespan": 99
         }
       ],
       "parameters": [],
@@ -24,8 +23,18 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "thanks"
+            "Please \u003ca href\u003d\"https://myresources.mdhs.ms.gov/\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to find resources near you."
           ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

@@ -17,13 +17,13 @@
       ],
       "parameters": [
         {
-          "id": "54ce6070-5eea-43a0-9048-b8dabda5c6c0",
+          "id": "af038c11-06eb-44cb-b737-e7e285ad4053",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
           "value": "$yes-no",
           "defaultValue": "",
-          "isList": false,
+          "isList": true,
           "prompts": [],
           "promptMessages": [],
           "noMatchPromptMessages": [],
@@ -31,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "bee038af-3738-4b44-8d99-fa091b5ae83d",
+          "id": "897a8820-5760-42b9-9112-d6ea11b1c742",
           "name": "action-requests",
           "required": false,
           "dataType": "@action-requests",
@@ -62,7 +62,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "TANF households receiving substantial gambling or lottery winnings of $3,500 or more must report this change within 10 days of receipt of the winnings. Households receiving substantial gambling or lottery winnings are ineligible to receive TANF.If the household fails to report a required change and receives extra TANF benefits, the value of these benefits will have to be repaid. The person could also be prosecuted for fraud."
+            "TANF households receiving substantial gambling or lottery winnings of $3,500 or more must report this change within 10 days of receipt of the winnings. Households receiving substantial gambling or lottery winnings are ineligible to receive TANF. If the household fails to report a required change and receives extra TANF benefits, the value of these benefits will have to be repaid. The person could also be prosecuted for fraud."
           ],
           "condition": ""
         },
@@ -80,8 +80,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
