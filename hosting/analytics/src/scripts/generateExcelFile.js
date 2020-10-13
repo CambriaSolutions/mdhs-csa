@@ -1,6 +1,30 @@
 import ExcelJS from 'exceljs'
 
-export const generateExcelFile = async (phrasesData, feedbackData, includeSubjectMatterCol) => {
+const headerBorderStyle = {
+  style: 'medium',
+  color: { argb: '000000' }
+}
+
+const headerStyle = {
+  fill: {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: {
+      argb: 'BDDBAB'
+    }
+  },
+  font: {
+    size: 16
+  },
+  border: {
+    bottom: headerBorderStyle,
+    top: headerBorderStyle,
+    left: headerBorderStyle,
+    right: headerBorderStyle
+  }
+}
+
+export const generateExcelFile = async (phrasesData, feedbackData, includeSubjectMatterCol, subjectMatter) => {
   const workbook = new ExcelJS.Workbook()
 
   workbook.creator = 'Cambria'
@@ -8,8 +32,10 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
   workbook.created = new Date()
   workbook.modified = new Date()
 
+  const sheet1Name = 'Unhandled User Questions' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
+
   // Create worksheets with headers and footers
-  const sheet1 = workbook.addWorksheet('UnhandledPhrases');
+  const sheet1 = workbook.addWorksheet(sheet1Name);
 
   sheet1.columns = [
     { width: 100 },
@@ -18,7 +44,7 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
 
   let sheet1Columns = [
     {
-      name: 'Phrase',
+      name: 'Unhandled User Questions',
       filterButton: true,
       style: {
         font: {
@@ -39,7 +65,7 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
 
   if (includeSubjectMatterCol) {
     sheet1Columns = [...sheet1Columns, {
-      name: 'SubjectMatter',
+      name: 'Subject Matter',
       filterButton: true,
       style: {
         font: {
@@ -49,21 +75,28 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
     }]
 
     sheet1.columns = [...sheet1.columns, { width: 20 }]
+
+    sheet1.getCell('C1').style = headerStyle
   }
 
   sheet1.addTable({
-    name: 'PhrasesTable',
+    name: 'User',
     ref: 'A1',
     headerRow: true,
     totalsRow: false,
     style: {
-      showRowStripes: true
+      theme: null
     },
     columns: sheet1Columns,
     rows: phrasesData.length > 0 ? phrasesData : [['N/A', 'N/A', 'N/A']]
   })
 
-  const sheet2 = workbook.addWorksheet('UserFeedback');
+  sheet1.getCell('A1').style = headerStyle
+  sheet1.getCell('B1').style = headerStyle
+
+  const sheet2Name = 'User Feedback' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
+
+  const sheet2 = workbook.addWorksheet(sheet2Name);
 
   sheet2.columns = [
     { width: 50 },
@@ -73,7 +106,17 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
 
   let sheet2Columns = [
     {
-      name: 'Comment',
+      name: 'User Feedback',
+      filterButton: true,
+      style: {
+        font: {
+          size: 16
+        },
+
+      }
+    },
+    {
+      name: 'Was Gen helpful?',
       filterButton: true,
       style: {
         font: {
@@ -90,15 +133,6 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
         }
       }
     },
-    {
-      name: 'Helpful',
-      filterButton: true,
-      style: {
-        font: {
-          size: 16
-        }
-      }
-    }
   ]
 
   if (includeSubjectMatterCol) {
@@ -113,6 +147,7 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
     }]
 
     sheet2.columns = [...sheet2.columns, { width: 20 }]
+    sheet2.getCell('D1').style = headerStyle
   }
 
   sheet2.addTable({
@@ -121,11 +156,15 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
     headerRow: true,
     totalsRow: false,
     style: {
-      showRowStripes: true
+      theme: null
     },
     columns: sheet2Columns,
     rows: feedbackData.length > 0 ? feedbackData : [['N/A', 'N/A', 'N/A']]
   })
+
+  sheet2.getCell('A1').style = headerStyle
+  sheet2.getCell('B1').style = headerStyle
+  sheet2.getCell('C1').style = headerStyle
 
   // write to a new buffer
   const buffer = await workbook.xlsx.writeBuffer();
@@ -134,6 +173,6 @@ export const generateExcelFile = async (phrasesData, feedbackData, includeSubjec
 
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
-  link.download = "analytics.xlsx";
+  link.download = "Unhandled Phrases and User Feedback.xlsx";
   link.click();
 }

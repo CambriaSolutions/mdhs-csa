@@ -388,7 +388,7 @@ const addFeedbackToContent = (feedback, content, subjectMatter) => {
       if (data.feedback) {
         data.feedback.forEach(_feedback => {
           if (_feedback.comment) {
-            let newRow = [_feedback.comment, createdAtFormatted, _feedback.helpful ? 'Y' : 'N']
+            let newRow = [_feedback.comment, _feedback.helpful ? 'Yes' : 'No', createdAtFormatted]
 
             if (subjectMatter) {
               newRow = [...newRow, subjectMatter.toUpperCase()]
