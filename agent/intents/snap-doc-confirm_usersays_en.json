@@ -400,6 +400,19 @@
     "updated": 0
   },
   {
+    "id": "4ee43ded-9e6f-4226-beb5-7e1ddda148a8",
+    "data": [
+      {
+        "text": "email",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "001cf97b-dbd7-4287-8a19-d7a7c4212b36",
     "data": [
       {
