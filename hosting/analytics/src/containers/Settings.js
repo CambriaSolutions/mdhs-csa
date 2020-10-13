@@ -141,7 +141,7 @@ class Settings extends Component {
 
     if (this.props.user.dataExport) {
       let downloadBtnToggle = (
-        <Button variant="outlined" color="primary">Excel</Button>
+        <Button variant="outlined" color="primary" onClick={this.props.onExportDownload}>Excel</Button>
       )
       if (this.props.loadingDownload) {
         downloadBtnToggle = <CircularProgress color='primary' />
@@ -155,7 +155,7 @@ class Settings extends Component {
             {downloadBtnToggle}
           </StyledExportButtonRow>
           <Divider />
-        </div>
+        </div >
       )
     }
     const settingsHeader = (
