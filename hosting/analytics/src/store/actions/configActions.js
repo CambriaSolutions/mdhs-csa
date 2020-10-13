@@ -261,13 +261,6 @@ export const toggleIntentsModal = option => {
   }
 }
 
-export const updateExportDate = newDate => {
-  return {
-    type: actionTypes.UPDATE_EXPORT_DATE,
-    downloadExportDate: newDate,
-  }
-}
-
 export const updateDefaultSubjectMatter = subjectMatter => {
   return (dispatch, getState) => {
     // Get subject matter settings based on the given context
