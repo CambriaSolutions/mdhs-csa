@@ -1,7 +1,7 @@
 require('dotenv').config()
 const admin = require('firebase-admin')
 const { categoriesWithIntents } = require('./mlCategories')
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 
 const app = admin.initializeApp()
 const projectId = app.options.credential.projectId
@@ -51,7 +51,7 @@ const populateIntentsCollection = async () => {
   const intentsClient = new dialogflow.IntentsClient()
 
   // // The path to identify the agent that owns the intents.
-  const projectAgentPath = intentsClient.projectAgentPath(projectId)
+  const projectAgentPath = intentsClient.agentPath(projectId)
 
   const request = {
     parent: projectAgentPath,

@@ -1,6 +1,6 @@
 require('dotenv').config()
 const fs = require('fs')
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 const JSZip = require('jszip')
 
 const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
