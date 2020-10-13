@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import ChatWindow from './components/chatframe'
+import './App.css'
 
 export const options = {
   eventUrl: process.env.REACT_APP_EVENT_URL,
