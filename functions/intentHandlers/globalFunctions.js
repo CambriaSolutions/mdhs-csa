@@ -193,6 +193,10 @@ exports.defaultFallback = async agent => {
     } else if (subjectMatter === 'snap' || subjectMatter === 'tanf') {
       message = `I'm sorry, I'm not familiar with that right now, but I'm still learning! I can help answer a wide variety of questions \
       about ${subjectMatter.toUpperCase()}; please try rephrasing or click on the options provided.`
+    } else if (subjectMatter === 'wfd') {
+      const myresourcesLink = '<a target="_blank" href="https://myresources.mdhs.ms.gov/"> MyResources</a>'
+      message = `I'm sorry, I'm not familiar with that right now, but I'm still learning! I can help answer a wide variety of questions; \
+      please try rephrasing or click on one of the options provided. For more information, you can access ${myresourcesLink}`
     }
 
     await agent.add(message)
