@@ -1,7 +1,6 @@
 import * as t from '../actions/actionTypes'
 
 const initialState = {
-  avatar: null,
   title: 'Chat Window',
   windowVisible: false,
   fullscreen: false,
@@ -33,9 +32,6 @@ function config(state = initialState, action) {
 
     case t.SET_ACTIVATION_TEXT:
       return { ...state, activationText: action.activationText }
-
-    case t.SET_AVATAR:
-      return { ...state, avatar: action.avatar }
 
     case t.SET_TITLE:
       return { ...state, title: action.title }

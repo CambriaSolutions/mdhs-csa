@@ -5,6 +5,7 @@ import Chat from '@material-ui/icons/Chat'
 import Zoom from '@material-ui/core/Zoom'
 import { withTheme } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
+import chatbotAvatar from './chatbot_avatar.svg'
 
 // Redux
 import { connect } from 'react-redux'
@@ -44,12 +45,11 @@ class ActivatorButton extends PureComponent {
       showWindow,
       activationText,
       theme,
-      avatar,
     } = this.props
 
     const contentToDisplay = activationText ? (
       <>
-        <BotAvatar alt={title} src={avatar} />
+        <BotAvatar alt={title} src={chatbotAvatar} />
         <TextContainer theme={theme}>{activationText}</TextContainer>
       </>
     ) : <Chat />
@@ -73,8 +73,7 @@ const mapStateToProps = state => {
   return {
     title: state.config.title,
     windowVisible: state.config.windowVisible,
-    activationText: state.config.activationText,
-    avatar: state.config.avatar,
+    activationText: state.config.activationText
   }
 }
 

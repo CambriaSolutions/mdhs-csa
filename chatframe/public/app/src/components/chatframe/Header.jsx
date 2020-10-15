@@ -13,6 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import { findLast, find } from 'lodash'
 import { sendQuickReply } from './actions/conversation'
+import chatbotAvatar from './chatbot_avatar.svg'
 
 import {
   hideWindow,
@@ -101,7 +102,6 @@ class Header extends PureComponent {
       showWindowed,
       showFullscreen,
       fullscreen,
-      avatar,
       showPrivacyPolicy,
       sendQuickReply,
       messages
@@ -126,7 +126,7 @@ class Header extends PureComponent {
 
     return (
       <Container theme={theme}>
-        <BotAvatar alt={title} src={avatar} />
+        <BotAvatar alt={title} src={chatbotAvatar} />
         <HeaderText theme={theme} variant='h6'>
           {title}
         </HeaderText>
@@ -182,7 +182,6 @@ const mapStateToProps = state => {
   return {
     title: state.config.title,
     fullscreen: state.config.fullscreen,
-    avatar: state.config.avatar,
     messages: state.conversation.messages
   }
 }

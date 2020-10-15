@@ -7,7 +7,6 @@ import {
 } from 'date-fns'
 import {
   SET_TITLE,
-  SET_AVATAR,
   TIMER_START,
   UPDATE_CURRENT_TIME,
   SHOW_WINDOW,
@@ -27,7 +26,6 @@ import {
 import { sysTimeFormat } from '../config/dateFormats'
 import { setupClient } from './conversation'
 import { sendEvent } from './dialogflow'
-import genbotAvatar from '../genbot_avatar.svg'
 
 export function showWindow() {
   return (dispatch, getState) => {
@@ -99,7 +97,6 @@ export function initialize(props) {
   return dispatch => {
     const {
       title,
-      avatar,
       client,
       clientOptions,
       initialActive,
@@ -109,12 +106,8 @@ export function initialize(props) {
       activationText,
       feedbackUrl,
     } = props
-    let userAvatar = avatar
-    if (!userAvatar) {
-      userAvatar = genbotAvatar
-    }
+
     dispatch({ type: SET_TITLE, title })
-    dispatch({ type: SET_AVATAR, avatar: userAvatar })
     dispatch(setupClient(client, clientOptions))
     dispatch(startTimer())
 
