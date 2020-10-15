@@ -78,13 +78,13 @@ const inspectForMl = async (admin, store, query, intent, dfContext, context, tim
 
         const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
         const dateKey = format(currentDate, 'MM-dd-yyyy')
-        logger.info(`Date Key ${dateKey}`)
+        console.log(`Date Key ${dateKey}`)
         await store.collection(`${context}/metrics`).doc(dateKey).update({
           noneOfTheseCategories: admin.firestore.FieldValue.arrayUnion(docRef.id)
         })
       }
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -573,7 +573,7 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
 }
 
 module.exports = async (snapshot, context) => {
-  logger.info('Starting analytics trigger')
+  console.log('Starting analytics trigger')
   try {
     const admin = require('firebase-admin')
     // Connect to DB
@@ -581,11 +581,11 @@ module.exports = async (snapshot, context) => {
 
     const subjectMatter = context.params.subjectMatter
     if (subjectMatter === undefined) {
-      logger.error('Subject matter was not found within trigger context.')
+      console.error('Subject matter was not found within trigger context.')
     } else {
       await calculateMetrics(admin, store, snapshot.data(), subjectMatter)
     }
   } catch (e) {
-    logger.error(e.message, e)
+    console.error(e.message, e)
   }
 }

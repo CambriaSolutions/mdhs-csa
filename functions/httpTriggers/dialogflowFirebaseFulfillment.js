@@ -126,7 +126,7 @@ module.exports = async (request, response) => {
     }
   }
   catch (e) {
-    logger.fatal(e.message, e)
+    console.error(e.message, e)
     response.status(500).send(e.message)
   }
 }

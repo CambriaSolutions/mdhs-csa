@@ -17,6 +17,6 @@ exports.tanfRoot = async agent => {
       lifespan: 999,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

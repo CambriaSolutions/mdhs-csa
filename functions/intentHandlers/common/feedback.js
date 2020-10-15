@@ -23,7 +23,7 @@ exports.feedbackRoot = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -66,7 +66,7 @@ exports.feedbackNotHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -108,7 +108,7 @@ exports.feedbackHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -116,6 +116,6 @@ exports.feedbackComplete = async agent => {
   try {
     await agent.add('To start over just say hello!')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

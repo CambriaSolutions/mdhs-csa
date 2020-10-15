@@ -39,7 +39,7 @@ const startCalculationProcess = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -96,7 +96,7 @@ exports.pmtCalcIncomeTerm = async agent => {
       })
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -128,7 +128,7 @@ exports.pmtCalcGrossIncome = async agent => {
       parameters: paymentFactorsParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -188,7 +188,7 @@ exports.pmtCalcTaxDeductions = async agent => {
       })
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -225,7 +225,7 @@ exports.pmtCalcSSDeductions = async agent => {
       await invalidDeductions(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -284,7 +284,7 @@ exports.pmtCalcRetirementContributions = async agent => {
       await invalidDeductions(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -330,7 +330,7 @@ const existingChildSupport = async (agent, retirementContributions) => {
       await invalidDeductions(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -379,7 +379,7 @@ const finalPaymentCalculation = async (agent, paymentFactors) => {
       await invalidDeductions(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
     await agent.add(
       'Something went wrong, please try again, or call <a href="tel:+18778824916">1-877-882-4916</a> for immediate support.'
     )

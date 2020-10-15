@@ -24,7 +24,7 @@ module.exports = async () => {
     .get()
 
   const queriesToTrain = snap.size
-  logger.info(`Identified ${queriesToTrain} queries to train.`)
+  console.log(`Identified ${queriesToTrain} queries to train.`)
 
   if (queriesToTrain > 0) {
     // Train the model
@@ -40,7 +40,7 @@ module.exports = async () => {
     })
     await Promise.all(docUpdatePromises)
   } else {
-    logger.info('Training was skipped.')
+    console.log('Training was skipped.')
   }
 }
 
@@ -74,8 +74,8 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
       model: modelData,
     })
 
-    logger.info(`Training operation name: ${initialApiResponse.name}`)
-    logger.info('Training started...')
+    console.log(`Training operation name: ${initialApiResponse.name}`)
+    console.log('Training started...')
 
     // Update training status in db
     await store
@@ -106,10 +106,10 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
     }
 
     // Model information needed to review details in the GCP console
-    logger.info(`Model name: ${model.name}`)
-    logger.info(`Model deployment state: ${deploymentState}`)
+    console.log(`Model name: ${model.name}`)
+    console.log(`Model deployment state: ${deploymentState}`)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
 
     await store
       .collection('/subjectMatters/')

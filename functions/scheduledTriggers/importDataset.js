@@ -20,7 +20,7 @@ const importDataset = async (subjectMatter) => {
   // Google Cloud Storage Setup
   const storage = new Storage()
 
-  logger.info('retrieving query data...')
+  console.log('retrieving query data...')
 
   const storeRef = store.collection(
     `/subjectMatters/${subjectMatter}/queriesForTraining`
@@ -47,7 +47,7 @@ const importDataset = async (subjectMatter) => {
 
   if (phraseCategory.length > 0) {
     try {
-      logger.info('File beginning to write in GS bucket')
+      console.log('File beginning to write in GS bucket')
 
       const date = format(new Date(), 'MM-dd-yyyy')
       const fileName = `${date}-${subjectMatter}-category-training.csv`
@@ -60,14 +60,14 @@ const importDataset = async (subjectMatter) => {
 
       fs.closeSync(f)
 
-      logger.info('Uploading file to GS bucket')
+      console.log('Uploading file to GS bucket')
       // Uploads csv file to bucket for AutoML dataset import
 
       const bucket = storage.bucket('gs://' + autoMlSettings.gcsUri)
 
-      logger.info('GS bucket instantiated')
-      logger.info('tempFilePath: ' + tempFilePath)
-      logger.info('fileName: ' + fileName)
+      console.log('GS bucket instantiated')
+      console.log('tempFilePath: ' + tempFilePath)
+      console.log('fileName: ' + fileName)
 
       const [file, requestResponse] = await bucket.upload(
         tempFilePath,
@@ -78,18 +78,18 @@ const importDataset = async (subjectMatter) => {
 
       // TODO better way to check for fail/success here
       if (!file) {
-        logger.error('Error upload file to GS bucket. requestResponse: ' + JSON.stringify(requestResponse))
+        console.error('Error upload file to GS bucket. requestResponse: ' + JSON.stringify(requestResponse))
       } else {
-        logger.info('File uploaded successfully. phraseCategory[]: ' + JSON.stringify(phraseCategory))
+        console.log('File uploaded successfully. phraseCategory[]: ' + JSON.stringify(phraseCategory))
 
         // import phrases and categories to AutoML category dataset
         await updateCategoryModel(admin, store, projectId, fileName, phraseCategory, subjectMatter, autoMlSettings)
       }
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   } else {
-    logger.info('No new data to import.')
+    console.log('No new data to import.')
   }
 }
 
@@ -109,7 +109,7 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
   )
 
   try {
-    logger.info('Beginning updateCategoryModel')
+    console.log('Beginning updateCategoryModel')
 
     // Get Google Cloud Storage URI
     const inputConfig = {
@@ -124,15 +124,15 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
       inputConfig: inputConfig,
     }
 
-    logger.info('Processing Category dataset import')
-    logger.info('datasetPath: ' + JSON.stringify(datasetPath))
-    logger.info('inputConfig: ' + JSON.stringify(inputConfig))
-    logger.info('request: ' + JSON.stringify(request))
+    console.log('Processing Category dataset import')
+    console.log('datasetPath: ' + JSON.stringify(datasetPath))
+    console.log('inputConfig: ' + JSON.stringify(inputConfig))
+    console.log('request: ' + JSON.stringify(request))
 
     // Import dataset from input config
     const [operation] = await client.importData(request)
 
-    logger.info('Finished Category dataset import')
+    console.log('Finished Category dataset import')
 
     await store
       .collection('/subjectMatters/')
@@ -145,8 +145,8 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
 
     // The final result of the operation.
     if (operationResponses) {
-      logger.info('Operation Response Below:')
-      logger.info(operationResponses)
+      console.log('Operation Response Below:')
+      console.log(operationResponses)
 
       // Save import status in db
       await store
@@ -170,7 +170,7 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
       )
     }
   } catch (err) {
-    logger.error('updateCategoryModel failed', err)
+    console.error('updateCategoryModel failed', err)
 
     // Save import status in db
     await store

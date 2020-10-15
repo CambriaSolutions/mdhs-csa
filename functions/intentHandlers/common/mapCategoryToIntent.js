@@ -28,7 +28,7 @@ const retrieveIntentData = async category => {
       return
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 

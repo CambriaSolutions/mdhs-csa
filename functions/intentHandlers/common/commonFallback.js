@@ -8,7 +8,7 @@ exports.noneOfThese = async agent => {
   try {
     await defaultFallback(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 

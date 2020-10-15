@@ -14,6 +14,6 @@ module.exports = async () => {
   try {
     await rp(options)
   } catch (err) {
-    logger.fatal(err.message, err)
+    console.error(err.message, err)
   }
 }

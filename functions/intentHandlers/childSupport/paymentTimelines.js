@@ -7,6 +7,6 @@ exports.paymentTimelines = async agent => {
 
     await tbd(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

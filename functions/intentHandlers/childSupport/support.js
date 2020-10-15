@@ -60,7 +60,7 @@ exports.supportHandleEmploymentStatus = async agent => {
       },
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -86,7 +86,7 @@ exports.supportCollectNewEmployerName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -107,7 +107,7 @@ exports.supportNoNewEmployer = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -134,7 +134,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
         lifespan: 10,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   } else {
     try {
@@ -146,7 +146,7 @@ exports.supportCollectNewEmployerPhone = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -168,7 +168,7 @@ exports.supportNewEmployerUnkownPhone = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -210,7 +210,7 @@ exports.supportType = async (agent, supportType) => {
       parameters: { supportType: _supportType },
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -218,7 +218,7 @@ exports.supportSubmitSupportRequestInquiry = async (agent) => {
   try {
     await this.supportType(agent, 'inquiry')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -226,7 +226,7 @@ exports.supportSubmitSupportRequestCooperation = async (agent) => {
   try {
     await this.supportType(agent, 'cooperation')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -234,7 +234,7 @@ exports.supportSubmitSupportRequestSafety = async (agent) => {
   try {
     await this.supportType(agent, 'safety')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -242,7 +242,7 @@ exports.supportSubmitSupportRequestGoodCause = async (agent) => {
   try {
     await this.supportType(agent, 'good cause')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -250,7 +250,7 @@ exports.supportSubmitSupportRequestVerification = async (agent) => {
   try {
     await this.supportType(agent, 'verification')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -258,7 +258,7 @@ exports.supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
   try {
     await this.supportType(agent, 'request payment history')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -266,7 +266,7 @@ exports.supportSubmitSupportRequestInterstate = async (agent) => {
   try {
     await this.supportType(agent, 'interstate')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -288,7 +288,7 @@ exports.supportCollectFirstName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -315,7 +315,7 @@ exports.supportCollectLastName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -323,7 +323,7 @@ exports.supportInquiries = async agent => {
   try {
     await this.supportType(agent, 'inquiry')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -331,7 +331,7 @@ exports.supportReviewPayments = async agent => {
   try {
     await this.supportType(agent, 'child support increase or decrease')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -360,7 +360,7 @@ exports.supportNoPhoneNumber = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -397,7 +397,7 @@ exports.supportPhoneNumber = async agent => {
         parameters: ticketInfoParams,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   } else {
     try {
@@ -409,7 +409,7 @@ exports.supportPhoneNumber = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -443,7 +443,7 @@ exports.supportEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        logger.error(err.message, err)
+        console.error(err.message, err)
       }
     } else {
       try {
@@ -459,7 +459,7 @@ exports.supportEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        logger.error(err.message, err)
+        console.error(err.message, err)
       }
     }
   } else {
@@ -476,7 +476,7 @@ exports.supportEmail = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -511,7 +511,7 @@ exports.supportNoEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        logger.error(err.message, err)
+        console.error(err.message, err)
       }
     } else {
       try {
@@ -527,7 +527,7 @@ exports.supportNoEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        logger.error(err.message, err)
+        console.error(err.message, err)
       }
     }
   } else {
@@ -548,7 +548,7 @@ exports.supportNoEmail = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -558,7 +558,7 @@ exports.supportHandlePhoneRetry = async agent => {
   try {
     await handleContactCollection(agent, 'phone', isLumpSum)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -567,7 +567,7 @@ exports.supportHandleEmailRetry = async agent => {
   try {
     await handleContactCollection(agent, 'email', isLumpSum)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -592,7 +592,7 @@ exports.supportCollectCompanyName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -622,13 +622,13 @@ exports.supportCaseNumber = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   } else {
     try {
       await handleCaseNumber(descriptionText, agent, caseNumber)
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   }
 }
@@ -640,7 +640,7 @@ exports.supportNoCaseNumber = async agent => {
   try {
     await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -684,7 +684,7 @@ exports.supportCollectIssue = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -747,7 +747,7 @@ exports.supportSumbitIssue = async agent => {
       // Ask the user if they need anything else, set appropriate contexts
       await handleEndConversation(agent)
     } catch (err) {
-      logger.error(err.message, err)
+      console.error(err.message, err)
     }
   } else {
     // Handle service desk errors?
@@ -767,7 +767,7 @@ exports.supportEditProviderEmployment = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -780,6 +780,6 @@ exports.supportReportProviderEmployment = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

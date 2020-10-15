@@ -45,7 +45,7 @@ exports.setContext = async agent => {
       })
     })
   } else {
-    logger.info(`Unable to fetch contexts for ${sessionId}`)
+    console.log(`Unable to fetch contexts for ${sessionId}`)
   }
 
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
@@ -164,7 +164,7 @@ exports.disableInput = async agent => {
       )
     )
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -176,7 +176,7 @@ exports.caseyHandoff = async agent => {
     )
     await this.handleEndConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -203,7 +203,7 @@ exports.defaultFallback = async agent => {
 
     await agent.add(message)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -211,7 +211,7 @@ exports.restartConversation = async agent => {
   try {
     await this.startRootConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -219,7 +219,7 @@ exports.globalRestart = async agent => {
   try {
     await this.startRootConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -249,7 +249,7 @@ exports.welcome = async agent => {
       lifespan: 1,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -301,7 +301,7 @@ exports.acknowledgePrivacyStatement = async agent => {
     await this.selectSubjectMatter(agent)
     // await this.startRootConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -312,6 +312,6 @@ exports.startRootConversation = async agent => {
     await this.selectSubjectMatter(agent)
     // await this.startRootConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

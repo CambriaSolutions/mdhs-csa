@@ -19,7 +19,7 @@ exports.pmtQAHaventReceived = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -36,7 +36,7 @@ exports.pmtQAPaymentReduction = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -49,7 +49,7 @@ exports.pmtQAYesPaymentReduction = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -68,7 +68,7 @@ exports.pmtQAOver21 = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -83,7 +83,7 @@ exports.pmtQAEmployerPaymentStatus = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -105,7 +105,7 @@ exports.pmtQAYesEmployerPaymentStatus = async agent => {
       await supportEmploymentStatus(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -125,6 +125,6 @@ exports.pmtQANCPPaymentStatus = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

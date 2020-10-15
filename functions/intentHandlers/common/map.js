@@ -23,7 +23,7 @@ exports.mapRoot = (subjectMatter) => async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }
 
@@ -105,7 +105,7 @@ exports.mapDeliverMap = (locations) => async agent => {
       })
     }
   } catch (error) {
-    logger.fatal('Unable to query locations', error)
+    console.error('Unable to query locations', error)
   }
 }
 
@@ -148,6 +148,6 @@ exports.mapDeliverMapAndCountyOffice = (locations) => async agent => {
       })
     }
   } catch (error) {
-    logger.fatal('Unable to query locations and county', error)
+    console.error('Unable to query locations and county', error)
   }
 }

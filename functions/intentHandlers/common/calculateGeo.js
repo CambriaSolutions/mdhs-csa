@@ -28,7 +28,7 @@ const extractCounty = (geocode) => {
 
 exports.getGeocode = async address => {
   if (!address) {
-    logger.info('No address provided to fetch geocode.')
+    console.log('No address provided to fetch geocode.')
     return
   }
 
@@ -80,7 +80,7 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
             distance,
           }
         } else {
-          logger.info('No results returned from Distance Matrix calculation.')
+          console.log('No results returned from Distance Matrix calculation.')
         }
       })
     )
@@ -90,6 +90,6 @@ exports.getNearestThreeLocations = async (currentCoordinates, locations) => {
     const nearestThreeLocations = sortedResults.slice(0, 3)
     return nearestThreeLocations
   } else {
-    logger.info('Unable to fetch nearest location from invalid coordinates.')
+    console.log('Unable to fetch nearest location from invalid coordinates.')
   }
 }

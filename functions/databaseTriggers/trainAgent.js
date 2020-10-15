@@ -59,7 +59,7 @@ async function trainAgent(store, intentsClient, phrase, intentId, docId, intentN
       }
 
       await intentsClient.updateIntent(request)
-      logger.info('Updated intent with new training phrase.')
+      console.log('Updated intent with new training phrase.')
 
       // set agentTrained to true after we updated the intent
       // TODO - hardcoded cse
@@ -78,13 +78,13 @@ async function trainAgent(store, intentsClient, phrase, intentId, docId, intentN
           learnedPhrase: phrase,
         })
 
-      logger.info(`${intentName} learned ${phrase} as a training phrase`)
+      console.log(`${intentName} learned ${phrase} as a training phrase`)
 
     } catch (e) {
-      logger.fatal('Unable to train intent', e)
+      console.error('Unable to train intent', e)
     }
   } catch (err) {
-    logger.fatal('Unable to get intent', err)
+    console.error('Unable to get intent', err)
   }
 }
 
@@ -101,7 +101,7 @@ async function getIntent(intentsClient, intentId) {
     const response = responses[0]
     return response
   } catch (err) {
-    logger.error(`Unable to retrieve intent [${intentId}] from Dialogflow`, err)
+    console.error(`Unable to retrieve intent [${intentId}] from Dialogflow`, err)
     return err
   }
 }

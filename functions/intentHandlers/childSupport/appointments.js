@@ -13,6 +13,6 @@ exports.apptsOfficeLocationsHandoff = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

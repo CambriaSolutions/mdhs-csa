@@ -7,6 +7,6 @@ exports.closeCSCQACloseCase = async agent => {
   try {
     await supportType(agent, 'request case closure')
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

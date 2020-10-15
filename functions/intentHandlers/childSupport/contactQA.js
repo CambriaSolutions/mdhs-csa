@@ -7,6 +7,6 @@ exports.contactSupportHandoff = async agent => {
   try {
     await supportRoot(agent)
   } catch (err) {
-    logger.error(err.message, err)
+    console.error(err.message, err)
   }
 }

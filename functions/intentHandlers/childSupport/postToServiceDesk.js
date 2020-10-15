@@ -141,15 +141,15 @@ exports.sendToServiceDesk = async requestFieldValues => {
     json: true,
   }
 
-  logger.info('Sending Service Request', JSON.stringify(options))
+  console.log('Sending Service Request', JSON.stringify(options))
 
   const serviceRequest = rp(options)
     .then(response => {
       return response
     })
     .catch(err => {
-      logger.fatal('Unable to connect to Service Desk', err)
-      logger.info(requestObjectToDeliver)
+      console.error('Unable to connect to Service Desk', err)
+      console.log(requestObjectToDeliver)
       return err
     })
 

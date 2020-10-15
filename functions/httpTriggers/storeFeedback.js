@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
     // Check that feedback data exists on the request
     res.status(500).send('Missing feedback parameters')
   } else {
-    logger.info('reqData: ' + JSON.stringify(reqData))
+    console.log('reqData: ' + JSON.stringify(reqData))
 
     // If one of the context's name contains 'subject-matter' then this is the context 
     // used to identify the subject matter. But name field has full format
