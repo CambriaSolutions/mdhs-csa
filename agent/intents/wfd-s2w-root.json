@@ -9,13 +9,7 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [
-        {
-          "name": "waiting-feedback-root",
-          "lifespan": 1,
-          "parameters": {}
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
@@ -52,12 +46,13 @@
           "type": "4",
           "title": "",
           "payload": {
+            "handleEndConversation": true,
             "suggestions": [
               "PROVIDERS LOCATION",
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
               "HOW CAN I APPLY?",
-              "SUBMIT FEEDBACK"
+              "MYRESOURCES"
             ]
           },
           "textToSpeech": "",
