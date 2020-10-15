@@ -6,9 +6,6 @@ const { map } = require('lodash')
 const admin = require('firebase-admin')
 const db = admin.firestore()
 
-const Logger = require('../utils/Logger')
-const logger = new Logger('Global Functions')
-
 const getSessionIdFromPath = path => /[^/]*$/.exec(path)[0]
 
 exports.handleEndConversation = async agent => {

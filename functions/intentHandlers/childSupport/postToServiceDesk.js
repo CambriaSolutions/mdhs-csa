@@ -29,8 +29,6 @@ const callbackRequired = [
 
 exports.sendToServiceDesk = async requestFieldValues => {
   const rp = require('request-promise')
-  const Logger = require('../../utils/Logger')
-  const logger = new Logger('JIRA Service Desk')
 
   const {
     environment,

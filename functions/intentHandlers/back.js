@@ -1,8 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { map, first, filter, find } = require('lodash')
 const { genericHandler } = require('../utils/fulfillmentMessages.js')
-const Logger = require('../utils/Logger')
-const logger = new Logger('Back')
 
 /************************************************************************************************
  * The snapshotCurrentState takes the agent as a parameter and continually appends the current

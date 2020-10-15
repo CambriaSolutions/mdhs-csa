@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Payments Calculator')
-
 const { Suggestion } = require('dialogflow-fulfillment')
 const isNumber = require('lodash/isNumber')
 const {

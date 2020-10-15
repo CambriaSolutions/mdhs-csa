@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Case QA')
-
 const {
   supportReviewPayments,
   supportInquiries,

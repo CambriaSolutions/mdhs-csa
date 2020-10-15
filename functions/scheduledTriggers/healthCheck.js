@@ -1,8 +1,5 @@
 require('dotenv').config()
 
-const Logger = require('../utils/Logger')
-const logger = new Logger('Health Check')
-
 var options = {
   method: 'GET',
   url: process.env.HEALTH_CHECK_URL,

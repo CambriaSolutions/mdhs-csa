@@ -5,9 +5,6 @@ const retrieveIntentData = async category => {
   const camelCase = require('camelcase')
   const db = admin.firestore()
 
-  const Logger = require('../../utils/Loggerr')
-  const logger = new Logger('Map Category to Intent')
-
   // Format the category returned from ml models to match our db naming convention
   const formattedCategory = camelCase(category)
 

@@ -3,9 +3,6 @@ const format = require('date-fns/format')
 const addHours = require('date-fns/addHours')
 const differenceInSeconds = require('date-fns/differenceInSeconds')
 const isSameDay = require('date-fns/isSameDay')
-const Logger = require('../utils/Logger')
-
-const logger = new Logger('Store Analytics')
 
 // Subject Matter Default Settings
 const SUBJECT_MATTER_DEFAULT_PRIMARY_COLOR = '#6497AD'

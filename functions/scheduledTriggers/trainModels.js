@@ -1,8 +1,5 @@
 require('dotenv').config()
 
-const Logger = require('../utils/Logger')
-const logger = new Logger('Train Model')
-
 /**
  * Trigger training weekly
  **/

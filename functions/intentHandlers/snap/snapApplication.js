@@ -1,5 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('SNAP Application')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.snapApplication = async agent => {

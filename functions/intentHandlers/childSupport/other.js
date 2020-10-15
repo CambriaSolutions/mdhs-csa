@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Other')
-
 exports.other = async agent => {
   try {
     const { tbd } = require('../globalFunctions')

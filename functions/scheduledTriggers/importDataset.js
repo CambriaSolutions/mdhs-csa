@@ -1,6 +1,4 @@
 require('dotenv').config()
-const Logger = require('../utils/Logger')
-const logger = new Logger('Import Dataset')
 
 /***
  * Retrieve new query and category pairs if occurrences >10

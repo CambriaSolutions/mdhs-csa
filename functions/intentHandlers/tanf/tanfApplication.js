@@ -1,5 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('TANF Applications')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.tanfApplication = async agent => {

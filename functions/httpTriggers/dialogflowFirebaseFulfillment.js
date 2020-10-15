@@ -1,6 +1,3 @@
-const Logger = require('../utils/Logger')
-const logger = new Logger('Dialogflow Fulfillment')
-
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()

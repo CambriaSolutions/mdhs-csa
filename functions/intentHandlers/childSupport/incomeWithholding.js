@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Income Witholding')
-
 const { Suggestion } = require('dialogflow-fulfillment')
 const {
   calculatePercentage,

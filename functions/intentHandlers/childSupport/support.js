@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Support')
-
 const { Suggestion, Card } = require('dialogflow-fulfillment')
 const validator = require('validator')
 const { parsePhoneNumberFromString } = require('libphonenumber-js/min')

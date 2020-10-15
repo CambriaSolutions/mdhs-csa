@@ -1,9 +1,6 @@
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Enforcement')
-
 const taxOffsetGuideLink = '<a href="https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf" target="_blank">click here</a>'
 /**
  * Intent: enforcement-

@@ -1,5 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('SNAP Root')
 const { Suggestion } = require('dialogflow-fulfillment')
 
 exports.snapRoot = async agent => {

@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Support Helper Functions')
-
 const validator = require('validator')
 const { Suggestion } = require('dialogflow-fulfillment')
 

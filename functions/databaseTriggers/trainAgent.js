@@ -1,8 +1,5 @@
 require('dotenv').config()
 
-const Logger = require('../utils/Logger')
-const logger = new Logger('Train Agent')
-
 /**
  * Trigger function on 'queriesForTraining' collection updates
  * to determine occurrence threshold for DF agent training

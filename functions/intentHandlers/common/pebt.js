@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('PEBT')
-
 exports.pebtRoot = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')

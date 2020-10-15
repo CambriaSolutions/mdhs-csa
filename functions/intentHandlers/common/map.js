@@ -1,7 +1,5 @@
 const { Payload } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Maps')
 
 exports.mapRoot = (subjectMatter) => async agent => {
   try {

@@ -1,7 +1,3 @@
-
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Doc Upload')
-
 exports.docUpload = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')

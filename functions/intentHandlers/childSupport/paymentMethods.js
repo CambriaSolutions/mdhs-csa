@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Payment Methods')
-
 const { Suggestion } = require('dialogflow-fulfillment')
 const { handleEndConversation } = require('../globalFunctions')
 const { supportInquiries, supportReviewPayments } = require('./support.js')

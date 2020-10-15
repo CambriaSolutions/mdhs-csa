@@ -4,9 +4,6 @@ const projectId = admin.instanceId().app.options.projectId
 // Instantiate a Dialogflow client.
 const dialogflow = require('@google-cloud/dialogflow')
 
-const Logger = require('../utils/Logger')
-const logger = new Logger('Dialogflow Request')
-
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
 module.exports = async (req, reqType) => {

@@ -3,9 +3,6 @@ const URL = require('url').URL
 const fetch = require('node-fetch')
 const mapsKey = process.env.GOOGLE_MAPS_KEY
 
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Calculate Geo')
-
 const extractCounty = (geocode) => {
   const county = geocode.address_components.find(addressComponent => {
     if (addressComponent.types.includes('administrative_area_level_2')

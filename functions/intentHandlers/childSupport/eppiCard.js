@@ -1,6 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('EPPI Card')
-
 exports.eppiFees = async agent => {
   try {
     const { Card } = require('dialogflow-fulfillment')

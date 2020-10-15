@@ -14,9 +14,6 @@ const importDataset = require('./scheduledTriggers/importDataset')
 const trainModels = require('./scheduledTriggers/trainModels')
 const healthCheck = require('./scheduledTriggers/healthCheck')
 const exportBackup = require('./scheduledTriggers/exportBackup')
-const Logger = require('./utils/Logger')
-
-const logger = new Logger('Index')
 
 const runtimeOpts = {
   timeoutSeconds: 300,

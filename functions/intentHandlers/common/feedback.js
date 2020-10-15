@@ -1,5 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Feedback')
 const { Payload } = require('dialogflow-fulfillment')
 
 const {

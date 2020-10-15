@@ -1,7 +1,3 @@
-
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Eligibility Checker')
-
 exports.eligibilityChecker = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')

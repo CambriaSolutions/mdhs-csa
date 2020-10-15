@@ -1,6 +1,4 @@
 require('dotenv').config()
-const Logger = require('../utils/Logger')
-const logger = new Logger('Export Backup')
 
 const exportingFirestore = async (projectId, bucket) => {
   const firestore = require('@google-cloud/firestore')

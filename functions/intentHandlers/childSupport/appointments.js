@@ -1,5 +1,3 @@
-const Logger = require('../../utils/Logger')
-const logger = new Logger('Appointments')
 const { handleEndConversation } = require('../globalFunctions')
 
 exports.apptsOfficeLocationsHandoff = async agent => {
