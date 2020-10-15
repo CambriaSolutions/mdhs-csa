@@ -17,14 +17,12 @@ const retrieveIntentData = async category => {
     const categoryDocRef = db.collection('mlCategories').doc(formattedCategory)
     const categoryDoc = await categoryDocRef.get()
     const categoryData = categoryDoc.data()
-    const intent = get(categoryData, 'intent')
     const suggestionText = get(categoryData, 'suggestionText')
 
-    if (intent && suggestionText) {
+    if (suggestionText) {
       return {
         mlCategory: category,
-        intent,
-        suggestionText,
+        suggestionText
       }
     } else {
       return

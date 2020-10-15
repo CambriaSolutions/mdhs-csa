@@ -1,7 +1,7 @@
 const fs = require('fs')
-const globalIntentHandlers = require('../functions/intentHandlers/globalIntentHandlers')
-const commonIntentHandlers = require('../functions/intentHandlers/commonIntentHandlers')
-const childSupportIntentHandlers = require('../functions/intentHandlers/childSupportIntentHandlers')
+const globalIntentHandlers = require('../../functions/intentHandlers/globalIntentHandlers')
+const commonIntentHandlers = require('../../functions/intentHandlers/commonIntentHandlers')
+const childSupportIntentHandlers = require('../../functions/intentHandlers/childSupportIntentHandlers')
 const { map, filter } = require('lodash')
 
 const intentHandlers = {

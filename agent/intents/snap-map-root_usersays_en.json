@@ -130,6 +130,45 @@
     "updated": 0
   },
   {
+    "id": "94d57f78-b5fe-466a-9f4f-b1424224a551",
+    "data": [
+      {
+        "text": "food stamps locations in my area?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c074b398-bc30-4a81-8194-6bfd8513b7c4",
+    "data": [
+      {
+        "text": "Where can I go to talk to someone about food stamps?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4c2f1c37-55af-4a42-ac36-3c4fb8b24b80",
+    "data": [
+      {
+        "text": "Where to go for food stamps?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "a5ef1588-eb45-4232-bd1e-9023818e628e",
     "data": [
       {

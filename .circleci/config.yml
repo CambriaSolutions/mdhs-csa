@@ -21,19 +21,19 @@ jobs:
             - scripts/node_modules
       - run:
           name: "Add env variables"
-          command: cd scripts && echo "GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
+          command: cd scripts/deployment && echo "GOOGLE_APPLICATION_CREDENTIALS=./mdhs-key.json" > .env
       - run:
           name: "Create mdhs key file for scripts"
-          command: cd scripts && echo "${<< parameters.jsonKey >>}" > mdhs-key.json
+          command: cd scripts/deployment && echo "${<< parameters.jsonKey >>}" > mdhs-key.json
       - run:
           name: "Agent configuration"
           command: cd agent && mv agent.<< parameters.env >>.json agent.json
       - run:
           name: "Restore to << parameters.env >> Dialogflow"
-          command: cd scripts && node restoreDialogflow
+          command: cd scripts/deployment && node restoreDialogflow
       - run:
           name: "Populate Firestore"
-          command: cd scripts && node populateFirestore
+          command: cd scripts/deployment && node populateFirestore
   deploy_functions:
     docker:
       - image: circleci/node

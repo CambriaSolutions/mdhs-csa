@@ -1,6 +1,6 @@
 require('dotenv').config()
 const fs = require('fs')
-const dialogflow = require('dialogflow')
+const dialogflow = require('@google-cloud/dialogflow')
 const JSZip = require('jszip')
 
 const keyFile = require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
@@ -8,21 +8,21 @@ const projectId = keyFile.project_id
 const client = new dialogflow.v2.AgentsClient()
 const zip = new JSZip()
 
-zip.file('package.json', fs.readFileSync('../agent/package.json'))
-zip.file('agent.json', fs.readFileSync('../agent/agent.json'))
+zip.file('package.json', fs.readFileSync('../../agent/package.json'))
+zip.file('agent.json', fs.readFileSync('../../agent/agent.json'))
 
-const intentFiles = fs.readdirSync('../agent/intents')
+const intentFiles = fs.readdirSync('../../agent/intents')
 intentFiles.forEach(intentFile => {
   zip
     .folder('intents')
-    .file(intentFile, fs.readFileSync(`../agent/intents/${intentFile}`))
+    .file(intentFile, fs.readFileSync(`../../agent/intents/${intentFile}`))
 })
 
-const entityFiles = fs.readdirSync('../agent/entities')
+const entityFiles = fs.readdirSync('../../agent/entities')
 entityFiles.forEach(entityFile => {
   zip
     .folder('entities')
-    .file(entityFile, fs.readFileSync(`../agent/entities/${entityFile}`))
+    .file(entityFile, fs.readFileSync(`../../agent/entities/${entityFile}`))
 })
 
 zip.generateAsync({ type: 'uint8array' })

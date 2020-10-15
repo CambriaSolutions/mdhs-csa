@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
 import IntentDetailsList from '../components/IntentDetailsList'
 
 // Material UI
 import CircularProgress from '@material-ui/core/CircularProgress'
 import DialogContent from '@material-ui/core/DialogContent'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
+
+const StyledContentSection = styled.div`
+  min-height: 530px;
+`
 
 const CenterDiv = styled.div`
   text-align: center;
@@ -17,19 +22,33 @@ const CenterDiv = styled.div`
   max-height: 100%;
 `
 
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 13px;
+`
+
+const StyledItemDisplay = styled.div`
+  padding-right: 20px;
+`
+
+const StyledBackArrow = styled(ArrowBackIosIcon)`
+  font-size: 19px;
+`
+
+const StyledForwardArrow = styled(ArrowForwardIosIcon)`
+  font-size: 19px;
+`
+
 class IntentDetails extends Component {
-  constructor(props) {
-    super(props)
-
-    this.timeout = null
-    this.dialogRef = React.createRef()
-    this.size = 0
-
-    this.state = {
-      width: window.innerWidth,
-      loading: false,
-    }
+  state = {
+    width: window.innerWidth,
+    loading: false,
   }
+  size = 0
+  dialogRef = React.createRef()
+  timeout = null
 
   componentDidMount() {
     this.setState({
@@ -56,7 +75,24 @@ class IntentDetails extends Component {
     }, 200)
   }
 
+  previousPage = () => {
+    if (this.props.paginationPage > 1) {
+      this.props.previousPage()
+    }
+  }
+
+  nextPage = () => {
+    if (this.props.paginationPage < Math.ceil(this.props.totalIntentDetailsCount / 4)) {
+      this.props.nextPage()
+    }
+  }
+
   render() {
+    const {
+      totalIntentDetailsCount,
+      paginationPage
+    } = this.props
+
     let detailsUI = (
       <DialogContent>
         <CenterDiv>
@@ -82,7 +118,19 @@ class IntentDetails extends Component {
       )
     }
 
-    return <div ref={this.dialogRef}>{detailsUI}</div>
+    return (
+      <div ref={this.dialogRef}>
+        <StyledContentSection>
+          {detailsUI}
+        </StyledContentSection>
+        <FlexBox>
+          <StyledItemDisplay>
+            {`${paginationPage * 4 - 3} - ${paginationPage * 4 <= totalIntentDetailsCount ? paginationPage * 4 : totalIntentDetailsCount} of ${totalIntentDetailsCount}`}
+          </StyledItemDisplay>
+          <StyledBackArrow onClick={this.previousPage} />
+          <StyledForwardArrow onClick={this.nextPage} />
+        </FlexBox>
+      </div>)
   }
 }
 

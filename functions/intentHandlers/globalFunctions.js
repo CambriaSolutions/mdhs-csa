@@ -195,6 +195,10 @@ exports.defaultFallback = async agent => {
     } else if (subjectMatter === 'snap' || subjectMatter === 'tanf') {
       message = `I'm sorry, I'm not familiar with that right now, but I'm still learning! I can help answer a wide variety of questions \
       about ${subjectMatter.toUpperCase()}; please try rephrasing or click on the options provided.`
+    } else if (subjectMatter === 'wfd') {
+      const myresourcesLink = '<a target="_blank" href="https://myresources.mdhs.ms.gov/"> MyResources</a>'
+      message = `I'm sorry, I'm not familiar with that right now, but I'm still learning! I can help answer a wide variety of questions; \
+      please try rephrasing or click on one of the options provided. For more information, you can access ${myresourcesLink}`
     }
 
     await agent.add(message)
@@ -229,7 +233,7 @@ exports.welcome = async agent => {
     )
 
     await agent.add(
-      'The information I provide is not legal advice. Also, please do not enter SSN or DOB information at any time during your conversations with me.'
+      'The information I provide is not legal advice. Also, <b>please do not enter SSN or DOB information at any time during your conversations with me</b>.'
     )
 
     await agent.add(
