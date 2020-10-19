@@ -1,5 +1,109 @@
 [
   {
+    "id": "2f815e29-cc1b-4999-b967-f15c9f72f1ff",
+    "data": [
+      {
+        "text": "I\u0027m applying for snap benefits",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8bb82218-0880-4a3f-9fa7-6b7e9b2c386f",
+    "data": [
+      {
+        "text": "So with my case being closed to do need to reapply for snap or wait on something from you guys?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0a1355ea-264e-44ce-a9d5-0fbef0f51254",
+    "data": [
+      {
+        "text": "what\u0027s snap?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "be819804-10a6-4638-8eba-5b96f2a67cd6",
+    "data": [
+      {
+        "text": "snap please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f6d6b226-8880-49ad-8b9e-187825108b81",
+    "data": [
+      {
+        "text": "I receive food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "314212d7-9022-4163-8c42-e7292bfa7693",
+    "data": [
+      {
+        "text": "Renew food stamp",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a11a6262-a880-49d3-a6bf-46c8f7ec39bc",
+    "data": [
+      {
+        "text": "Food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7f23d770-7dc2-40be-b7da-bce827106d95",
+    "data": [
+      {
+        "text": "I\u0027m trying to apply for food stamps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "83907001-e29d-4a26-8bc0-7750f2fc30a0",
     "data": [
       {
@@ -26,10 +130,10 @@
     "updated": 0
   },
   {
-    "id": "c057de8e-b3fd-4c2f-b1d0-dd7091d4de42",
+    "id": "cc9182e7-c2ef-4022-a1d4-bdc5f7dd332b",
     "data": [
       {
-        "text": "Reapply online",
+        "text": "I\u0027m looking for my stamps for my kids for school that received free lunch for the school year I haven\u0027t received those yet",
         "userDefined": false
       }
     ],
@@ -39,7 +143,20 @@
     "updated": 0
   },
   {
-    "id": "57792f6f-5fed-4fc6-a5d0-7c27c16ac9dd",
+    "id": "91d08ea0-51e4-41ce-be05-bff1e504faeb",
+    "data": [
+      {
+        "text": "Recertification",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4fef4c0a-6371-4e51-9a02-9866c42aac06",
     "data": [
       {
         "text": "I need to reapply",
@@ -47,7 +164,46 @@
       }
     ],
     "isTemplate": false,
-    "count": 1,
+    "count": 2,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b7cf3df0-3e53-4d4e-9945-ed659ea8555c",
+    "data": [
+      {
+        "text": "I\u0027m trying to do a recertification with SNAP",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cc0b984f-6baf-4a08-a183-ed8294fbea1d",
+    "data": [
+      {
+        "text": "Recertify",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c057de8e-b3fd-4c2f-b1d0-dd7091d4de42",
+    "data": [
+      {
+        "text": "Reapply online",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
     "lang": "en",
     "updated": 0
   },
@@ -200,46 +356,7 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "b7cf3df0-3e53-4d4e-9945-ed659ea8555c",
-    "data": [
-      {
-        "text": "I\u0027m trying to do a recertification with SNAP",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "4ae17ffe-54d9-43be-91dc-78428b0b903e",
-    "data": [
-      {
-        "text": "Recertification",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "cc0b984f-6baf-4a08-a183-ed8294fbea1d",
-    "data": [
-      {
-        "text": "Recertify",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "lang": "en",
     "updated": 0
   },
