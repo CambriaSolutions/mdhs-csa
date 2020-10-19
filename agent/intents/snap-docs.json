@@ -13,6 +13,10 @@
         {
           "name": "snap-subject-matter",
           "lifespan": 99
+        },
+        {
+          "name": "waiting-maps-deliver-map",
+          "lifespan": 1
         }
       ],
       "parameters": [
@@ -46,10 +50,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [
-              "Office Locations"
-            ],
-            "handleEndConversation": true
+            "suggestions": [],
+            "handleEndConversation": false
           },
           "textToSpeech": "",
           "lang": "en",
