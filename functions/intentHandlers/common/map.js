@@ -69,7 +69,7 @@ const determiningGeocode = async agent => {
 
 // First pass in the locations to be used in the method. This will return the intent 
 // handler function that you would normally use
-exports.mapDeliverMap = (locations) => async agent => {
+exports.mapDeliverMap = (subjectMatter, locations) => async agent => {
   try {
     const { getNearestThreeLocations } = require('./calculateGeo.js')
     const currentGeocode = await determiningGeocode(agent)
@@ -82,6 +82,12 @@ exports.mapDeliverMap = (locations) => async agent => {
       const mapInfo = { locations, currentGeocode, nearestLocations }
       const mapPayload = JSON.stringify(mapInfo)
       await agent.add('Here is an interactive map of all of our locations!')
+
+      if (subjectMatter === 'tanf' || subjectMatter === 'snap') {
+        await agent.add('You may visit any office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain information about your case.')
+        await agent.add('Due to COVID-19, all our county offices are closed to the public until further notice.')
+      }
+
       await agent.add(
         new Payload(
           agent.UNSPECIFIED,
