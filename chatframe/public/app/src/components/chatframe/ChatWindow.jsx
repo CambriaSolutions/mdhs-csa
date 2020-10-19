@@ -121,14 +121,15 @@ class ChatWindow extends PureComponent {
     this.componentRef = React.createRef()
   }
 
+  componentDidMount() {
+    this.componentRef.current.addEventListener('wheel', this.handleWheel, { passive: false })
+  }
+
   componentDidUpdate() {
     const newMessages = this.parseMessages()
     if (!isEqual(this.messages, newMessages)) {
       this.messages = newMessages
       this.createMessageElements()
-    }
-    if (this.componentRef.current) {
-      this.componentRef.current.addEventListener('wheel', this.handleWheel)
     }
   }
 
