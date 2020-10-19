@@ -1,6 +1,6 @@
 {
-  "id": "661539a3-5538-403e-86d8-eab5ea775484",
-  "name": "wfd-eligibility",
+  "id": "d2b15a12-fa4c-429d-a776-8b5dcd031e48",
+  "name": "wfd-myresources",
   "auto": true,
   "contexts": [
     "wfd-subject-matter"
@@ -9,19 +9,14 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "wfd-subject-matter",
+          "lifespan": 99
+        }
+      ],
       "parameters": [],
       "messages": [
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "You may qualify for Skills2Work if you are a SNAP-only recipient and you are: \u003cul\u003e\u003cli\u003eBetween the ages of 18-59.\u003c/li\u003e\u003cli\u003eRequired to register for work as a condition of SNAP eligibility or a recipient of Unemployment Insurance (UI).\u003c/li\u003e\u003cli\u003eEnrolled or accepted for enrollment in a career/technical program of study or workforce skills training program at a participating Skills2Work provider.\u003c/li\u003e\u003c/ul\u003e"
-          ],
-          "condition": ""
-        },
         {
           "type": "0",
           "title": "",
@@ -36,7 +31,6 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
             "handleEndConversation": true
           },
           "textToSpeech": "",
@@ -48,7 +42,7 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": true,
+  "webhookUsed": false,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
   "events": [],
