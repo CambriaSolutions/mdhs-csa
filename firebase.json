@@ -11,7 +11,7 @@
     },
     {
       "target": "testHarness",
-      "public": "hosting/testHarness/build",
+      "public": "chatframe/public/app/build",
       "ignore": [
         "firebase.json",
         "**/.*",

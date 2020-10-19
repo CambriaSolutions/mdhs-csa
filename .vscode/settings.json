@@ -21,7 +21,8 @@
     "firestore",
     "pubsub",
     "uuidv",
-    "webhook"
+    "webhook",
+    "tetris"
   ],
   "git.autofetch": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
