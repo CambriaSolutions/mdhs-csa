@@ -11,7 +11,6 @@ const initialState = {
   disableInput: false,
   lastUpdateTime: format(new Date(), sysTimeFormat),
   currentTime: format(new Date(), sysTimeFormat),
-  headerTime: 'Now',
   timer: null,
   conversationStarted: false,
 }
@@ -20,19 +19,6 @@ function conversation(state = initialState, action) {
   switch (action.type) {
     case t.SAVE_CLIENT:
       return { ...state, client: action.client, clientName: action.clientName }
-
-    case t.UPDATE_CURRENT_TIME:
-      return {
-        ...state,
-        headerTime: action.headerTime,
-        currentTime: action.currentTime,
-      }
-
-    case t.TIMER_START:
-      return {
-        ...state,
-        timer: action.timer,
-      }
 
     case t.INITIATE_LOADING:
       return {
@@ -51,7 +37,6 @@ function conversation(state = initialState, action) {
       return {
         ...state,
         lastUpdateTime: format(new Date(), sysTimeFormat),
-        headerTime: 'Now',
         messages: action.newConversationArray,
       }
 
@@ -59,7 +44,6 @@ function conversation(state = initialState, action) {
       return {
         ...state,
         lastUpdateTime: format(new Date(), sysTimeFormat),
-        headerTime: 'Now',
         messages: [...state.messages, { ...action.response, key: uuidv4() }].sort((a, b) => {
           const dateA = parse(
             a.systemTime,
