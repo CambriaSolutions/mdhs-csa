@@ -99,8 +99,6 @@ jobs:
         type: string
       feedbackURL:
         type: string
-      testHarnessHostedUrl:
-        type: string
     steps:
       - checkout
       - restore_cache:
@@ -205,7 +203,6 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
-          testHarnessHostedUrl: mdhs-csa-dev-test-harness
           filters:
             branches:
               only:
@@ -294,7 +291,6 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-stage.cloudfunctions.net/storeFeedback
-          testHarnessHostedUrl: tbd
           filters:
             branches:
               only:
