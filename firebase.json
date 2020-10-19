@@ -11,7 +11,7 @@
     },
     {
       "target": "testHarness",
-      "public": "webchat-core/build",
+      "public": "chatframe/public/app/build",
       "ignore": [
         "firebase.json",
         "**/.*",
