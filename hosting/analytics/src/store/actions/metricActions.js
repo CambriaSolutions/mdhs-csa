@@ -5,6 +5,7 @@ import { reduce, map, find, findIndex, filter, keyBy, cloneDeep } from 'lodash'
 import { subjectMatters } from '../../constants/constants.js'
 import { getUTCDate } from '../../common/helper'
 import { storeMetricsSubscription } from './realtimeActions'
+import { renameIntent } from '../../common/renameIntent'
 
 const personaIntentMappings = {
   'cse-employer-root': 'Employer',
@@ -309,7 +310,11 @@ export const fetchMetricsTotal = (dateRange) => {
         supportRequests: []
       }
 
+      let subjectMatterMetricsById_index = -1
+
       const aggregatedSubjectMatterMetricsById = reduce(subjectMatterMetricsById, (subjectMatterResult, currentSubjectMatter) => {
+        subjectMatterMetricsById_index++
+        const subjectMatterName = subjectMatters[subjectMatterMetricsById_index]
 
         // Take the current result object and construct a new object that includes the current subject matter's daily metrics
         return reduce(currentSubjectMatter, (dayResult, dayMetrics) => {
@@ -333,14 +338,17 @@ export const fetchMetricsTotal = (dateRange) => {
           const aggregatedIntents = reduce(dayMetrics.intents, (intentResult, currentIntent) => {
             const previousOccurrences = intentResult[currentIntent.name] ? intentResult[currentIntent.name].occurrences : 0
 
+            const intentDisplayName = renameIntent(subjectMatterName, currentIntent.name)
+
             return ({
               // Persist the other entries in the intentResult object
               ...intentResult,
               // Keying intent requests by name
-              [currentIntent.name]: {
+              [intentDisplayName]: {
                 id: currentIntent.id,
                 conversations: [],
                 name: currentIntent.name,
+                displayName: intentDisplayName,
                 sessions: 0,
                 // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
                 occurrences: previousOccurrences + currentIntent.occurrences
@@ -475,16 +483,18 @@ export const fetchMetricsSuccess = metrics => {
       // Intents
       const dateIntents = metric.intents
       for (let dateIntent of dateIntents) {
-        let currIntent = intents[`${dateIntent.id}`]
+        const intentKey = dateIntent.displayName ? dateIntent.displayName : dateIntent.id
+        let currIntent = intents[intentKey]
         if (currIntent) {
           currIntent.occurrences =
             currIntent.occurrences + dateIntent.occurrences
           currIntent.sessions = currIntent.sessions + dateIntent.sessions
         } else
-          intents[`${dateIntent.id}`] = {
+          intents[intentKey] = {
             name: `${dateIntent.name}`,
             occurrences: dateIntent.occurrences,
             sessions: dateIntent.sessions,
+            displayName: intentKey
           }
       }
 

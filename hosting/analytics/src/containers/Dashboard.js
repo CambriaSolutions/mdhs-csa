@@ -419,7 +419,11 @@ const beautifyTime = seconds => {
 const beautifyIntents = (subjectMatter, intents) => {
   return intents.map(intent => {
     // Replace dashes with spaces & capitalize 1st letter
-    let newName = renameIntent(subjectMatter, intent.name)
+    // The logic runs at a weird time. This will be called once with the display name empty,
+    // then again when the displayName has a value.
+    let newName = subjectMatter.toLowerCase() === 'total' ?
+      (intent.displayName ? intent.displayName : intent.name)
+      : renameIntent(subjectMatter, intent.name)
     newName = newName.replace(/-/g, ' ')
     newName = newName.charAt(0).toUpperCase() + newName.slice(1)
     return {
