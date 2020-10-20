@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-support-handle-employment-status",
+          "lifespan": 3,
+          "parameters": {}
+        },
+        {
           "name": "waiting-support-employment-status",
           "lifespan": 0,
           "parameters": {}
@@ -47,6 +52,25 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Which of the following applies to you?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Full Time to Part Time",
+              "Part Time to Full Time",
+              "Loss of Employer",
+              "Change or Add Employer"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

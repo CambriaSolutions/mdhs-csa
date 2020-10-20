@@ -1,12 +1,12 @@
 require('dotenv').config()
 
-// Google Cloud Storage Setup
-const { Storage } = require('@google-cloud/storage')
-const storage = new Storage()
-const bucketName = 'daily-json-exports'
-
 // Calculate metrics based on requests
 module.exports = async (req, res) => {
+  // Google Cloud Storage Setup
+  const { Storage } = require('@google-cloud/storage')
+  const storage = new Storage()
+  const bucketName = 'daily-json-exports'
+
   const reqData = req.body
   if (!reqData) {
     res.send(500, 'The request body doesn\'t contain expected parameters')

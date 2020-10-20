@@ -1,6 +1,7 @@
-const admin = require('firebase-admin')
+require('dotenv').config()
 const functions = require('firebase-functions')
-admin.initializeApp(functions.config().firebase)
+const admin = require('firebase-admin')
+admin.initializeApp()
 
 const dialogflowFirebaseFulfillment = require('./httpTriggers/dialogflowFirebaseFulfillment')
 const eventRequest = require('./httpTriggers/eventRequest')
@@ -22,10 +23,10 @@ const runtimeOpts = {
 // Http Triggers
 const httpTriggers = {
   dialogflowFirebaseFulfillment: { handler: dialogflowFirebaseFulfillment, corsEnabled: false },
-  eventRequest: {  handler: eventRequest, corsEnabled: true },
-  textRequest: {  handler: textRequest, corsEnabled: true },
-  downloadExport: {  handler: downloadExport, corsEnabled: true },
-  storeFeedback: {  handler: storeFeedback, corsEnabled: true },
+  eventRequest: { handler: eventRequest, corsEnabled: true },
+  textRequest: { handler: textRequest, corsEnabled: true },
+  downloadExport: { handler: downloadExport, corsEnabled: true },
+  storeFeedback: { handler: storeFeedback, corsEnabled: true },
 }
 
 // Database Triggers
@@ -36,10 +37,10 @@ const databaseTriggers = {
 
 // Scheduled Triggers
 const scheduledTriggers = {
-  importDataset: {  schedule: '0 20 * * *', timezone: 'America/Los_Angeles', handler: importDataset},
-  trainModels: {  schedule: '0 21 * * 1', timezone: 'America/Los_Angeles', handler: trainModels}, // Every Monday at 1 AM CST
-  healthCheck: {  schedule: '*/10 * * * *', timezone: 'America/Los_Angeles', handler: healthCheck}, // every 10 minutes
-  exportBackup: {  schedule: '0 1 * * *', timezone: 'America/Los_Angeles', handler: exportBackup}, // every day 1 AM PST
+  importDataset: { schedule: '0 20 * * *', timezone: 'America/Los_Angeles', handler: importDataset },
+  trainModels: { schedule: '0 21 * * 1', timezone: 'America/Los_Angeles', handler: trainModels }, // Every Monday at 1 AM CST
+  healthCheck: { schedule: '*/10 * * * *', timezone: 'America/Los_Angeles', handler: healthCheck }, // every 10 minutes
+  exportBackup: { schedule: '0 1 * * *', timezone: 'America/Los_Angeles', handler: exportBackup }, // every day 1 AM PST
 }
 
 // Register HTTP Triggers
@@ -70,7 +71,7 @@ Object.entries(httpTriggers).forEach(([triggerName, httpTrigger]) => {
 const databaseTriggerWrapper = async (handler, doc, context) => {
   try {
     return handler(doc, context)
-  } catch(e) {
+  } catch (e) {
     console.error(e)
   }
 }
@@ -91,7 +92,7 @@ Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
     console.error('Unknown event type for database trigger', databaseTrigger)
   }
 
-  if(cloudFunction) {
+  if (cloudFunction) {
     exports[triggerName] = cloudFunction
   }
 })
@@ -100,7 +101,7 @@ Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
 const scheduledTriggerWrapper = (handler, context) => {
   try {
     return handler(context)
-  } catch(e) {
+  } catch (e) {
     console.error(e)
   }
 }

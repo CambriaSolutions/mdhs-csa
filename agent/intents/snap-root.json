@@ -3,7 +3,7 @@
   "name": "snap-root",
   "auto": true,
   "contexts": [
-    "waiting-subjectMatter"
+    "snap-enableHome"
   ],
   "responses": [
     {
@@ -24,6 +24,18 @@
         },
         {
           "name": "wfd-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "tanf-enableHome",
+          "lifespan": 0
+        },
+        {
+          "name": "cse-enableHome",
           "lifespan": 0
         }
       ],

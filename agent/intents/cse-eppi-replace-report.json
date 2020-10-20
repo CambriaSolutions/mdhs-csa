@@ -24,6 +24,30 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "To replace an EPPICard, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Remember, you are allowed five (5) calls per calendar month to the Mississippi EPPICard Customer Service at no cost. The sixth and subsequent calls per month cost $0.50. "
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

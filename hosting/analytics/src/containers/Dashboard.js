@@ -36,6 +36,8 @@ import { colorShades } from '../common/helper'
 import { aggregatePersonaMetricsForPieChart } from '../scripts/metricUtil.js'
 import db from '../Firebase'
 
+import { showIntentDetails } from '../store/actions/configActions'
+
 const getNameFromContext = context => /[^/]*$/.exec(context)[0]
 
 const rootStyles = {
@@ -159,11 +161,7 @@ class Dashboard extends Component {
               <Grid item xs={12} sm>
                 <Card
                   color={colorShades(this.props.mainColor, 50)}
-                  value={
-                    this.props.showEngagedUser
-                      ? this.props.conversationsDurationTotal
-                      : this.props.conversationsTotal
-                  }
+                  value={this.props.conversationsDurationTotal}
                   label='Total Users'
                   notes=''
                   icon='account_circle'
@@ -180,11 +178,7 @@ class Dashboard extends Component {
                 < Grid item xs={12} sm>
                   <Card
                     color={colorShades(this.props.mainColor, 30)}
-                    value={
-                      this.props.showEngagedUser
-                        ? this.props.avgEngagedDuration
-                        : this.props.avgDuration
-                    }
+                    value={this.props.avgEngagedDuration}
                     label='Avg. Conv Duration'
                     notes=''
                     icon='schedule'
@@ -199,11 +193,7 @@ class Dashboard extends Component {
                 <Grid item xs={12} sm>
                   <Card
                     color={colorShades(this.props.mainColor, 20)}
-                    value={this.props.subjectMatterName === 'general' ? 'N/A' :
-                      (this.props.showEngagedUser
-                        ? `${this.props.supportEngagedRequestsPercentage}%`
-                        : `${this.props.supportRequestsPercentage}%`)
-                    }
+                    value={this.props.subjectMatterName === 'general' ? 'N/A' : `${this.props.supportEngagedRequestsPercentage}%`}
                     label='Support Requests'
                     notes={this.props.subjectMatterName === 'general' ? '' : (
                       this.props.supportRequestTotal > 0
@@ -405,9 +395,13 @@ class Dashboard extends Component {
           aria-labelledby='intent_details_title'>
           <IntentDetails
             loading={this.props.loadingIntentDetails}
+            totalIntentDetailsCount={this.props.totalIntentDetailsCount}
             data={this.props.intentDetails}
             color={this.props.mainColor}
             timezoneOffset={this.props.timezoneOffset}
+            previousPage={() => this.props.onIntentDetailsPreviousPage(this.props.intentDetailsIntent, this.props.intentDetailsPaginationPage - 1)}
+            nextPage={() => this.props.onIntentDetailsNextPage(this.props.intentDetailsIntent, this.props.intentDetailsPaginationPage + 1)}
+            paginationPage={this.props.intentDetailsPaginationPage}
           />
         </Dialog>
       </div>
@@ -483,7 +477,6 @@ const mapStateToProps = state => {
 
   return {
     dailyMetrics: state.metrics.dailyMetrics,
-    showEngagedUser: state.filters.showEngagedUser,
     loadingConversations: state.metrics.loading,
     loadingIntents: state.metrics.loading,
     loadingIntentDetails: state.config.loadingIntentDetails,
@@ -513,7 +506,10 @@ const mapStateToProps = state => {
     mainColor: state.filters.mainColor,
     showSettings: state.config.showSettings,
     showIntentModal: state.config.showIntentModal,
+    intentDetailsIntent: state.config.intentDetailsIntent,
     intentDetails: state.config.intentDetails,
+    intentDetailsPaginationPage: state.config.intentDetailsPaginationPage,
+    totalIntentDetailsCount: state.config.totalIntentDetailsCount,
     timezoneOffset: state.filters.timezoneOffset,
     subjectMatterName: getNameFromContext(state.filters.context)
   }
@@ -525,6 +521,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.updateFeedbackType(feedbackType)),
     onSettingsToggle: () => dispatch(actions.toggleSettings(false)),
     onIntentsModalClose: () => dispatch(actions.toggleIntentsModal(false)),
+    onIntentDetailsPreviousPage: (intentDetailsIntent, intentDetailsPaginationPage) => dispatch(showIntentDetails(intentDetailsIntent, 'previous', intentDetailsPaginationPage)),
+    onIntentDetailsNextPage: (intentDetailsIntent, intentDetailsPaginationPage) => dispatch(showIntentDetails(intentDetailsIntent, 'next', intentDetailsPaginationPage))
   }
 }
 

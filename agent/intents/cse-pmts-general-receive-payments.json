@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmtMethods-debit-card",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-pmts-general-receive-payments",
           "lifespan": 0,
           "parameters": {}
@@ -32,6 +37,24 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "The easiest way to receive payments is through the EPPICard. The other option, which takes longer to set up is Direct Deposit. Which would you like to learn more about?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Debit Card",
+              "Direct Deposit",
+              "Estimate Payments"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

@@ -1,15 +1,16 @@
 require('dotenv').config()
-const admin = require('firebase-admin')
-const dialogflow = require('dialogflow')
-
-const store = admin.firestore()
-const intentsClient = new dialogflow.IntentsClient()
 
 /**
  * Trigger function on 'queriesForTraining' collection updates
  * to determine occurrence threshold for DF agent training
  */
 module.exports = async (change, context) => {
+  const admin = require('firebase-admin')
+  const dialogflow = require('@google-cloud/dialogflow')
+
+  const store = admin.firestore()
+  const intentsClient = new dialogflow.IntentsClient()
+
   const docId = context.params.id
   const subjectMatter = context.params.subjectMatter
   const afterUpdateFields = change.after.data()
@@ -20,7 +21,7 @@ module.exports = async (change, context) => {
   const intentName = afterUpdateFields.intent.name
   // If occurrences reaches 10 and agent is not trained
   if (occurrences >= 10 && agentTrained === false) {
-    await trainAgent(phrase, intentId, docId, intentName, subjectMatter)
+    await trainAgent(store, intentsClient, phrase, intentId, docId, intentName, subjectMatter)
   }
   return afterUpdateFields
 }
@@ -31,9 +32,9 @@ module.exports = async (change, context) => {
  * @param {*} intentId matched intent id
  * @param {*} docId document id in firebase
  */
-async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
+async function trainAgent(store, intentsClient, phrase, intentId, docId, intentName, subjectMatter) {
   try {
-    let intent = await getIntent(
+    let intent = await getIntent(intentsClient,
       `subjectMatters/${subjectMatter}/agent/intents/${intentId}`
     )
 
@@ -88,7 +89,7 @@ async function trainAgent(phrase, intentId, docId, intentName, subjectMatter) {
  * Get DF intent data by intent id
  * @param {*} intentId
  */
-async function getIntent(intentId) {
+async function getIntent(intentsClient, intentId) {
   try {
     let responses = await intentsClient.getIntent({
       name: intentId,

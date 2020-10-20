@@ -1,24 +1,23 @@
 require('dotenv').config()
-const admin = require('firebase-admin')
-const projectId = admin.instanceId().app.options.projectId
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
-const { Storage } = require('@google-cloud/storage')
-const format = require('date-fns/format')
-const automl = require('@google-cloud/automl')
-
-const store = admin.firestore()
-
-// Google Cloud Storage Setup
-const storage = new Storage()
-const client = new automl.v1beta1.AutoMlClient()
 
 /***
  * Retrieve new query and category pairs if occurrences >10
  * and import dataset into category model
  */
 const importDataset = async (subjectMatter) => {
+  const admin = require('firebase-admin')
+  const projectId = admin.instanceId().app.options.projectId
+  const store = admin.firestore()
+  const fs = require('fs')
+  const path = require('path')
+  const os = require('os')
+  const { Storage } = require('@google-cloud/storage')
+  const format = require('date-fns/format')
+
+
+  // Google Cloud Storage Setup
+  const storage = new Storage()
+
   console.log('retrieving query data...')
 
   const storeRef = store.collection(
@@ -48,7 +47,7 @@ const importDataset = async (subjectMatter) => {
     try {
       console.log('File beginning to write in GS bucket')
 
-      const date = format(new Date(), 'MM-DD-YYYY')
+      const date = format(new Date(), 'MM-dd-yyyy')
       const fileName = `${date}-${subjectMatter}-category-training.csv`
       const tempFilePath = path.join(os.tmpdir(), fileName)
       let f = fs.openSync(tempFilePath, 'w')
@@ -82,7 +81,7 @@ const importDataset = async (subjectMatter) => {
         console.log('File uploaded successfully. phraseCategory[]: ' + JSON.stringify(phraseCategory))
 
         // import phrases and categories to AutoML category dataset
-        await updateCategoryModel(fileName, phraseCategory, subjectMatter, autoMlSettings)
+        await updateCategoryModel(admin, store, projectId, fileName, phraseCategory, subjectMatter, autoMlSettings)
       }
     } catch (err) {
       console.error(err)
@@ -97,7 +96,10 @@ const importDataset = async (subjectMatter) => {
  * @param {*} fileName
  * @param {*} phraseCategory
  */
-async function updateCategoryModel(fileName, phraseCategory, subjectMatter, autoMlSettings) {
+async function updateCategoryModel(admin, store, projectId, fileName, phraseCategory, subjectMatter, autoMlSettings) {
+  const automl = require('@google-cloud/automl')
+  const client = new automl.v1beta1.AutoMlClient()
+
   const datasetPath = client.datasetPath(
     projectId,
     autoMlSettings.location,

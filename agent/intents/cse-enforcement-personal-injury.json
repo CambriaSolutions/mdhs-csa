@@ -11,6 +11,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-enforcement-settlements-update-case",
+          "lifespan": 1,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-enforcement-settlements-no-update-case",
+          "lifespan": 1,
+          "parameters": {}
+        },
+        {
           "name": "cse-subject-matter",
           "lifespan": 99,
           "parameters": {}
@@ -21,6 +31,33 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "MDHS may offset personal injury or workers' compensation settlements. MDHS receives information about the settlements from various sources and works to negotiate payment settlements."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Do you have information about a workers' compensation or personal injury settlement?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Yes",
+              "No"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

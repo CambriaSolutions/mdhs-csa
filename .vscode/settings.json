@@ -13,7 +13,6 @@
   "gitlens.advanced.blame.customArguments": [
     "--no-merges"
   ],
-  "window.zoomLevel": 1,
   "workbench.iconTheme": "material-icon-theme",
   "cSpell.userWords": [
     "TANF",

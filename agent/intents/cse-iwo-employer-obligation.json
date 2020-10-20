@@ -23,6 +23,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "As the employer, you are obligated to withhold per the Consumer Credit Protection Act guidelines."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

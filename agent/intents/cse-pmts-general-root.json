@@ -12,6 +12,16 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-pmts-general-receive-payments",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
+          "name": "waiting-pmts-general-non-custodial",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-payment-calc",
           "lifespan": 0,
           "parameters": {}
@@ -27,6 +37,23 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Are you the parent who is or will be receiving payments?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Yes",
+              "No"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

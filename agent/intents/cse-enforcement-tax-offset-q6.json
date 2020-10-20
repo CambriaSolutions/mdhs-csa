@@ -38,6 +38,20 @@
           "title": "",
           "textToSpeech": "",
           "lang": "en",
+          "speech": [
+            "<u>Federal IRS tax offset:</u> You will receive a letter from the federal government (Department of the Treasury, Bureau of the Fiscal Service) informing you that your tax refund has been offset and the amount of the offset. \n      <br/><u>State income tax offset:</u> If your state tax refund has been offset, you will receive a notice from the Mississippi Department of Revenue. For more information <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target=\"_blank\">click here</a>."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
           "condition": ""
         }
       ],

@@ -1,7 +1,8 @@
-const { handleEndConversation } = require('../globalFunctions')
 
 exports.eligibilityChecker = async agent => {
   try {
+    const { handleEndConversation } = require('../globalFunctions')
+
     const link = '<a href="https://www.access.ms.gov/Prescreen/Start" target="_blank">click here</a>'
     await agent.add(
       'Answering a few short questions will let you know if your household might be eligible for benefits. \

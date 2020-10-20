@@ -45,7 +45,7 @@ exports.setContext = async agent => {
   } else {
     console.log(`Unable to fetch contexts for ${sessionId}`)
   }
-  
+
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
   await agent.add(tbdMessage)
 }
@@ -227,7 +227,7 @@ exports.welcome = async agent => {
     )
 
     await agent.add(
-      'The information I provide is not legal advice. Also, please do not enter SSN or DOB information at any time during your conversations with me.'
+      'The information I provide is not legal advice. Also, <b>please do not enter SSN or DOB information at any time during your conversations with me</b>.'
     )
 
     await agent.add(
@@ -263,6 +263,26 @@ exports.selectSubjectMatter = async agent => {
 
   await agent.context.set({
     name: 'waiting-subjectMatter',
+    lifespan: 1,
+  })
+
+  await agent.context.set({
+    name: 'cse-enableHome',
+    lifespan: 1,
+  })
+
+  await agent.context.set({
+    name: 'tanf-enableHome',
+    lifespan: 1,
+  })
+
+  await agent.context.set({
+    name: 'snap-enableHome',
+    lifespan: 1,
+  })
+
+  await agent.context.set({
+    name: 'wfd-enableHome',
     lifespan: 1,
   })
 

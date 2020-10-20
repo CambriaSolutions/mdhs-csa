@@ -12,6 +12,11 @@
       "action": "",
       "affectedContexts": [
         {
+          "name": "waiting-enforcement-submit-inquiry",
+          "lifespan": 2,
+          "parameters": {}
+        },
+        {
           "name": "waiting-enforcement-settlements-update-case",
           "lifespan": 0,
           "parameters": {}
@@ -42,6 +47,22 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If you have information about settlements that the parent who owes support may receive, please click below to update your case."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [
+              "Update Case"
+            ],
+            "handleEndConversation": false
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

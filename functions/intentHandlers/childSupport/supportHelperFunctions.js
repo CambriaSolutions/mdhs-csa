@@ -1,8 +1,5 @@
 const validator = require('validator')
-const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
 const { Suggestion } = require('dialogflow-fulfillment')
-
-const { toTitleCase } = require('../globalFunctions.js')
 
 // Used to handle restarting and starting conversations for support requests
 exports.startSupportConvo = async agent => {
@@ -225,6 +222,8 @@ const requestCompany = async agent => {
 // Used to handle the collection of either an email or phone number
 // after the user has been reminded that they need to submit either type
 exports.handleContactCollection = async (agent, type, isLumpSum) => {
+  const { parsePhoneNumberFromString } = require('libphonenumber-js/min')
+
   if (type === 'phone') {
     const phoneNumberResponse = agent.parameters.phoneNumber
     const formattedPhone = `+1${phoneNumberResponse}`
@@ -367,6 +366,8 @@ exports.formatCardText = (ticketinfo, requests) => {
 
 // Format the summary depending on support type
 exports.formatSummary = ({ supportType, employmentChangeType }) => {
+  const { toTitleCase } = require('../globalFunctions.js')
+
   let supportSummary
   if (supportType === 'child support increase or decrease') {
     supportSummary = 'Order Review & Modification'
