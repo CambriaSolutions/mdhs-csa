@@ -423,7 +423,7 @@ const beautifyIntents = (subjectMatter, intents) => {
     // then again when the displayName has a value.
     let newName = subjectMatter.toLowerCase() === 'total' ?
       (intent.displayName ? intent.displayName : intent.name)
-      : renameIntent(subjectMatter, intent.name)
+      : renameIntent(intent.name)
     newName = newName.replace(/-/g, ' ')
     newName = newName.charAt(0).toUpperCase() + newName.slice(1)
     return {
