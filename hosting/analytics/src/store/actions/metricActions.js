@@ -310,11 +310,7 @@ export const fetchMetricsTotal = (dateRange) => {
         supportRequests: []
       }
 
-      let subjectMatterMetricsById_index = -1
-
       const aggregatedSubjectMatterMetricsById = reduce(subjectMatterMetricsById, (subjectMatterResult, currentSubjectMatter) => {
-        subjectMatterMetricsById_index++
-        const subjectMatterName = subjectMatters[subjectMatterMetricsById_index]
 
         // Take the current result object and construct a new object that includes the current subject matter's daily metrics
         return reduce(currentSubjectMatter, (dayResult, dayMetrics) => {
@@ -338,7 +334,7 @@ export const fetchMetricsTotal = (dateRange) => {
           const aggregatedIntents = reduce(dayMetrics.intents, (intentResult, currentIntent) => {
             const previousOccurrences = intentResult[currentIntent.name] ? intentResult[currentIntent.name].occurrences : 0
 
-            const intentDisplayName = renameIntent(subjectMatterName, currentIntent.name)
+            const intentDisplayName = renameIntent(currentIntent.name)
 
             return ({
               // Persist the other entries in the intentResult object
