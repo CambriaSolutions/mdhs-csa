@@ -88,7 +88,7 @@ module.exports = async (request, response) => {
         ...snapIntentHandlers,
         ...wfdIntentHandlers,
         'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
-        'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatterLocations[subjectMatter])
+        'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
       }
 
       // List of intents what will reset the back button context
