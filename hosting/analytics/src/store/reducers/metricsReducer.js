@@ -13,6 +13,7 @@ const initialState = {
   durationTotal: 0,
   durationTotalNoExit: 0,
   exitIntents: [],
+  fallbackTriggeringQueries: {}
 }
 
 const fetchMetricsStart = (state) => {
