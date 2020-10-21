@@ -9,6 +9,6 @@ exports.pebtRoot = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

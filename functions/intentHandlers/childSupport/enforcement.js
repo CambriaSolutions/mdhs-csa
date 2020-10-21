@@ -23,7 +23,7 @@ exports.enforcementRoot = async agent => {
     await agent.add(new Suggestion('Income Withholding Order Information'))
     await agent.add(new Suggestion('Contempt'))
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -52,7 +52,7 @@ exports.enforcementLicenseSuspensionReinstatement = async agent => {
       lifespan: 3,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -72,7 +72,7 @@ exports.enforcementLicenseSuspension = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -92,7 +92,7 @@ exports.enforcementLicenseSuspensionNonCompliance = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -113,7 +113,7 @@ exports.enforcementLicenseReinstatement = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -131,7 +131,7 @@ exports.enforcementTaxOffset = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -144,7 +144,7 @@ exports.enforcementTaxOffsetQ1 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -157,7 +157,7 @@ exports.enforcementTaxOffsetQ2Q3 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -170,7 +170,7 @@ exports.enforcementTaxOffsetQ4 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -183,7 +183,7 @@ exports.enforcementTaxOffsetQ5 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -197,7 +197,7 @@ exports.enforcementTaxOffsetQ6 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -210,7 +210,7 @@ exports.enforcementTaxOffsetQ7 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -223,7 +223,7 @@ exports.enforcementTaxOffsetQ8 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -241,7 +241,7 @@ exports.enforcementTaxOffsetQ9 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -259,7 +259,7 @@ exports.enforcementTaxOffsetQ10 = async agent => {
 
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -279,7 +279,7 @@ exports.enforcementLiens = async agent => {
       new Suggestion('Provide information on a financial account')
     )
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 /**
@@ -300,7 +300,7 @@ exports.enforcementContestLien = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -317,7 +317,7 @@ exports.enforcementFinancialAccountUpdateCase = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -346,7 +346,7 @@ exports.enforcementPersonalInjury = async agent => {
       lifespan: 1,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -367,7 +367,7 @@ exports.enforcementSettlementsUpdateCase = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -384,7 +384,7 @@ exports.enforcementPassportRevocation = async agent => {
     )
     await agent.add(new Suggestion('How do I get my passport reinstated?'))
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 /**
@@ -407,7 +407,7 @@ exports.enforcementPassportReinstatement = async agent => {
     })
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 /**
@@ -423,7 +423,7 @@ exports.enforcementCreditBureauReporting = async agent => {
     )
     await agent.add(new Suggestion('What if this was done in error?'))
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -440,7 +440,7 @@ exports.enforcementUnemployment = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -448,7 +448,7 @@ exports.enforcementSettlementsNoUpdateCase = async agent => {
   try {
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -469,7 +469,7 @@ exports.enforcementReportError = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -479,7 +479,7 @@ exports.enforcementSubmitInquiry = async agent => {
 
     await supportInquiries(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -495,7 +495,7 @@ exports.enforcementBankruptcy = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -514,7 +514,7 @@ exports.enforcementContempt = async agent => {
     )
     await agent.add(new Suggestion('Request Contempt Action'))
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 

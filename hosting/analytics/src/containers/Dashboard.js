@@ -24,6 +24,7 @@ import PieChart from '../components/PieChart'
 import BarChart from '../components/BarChart'
 import RadarChart from '../components/RadarChart'
 import EnhancedTable from '../components/EnhancedTable'
+import UnhandledPhrasesTable from '../components/UnhandledPhrasesTable'
 import IntentDetails from '../components/IntentDetails'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import SupportRequestsTile from '../components/SupportRequestsTile'
@@ -367,6 +368,14 @@ class Dashboard extends Component {
                 selectedSubjectMatter={this.props.subjectMatterName}
               />
             </Grid>
+            {this.props.subjectMatterName.toLowerCase() !== 'total' && this.props.subjectMatterName.toLowerCase() !== 'general' &&
+              <Grid item xs={12}>
+                <UnhandledPhrasesTable
+                  data={this.props.fallbackTriggeringQueries}
+                  selectedSubjectMatter={this.props.subjectMatterName}
+                />
+              </Grid>
+            }
           </Grid >
         )
       } else {
@@ -504,6 +513,7 @@ const mapStateToProps = state => {
     avgEngagedDuration: beautifyTime(state.metrics.durationTotalNoExit),
     exitIntents: allExitIntents,
     intents: allIntents,
+    fallbackTriggeringQueries: state.metrics.fallbackTriggeringQueries,
     totalSupportRequests: state.metrics.supportRequests,
     supportRequests: allSupportRequests,
     feedbackSelected: state.metrics.feedbackSelected,

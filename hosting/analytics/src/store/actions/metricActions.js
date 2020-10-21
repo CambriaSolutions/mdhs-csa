@@ -442,6 +442,7 @@ export const fetchMetricsSuccess = metrics => {
     let numConversationsWithDuration = 0
     let numConversationsWithSupportRequests = 0
     let numSupportRequests = 0
+    let fallbackTriggeringQueries = {}
 
     const exitIntents = []
 
@@ -492,6 +493,18 @@ export const fetchMetricsSuccess = metrics => {
             sessions: dateIntent.sessions,
             displayName: intentKey
           }
+      }
+
+      if (metric.fallbackTriggeringQueries) {
+        for (let query of metric.fallbackTriggeringQueries) {
+          if (query.queryText !== undefined && query.occurrences !== undefined && query.queryText.length > 0) {
+            if (fallbackTriggeringQueries[query.queryText] === undefined) {
+              fallbackTriggeringQueries[query.queryText] = query.occurrences
+            } else {
+              fallbackTriggeringQueries[query.queryText] = fallbackTriggeringQueries[query.queryText] + query.occurrences
+            }
+          }
+        }
       }
 
       // Support requests
@@ -563,10 +576,17 @@ export const fetchMetricsSuccess = metrics => {
       ...supportRequests[key],
     }))
 
+    fallbackTriggeringQueries = Object.keys(fallbackTriggeringQueries).map(key => ({
+      queryText: key,
+      id: key,
+      // occurrences: fallbackTriggeringQueries[key]
+    }))
+
     dispatch({
       type: actionTypes.FETCH_METRICS_SUCCESS,
       dailyMetrics: metrics,
       intents: intents,
+      fallbackTriggeringQueries: fallbackTriggeringQueries,
       supportRequests: supportRequests,
       numConversationsWithSupportRequests: numConversationsWithSupportRequests,
       supportRequestTotal: numSupportRequests,

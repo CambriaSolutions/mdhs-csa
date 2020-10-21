@@ -6,7 +6,7 @@ exports.noneOfThese = async agent => {
   try {
     await defaultFallback(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 

@@ -20,6 +20,6 @@ exports.snapRoot = async agent => {
       lifespan: 999,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

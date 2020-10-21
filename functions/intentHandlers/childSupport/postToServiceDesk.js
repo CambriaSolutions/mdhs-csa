@@ -146,8 +146,8 @@ exports.sendToServiceDesk = async requestFieldValues => {
       return response
     })
     .catch(err => {
+      console.error('Unable to connect to Service Desk', err)
       console.log(requestObjectToDeliver)
-      console.error(err)
       return err
     })
 
