@@ -85,7 +85,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "To learn more about cooperation and the benefits of cooperation, <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf\" target=\"_blank\">click here</a> or ask me your questions."
+            "To learn more about cooperation and the benefits of cooperation, \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2019/08/MDHS_CSE_Parents-Handbook_V2.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e or ask me your questions."
           ],
           "condition": ""
         },

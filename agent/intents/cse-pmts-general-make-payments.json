@@ -59,7 +59,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Parents who pay support have a variety of methods to make payments.<br/><br/>For payment options other than having payments withheld from your pay, select one of the following to learn more.<br/><br/>The date the payment is received is the date of collection. Payments cannot be posted for a prior month.<br/><br/>Payments are not considered to be received by MDHS until all payment processing has occurred."
+            "Parents who pay support have a variety of methods to make payments.\u003cbr/\u003e\u003cbr/\u003eFor payment options other than having payments withheld from your pay, select one of the following to learn more.\u003cbr/\u003e\u003cbr/\u003eThe date the payment is received is the date of collection. Payments cannot be posted for a prior month.\u003cbr/\u003e\u003cbr/\u003ePayments are not considered to be received by MDHS until all payment processing has occurred."
           ],
           "condition": ""
         },
@@ -73,7 +73,7 @@
               "Withhold Payments",
               "eCheck/Bank Account Debit",
               "Check or Money Order",
-              "Can't Make Payments"
+              "Can\u0027t Make Payments"
             ],
             "handleEndConversation": false
           },

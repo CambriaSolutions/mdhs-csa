@@ -65,7 +65,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Finally, don't forget, you MUST send the form to the proper location! Send to:  \n       MDHS Child Support Enforcement Direct Deposit Unit  \n       PO Box 352  \n       Jackson, MS 39205-0352  \n      "
+            "Finally, don\u0027t forget, you MUST send the form to the proper location! Send to:  \n       MDHS Child Support Enforcement Direct Deposit Unit  \n       PO Box 352  \n       Jackson, MS 39205-0352  \n      "
           ],
           "condition": ""
         },
@@ -75,7 +75,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Click <a href=\"http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf\" target=\"_blank\">here</a> to access the Direct Deposit Authorization Form."
+            "Click \u003ca href\u003d\"http://www.mdhs.ms.gov/wp-content/uploads/2018/08/Direct-Deposit-Agreement-Form-687-5-2-18.pdf\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to access the Direct Deposit Authorization Form."
           ],
           "condition": ""
         },

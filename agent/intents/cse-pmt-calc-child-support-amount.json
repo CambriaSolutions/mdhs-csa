@@ -60,7 +60,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "What are your <strong>monthly</strong> child support obligations?"
+            "What are your \u003cstrong\u003emonthly\u003c/strong\u003e child support obligations?"
           ],
           "condition": ""
         },

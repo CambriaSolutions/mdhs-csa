@@ -39,7 +39,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "The IRS has very specific guidelines that require state child support agencies to safeguard federal tax information. For more information <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target=\"_blank\">click here</a>."
+            "The IRS has very specific guidelines that require state child support agencies to safeguard federal tax information. For more information \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e."
           ],
           "condition": ""
         },

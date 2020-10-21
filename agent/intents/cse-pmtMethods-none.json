@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Sorry, I can only help with employers, custodial and non-custodial parents. \n      Please call <a href=\"tel:+18778824916\">1-877-882-4916</a> for assistance."
+            "Sorry, I can only help with employers, custodial and non-custodial parents. \n      Please call \u003ca href\u003d\"tel:+18778824916\"\u003e1-877-882-4916\u003c/a\u003e for assistance."
           ],
           "condition": ""
         },
