@@ -60,7 +60,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please provide an estimate of your <strong>social security contributions</strong> to continue with the estimation."
+            "Please provide an estimate of your \u003cstrong\u003esocial security contributions\u003c/strong\u003e to continue with the estimation."
           ],
           "condition": ""
         },

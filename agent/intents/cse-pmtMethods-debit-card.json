@@ -40,7 +40,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "For information about fees associated with the debit card or other information, visit <a href=\"https://www.eppicard.com\" target=\"_blank\">here</a> or call their support line at <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+            "For information about fees associated with the debit card or other information, visit \u003ca href\u003d\"https://www.eppicard.com\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e or call their support line at \u003ca href\u003d\"tel:+18664614095\"\u003e1-866-461-4095\u003c/a\u003e."
           ],
           "condition": ""
         },

@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please <a href=\"https://www.eppicard.com/\" target=\"_blank\">click here</a> to access the EPPICard website."
+            "Please \u003ca href\u003d\"https://www.eppicard.com/\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to access the EPPICard website."
           ],
           "condition": ""
         },
