@@ -56,7 +56,7 @@ const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
       return handler(req, res)
     }
   } catch (e) {
-    console.error(e)
+    console.error(e.message, e)
   }
 }
 
@@ -72,7 +72,7 @@ const databaseTriggerWrapper = async (handler, doc, context) => {
   try {
     return handler(doc, context)
   } catch (e) {
-    console.error(e)
+    console.error(e.message, e)
   }
 }
 
@@ -89,7 +89,7 @@ Object.entries(databaseTriggers).forEach(([triggerName, databaseTrigger]) => {
   } else if (databaseTrigger.event === 'onDelete') {
     cloudFunction = document.onDelete(async (snapshot, context) => databaseTriggerWrapper(databaseTrigger.handler, snapshot, context))
   } else {
-    console.error('Unknown event type for database trigger', databaseTrigger)
+    console.error('Unknown event type for database trigger')
   }
 
   if (cloudFunction) {
@@ -102,7 +102,7 @@ const scheduledTriggerWrapper = (handler, context) => {
   try {
     return handler(context)
   } catch (e) {
-    console.error(e)
+    console.error(e.message, e)
   }
 }
 

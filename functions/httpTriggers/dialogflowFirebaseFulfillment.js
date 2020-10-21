@@ -123,7 +123,7 @@ module.exports = async (request, response) => {
     }
   }
   catch (e) {
-    console.error(e.message)
+    console.error(e.message, e)
     response.status(500).send(e.message)
   }
 }

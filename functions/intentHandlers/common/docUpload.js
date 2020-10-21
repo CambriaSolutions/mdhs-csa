@@ -1,4 +1,3 @@
-
 exports.docUpload = async agent => {
   try {
     const { handleEndConversation } = require('../globalFunctions')
@@ -10,6 +9,6 @@ exports.docUpload = async agent => {
     await agent.add(`Please ${link} to upload documents for your case.`)
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

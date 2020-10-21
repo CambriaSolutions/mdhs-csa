@@ -8,7 +8,7 @@ exports.caseQAIncreaseReview = async agent => {
   try {
     await supportReviewPayments(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -16,7 +16,7 @@ exports.caseQAGeneralSupportRequest = async agent => {
   try {
     await supportInquiries(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -24,7 +24,7 @@ exports.caseQAChangePersonalInfo = async agent => {
   try {
     await supportType(agent, 'change personal information')
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -32,6 +32,6 @@ exports.caseQAComplianceSupportRequest = async agent => {
   try {
     await supportInquiries(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

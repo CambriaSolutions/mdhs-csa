@@ -41,7 +41,7 @@ module.exports = async (req, reqType) => {
   // Code 4 === Webhook call failed. Error: DEADLINE_EXCEEDED.
   // Code 14 === Webhook call failed. Error: UNAVAILABLE.
   if (responses[0].webhookStatus.code !== 0) {
-    console.error(responses[0].webhookStatus.message)
+    console.error('Webhook Error', responses[0].webhookStatus.message)
   }
 
   responses[0].session = sessionPath

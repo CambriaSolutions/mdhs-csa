@@ -106,7 +106,7 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
     console.log(`Model name: ${model.name}`)
     console.log(`Model deployment state: ${deploymentState}`)
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
 
     await store
       .collection('/subjectMatters/')
