@@ -368,12 +368,14 @@ class Dashboard extends Component {
                 selectedSubjectMatter={this.props.subjectMatterName}
               />
             </Grid>
-            <Grid item xs={12}>
-              <UnhandledPhrasesTable
-                data={this.props.fallbackTriggeringQueries}
-                selectedSubjectMatter={this.props.subjectMatterName}
-              />
-            </Grid>
+            {this.props.subjectMatterName.toLowerCase() !== 'total' && this.props.subjectMatterName.toLowerCase() !== 'general' &&
+              <Grid item xs={12}>
+                <UnhandledPhrasesTable
+                  data={this.props.fallbackTriggeringQueries}
+                  selectedSubjectMatter={this.props.subjectMatterName}
+                />
+              </Grid>
+            }
           </Grid >
         )
       } else {
