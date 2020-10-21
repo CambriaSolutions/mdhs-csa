@@ -1,10 +1,12 @@
 {
   "name": "functions",
   "description": "Cloud Functions for Firebase",
+  "main": "lib/index.js",
   "scripts": {
     "serve": "firebase serve --only functions --port=9000",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
+    "build": "./node_modules/.bin/tsc",
     "emulator-dev": "firebase emulators:start --only functions --project dev",
     "emulator-dev-debug": "firebase emulators:start --inspect-functions --only functions --project dev",
     "deploy": "firebase deploy --only functions",
@@ -22,13 +24,15 @@
   },
   "dependencies": {
     "@google-cloud/automl": "^2.2.0",
+    "@google-cloud/dialogflow": "^3.3.0",
     "@google-cloud/storage": "^5.3.0",
     "@types/date-fns": "^2.6.0",
     "actions-on-google": "^2.13.0",
+    "bufferutil": "^4.0.1",
     "camelcase": "^6.0.0",
+    "canvas": "^2.5.0",
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
-    "@google-cloud/dialogflow": "^3.3.0",
     "dialogflow-fulfillment": "github:dialogflow/dialogflow-fulfillment-nodejs",
     "dotenv": "^8.0.0",
     "firebase-admin": "^9.2.0",
@@ -43,10 +47,8 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sanitize-html": "^1.27.3",
-    "validator": "^13.1.1",
-    "bufferutil": "^4.0.1",
     "utf-8-validate": "^5.0.2",
-    "canvas": "^2.5.0"
+    "validator": "^13.1.1"
   },
   "peerDependencies": {
     "bufferutil": "^4.0.1",

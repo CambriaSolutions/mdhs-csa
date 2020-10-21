@@ -213,7 +213,7 @@ export const supportType = async (agent, supportType) => {
 
 export const supportSubmitSupportRequestInquiry = async (agent) => {
   try {
-    await this.supportType(agent, 'inquiry')
+    await supportType(agent, 'inquiry')
   } catch (e) {
     console.error(e)
   }
@@ -221,7 +221,7 @@ export const supportSubmitSupportRequestInquiry = async (agent) => {
 
 export const supportSubmitSupportRequestCooperation = async (agent) => {
   try {
-    await this.supportType(agent, 'cooperation')
+    await supportType(agent, 'cooperation')
   } catch (e) {
     console.error(e)
   }
@@ -229,7 +229,7 @@ export const supportSubmitSupportRequestCooperation = async (agent) => {
 
 export const supportSubmitSupportRequestSafety = async (agent) => {
   try {
-    await this.supportType(agent, 'safety')
+    await supportType(agent, 'safety')
   } catch (e) {
     console.error(e)
   }
@@ -237,7 +237,7 @@ export const supportSubmitSupportRequestSafety = async (agent) => {
 
 export const supportSubmitSupportRequestGoodCause = async (agent) => {
   try {
-    await this.supportType(agent, 'good cause')
+    await supportType(agent, 'good cause')
   } catch (e) {
     console.error(e)
   }
@@ -245,7 +245,7 @@ export const supportSubmitSupportRequestGoodCause = async (agent) => {
 
 export const supportSubmitSupportRequestVerification = async (agent) => {
   try {
-    await this.supportType(agent, 'verification')
+    await supportType(agent, 'verification')
   } catch (e) {
     console.error(e)
   }
@@ -253,7 +253,7 @@ export const supportSubmitSupportRequestVerification = async (agent) => {
 
 export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
   try {
-    await this.supportType(agent, 'request payment history')
+    await supportType(agent, 'request payment history')
   } catch (e) {
     console.error(e)
   }
@@ -261,7 +261,7 @@ export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) =>
 
 export const supportSubmitSupportRequestInterstate = async (agent) => {
   try {
-    await this.supportType(agent, 'interstate')
+    await supportType(agent, 'interstate')
   } catch (e) {
     console.error(e)
   }
@@ -318,7 +318,7 @@ export const supportCollectLastName = async agent => {
 
 export const supportInquiries = async agent => {
   try {
-    await this.supportType(agent, 'inquiry')
+    await supportType(agent, 'inquiry')
   } catch (err) {
     console.error(err)
   }
@@ -326,7 +326,7 @@ export const supportInquiries = async agent => {
 
 export const supportReviewPayments = async agent => {
   try {
-    await this.supportType(agent, 'child support increase or decrease')
+    await supportType(agent, 'child support increase or decrease')
   } catch (err) {
     console.error(err)
   }
@@ -780,7 +780,7 @@ export const supportReportProviderEmployment = async agent => {
   try {
     const yesNo = agent.parameters['yes-no']
     if (yesNo === 'yes') {
-      await this.supportType(agent, 'Report Information About the Parent who Pays Support')
+      await supportType(agent, 'Report Information About the Parent who Pays Support')
     } else {
       await handleEndConversation(agent)
     }

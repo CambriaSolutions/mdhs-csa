@@ -83,5 +83,5 @@ export const pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
 // This is for the mail address intent
 export const pmtMethodsMailAddress = async agent => {
   const isGlobal = true
-  await this.pmtMethodsCheckOrMoneyOrder(agent, isGlobal)
+  await pmtMethodsCheckOrMoneyOrder(agent, isGlobal)
 }

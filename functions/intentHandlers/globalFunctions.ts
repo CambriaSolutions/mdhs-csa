@@ -27,7 +27,7 @@ export const handleEndConversation = async agent => {
 export const tbd = async agent => {
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
   await agent.add(tbdMessage)
-  await this.handleEndConversation(agent)
+  await handleEndConversation(agent)
 }
 
 export const setContext = async agent => {
@@ -172,7 +172,7 @@ export const caseyHandoff = async agent => {
     await agent.add(
       'Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual'
     )
-    await this.handleEndConversation(agent)
+    await handleEndConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -207,7 +207,7 @@ export const defaultFallback = async agent => {
 
 export const restartConversation = async agent => {
   try {
-    await this.startRootConversation(agent)
+    await startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -215,7 +215,7 @@ export const restartConversation = async agent => {
 
 export const globalRestart = async agent => {
   try {
-    await this.startRootConversation(agent)
+    await startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -239,7 +239,7 @@ export const welcome = async agent => {
       Disclaimers, Terms, and Conditions found <a href="${termsAndConditionsLink}" target="_blank">here</a>, and that you wish to continue.`
     )
 
-    await this.disableInput(agent)
+    await disableInput(agent)
     await agent.add(new Suggestion('I ACKNOWLEDGE'))
 
     await agent.context.set({
@@ -252,7 +252,7 @@ export const welcome = async agent => {
 }
 
 export const selectSubjectMatter = async agent => {
-  await this.disableInput(agent)
+  await disableInput(agent)
 
   // Add a suggestion for each of the system's subject matters
   const suggestionPromises = map(subjectMatterLabels, async label => agent.add(new Suggestion(label)))
@@ -296,8 +296,8 @@ export const selectSubjectMatter = async agent => {
 export const acknowledgePrivacyStatement = async agent => {
   try {
     await agent.add('Great! Select one of the options below.')
-    await this.selectSubjectMatter(agent)
-    // await this.startRootConversation(agent)
+    await selectSubjectMatter(agent)
+    // await startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }
@@ -307,8 +307,8 @@ export const acknowledgePrivacyStatement = async agent => {
 export const startRootConversation = async agent => {
   try {
     await agent.add('Select one of the options below.')
-    await this.selectSubjectMatter(agent)
-    // await this.startRootConversation(agent)
+    await selectSubjectMatter(agent)
+    // await startRootConversation(agent)
   } catch (err) {
     console.error(err)
   }

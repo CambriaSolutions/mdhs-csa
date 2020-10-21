@@ -16,7 +16,7 @@ export const subjectMatterLabels = [
   'Workforce Development'
 ]
 
-export const subjectMatterContexts = map(this.subjectMatters, sm => `${sm}-subject-matter`)
+export const subjectMatterContexts = map(subjectMatters, sm => `${sm}-subject-matter`)
 
 // SNAP, TANF, WFD have the same locations. CSE locations are separate.
 export const subjectMatterLocations = {
