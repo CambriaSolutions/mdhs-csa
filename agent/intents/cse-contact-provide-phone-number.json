@@ -35,7 +35,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "The contact number for child support customer service is <a href=\"tel:+18778824916\">1-877-882-4916</a>."
+            "The contact number for child support customer service is \u003ca href\u003d\"tel:+18778824916\"\u003e1-877-882-4916\u003c/a\u003e."
           ],
           "condition": ""
         },

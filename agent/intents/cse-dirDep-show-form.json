@@ -35,7 +35,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2019/11/Direct-Deposit-Agreement-Form-687-11-21-19-edits.pdf\" target=\"_blank\">click here</a> for the Direct Deposit Form."
+            "Please \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2019/11/Direct-Deposit-Agreement-Form-687-11-21-19-edits.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e for the Direct Deposit Form."
           ],
           "condition": ""
         },
@@ -45,7 +45,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "In the event you cannot or do not want to download the form, please contact customer service at <a href=\"tel:+16013594500\">1-601-359-4500</a> and our Mail Room will send you a copy."
+            "In the event you cannot or do not want to download the form, please contact customer service at \u003ca href\u003d\"tel:+16013594500\"\u003e1-601-359-4500\u003c/a\u003e and our Mail Room will send you a copy."
           ],
           "condition": ""
         },

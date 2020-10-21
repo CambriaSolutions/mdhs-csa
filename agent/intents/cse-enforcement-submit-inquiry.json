@@ -40,7 +40,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Got it. I have a few questions to make sure your request gets to the right place. What's your **first name**?"
+            "Got it. I have a few questions to make sure your request gets to the right place. What\u0027s your **first name**?"
           ],
           "condition": ""
         },

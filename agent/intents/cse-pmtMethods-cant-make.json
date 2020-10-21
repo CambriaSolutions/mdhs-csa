@@ -35,7 +35,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "First, click <a href=\"https://www.mississippiworks.org/\" target=\"_blank\">here</a> to visit MS Works for help with employment."
+            "First, click \u003ca href\u003d\"https://www.mississippiworks.org/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to visit MS Works for help with employment."
           ],
           "condition": ""
         },
@@ -45,7 +45,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Second, have any of the following occurred?\n    <br/>• Change in employment status\n    <br/>• Recently incarcerated\n    <br/>• Income reduced\n    <br/>• Lost a job\n    <br/>• Been injured"
+            "Second, have any of the following occurred?\n    \u003cbr/\u003e• Change in employment status\n    \u003cbr/\u003e• Recently incarcerated\n    \u003cbr/\u003e• Income reduced\n    \u003cbr/\u003e• Lost a job\n    \u003cbr/\u003e• Been injured"
           ],
           "condition": ""
         },

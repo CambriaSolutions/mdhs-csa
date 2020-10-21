@@ -1,11 +1,8 @@
 import * as actionTypes from '../actions/actionTypes'
 
-import { subDays } from 'date-fns'
-
 const initialState = {
   subjectMattersSettings: [],
   loading: false,
-  downloadExportDate: subDays(new Date(), 1),
   showSettings: false,
   snackbarOpen: false,
   snackbarMessage: '',
@@ -76,11 +73,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         defaultSubjectMatter: action.defaultSubjectMatter
-      }
-    case actionTypes.UPDATE_EXPORT_DATE:
-      return {
-        ...state,
-        downloadExportDate: action.downloadExportDate,
       }
     case actionTypes.TOGGLE_SETTINGS:
       return {

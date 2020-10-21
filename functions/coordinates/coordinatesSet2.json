@@ -235,15 +235,6 @@
   },
   {
     "addressComponents": {
-      "city": "Jackson",
-      "street": "215 McTyere Avenue"
-    },
-    "lat": 32.3203159,
-    "lng": -90.1849512,
-    "placeId": "ChIJv5I5Gf0yKIYRRZXhGOHsFHE"
-  },
-  {
-    "addressComponents": {
       "city": "Lexington",
       "street": "22419 Depot Street"
     },
