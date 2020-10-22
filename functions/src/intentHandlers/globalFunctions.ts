@@ -1,5 +1,5 @@
 import { Suggestion, Payload } from 'dialogflow-fulfillment'
-import getSubjectMatter from '../utils/getSubjectMatter'
+import { getSubjectMatter } from '../utils/getSubjectMatter'
 import { subjectMatterContexts, subjectMatterLabels } from '../constants/constants'
 import { map } from 'lodash'
 

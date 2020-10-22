@@ -169,7 +169,7 @@ const backIntentCycle = async (agent, intentMap, name, fulfillmentMessages) => {
  ************************************************************************************************/
 
 
-const back = async (
+export const back = async (
   agent,
   intentMap,
   fulfillmentMessages,
@@ -183,5 +183,3 @@ const back = async (
     await backIntentCycle(agent, intentMap, backIntentName, fulfillmentMessages)
   }
 }
-
-export default back

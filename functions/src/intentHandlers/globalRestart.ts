@@ -1,6 +1,6 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 
-const globalRestart = async (agent, intentMap, exclusionList = []) => {
+export const globalRestart = async (agent, intentMap, exclusionList = []) => {
   const currentIntent = agent.intent
   const currentIntentFunction = intentMap[currentIntent]
   const globalRestartFunction = async () => {
@@ -25,5 +25,3 @@ const globalRestart = async (agent, intentMap, exclusionList = []) => {
     })
   }
 }
-
-export default globalRestart

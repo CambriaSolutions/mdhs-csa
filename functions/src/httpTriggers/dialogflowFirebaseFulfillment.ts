@@ -36,8 +36,8 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
     } else {
       // Doing all imports inside of function to hopefully minimize cold start issues
       const { WebhookClient } = await import('dialogflow-fulfillment')
-      const backIntent = await import('../intentHandlers/back') as any
-      const globalRestart = await import('../intentHandlers/globalRestart') as any
+      const { back } = await import('../intentHandlers/back')
+      const { globalRestart } = await import('../intentHandlers/globalRestart')
       const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
       const globalIntentHandlers = await import('../intentHandlers/globalIntentHandlers')
       const commonIntentHandlers = await import('../intentHandlers/commonIntentHandlers')
@@ -46,7 +46,7 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
       const snapIntentHandlers = await import('../intentHandlers/snapIntentHandlers')
       const wfdIntentHandlers = await import('../intentHandlers/wfdIntentHandlers')
       const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
-      const getSubjectMatter = await import('../utils/getSubjectMatter') as any
+      const { getSubjectMatter } = await import('../utils/getSubjectMatter')
       const { subjectMatterLocations } = await import('../constants/constants')
       const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
@@ -114,7 +114,7 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
         agent.intent = 'go-back'
       }
 
-      await backIntent(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
+      await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
       await savingRequest

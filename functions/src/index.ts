@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import functions from 'firebase-functions'
+import * as functions from 'firebase-functions'
 import admin from 'firebase-admin'
 admin.initializeApp()
 
