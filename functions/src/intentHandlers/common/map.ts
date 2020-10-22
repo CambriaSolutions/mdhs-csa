@@ -119,7 +119,7 @@ export const mapDeliverMapAndCountyOffice = (subjectMatter, locations) => async 
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
-      const countyOfficeContactInformation = await import('../common/countyOfficeContactInformation.json')
+      const countyOfficeContactInformation = await import('./countyOfficeContactInformation.json')
 
       const countyInformation = countyOfficeContactInformation[currentGeocode.county]
       const nearestLocations = await getNearestThreeLocations(

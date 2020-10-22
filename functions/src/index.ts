@@ -4,17 +4,17 @@ import functions from 'firebase-functions'
 import admin from 'firebase-admin'
 admin.initializeApp()
 
-import dialogflowFirebaseFulfillment from '../httpTriggers/dialogflowFirebaseFulfillment'
-import eventRequest from '../httpTriggers/eventRequest'
-import textRequest from '../httpTriggers/textRequest'
-import downloadExport from '../httpTriggers/downloadExport'
-import storeFeedback from '../httpTriggers/storeFeedback'
-import trainAgent from '../databaseTriggers/trainAgent'
-import storeAnalytics from '../databaseTriggers/storeAnalytics'
-import importDataset from '../scheduledTriggers/importDataset'
-import trainModels from '../scheduledTriggers/trainModels'
-import healthCheck from '../scheduledTriggers/healthCheck'
-import exportBackup from '../scheduledTriggers/exportBackup'
+import dialogflowFirebaseFulfillment from './httpTriggers/dialogflowFirebaseFulfillment'
+import eventRequest from './httpTriggers/eventRequest'
+import textRequest from './httpTriggers/textRequest'
+import downloadExport from './httpTriggers/downloadExport'
+import storeFeedback from './httpTriggers/storeFeedback'
+import trainAgent from './databaseTriggers/trainAgent'
+import storeAnalytics from './databaseTriggers/storeAnalytics'
+import importDataset from './scheduledTriggers/importDataset'
+import trainModels from './scheduledTriggers/trainModels'
+import healthCheck from './scheduledTriggers/healthCheck'
+import exportBackup from './scheduledTriggers/exportBackup'
 
 const runtimeOpts: functions.RuntimeOptions = {
   timeoutSeconds: 300,

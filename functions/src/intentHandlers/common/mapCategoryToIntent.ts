@@ -2,7 +2,7 @@
 const retrieveIntentData = async category => {
   const admin = await import('firebase-admin')
   const { get } = await import('lodash')
-  const camelCase = await import('camelcase/index')
+  const camelCase = await import('camelcase')
   const db = admin.firestore()
 
   // Format the category returned from ml models to match our db naming convention

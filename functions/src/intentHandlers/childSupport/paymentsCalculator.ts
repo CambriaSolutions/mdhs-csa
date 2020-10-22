@@ -1,4 +1,4 @@
-import  { Suggestion } from 'dialogflow-fulfillment'
+import { Suggestion } from 'dialogflow-fulfillment'
 import isNumber from 'lodash/isNumber'
 import {
   validateIncomeAndDeductions,
