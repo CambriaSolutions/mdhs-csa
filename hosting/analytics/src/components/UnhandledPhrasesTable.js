@@ -21,9 +21,6 @@ const CustomTableCell = withStyles(theme => ({
 
 const StyledTableSortLabel = withStyles(theme => ({
   root: {
-    '&:hover': {
-      color: '#eceef8',
-    },
     '&:focus': {
       color: '#eceef8',
     },
@@ -31,9 +28,6 @@ const StyledTableSortLabel = withStyles(theme => ({
   active: {
     color: '#fff !important',
     fontWeight: 'bold',
-    '&:hover': {
-      color: '#d9ddf2',
-    },
   },
 }))(TableSortLabel)
 
@@ -77,7 +71,7 @@ class UnhandledTableHead extends React.Component {
         id: 'name',
         numeric: false,
         disablePadding: false,
-        label: 'Unhandled Phrase',
+        label: 'Unhandled Phrases',
         toolTip: 'Sort by the unhandled phrase',
       }
     ]
@@ -123,7 +117,6 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   row: {
-    cursor: 'pointer',
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
     },
