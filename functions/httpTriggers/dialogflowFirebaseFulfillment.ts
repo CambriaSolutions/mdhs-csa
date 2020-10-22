@@ -59,7 +59,7 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
         }))
       }
 
-      const agent = new WebhookClient({ request, response })
+      const agent = new WebhookClient({ request, response }) as any
 
       const subjectMatter = getSubjectMatter(agent)
 

@@ -75,7 +75,7 @@ export const autoMlFallback = async agent => {
   try {
     const { Suggestion } = await import('dialogflow-fulfillment')
     const { defaultFallback } = await import('../globalFunctions')
-    const getSubjectMatter = await import('../../utils/getSubjectMatter')
+    const getSubjectMatter = await import('../../utils/getSubjectMatter') as any
     const admin = await import('firebase-admin')
     const projectId = admin.instanceId().app.options.projectId
     const db = admin.firestore()
@@ -106,7 +106,7 @@ export const autoMlFallback = async agent => {
           'I\'m sorry, were you referring to one of the topics below?'
         )
 
-        suggestions.forEach(async (suggestion) => {
+        suggestions.forEach(async (suggestion: {suggestionText: string}) => {
           if (suggestion.suggestionText) {
             await agent.add(new Suggestion(`${suggestion.suggestionText}`))
           }

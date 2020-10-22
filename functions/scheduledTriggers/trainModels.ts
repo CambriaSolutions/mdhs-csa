@@ -34,7 +34,7 @@ export default async () => {
       docUpdatePromises.push(store
         .collection(`/subjectMatters/${subjectMatter}/queriesForTraining`)
         .doc(doc.id)
-        .update({ categoryModelTrained: true }, { merge: true }))
+        .update(<any>{ categoryModelTrained: true }, { merge: true }))
     })
     await Promise.all(docUpdatePromises)
   } else {
