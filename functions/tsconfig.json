@@ -1,0 +1,13 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "sourceMap": true
+  },
+  "include": [
+    "src"
+  ]
+}

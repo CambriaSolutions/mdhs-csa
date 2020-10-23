@@ -1,9 +1,0 @@
-exports.contactSupportHandoff = async agent => {
-  const { supportRoot } = require('./support.js')
-
-  try {
-    await supportRoot(agent)
-  } catch (err) {
-    console.error(err.message, err)
-  }
-}
