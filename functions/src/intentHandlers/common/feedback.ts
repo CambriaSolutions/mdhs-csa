@@ -21,7 +21,7 @@ export const feedbackRoot = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -64,7 +64,7 @@ export const feedbackNotHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -106,7 +106,7 @@ export const feedbackHelpful = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -114,6 +114,6 @@ export const feedbackComplete = async agent => {
   try {
     await agent.add('To start over just say hello!')
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }

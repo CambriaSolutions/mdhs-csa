@@ -3,7 +3,7 @@ export const contactSupportHandoff = async agent => {
 
   try {
     await supportRoot(agent)
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }

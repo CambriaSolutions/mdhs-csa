@@ -104,7 +104,7 @@ const backFunction = (agent, intentMap) => {
 
       await previousIntent(agent)
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }

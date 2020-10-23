@@ -1,3 +1,5 @@
+const { logger } = require('firebase-functions')
+
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 

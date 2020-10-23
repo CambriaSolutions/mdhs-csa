@@ -11,8 +11,8 @@ const healthCheck = async () => {
 
   try {
     await rp(options)
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 

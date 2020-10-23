@@ -13,6 +13,6 @@ export const tanfApplication = async agent => {
     await agent.add(`Please ${link} to start a new TANF application.`)
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

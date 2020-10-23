@@ -48,7 +48,7 @@ export default async () => {
     ])
 
     console.log(`Backups initiated for ${dateKey}`)
-  } catch (e) {
-    console.error(e.message, e.stack)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }

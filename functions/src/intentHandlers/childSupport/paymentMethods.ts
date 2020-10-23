@@ -27,7 +27,7 @@ export const pmtMethodsCantMakeQualifying = async agent => {
       })
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -43,7 +43,7 @@ export const pmtMethodsCantMakeQualifyingNoHelp = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -56,7 +56,7 @@ export const pmtMethodsCantMakeQualifyingHelp = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -76,7 +76,7 @@ export const pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
       await agent.add(new Suggestion('Other Options'))
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 

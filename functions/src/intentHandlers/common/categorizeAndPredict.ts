@@ -131,6 +131,6 @@ export const autoMlFallback = async agent => {
       }
     }
   } catch (err) {
-    console.error(err)
+    log.fatal('Unable to generate suggestions', err)
   }
 }

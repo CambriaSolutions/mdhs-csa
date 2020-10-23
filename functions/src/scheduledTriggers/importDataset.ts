@@ -85,7 +85,7 @@ const importDataset = async (subjectMatter) => {
         await updateCategoryModel(admin, store, projectId, fileName, phraseCategory, subjectMatter, autoMlSettings)
       }
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   } else {
     console.log('No new data to import.')
@@ -169,7 +169,7 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
       )
     }
   } catch (err) {
-    console.error('updateCategoryModel failed: ' + err)
+    console.error('updateCategoryModel failed', err)
 
     // Save import status in db
     await store

@@ -20,8 +20,8 @@ export const mapRoot = (subjectMatter) => async agent => {
       name: 'waiting-maps-deliver-map',
       lifespan: 2,
     })
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
@@ -109,7 +109,7 @@ export const mapDeliverMap = (subjectMatter, locations) => async agent => {
       })
     }
   } catch (error) {
-    console.error(error)
+    console.error('Unable to query locations', error)
   }
 }
 
@@ -158,6 +158,6 @@ export const mapDeliverMapAndCountyOffice = (subjectMatter, locations) => async 
       })
     }
   } catch (error) {
-    console.error(error)
+    console.error('Unable to query locations and county', error)
   }
 }

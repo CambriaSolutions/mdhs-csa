@@ -35,7 +35,6 @@ export const setContext = async agent => {
   const preloadedContexts = await db.collection('preloadedContexts').doc(sessionId).get()
   if (preloadedContexts.exists) {
     const data = preloadedContexts.data()
-    //console.log(`Setting contexts for ${agent.session}`, data)
     data.contexts.forEach(context => {
       agent.context.set({
         name: context,
@@ -162,7 +161,7 @@ export const disableInput = async agent => {
       )
     )
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -174,7 +173,7 @@ export const caseyHandoff = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -201,7 +200,7 @@ export const defaultFallback = async agent => {
 
     await agent.add(message)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -209,7 +208,7 @@ export const restartConversation = async agent => {
   try {
     await startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -217,7 +216,7 @@ export const globalRestart = async agent => {
   try {
     await startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -247,7 +246,7 @@ export const welcome = async agent => {
       lifespan: 1,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -299,7 +298,7 @@ export const acknowledgePrivacyStatement = async agent => {
     await selectSubjectMatter(agent)
     // await startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -310,6 +309,6 @@ export const startRootConversation = async agent => {
     await selectSubjectMatter(agent)
     // await startRootConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

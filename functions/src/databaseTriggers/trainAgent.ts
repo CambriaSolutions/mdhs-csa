@@ -53,10 +53,10 @@ async function _trainAgent(store, intentsClient, phrase, intentId, docId, intent
       console.log(`${intentName} learned ${phrase} as a training phrase`)
 
     } catch (e) {
-      console.log('Unable to train intent: ' + e)
+      console.error('Unable to train intent', e)
     }
   } catch (err) {
-    console.log('Unable to get intent: ' + err)
+    console.error('Unable to get intent', err)
   }
 }
 
@@ -73,7 +73,7 @@ async function getIntent(intentsClient, intentId) {
     const response = responses[0]
     return response
   } catch (err) {
-    console.log(`Unable to retrieve intent [${intentId}] from Dialogflow: ` + err)
+    console.error(`Unable to retrieve intent [${intentId}] from Dialogflow`, err)
     return err
   }
 }

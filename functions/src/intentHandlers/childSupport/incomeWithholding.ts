@@ -19,7 +19,7 @@ export const iwoConfirmEstimate = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -40,7 +40,7 @@ export const iwoIsSupporting = async agent => {
       lifespan: 100,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -77,7 +77,7 @@ export const iwoInArrears = async agent => {
       parameters: iwoFactorsParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -98,7 +98,7 @@ export const iwoDisposableIncome = async agent => {
       )
       await handleEndConversation(agent)
     } catch (err) {
-      console.log(err)
+      console.error(err.message, err)
     }
   } else {
     await agent.add(
@@ -113,6 +113,6 @@ export const iwoQAArrearsBalance = async agent => {
 
     await supportType(agent, 'request payment history or record')
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }

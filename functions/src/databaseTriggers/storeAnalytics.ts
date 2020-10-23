@@ -81,7 +81,7 @@ const inspectForMl = async (admin, store, query, intent, dfContext, context, tim
         })
       }
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -583,7 +583,7 @@ const storeAnalytics = async (snapshot, context) => {
       await calculateMetrics(admin, store, snapshot.data(), subjectMatter)
     }
   } catch (e) {
-    console.error(e)
+    console.error(e.message, e)
   }
 }
 

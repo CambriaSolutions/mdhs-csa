@@ -4,6 +4,6 @@ export const phoneNumber = async agent => {
 
     await tbd(agent)
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }

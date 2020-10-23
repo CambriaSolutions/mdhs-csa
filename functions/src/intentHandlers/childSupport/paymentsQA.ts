@@ -15,7 +15,7 @@ export const pmtQAHaventReceived = async agent => {
     )
     await handleEndConversation(agent)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -32,7 +32,7 @@ export const pmtQAPaymentReduction = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -45,7 +45,7 @@ export const pmtQAYesPaymentReduction = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -64,7 +64,7 @@ export const pmtQAOver21 = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -79,7 +79,7 @@ export const pmtQAEmployerPaymentStatus = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -109,7 +109,7 @@ export const pmtQAYesEmployerPaymentStatus = async agent => {
       })
     }
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }
 
@@ -129,6 +129,6 @@ export const pmtQANCPPaymentStatus = async agent => {
       lifespan: 2,
     })
   } catch (err) {
-    console.log(err)
+    console.error(err.message, err)
   }
 }

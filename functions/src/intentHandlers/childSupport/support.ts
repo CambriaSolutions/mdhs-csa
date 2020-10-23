@@ -57,7 +57,7 @@ export const supportHandleEmploymentStatus = async agent => {
       },
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -83,7 +83,7 @@ export const supportCollectNewEmployerName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -104,7 +104,7 @@ export const supportNoNewEmployer = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -131,7 +131,7 @@ export const supportCollectNewEmployerPhone = async agent => {
         lifespan: 10,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   } else {
     try {
@@ -143,7 +143,7 @@ export const supportCollectNewEmployerPhone = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -165,7 +165,7 @@ export const supportNewEmployerUnkownPhone = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -207,63 +207,63 @@ export const supportType = async (agent, supportType) => {
       parameters: { supportType: _supportType },
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestInquiry = async (agent) => {
   try {
     await supportType(agent, 'inquiry')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestCooperation = async (agent) => {
   try {
     await supportType(agent, 'cooperation')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestSafety = async (agent) => {
   try {
     await supportType(agent, 'safety')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestGoodCause = async (agent) => {
   try {
     await supportType(agent, 'good cause')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestVerification = async (agent) => {
   try {
     await supportType(agent, 'verification')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
   try {
     await supportType(agent, 'request payment history')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
 export const supportSubmitSupportRequestInterstate = async (agent) => {
   try {
     await supportType(agent, 'interstate')
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error(err.message, err)
   }
 }
 
@@ -285,7 +285,7 @@ export const supportCollectFirstName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -312,7 +312,7 @@ export const supportCollectLastName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -320,7 +320,7 @@ export const supportInquiries = async agent => {
   try {
     await supportType(agent, 'inquiry')
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -328,7 +328,7 @@ export const supportReviewPayments = async agent => {
   try {
     await supportType(agent, 'child support increase or decrease')
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -357,7 +357,7 @@ export const supportNoPhoneNumber = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -394,7 +394,7 @@ export const supportPhoneNumber = async agent => {
         parameters: ticketInfoParams,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   } else {
     try {
@@ -406,7 +406,7 @@ export const supportPhoneNumber = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -440,7 +440,7 @@ export const supportEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        console.error(err)
+        console.error(err.message, err)
       }
     } else {
       try {
@@ -456,7 +456,7 @@ export const supportEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        console.error(err)
+        console.error(err.message, err)
       }
     }
   } else {
@@ -473,7 +473,7 @@ export const supportEmail = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -508,7 +508,7 @@ export const supportNoEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        console.error(err)
+        console.error(err.message, err)
       }
     } else {
       try {
@@ -524,7 +524,7 @@ export const supportNoEmail = async agent => {
           parameters: ticketInfoParams,
         })
       } catch (err) {
-        console.error(err)
+        console.error(err.message, err)
       }
     }
   } else {
@@ -545,7 +545,7 @@ export const supportNoEmail = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -555,7 +555,7 @@ export const supportHandlePhoneRetry = async agent => {
   try {
     await handleContactCollection(agent, 'phone', isLumpSum)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -564,7 +564,7 @@ export const supportHandleEmailRetry = async agent => {
   try {
     await handleContactCollection(agent, 'email', isLumpSum)
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -589,7 +589,7 @@ export const supportCollectCompanyName = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -619,13 +619,13 @@ export const supportCaseNumber = async agent => {
         lifespan: 3,
       })
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   } else {
     try {
       await handleCaseNumber(descriptionText, agent, caseNumber)
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   }
 }
@@ -637,7 +637,7 @@ export const supportNoCaseNumber = async agent => {
   try {
     await handleCaseNumber(descriptionText, agent, 'Unknown Case Number')
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -681,7 +681,7 @@ export const supportCollectIssue = async agent => {
       parameters: ticketInfoParams,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -744,7 +744,7 @@ export const supportSumbitIssue = async agent => {
       // Ask the user if they need anything else, set appropriate contexts
       await handleEndConversation(agent)
     } catch (err) {
-      console.error(err)
+      console.error(err.message, err)
     }
   } else {
     // Handle service desk errors?
@@ -772,7 +772,7 @@ export const supportEditProviderEmployment = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
 
@@ -785,6 +785,6 @@ export const supportReportProviderEmployment = async agent => {
       await handleEndConversation(agent)
     }
   } catch (err) {
-    console.error(err)
+    console.error(err.message, err)
   }
 }
