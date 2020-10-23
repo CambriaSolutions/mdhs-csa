@@ -80,7 +80,7 @@ jobs:
             SERVICE_DESK_ENV=<< parameters.serviceDeskEnv >>
 
             HEALTH_CHECK_URL=<< parameters.healthCheckUrl >>" > .env
-      - run: sudo npm run build
+      - run: cd functions && sudo npm run build
       - run: sudo npm install -g firebase-tools
       - run: firebase deploy --only functions,firestore --token $FIREBASE_DEPLOY_TOKEN -P << parameters.firebaseProjectId >>
 
