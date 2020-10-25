@@ -34,9 +34,9 @@ export default async () => {
       // Update training status in individual queries
       const docUpdatePromises = []
 
-      // Opting to indicated phrases were trained despite training in progress.
+      // Opting to indicate phrases were trained despite training in progress.
       // The model name that trained the phrase is now recoded in case manual clean-up is required
-      // This is to prevent repeat triggering of model trainig if training is erroring and not noticed as trainig is expensive
+      // This is to prevent repeat triggering of model trainig if training is erroring and not noticed as training is expensive
       snap.forEach(async doc => {
         docUpdatePromises.push(store
           .collection(`/subjectMatters/${subjectMatter}/queriesForTraining`)
