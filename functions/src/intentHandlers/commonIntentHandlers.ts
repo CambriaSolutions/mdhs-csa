@@ -9,7 +9,7 @@ import {
   feedbackComplete,
 } from './common/feedback.js'
 
-module.exports = {
+export const commonIntentHandlers = {
   'none-of-these': noneOfThese,
   'Default Fallback Intent': commonFallback,
   'doc-upload': docUpload,

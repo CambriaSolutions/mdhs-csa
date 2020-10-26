@@ -6,7 +6,7 @@ const options = {
   url: process.env.HEALTH_CHECK_URL,
 }
 
-const healthCheck = async () => {
+export const healthCheck = async () => {
   const rp = await import('request-promise')
 
   try {
@@ -15,5 +15,3 @@ const healthCheck = async () => {
     console.error(err.message, err)
   }
 }
-
-export default healthCheck

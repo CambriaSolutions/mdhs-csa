@@ -4,7 +4,7 @@ import { snapApplication } from './snap/snapApplication.js'
 import { mapRoot } from './common/map.js'
 import { pebtRoot } from './common/pebt'
 
-module.exports = {
+export const snapIntentHandlers = {
   'snap-root': snapRoot,
   'snap-eligibilityChecker': eligibilityChecker,
   'snap-application': snapApplication,

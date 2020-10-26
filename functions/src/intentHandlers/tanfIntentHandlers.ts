@@ -4,7 +4,7 @@ import { tanfApplication } from './tanf/tanfApplication.js'
 import { mapRoot } from './common/map.js'
 import { pebtRoot } from './common/pebt'
 
-module.exports = {
+export const tanfIntentHandlers = {
   'tanf-root': tanfRoot,
   'tanf-eligibilityChecker': eligibilityChecker,
   'tanf-application': tanfApplication,
