@@ -23,6 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // Icons
 import SecurityIcon from '@material-ui/icons/Security'
@@ -146,7 +147,7 @@ class Settings extends Component {
     let currentSubjectMatterSettings = null
 
     if (this.props.user.dataExport) {
-      let downloadBtnToggle = <IconButton onClick={this.props.onExportDownload} ><StyledImg src={excelIcon} /></IconButton>
+      let downloadBtnToggle = <Tooltip title='Open in Microsoft Excel'><IconButton onClick={this.props.onExportDownload} ><StyledImg src={excelIcon} /></IconButton></Tooltip>
       if (this.props.loadingDownload) {
         downloadBtnToggle = <CircularProgress color='primary' />
       }
