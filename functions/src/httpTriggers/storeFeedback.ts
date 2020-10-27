@@ -1,5 +1,3 @@
-const { logger } = require('firebase-functions')
-
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
@@ -53,7 +51,7 @@ const storeConversationFeedback = async (
 }
 
 // Store feedback from conversations
-const storeFeedback = async (req, res) => {
+export const storeFeedback = async (req, res) => {
   const admin = await import('firebase-admin')
   const store = admin.firestore()
   const { format } = await import('date-fns')
@@ -165,5 +163,3 @@ const storeFeedback = async (req, res) => {
     res.status(200).send()
   }
 }
-
-export default storeFeedback

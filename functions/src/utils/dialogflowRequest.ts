@@ -6,7 +6,7 @@ import dialogflow from '@google-cloud/dialogflow'
 
 // For deployment
 const sessionClient = new dialogflow.SessionsClient()
-module.exports = async (req, reqType) => {
+export const dialogflowRequest = async (req, reqType) => {
   const languageCode = 'en-US'
 
   if (!req.query || !req.query.query) {
@@ -49,8 +49,5 @@ module.exports = async (req, reqType) => {
     session: sessionPath
   }
 
-  return ({
-    response,
-    session: sessionPath
-  })
+  return response
 }

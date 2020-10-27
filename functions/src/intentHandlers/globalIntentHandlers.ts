@@ -7,7 +7,7 @@ import {
   setContext,
 } from './globalFunctions'
 
-module.exports = {
+export const globalIntentHandlers = {
   'Default Welcome Intent': welcome,
   'acknowledge-privacy-statement': acknowledgePrivacyStatement,
   'global-restart': globalRestart,

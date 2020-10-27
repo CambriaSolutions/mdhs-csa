@@ -569,7 +569,7 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
   )
 }
 
-const storeAnalytics = async (snapshot, context) => {
+export const storeAnalytics = async (snapshot, context) => {
   console.log('Starting analytics trigger')
   try {
     const admin = await import('firebase-admin')
@@ -586,5 +586,3 @@ const storeAnalytics = async (snapshot, context) => {
     console.error(e.message, e)
   }
 }
-
-export default storeAnalytics

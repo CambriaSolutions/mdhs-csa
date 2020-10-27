@@ -4,8 +4,15 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
     "outDir": "lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": [
+      "es2017"
+    ],
+    "module": "commonjs",
+    "target": "es2017"
   },
   "include": [
     "src"

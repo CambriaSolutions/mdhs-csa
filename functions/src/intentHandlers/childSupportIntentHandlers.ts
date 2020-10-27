@@ -117,7 +117,7 @@ import { paymentTimelines } from './childSupport/paymentTimelines.js'
 import { phoneNumber } from './childSupport/phoneNumber.js'
 import { refund } from './childSupport/refund.js'
 
-const childSupportIntentHandlers = {
+export const childSupportIntentHandlers = {
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
 
@@ -241,5 +241,3 @@ const childSupportIntentHandlers = {
   // Map
   'cse-map-root': mapRoot('cse')
 }
-
-export default childSupportIntentHandlers

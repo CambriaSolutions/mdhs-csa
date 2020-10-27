@@ -3,18 +3,24 @@ dotenv.config()
 import * as functions from 'firebase-functions'
 import admin from 'firebase-admin'
 admin.initializeApp()
+import cors from 'cors'
+const _cors = cors({
+  origin: true
+})
 
-import dialogflowFirebaseFulfillment from './httpTriggers/dialogflowFirebaseFulfillment'
-import eventRequest from './httpTriggers/eventRequest'
-import textRequest from './httpTriggers/textRequest'
-import downloadExport from './httpTriggers/downloadExport'
-import storeFeedback from './httpTriggers/storeFeedback'
-import trainAgent from './databaseTriggers/trainAgent'
-import storeAnalytics from './databaseTriggers/storeAnalytics'
-import importDataset from './scheduledTriggers/importDataset'
-import trainModels from './scheduledTriggers/trainModels'
-import healthCheck from './scheduledTriggers/healthCheck'
-import exportBackup from './scheduledTriggers/exportBackup'
+import { dialogflowFirebaseFulfillment } from './httpTriggers/dialogflowFirebaseFulfillment'
+import { eventRequest } from './httpTriggers/eventRequest'
+
+// Register HTTP Triggers
+import { textRequest } from './httpTriggers/textRequest'
+import { downloadExport } from './httpTriggers/downloadExport'
+import { storeFeedback } from './httpTriggers/storeFeedback'
+import { trainAgent } from './databaseTriggers/trainAgent'
+import { storeAnalytics } from './databaseTriggers/storeAnalytics'
+import { importDataset } from './scheduledTriggers/importDataset'
+import { trainModels } from './scheduledTriggers/trainModels'
+import { healthCheck } from './scheduledTriggers/healthCheck'
+import { exportBackup } from './scheduledTriggers/exportBackup'
 
 const runtimeOpts: functions.RuntimeOptions = {
   timeoutSeconds: 300,
@@ -44,16 +50,10 @@ const scheduledTriggers = {
   exportBackup: { schedule: '0 1 * * *', timezone: 'America/Los_Angeles', handler: exportBackup }, // every day 1 AM PST
 }
 
-// Register HTTP Triggers
-import cors from 'cors'
-cors({
-  origin: true
-})
-
 const httpTriggerWrapper = async (handler, corsEnabled, req, res) => {
   try {
     if (corsEnabled) {
-      return cors(req, res, () => { handler(req, res) })
+      return _cors(req, res, () => { handler(req, res) })
     } else {
       return handler(req, res)
     }

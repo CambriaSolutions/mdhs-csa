@@ -82,7 +82,7 @@ async function getIntent(intentsClient, intentId) {
  * Trigger function on 'queriesForTraining' collection updates
  * to determine occurrence threshold for DF agent training
  */
-const trainAgent = async (change, context) => {
+export const trainAgent = async (change, context) => {
   const admin = await import('firebase-admin')
   const dialogflow = await import('@google-cloud/dialogflow')
 
@@ -103,5 +103,3 @@ const trainAgent = async (change, context) => {
   }
   return afterUpdateFields
 }
-
-export default trainAgent
