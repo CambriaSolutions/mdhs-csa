@@ -28,7 +28,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-const dialogflowFirebaseFulfillment = async (request, response) => {
+export const dialogflowFirebaseFulfillment = async (request, response) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
       // Using a health check endpoint to keep the function warm
@@ -39,12 +39,12 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
       const { back } = await import('../intentHandlers/back')
       const { globalRestart } = await import('../intentHandlers/globalRestart')
       const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
-      const globalIntentHandlers = await import('../intentHandlers/globalIntentHandlers')
-      const commonIntentHandlers = await import('../intentHandlers/commonIntentHandlers')
-      const childSupportIntentHandlers = await import('../intentHandlers/childSupportIntentHandlers')
-      const tanfIntentHandlers = await import('../intentHandlers/tanfIntentHandlers')
-      const snapIntentHandlers = await import('../intentHandlers/snapIntentHandlers')
-      const wfdIntentHandlers = await import('../intentHandlers/wfdIntentHandlers')
+      const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
+      const { commonIntentHandlers } = await import('../intentHandlers/commonIntentHandlers')
+      const { childSupportIntentHandlers } = await import('../intentHandlers/childSupportIntentHandlers')
+      const { tanfIntentHandlers } = await import('../intentHandlers/tanfIntentHandlers')
+      const { snapIntentHandlers } = await import('../intentHandlers/snapIntentHandlers')
+      const { wfdIntentHandlers } = await import('../intentHandlers/wfdIntentHandlers')
       const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
       const { getSubjectMatter } = await import('../utils/getSubjectMatter')
       const { subjectMatterLocations } = await import('../constants/constants')
@@ -127,5 +127,3 @@ const dialogflowFirebaseFulfillment = async (request, response) => {
     response.status(500).send(e.message)
   }
 }
-
-export default dialogflowFirebaseFulfillment
