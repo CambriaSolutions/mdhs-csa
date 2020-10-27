@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "You can register your mobile phone to receive deposit notifications and balance alerts at <a href=\"https://www.eppicard.com\" target=\"_blank\">www.EPPICard.com</a> or call <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+            "You can register your mobile phone to receive deposit notifications and balance alerts at \u003ca href\u003d\"https://www.eppicard.com\" target\u003d\"_blank\"\u003ewww.EPPICard.com\u003c/a\u003e or call \u003ca href\u003d\"tel:+18664614095\"\u003e1-866-461-4095\u003c/a\u003e."
           ],
           "condition": ""
         },

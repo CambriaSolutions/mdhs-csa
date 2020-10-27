@@ -14,13 +14,15 @@ store
   .collection(
     `/subjectMatters/${subjectMatter}/requests/`
   )
+  .orderBy('createdAt', 'asc')
   //.where('intentId', '==', intentId)
-  .where('queryResult.intent.displayName', '==', 'Default Fallback Intent')
-  //.where('createdAt', '>', new Date(2020, 1, 1, 0, 0, 0, 0))
+  //.where('queryResult.intent.displayName', '==', 'Default Fallback Intent')
+  .where('createdAt', '>=', new Date(2020, 6, 22, 0, 0, 0, 0))
+  .where('createdAt', '<=', new Date(2020, 6, 23, 0, 0, 0, 0))
   .get()
   .then(values => {
     console.log('Number of results:', values.docs.length)
-    let f = fs.openSync(`./${subjectMatter}_unhandledQueries_2.csv`, 'w')
+    let f = fs.openSync(`./${subjectMatter}_unhandledQueries.csv`, 'w')
 
     for (let query of values.docs) {
       const queryDoc = query.data()

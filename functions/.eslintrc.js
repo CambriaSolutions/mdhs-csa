@@ -5,15 +5,24 @@ module.exports = {
     'es2020': true,
     'node': true
   },
-  'extends': 'eslint:recommended',
+  'parser': '@typescript-eslint/parser',
+  'plugins': [
+    '@typescript-eslint',
+  ],
+  'extends': [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   'parserOptions': {
+    'sourceType': 'module',
     'ecmaVersion': 11
   },
   'ignorePatterns': ['*.test.js'],
   'rules': {
     'indent': [
       'error',
-      2
+      2,
+      { SwitchCase: 1 }
     ],
     'quotes': [
       'error',
@@ -25,6 +34,10 @@ module.exports = {
     ],
     'no-undefined': 'off',
     'no-unused-expressions': 'off',
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
   }
 }
+
+

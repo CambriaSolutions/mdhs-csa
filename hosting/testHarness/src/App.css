@@ -1,8 +1,0 @@
-body {
-  background-image: url(./images/bgImage.png);
-  height: 100vh;
-  overflow: hidden;
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}

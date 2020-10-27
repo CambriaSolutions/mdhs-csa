@@ -1,54 +1,54 @@
 {
-    "id": "6028798c-85b1-4434-a612-57dd71e0af4d",
-    "name": "cse-enforcement-tax-offset-q8",
-    "auto": true,
-    "contexts": [
-        "cse-subject-matter"
-    ],
-    "responses": [
+  "id": "6028798c-85b1-4434-a612-57dd71e0af4d",
+  "name": "cse-enforcement-tax-offset-q8",
+  "auto": true,
+  "contexts": [
+    "cse-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
         {
-            "resetContexts": false,
-            "action": "",
-            "affectedContexts": [
-                {
-                    "name": "cse-subject-matter",
-                    "lifespan": 99,
-                    "parameters": {}
-                }
-            ],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "If a joint tax return is filed, it may take up to <strong>six (6) months</strong> for any federal (IRS) offset payment to be applied. State tax collections are distributed after a <strong>thirty (30) day</strong> hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse."
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "4",
-                    "title": "",
-                    "payload": {
-                        "suggestions": [],
-                        "handleEndConversation": true
-                    },
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "condition": ""
-                }
-            ],
-            "speech": []
+          "name": "cse-subject-matter",
+          "lifespan": 99,
+          "parameters": {}
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If a joint tax return is filed, it may take up to \u003cstrong\u003esix (6) months\u003c/strong\u003e for any federal (IRS) offset payment to be applied. State tax collections are distributed after a \u003cstrong\u003ethirty (30) day\u003c/strong\u003e hold period. This allows the spouse of the parent responsible for support to appeal as an injured spouse."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

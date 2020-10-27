@@ -17,17 +17,20 @@ import timezones from '../common/timezones'
 import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // Icons
 import SecurityIcon from '@material-ui/icons/Security'
 import CloudOffIcon from '@material-ui/icons/CloudOff'
+import { IconButton } from '@material-ui/core'
+
+import excelIcon from '../assets/excelIcon.png'
 
 const StyledDiv = styled.div`
   width: 360px;
@@ -92,6 +95,10 @@ const StyledExportButtonRow = styled.div`
   padding-bottom: 16px;
 `
 
+const StyledImg = styled.img`
+  width: 40px;
+`
+
 class Settings extends Component {
   constructor(props) {
     super(props)
@@ -140,9 +147,7 @@ class Settings extends Component {
     let currentSubjectMatterSettings = null
 
     if (this.props.user.dataExport) {
-      let downloadBtnToggle = (
-        <Button variant="outlined" color="primary" onClick={this.props.onExportDownload}>Excel</Button>
-      )
+      let downloadBtnToggle = <Tooltip title='Open in Microsoft Excel'><IconButton onClick={this.props.onExportDownload} ><StyledImg src={excelIcon} /></IconButton></Tooltip>
       if (this.props.loadingDownload) {
         downloadBtnToggle = <CircularProgress color='primary' />
       }
@@ -150,7 +155,7 @@ class Settings extends Component {
         <div>
           <TitleDiv variant='h6'>Data Export: Unhandled Questions and Feedback</TitleDiv>
           <Divider />
-          <StyledExportText>Download questions that Genbot has been asked, but hasn't been trained to handle yet. Download feedback that your users are saying about the product.</StyledExportText>
+          <StyledExportText>Download questions that Genbot has been asked, but hasn't been trained to handle yet. Download feedback that your users are saying about Genbot.</StyledExportText>
           <StyledExportButtonRow>
             {downloadBtnToggle}
           </StyledExportButtonRow>
