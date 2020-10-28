@@ -59,8 +59,8 @@
               "PROVIDERS LOCATION",
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
-              "HOW CAN I APPLY?",
-              "MYRESOURCES"
+              "MYRESOURCES",
+              "HOW CAN I APPLY?"
             ],
             "handleEndConversation": true
           },
