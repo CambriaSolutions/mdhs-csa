@@ -26,7 +26,7 @@ const headerStyle = {
 }
 
 const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatterCol, includeSuggestions) => {
-  const sheet1Name = 'Unhandled User Questions' + (subjectMatter ? '_' + subjectMatter.toUpperCase() : '')
+  const sheet1Name = 'Unhandled Questions' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
 
   // Create worksheets with headers and footers
   const sheet1 = workbook.addWorksheet(sheet1Name, phrasesData);
@@ -68,7 +68,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
 
   const suggestionColumns = [
     {
-      name: 'Suggestion #1',
+      name: 'Gen Suggestion 1',
       filterButton: true,
       style: {
         font: {
@@ -77,7 +77,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
       }
     },
     {
-      name: 'Suggestion #2',
+      name: 'Gen Suggestion 2',
       filterButton: true,
       style: {
         font: {
@@ -86,7 +86,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
       }
     },
     {
-      name: 'Suggestion #3',
+      name: 'Gen Suggestion 3',
       filterButton: true,
       style: {
         font: {
@@ -150,7 +150,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
 }
 
 const createSheet2 = (workbook, feedbackData, subjectMatter, includeSubjectMatterCol) => {
-  const sheet2Name = 'User Feedback' + (subjectMatter ? '_' + subjectMatter.toUpperCase() : '')
+  const sheet2Name = 'User Feedback' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
 
   const sheet2 = workbook.addWorksheet(sheet2Name);
 
