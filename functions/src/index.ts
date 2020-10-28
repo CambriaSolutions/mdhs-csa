@@ -22,6 +22,11 @@ import { trainModels } from './scheduledTriggers/trainModels'
 import { healthCheck } from './scheduledTriggers/healthCheck'
 import { exportBackup } from './scheduledTriggers/exportBackup'
 
+
+import { checkTrainingOperationStatus } from './scheduledTriggers/checkTrainingOperationStatus'
+import { checkDeploymentOperationStatus } from './scheduledTriggers/checkDeploymentOperationStatus'
+
+
 const runtimeOpts: functions.RuntimeOptions = {
   timeoutSeconds: 300,
   memory: '2GB',
@@ -46,6 +51,8 @@ const databaseTriggers = {
 const scheduledTriggers = {
   importDataset: { schedule: '0 20 * * *', timezone: 'America/Los_Angeles', handler: importDataset },
   trainModels: { schedule: '0 21 * * 1', timezone: 'America/Los_Angeles', handler: trainModels }, // Every Monday at 1 AM CST
+  checkTrainingOperationStatus: { schedule: '0 */6 * * *', timezone: 'America/Los_Angeles', handler: checkTrainingOperationStatus }, // At minute 0 past every 6th hour.
+  checkDeploymentOperationStatus: { schedule: '30 */6 * * *', timezone: 'America/Los_Angeles', handler: checkDeploymentOperationStatus }, // At minute 30 past every 6th hour. (In case training completed, give deployment at least 30 mins)
   healthCheck: { schedule: '*/10 * * * *', timezone: 'America/Los_Angeles', handler: healthCheck }, // every 10 minutes
   exportBackup: { schedule: '0 1 * * *', timezone: 'America/Los_Angeles', handler: exportBackup }, // every day 1 AM PST
 }
