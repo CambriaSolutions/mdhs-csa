@@ -60,10 +60,9 @@
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
               "HOW CAN I APPLY?",
-              "MYRESOURCES",
-              "SUBMIT FEEDBACK"
+              "MYRESOURCES"
             ],
-            "handleEndConversation": false
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
