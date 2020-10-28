@@ -10,9 +10,6 @@ export const trainModels = async () => {
   const automl = await import('@google-cloud/automl')
   const store = admin.firestore()
 
-  // Instantiate autoML client
-  const client = new automl.v1beta1.AutoMlClient()
-
   // TODO - hardcoded cse
   const subjectMatter = 'cse'
   const snap = await store
@@ -25,18 +22,35 @@ export const trainModels = async () => {
   console.log(`Identified ${queriesToTrain} queries to train.`)
 
   if (queriesToTrain > 0) {
-    // Train the model
-    await trainCategoryModel(store, admin, client, projectId, subjectMatter)
+    console.log('AutoML Model Training Triggers. Queries for training: ', queriesToTrain)
+    // Instantiate autoML client  
+    const client = new automl.v1.AutoMlClient()
 
-    // Update training status in individual queries
-    const docUpdatePromises = []
-    snap.forEach(async doc => {
-      docUpdatePromises.push(store
-        .collection(`/subjectMatters/${subjectMatter}/queriesForTraining`)
-        .doc(doc.id)
-        .update(<any>{ categoryModelTrained: true }, { merge: true }))
-    })
-    await Promise.all(docUpdatePromises)
+    // Train the model
+    const [isTraining, trainingModelName] = await trainCategoryModel(store, admin, client, projectId, subjectMatter)
+
+    if (isTraining) {
+      console.log('Training has been initiated for model: ', trainingModelName)
+      // Update training status in individual queries
+      const docUpdatePromises = []
+
+      // Opting to indicate phrases were trained despite training in progress.
+      // The model name that trained the phrase is now recoded in case manual clean-up is required
+      // This is to prevent repeat triggering of model trainig if training is erroring and not noticed as training is expensive
+      snap.forEach(async doc => {
+        docUpdatePromises.push(store
+          .collection(`/subjectMatters/${subjectMatter}/queriesForTraining`)
+          .doc(doc.id)
+          .update(<any>{
+            categoryModelTrained: true,
+            trainedInModel: trainingModelName || '',
+            trainedOn: admin.firestore.Timestamp.now(),
+          }, { merge: true }))
+      })
+      await Promise.all(docUpdatePromises)
+    } else {
+      console.error('Failed to trigger training')
+    }
   } else {
     console.log('Training was skipped.')
   }
@@ -67,53 +81,37 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
 
   // Create a model with the model metadata in the region.
   try {
-    const [operation, initialApiResponse] = await client.createModel({
+    const [operation] = await client.createModel({
       parent: projectLocation,
       model: modelData,
     })
 
-    console.log(`Training operation name: ${initialApiResponse.name}`)
-    console.log('Training started...')
+    console.log('Model training operation started: ', operation.name)
 
     // Update training status in db
     await store
-      .collection('/subjectMatters/')
-      .doc(`${subjectMatter}`)
+      .collection('subjectMatters')
+      .doc(subjectMatter)
       .update({
         isTrainingProcessing: true,
+        trainingStarted: admin.firestore.Timestamp.now(),
+        trainingOperationName: operation.name,
+        trainingModelName: modelName
       })
 
-    const [model] = await operation.promise()
-
-    // Retrieve deployment state.
-    let deploymentState = ''
-
-    if (model.deploymentState === 1) {
-      deploymentState = 'deployed'
-
-      // Update training status in db
-      await store
-        .collection('/subjectMatters/')
-        .doc(`${subjectMatter}`)
-        .update({
-          isTrainingProcessing: false,
-          lastTrained: admin.firestore.Timestamp.now(),
-        })
-    } else if (model.deploymentState === 2) {
-      deploymentState = 'undeployed'
-    }
-
-    // Model information needed to review details in the GCP console
-    console.log(`Model name: ${model.name}`)
-    console.log(`Model deployment state: ${deploymentState}`)
+    return [true, modelName]
   } catch (err) {
     console.error(err.message, err)
 
     await store
-      .collection('/subjectMatters/')
-      .doc(`${subjectMatter}`)
+      .collection('subjectMatters')
+      .doc(subjectMatter)
       .update({
         isTrainingProcessing: false,
+        trainingOperationName: '',
+        trainingModelName: '',
       })
+
+    return [false, '']
   }
 }
