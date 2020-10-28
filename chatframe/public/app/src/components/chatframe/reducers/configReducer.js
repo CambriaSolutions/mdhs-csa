@@ -51,6 +51,9 @@ function config(state = initialState, action) {
     case t.SET_FEEDBACK_URL:
       return { ...state, feedbackUrl: action.feedbackUrl }
 
+    case t.SET_REPORT_ERROR_URL:
+      return { ...state, reportErrorUrl: action.reportErrorUrl }
+
     default:
       return state
   }
