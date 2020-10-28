@@ -59,11 +59,10 @@
               "PROVIDERS LOCATION",
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
-              "HOW CAN I APPLY?",
               "MYRESOURCES",
-              "SUBMIT FEEDBACK"
+              "HOW CAN I APPLY?"
             ],
-            "handleEndConversation": false
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",

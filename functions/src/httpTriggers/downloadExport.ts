@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 // Calculate metrics based on requests
-const downloadExport = async (req, res) => {
+export const downloadExport = async (req, res) => {
   // Google Cloud Storage Setup
   const { Storage } = await import('@google-cloud/storage')
   const storage = new Storage()
@@ -36,5 +36,3 @@ const downloadExport = async (req, res) => {
     res.send(404, 'The requested file doesn\'t exist')
   }
 }
-
-export default downloadExport

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-export default async () => {
+export const checkDeploymentOperationStatus = async () => {
   const admin = await import('firebase-admin')
   const projectId = admin.instanceId().app.options.projectId
   const db = admin.firestore()

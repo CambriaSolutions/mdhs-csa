@@ -4,7 +4,7 @@ dotenv.config()
 /**
  * Trigger training weekly
  **/
-export default async () => {
+export const trainModels = async () => {
   const admin = await import('firebase-admin')
   const projectId = admin.instanceId().app.options.projectId
   const automl = await import('@google-cloud/automl')

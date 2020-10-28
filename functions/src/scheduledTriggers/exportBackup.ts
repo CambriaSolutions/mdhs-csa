@@ -32,7 +32,7 @@ const exportingDialogflow = async (projectId, bucket) => {
   console.log(`Dialogflow Operation Name: ${response['name']}`)
 }
 
-export default async () => {
+export const exportBackup = async () => {
   try {
     const { format } = await import('date-fns')
     const admin = await import('firebase-admin')

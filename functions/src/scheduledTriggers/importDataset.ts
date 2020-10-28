@@ -5,7 +5,7 @@ dotenv.config()
  * Retrieve new query and category pairs if occurrences >10
  * and import dataset into category model
  */
-const importDataset = async (subjectMatter) => {
+const _importDataset = async (subjectMatter) => {
   const admin = await import('firebase-admin')
   const projectId = admin.instanceId().app.options.projectId
   const store = admin.firestore()
@@ -181,11 +181,11 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
   }
 }
 
-export default async () => {
+export const importDataset = async () => {
   // TODO - hardcoded cse
   const subjectMatters = ['cse']
 
   //for (const subjectMatterIndex in subjectMatters) {
   const subjectMatter = subjectMatters[0]
-  await importDataset(subjectMatter)
+  await _importDataset(subjectMatter)
 }

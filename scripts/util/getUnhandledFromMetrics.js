@@ -6,16 +6,19 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 const db = admin.firestore()
-const filterStartDate = new Date(2020, 1, 1, 0, 0, 0, 0)
+const startDate = new Date('2020-10-18')
+const endDate = new Date('2020-10-25')
 
 const getMetrics = async (subjectMatter) => {
-  const dbRef = await db.collection(`subjectMatters/${subjectMatter}/metrics`).get()
+  const dbRef = await db.collection(`subjectMatters/${subjectMatter}/metrics`)
+    .where('date', '>=', startDate)
+    .where('date', '<', endDate)
+    .get()
   let f = fs.openSync(`./${subjectMatter}_unhandledQueries.csv`, 'w')
   const fallbacksMap = new Map()
   dbRef.docs.forEach(doc => {
     const metric = doc.data()
-    const docDate = new Date(doc.id)
-    if (metric.fallbackTriggeringQueries && docDate >= filterStartDate) {
+    if (metric.fallbackTriggeringQueries) {
       metric.fallbackTriggeringQueries.forEach(fallbackTriggeringQuery => {
         fs.writeSync(f, `${fallbackTriggeringQuery.queryText},${doc.id}\n`)
         console.log(`Query Text: (${fallbackTriggeringQuery.queryText}), Created At: (${doc.id})`)
