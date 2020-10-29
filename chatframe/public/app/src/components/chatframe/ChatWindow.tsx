@@ -17,12 +17,13 @@ const ContentWrapper = styled.div`
   /* Vertically flips the container element to achieve flex-direction:column-reverse effect */
   transform: scale(1, -1);
   overflow: auto;
-  ${media.tablet`
+  ${(media as any).tablet`
     flex-direction: column-reverse;
     overflow: auto;
     transform: none;
   `};
-`
+` as any
+
 const Content = styled.div`
   background: ${grey[100]};
   z-index: 4;
@@ -32,10 +33,10 @@ const Content = styled.div`
   /* Vertically flips the content element so that the messages won't be upside down */
   transform: scale(1, -1);
 
-  ${media.tablet`
+  ${(media as any).tablet`
    transform: none;
   `};
-`
+` as any
 
 function buildUserMessage(message) {
   return (
@@ -92,7 +93,6 @@ function buildBotCardMessage(message, shouldScrollIntoView = false) {
   return (
     <CardResponse
       data={message.card}
-      timestamp={message.systemTime}
       key={message.key}
       className={shouldScrollIntoView ? 'scrollIntoView' : ''}
     />
@@ -109,8 +109,8 @@ function buildBotMapMessage(message, shouldScrollIntoView = false) {
     />
   )
 }
-class ChatWindow extends PureComponent {
-  componentRef = React.createRef(null)
+class ChatWindow extends PureComponent<any> {
+  componentRef = React.createRef()
 
   state = { messageElements: [] }
 
@@ -122,7 +122,7 @@ class ChatWindow extends PureComponent {
   }
 
   componentDidMount() {
-    this.componentRef.current.addEventListener('wheel', this.handleWheel, { passive: false })
+    (this.componentRef.current as any).addEventListener('wheel', this.handleWheel, { passive: false })
   }
 
   componentDidUpdate() {
@@ -138,7 +138,7 @@ class ChatWindow extends PureComponent {
   // function identifies the index of the first content bubble in Gen's latest
   // reply so we can use that index to auto scroll to the start of the response.
   findIndexFirstElementInLastResponse = (messages) => {
-    let index = 0
+    let index: any = 0
     let indexFound = false
 
     // We use forEachRight because we can't just reverse the collection.
@@ -243,7 +243,7 @@ class ChatWindow extends PureComponent {
         msgElements.push(buildFeedbackResponse(msg, shouldScrollIntoView))
       } else {
         msgElements.push(
-          buildBotTextMessage({ text: ['Something went wrong.'] })
+          buildBotTextMessage({ text: ['Something went wrong.'] }, false)
         )
       }
     })

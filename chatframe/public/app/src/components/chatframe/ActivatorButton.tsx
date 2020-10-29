@@ -1,26 +1,32 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-import Fab from '@material-ui/core/Fab'
+import Fab, { FabProps } from '@material-ui/core/Fab'
 import Chat from '@material-ui/icons/Chat'
 import Zoom from '@material-ui/core/Zoom'
 import { withTheme } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import chatbotAvatar from './chatbot_avatar.svg'
+import { Theme } from '@material-ui/core'
 
 // Redux
 import { connect } from 'react-redux'
 import { showWindow } from './actions/initialization'
 
+interface BtnProps extends FabProps {
+  active: number,
+  activationtext: number
+}
+
 const Btn = styled(Fab)`
   && {
-    display: ${p => (p.active ? 'flex' : 'none')};
+    display: ${(p: any) => (p.active ? 'flex' : 'none')};
     pointer-events: auto;
-    width: ${p => (p.activationtext ? 'auto' : '56px')};
-    height: ${p => (p.activationtext ? 'auto' : '56px')};
-    padding: ${p => (p.activationtext ? '4px 6px' : 'auto')};
-    border-radius: ${p => (p.activationtext ? '20px' : '50%')};
+    width: ${(p: any) => (p.activationtext ? 'auto' : '56px')};
+    height: ${(p: any) => (p.activationtext ? 'auto' : '56px')};
+    padding: ${(p: any) => (p.activationtext ? '4px 6px' : 'auto')};
+    border-radius: ${(p: any) => (p.activationtext ? '20px' : '50%')};
   }
-`
+` as React.FunctionComponent<BtnProps>
 
 const TextContainer = styled.div`
   text-transform: none;
@@ -37,7 +43,15 @@ const BotAvatar = styled(Avatar)`
   }
 `
 
-class ActivatorButton extends PureComponent {
+interface Props {
+  title: string,
+  windowVisible: boolean,
+  activationText: string,
+  showWindow: () => void,
+  theme: Theme
+}
+
+class ActivatorButton extends PureComponent<Props> {
   render() {
     const {
       title,
@@ -69,7 +83,7 @@ class ActivatorButton extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: State) => {
   return {
     title: state.config.title,
     windowVisible: state.config.windowVisible,
@@ -77,7 +91,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     showWindow: () => {
       dispatch(showWindow())

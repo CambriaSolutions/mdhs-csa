@@ -18,7 +18,7 @@ const CardContainer = styled(Card)`
   }
 `
 
-class FeedbackResponse extends PureComponent {
+class FeedbackResponse extends PureComponent<any> {
   componentDidMount() {
     const { setFeedbackOptions, feedbackData } = this.props
     setFeedbackOptions(feedbackData)
