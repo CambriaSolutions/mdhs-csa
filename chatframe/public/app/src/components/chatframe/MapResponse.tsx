@@ -83,7 +83,7 @@ function MapResponse(props) {
     window.open(url, '_blank')
   }
 
-  const Map = withScriptjs(
+  const Map: any = withScriptjs(
     withGoogleMap(() => (
       <GoogleMap
         defaultZoom={8}
@@ -102,7 +102,7 @@ function MapResponse(props) {
             icon={{
               url: pin,
               scaledSize: iconSize,
-            }}
+            } as any}
             onClick={() => handleMarkerClick(row)}
           />
         ))}
@@ -114,7 +114,7 @@ function MapResponse(props) {
           icon={{
             url: personPin,
             scaledSize: iconSize,
-          }}
+          } as any}
         />
       </GoogleMap>
     ))
@@ -125,7 +125,7 @@ function MapResponse(props) {
       <CardHeader title='Office Locations' titleTypographyProps={{ variant: 'h6' }} />
       <StyledCardContent>
         <Map
-          googleMapURL={googleMapsUrl}
+          googleMapURL={googleMapsUrl as any}
           loadingElement={<div style={{ height: `${cardHeight}` }} />}
           containerElement={<div style={{ height: `${cardHeight}` }} />}
           mapElement={<div style={{ height: '100%' }} />}

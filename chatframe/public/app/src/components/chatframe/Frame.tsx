@@ -54,7 +54,7 @@ const OuterContainer = styled.div`
   }
 `
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 interface Props {
   primaryColor: string;
@@ -99,29 +99,11 @@ class ChatFrame extends PureComponent<Props> {
     // We load the initial options into the Redux store inside of the
     // componentDidMount() lifecycle hook. This lets us use Redux to manage
     // state instead of passing props down manually.
-    this.store.dispatch(initialize(this.props))
-
-    // In order to expose when a webhook payload of custom data is received,
-    // we manually create a subscription to the data piece we want to expose
-    this.unsubscribe = this.store.subscribe(() => this.handleChange(this.store))
+    this.store.dispatch(initialize(this.props) as any)
   }
 
   componentWillUnmount() {
-    this.unsubscribe!()
-  }
-
-  // Select the current conversation payload from our Redux store
-  select(state) {
-    return state.conversation.webhookPayload
-  }
-
-  // When props are updated (e.g. Theme changes), update entire component
-  handleChange(store) {
-    const previousValue = this.currentValue
-    this.currentValue = this.select(store.getState())
-    if (previousValue !== this.currentValue && this.props.onPayload) {
-      this.props.onPayload(this.currentValue)
-    }
+    this.unsubscribe()
   }
 
   render() {

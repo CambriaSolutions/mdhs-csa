@@ -93,7 +93,7 @@ const StartOverButton = styled(Button)`
   }
 `
 
-class Header extends PureComponent {
+class Header extends PureComponent<any> {
   render() {
     const {
       title,
