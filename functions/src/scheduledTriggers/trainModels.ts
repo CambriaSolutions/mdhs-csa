@@ -67,7 +67,7 @@ async function trainCategoryModel(store, admin, client, projectId, subjectMatter
 
   const autoMlSettings = (await store.collection('subjectMatters').doc(subjectMatter).get()).data()
   const datasetId = autoMlSettings.dataset
-  const date = format(new Date(), 'MM_DD_YYYY')
+  const date = format(new Date(), 'MM_dd_yyyy')
   const modelName = `mdhs_${subjectMatter}_${date}`
 
   const projectLocation = client.locationPath(projectId, autoMlSettings.location)

@@ -23,8 +23,11 @@ export const checkTrainingOperationStatus = async () => {
     console.log('Model training operation status: ', operationStatus.done)
     if (operationStatus.done === true) {
       console.log('Modeling training complete. Deploying model.')
-      const modelPath = autoMlClient.modelPath(projectId, autoMlSettings.location, autoMlSettings.trainingModelName)
-      const [deploymentOperation] = await autoMlClient.deployModel({ name: modelPath })
+      const [models] = await autoMlClient.listModels({ parent: autoMlClient.locationPath(projectId, autoMlSettings.location) })
+      const catModel = models.find(model => {
+        return model.displayName === autoMlSettings.trainingModelName
+      })
+      const [deploymentOperation] = await autoMlClient.deployModel({ name: catModel.name })
 
       console.log('Model deployment operation started', deploymentOperation.name)
 
