@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Chatframe from './components/chatframe'
 
-const dfWebhookOptions = {
+const dfWebhookOptions: any = {
   eventUrl: process.env.REACT_APP_EVENT_URL,
   textUrl: process.env.REACT_APP_TEXT_URL
 }
@@ -9,9 +9,9 @@ const dfWebhookOptions = {
 const policyText =
   'Please do not enter any personally identifiable information such as SSN or Date of Birth'
 
-const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL
+const feedbackUrl: any = process.env.REACT_APP_FEEDBACK_URL
 
-export const mapConfig = {
+export const mapConfig: any = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
   centerCoordinates: {
     lat: 32.777025,

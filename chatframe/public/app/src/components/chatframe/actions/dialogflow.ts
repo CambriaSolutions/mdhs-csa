@@ -1,8 +1,6 @@
 import { format, parse, differenceInMilliseconds } from 'date-fns'
 import { v4 as uuidv4 } from 'uuid'
-import get from 'lodash/get'
-import find from 'lodash/find'
-import omit from 'lodash/omit'
+import { get, find, omit } from 'lodash'
 import {
   SAVE_CLIENT,
   SAVE_RESPONSE,
@@ -107,10 +105,10 @@ export function getMessageFromDialogflow(response) {
           accessibilityText: get(msg, 'image.accessibilityText', ''),
         }
 
-        const payload = {}
+        const payload: any = {}
         if (type === 'payload') {
           const rawPayload = get(msg, 'payload.fields', {})
-          for (const [field, data] of Object.entries(rawPayload)) {
+          for (const [field, data] of <any>Object.entries(rawPayload)) {
             if (data.kind === 'stringValue') {
               try {
                 // Attempt to parse data.stringValue as JSON in case it is
@@ -264,7 +262,7 @@ const sendDialogflowRequest = (requestFunction, payload) => {
 }
 
 // Type must equal 'textRequest' or 'eventRequest'
-const sendToDialogflow = (type, payload) => {
+const sendToDialogflow = (type: string, payload: any) => {
   return (dispatch, getState) => {
     const { client } = getState().conversation
 

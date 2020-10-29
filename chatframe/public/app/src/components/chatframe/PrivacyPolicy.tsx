@@ -15,7 +15,7 @@ const StyledDialog = styled(Dialog)`
   }
 `
 
-class PrivacyPolicy extends PureComponent {
+class PrivacyPolicy extends PureComponent<any> {
   render() {
     const {
       hidePrivacyPolicy,

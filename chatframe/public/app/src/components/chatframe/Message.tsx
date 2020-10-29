@@ -15,20 +15,20 @@ const Container = styled.div`
   flex-flow: column nowrap;
   margin: 5px;
   height: min-content;
-  align-items: ${p => (p.entity === 'user' ? 'flex-end' : 'flex-start')};
+  align-items: ${(p: any) => (p.entity === 'user' ? 'flex-end' : 'flex-start')};
   scroll-margin: 15px;
   p, div {
     font-size: 14px;
   }
-`
+` as any
 
 const ChatBubble = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   padding: 0;
-  justify-content: ${p => (p.entity === 'user' ? 'flex-end' : 'flex-start')};
-`
+  justify-content: ${(p: any) => (p.entity === 'user' ? 'flex-end' : 'flex-start')};
+` as any
 
 const ExternalMessage = styled.div`
   && {
@@ -39,7 +39,7 @@ const ExternalMessage = styled.div`
     border-bottom-left-radius: 10px;
     padding: 9px;
   }
-`
+` as any
 
 const UserMessage = styled.div`
   && {
@@ -53,7 +53,7 @@ const UserMessage = styled.div`
     border-bottom-left-radius: 10px;
     padding: 9px;
   }
-`
+` as any
 
 const Timestamp = styled(Typography)`
   && {
@@ -91,8 +91,9 @@ const markdownOptions = {
   },
 }
 
-class Message extends Component {
+class Message extends Component<any> {
   state = { isResponseDelayed: false }
+  loadingTimer: number = null
 
   componentDidMount() {
     const { isLoading } = this.props

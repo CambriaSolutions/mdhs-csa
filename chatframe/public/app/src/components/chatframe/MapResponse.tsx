@@ -79,13 +79,11 @@ function MapResponse(props) {
   const iconSize = { width: 30, height: 30 }
   const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&v=3`
   const handleMarkerClick = location => {
-    const url = `https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${
-      location.placeId
-      }`
+    const url = `https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${location.placeId}`
     window.open(url, '_blank')
   }
 
-  const Map = withScriptjs(
+  const Map: any = withScriptjs(
     withGoogleMap(() => (
       <GoogleMap
         defaultZoom={8}
@@ -104,7 +102,7 @@ function MapResponse(props) {
             icon={{
               url: pin,
               scaledSize: iconSize,
-            }}
+            } as any}
             onClick={() => handleMarkerClick(row)}
           />
         ))}
@@ -116,7 +114,7 @@ function MapResponse(props) {
           icon={{
             url: personPin,
             scaledSize: iconSize,
-          }}
+          } as any}
         />
       </GoogleMap>
     ))
@@ -127,7 +125,7 @@ function MapResponse(props) {
       <CardHeader title='Office Locations' titleTypographyProps={{ variant: 'h6' }} />
       <StyledCardContent>
         <Map
-          googleMapURL={googleMapsUrl}
+          googleMapURL={googleMapsUrl as any}
           loadingElement={<div style={{ height: `${cardHeight}` }} />}
           containerElement={<div style={{ height: `${cardHeight}` }} />}
           mapElement={<div style={{ height: '100%' }} />}
@@ -140,9 +138,7 @@ function MapResponse(props) {
                   <StyledAddressTableCell padding='dense'>
                     <Typography>
                       <Link
-                        href={`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${
-                          row.placeId
-                          }`}
+                        href={`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${row.placeId}`}
                         target='blank'
                       >
                         {`${row.street}, ${row.city}`}

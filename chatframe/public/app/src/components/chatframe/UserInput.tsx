@@ -12,7 +12,7 @@ const OuterFrame = styled.div`
   grid-area: userinput;
   background: #fefefe;
   display: flex;
-  display: ${p => (p.visible ? 'none' : 'flex')};
+  display: ${(p: any) => (p.visible ? 'none' : 'flex')};
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
@@ -20,12 +20,12 @@ const OuterFrame = styled.div`
   z-index: 4;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-`
+` as any
 
 const TextInput = styled(TextField)`
   && {
     padding: 5px 15px;
-    padding-bottom: ${p => p.helperText !== null && '16px'};
+    padding-bottom: ${(p: any) => p.helperText !== null && '16px'};
     /*All properties below are specified to combat WordPress*/
     
     textarea {
@@ -48,9 +48,9 @@ const Icon = styled(IconButton)`
     }
   }
 `
-class UserInput extends PureComponent {
-  constructor() {
-    super()
+class UserInput extends PureComponent<any> {
+  constructor(props) {
+    super(props)
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 

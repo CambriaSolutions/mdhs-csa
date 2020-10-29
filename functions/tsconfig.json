@@ -4,6 +4,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "isolatedModules": true,
     "outDir": "lib",

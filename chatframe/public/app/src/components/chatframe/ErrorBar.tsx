@@ -9,13 +9,13 @@ const Container = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  padding: ${p => (p.visible ? '24px 16px' : '0 16px')};
+  padding: ${(p: any) => (p.visible ? '24px 16px' : '0 16px')};
   background: ${red[300]};
-  border-top: ${p => (p.visible ? `1px solid ${red[500]}` : 'none')};
+  border-top: ${(p: any) => (p.visible ? `1px solid ${red[500]}` : 'none')};
   color: ${red[700]};
-`
+` as any
 
-class ErrorBar extends PureComponent {
+class ErrorBar extends PureComponent<{ error: State['error'] }> {
   render() {
     const { error } = this.props
     return <Container visible={error !== ''}>{error}</Container>
@@ -27,9 +27,5 @@ const mapStateToProps = state => {
     error: state.error,
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {}
-// }
 
 export default connect(mapStateToProps)(ErrorBar)
