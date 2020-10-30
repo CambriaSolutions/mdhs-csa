@@ -55,7 +55,7 @@ export const storeFeedback = async (req, res) => {
   const admin = await import('firebase-admin')
   const store = admin.firestore()
   const { format } = await import('date-fns')
-  const sanitizeHtml = await import('sanitize-html')
+  const sanitizeHtml = (await import('sanitize-html')).default
 
   const reqData = req.body
   if (!reqData) {
