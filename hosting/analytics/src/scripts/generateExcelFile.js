@@ -47,7 +47,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
   sheet1.columns = sheet1ColumnDefs
 
   const unhandledPhrasesColumn = {
-    name: 'UnhandledUserQuestions',
+    name: 'Unhandled User Questions',
     filterButton: true,
     style: {
       font: {
