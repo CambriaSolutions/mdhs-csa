@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html'
+
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
@@ -55,7 +57,6 @@ export const storeFeedback = async (req, res) => {
   const admin = await import('firebase-admin')
   const store = admin.firestore()
   const { format } = await import('date-fns')
-  const sanitizeHtml = (await import('sanitize-html')).default
 
   const reqData = req.body
   if (!reqData) {
