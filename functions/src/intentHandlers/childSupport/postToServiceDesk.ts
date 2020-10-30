@@ -141,7 +141,7 @@ export const sendToServiceDesk = async requestFieldValues => {
 
   console.log('Sending Service Request', JSON.stringify(options))
 
-  const serviceRequest = rp(options)
+  const serviceRequest = rp.default(options)
     .then(response => {
       return response
     })
