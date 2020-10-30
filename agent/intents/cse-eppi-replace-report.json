@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "To replace an EPPICard, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+            "To replace an EPPICard, to report a lost, or stolen card, or report fraud, contact EPPI Customer Service at \u003ca href\u003d\"tel:+18664614095\"\u003e1-866-461-4095\u003c/a\u003e."
           ],
           "condition": ""
         },

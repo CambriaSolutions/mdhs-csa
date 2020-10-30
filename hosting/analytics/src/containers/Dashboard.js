@@ -24,6 +24,7 @@ import PieChart from '../components/PieChart'
 import BarChart from '../components/BarChart'
 import RadarChart from '../components/RadarChart'
 import EnhancedTable from '../components/EnhancedTable'
+import UnhandledPhrasesTable from '../components/UnhandledPhrasesTable'
 import IntentDetails from '../components/IntentDetails'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import SupportRequestsTile from '../components/SupportRequestsTile'
@@ -37,6 +38,7 @@ import { aggregatePersonaMetricsForPieChart } from '../scripts/metricUtil.js'
 import db from '../Firebase'
 
 import { showIntentDetails } from '../store/actions/configActions'
+import { renameIntent } from '../common/renameIntent'
 
 const getNameFromContext = context => /[^/]*$/.exec(context)[0]
 
@@ -366,6 +368,14 @@ class Dashboard extends Component {
                 selectedSubjectMatter={this.props.subjectMatterName}
               />
             </Grid>
+            {this.props.subjectMatterName.toLowerCase() !== 'total' && this.props.subjectMatterName.toLowerCase() !== 'general' &&
+              <Grid item xs={12}>
+                <UnhandledPhrasesTable
+                  data={this.props.fallbackTriggeringQueries}
+                  selectedSubjectMatter={this.props.subjectMatterName}
+                />
+              </Grid>
+            }
           </Grid >
         )
       } else {
@@ -415,10 +425,15 @@ const beautifyTime = seconds => {
   else return `${seconds.toFixed(1)} secs`
 }
 
-const beautifyIntents = intents => {
+const beautifyIntents = (subjectMatter, intents) => {
   return intents.map(intent => {
     // Replace dashes with spaces & capitalize 1st letter
-    let newName = intent.name.replace(/-/g, ' ')
+    // The logic runs at a weird time. This will be called once with the display name empty,
+    // then again when the displayName has a value.
+    let newName = subjectMatter.toLowerCase() === 'total' ?
+      (intent.displayName ? intent.displayName : intent.name)
+      : renameIntent(intent.name)
+    newName = newName.replace(/-/g, ' ')
     newName = newName.charAt(0).toUpperCase() + newName.slice(1)
     return {
       ...intent,
@@ -452,9 +467,10 @@ const round = (value, precision) => {
 }
 
 const mapStateToProps = state => {
-  let allIntents = beautifyIntents(state.metrics.intents)
-  let allSupportRequests = beautifyIntents(state.metrics.supportRequests)
-  const allExitIntents = beautifyIntents(state.metrics.exitIntents)
+  const subjectMatter = getNameFromContext(state.filters.context)
+  let allIntents = beautifyIntents(subjectMatter, state.metrics.intents)
+  let allSupportRequests = beautifyIntents(subjectMatter, state.metrics.supportRequests)
+  const allExitIntents = beautifyIntents(subjectMatter, state.metrics.exitIntents)
 
   // Sort arrays by exits & occurrences
   allExitIntents.sort(compareValues('exits', 'desc'))
@@ -497,6 +513,7 @@ const mapStateToProps = state => {
     avgEngagedDuration: beautifyTime(state.metrics.durationTotalNoExit),
     exitIntents: allExitIntents,
     intents: allIntents,
+    fallbackTriggeringQueries: state.metrics.fallbackTriggeringQueries,
     totalSupportRequests: state.metrics.supportRequests,
     supportRequests: allSupportRequests,
     feedbackSelected: state.metrics.feedbackSelected,
@@ -511,7 +528,7 @@ const mapStateToProps = state => {
     intentDetailsPaginationPage: state.config.intentDetailsPaginationPage,
     totalIntentDetailsCount: state.config.totalIntentDetailsCount,
     timezoneOffset: state.filters.timezoneOffset,
-    subjectMatterName: getNameFromContext(state.filters.context)
+    subjectMatterName: subjectMatter
   }
 }
 

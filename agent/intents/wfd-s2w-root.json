@@ -12,8 +12,11 @@
       "affectedContexts": [
         {
           "name": "waiting-feedback-root",
-          "lifespan": 1,
-          "parameters": {}
+          "lifespan": 2
+        },
+        {
+          "name": "waiting-restart-conversation",
+          "lifespan": 2
         }
       ],
       "parameters": [],
@@ -56,9 +59,10 @@
               "PROVIDERS LOCATION",
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
-              "HOW CAN I APPLY?",
-              "SUBMIT FEEDBACK"
-            ]
+              "MYRESOURCES",
+              "HOW CAN I APPLY?"
+            ],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",

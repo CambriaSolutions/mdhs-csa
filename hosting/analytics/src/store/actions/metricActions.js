@@ -5,6 +5,7 @@ import { reduce, map, find, findIndex, filter, keyBy, cloneDeep } from 'lodash'
 import { subjectMatters } from '../../constants/constants.js'
 import { getUTCDate } from '../../common/helper'
 import { storeMetricsSubscription } from './realtimeActions'
+import { renameIntent } from '../../common/renameIntent'
 
 const personaIntentMappings = {
   'cse-employer-root': 'Employer',
@@ -333,14 +334,17 @@ export const fetchMetricsTotal = (dateRange) => {
           const aggregatedIntents = reduce(dayMetrics.intents, (intentResult, currentIntent) => {
             const previousOccurrences = intentResult[currentIntent.name] ? intentResult[currentIntent.name].occurrences : 0
 
+            const intentDisplayName = renameIntent(currentIntent.name)
+
             return ({
               // Persist the other entries in the intentResult object
               ...intentResult,
               // Keying intent requests by name
-              [currentIntent.name]: {
+              [intentDisplayName]: {
                 id: currentIntent.id,
                 conversations: [],
                 name: currentIntent.name,
+                displayName: intentDisplayName,
                 sessions: 0,
                 // The new value for occurrences will be the old (current aggregate) plus the new value in the iterate
                 occurrences: previousOccurrences + currentIntent.occurrences
@@ -438,6 +442,7 @@ export const fetchMetricsSuccess = metrics => {
     let numConversationsWithDuration = 0
     let numConversationsWithSupportRequests = 0
     let numSupportRequests = 0
+    let fallbackTriggeringQueries = {}
 
     const exitIntents = []
 
@@ -475,17 +480,31 @@ export const fetchMetricsSuccess = metrics => {
       // Intents
       const dateIntents = metric.intents
       for (let dateIntent of dateIntents) {
-        let currIntent = intents[`${dateIntent.id}`]
+        const intentKey = dateIntent.displayName ? dateIntent.displayName : dateIntent.id
+        let currIntent = intents[intentKey]
         if (currIntent) {
           currIntent.occurrences =
             currIntent.occurrences + dateIntent.occurrences
           currIntent.sessions = currIntent.sessions + dateIntent.sessions
         } else
-          intents[`${dateIntent.id}`] = {
+          intents[intentKey] = {
             name: `${dateIntent.name}`,
             occurrences: dateIntent.occurrences,
             sessions: dateIntent.sessions,
+            displayName: intentKey
           }
+      }
+
+      if (metric.fallbackTriggeringQueries) {
+        for (let query of metric.fallbackTriggeringQueries) {
+          if (query.queryText !== undefined && query.occurrences !== undefined && query.queryText.length > 0) {
+            if (fallbackTriggeringQueries[query.queryText] === undefined) {
+              fallbackTriggeringQueries[query.queryText] = query.occurrences
+            } else {
+              fallbackTriggeringQueries[query.queryText] = fallbackTriggeringQueries[query.queryText] + query.occurrences
+            }
+          }
+        }
       }
 
       // Support requests
@@ -557,10 +576,17 @@ export const fetchMetricsSuccess = metrics => {
       ...supportRequests[key],
     }))
 
+    fallbackTriggeringQueries = Object.keys(fallbackTriggeringQueries).map(key => ({
+      queryText: key,
+      id: key,
+      // occurrences: fallbackTriggeringQueries[key]
+    }))
+
     dispatch({
       type: actionTypes.FETCH_METRICS_SUCCESS,
       dailyMetrics: metrics,
       intents: intents,
+      fallbackTriggeringQueries: fallbackTriggeringQueries,
       supportRequests: supportRequests,
       numConversationsWithSupportRequests: numConversationsWithSupportRequests,
       supportRequestTotal: numSupportRequests,

@@ -71,6 +71,11 @@ functions/analyticsKey.json
 scripts/export/
 content/
 
+mdhs-key-dev.json
+mdhs-key-isd.json
+mdhs-key-stage.json
+mdhs-key-prod.json
+
 **/build
 
 emulate-firebase.bat

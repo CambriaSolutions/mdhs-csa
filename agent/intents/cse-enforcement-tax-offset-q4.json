@@ -39,7 +39,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "This varies by the type of refund and the type of arrears owed. For information regarding the Federal IRS tax offset refund and State income tax offset refund, please <a href=\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target=\"_blank\">click here</a> for the Child Support Tax Offset Guide."
+            "This varies by the type of refund and the type of arrears owed. For information regarding the Federal IRS tax offset refund and State income tax offset refund, please \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2020/04/MDHS_CSE_Tax-Offset-Guide.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e for the Child Support Tax Offset Guide."
           ],
           "condition": ""
         },

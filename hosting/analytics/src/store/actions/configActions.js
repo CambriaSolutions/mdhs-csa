@@ -4,6 +4,8 @@ import { updateSubjectMatter } from './filterActions'
 import { completeSignIn } from './authActions'
 import { format } from 'date-fns'
 import timezones from '../../common/timezones'
+import { generateExcelFile } from '../../scripts/generateExcelFile'
+import { map } from 'lodash'
 
 // ------------------------------------------------------------------------
 // ------------------------ S M  S E T T I N G S --------------------------
@@ -259,13 +261,6 @@ export const toggleIntentsModal = option => {
   }
 }
 
-export const updateExportDate = newDate => {
-  return {
-    type: actionTypes.UPDATE_EXPORT_DATE,
-    downloadExportDate: newDate,
-  }
-}
-
 export const updateDefaultSubjectMatter = subjectMatter => {
   return (dispatch, getState) => {
     // Get subject matter settings based on the given context
@@ -340,58 +335,156 @@ export const updateSubjectMatterTimezone = newTimezone => {
   }
 }
 
-export const downloadExport = () => {
-  return (dispatch, getState) => {
-    const exportDate = getState().config.downloadExportDate
+const getQueriesForLabeling = (startDate, endDate) => db
+  .collection(
+    `/subjectMatters/cse/queriesForLabeling/`
+  )
+  .where('createdAt', '>=', startDate)
+  .where('createdAt', '<=', endDate)
+  .get()
 
-    const exportFileName = `${format(exportDate, 'MM-dd-yyyy')}.json`
+const getUnhandledPhrasesFromRequests = (subjectMatter, startDate, endDate) => db
+  .collection(
+    `/subjectMatters/${subjectMatter}/requests/`
+  )
+  .where('queryResult.intent.displayName', '==', 'Default Fallback Intent')
+  .where('createdAt', '>=', startDate)
+  .where('createdAt', '<=', endDate)
+  .get()
 
-    // Download export file
-    dispatch(toggleConfigLoading(true))
-    fetch(process.env.REACT_APP_DOWNLOAD_EXPORT_FUNCTION_URL, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        filename: exportFileName,
-      }),
+const addPhrasesToContent = (unhandledPhrases, content, subjectMatter = null) => {
+  let _content = content
+
+  unhandledPhrases.forEach(doc => {
+    const data = doc.data()
+    const createdAtFormatted = format(data.createdAt.toDate(), 'MM-dd-yyyy')
+    let newRow = [data.queryResult.queryText, createdAtFormatted]
+    if (subjectMatter) {
+      newRow = [...newRow, subjectMatter.toUpperCase()]
+    }
+    _content = [..._content, newRow]
+  })
+
+  return _content
+}
+
+const addSuggestionsToContent = (queriesForLabeling, includeSuggestions, includeDateColumn, includeCSEColumn) => {
+  let _content = []
+
+  queriesForLabeling.forEach(doc => {
+    const data = doc.data()
+    const createdAtFormatted = format(data.createdAt.toDate(), 'MM-dd-yyyy')
+    const userQuery = data.userQuery
+    let newRow = [userQuery]
+
+    if (includeSuggestions) {
+      const sug1 = data.suggestions[0] ? data.suggestions[0].suggestionText : 'N/A'
+      const sug2 = data.suggestions[1] ? data.suggestions[1].suggestionText : 'N/A'
+      const sug3 = data.suggestions[2] ? data.suggestions[2].suggestionText : 'N/A'
+      newRow = [...newRow, sug1, sug2, sug3]
+    }
+
+    if (includeDateColumn) {
+      newRow = [...newRow, createdAtFormatted]
+    }
+
+    if (includeCSEColumn) {
+      newRow = [...newRow, 'CSE']
+    }
+
+    _content = [..._content, newRow]
+  })
+
+  return _content
+}
+
+const getFeedbackComments = (subjectMatter, startDate, endDate) => db
+  .collection(
+    `/subjectMatters/${subjectMatter}/conversations/`
+  )
+  // .where('feedback', '!=', [])
+  // .where('feedback', '!=', undefined)
+  .where('createdAt', '>=', startDate)
+  .where('createdAt', '<=', endDate)
+  .get()
+
+const addFeedbackToContent = (feedback, content, subjectMatter) => {
+  let _content = content
+
+  if (feedback) {
+    feedback.forEach(doc => {
+      const data = doc.data()
+      const createdAtFormatted = format(data.createdAt.toDate(), 'MM-dd-yyyy')
+
+      if (data.feedback) {
+        data.feedback.forEach(_feedback => {
+          if (_feedback.comment) {
+            let newRow = [_feedback.comment, _feedback.helpful ? 'Yes' : 'No', createdAtFormatted]
+
+            if (subjectMatter) {
+              newRow = [...newRow, subjectMatter.toUpperCase()]
+            }
+            _content = [..._content, newRow]
+          }
+        })
+      }
     })
-      .then(response => {
-        // Convert the ReadableStream response into a Blob
-        if (response.status === 200) {
-          return response.blob()
-        } else if (response.status === 204 || response.status === 404) {
-          dispatch(
-            showSnackbar(
-              `No data is available for ${format(exportDate, 'MMM do, yyyy')}`
-            )
-          )
-          dispatch(toggleConfigLoading(false))
-        } else {
-          dispatch(toggleConfigLoading(false))
-        }
+  }
+
+  return _content
+}
+
+export const downloadExport = () => {
+  return async (dispatch, getState) => {
+    const context = getState().filters.context
+    const subjectMatter = /[^/]*$/.exec(context)[0]
+    const startDate = new Date(getState().filters.dateFilters.start)
+    const endDate = new Date(getState().filters.dateFilters.end)
+
+    let phrasesContent = []
+    let feedbackContent = []
+    let cseSuggestionsContent = null
+
+    if (subjectMatter.toLowerCase() === 'total') {
+      const subjectMatters = ['tanf', 'snap', 'wfd']
+
+      const unhandledPhrasesPromises = map(subjectMatters, sm => getUnhandledPhrasesFromRequests(sm, startDate, endDate))
+      const feedbackCommentsPromises = map(subjectMatters, sm => getFeedbackComments(sm, startDate, endDate))
+
+      const cseQueriesForLabeling = await getQueriesForLabeling(startDate, endDate)
+
+      phrasesContent = addSuggestionsToContent(cseQueriesForLabeling, false, true, true)
+      cseSuggestionsContent = addSuggestionsToContent(cseQueriesForLabeling, true, false, false)
+
+      const unhandledPhrasesResults = await Promise.all(unhandledPhrasesPromises)
+      const feedbackCommentsResults = await Promise.all(feedbackCommentsPromises)
+
+      unhandledPhrasesResults.forEach((res, index) => {
+        phrasesContent = addPhrasesToContent(res, phrasesContent, subjectMatters[index])
       })
-      .then(blob => {
-        // Create object URL based on blob
-        if (blob) return URL.createObjectURL(blob)
+
+      feedbackCommentsResults.forEach((res, index) => {
+        feedbackContent = addFeedbackToContent(res, feedbackContent, subjectMatters[index])
       })
-      .then(url => {
-        if (url) {
-          // Create temporary tag to download objectURL on the client side
-          const a = document.createElement('a')
-          a.setAttribute('hidden', '')
-          a.setAttribute('href', url)
-          a.setAttribute('download', exportFileName)
-          document.body.appendChild(a)
-          a.click()
-          document.body.removeChild(a)
-          setTimeout(() => {
-            dispatch(toggleConfigLoading(false))
-          }, 1000)
-        }
-      })
+
+    } else {
+      let unhandledPhrases = []
+
+      // If subject matter is cse, then we need to fetch the data from a different location
+      // in order to see the suggestions made by automl
+      if (subjectMatter === 'cse') {
+        const queriesForLabeling = await getQueriesForLabeling(startDate, endDate)
+        phrasesContent = addSuggestionsToContent(queriesForLabeling, true, true, false)
+      } else {
+        unhandledPhrases = await getUnhandledPhrasesFromRequests(subjectMatter, startDate, endDate)
+        phrasesContent = addPhrasesToContent(unhandledPhrases, phrasesContent)
+      }
+
+      const feedbackComments = await getFeedbackComments(subjectMatter, startDate, endDate)
+      feedbackContent = addFeedbackToContent(feedbackComments, feedbackContent)
+    }
+
+    await generateExcelFile(phrasesContent, feedbackContent, cseSuggestionsContent, subjectMatter.toLowerCase() === 'total', subjectMatter)
   }
 }
 

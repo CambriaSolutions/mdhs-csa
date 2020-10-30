@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   toggleSettings,
-  updateExportDate,
   downloadExport,
   updateSubjectMatterTimezone,
   updateDefaultSubjectMatter
@@ -18,23 +17,23 @@ import timezones from '../common/timezones'
 import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Tooltip from '@material-ui/core/Tooltip'
+
 // Icons
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import SecurityIcon from '@material-ui/icons/Security'
 import CloudOffIcon from '@material-ui/icons/CloudOff'
+import { IconButton } from '@material-ui/core'
 
-import { DatePicker } from '@material-ui/pickers'
+import excelIcon from '../assets/excelIcon.png'
 
 const StyledDiv = styled.div`
-  width: 250px;
+  width: 360px;
   height: 100%;
   overflow-x: hidden;
   background-image: url(${background});
@@ -85,6 +84,21 @@ const PickColorLabel = styled(Typography)`
   margin-right: 10px !important;
 `
 
+const StyledExportText = styled.div`
+  padding: 19px;
+`
+
+const StyledExportButtonRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 16px;
+`
+
+const StyledImg = styled.img`
+  width: 40px;
+`
+
 class Settings extends Component {
   constructor(props) {
     super(props)
@@ -133,36 +147,20 @@ class Settings extends Component {
     let currentSubjectMatterSettings = null
 
     if (this.props.user.dataExport) {
-      let downloadBtnToggle = (
-        <IconButton
-          color='primary'
-          edge='end'
-          aria-label='Download'
-          onClick={this.props.onExportDownload}
-        >
-          <CloudDownloadIcon />
-        </IconButton>
-      )
+      let downloadBtnToggle = <Tooltip title='Open in Microsoft Excel'><IconButton onClick={this.props.onExportDownload} ><StyledImg src={excelIcon} /></IconButton></Tooltip>
       if (this.props.loadingDownload) {
         downloadBtnToggle = <CircularProgress color='primary' />
       }
       downloadExportsSetting = (
         <div>
-          <TitleDiv variant='h6'>Data Export</TitleDiv>
+          <TitleDiv variant='h6'>Data Export: Unhandled Questions and Feedback</TitleDiv>
           <Divider />
-          <List subheader={<ListHeader>Download Export Date</ListHeader>}>
-            <ListItem>
-              <DatePicker
-                value={this.props.downloadDate}
-                onChange={this.props.onDownloadDateChange}
-              />
-              <ListItemSecondaryAction>
-                {downloadBtnToggle}
-              </ListItemSecondaryAction>
-            </ListItem>
-          </List>
+          <StyledExportText>Download questions that Genbot has been asked, but hasn't been trained to handle yet. Download feedback that your users are saying about Genbot.</StyledExportText>
+          <StyledExportButtonRow>
+            {downloadBtnToggle}
+          </StyledExportButtonRow>
           <Divider />
-        </div>
+        </div >
       )
     }
     const settingsHeader = (
@@ -293,7 +291,6 @@ const mapStateToProps = state => {
     mainColor: state.filters.mainColor,
     subjectMattersSettings: subjectMattersSettings,
     defaultSubjectMatter: state.config.defaultSubjectMatter,
-    downloadDate: state.config.downloadExportDate,
     user: state.auth.user,
     loadingDownload: state.config.loading,
     timezone: currSubjectMatter.timezone.name,
@@ -303,7 +300,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSettingsToggle: showSettings => dispatch(toggleSettings(showSettings)),
-    onDownloadDateChange: newDate => dispatch(updateExportDate(newDate)),
     onExportDownload: () => dispatch(downloadExport()),
     onDefaultSubjectMatterChange: defaultSubjectMatter =>
       dispatch(updateDefaultSubjectMatter(defaultSubjectMatter)),

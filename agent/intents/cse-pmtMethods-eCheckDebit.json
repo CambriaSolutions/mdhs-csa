@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "You can make payments online using Mississippi iPayOnline. <a href=\"https://ipayonline.mssdu.net/iPayOnline/\" target=\"_blank\">Click here</a> to get started."
+            "You can make payments online using Mississippi iPayOnline. \u003ca href\u003d\"https://ipayonline.mssdu.net/iPayOnline/\" target\u003d\"_blank\"\u003eClick here\u003c/a\u003e to get started."
           ],
           "condition": ""
         },

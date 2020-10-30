@@ -35,7 +35,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Disposable income = gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers' compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state's mandatory deductions; they are mandatory deductions for federal employees."
+            "Disposable income \u003d gross pay - mandatory deductions such as federal, state and local taxes, unemployment insurance, workers\u0027 compensation insurance, mandatory retirement deductions, and other deductions determined by state law. Health insurance premiums may be included in a state\u0027s mandatory deductions; they are mandatory deductions for federal employees."
           ],
           "condition": ""
         },
@@ -45,7 +45,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Note: Disposable income is not necessarily the same as net pay. For more detailed information, <a href=\"https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice\" target=\"_blank\">click here</a> to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website."
+            "Note: Disposable income is not necessarily the same as net pay. For more detailed information, \u003ca href\u003d\"https://www.acf.hhs.gov/css/resource/processing-an-income-withholding-order-or-notice\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to access the U.S. Department of Health and Human Services, Office of Child Support Enforcement website."
           ],
           "condition": ""
         },
@@ -55,7 +55,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "What is the employee's disposable income?"
+            "What is the employee\u0027s disposable income?"
           ],
           "condition": ""
         },
