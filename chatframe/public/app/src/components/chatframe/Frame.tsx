@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, Unsubscribe } from 'redux'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import WebFont from 'webfontloader'
@@ -12,6 +12,8 @@ import ActivatorButton from './ActivatorButton'
 import ChatContainer from './ChatContainer'
 import rootReducer from './reducers/rootReducer'
 import { initialize } from './actions/initialization'
+import { Theme } from '@material-ui/core'
+
 
 WebFont.load({
   google: {
@@ -52,13 +54,40 @@ const OuterContainer = styled.div`
   }
 `
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-class ChatFrame extends PureComponent {
-  constructor(props) {
+interface Props {
+  primaryColor: string;
+  secondaryColor: string;
+  headerColor: string;
+  title: string;
+  client: string;
+  clientOptions: {
+    eventUrl: string;
+    textUrl: string;
+  }
+  fullscreen: boolean;
+  initialActive: boolean;
+  policyText: string;
+  mapConfig: {
+    googleMapsKey: string,
+    centerCoordinates: {
+      lat: number,
+      lng: number
+    }
+  };
+  feedbackUrl: string;
+  activationText: string;
+}
+
+class ChatFrame extends PureComponent<Props> {
+  store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunkMiddleware)))
+  currentValue = null
+  theme: Theme
+  unsubscribe: Unsubscribe | null = null
+
+  constructor(props: Props) {
     super(props)
-    this.store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunkMiddleware)))
-    this.currentValue = null
     this.theme = createTheme(
       this.props.primaryColor,
       this.props.secondaryColor,
@@ -70,29 +99,11 @@ class ChatFrame extends PureComponent {
     // We load the initial options into the Redux store inside of the
     // componentDidMount() lifecycle hook. This lets us use Redux to manage
     // state instead of passing props down manually.
-    this.store.dispatch(initialize(this.props, this.theme))
-
-    // In order to expose when a webhook payload of custom data is received,
-    // we manually create a subscription to the data piece we want to expose
-    this.unsubscribe = this.store.subscribe(() => this.handleChange(this.store))
+    this.store.dispatch(initialize(this.props) as any)
   }
 
   componentWillUnmount() {
     this.unsubscribe()
-  }
-
-  // Select the current conversation payload from our Redux store
-  select(state) {
-    return state.conversation.webhookPayload
-  }
-
-  // When props are updated (e.g. Theme changes), update entire component
-  handleChange(store) {
-    const previousValue = this.currentValue
-    this.currentValue = this.select(store.getState())
-    if (previousValue !== this.currentValue && this.props.onPayload) {
-      this.props.onPayload(this.currentValue)
-    }
   }
 
   render() {

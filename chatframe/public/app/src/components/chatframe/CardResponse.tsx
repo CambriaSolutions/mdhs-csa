@@ -35,11 +35,23 @@ const CardImage = styled(CardMedia)`
   }
 `
 
-class CardResponse extends PureComponent {
+interface Props {
+  inputValue: State['userInput'],
+  data: {
+    title: string,
+    subtitle: string,
+    imageUrl: string,
+    buttons: any,
+  },
+  className: string
+  key: string
+}
+
+class CardResponse extends PureComponent<Props> {
   render() {
-    const { title, subtitle, imageUrl, buttons, className } = this.props.data
+    const { title, subtitle, imageUrl, buttons } = this.props.data
     return (
-      <CardContainer className={className} key={this.props.key}>
+      <CardContainer className={this.props.className} key={this.props.key}>
         {imageUrl ? <CardImage image={encodeURI(imageUrl)} title='' /> : null}
         <CardContent>
           <Typography gutterBottom variant="h6">

@@ -22,27 +22,27 @@ const Container = styled(Paper)`
     transition: width 120ms ease-in-out, height 150ms ease-in-out;
     pointer-events: none;
 
-    ${props => props.fullscreen &&
+    ${(props: any) => props.fullscreen &&
     css`
         width: calc(100% - 96px);
         height: calc(100% - 96px);
       `};
     
-    ${props => !props.visible &&
+    ${(props: any) => !props.visible &&
     css`
       width: 0;
       height: 0;
     `};
 
-    ${media.phone`
-    width: ${props => (props.visible ? 'calc(100% - 20px)' : '0')};
-    height: ${props => (props.visible ? 'calc(100% - 96px)' : '0')};
-    right: 10px;
-    max-width: none;
-    max-height: none;
-  `};
+    ${(media as any).phone`
+      width: ${props => (props.visible ? 'calc(100% - 20px)' : '0')};
+      height: ${props => (props.visible ? 'calc(100% - 96px)' : '0')};
+      right: 10px;
+      max-width: none;
+      max-height: none;
+    `};
   }
-`
+` as any
 
 const OuterFrame = styled.div`
   && {
@@ -61,13 +61,15 @@ const OuterFrame = styled.div`
       'userinput';
     box-sizing: content-box;
   }
-`
+` as any
 
-class ChatContainer extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.containerRef = React.createRef()
-  }
+interface Props {
+  windowVisible: State['config']['windowVisible'],
+  fullscreen: State['config']['fullscreen'],
+}
+
+class ChatContainer extends PureComponent<Props> {
+  containerRef = React.createRef()
 
   render() {
     const { windowVisible, fullscreen } = this.props
