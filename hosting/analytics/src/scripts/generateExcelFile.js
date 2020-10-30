@@ -224,7 +224,7 @@ const createSheet2 = (workbook, feedbackData, subjectMatter, includeSubjectMatte
 }
 
 const createSheet3 = (workbook, suggestionsData) => {
-  const sheet3Name = 'Query Suggestions_CSE'
+  const sheet3Name = 'Query Suggestions for CSE'
 
   const sheet3 = workbook.addWorksheet(sheet3Name);
 
