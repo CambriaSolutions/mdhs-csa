@@ -228,7 +228,7 @@ const createSheet2 = (workbook, feedbackData, subjectMatter, includeSubjectMatte
 }
 
 const createSheet3 = (workbook, suggestionsData) => {
-  const sheet3Name = 'Query Suggestions for CSE'
+  const sheet3Name = 'Unhandled Questions for CSE'
 
   const sheet3 = workbook.addWorksheet(sheet3Name);
 
@@ -241,7 +241,7 @@ const createSheet3 = (workbook, suggestionsData) => {
 
   let sheet3Columns = [
     {
-      name: 'User Query',
+      name: 'Unhandled Questions',
       filterButton: true,
       style: {
         font: {
