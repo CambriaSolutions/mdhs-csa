@@ -81,7 +81,7 @@ export const storeFeedback = async (req, res) => {
 
     const wasHelpful = reqData.wasHelpful
     let feedbackList = reqData.feedbackList
-    const feedbackComment = sanitizeHtml(reqData.comment)
+    const feedbackComment = sanitizeHtml.default(reqData.comment)
     // Get ID's from conversation (session)
     const conversationId = getIdFromPath(reqData.session)
 

@@ -645,7 +645,7 @@ export const supportCollectIssue = async agent => {
   const ticketInfo = await agent.context.get('ticketinfo').parameters
   const request = agent.parameters.request
 
-  const supportSummary = formatSummary(ticketInfo)
+  const supportSummary = await formatSummary(ticketInfo)
   const cardText = formatCardText(ticketInfo, request)
 
   const ticketInfoParams = {

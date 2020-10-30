@@ -26,7 +26,9 @@ const headerStyle = {
 }
 
 const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatterCol, includeSuggestions) => {
-  const sheet1Name = 'Unhandled Questions' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
+  const sheet1Name = subjectMatter.toLowerCase() === 'total'
+    ? 'Total Unhandled Questions'
+    : 'Unhandled Questions' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
 
   // Create worksheets with headers and footers
   const sheet1 = workbook.addWorksheet(sheet1Name, phrasesData);
@@ -47,7 +49,7 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
   sheet1.columns = sheet1ColumnDefs
 
   const unhandledPhrasesColumn = {
-    name: 'UnhandledUserQuestions',
+    name: 'Unhandled User Questions',
     filterButton: true,
     style: {
       font: {
@@ -150,7 +152,9 @@ const createSheet1 = (workbook, phrasesData, subjectMatter, includeSubjectMatter
 }
 
 const createSheet2 = (workbook, feedbackData, subjectMatter, includeSubjectMatterCol) => {
-  const sheet2Name = 'User Feedback' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
+  const sheet2Name = subjectMatter.toLowerCase() === 'total'
+    ? 'Total User Feedback'
+    : 'User Feedback' + (subjectMatter ? ' for ' + subjectMatter.toUpperCase() : '')
 
   const sheet2 = workbook.addWorksheet(sheet2Name);
 
@@ -224,7 +228,7 @@ const createSheet2 = (workbook, feedbackData, subjectMatter, includeSubjectMatte
 }
 
 const createSheet3 = (workbook, suggestionsData) => {
-  const sheet3Name = 'Query Suggestions_CSE'
+  const sheet3Name = 'Unhandled Questions for CSE'
 
   const sheet3 = workbook.addWorksheet(sheet3Name);
 
@@ -237,7 +241,7 @@ const createSheet3 = (workbook, suggestionsData) => {
 
   let sheet3Columns = [
     {
-      name: 'User Query',
+      name: 'Unhandled Questions',
       filterButton: true,
       style: {
         font: {
