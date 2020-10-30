@@ -33,7 +33,7 @@ const styles = () => ({
   }
 })
 
-class FeedbackInput extends PureComponent {
+class FeedbackInput extends PureComponent<any> {
   state = {
     isSubmitted: false,
     feedbackComment: ''
@@ -107,7 +107,7 @@ class FeedbackInput extends PureComponent {
                     ? 'Why was Gen helpful?'
                     : 'Why was Gen not helpful?'}
                 </Typography>
-                <FormControl component='fieldset'>
+                <FormControl component={'fieldset' as any}>
                   <FormGroup>
                     {feedbackInputs.feedbackList
                       ? feedbackInputs.feedbackList.map(choice => {
@@ -193,7 +193,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withStyles(styles)(connect(
+export default withStyles(styles as any)(connect(
   mapStateToProps,
   mapDispatchToProps
 )(FeedbackInput))

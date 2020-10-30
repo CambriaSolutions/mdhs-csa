@@ -14,11 +14,11 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
-  padding: ${p => (p.visible ? '4px 8px 12px 16px' : '0 16px')};
+  padding: ${(p: any) => (p.visible ? '4px 8px 12px 16px' : '0 16px')};
   background: ${grey[300]};
-  border-top: ${p => (p.visible ? '1px solid rgba(0, 0, 0, 0.2)' : 'none')};
+  border-top: ${(p: any) => (p.visible ? '1px solid rgba(0, 0, 0, 0.2)' : 'none')};
   overflow-y: auto;
-`
+` as any
 
 const Btn = styled(Button)`
   && {
@@ -26,9 +26,9 @@ const Btn = styled(Button)`
     margin-top: 8px;
     padding-left: 5px;
     padding-right: 5px;
-    display: ${p => (p.visible === 'true' ? 'block' : 'none')};
-    background-color: ${p => (p.navigationbutton === 'true' ? 'rgb(36,39,44)' : 'rgb(240,240,240)')};
-    color: ${p => (p.navigationbutton === 'true' ? ' white' : 'secondary')};
+    display: ${(p: any) => (p.visible === 'true' ? 'block' : 'none')};
+    background-color: ${(p: any) => (p.navigationbutton === 'true' ? 'rgb(36,39,44)' : 'rgb(240,240,240)')};
+    color: ${(p: any) => (p.navigationbutton === 'true' ? ' white' : 'secondary')};
     border-radius: 10px;
     font-size: 14px;
     width: 100%
@@ -38,7 +38,7 @@ const Btn = styled(Button)`
   :hover {
     background-color: rgb(181,181,181) !important;
   }
-`
+` as any
 
 const findLastMessageWithSuggestions = (messages) => findLast(messages, m => {
   const hasSuggestions = find(m.responses, ['type', 'suggestion'])
@@ -47,7 +47,22 @@ const findLastMessageWithSuggestions = (messages) => findLast(messages, m => {
 
 const getSuggestions = (messageWithSuggestions) => messageWithSuggestions.responses.filter(m => m.type === 'suggestion')[0].suggestions
 
-class ButtonBar extends PureComponent {
+interface Suggestion {
+  label: string,
+  id: string,
+  visible: number,
+  minColumnSpan: number
+}
+
+interface Props {
+  visible: State['buttonBar']['visible'],
+  messages: State['conversation']['messages'],
+  paginationPage: State['buttonBar']['paginationPage'],
+  sendQuickReply: (text: string) => void
+  changeSuggestionPage: (newPage: number) => any
+}
+
+class ButtonBar extends PureComponent<Props> {
   minColumnSpan = suggestion => {
     if (suggestion.length >= 18) {
       return 3
@@ -63,8 +78,8 @@ class ButtonBar extends PureComponent {
     [find(suggestionElements, x => x.label.toLowerCase() === 'workforce development')]
   ])
 
-  playTetris = buttons => {
-    const findNextInCollection = (reqColumnSpan, currentCollection) => {
+  playTetris = (buttons: Array<Suggestion>) => {
+    const findNextInCollection = (reqColumnSpan: number, currentCollection: Array<Suggestion>) => {
       // Find the next button to display in button bar
       const next = find(currentCollection, x => x.minColumnSpan === reqColumnSpan)
 
@@ -191,7 +206,7 @@ class ButtonBar extends PureComponent {
 
     const suggestionElements = []
 
-    let backButtonLabel = null
+    let backButtonLabel: any = null
     let isSelectingSubjectMatter = false
 
     if (lastMessageWithSuggestions) {
@@ -234,7 +249,7 @@ class ButtonBar extends PureComponent {
     const numberOfNavigationPages = Math.ceil(buttonRows.length / numberOfRowsPerPage)
 
     const paginationPages = new Array(numberOfNavigationPages)
-      .fill()
+      .fill(null)
       .map(() => buttonRows.splice(0, numberOfRowsPerPage))
 
     const activeSuggestionPage = paginationPages[paginationPage - 1]
@@ -260,7 +275,7 @@ class ButtonBar extends PureComponent {
                     <Grid
                       key={`buttonRow_${i}_${index}`}
                       item
-                      xs={12 / btns.length}
+                      xs={(12 / btns.length) as any}
                     >
                       <Btn
                         size="small"
@@ -325,7 +340,7 @@ class ButtonBar extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: State) => {
   return {
     visible: state.buttonBar.visible,
     messages: state.conversation.messages,
@@ -333,12 +348,12 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    sendQuickReply: text => {
+    sendQuickReply: (text: string) => {
       dispatch(sendQuickReply(text))
     },
-    changeSuggestionPage: newPage => dispatch({
+    changeSuggestionPage: (newPage: number) => dispatch({
       type: 'CHANGE_SUGGESTION_PAGE',
       paginationPage: newPage
     })
