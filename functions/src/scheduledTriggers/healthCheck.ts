@@ -10,7 +10,7 @@ export const healthCheck = async () => {
   const rp = await import('request-promise')
 
   try {
-    await rp(options)
+    await rp.default(options)
   } catch (err) {
     console.error(err.message, err)
   }
