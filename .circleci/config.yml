@@ -176,13 +176,13 @@ workflows:
   build_deploy:
     jobs:
       # Development Jobs
-      - deploy_dialogflow_agent:
-          jsonKey: DEV_MDHS_CSA_KEY_JSON
-          env: dev
-          filters:
-            branches:
-              only:
-                - development
+      # - deploy_dialogflow_agent:
+      #     jsonKey: DEV_MDHS_CSA_KEY_JSON
+      #     env: dev
+      #     filters:
+      #       branches:
+      #         only:
+      #           - development
       - deploy_functions:
           firebaseProjectId: mdhs-csa-dev
           googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
@@ -196,29 +196,29 @@ workflows:
             branches:
               only:
                 - development
-      - deploy_hosting_test_harness:
-          firebaseProjectId: mdhs-csa-dev
-          googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
-          eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
-          textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
-          feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
-          filters:
-            branches:
-              only:
-                - development
-      - deploy_hosting_analytics:
-          firebaseProjectId: mdhs-csa-dev
-          firebaseApiKey: AIzaSyDGkhs6juNsvEBN6c1aNpbGIPcZhB2dImM # Not a secret
-          firebaseAuthDomain: mdhs-csa-dev.firebaseapp.com
-          firebaseDatabaseUrl: https://mdhs-csa-dev.firebaseio.com
-          firebaseStorageBucket: mdhs-csa-dev.appspot.com
-          firebaseMessagingSenderId: 390034944383
-          firebaseAppId: 1:390034944383:web:6cefab99af945d7876aa4a
-          downloadExportUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/downloadExport
-          filters:
-            branches:
-              only:
-                - development
+      # - deploy_hosting_test_harness:
+      #     firebaseProjectId: mdhs-csa-dev
+      #     googleMapsKey: AIzaSyCSpN9JJqwyhOXPJ9qtLsaN0DlkLcEpO2Y # Not a secret
+      #     eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
+      #     textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
+      #     feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
+      #     filters:
+      #       branches:
+      #         only:
+      #           - development
+      # - deploy_hosting_analytics:
+      #     firebaseProjectId: mdhs-csa-dev
+      #     firebaseApiKey: AIzaSyDGkhs6juNsvEBN6c1aNpbGIPcZhB2dImM # Not a secret
+      #     firebaseAuthDomain: mdhs-csa-dev.firebaseapp.com
+      #     firebaseDatabaseUrl: https://mdhs-csa-dev.firebaseio.com
+      #     firebaseStorageBucket: mdhs-csa-dev.appspot.com
+      #     firebaseMessagingSenderId: 390034944383
+      #     firebaseAppId: 1:390034944383:web:6cefab99af945d7876aa4a
+      #     downloadExportUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/downloadExport
+      #     filters:
+      #       branches:
+      #         only:
+      #           - development
       # ISD Jobs
       - deploy_dialogflow_agent:
           jsonKey: ISD_MDHS_CSA_KEY_JSON
