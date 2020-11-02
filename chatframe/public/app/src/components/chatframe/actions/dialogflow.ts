@@ -1,6 +1,7 @@
 import { format, parse, differenceInMilliseconds } from 'date-fns'
 import { v4 as uuidv4 } from 'uuid'
 import { get, find, omit } from 'lodash'
+import { recordError } from '../recordError'
 import {
   SAVE_CLIENT,
   SAVE_RESPONSE,
@@ -66,7 +67,7 @@ export function saveResponse(data) {
 }
 
 export function getMessageFromDialogflow(response) {
-  return dispatch => {
+  return (dispatch, getState) => {
     function mapMessageTypeToDescriptor(type) {
       switch (type) {
         case 'text':
@@ -159,8 +160,7 @@ export function getMessageFromDialogflow(response) {
         }
       })
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      recordError(error, getState().config.reportErrorUrl).then()
     }
 
     let responses
@@ -288,8 +288,7 @@ const sendToDialogflow = (type: string, payload: any) => {
         throw new Error(error)
       })
       .catch(error => {
-        // TODO: log error to analytics
-        console.log(error)
+        recordError(error, getState().config.reportErrorUrl).then()
         dispatch({
           type: DISPLAY_ERROR,
           error: 'Unable to connect to the chat provider. Please try again.',

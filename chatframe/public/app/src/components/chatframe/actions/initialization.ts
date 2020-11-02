@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import { recordError } from '../recordError'
 import {
   SET_TITLE,
   SHOW_WINDOW,
@@ -101,8 +102,7 @@ export function initialize(props) {
             )
           }
         } catch (error) {
-          // TODO: log error to analytics
-          console.log(error)
+          recordError(error, reportErrorUrl).then()
         }
       }
     }
