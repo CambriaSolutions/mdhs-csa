@@ -12,7 +12,7 @@
       "affectedContexts": [
         {
           "name": "snap-subject-matter",
-          "lifespan": 5
+          "lifespan": 99
         }
       ],
       "parameters": [
@@ -86,7 +86,7 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": false,
+  "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
   "events": [],
