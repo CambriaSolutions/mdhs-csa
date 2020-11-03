@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { recordError } from '../recordError'
+import { reportError } from '../reportError'
 import {
   SAVE_USER_RESPONSE,
   DISPLAY_ERROR,
@@ -27,7 +27,7 @@ export function setupClient(client, clientOptions) {
         throw new Error(`${client} is not a recognized conversation provider.`)
       }
     } catch (error) {
-      recordError(error, getState().config.reportErrorUrl).then()
+      reportError(error, getState().config.reportErrorUrl).then()
     }
   }
 }
@@ -43,7 +43,7 @@ export function sendMessage(message) {
         )
       }
     } catch (error) {
-      recordError(error, getState().config.reportErrorUrl).then()
+      reportError(error, getState().config.reportErrorUrl).then()
 
       // Unrecognized client
       dispatch({

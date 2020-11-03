@@ -1,5 +1,5 @@
 import get from 'lodash/get'
-import { recordError } from '../recordError'
+import { reportError } from '../reportError'
 import {
   SET_TITLE,
   SHOW_WINDOW,
@@ -102,7 +102,7 @@ export function initialize(props) {
             )
           }
         } catch (error) {
-          recordError(error, reportErrorUrl).then()
+          reportError(error, reportErrorUrl).then()
         }
       }
     }

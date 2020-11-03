@@ -11,6 +11,7 @@ const initialState = {
   privacyPolicy:
     'Please do not enter any personally identifiable information such as SSN, Date of Birth, Case Number or last name.',
   feedbackUrl: '',
+  reportErrorUrl: ''
 }
 
 function config(state = initialState, action) {

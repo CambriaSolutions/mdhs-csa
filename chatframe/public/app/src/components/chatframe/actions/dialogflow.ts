@@ -1,7 +1,7 @@
 import { format, parse, differenceInMilliseconds } from 'date-fns'
 import { v4 as uuidv4 } from 'uuid'
 import { get, find, omit } from 'lodash'
-import { recordError } from '../recordError'
+import { reportError } from '../reportError'
 import {
   SAVE_CLIENT,
   SAVE_RESPONSE,
@@ -109,7 +109,7 @@ export function getMessageFromDialogflow(response) {
         const payload: any = {}
         if (type === 'payload') {
           const rawPayload = get(msg, 'payload.fields', {})
-          for (const [field, data] of <any>Object.entries(rawPayload)) {
+          for (const [field, data] of Object.entries(rawPayload) as any) {
             if (data.kind === 'stringValue') {
               try {
                 // Attempt to parse data.stringValue as JSON in case it is
@@ -160,7 +160,7 @@ export function getMessageFromDialogflow(response) {
         }
       })
     } catch (error) {
-      recordError(error, getState().config.reportErrorUrl).then()
+      reportError(error, getState().config.reportErrorUrl).then()
     }
 
     let responses
@@ -288,7 +288,7 @@ const sendToDialogflow = (type: string, payload: any) => {
         throw new Error(error)
       })
       .catch(error => {
-        recordError(error, getState().config.reportErrorUrl).then()
+        reportError(error, getState().config.reportErrorUrl).then()
         dispatch({
           type: DISPLAY_ERROR,
           error: 'Unable to connect to the chat provider. Please try again.',
