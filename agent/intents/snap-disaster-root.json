@@ -1,0 +1,109 @@
+{
+  "id": "2be7b1c1-b52d-43e7-9b53-b9bcecbca276",
+  "name": "snap-disaster-root",
+  "auto": true,
+  "contexts": [
+    "snap-subject-matter"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "snap-subject-matter",
+          "lifespan": 99
+        },
+        {
+          "name": "snap-disaster-waiting-recipient",
+          "lifespan": 1
+        }
+      ],
+      "parameters": [
+        {
+          "id": "b7a3818c-2cc0-43f1-815f-8c025c4a8fce",
+          "name": "date-period",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "value": "$date-period",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "a43149ee-2942-4ea0-b5a9-b731e37d685f",
+          "name": "unit-length",
+          "required": false,
+          "dataType": "@sys.unit-length",
+          "value": "$unit-length",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "The Disaster Supplemental Nutrition Assistance Program (DSNAP) provides eligible low- to moderate-income households who do not currently receive SNAP benefits with help buying groceries due to lost income or damages following a disaster."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "MS has not been authorized to conduct a Disaster Supplemental Nutrition Assistance Program (DSNAP) at this time."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Are you an existing SNAP recipient?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "handleEndConversation": false,
+            "suggestions": [
+              "YES",
+              "NO"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

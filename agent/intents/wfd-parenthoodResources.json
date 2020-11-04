@@ -1,0 +1,78 @@
+{
+  "id": "1ee27f38-3312-463e-be0f-41ebeecd1dc9",
+  "name": "wfd-parenthoodResources",
+  "auto": true,
+  "contexts": [
+    "wfd-subject-matter",
+    "waiting-wfd-parenthoodResources"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "wfd-subject-matter",
+          "lifespan": 99
+        },
+        {
+          "name": "waiting-wfd-parenthoodResources",
+          "lifespan": 0
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Parenthood Resources are among a coordinated effort to assist families end welfare dependency and become self-sufficient. Programs are designed to educate and provide comprehensive support services to parents, or expectant parents, on the importance of responsible parenting."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "The programs and available resources emphasize:\n\u003cul\u003e\u003cli\u003eBenefits of shared parental responsibility,\u003c/li\u003e\n\u003cli\u003eIncreasing parental involvement in education,\u003c/li\u003e\n\u003cli\u003eImproving academic performance, reduce dropout rates and increase graduation,\u003c/li\u003e\n\u003cli\u003eDecreasing teen pregnancy rate,\u003c/li\u003e\n\u003cli\u003eDecreasing juvenile crime,\u003c/li\u003e\n\u003cli\u003eRecruiting parents to volunteer as mentors to other parents.\u003c/li\u003e\u003c/ul\u003e"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Please \u003ca href\u003d\"#\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to see the providers information."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
