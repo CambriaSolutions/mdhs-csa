@@ -251,7 +251,7 @@ const createSheet3 = (workbook, suggestionsData) => {
       }
     },
     {
-      name: 'Suggestion #1',
+      name: 'Gen Suggestion 1',
       filterButton: true,
       style: {
         font: {
@@ -260,7 +260,7 @@ const createSheet3 = (workbook, suggestionsData) => {
       }
     },
     {
-      name: 'Suggestion #2',
+      name: 'Gen Suggestion 2',
       filterButton: true,
       style: {
         font: {
@@ -269,7 +269,7 @@ const createSheet3 = (workbook, suggestionsData) => {
       }
     },
     {
-      name: 'Suggestion #3',
+      name: 'Gen Suggestion 3',
       filterButton: true,
       style: {
         font: {
