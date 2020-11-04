@@ -11,12 +11,12 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-feedback-root",
+          "name": "waiting-restart-conversation",
           "lifespan": 2
         },
         {
-          "name": "waiting-restart-conversation",
-          "lifespan": 2
+          "name": "wfd-subject-matter",
+          "lifespan": 99
         }
       ],
       "parameters": [],
@@ -61,8 +61,7 @@
               "MDHS LOCATIONS",
               "MYRESOURCES",
               "HOW CAN I APPLY?"
-            ],
-            "handleEndConversation": true
+            ]
           },
           "textToSpeech": "",
           "lang": "en",
