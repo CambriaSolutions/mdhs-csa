@@ -11,9 +11,8 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-feedback-root",
-          "lifespan": 1,
-          "parameters": {}
+          "name": "wfd-subject-matter",
+          "lifespan": 999
         }
       ],
       "parameters": [],
@@ -62,9 +61,9 @@
           "type": "4",
           "title": "",
           "payload": {
+            "handleEndConversation": true,
             "suggestions": [
-              "PROVIDERS LOCATION",
-              "SUBMIT FEEDBACK"
+              "PROVIDERS LOCATION"
             ]
           },
           "textToSpeech": "",
