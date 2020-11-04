@@ -34,11 +34,8 @@ async function _trainAgent(store, intentsClient, phrase, intentId, docId, intent
       console.log('Updated intent with new training phrase.')
 
       // set agentTrained to true after we updated the intent
-      // TODO - hardcoded cse
       await store
-        .collection(
-          '/subjectMatters/cse/queriesForTraining/'
-        )
+        .collection(`/subjectMatters/${subjectMatter}/queriesForTraining/`)
         .doc(docId)
         .update({ agentTrained: true })
 

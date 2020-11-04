@@ -1,17 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-/**
- * Trigger training weekly
- **/
-export const trainModels = async () => {
-  const admin = await import('firebase-admin')
-  const projectId = admin.instanceId().app.options.projectId
-  const automl = await import('@google-cloud/automl')
-  const store = admin.firestore()
-
-  // TODO - hardcoded cse
-  const subjectMatter = 'cse'
+const trainSubjectMatterModel = async (admin, projectId, automl, store, subjectMatter) => {
   const snap = await store
     .collection(`/subjectMatters/${subjectMatter}/queriesForTraining/`)
     .where('occurrences', '>=', 10)
@@ -54,6 +44,25 @@ export const trainModels = async () => {
   } else {
     console.log('Training was skipped.')
   }
+}
+
+/**
+ * Trigger training weekly
+ **/
+export const trainModels = async () => {
+  const admin = await import('firebase-admin')
+  const projectId = admin.instanceId().app.options.projectId
+  const automl = await import('@google-cloud/automl')
+  const store = admin.firestore()
+
+  // Only CSE for now.
+  const subjectMatters = ['cse']
+  const trainings = []
+  subjectMatters.forEach(subjectMatter => {
+    trainings.push(trainSubjectMatterModel(admin, projectId, automl, store, subjectMatter))
+  })
+
+  await Promise.all(trainings)
 }
 
 // --------------------------------  TRAIN CATEGORY MODEL  --------------------------------
