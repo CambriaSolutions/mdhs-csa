@@ -1,10 +1,9 @@
 {
-  "id": "70fdc66f-5d51-4a4d-a2df-7a203a88f1e8",
-  "name": "wfd-trainingEducation",
+  "id": "c3af5228-3b73-4cc7-a1ac-a8776aba28e3",
+  "name": "wfd-workDevelopmentPartners",
   "auto": true,
   "contexts": [
-    "wfd-subject-matter",
-    "waiting-wfd-trainingEducation"
+    "wfd-subject-matter"
   ],
   "responses": [
     {
@@ -17,7 +16,15 @@
         },
         {
           "name": "waiting-wfd-trainingEducation",
-          "lifespan": 0
+          "lifespan": 1
+        },
+        {
+          "name": "waiting-wfd-parenthoodResources",
+          "lifespan": 1
+        },
+        {
+          "name": "waiting-wfd-afterSchool",
+          "lifespan": 1
         }
       ],
       "parameters": [],
@@ -28,7 +35,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Eligible TANF and SNAP recipients have an opportunity to participate in the Workforce Training and Education programs to receive short-term specialized skills training and career preparation in a chosen area. The goal is to improve the quality of Mississippi’s workforce. Youth programs assist out-of-school youth in obtaining High School Equivalences and further engaging in pathways that lead to a living wage. Adult programs help recipients again access to education and/or training opportunities to help them compete for employer-driven jobs."
+            "The Temporary Assistance for Needy Families (TANF) Program provides benefits for needy families. Workforce Training and Education Programs help prepare recipients for a job by providing job readiness training, job skills training, vocational training, other educational training programs and assisting recipients in finding and keeping a job. MDHS provides education, training and supportive services to eligible TANF and SNAP participants for youth ages 16 to 24 and adults age 18 to 59."
           ],
           "condition": ""
         },
@@ -38,7 +45,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2020/10/TANF-WF-Subgrantee-Contact-Info.pdf\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to see the providers information."
+            "For more information, select one of the programs below"
           ],
           "condition": ""
         },
@@ -46,8 +53,12 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "handleEndConversation": false,
+            "suggestions": [
+              "WORKFORCE TRAINING \u0026 EDUCATION",
+              "AFTER SCHOOL PROGRAM ACTIVITIES",
+              "PARENTHOOD RESOURCES"
+            ]
           },
           "textToSpeech": "",
           "lang": "en",
