@@ -5,7 +5,7 @@ export async function reportError(error: Error, reportErrorUrl: string) {
     body: JSON.stringify({
       'error': JSON.stringify(error),
     })
-  };
+  }
   const response = await fetch(reportErrorUrl, requestOptions)
   if (response.status !== 200) {
     console.error(response.json())
