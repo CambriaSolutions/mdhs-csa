@@ -649,27 +649,3 @@ export const updateFeedbackType = feedbackType => {
     })
   }
 }
-
-// --------------------------------  R E A L T I M E   U P D A T E S  --------------------------------
-
-const formatExitIntents = exitIntents => {
-  let exitIntentsAggregate = []
-  for (const intent in exitIntents) {
-    const currentIntent = exitIntents[intent].name
-    // check to see if this intent is already on the list
-    const exitIntentExists = exitIntentsAggregate.filter(
-      intent => intent.name === currentIntent
-    )[0]
-    if (exitIntentExists) {
-      exitIntentExists.exits += exitIntents[intent].occurrences
-    } else {
-      const newExitIntent = {
-        name: exitIntents[intent].name,
-        id: exitIntents[intent].id,
-        exits: exitIntents[intent].occurrences,
-      }
-      exitIntentsAggregate.push(newExitIntent)
-    }
-  }
-  return exitIntentsAggregate
-}
