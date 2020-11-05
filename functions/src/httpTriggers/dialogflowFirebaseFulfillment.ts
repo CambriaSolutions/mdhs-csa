@@ -1,3 +1,5 @@
+import * as functions from 'firebase-functions'
+
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
@@ -9,7 +11,7 @@ const isActionRequested = (body, action) => {
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
-const saveRequest = async (reqData, subjectMatter) => {
+const saveRequest = async (reqData, subjectMatter, browser, isMobile) => {
   const admin = await import('firebase-admin')
   const db = admin.firestore()
 
@@ -17,7 +19,9 @@ const saveRequest = async (reqData, subjectMatter) => {
   const _reqData = {
     ...reqData,
     createdAt: admin.firestore.Timestamp.now(),
-    intentId
+    intentId,
+    browser,
+    isMobile
   }
 
   let currentSubjectMatter = subjectMatter
@@ -28,7 +32,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-export const dialogflowFirebaseFulfillment = async (request, response) => {
+export const dialogflowFirebaseFulfillment = async (request: functions.https.Request, response: functions.Response<any>) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
       // Using a health check endpoint to keep the function warm
@@ -62,8 +66,10 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
       const agent = new WebhookClient({ request, response }) as any
 
       const subjectMatter = getSubjectMatter(agent)
+      const browser: string = request.body.originalDetectIntentRequest.payload.isMobile
+      const isMobile: boolean = request.body.originalDetectIntentRequest.payload.isMobile
 
-      const savingRequest = saveRequest(request.body, subjectMatter)
+      const savingRequest = saveRequest(request.body, subjectMatter, browser, isMobile)
 
       const intentName = request.body.queryResult.intent.displayName
 

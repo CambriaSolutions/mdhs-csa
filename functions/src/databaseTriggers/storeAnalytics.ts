@@ -146,7 +146,9 @@ const storeMetrics = async (
   newConversationFirstDuration,
   shouldCalculateDuration,
   isFallbackIntent,
-  fallbackTriggeringQuery
+  fallbackTriggeringQuery,
+  browser,
+  isMobile
 ) => {
   const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
   const dateKey = format(currentDate, 'MM-dd-yyyy')
@@ -175,6 +177,11 @@ const storeMetrics = async (
       // This is a new conversation, but doesn't have a duration yet
       numConversations += 1
       updatedMetrics.numConversations = numConversations
+
+      updatedMetrics.userBrowsers = {
+        ...(updatedMetrics.userBrowsers),
+        [browser]: updatedMetrics.userBrowsers[browser] ? updatedMetrics.userBrowsers[browser] + 1 : 1
+      }
     }
 
     // Update average conversation duration
@@ -530,6 +537,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       }
     }
 
+    conversation.browser = reqData.browser
+    conversation.isMobile = reqData.isMobile
+
     await conversationRef.update(conversation)
   } else {
     // Conversation data doesn't exist for this id
@@ -544,6 +554,8 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       hasSupportRequest && supportType !== '' ? [supportType] : []
     conversation.fallbackTriggeringQuery = ''
     conversation.feedback = []
+    conversation.browser = reqData.browser
+    conversation.isMobile = reqData.isMobile
 
     await conversationRef.set(conversation)
   }
@@ -565,7 +577,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
     newConversationFirstDuration,
     shouldCalculateDuration,
     isFallbackIntent,
-    conversation.fallbackTriggeringQuery
+    conversation.fallbackTriggeringQuery,
+    reqData.browser,
+    reqData.isMobile
   )
 }
 
