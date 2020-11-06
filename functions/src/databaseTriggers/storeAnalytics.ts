@@ -178,10 +178,36 @@ const storeMetrics = async (
       numConversations += 1
       updatedMetrics.numConversations = numConversations
 
+      if (!updatedMetrics.userBrowsers) {
+        updatedMetrics.userBrowsers = {}
+      }
+
+      if (!updatedMetrics.userBrowsers[browser]) {
+        updatedMetrics.userBrowsers[browser] = 0
+      }
+
       updatedMetrics.userBrowsers = {
         ...(updatedMetrics.userBrowsers),
-        [browser]: updatedMetrics.userBrowsers[browser] ? updatedMetrics.userBrowsers[browser] + 1 : 1
+        [browser]: updatedMetrics.userBrowsers[browser] + 1
       }
+
+      if (!updatedMetrics.mobileConversations) {
+        updatedMetrics.mobileConversations = 0
+      }
+
+      if (!updatedMetrics.nonMobileConversations) {
+        updatedMetrics.nonMobileConversations = 0
+      }
+
+      if (isMobile) {
+        updatedMetrics.mobileConversations = updatedMetrics.mobileConversations + 1
+      } else {
+        updatedMetrics.nonMobileConversations = updatedMetrics.nonMobileConversations + 1
+      }
+    } else {
+      updatedMetrics.mobileConversations = currMetric.mobileConversations
+      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations
+      updatedMetrics.userBrowsers = currMetric.userBrowsers
     }
 
     // Update average conversation duration
@@ -372,6 +398,11 @@ const storeMetrics = async (
       numFallbacks: 0,
       fallbackTriggeringQueries: [],
       noneOfTheseCategories: [],
+      userBrowsers: {
+        [browser]: 1
+      },
+      mobileConversations: isMobile ? 1 : 0,
+      nonMobileConversations: !isMobile ? 1 : 0,
       supportRequests: supportRequestType
         ? [
           {
@@ -387,8 +418,36 @@ const storeMetrics = async (
   }
 }
 
+interface ConversationSnapshot {
+  originalDetectIntentRequest: {
+    payload: {
+      browser: string,
+      isMobile: boolean
+    }
+  },
+  session: string,
+  intentId: string,
+  queryResult:
+  {
+    allRequiredParamsPresent: boolean,
+    languageCode: 'en',
+    intent:
+    {
+      displayName: string,
+      name: string
+    },
+    intentDetectionConfidence: number,
+    outputContexts: Array<any>,
+    queryText: string,
+    action: string,
+    parameters: {}
+  },
+  createdAt: { _seconds: number, _nanoseconds: number },
+  responseId: string
+}
+
 // Calculate metrics based on requests
-const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
+const calculateMetrics = async (admin, store, reqData: ConversationSnapshot, subjectMatter) => {
   const currTimestamp = new Date()
 
   // const context = `projects/${projectName}`
@@ -405,6 +464,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
   // Get subject matter settings
   const settings = await getSubjectMatterSettings(store, subjectMatter)
   const timezoneOffset = settings.timezone.offset
+
+  const browser = reqData.originalDetectIntentRequest.payload.browser
+  const isMobile = reqData.originalDetectIntentRequest.payload.isMobile
 
   // Check if the query has the should-inspect-for-ml parameter
   if (reqData.queryResult.outputContexts) {
@@ -537,8 +599,8 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       }
     }
 
-    conversation.browser = reqData.browser
-    conversation.isMobile = reqData.isMobile
+    conversation.browser = browser
+    conversation.isMobile = isMobile
 
     await conversationRef.update(conversation)
   } else {
@@ -554,8 +616,8 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       hasSupportRequest && supportType !== '' ? [supportType] : []
     conversation.fallbackTriggeringQuery = ''
     conversation.feedback = []
-    conversation.browser = reqData.browser
-    conversation.isMobile = reqData.isMobile
+    conversation.browser = browser
+    conversation.isMobile = isMobile
 
     await conversationRef.set(conversation)
   }
@@ -578,8 +640,8 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
     shouldCalculateDuration,
     isFallbackIntent,
     conversation.fallbackTriggeringQuery,
-    reqData.browser,
-    reqData.isMobile
+    browser,
+    isMobile
   )
 }
 

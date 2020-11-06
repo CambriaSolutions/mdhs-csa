@@ -11,7 +11,7 @@ const isActionRequested = (body, action) => {
 // Regex to retrieve text after last "/" on a path
 const getIdFromPath = path => /[^/]*$/.exec(path)[0]
 
-const saveRequest = async (reqData, subjectMatter, browser, isMobile) => {
+const saveRequest = async (reqData, subjectMatter) => {
   const admin = await import('firebase-admin')
   const db = admin.firestore()
 
@@ -19,9 +19,7 @@ const saveRequest = async (reqData, subjectMatter, browser, isMobile) => {
   const _reqData = {
     ...reqData,
     createdAt: admin.firestore.Timestamp.now(),
-    intentId,
-    browser,
-    isMobile
+    intentId
   }
 
   let currentSubjectMatter = subjectMatter
@@ -66,10 +64,8 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
       const agent = new WebhookClient({ request, response }) as any
 
       const subjectMatter = getSubjectMatter(agent)
-      const browser: string = request.body.originalDetectIntentRequest.payload.isMobile
-      const isMobile: boolean = request.body.originalDetectIntentRequest.payload.isMobile
 
-      const savingRequest = saveRequest(request.body, subjectMatter, browser, isMobile)
+      const savingRequest = saveRequest(request.body, subjectMatter)
 
       const intentName = request.body.queryResult.intent.displayName
 

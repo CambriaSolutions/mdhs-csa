@@ -34,7 +34,11 @@ import SupportRequestChart from './SupportRequestChart'
 
 // Helpers
 import { colorShades } from '../common/helper'
-import { aggregatePersonaMetricsForPieChart } from '../scripts/metricUtil.js'
+import {
+  aggregatePersonaMetricsForPieChart,
+  aggregatePlatformMetricsForPieChart,
+  aggregateBrowserMetricsForPieChart
+} from '../scripts/metricUtil.js'
 import db from '../Firebase'
 
 import { showIntentDetails } from '../store/actions/configActions'
@@ -362,6 +366,26 @@ class Dashboard extends Component {
                 </GraphWrap>
               </Grid>
             }
+            <Grid item xs={12} sm={6}>
+              <GraphWrap>
+                <h3>Browsers Used</h3>
+                <PieChart
+                  data={aggregateBrowserMetricsForPieChart(this.props.dailyMetrics)}
+                  dataKey='count'
+                  colors={this.props.colors}
+                />
+              </GraphWrap>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <GraphWrap>
+                <h3>Platform Distribution</h3>
+                <PieChart
+                  data={aggregatePlatformMetricsForPieChart(this.props.dailyMetrics)}
+                  dataKey='count'
+                  colors={this.props.colors}
+                />
+              </GraphWrap>
+            </Grid>
             <Grid item xs={12}>
               <EnhancedTable
                 data={this.props.intents}
