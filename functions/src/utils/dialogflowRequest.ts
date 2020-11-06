@@ -52,7 +52,7 @@ export const dialogflowRequest = async (req: functions.https.Request, reqType) =
     }
   }
 
-  const responses = await sessionClient.detectIntent(dfRequest, { timeout: 10000 })
+  const responses = await sessionClient.detectIntent(dfRequest)
 
   // Code 0 === Webhook execution successful
   // Code 4 === Webhook call failed. Error: DEADLINE_EXCEEDED.
