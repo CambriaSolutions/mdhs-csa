@@ -178,31 +178,35 @@ const storeMetrics = async (
       numConversations += 1
       updatedMetrics.numConversations = numConversations
 
-      if (!updatedMetrics.userBrowsers) {
+      if (!currMetric.userBrowsers) {
         updatedMetrics.userBrowsers = {}
-      }
-
-      if (!updatedMetrics.userBrowsers[browser]) {
-        updatedMetrics.userBrowsers[browser] = 0
-      }
-
-      updatedMetrics.userBrowsers = {
-        ...(updatedMetrics.userBrowsers),
-        [browser]: updatedMetrics.userBrowsers[browser] + 1
-      }
-
-      if (!updatedMetrics.mobileConversations) {
-        updatedMetrics.mobileConversations = 0
-      }
-
-      if (!updatedMetrics.nonMobileConversations) {
-        updatedMetrics.nonMobileConversations = 0
-      }
-
-      if (isMobile) {
-        updatedMetrics.mobileConversations = updatedMetrics.mobileConversations + 1
       } else {
-        updatedMetrics.nonMobileConversations = updatedMetrics.nonMobileConversations + 1
+        if (!currMetric.userBrowsers[browser]) {
+          updatedMetrics.userBrowsers[browser] = 0
+        } else {
+          updatedMetrics.userBrowsers = {
+            ...(currMetric.userBrowsers),
+            [browser]: currMetric.userBrowsers[browser] + 1
+          }
+        }
+      }
+
+
+
+      if (!currMetric.mobileConversations) {
+        updatedMetrics.mobileConversations = 0
+      } else {
+        if (isMobile) {
+          updatedMetrics.mobileConversations = currMetric.mobileConversations + 1
+        }
+      }
+
+      if (!currMetric.nonMobileConversations) {
+        updatedMetrics.nonMobileConversations = 0
+      } else {
+        if (!isMobile) {
+          updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations + 1
+        }
       }
     } else {
       updatedMetrics.mobileConversations = currMetric.mobileConversations
