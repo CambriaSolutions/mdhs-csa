@@ -61,10 +61,10 @@
           "type": "4",
           "title": "",
           "payload": {
+            "handleEndConversation": true,
             "suggestions": [
               "PROVIDERS LOCATION"
-            ],
-            "handleEndConversation": true
+            ]
           },
           "textToSpeech": "",
           "lang": "en",

@@ -1,7 +1,14 @@
 import { keyBy, map, reduce, orderBy, mapValues } from 'lodash'
 import { format, differenceInCalendarDays, differenceInCalendarMonths, startOfWeek } from 'date-fns'
 
-const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
+
+// This function is meant to be used specifically with
+// date strings in the format mm-dd-yyyy (i.e. without time component)
+const toDate = (dateString) => {
+  const [month, day, year] = dateString.split('-')
+  return new Date(year, month, day)
+}
 
 // If a day has no data (maybe it was the weekend), then we fill in that data with zeroes.
 // NOTE - This will not fill in the specific support requests types with zeroes.
@@ -44,7 +51,7 @@ const fillMissingData = (metrics, filterStartDate, filterEndDate) => {
 // every day has a property for each support ticket type, and defaults to zero when necessary.
 const sortAndFillSupportRequestBlanks = (data, typesOfSupportRequests) => {
   // Sort by date
-  const dataSorted = orderBy(data, x => new Date(x.id).getTime())
+  const dataSorted = orderBy(data, x => toDate(x.id).getTime())
 
   // Create an object that contains all the types of support requests (as keys), and their values are 0
   // We do it this way to keep this logic generic and future proof in case new types of support requests are added
@@ -68,6 +75,7 @@ const prepareDataForComposedChartByDay = (rawData, filterStartDate, filterEndDat
   const typesOfSupportRequests = new Set()
   const mappedData = map(data, day => ({
     id: day.id,
+    label: day.id,
     numConversations: day.numConversations,
     numConversationsWithDuration: day.numConversationsWithDuration,
     // Add each type of support ticket as a piece of data at root level for use by line chart. 
@@ -92,20 +100,24 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
 
   const aggregatedData = reduce(data, function (result, day) {
     let key = ''
+    let label = ''
 
     if (aggregationType === 'monthly') {
-      key = `${new Date(day.id).getFullYear()}-${new Date(day.id).getMonth() + 1}`
+      label = `${toDate(day.id).getFullYear()}-${toDate(day.id).getMonth() + 1}`
+      key = `${toDate(day.id).getMonth() + 1}-${toDate(day.id).getDate()}-${toDate(day.id).getFullYear()}`
     } else if (aggregationType === 'weekly') {
-      const _startOfWeek = startOfWeek(new Date(day.id))
+      // If we are display by week, then the x-axis label will be the start of the week.
+      const _startOfWeek = startOfWeek(toDate(day.id))
 
-      // Create an object where each key is the year and month eg '2020-1'
-      key = `${_startOfWeek.getMonth() + 1}-${_startOfWeek.getDate()}`
+      label = `${_startOfWeek.getMonth() + 1}-${_startOfWeek.getDate()}`
+      key = `${_startOfWeek.getMonth() + 1}-${_startOfWeek.getDate()}-${_startOfWeek.getFullYear()}`
     }
 
     // Create this property (year and month) if it doesn't exist yet
     if (!result[key]) {
       result[key] = {
-        id: key
+        id: key,
+        label
       }
     }
 
@@ -137,10 +149,11 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
 
 export const prepareDataForComposedChart = (data, filterLabel, filterStartDate, filterEndDate) => {
   const totalCalendarMonths = differenceInCalendarMonths(new Date(filterEndDate), new Date(filterStartDate)) + 1
+  const totalCalendarDays = differenceInCalendarDays(new Date(filterEndDate), new Date(filterStartDate)) + 1
 
   // If the date filter spans more than 1 month and less than 3, we display data as weeks. 
   // If it spans 3 or more, we display monthly.
-  if (totalCalendarMonths === 2 && filterLabel !== 'Last 30 days') {
+  if (totalCalendarMonths === 2 && filterLabel !== 'Last 30 days' && totalCalendarDays > 14) {
     return prepareDataForComposedChartByAggregationType('weekly', data, filterStartDate, filterEndDate)
   } else if (totalCalendarMonths >= 3) {
     return prepareDataForComposedChartByAggregationType('monthly', data, filterStartDate, filterEndDate)

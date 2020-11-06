@@ -1,0 +1,106 @@
+[
+  {
+    "id": "cc110f00-75d8-409b-819c-ef41b517efaa",
+    "data": [
+      {
+        "text": "Disaster assistance",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c06ac8da-2ee1-4ac9-888c-e203023d790b",
+    "data": [
+      {
+        "text": "How to apply for disaster snap. My power has been off ",
+        "userDefined": false
+      },
+      {
+        "text": "since October 9",
+        "meta": "@sys.date-period",
+        "alias": "date-period",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a5bfbcec-70fe-4541-83d7-6fbe8adfdae1",
+    "data": [
+      {
+        "text": "Loss food application",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2947c216-674e-4b4d-ab32-101dd104bbfe",
+    "data": [
+      {
+        "text": "I\u0027m try fill out paperwork for emergency stamp",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "26cb6bf5-bd88-4d95-b0fd-7e12f507d769",
+    "data": [
+      {
+        "text": "How to fill out application for snap for loss of food during hurricane delta",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a4b15387-45b9-46da-951f-b7e3d5d5bc1e",
+    "data": [
+      {
+        "text": "How do I apply for food loss due to the storm I was without lights for some three days from Friday night ",
+        "userDefined": false
+      },
+      {
+        "text": "until Monday",
+        "meta": "@sys.date-period",
+        "alias": "date-period",
+        "userDefined": false
+      },
+      {
+        "text": " afternoon around 315or",
+        "userDefined": false
+      },
+      {
+        "text": "320 pm",
+        "meta": "@sys.unit-length",
+        "alias": "unit-length",
+        "userDefined": false
+      },
+      {
+        "text": " that came back on  my case is closed right here will I be able to get help",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

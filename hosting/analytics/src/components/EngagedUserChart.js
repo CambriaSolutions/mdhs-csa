@@ -47,7 +47,7 @@ const EngagedUserChart = props => {
       </Header>
       <ComposedChart
         data={data}
-        xKey='id'>
+        xKey='label'>
         <Line type="monotone" dataKey="numConversationsWithDuration" stroke={darkestColor} name="Engaged Users" />
         <Legend />
         <Tooltip content={<CustomTooltip />} />

@@ -78,6 +78,7 @@ interface Props {
   };
   feedbackUrl: string;
   activationText: string;
+  reportErrorUrl: string;
 }
 
 class ChatFrame extends PureComponent<Props> {
