@@ -67,7 +67,7 @@ const SupportRequestChart = props => {
       </Header>
       <ComposedChart
         data={data}
-        xKey='id'>
+        xKey='label'>
         <Line type="monotone" dataKey={filter} stroke={props.colors[0]} />
         <Tooltip content={<CustomTooltip />} />
       </ComposedChart>

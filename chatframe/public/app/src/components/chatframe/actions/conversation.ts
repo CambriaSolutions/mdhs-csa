@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import { reportError } from '../reportError'
 import {
   SAVE_USER_RESPONSE,
   DISPLAY_ERROR,
@@ -9,7 +10,7 @@ import { setupDialogflow, sendMessageWithDialogflow } from './dialogflow'
 import { sysTimeFormat } from '../config/dateFormats'
 
 export function setupClient(client, clientOptions) {
-  return dispatch => {
+  return (dispatch, getState) => {
     try {
       if (!client) {
         throw new Error('No conversation provider selected.')
@@ -26,8 +27,7 @@ export function setupClient(client, clientOptions) {
         throw new Error(`${client} is not a recognized conversation provider.`)
       }
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      reportError(error, getState().config.reportErrorUrl).then()
     }
   }
 }
@@ -43,8 +43,8 @@ export function sendMessage(message) {
         )
       }
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      reportError(error, getState().config.reportErrorUrl).then()
+
       // Unrecognized client
       dispatch({
         type: DISPLAY_ERROR,

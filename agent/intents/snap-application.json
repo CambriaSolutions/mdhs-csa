@@ -12,7 +12,7 @@
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "d580aa09-d614-47f8-a409-7b7b52d4c371",
+          "id": "f4c25990-fc89-4fa7-bb97-5c9b5e775ebc",
           "name": "number",
           "required": false,
           "dataType": "@sys.number",
@@ -30,6 +30,40 @@
         {
           "type": "0",
           "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Supplemental Nutrition Assistance Program (SNAP), formerly known as the food stamp program, provides benefits that help households buy the food they need for good health."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Please  \u003ca href\u003d\"https://www.access.ms.gov/Application\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to start a new SNAP application."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If you need additional help, please see resources available in your area by clicking \u003ca href\u003d\"https://myresources.mdhs.ms.gov/\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": true
+          },
           "textToSpeech": "",
           "lang": "en",
           "condition": ""

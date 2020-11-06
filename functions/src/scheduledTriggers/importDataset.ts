@@ -75,7 +75,6 @@ const _importDataset = async (subjectMatter) => {
         }
       )
 
-      // TODO better way to check for fail/success here
       if (!file) {
         console.error('Error upload file to GS bucket. requestResponse: ' + JSON.stringify(requestResponse))
       } else {
@@ -182,7 +181,8 @@ async function updateCategoryModel(admin, store, projectId, fileName, phraseCate
 }
 
 export const importDataset = async () => {
-  // TODO - hardcoded cse
+  // This will require refactoring when additional subject matters utilize auto ML.
+  // For now, the only applicable subject matter will be CSE
   const subjectMatters = ['cse']
 
   //for (const subjectMatterIndex in subjectMatters) {

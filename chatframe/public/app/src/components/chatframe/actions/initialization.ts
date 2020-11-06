@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import { reportError } from '../reportError'
 import {
   SET_TITLE,
   SHOW_WINDOW,
@@ -13,6 +14,7 @@ import {
   SET_CENTER_COORDINATES,
   SET_ACTIVATION_TEXT,
   SET_FEEDBACK_URL,
+  SET_REPORT_ERROR_URL,
 } from './actionTypes'
 
 import { setupClient } from './conversation'
@@ -56,6 +58,7 @@ export function initialize(props) {
       mapConfig,
       activationText,
       feedbackUrl,
+      reportErrorUrl,
     } = props
 
     dispatch({ type: SET_TITLE, title })
@@ -71,6 +74,10 @@ export function initialize(props) {
 
     if (feedbackUrl) {
       dispatch({ type: SET_FEEDBACK_URL, feedbackUrl })
+    }
+
+    if (reportErrorUrl) {
+      dispatch({ type: SET_REPORT_ERROR_URL, reportErrorUrl })
     }
 
     if (mapConfig) {
@@ -95,8 +102,7 @@ export function initialize(props) {
             )
           }
         } catch (error) {
-          // TODO: log error to analytics
-          console.log(error)
+          reportError(error, reportErrorUrl).then()
         }
       }
     }

@@ -1,5 +1,83 @@
 [
   {
+    "id": "477b3969-c50f-4403-8f76-2efe20e9dc9b",
+    "data": [
+      {
+        "text": "I am afraid the father will kill the child.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f2bccd42-e8eb-4d70-9b3e-4f361588ac18",
+    "data": [
+      {
+        "text": "I think my child is going to die because the father will not feed her.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f001d61b-169c-4bcd-9f0c-a6f326996cae",
+    "data": [
+      {
+        "text": "he is gonna kill us",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ba9f0c6d-8cff-4ff3-b6b0-c4c5950fdb2b",
+    "data": [
+      {
+        "text": "what if I\u0027m dying",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4868388b-bef2-4868-92a8-08c32feed8d2",
+    "data": [
+      {
+        "text": "the father is threatening that he will kill her",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3002363d-cd69-4df5-a31c-8e722032a434",
+    "data": [
+      {
+        "text": "I\u0027m dying, I need help",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "b0e8440b-b998-410e-88ad-f8fd57a83a06",
     "data": [
       {

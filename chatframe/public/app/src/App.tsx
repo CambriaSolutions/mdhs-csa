@@ -10,6 +10,7 @@ const policyText =
   'Please do not enter any personally identifiable information such as SSN or Date of Birth'
 
 const feedbackUrl: any = process.env.REACT_APP_FEEDBACK_URL
+const reportErrorUrl: any = process.env.REACT_APP_REPORT_ERROR_URL
 
 export const mapConfig: any = {
   googleMapsKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -37,6 +38,7 @@ class App extends Component {
         policyText={policyText}
         mapConfig={mapConfig}
         feedbackUrl={feedbackUrl}
+        reportErrorUrl={reportErrorUrl}
         activationText={activationText}
       />
     )
