@@ -13,10 +13,6 @@
         {
           "name": "wfd-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-restart-conversation",
-          "lifespan": 2
         }
       ],
       "parameters": [],
@@ -59,7 +55,7 @@
               "PROVIDERS LOCATION",
               "DO I QUALIFY?",
               "MDHS LOCATIONS",
-              "MYRESOURCES",
+              "MY RESOURCES",
               "HOW CAN I APPLY?"
             ]
           },
