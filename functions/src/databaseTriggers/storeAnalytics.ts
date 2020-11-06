@@ -178,35 +178,17 @@ const storeMetrics = async (
       numConversations += 1
       updatedMetrics.numConversations = numConversations
 
-      if (!currMetric.userBrowsers) {
-        updatedMetrics.userBrowsers = {}
-      } else {
-        if (!currMetric.userBrowsers[browser]) {
-          updatedMetrics.userBrowsers[browser] = 0
-        } else {
-          updatedMetrics.userBrowsers = {
-            ...(currMetric.userBrowsers),
-            [browser]: currMetric.userBrowsers[browser] + 1
-          }
-        }
+      updatedMetrics.userBrowsers = {
+        ...(currMetric.userBrowsers),
+        [browser]: currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
       }
 
-
-
-      if (!currMetric.mobileConversations) {
-        updatedMetrics.mobileConversations = 0
+      if (isMobile) {
+        updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations + 1 : 1
+        updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations : 0
       } else {
-        if (isMobile) {
-          updatedMetrics.mobileConversations = currMetric.mobileConversations + 1
-        }
-      }
-
-      if (!currMetric.nonMobileConversations) {
-        updatedMetrics.nonMobileConversations = 0
-      } else {
-        if (!isMobile) {
-          updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations + 1
-        }
+        updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations : 0
+        updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations + 1 : 1
       }
     } else {
       updatedMetrics.mobileConversations = currMetric.mobileConversations
