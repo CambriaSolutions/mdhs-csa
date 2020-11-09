@@ -1,4 +1,4 @@
-import { mapRoot } from './common/map.js'
+import { mapRoot } from './common/map'
 
 // Payment calculator intents
 import {
@@ -13,7 +13,7 @@ import {
   pmtCalcChildSupportNoRetirement,
   pmtCalcFinalEstimation,
   pmtCalcFinalEstimationNoOtherChildren,
-} from './childSupport/paymentsCalculator.js'
+} from './childSupport/paymentsCalculator'
 
 // Payment methods intents
 import {
@@ -22,22 +22,22 @@ import {
   pmtMethodsCantMakeQualifyingNoHelp,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsMailAddress
-} from './childSupport/paymentMethods.js'
+} from './childSupport/paymentMethods'
 
 // Close Child Support Case
-import { closeCSCQACloseCase } from './childSupport/closeChildSupportCase.js'
+import { closeCSCQACloseCase } from './childSupport/closeChildSupportCase'
 
 // Case specific intents
 import {
   caseQAIncreaseReview,
   caseQAChangePersonalInfo,
   caseQAComplianceSupportRequest,
-} from './childSupport/caseQA.js'
+} from './childSupport/caseQA'
 
 // Appointments intents
 import {
   apptsOfficeLocationsHandoff,
-} from './childSupport/appointments.js'
+} from './childSupport/appointments'
 
 // Support intents
 import {
@@ -78,7 +78,7 @@ import {
 } from './childSupport/support'
 
 // EppiCard intents
-import { eppiFees } from './childSupport/eppiCard.js'
+import { eppiFees } from './childSupport/eppiCard'
 
 // IWO intents
 import {
@@ -87,12 +87,12 @@ import {
   iwoConfirmEstimate,
   iwoDisposableIncome,
   iwoQAArrearsBalance,
-} from './childSupport/incomeWithholding.js'
+} from './childSupport/incomeWithholding'
 
 // Contact QA
 import {
   contactSupportHandoff,
-} from './childSupport/contactQA.js'
+} from './childSupport/contactQA'
 
 // Payments QA
 import {
@@ -103,19 +103,19 @@ import {
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
   pmtQANCPPaymentStatus
-} from './childSupport/paymentsQA.js'
+} from './childSupport/paymentsQA'
 
 // TBD
-import { childCare } from './childSupport/childCare.js'
-import { email } from './childSupport/email.js'
-import { fax } from './childSupport/fax.js'
-import { fee } from './childSupport/fee.js'
-import { legal } from './childSupport/legal.js'
-import { login } from './childSupport/login.js'
-import { other } from './childSupport/other.js'
-import { paymentTimelines } from './childSupport/paymentTimelines.js'
-import { phoneNumber } from './childSupport/phoneNumber.js'
-import { refund } from './childSupport/refund.js'
+import { childCare } from './childSupport/childCare'
+import { email } from './childSupport/email'
+import { fax } from './childSupport/fax'
+import { fee } from './childSupport/fee'
+import { legal } from './childSupport/legal'
+import { login } from './childSupport/login'
+import { other } from './childSupport/other'
+import { paymentTimelines } from './childSupport/paymentTimelines'
+import { phoneNumber } from './childSupport/phoneNumber'
+import { refund } from './childSupport/refund'
 
 export const childSupportIntentHandlers = {
   // Contact number intents

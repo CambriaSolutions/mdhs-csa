@@ -1,5 +1,5 @@
 import { find, split, head } from 'lodash'
-import { subjectMatterContexts } from '../constants/constants.js'
+import { subjectMatterContexts } from '../constants/constants'
 
 // Gets the subject matter from active context
 export const getSubjectMatter = (agent) => {

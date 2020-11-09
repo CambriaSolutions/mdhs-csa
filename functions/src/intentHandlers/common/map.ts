@@ -26,7 +26,7 @@ export const mapRoot = (subjectMatter) => async agent => {
 }
 
 const determiningGeocode = async agent => {
-  const { getGeocode } = await import('./calculateGeo.js')
+  const { getGeocode } = await import('./calculateGeo')
 
   const validator = await import('validator')
 
@@ -71,7 +71,7 @@ const determiningGeocode = async agent => {
 // handler function that you would normally use
 export const mapDeliverMap = (subjectMatter, locations) => async agent => {
   try {
-    const { getNearestThreeLocations } = await import('./calculateGeo.js')
+    const { getNearestThreeLocations } = await import('./calculateGeo')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
@@ -115,7 +115,7 @@ export const mapDeliverMap = (subjectMatter, locations) => async agent => {
 
 export const mapDeliverMapAndCountyOffice = (subjectMatter, locations) => async agent => {
   try {
-    const { getNearestThreeLocations } = await import('./calculateGeo.js')
+    const { getNearestThreeLocations } = await import('./calculateGeo')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
