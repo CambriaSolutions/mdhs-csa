@@ -1,5 +1,5 @@
-import { commonFallback, noneOfThese } from './common/commonFallback.js'
-import { docUpload } from './common/docUpload.js'
+import { commonFallback, noneOfThese } from './common/commonFallback'
+import { docUpload } from './common/docUpload'
 
 // Feedback
 import {
@@ -7,7 +7,7 @@ import {
   feedbackHelpful,
   feedbackNotHelpful,
   feedbackComplete,
-} from './common/feedback.js'
+} from './common/feedback'
 
 export const commonIntentHandlers = {
   'none-of-these': noneOfThese,

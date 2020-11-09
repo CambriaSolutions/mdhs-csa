@@ -19,9 +19,9 @@ import {
   handleContactCollection,
   formatCardText,
   formatSummary,
-} from './supportHelperFunctions.js'
+} from './supportHelperFunctions'
 
-import { sendToServiceDesk } from './postToServiceDesk.js'
+import { sendToServiceDesk } from './postToServiceDesk'
 
 export const supportRoot = async agent => {
   await startSupportConvo(agent)
