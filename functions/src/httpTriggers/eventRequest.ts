@@ -1,4 +1,6 @@
-export const eventRequest = async (req, res) => {
+import * as functions from 'firebase-functions'
+
+export const eventRequest = async (req: functions.https.Request, res: functions.Response<any>) => {
   if (!req.query || !req.query.query) {
     return 'The "query" parameter is required'
   }

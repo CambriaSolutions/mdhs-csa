@@ -146,7 +146,9 @@ const storeMetrics = async (
   newConversationFirstDuration,
   shouldCalculateDuration,
   isFallbackIntent,
-  fallbackTriggeringQuery
+  fallbackTriggeringQuery,
+  browser,
+  isMobile
 ) => {
   const currentDate = getDateWithSubjectMatterTimezone(timezoneOffset)
   const dateKey = format(currentDate, 'MM-dd-yyyy')
@@ -175,6 +177,23 @@ const storeMetrics = async (
       // This is a new conversation, but doesn't have a duration yet
       numConversations += 1
       updatedMetrics.numConversations = numConversations
+
+      updatedMetrics.userBrowsers = {
+        ...(currMetric.userBrowsers),
+        [browser]: currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
+      }
+
+      if (isMobile) {
+        updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations + 1 : 1
+        updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations : 0
+      } else {
+        updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations : 0
+        updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations + 1 : 1
+      }
+    } else {
+      updatedMetrics.mobileConversations = currMetric.mobileConversations
+      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations
+      updatedMetrics.userBrowsers = currMetric.userBrowsers
     }
 
     // Update average conversation duration
@@ -365,6 +384,11 @@ const storeMetrics = async (
       numFallbacks: 0,
       fallbackTriggeringQueries: [],
       noneOfTheseCategories: [],
+      userBrowsers: {
+        [browser]: 1
+      },
+      mobileConversations: isMobile ? 1 : 0,
+      nonMobileConversations: !isMobile ? 1 : 0,
       supportRequests: supportRequestType
         ? [
           {
@@ -380,8 +404,36 @@ const storeMetrics = async (
   }
 }
 
+interface ConversationSnapshot {
+  originalDetectIntentRequest: {
+    payload: {
+      browser: string,
+      isMobile: boolean
+    }
+  },
+  session: string,
+  intentId: string,
+  queryResult:
+  {
+    allRequiredParamsPresent: boolean,
+    languageCode: 'en',
+    intent:
+    {
+      displayName: string,
+      name: string
+    },
+    intentDetectionConfidence: number,
+    outputContexts: Array<any>,
+    queryText: string,
+    action: string,
+    parameters: {}
+  },
+  createdAt: { _seconds: number, _nanoseconds: number },
+  responseId: string
+}
+
 // Calculate metrics based on requests
-const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
+const calculateMetrics = async (admin, store, reqData: ConversationSnapshot, subjectMatter) => {
   const currTimestamp = new Date()
 
   // const context = `projects/${projectName}`
@@ -398,6 +450,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
   // Get subject matter settings
   const settings = await getSubjectMatterSettings(store, subjectMatter)
   const timezoneOffset = settings.timezone.offset
+
+  const browser = reqData.originalDetectIntentRequest.payload.browser
+  const isMobile = reqData.originalDetectIntentRequest.payload.isMobile
 
   // Check if the query has the should-inspect-for-ml parameter
   if (reqData.queryResult.outputContexts) {
@@ -530,6 +585,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       }
     }
 
+    conversation.browser = browser
+    conversation.isMobile = isMobile
+
     await conversationRef.update(conversation)
   } else {
     // Conversation data doesn't exist for this id
@@ -544,6 +602,8 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
       hasSupportRequest && supportType !== '' ? [supportType] : []
     conversation.fallbackTriggeringQuery = ''
     conversation.feedback = []
+    conversation.browser = browser
+    conversation.isMobile = isMobile
 
     await conversationRef.set(conversation)
   }
@@ -565,7 +625,9 @@ const calculateMetrics = async (admin, store, reqData, subjectMatter) => {
     newConversationFirstDuration,
     shouldCalculateDuration,
     isFallbackIntent,
-    conversation.fallbackTriggeringQuery
+    conversation.fallbackTriggeringQuery,
+    browser,
+    isMobile
   )
 }
 

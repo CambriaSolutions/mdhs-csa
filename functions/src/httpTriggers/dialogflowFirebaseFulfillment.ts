@@ -1,3 +1,5 @@
+import * as functions from 'firebase-functions'
+
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
@@ -28,7 +30,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-export const dialogflowFirebaseFulfillment = async (request, response) => {
+export const dialogflowFirebaseFulfillment = async (request: functions.https.Request, response: functions.Response<any>) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
       // Using a health check endpoint to keep the function warm

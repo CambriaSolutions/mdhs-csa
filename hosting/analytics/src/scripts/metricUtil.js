@@ -1,4 +1,4 @@
-import { keyBy, map, reduce, orderBy, mapValues } from 'lodash'
+import { keyBy, map, reduce, orderBy, mapValues, forEach } from 'lodash'
 import { format, differenceInCalendarDays, differenceInCalendarMonths, startOfWeek } from 'date-fns'
 
 const dateAdd = (date, days) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
@@ -171,6 +171,30 @@ export const aggregatePersonaMetricsForPieChart = (dailyMetrics) => {
     })
 
   }, { Employer: 0, CP: 0, NCP: 0 })
+
+  return map(aggregatedData, (value, key) => ({ name: key, count: value }))
+}
+
+export const aggregateBrowserMetricsForPieChart = (dailyMetrics) => {
+  const aggregatedData = reduce(dailyMetrics, (result, dayMetrics) => {
+    const newResults = { ...result }
+    forEach(dayMetrics.userBrowsers, (value, index) => {
+      newResults[index] = newResults[index] ? newResults[index] + value : 1
+    })
+
+    return newResults
+  }, {})
+
+  return map(aggregatedData, (value, key) => ({ name: key, count: value }))
+}
+
+export const aggregatePlatformMetricsForPieChart = (dailyMetrics) => {
+  const aggregatedData = reduce(dailyMetrics, (result, dayMetrics) => {
+    return ({
+      Mobile: result.Mobile + (dayMetrics.mobileConversations ? dayMetrics.mobileConversations : 0),
+      Desktop: result.Desktop + (dayMetrics.nonMobileConversations ? dayMetrics.nonMobileConversations : 0)
+    })
+  }, { Mobile: 0, Desktop: 0 })
 
   return map(aggregatedData, (value, key) => ({ name: key, count: value }))
 }
