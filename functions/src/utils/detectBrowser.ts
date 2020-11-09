@@ -4,7 +4,7 @@ export const detectBrowser = (userAgentString) => {
     userAgentString.indexOf('Chrome') > -1
 
   // Detect Internet Explorer 
-  const IExplorerAgent =
+  let IExplorerAgent =
     userAgentString.indexOf('MSIE') > -1 ||
     userAgentString.indexOf('rv:') > -1
 
@@ -19,6 +19,10 @@ export const detectBrowser = (userAgentString) => {
   // Detect Edge 
   const edgeAgent =
     userAgentString.indexOf('Edge') > -1
+
+  // Discard IE since it also matches Firefox 
+  if ((IExplorerAgent) && (firefoxAgent))
+    IExplorerAgent = false
 
   // Discard Safari since it also matches Chrome 
   if ((chromeAgent) && (safariAgent))
