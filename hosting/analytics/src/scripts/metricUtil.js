@@ -179,7 +179,7 @@ export const aggregateBrowserMetricsForPieChart = (dailyMetrics) => {
   const aggregatedData = reduce(dailyMetrics, (result, dayMetrics) => {
     const newResults = { ...result }
     forEach(dayMetrics.userBrowsers, (value, index) => {
-      newResults[index] = newResults[index] ? newResults[index] + value : 1
+      newResults[index] = newResults[index] ? newResults[index] + value : value
     })
 
     return newResults
