@@ -180,7 +180,7 @@ const storeMetrics = async (
 
       updatedMetrics.userBrowsers = {
         ...(currMetric.userBrowsers),
-        [browser]: currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
+        [browser]: currMetric.userBrowsers && currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
       }
 
       if (isMobile) {
