@@ -40,6 +40,7 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
       const { WebhookClient } = await import('dialogflow-fulfillment')
       const { back } = await import('../intentHandlers/back')
       const { globalRestart } = await import('../intentHandlers/globalRestart')
+      const { localRestart } = await import('../intentHandlers/localRestat')
       const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
       const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
       const { commonIntentHandlers } = await import('../intentHandlers/commonIntentHandlers')
@@ -110,12 +111,13 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
       // In case of Start Over and Go Back this may be needed during parameter entry.
       // Home and Start Over are essentially the same button, but which we
       // receive is based the version of the front end plug in. That is why we check for both
-      if ((isActionRequested(request.body, 'Start Over') || isActionRequested(request.body, 'Home')) && agent.context.get('waiting-global-restart') !== undefined) {
+      if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       }
 
+      await localRestart(agent)
       await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
