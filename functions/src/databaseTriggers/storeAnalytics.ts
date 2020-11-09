@@ -191,9 +191,9 @@ const storeMetrics = async (
         updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations + 1 : 1
       }
     } else {
-      updatedMetrics.mobileConversations = currMetric.mobileConversations
-      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations
-      updatedMetrics.userBrowsers = currMetric.userBrowsers
+      updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations : 0
+      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations : 0
+      updatedMetrics.userBrowsers = currMetric.userBrowsers ? currMetric.userBrowsers : 0
     }
 
     // Update average conversation duration
@@ -346,6 +346,10 @@ const storeMetrics = async (
         })
       }
     }
+
+    console.log('currMetric.mobileConversations: ' + currMetric.mobileConversations)
+    console.log('currMetric.nonMobileConversations: ' + currMetric.nonMobileConversations)
+    console.log('updatedMetrics object' + JSON.stringify(updatedMetrics))
 
     // Update the metrics collection for this request
     await metricsRef.update(updatedMetrics)
