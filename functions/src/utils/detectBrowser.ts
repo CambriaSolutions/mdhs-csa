@@ -1,4 +1,5 @@
 export const detectBrowser = (userAgentString) => {
+  console.log('User Agent: ' + userAgentString)
   // Detect Chrome 
   let chromeAgent =
     userAgentString.indexOf('Chrome') > -1
