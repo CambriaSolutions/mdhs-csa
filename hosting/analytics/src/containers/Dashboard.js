@@ -368,7 +368,7 @@ class Dashboard extends Component {
             }
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <h3>Browsers Used</h3>
+                <h3>Browser Distribution</h3>
                 <PieChart
                   data={aggregateBrowserMetricsForPieChart(this.props.dailyMetrics)}
                   dataKey='count'
@@ -378,7 +378,7 @@ class Dashboard extends Component {
             </Grid>
             <Grid item xs={12} sm={6}>
               <GraphWrap>
-                <h3>Platform Distribution</h3>
+                <h3>Device Distribution</h3>
                 <PieChart
                   data={aggregatePlatformMetricsForPieChart(this.props.dailyMetrics)}
                   dataKey='count'
