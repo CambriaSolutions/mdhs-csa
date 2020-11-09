@@ -347,10 +347,6 @@ const storeMetrics = async (
       }
     }
 
-    console.log('currMetric.mobileConversations: ' + currMetric.mobileConversations)
-    console.log('currMetric.nonMobileConversations: ' + currMetric.nonMobileConversations)
-    console.log('updatedMetrics object' + JSON.stringify(updatedMetrics))
-
     // Update the metrics collection for this request
     await metricsRef.update(updatedMetrics)
   } else {
