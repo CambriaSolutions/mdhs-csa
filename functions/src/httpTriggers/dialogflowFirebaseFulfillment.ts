@@ -40,7 +40,7 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
       const { WebhookClient } = await import('dialogflow-fulfillment')
       const { back } = await import('../intentHandlers/back')
       const { globalRestart } = await import('../intentHandlers/globalRestart')
-      const { localRestart } = await import('../intentHandlers/localRestat')
+      const { localRestart } = await import('../intentHandlers/localRestart')
       const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
       const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
       const { commonIntentHandlers } = await import('../intentHandlers/commonIntentHandlers')
@@ -117,7 +117,7 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
         agent.intent = 'go-back'
       }
 
-      await localRestart(agent)
+      await localRestart(agent, intentHandlers)
       await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
