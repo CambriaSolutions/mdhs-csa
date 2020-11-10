@@ -30,6 +30,22 @@
         {
           "name": "wfd-enableHome",
           "lifespan": 1
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "snap-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "tanf-subject-matter",
+          "lifespan": 0
+        },
+        {
+          "name": "wfd-subject-matter",
+          "lifespan": 0
         }
       ],
       "parameters": [],
