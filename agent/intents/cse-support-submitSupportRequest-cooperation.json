@@ -3,13 +3,19 @@
   "name": "cse-support-submitSupportRequest-cooperation",
   "auto": true,
   "contexts": [
-    "waiting-support-submitSupportRequest-cooperation"
+    "waiting-support-submitSupportRequest-cooperation",
+    "cse-subject-matter"
   ],
   "responses": [
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
+        }
+      ],
       "parameters": [],
       "messages": [
         {
