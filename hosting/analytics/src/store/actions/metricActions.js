@@ -398,7 +398,7 @@ export const fetchMetricsTotal = (dateRange) => {
       }, {})
 
       // Merge the metrics from the "general" subject matter, and metrics from the actual subject matters.
-      // NOTE: we use user metrics from the "general" subject matter, but the support request metrics
+      // NOTE: we use *user*, *browser*, and *device* metrics from the "general" subject matter, but the support request metrics
       // from the individual subject matters
       const mergedMetrics = reduce(generalMetrics, (result, m) => ({
         ...result,
@@ -411,7 +411,10 @@ export const fetchMetricsTotal = (dateRange) => {
           ...aggregatedSubjectMatterMetricsById[m.id],
           // Append the user metrics
           numConversations: m.numConversations,
-          numConversationsWithDuration: m.numConversationsWithDuration
+          numConversationsWithDuration: m.numConversationsWithDuration,
+          mobileConversations: m.mobileConversations,
+          nonMobileConversations: m.nonMobileConversations,
+          userBrowsers: m.userBrowsers
         }
       }), aggregatedSubjectMatterMetricsById)
 

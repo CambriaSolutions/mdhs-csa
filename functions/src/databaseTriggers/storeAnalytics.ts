@@ -180,7 +180,7 @@ const storeMetrics = async (
 
       updatedMetrics.userBrowsers = {
         ...(currMetric.userBrowsers),
-        [browser]: currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
+        [browser]: currMetric.userBrowsers && currMetric.userBrowsers[browser] ? currMetric.userBrowsers[browser] + 1 : 1
       }
 
       if (isMobile) {
@@ -191,9 +191,9 @@ const storeMetrics = async (
         updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations + 1 : 1
       }
     } else {
-      updatedMetrics.mobileConversations = currMetric.mobileConversations
-      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations
-      updatedMetrics.userBrowsers = currMetric.userBrowsers
+      updatedMetrics.mobileConversations = currMetric.mobileConversations ? currMetric.mobileConversations : 0
+      updatedMetrics.nonMobileConversations = currMetric.nonMobileConversations ? currMetric.nonMobileConversations : 0
+      updatedMetrics.userBrowsers = currMetric.userBrowsers ? currMetric.userBrowsers : 0
     }
 
     // Update average conversation duration

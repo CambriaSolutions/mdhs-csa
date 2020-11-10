@@ -366,7 +366,7 @@ export const formatCardText = (ticketinfo, requests) => {
 
 // Format the summary depending on support type
 export const formatSummary = async ({ supportType, employmentChangeType }) => {
-  const { toTitleCase } = await import('../globalFunctions.js')
+  const { toTitleCase } = await import('../globalFunctions')
 
   let supportSummary
   if (supportType === 'child support increase or decrease') {

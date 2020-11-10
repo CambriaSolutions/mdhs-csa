@@ -15,6 +15,10 @@ function fetchIntent(url) {
 }
 
 export class Client {
+  textUrl = ''
+  eventUrl = ''
+  uuid = ''
+
   constructor(options) {
     if (!options || !options.textUrl) {
       throw new Error(

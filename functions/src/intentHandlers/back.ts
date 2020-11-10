@@ -1,6 +1,6 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 import { map, first, filter, find } from 'lodash'
-import { genericHandler } from '../utils/fulfillmentMessages.js'
+import { genericHandler } from '../utils/fulfillmentMessages'
 
 /************************************************************************************************
  * The snapshotCurrentState takes the agent as a parameter and continually appends the current
@@ -117,11 +117,11 @@ const backFunction = (agent, intentMap) => {
  ************************************************************************************************/
 
 const fulfillmentWrapper = (agent, intentMap) => {
-  const currentIntentFullfillmentFunction = intentMap[agent.intent]
+  const currentIntentFulfillmentFunction = intentMap[agent.intent]
   const prevIntents = agent.context.get('previous-agent-states')
 
   const maskFunction = async agent => {
-    await currentIntentFullfillmentFunction(agent)
+    await currentIntentFulfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
       lifespan: 999,

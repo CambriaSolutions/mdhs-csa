@@ -1,6 +1,6 @@
-import { snapRoot } from './snap/snapRoot.js'
-import { eligibilityChecker } from './common/eligibilityChecker.js'
-import { mapRoot } from './common/map.js'
+import { snapRoot } from './snap/snapRoot'
+import { eligibilityChecker } from './common/eligibilityChecker'
+import { mapRoot } from './common/map'
 import { pebtRoot } from './common/pebt'
 
 export const snapIntentHandlers = {
