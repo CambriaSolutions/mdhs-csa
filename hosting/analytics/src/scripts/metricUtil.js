@@ -104,7 +104,7 @@ const prepareDataForComposedChartByAggregationType = (aggregationType, rawData, 
 
     if (aggregationType === 'monthly') {
       label = `${toDate(day.id).getFullYear()}-${toDate(day.id).getMonth() + 1}`
-      key = `${toDate(day.id).getMonth() + 1}-${toDate(day.id).getDate()}-${toDate(day.id).getFullYear()}`
+      key = `${toDate(day.id).getMonth() + 1}-1-${toDate(day.id).getFullYear()}`
     } else if (aggregationType === 'weekly') {
       // If we are display by week, then the x-axis label will be the start of the week.
       const _startOfWeek = startOfWeek(toDate(day.id))

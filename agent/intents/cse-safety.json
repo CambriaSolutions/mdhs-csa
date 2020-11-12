@@ -2,7 +2,9 @@
   "id": "80416c52-5c31-4823-a100-8e6fa8080115",
   "name": "cse-safety",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "cse-subject-matter"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -12,6 +14,10 @@
           "name": "waiting-support-submitSupportRequest-safety",
           "lifespan": 1,
           "parameters": {}
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
         }
       ],
       "parameters": [],

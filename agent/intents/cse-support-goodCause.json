@@ -2,7 +2,9 @@
   "id": "c7204ea3-bc22-498f-afd1-b1a9f5b8127a",
   "name": "cse-support-goodCause",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "cse-subject-matter"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -17,6 +19,10 @@
           "name": "waiting-support-parent-receiving-more",
           "lifespan": 3,
           "parameters": {}
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
         }
       ],
       "parameters": [],
