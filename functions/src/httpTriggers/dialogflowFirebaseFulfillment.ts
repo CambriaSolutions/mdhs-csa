@@ -117,7 +117,7 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
         agent.intent = 'go-back'
       }
 
-      await localRestart(agent, intentHandlers)
+      await localRestart(agent, intentHandlers, subjectMatter)
       await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
