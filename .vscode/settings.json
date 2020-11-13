@@ -27,4 +27,17 @@
   "git.autofetch": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "cSpell.words": [
+    "COVID",
+    "Convo",
+    "Geocode",
+    "MDHS",
+    "appts",
+    "libphonenumber",
+    "mailto",
+    "myresources",
+    "pebt",
+    "ticketinfo",
+    "timeframe"
+  ],
 }
