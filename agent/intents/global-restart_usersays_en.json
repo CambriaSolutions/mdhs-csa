@@ -130,45 +130,6 @@
     "updated": 0
   },
   {
-    "id": "25009b94-4269-45e4-a0d1-5f8406dc1837",
-    "data": [
-      {
-        "text": "home",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "03ce4274-e8b7-4a8c-b19d-359e60858eaa",
-    "data": [
-      {
-        "text": "go home",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "79f10111-d488-4e5b-9e28-8648078bb6a3",
-    "data": [
-      {
-        "text": "get me back to home",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
     "id": "41125e6a-1a88-46d2-8d3f-4324a9a25748",
     "data": [
       {

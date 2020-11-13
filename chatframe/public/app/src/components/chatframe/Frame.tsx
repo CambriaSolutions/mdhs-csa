@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose, Unsubscribe } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import WebFont from 'webfontloader'
@@ -85,7 +85,6 @@ class ChatFrame extends PureComponent<Props> {
   store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunkMiddleware)))
   currentValue = null
   theme: Theme
-  unsubscribe: Unsubscribe | null = null
 
   constructor(props: Props) {
     super(props)
@@ -101,10 +100,6 @@ class ChatFrame extends PureComponent<Props> {
     // componentDidMount() lifecycle hook. This lets us use Redux to manage
     // state instead of passing props down manually.
     this.store.dispatch(initialize(this.props) as any)
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe()
   }
 
   render() {

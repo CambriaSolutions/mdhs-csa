@@ -267,6 +267,7 @@ const sendToDialogflow = (type: string, payload: any) => {
     const { client } = getState().conversation
 
     dispatch({ type: INITIATE_LOADING })
+    dispatch({ type: DISABLE_INPUT })
 
     sendDialogflowRequest(client[type], payload)
       .then(response => {

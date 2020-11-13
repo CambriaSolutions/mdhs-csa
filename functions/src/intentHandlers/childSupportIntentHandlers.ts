@@ -105,18 +105,6 @@ import {
   pmtQANCPPaymentStatus
 } from './childSupport/paymentsQA'
 
-// TBD
-import { childCare } from './childSupport/childCare'
-import { email } from './childSupport/email'
-import { fax } from './childSupport/fax'
-import { fee } from './childSupport/fee'
-import { legal } from './childSupport/legal'
-import { login } from './childSupport/login'
-import { other } from './childSupport/other'
-import { paymentTimelines } from './childSupport/paymentTimelines'
-import { phoneNumber } from './childSupport/phoneNumber'
-import { refund } from './childSupport/refund'
-
 export const childSupportIntentHandlers = {
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
@@ -207,36 +195,6 @@ export const childSupportIntentHandlers = {
   'cse-pmtQA-employer-payment-status': pmtQAEmployerPaymentStatus,
   'cse-pmtQA-yes-employer-payment-status': pmtQAYesEmployerPaymentStatus,
   'cse-pmtQA-NCP-payment-status': pmtQANCPPaymentStatus,
-
-  // Childcare
-  'cse-childCare-root': childCare,
-
-  // Email
-  'cse-email-root': email,
-
-  // Fax
-  'cse-fax-root': fax,
-
-  // Fee
-  'cse-fee-root': fee,
-
-  // Legal
-  'cse-legal-root': legal,
-
-  // Login
-  'cse-login-root': login,
-
-  // Other
-  'cse-other-root': other,
-
-  // Payment Timelines
-  'cse-paymentTimelines-root': paymentTimelines,
-
-  // Phone number
-  'cse-phoneNumber-root': phoneNumber,
-
-  // Refund
-  'cse-refund-root': refund,
 
   // Map
   'cse-map-root': mapRoot('cse')
