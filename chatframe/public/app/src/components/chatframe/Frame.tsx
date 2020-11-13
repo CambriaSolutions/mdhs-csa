@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose, Unsubscribe } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import WebFont from 'webfontloader'
