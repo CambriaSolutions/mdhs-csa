@@ -214,7 +214,7 @@ class ButtonBar extends PureComponent<Props> {
 
       // Start over and home button are the same, but based on server
       // code version, we might receive 'home' or 'start over' as suggestion
-      const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'home' && x.toLowerCase() !== 'start over')
+      const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'start over')
 
       if (excludedBackAndStartOver.length === 4
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'child support')
