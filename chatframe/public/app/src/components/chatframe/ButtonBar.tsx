@@ -213,8 +213,7 @@ class ButtonBar extends PureComponent<Props> {
     if (lastMessageWithSuggestions) {
       const suggestions = getSuggestions(lastMessageWithSuggestions)
 
-      // Start over and home button are the same, but based on server
-      // code version, we might receive 'home' or 'start over' as suggestion
+      // Some buttons are treated as special cases and are removed from the normal suggestions
       const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'home' && x.toLowerCase() !== 'start over')
 
       if (excludedBackAndStartOver.length === 4
