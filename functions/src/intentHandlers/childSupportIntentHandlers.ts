@@ -105,6 +105,11 @@ import {
   pmtQANCPPaymentStatus
 } from './childSupport/paymentsQA'
 
+// TBD
+import { childCare } from './childSupport/childCare'
+import { fee } from './childSupport/fee'
+import { legal } from './childSupport/legal'
+
 export const childSupportIntentHandlers = {
   // Contact number intents
   'cse-contact-support-handoff': contactSupportHandoff,
@@ -195,6 +200,15 @@ export const childSupportIntentHandlers = {
   'cse-pmtQA-employer-payment-status': pmtQAEmployerPaymentStatus,
   'cse-pmtQA-yes-employer-payment-status': pmtQAYesEmployerPaymentStatus,
   'cse-pmtQA-NCP-payment-status': pmtQANCPPaymentStatus,
+
+  // Childcare
+  'cse-childCare-root': childCare,
+
+  // Fee
+  'cse-fee-root': fee,
+
+  // Legal
+  'cse-legal-root': legal,
 
   // Map
   'cse-map-root': mapRoot('cse')

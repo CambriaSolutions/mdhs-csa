@@ -38,9 +38,6 @@ exports.categoriesWithIntents = {
   documentation: {
     suggestionText: 'Documents'
   },
-  email: {
-    suggestionText: 'Email'
-  },
   emancipation: {
     suggestionText: 'Emancipation',
   },
@@ -52,9 +49,6 @@ exports.categoriesWithIntents = {
   },
   estimatePayments: {
     suggestionText: 'Estimate payments',
-  },
-  fax: {
-    suggestionText: 'Fax'
   },
   fee: {
     suggestionText: 'Fees'
@@ -70,9 +64,6 @@ exports.categoriesWithIntents = {
   },
   legal: {
     suggestionText: 'Legal'
-  },
-  login: {
-    suggestionText: 'Login issue'
   },
   makePayment: {
     suggestionText: 'Make payments',
@@ -94,15 +85,6 @@ exports.categoriesWithIntents = {
   },
   parentCseGuide: {
     suggestionText: 'Parent’s Guide to CSE'
-  },
-  paymentTimelines: {
-    suggestionText: 'Payment timelines'
-  },
-  phoneNumber: {
-    suggestionText: 'Phone number'
-  },
-  refund: {
-    suggestionText: 'Refund'
   },
   snap: {
     suggestionText: 'SNAP'
