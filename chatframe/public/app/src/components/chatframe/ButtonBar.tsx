@@ -222,12 +222,13 @@ class ButtonBar extends PureComponent<Props> {
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'snap')
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'workforce development')) {
         isSelectingSubjectMatter = true
+      } else {
+        homeButtonLabel = find(suggestions, x => x.toLowerCase() === 'home')
       }
 
       // We search for it and use it because we want
       // to persist the casing that we get back from server
       backButtonLabel = find(suggestions, x => x.toLowerCase() === 'go back')
-      homeButtonLabel = find(suggestions, x => x.toLowerCase() === 'home')
 
       for (const suggestion of excludedBackAndStartOver) {
         const minColumnSpan = this.minColumnSpan(suggestion)
