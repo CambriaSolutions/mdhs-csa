@@ -204,32 +204,11 @@ export const childSupportIntentHandlers = {
   // Childcare
   'cse-childCare-root': childCare,
 
-  // Email
-  'cse-email-root': email,
-
-  // Fax
-  'cse-fax-root': fax,
-
   // Fee
   'cse-fee-root': fee,
 
   // Legal
   'cse-legal-root': legal,
-
-  // Login
-  'cse-login-root': login,
-
-  // Other
-  'cse-other-root': other,
-
-  // Payment Timelines
-  'cse-paymentTimelines-root': paymentTimelines,
-
-  // Phone number
-  'cse-phoneNumber-root': phoneNumber,
-
-  // Refund
-  'cse-refund-root': refund,
 
   // Map
   'cse-map-root': mapRoot('cse')
