@@ -35,16 +35,13 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
   const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
   const commonIntentHandlers = await import('../intentHandlers/commonIntentHandlers')
 
-  const { getChildSupportHandler } = await import('../intentHandlers/childSupportIntentHandlers')
-  const { getTanfHandler } = await import('../intentHandlers/tanfIntentHandlers')
-  const { getSnapHandler } = await import('../intentHandlers/snapIntentHandlers')
-  const { getWfdHandler } = await import('../intentHandlers/wfdIntentHandlers')
+  const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
   const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
   const { subjectMatterLocations } = await import('../constants/constants')
   const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
-  const intentHandler = await getChildSupportHandler(intentName)
+  const intentHandler = getIntentHandler(intentName)
 
   const genericIntentHandler = async (_agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)

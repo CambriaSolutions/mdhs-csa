@@ -1,5 +1,10 @@
-export const getChildSupportHandler = async (intentName: string) => {
+export const getIntentHandler = async (intentName: string) => {
+  let mapRoot = null
+  let eligibilityChecker = null
+  let pebtRoot = null
+
   switch (intentName) {
+    // START CSE
     case 'cse-contact-support-handoff':
       const { contactSupportHandoff } = await import('./childSupport/contactQA')
       return contactSupportHandoff
@@ -208,8 +213,42 @@ export const getChildSupportHandler = async (intentName: string) => {
       const { legal } = await import('./childSupport/legal')
       return legal
     case 'cse-map-root':
-      const { mapRoot } = await import('./common/map')
+      mapRoot = await import('./common/map')
       return mapRoot('cse')
+
+    // START TANF
+    case 'tanf-root':
+      const { tanfRoot } = await import('./tanf/tanfRoot')
+      return tanfRoot
+    case 'tanf-eligibilityChecker':
+      eligibilityChecker = await import('./common/eligibilityChecker')
+      return eligibilityChecker
+    case 'tanf-pebt-root':
+      pebtRoot = await import('./common/pebt')
+      return pebtRoot
+    case 'tanf-map-root':
+      mapRoot = await import('./common/map')
+      return mapRoot('tanf')
+
+    // START SNAP
+    case 'snap-root':
+      const { snapRoot } = await import('./snap/snapRoot')
+      return snapRoot
+    case 'snap-eligibilityChecker':
+      eligibilityChecker = await import('./common/eligibilityChecker')
+      return eligibilityChecker
+    case 'snap-pebt-root':
+      pebtRoot = await import('./common/pebt')
+      return pebtRoot
+    case 'snap-map-root':
+      mapRoot = await import('./common/map')
+      return mapRoot('snap')
+
+    // START WFD 
+    case 'wfd-map-root':
+      mapRoot = await import('./common/map')
+      return mapRoot('wfd')
+
     default:
       return null
   }

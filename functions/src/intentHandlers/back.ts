@@ -61,7 +61,7 @@ const snapshotCurrentState = async (agent, fulfillmentMessages) => {
  * the function that is associated with that intent.
  ************************************************************************************************/
 
-const backFunction = (agent, intentMap) => {
+const backFunction = (agent) => {
   return async () => {
     try {
       const userConversationPath = agent.context.get('previous-agent-states')
@@ -95,12 +95,15 @@ const backFunction = (agent, intentMap) => {
           agent.context.set(context)
         }
       })
+      const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
+
+      const lastIntentHandler = await getIntentHandler(lastIntent.name)
 
       // Intent handler may not exist for this intent because content and 
       // suggestions are set directly in dialogflow. So we "handle" the intent 
       // using the "content" and "suggestions" data stored in the last intent
       // in "userConversationPath"
-      const previousIntent = intentMap[lastIntent.name] ? intentMap[lastIntent.name] : genericHandler(agent, lastIntent.content, lastIntent.suggestions)
+      const previousIntent = lastIntentHandler ? lastIntentHandler : genericHandler(agent, lastIntent.content, lastIntent.suggestions)
 
       await previousIntent(agent)
     } catch (err) {
@@ -145,7 +148,7 @@ const fulfillmentWrapper = (agent, intentMap) => {
 
 const backIntentCycle = async (agent, intentMap, name, fulfillmentMessages) => {
   await snapshotCurrentState(agent, fulfillmentMessages)
-  const back = backFunction(agent, intentMap)
+  const back = backFunction(agent)
   intentMap[name] = back
   fulfillmentWrapper(agent, intentMap)
 }
