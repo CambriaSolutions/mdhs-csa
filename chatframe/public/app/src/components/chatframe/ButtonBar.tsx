@@ -207,6 +207,7 @@ class ButtonBar extends PureComponent<Props> {
     const suggestionElements = []
 
     let backButtonLabel: any = null
+    let homeButtonLabel: any = null
     let isSelectingSubjectMatter = false
 
     if (lastMessageWithSuggestions) {
@@ -214,7 +215,7 @@ class ButtonBar extends PureComponent<Props> {
 
       // Start over and home button are the same, but based on server
       // code version, we might receive 'home' or 'start over' as suggestion
-      const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'start over')
+      const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'home' && x.toLowerCase() !== 'start over')
 
       if (excludedBackAndStartOver.length === 4
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'child support')
@@ -227,6 +228,7 @@ class ButtonBar extends PureComponent<Props> {
       // We search for it and use it because we want
       // to persist the casing that we get back from server
       backButtonLabel = find(suggestions, x => x.toLowerCase() === 'go back')
+      homeButtonLabel = find(suggestions, x => x.toLowerCase() === 'home')
 
       for (const suggestion of excludedBackAndStartOver) {
         const minColumnSpan = this.minColumnSpan(suggestion)
@@ -257,7 +259,7 @@ class ButtonBar extends PureComponent<Props> {
       : paginationPages[0]
 
     return (
-      (suggestionElements.length > 0 || backButtonLabel) &&
+      (suggestionElements.length > 0 || backButtonLabel || homeButtonLabel) &&
       (
         <Container visible={visible}>
           {/* Start of suggestion rows */}
@@ -329,6 +331,19 @@ class ButtonBar extends PureComponent<Props> {
                     onClick={() => changeSuggestionPage(paginationPage + 1)}
                   >
                     More Options
+                  </Btn>
+                </Grid>
+              )}
+              {paginationPage === numberOfNavigationPages && homeButtonLabel && (
+                <Grid item xs={4}>
+                  <Btn
+                    size="small"
+                    color="secondary"
+                    visible="true"
+                    navigationbutton="true"
+                    onClick={() => sendQuickReply(homeButtonLabel.toUpperCase())}
+                  >
+                    {homeButtonLabel.toUpperCase()}
                   </Btn>
                 </Grid>
               )}
