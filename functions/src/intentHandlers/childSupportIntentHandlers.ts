@@ -107,15 +107,8 @@ import {
 
 // TBD
 import { childCare } from './childSupport/childCare.js'
-import { email } from './childSupport/email.js'
-import { fax } from './childSupport/fax.js'
 import { fee } from './childSupport/fee.js'
 import { legal } from './childSupport/legal.js'
-import { login } from './childSupport/login.js'
-import { other } from './childSupport/other.js'
-import { paymentTimelines } from './childSupport/paymentTimelines.js'
-import { phoneNumber } from './childSupport/phoneNumber.js'
-import { refund } from './childSupport/refund.js'
 
 export const childSupportIntentHandlers = {
   // Contact number intents
