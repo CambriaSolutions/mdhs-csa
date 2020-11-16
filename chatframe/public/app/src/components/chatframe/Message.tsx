@@ -93,7 +93,7 @@ const markdownOptions = {
 
 class Message extends Component<any> {
   state = { isResponseDelayed: false }
-  loadingTimer: number = null
+  loadingTimer: NodeJS.Timeout = null
 
   componentDidMount() {
     const { isLoading } = this.props
