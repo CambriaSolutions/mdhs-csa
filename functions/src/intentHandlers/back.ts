@@ -103,7 +103,7 @@ const backFunction = (agent) => {
       // suggestions are set directly in dialogflow. So we "handle" the intent 
       // using the "content" and "suggestions" data stored in the last intent
       // in "userConversationPath"
-      const previousIntent = lastIntentHandler ? lastIntentHandler : genericHandler(agent, lastIntent.content, lastIntent.suggestions)
+      const previousIntent = lastIntentHandler ? lastIntentHandler : async (_agent) => await genericHandler(_agent, lastIntent.content, lastIntent.suggestions)
 
       await previousIntent(agent)
     } catch (err) {
