@@ -32,8 +32,6 @@ const saveRequest = async (reqData, subjectMatter) => {
 
 const constructIntentHandlersObject = async (intentName, request, subjectMatter) => {
   const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
-  const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
-  const commonIntentHandlers = await import('../intentHandlers/commonIntentHandlers')
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
@@ -59,8 +57,6 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
     // If the intent has an actual handler, the default will be overwritten by the proceeding
     // spread objects
     [intentName]: intentHandler ? intentHandler : genericIntentHandler,
-    ...globalIntentHandlers,
-    ...commonIntentHandlers,
     'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
     'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
   })

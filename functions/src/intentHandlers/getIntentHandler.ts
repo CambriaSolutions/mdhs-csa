@@ -2,8 +2,55 @@ export const getIntentHandler = async (intentName: string) => {
   let mapRoot = null
   let eligibilityChecker = null
   let pebtRoot = null
+  let feedbackRoot = null
 
   switch (intentName) {
+    // STAR GLOBAL
+    case 'Default Welcome Intent':
+      const { welcome } = await import('./globalFunctions')
+      return welcome
+    case 'acknowledge-privacy-statement':
+      const { acknowledgePrivacyStatement } = await import('./globalFunctions')
+      return acknowledgePrivacyStatement
+    case 'global-restart':
+      const { globalRestart } = await import('./globalFunctions')
+      return globalRestart
+    case 'restart-conversation':
+      const { restartConversation } = await import('./globalFunctions')
+      return restartConversation
+    case 'casey-handoff':
+      const { caseyHandoff } = await import('./globalFunctions')
+      return caseyHandoff
+    case 'set-context':
+      const { setContext } = await import('./globalFunctions')
+      return setContext
+
+    // START COMMON
+    case 'none-of-these':
+      const { noneOfThese } = await import('./common/commonFallback')
+      return noneOfThese
+    case 'Default Fallback Intent':
+      const { commonFallback } = await import('./common/commonFallback')
+      return commonFallback
+    case 'doc-upload':
+      const { docUpload } = await import('./common/docUpload')
+      return docUpload
+    case 'feedback-root':
+      feedbackRoot = await import('./common/feedback')
+      return feedbackRoot
+    case 'feedback-helpful':
+      const { feedbackHelpful } = await import('./common/feedback')
+      return feedbackHelpful
+    case 'feedback-not-helpful':
+      const { feedbackNotHelpful } = await import('./common/feedback')
+      return feedbackNotHelpful
+    case 'feedback-complete':
+      const { feedbackComplete } = await import('./common/feedback')
+      return feedbackComplete
+    case 'complaints-root':
+      feedbackRoot = await import('./common/feedback')
+      return feedbackRoot
+
     // START CSE
     case 'cse-contact-support-handoff':
       const { contactSupportHandoff } = await import('./childSupport/contactQA')
