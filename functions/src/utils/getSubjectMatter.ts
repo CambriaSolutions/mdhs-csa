@@ -5,5 +5,5 @@ import { subjectMatterContexts } from '../constants/constants'
 export const getSubjectMatter = (agent) => {
   const subjectMatterContext = find(agent.contexts, context => subjectMatterContexts.includes(context.name))
 
-  return subjectMatterContext ? head(split(subjectMatterContext.name, '-')) : ''
+  return subjectMatterContext && subjectMatterContext.lifespan && subjectMatterContext.lifespan > 0 ? head(split(subjectMatterContext.name, '-')) : 'general'
 }
