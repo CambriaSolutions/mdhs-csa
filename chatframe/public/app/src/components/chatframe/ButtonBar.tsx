@@ -334,7 +334,7 @@ class ButtonBar extends PureComponent<Props> {
                   </Btn>
                 </Grid>
               )}
-              {((numberOfNavigationPages && paginationPage === numberOfNavigationPages) || !numberOfNavigationPages) && homeButtonLabel && (
+              {paginationPage === numberOfNavigationPages && homeButtonLabel && (
                 <Grid item xs={4}>
                   <Btn
                     size="small"

@@ -125,11 +125,6 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
-      } else if (isActionRequested(request.body, 'Home') && (agent.context.get('cse-subject-matter') !== undefined
-        || agent.context.get('snap-subject-matter') !== undefined
-        || agent.context.get('tanf-subject-matter') !== undefined
-        || agent.context.get('wfd-subject-matter') !== undefined)) {
-        agent.intent = `${subjectMatter.toLowerCase()}-root`
       }
 
       await localRestart(agent, intentHandlers, subjectMatter)
