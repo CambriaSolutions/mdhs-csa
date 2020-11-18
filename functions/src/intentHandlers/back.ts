@@ -56,7 +56,7 @@ const snapshotCurrentState = async (agent, fulfillmentMessages) => {
 }
 
 /************************************************************************************************
- * backFunction takes the webhookClient and the dialogflow intentMap and returns an async
+ * backFunction takes the webhookClient and returns an async
  * function that sets previous webhookClient state (intent, parameters, and context) and calls
  * the function that is associated with that intent.
  ************************************************************************************************/
