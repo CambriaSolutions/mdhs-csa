@@ -1,5 +1,5 @@
-import { commonFallback, noneOfThese } from '../../src/intentHandlers/common/commonFallback'
-import { docUpload } from '../../src/intentHandlers/common/docUpload'
+import { commonFallback, noneOfThese } from '../../intentHandlers/common/commonFallback'
+import { docUpload } from '../../intentHandlers/common/docUpload'
 
 // Feedback
 import {
@@ -7,7 +7,7 @@ import {
   feedbackHelpful,
   feedbackNotHelpful,
   feedbackComplete,
-} from '../../src/intentHandlers/common/feedback'
+} from '../../intentHandlers/common/feedback'
 
 export const commonIntentHandlers = {
   'none-of-these': noneOfThese,

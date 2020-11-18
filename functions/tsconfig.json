@@ -16,6 +16,6 @@
     "target": "es2017"
   },
   "include": [
-    "src", "scripts/intentHandlers/globalIntentHandlers.ts", "scripts/intentHandlers/wfdIntentHandlers.ts", "scripts/intentHandlers/tanfIntentHandlers.ts", "scripts/intentHandlers/snapIntentHandlers.ts", "scripts/intentHandlers/commonIntentHandlers.ts", "scripts/intentHandlers/childSupportIntentHandlers.ts"
+    "src"
   ]
 }

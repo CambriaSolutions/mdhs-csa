@@ -1,4 +1,4 @@
-import { mapRoot } from '../../src/intentHandlers/common/map'
+import { mapRoot } from '../../intentHandlers/common/map'
 
 // Payment calculator intents
 import {
@@ -13,7 +13,7 @@ import {
   pmtCalcChildSupportNoRetirement,
   pmtCalcFinalEstimation,
   pmtCalcFinalEstimationNoOtherChildren,
-} from '../../src/intentHandlers/childSupport/paymentsCalculator'
+} from '../../intentHandlers/childSupport/paymentsCalculator'
 
 // Payment methods intents
 import {
@@ -22,22 +22,22 @@ import {
   pmtMethodsCantMakeQualifyingNoHelp,
   pmtMethodsCheckOrMoneyOrder,
   pmtMethodsMailAddress
-} from '../../src/intentHandlers/childSupport/paymentMethods'
+} from '../../intentHandlers/childSupport/paymentMethods'
 
 // Close Child Support Case
-import { closeCSCQACloseCase } from '../../src/intentHandlers/childSupport/closeChildSupportCase'
+import { closeCSCQACloseCase } from '../../intentHandlers/childSupport/closeChildSupportCase'
 
 // Case specific intents
 import {
   caseQAIncreaseReview,
   caseQAChangePersonalInfo,
   caseQAComplianceSupportRequest,
-} from '../../src/intentHandlers/childSupport/caseQA'
+} from '../../intentHandlers/childSupport/caseQA'
 
 // Appointments intents
 import {
   apptsOfficeLocationsHandoff,
-} from '../../src/intentHandlers/childSupport/appointments'
+} from '../../intentHandlers/childSupport/appointments'
 
 // Support intents
 import {
@@ -75,10 +75,10 @@ import {
   supportSubmitSupportRequestVerification,
   supportSubmitSupportRequestInterstate,
   supportSubmitSupportRequestRequestPaymentHistory,
-} from '../../src/intentHandlers/childSupport/support'
+} from '../../intentHandlers/childSupport/support'
 
 // EppiCard intents
-import { eppiFees } from '../../src/intentHandlers/childSupport/eppiCard'
+import { eppiFees } from '../../intentHandlers/childSupport/eppiCard'
 
 // IWO intents
 import {
@@ -87,12 +87,12 @@ import {
   iwoConfirmEstimate,
   iwoDisposableIncome,
   iwoQAArrearsBalance,
-} from '../../src/intentHandlers/childSupport/incomeWithholding'
+} from '../../intentHandlers/childSupport/incomeWithholding'
 
 // Contact QA
 import {
   contactSupportHandoff,
-} from '../../src/intentHandlers/childSupport/contactQA'
+} from '../../intentHandlers/childSupport/contactQA'
 
 // Payments QA
 import {
@@ -103,12 +103,12 @@ import {
   pmtQAEmployerPaymentStatus,
   pmtQAYesEmployerPaymentStatus,
   pmtQANCPPaymentStatus
-} from '../../src/intentHandlers/childSupport/paymentsQA'
+} from '../../intentHandlers/childSupport/paymentsQA'
 
 // TBD
-import { childCare } from '../../src/intentHandlers/childSupport/childCare'
-import { fee } from '../../src/intentHandlers/childSupport/fee'
-import { legal } from '../../src/intentHandlers/childSupport/legal'
+import { childCare } from '../../intentHandlers/childSupport/childCare'
+import { fee } from '../../intentHandlers/childSupport/fee'
+import { legal } from '../../intentHandlers/childSupport/legal'
 
 export const childSupportIntentHandlers = {
   // Contact number intents
