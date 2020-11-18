@@ -31,7 +31,6 @@ const saveRequest = async (reqData, subjectMatter) => {
 }
 
 const constructIntentHandlersObject = async (intentName, request, subjectMatter) => {
-  const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
@@ -48,6 +47,7 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
     await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
 
     if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
+      const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
       await handleEndConversation(_agent)
     }
   }
@@ -57,8 +57,8 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
     // If the intent has an actual handler, the default will be overwritten by the proceeding
     // spread objects
     [intentName]: intentHandler ? intentHandler : genericIntentHandler,
-    'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
-    'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
+    'map-deliver-map': intentName === 'map-deliver-map' ? mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]) : null,
+    'map-deliver-map-county-office': intentName === 'map-deliver-map-county-office' ? mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter]) : null
   })
 }
 
@@ -116,6 +116,11 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
+      } else if (isActionRequested(request.body, 'Home') && (agent.context.get('cse-subject-matter') !== undefined
+        || agent.context.get('snap-subject-matter') !== undefined
+        || agent.context.get('tanf-subject-matter') !== undefined
+        || agent.context.get('wfd-subject-matter') !== undefined)) {
+        agent.intent = `${subjectMatter.toLowerCase()}-root`
       }
 
       await localRestart(agent, intentHandlers, subjectMatter)
