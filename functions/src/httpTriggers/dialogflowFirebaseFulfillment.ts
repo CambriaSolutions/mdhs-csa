@@ -1,5 +1,3 @@
-import * as functions from 'firebase-functions'
-
 const isActionRequested = (body, action) => {
   if (body.queryResult !== undefined && body.queryResult.queryText !== undefined) {
     return body.queryResult.queryText.toLowerCase() === action.toLowerCase()
@@ -34,11 +32,22 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
-  const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
   const { subjectMatterLocations } = await import('../constants/constants')
   const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
   const intentHandler = await getIntentHandler(intentName)
+
+  const mapHandlers = async (_intentName: string) => {
+    if (_intentName === 'map-deliver-map') {
+      const { mapDeliverMap } = await import('../intentHandlers/common/map')
+      return mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter])
+    } else if (_intentName === 'map-deliver-map-county-office') {
+      const { mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
+      return mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
+    } else {
+      return () => { }
+    }
+  }
 
   const genericIntentHandler = async (_agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
@@ -57,12 +66,12 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
     // If the intent has an actual handler, the default will be overwritten by the proceeding
     // spread objects
     [intentName]: intentHandler ? intentHandler : genericIntentHandler,
-    'map-deliver-map': intentName === 'map-deliver-map' ? mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]) : null,
-    'map-deliver-map-county-office': intentName === 'map-deliver-map-county-office' ? mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter]) : null
+    'map-deliver-map': await mapHandlers(intentName),
+    'map-deliver-map-county-office': await mapHandlers(intentName)
   })
 }
 
-export const dialogflowFirebaseFulfillment = async (request: functions.https.Request, response: functions.Response<any>) => {
+export const dialogflowFirebaseFulfillment = async (request, response) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
       // Using a health check endpoint to keep the function warm
