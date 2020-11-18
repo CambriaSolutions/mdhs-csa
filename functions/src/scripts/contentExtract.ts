@@ -201,7 +201,7 @@ const constructIntentFileContents = (intentData) => (
 )
 
 const doExtract = async () => {
-  const intents = getIntentFileNames('../../agent')
+  const intents = getIntentFileNames('../../../agent')
 
   const intentPartialName = 'cse-dirDep'
 
@@ -213,12 +213,12 @@ const doExtract = async () => {
       if (!intent.includes('handleUnhandled') && intentHandlers[intentName]) {
         const extract = await generateOutputFile(intent)
         const intentFileContents = constructIntentFileContents(extract)
-        fs.writeFileSync(`../content/${extract.intentName}.json`, JSON.stringify(intentFileContents, null, 4), 'utf-8')
+        fs.writeFileSync(`../../../content/${extract.intentName}.json`, JSON.stringify(intentFileContents, null, 4), 'utf-8')
       }
     } catch (err) {
       const pathElements = intent.split('/')
       const intentName = pathElements.pop().split('.')[0]
-      fs.writeFileSync(`../content/ERROR-${intentName}-ERROR.txt`, err.message, 'utf-8')
+      fs.writeFileSync(`../../../content/ERROR-${intentName}-ERROR.txt`, err.message, 'utf-8')
     }
   })
 }
