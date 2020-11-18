@@ -33,7 +33,9 @@ const isPrevousIntentRootIntent = (agent) => {
 
 export const localRestart = async (agent, intentMap, subjectMatter) => {
   const currentIntent = agent.intent
-  const currentIntentFunction = intentMap[currentIntent]
+  const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
+
+  const currentIntentFunction = await getIntentHandler(currentIntent)
   const localRestartFunction = async () => {
     await currentIntentFunction(agent)
     if (isHomeEnabled(agent) && !isRootIntent(agent) && !isPrevousIntentRootIntent(agent)) {
