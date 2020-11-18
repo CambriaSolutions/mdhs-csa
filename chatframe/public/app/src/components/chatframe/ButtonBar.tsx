@@ -48,18 +48,18 @@ const findLastMessageWithSuggestions = (messages) => findLast(messages, m => {
 const getSuggestions = (messageWithSuggestions) => messageWithSuggestions.responses.filter(m => m.type === 'suggestion')[0].suggestions
 
 interface Suggestion {
-  label: string,
-  id: string,
-  visible: number,
-  minColumnSpan: number
+  label: string;
+  id: string;
+  visible: number;
+  minColumnSpan: number;
 }
 
 interface Props {
-  visible: State['buttonBar']['visible'],
-  messages: State['conversation']['messages'],
-  paginationPage: State['buttonBar']['paginationPage'],
-  sendQuickReply: (text: string) => void
-  changeSuggestionPage: (newPage: number) => any
+  visible: State['buttonBar']['visible'];
+  messages: State['conversation']['messages'];
+  paginationPage: State['buttonBar']['paginationPage'];
+  sendQuickReply: (text: string) => void;
+  changeSuggestionPage: (newPage: number) => any;
 }
 
 class ButtonBar extends PureComponent<Props> {
@@ -334,7 +334,7 @@ class ButtonBar extends PureComponent<Props> {
                   </Btn>
                 </Grid>
               )}
-              {paginationPage === numberOfNavigationPages && homeButtonLabel && (
+              {((numberOfNavigationPages && paginationPage === numberOfNavigationPages) || !numberOfNavigationPages) && homeButtonLabel && (
                 <Grid item xs={4}>
                   <Btn
                     size="small"
