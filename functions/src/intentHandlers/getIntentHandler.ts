@@ -1,6 +1,6 @@
 // We use this function to lazy load dependencies because
 // google cloud functions has issues when cold starting
-export const getIntentHandler = async (intentName: string) => {
+export const getIntentHandler = async (intentName: string): Promise<Function> | null => {
   let mapRoot = null
   let eligibilityChecker = null
   let pebtRoot = null
