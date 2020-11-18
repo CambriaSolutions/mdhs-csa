@@ -1,4 +1,4 @@
-import { mapRoot } from '../../src/intentHandlers/common/map'
+import { mapRoot } from '../../intentHandlers/common/map'
 
 export const wfdIntentHandlers = {
   // Map
