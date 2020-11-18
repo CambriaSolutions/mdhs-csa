@@ -9,13 +9,7 @@
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [
-        {
-          "name": "waiting-feedback-root",
-          "lifespan": 1,
-          "parameters": {}
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
@@ -29,12 +23,21 @@
           "condition": ""
         },
         {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "If you are looking for services other than Skills2Work, you can access \u003ca target\u003d\"_blank\" href\u003d\"https://myresources.mdhs.ms.gov/\"\u003eMyResources\u003c/a\u003e"
+          ],
+          "condition": ""
+        },
+        {
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [
-              "SUBMIT FEEDBACK"
-            ]
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",

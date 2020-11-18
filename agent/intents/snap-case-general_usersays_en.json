@@ -1,5 +1,24 @@
 [
   {
+    "id": "733b714f-785f-453a-bf23-9bf0cd329e2b",
+    "data": [
+      {
+        "text": "I need to close my food stamps in ",
+        "userDefined": false
+      },
+      {
+        "text": "MS",
+        "meta": "@sys.geo-state",
+        "alias": "geo-state",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "74e48f60-f1d0-485e-b159-e3c863018f76",
     "data": [
       {

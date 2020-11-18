@@ -25,7 +25,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "The default payment method for all Child Support cases is the EPPICard. To activate the EPPICard, you can either call <a href=\"tel:+18778824916\">1-877-882-4916</a> or visit a local Child Support office."
+            "The default payment method for all Child Support cases is the EPPICard. To activate the EPPICard, you can either call \u003ca href\u003d\"tel:+18778824916\"\u003e1-877-882-4916\u003c/a\u003e or visit a local Child Support office."
           ],
           "condition": ""
         },
@@ -45,7 +45,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "To learn more about EPPICards, <a href=\"https://www.eppicard.com/\" target=\"_blank\">click here</a> to visit the EPPICard website or call their support line at <a href=\"tel:+18664614095\">1-866-461-4095</a>."
+            "To learn more about EPPICards, \u003ca href\u003d\"https://www.eppicard.com/\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to visit the EPPICard website or call their support line at \u003ca href\u003d\"tel:+18664614095\"\u003e1-866-461-4095\u003c/a\u003e."
           ],
           "condition": ""
         },

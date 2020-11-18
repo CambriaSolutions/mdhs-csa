@@ -1,46 +1,46 @@
 {
-    "id": "f87e320b-6ee6-471c-a15f-0b99a7068adc",
-    "name": "cse-support-parent-receiving-cooperation-q2",
-    "auto": true,
-    "contexts": [],
-    "responses": [
+  "id": "f87e320b-6ee6-471c-a15f-0b99a7068adc",
+  "name": "cse-support-parent-receiving-cooperation-q2",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
         {
-            "resetContexts": false,
-            "action": "",
-            "affectedContexts": [],
-            "parameters": [],
-            "messages": [
-                {
-                    "type": "0",
-                    "title": "",
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "speech": [
-                        "The benefits of cooperation are:       <ul>         <li>The establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.</li>         <li>Paternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights.</li>         <li>Child support payments help provide financial security for the child.</li>         <li>Medical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. </li>       </ul>"
-                    ],
-                    "condition": ""
-                },
-                {
-                    "type": "4",
-                    "title": "",
-                    "payload": {
-                        "suggestions": [],
-                        "handleEndConversation": false
-                    },
-                    "textToSpeech": "",
-                    "lang": "en",
-                    "condition": ""
-                }
-            ],
-            "speech": []
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "The benefits of cooperation are:       \u003cul\u003e         \u003cli\u003eThe establishment of paternity gives your child a sense of belonging that knowing both parents brings such as social and psychological advantages and a sense of family heritage, and may provide access to information that can complete your child’s medical history.\u003c/li\u003e         \u003cli\u003ePaternity establishment should allow your child to be able to take advantage of social security, veteran’s benefits, and/or other government benefits, as well as inheritance rights.\u003c/li\u003e         \u003cli\u003eChild support payments help provide financial security for the child.\u003c/li\u003e         \u003cli\u003eMedical support in the form of health insurance or cash medical support can help provide for the medical needs of the child. \u003c/li\u003e       \u003c/ul\u003e"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "suggestions": [],
+            "handleEndConversation": false
+          },
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
         }
-    ],
-    "priority": 500000,
-    "webhookUsed": true,
-    "webhookForSlotFilling": false,
-    "fallbackIntent": false,
-    "events": [],
-    "conditionalResponses": [],
-    "condition": "",
-    "conditionalFollowupEvents": []
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
 }

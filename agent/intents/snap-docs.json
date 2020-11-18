@@ -13,11 +13,15 @@
         {
           "name": "snap-subject-matter",
           "lifespan": 99
+        },
+        {
+          "name": "waiting-maps-deliver-map",
+          "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "1f53966e-8877-4f8f-a11f-9bbdeeefbe53",
+          "id": "c3936763-1a63-45ef-9c71-fd39bbd43db3",
           "name": "number",
           "required": false,
           "dataType": "@sys.number",
@@ -38,7 +42,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Some forms are available on the MDHS website located \u003ca target\u003d\"_blank\" href\u003d\"https://www.mdhs.ms.gov/economic-assistance/\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for or if you would like to request copies of forms, or documents, please contact your local office. If you need to find the closest office near you, click the option below."
+            "Some forms are available on the MDHS website located \u003ca target\u003d\"_blank\" href\u003d\"https://www.mdhs.ms.gov/economic-assistance/\"\u003ehere\u003c/a\u003e. If you do not see the form you are looking for or if you would like to request copies of forms, or documents, please contact your local office. If you need to find the closest office near you, type your address below."
           ],
           "condition": ""
         },
@@ -46,10 +50,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": [
-              "Office Locations"
-            ]
+            "suggestions": [],
+            "handleEndConversation": false
           },
           "textToSpeech": "",
           "lang": "en",
