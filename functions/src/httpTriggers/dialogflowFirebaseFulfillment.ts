@@ -39,7 +39,7 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
   const { subjectMatterLocations } = await import('../constants/constants')
   const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
-  const intentHandler = getIntentHandler(intentName)
+  const intentHandler = await getIntentHandler(intentName)
 
   const genericIntentHandler = async (_agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
