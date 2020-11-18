@@ -30,6 +30,38 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
+const constructIntentHandlersObject = async (intentName, request, subjectMatter) => {
+  const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
+
+  const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
+
+  const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
+  const { subjectMatterLocations } = await import('../constants/constants')
+  const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
+
+  const intentHandler = getIntentHandler(intentName)
+
+  const genericIntentHandler = async (_agent) => {
+    const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
+    const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
+
+    await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
+
+    if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
+      await handleEndConversation(_agent)
+    }
+  }
+
+  return ({
+    // The current intent always needs a handler, so we create a default placeholder
+    // If the intent has an actual handler, the default will be overwritten by the proceeding
+    // spread objects
+    [intentName]: intentHandler ? intentHandler : genericIntentHandler,
+    'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
+    'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
+  })
+}
+
 export const dialogflowFirebaseFulfillment = async (request: functions.https.Request, response: functions.Response<any>) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
@@ -41,17 +73,8 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
       const { back } = await import('../intentHandlers/back')
       const { globalRestart } = await import('../intentHandlers/globalRestart')
       const { localRestart } = await import('../intentHandlers/localRestart')
-      const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
-      const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
-      const { commonIntentHandlers } = await import('../intentHandlers/commonIntentHandlers')
-      const { childSupportIntentHandlers } = await import('../intentHandlers/childSupportIntentHandlers')
-      const { tanfIntentHandlers } = await import('../intentHandlers/tanfIntentHandlers')
-      const { snapIntentHandlers } = await import('../intentHandlers/snapIntentHandlers')
-      const { wfdIntentHandlers } = await import('../intentHandlers/wfdIntentHandlers')
-      const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
+
       const { getSubjectMatter } = await import('../utils/getSubjectMatter')
-      const { subjectMatterLocations } = await import('../constants/constants')
-      const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
       if (request.body.queryResult.fulfillmentMessages) {
         // If request contains a custom payload, it is necessary that each object in the fulfillmentMessages array
@@ -70,29 +93,7 @@ export const dialogflowFirebaseFulfillment = async (request: functions.https.Req
 
       const intentName = request.body.queryResult.intent.displayName
 
-      const intentHandlers = {
-        // The current intent always needs a handler, so we create a default placeholder
-        // If the intent has an actual handler, the default will be overwritten by the proceeding
-        // spread objects
-        [intentName]: async (_agent) => {
-          const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
-          const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
-
-          await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
-
-          if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
-            await handleEndConversation(_agent)
-          }
-        },
-        ...globalIntentHandlers,
-        ...commonIntentHandlers,
-        ...childSupportIntentHandlers,
-        ...tanfIntentHandlers,
-        ...snapIntentHandlers,
-        ...wfdIntentHandlers,
-        'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
-        'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
-      }
+      const intentHandlers = await constructIntentHandlersObject(intentName, request, subjectMatter)
 
       // List of intents what will reset the back button context
       const resetBackIntentList = [

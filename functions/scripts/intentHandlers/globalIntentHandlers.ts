@@ -5,7 +5,7 @@ import {
   restartConversation,
   caseyHandoff,
   setContext,
-} from './globalFunctions'
+} from '../../src/intentHandlers/globalFunctions'
 
 export const globalIntentHandlers = {
   'Default Welcome Intent': welcome,
