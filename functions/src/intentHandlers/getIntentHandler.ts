@@ -1,10 +1,7 @@
 // We use this function to lazy load dependencies because
 // google cloud functions has issues when cold starting
 export const getIntentHandler = async (intentName: string): Promise<Function> | null => {
-  let mapRoot = null
-  let eligibilityChecker = null
-  let pebtRoot = null
-  let feedbackRoot = null
+  let moduleImport = null
 
   switch (intentName) {
     // STAR GLOBAL
@@ -38,8 +35,8 @@ export const getIntentHandler = async (intentName: string): Promise<Function> | 
       const { docUpload } = await import('./common/docUpload')
       return docUpload
     case 'feedback-root':
-      feedbackRoot = await import('./common/feedback')
-      return feedbackRoot
+      moduleImport = await import('./common/feedback')
+      return moduleImport.feedbackRoot
     case 'feedback-helpful':
       const { feedbackHelpful } = await import('./common/feedback')
       return feedbackHelpful
@@ -50,8 +47,8 @@ export const getIntentHandler = async (intentName: string): Promise<Function> | 
       const { feedbackComplete } = await import('./common/feedback')
       return feedbackComplete
     case 'complaints-root':
-      feedbackRoot = await import('./common/feedback')
-      return feedbackRoot
+      moduleImport = await import('./common/feedback')
+      return moduleImport.feedbackRoot
 
     // START CSE
     case 'cse-contact-support-handoff':
@@ -262,41 +259,41 @@ export const getIntentHandler = async (intentName: string): Promise<Function> | 
       const { legal } = await import('./childSupport/legal')
       return legal
     case 'cse-map-root':
-      mapRoot = await import('./common/map')
-      return mapRoot('cse')
+      moduleImport = await import('./common/map')
+      return moduleImport.mapRoot('cse')
 
     // START TANF
     case 'tanf-root':
       const { tanfRoot } = await import('./tanf/tanfRoot')
       return tanfRoot
     case 'tanf-eligibilityChecker':
-      eligibilityChecker = await import('./common/eligibilityChecker')
-      return eligibilityChecker
+      moduleImport = await import('./common/eligibilityChecker')
+      return moduleImport.eligibilityChecker
     case 'tanf-pebt-root':
-      pebtRoot = await import('./common/pebt')
-      return pebtRoot
+      moduleImport = await import('./common/pebt')
+      return moduleImport.pebtRoot
     case 'tanf-map-root':
-      mapRoot = await import('./common/map')
-      return mapRoot('tanf')
+      moduleImport = await import('./common/map')
+      return moduleImport.mapRoot('tanf')
 
     // START SNAP
     case 'snap-root':
       const { snapRoot } = await import('./snap/snapRoot')
       return snapRoot
     case 'snap-eligibilityChecker':
-      eligibilityChecker = await import('./common/eligibilityChecker')
-      return eligibilityChecker
+      moduleImport = await import('./common/eligibilityChecker')
+      return moduleImport.eligibilityChecker
     case 'snap-pebt-root':
-      pebtRoot = await import('./common/pebt')
-      return pebtRoot
+      moduleImport = await import('./common/pebt')
+      return moduleImport.pebtRoot
     case 'snap-map-root':
-      mapRoot = await import('./common/map')
-      return mapRoot('snap')
+      moduleImport = await import('./common/map')
+      return moduleImport.mapRoot('snap')
 
     // START WFD 
     case 'wfd-map-root':
-      mapRoot = await import('./common/map')
-      return mapRoot('wfd')
+      moduleImport = await import('./common/map')
+      return moduleImport.mapRoot('wfd')
 
     default:
       return null
