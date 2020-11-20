@@ -58,8 +58,7 @@ interface Props {
   visible: State['buttonBar']['visible'];
   messages: State['conversation']['messages'];
   paginationPage: State['buttonBar']['paginationPage'];
-  sendQuickReply: (text: string) => void;
-  sendQuickEvent: (event: string) => void;
+  sendQuickReply: (text: string, isEvent?: boolean) => void;
   changeSuggestionPage: (newPage: number) => any;
 }
 
@@ -201,7 +200,7 @@ class ButtonBar extends PureComponent<Props> {
   }
 
   render() {
-    const { visible, messages, sendQuickReply, sendQuickEvent, paginationPage, changeSuggestionPage } = this.props
+    const { visible, messages, sendQuickReply, paginationPage, changeSuggestionPage } = this.props
 
     const lastMessageWithSuggestions = findLastMessageWithSuggestions(messages)
 
@@ -303,7 +302,7 @@ class ButtonBar extends PureComponent<Props> {
                     color="secondary"
                     visible="true"
                     navigationbutton="true"
-                    onClick={() => sendQuickEvent(backButtonLabel.toUpperCase())}
+                    onClick={() => sendQuickReply(backButtonLabel.toUpperCase(), true)}
                   >
                     {backButtonLabel.toUpperCase()}
                   </Btn>
@@ -366,11 +365,8 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    sendQuickReply: (text: string) => {
-      dispatch(sendQuickReply(text, false))
-    },
-    sendEvent: (event: string) => {
-      dispatch(sendQuickReply(event, true))
+    sendQuickReply: (text: string, isEvent?: boolean) => {
+      dispatch(sendQuickReply(text, isEvent))
     },
     changeSuggestionPage: (newPage: number) => dispatch({
       type: 'CHANGE_SUGGESTION_PAGE',

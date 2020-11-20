@@ -103,7 +103,7 @@ class Header extends PureComponent<any> {
       showFullscreen,
       fullscreen,
       showPrivacyPolicy,
-      sendQuickEvent,
+      sendQuickReply,
       messages
     } = this.props
 
@@ -134,7 +134,7 @@ class Header extends PureComponent<any> {
           <Tooltip title='Return to subject selection' placement='bottom'>
             <StartOverButton
               theme={theme}
-              onClick={() => sendQuickEvent('START-OVER')}
+              onClick={() => sendQuickReply('START-OVER', true)}
             >
               Start Over
             </StartOverButton>
@@ -191,7 +191,7 @@ const mapDispatchToProps = dispatch => ({
   showFullscreen: () => dispatch(showFullscreen()),
   showWindowed: () => dispatch(showWindowed()),
   showPrivacyPolicy: () => dispatch(showPrivacyPolicy()),
-  sendQuickEvent: event => dispatch(sendQuickReply(event, true))
+  sendQuickReply: (message: string, isEvent?: boolean) => dispatch(sendQuickReply(message, isEvent))
 })
 
 export default withTheme()(
