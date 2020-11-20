@@ -5,7 +5,7 @@ import {
   DISPLAY_ERROR,
   HIDE_BUTTON_BAR,
 } from './actionTypes'
-import { setupDialogflow, sendMessageWithDialogflow } from './dialogflow'
+import { setupDialogflow, sendMessageWithDialogflow, sendEvent } from './dialogflow'
 // Date Format
 import { sysTimeFormat } from '../config/dateFormats'
 
@@ -31,12 +31,12 @@ export function setupClient(client, clientOptions) {
     }
   }
 }
-export function sendMessage(message) {
+export function sendMessage(message, isEvent = false) {
   return (dispatch, getState) => {
     const { clientName } = getState().conversation
     try {
       if (clientName.toLowerCase() === 'dialogflow') {
-        dispatch(sendMessageWithDialogflow(message))
+        dispatch(isEvent ? sendEvent(message.replace(' ', '-')) : sendMessageWithDialogflow(message))
       } else {
         throw new Error(
           `${clientName} is not a recognized conversation provider.`
@@ -54,7 +54,7 @@ export function sendMessage(message) {
   }
 }
 
-export function createUserResponse(text) {
+export function createUserResponse(text, isEvent = false) {
   return (dispatch, getState) => {
     const numMessages = getState().conversation.messages.length
     const systemTime = format(new Date(), sysTimeFormat)
@@ -66,12 +66,12 @@ export function createUserResponse(text) {
     }
     dispatch({ type: SAVE_USER_RESPONSE, response })
     dispatch({ type: HIDE_BUTTON_BAR })
-    dispatch(sendMessage(text))
+    dispatch(sendMessage(text, isEvent))
   }
 }
 
-export function sendQuickReply(text) {
+export function sendQuickReply(text, isEvent = false) {
   return dispatch => {
-    dispatch(createUserResponse(text))
+    dispatch(createUserResponse(text, isEvent))
   }
 }
