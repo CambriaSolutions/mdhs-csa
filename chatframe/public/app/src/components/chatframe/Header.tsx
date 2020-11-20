@@ -191,7 +191,7 @@ const mapDispatchToProps = dispatch => ({
   showFullscreen: () => dispatch(showFullscreen()),
   showWindowed: () => dispatch(showWindowed()),
   showPrivacyPolicy: () => dispatch(showPrivacyPolicy()),
-  sendQuickEvent: event => dispatch(sendQuickReply(event, false))
+  sendQuickEvent: event => dispatch(sendQuickReply(event, true))
 })
 
 export default withTheme()(
