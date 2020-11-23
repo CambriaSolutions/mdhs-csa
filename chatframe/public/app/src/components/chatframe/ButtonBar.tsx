@@ -318,7 +318,7 @@ class ButtonBar extends PureComponent<Props> {
                       onClick={() => changeSuggestionPage(paginationPage - 1)}
                     >
                       Previous Options
-                  </Btn>
+                    </Btn>
                   </Grid>
                 ) : null}
                 {numberOfNavigationPages > 1 && paginationPage < numberOfNavigationPages ? (
@@ -331,7 +331,7 @@ class ButtonBar extends PureComponent<Props> {
                       onClick={() => changeSuggestionPage(paginationPage + 1)}
                     >
                       More Options
-                  </Btn>
+                    </Btn>
                   </Grid>
                 ) : null}
                 {paginationPage === numberOfNavigationPages && homeButtonLabel ? (
