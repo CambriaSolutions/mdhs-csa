@@ -12,7 +12,6 @@ import styled from 'styled-components'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import { findLast, find } from 'lodash'
-import { sendQuickReply } from './actions/conversation'
 import chatbotAvatar from './chatbot_avatar.svg'
 
 import {
@@ -21,6 +20,7 @@ import {
   showWindowed,
   showPrivacyPolicy,
 } from './actions/initialization'
+import { sendQuickReply } from './actions/conversation'
 
 const BotAvatar = styled(Avatar)`
   && {
@@ -121,7 +121,7 @@ class Header extends PureComponent<any> {
       // to persist the casing that we get back from server
       // The 'start over' and 'home' buttons are essentially the same,
       // but which we receive is dependent on the back end version, so we check for both.
-      startOverButtonLabel = find(suggestions, x => x.toLowerCase() === 'home' || x.toLowerCase() === 'start over')
+      startOverButtonLabel = find(suggestions, x => x.toLowerCase() === 'start over')
     }
 
     return (
@@ -134,7 +134,7 @@ class Header extends PureComponent<any> {
           <Tooltip title='Return to subject selection' placement='bottom'>
             <StartOverButton
               theme={theme}
-              onClick={() => sendQuickReply('START OVER')}
+              onClick={() => sendQuickReply('START-OVER', true)}
             >
               Start Over
             </StartOverButton>
@@ -191,7 +191,7 @@ const mapDispatchToProps = dispatch => ({
   showFullscreen: () => dispatch(showFullscreen()),
   showWindowed: () => dispatch(showWindowed()),
   showPrivacyPolicy: () => dispatch(showPrivacyPolicy()),
-  sendQuickReply: text => dispatch(sendQuickReply(text))
+  sendQuickReply: (message: string, isEvent?: boolean) => dispatch(sendQuickReply(message, isEvent))
 })
 
 export default withTheme()(
