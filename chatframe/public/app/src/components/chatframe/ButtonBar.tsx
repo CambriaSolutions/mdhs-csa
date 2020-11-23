@@ -259,98 +259,98 @@ class ButtonBar extends PureComponent<Props> {
       : paginationPages[0]
 
     return (
-      (suggestionElements.length > 0 || backButtonLabel || homeButtonLabel) &&
-      (
-        <Container visible={visible}>
-          {/* Start of suggestion rows */}
-          <Grid container>
-            {suggestionElements.length > 0 &&
-              activeSuggestionPage.map((btns, i) => (
-                <Grid
-                  key={`buttonRow_${i}`}
-                  container
-                  item
-                  spacing={8}
-                  xs={12}
-                >
-                  {btns.map((btn, index) => (
-                    <Grid
-                      key={`buttonRow_${i}_${index}`}
-                      item
-                      xs={(12 / btns.length) as any}
-                    >
-                      <Btn
-                        size="small"
-                        color="secondary"
-                        key={`${btn.id}-btn${index}`}
-                        visible={btn.visible.toString()}
-                        navigationbutton="false"
-                        onClick={() => sendQuickReply(btn.label.toUpperCase())}
+      (suggestionElements.length > 0 || backButtonLabel || homeButtonLabel) ?
+        (
+          <Container visible={visible}>
+            {/* Start of suggestion rows */}
+            <Grid container>
+              {suggestionElements.length > 0 ?
+                activeSuggestionPage.map((btns, i) => (
+                  <Grid
+                    key={`buttonRow_${i}`}
+                    container
+                    item
+                    spacing={8}
+                    xs={12}
+                  >
+                    {btns.map((btn, index) => (
+                      <Grid
+                        key={`buttonRow_${i}_${index}`}
+                        item
+                        xs={(12 / btns.length) as any}
                       >
-                        {btn.label.toUpperCase()}
-                      </Btn>
-                    </Grid>
-                  ))}
-                </Grid>
-              ))}
-            {/* Start of navigation row */}
-            <Grid item container xs={12} justify="space-between" spacing={8}>
-              {backButtonLabel && paginationPage === 1 && (
-                <Grid item xs={4}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => sendQuickReply(backButtonLabel.toUpperCase(), true)}
-                  >
-                    {backButtonLabel.toUpperCase()}
+                        <Btn
+                          size="small"
+                          color="secondary"
+                          key={`${btn.id}-btn${index}`}
+                          visible={btn.visible.toString()}
+                          navigationbutton="false"
+                          onClick={() => sendQuickReply(btn.label.toUpperCase())}
+                        >
+                          {btn.label.toUpperCase()}
+                        </Btn>
+                      </Grid>
+                    ))}
+                  </Grid>
+                )) : null}
+              {/* Start of navigation row */}
+              <Grid item container xs={12} justify="space-between" spacing={8}>
+                {backButtonLabel && paginationPage === 1 ? (
+                  <Grid item xs={4}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => sendQuickReply(backButtonLabel.toUpperCase(), true)}
+                    >
+                      {backButtonLabel.toUpperCase()}
+                    </Btn>
+                  </Grid>
+                ) : null}
+                {numberOfNavigationPages > 1 && paginationPage > 1 ? (
+                  <Grid item xs={5}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => changeSuggestionPage(paginationPage - 1)}
+                    >
+                      Previous Options
                   </Btn>
-                </Grid>
-              )}
-              {numberOfNavigationPages > 1 && paginationPage > 1 && (
-                <Grid item xs={5}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => changeSuggestionPage(paginationPage - 1)}
-                  >
-                    Previous Options
+                  </Grid>
+                ) : null}
+                {numberOfNavigationPages > 1 && paginationPage < numberOfNavigationPages ? (
+                  <Grid item xs={5}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => changeSuggestionPage(paginationPage + 1)}
+                    >
+                      More Options
                   </Btn>
-                </Grid>
-              )}
-              {numberOfNavigationPages > 1 && paginationPage < numberOfNavigationPages && (
-                <Grid item xs={5}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => changeSuggestionPage(paginationPage + 1)}
-                  >
-                    More Options
-                  </Btn>
-                </Grid>
-              )}
-              {paginationPage === numberOfNavigationPages && homeButtonLabel && (
-                <Grid item xs={4}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => sendQuickReply(homeButtonLabel.toUpperCase())}
-                  >
-                    {homeButtonLabel.toUpperCase()}
-                  </Btn>
-                </Grid>
-              )}
+                  </Grid>
+                ) : null}
+                {paginationPage === numberOfNavigationPages && homeButtonLabel ? (
+                  <Grid item xs={4}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => sendQuickReply(homeButtonLabel.toUpperCase())}
+                    >
+                      {homeButtonLabel.toUpperCase()}
+                    </Btn>
+                  </Grid>
+                ) : null}
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      )
+          </Container>
+        ) : null
     )
   }
 }
