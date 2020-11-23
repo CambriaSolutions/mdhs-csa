@@ -130,7 +130,7 @@ class Header extends PureComponent<any> {
         <HeaderText theme={theme} variant='h6'>
           {title}
         </HeaderText>
-        {startOverButtonLabel && (
+        {startOverButtonLabel ? (
           <Tooltip title='Return to subject selection' placement='bottom'>
             <StartOverButton
               theme={theme}
@@ -139,7 +139,7 @@ class Header extends PureComponent<any> {
               Start Over
             </StartOverButton>
           </Tooltip>
-        )}
+        ) : null}
         <Tooltip title='Privacy Policy' placement='bottom'>
           <HeaderButton
             theme={theme}
