@@ -1,7 +1,8 @@
 // We use this function to lazy load dependencies because
 // google cloud functions has issues when cold starting
-export const getIntentHandler = async (intentName: string): Promise<Function> | null => {
+export const getIntentHandler = (subjectMatter: subjectMatter) => async (intentName: string): Promise<Function> | null => {
   let moduleImport = null
+  let subjectMatterLocationsModule = null
 
   switch (intentName) {
     // STAR GLOBAL
@@ -49,6 +50,14 @@ export const getIntentHandler = async (intentName: string): Promise<Function> | 
     case 'complaints-root':
       moduleImport = await import('./common/feedback')
       return moduleImport.feedbackRoot
+    case 'map-deliver-map':
+      const { mapDeliverMap } = await import('../intentHandlers/common/map')
+      subjectMatterLocationsModule = await import('../constants/constants')
+      return mapDeliverMap(subjectMatter, subjectMatterLocationsModule.subjectMatterLocations[subjectMatter])
+    case 'map-deliver-map-county-office':
+      const { mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
+      subjectMatterLocationsModule = await import('../constants/constants')
+      return mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocationsModule.subjectMatterLocations[subjectMatter])
 
     // START CSE
     case 'cse-contact-support-handoff':
