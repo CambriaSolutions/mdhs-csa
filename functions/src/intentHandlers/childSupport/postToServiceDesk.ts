@@ -27,7 +27,21 @@ const callbackRequired = [
   'interstate'
 ]
 
-export const sendToServiceDesk = async requestFieldValues => {
+interface RequestFieldValues {
+  supportSummary: any,
+  filteredRequests: any,
+  firstName: any,
+  lastName: any,
+  phoneNumber: any,
+  email: any,
+  caseNumber: any,
+  company: any,
+  newEmployerName: any,
+  newEmployerNumber: any,
+  employmentChangeType: any
+}
+
+export const sendToServiceDesk = async (requestFieldValues: RequestFieldValues) => {
   const rp = await import('request-promise')
 
   const {
