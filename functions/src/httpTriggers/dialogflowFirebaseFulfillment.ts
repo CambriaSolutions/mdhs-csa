@@ -32,22 +32,9 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
-  const { subjectMatterLocations } = await import('../constants/constants')
   const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
-  const intentHandler = await getIntentHandler(intentName)
-
-  const mapHandlers = async (_intentName: string) => {
-    if (_intentName === 'map-deliver-map') {
-      const { mapDeliverMap } = await import('../intentHandlers/common/map')
-      return mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter])
-    } else if (_intentName === 'map-deliver-map-county-office') {
-      const { mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
-      return mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
-    } else {
-      return () => { }
-    }
-  }
+  const intentHandler = await getIntentHandler(subjectMatter)(intentName)
 
   const genericIntentHandler = async (_agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
@@ -65,9 +52,7 @@ const constructIntentHandlersObject = async (intentName, request, subjectMatter)
     // The current intent always needs a handler, so we create a default placeholder
     // If the intent has an actual handler, the default will be overwritten by the proceeding
     // spread objects
-    [intentName]: intentHandler ? intentHandler : genericIntentHandler,
-    'map-deliver-map': await mapHandlers(intentName),
-    'map-deliver-map-county-office': await mapHandlers(intentName)
+    [intentName]: intentHandler ? intentHandler : genericIntentHandler
   })
 }
 
@@ -129,7 +114,7 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
 
       await localRestart(agent, intentHandlers, subjectMatter)
 
-      await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
+      await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, subjectMatter, resetBackIntentList, 'go-back')
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
       await savingRequest
