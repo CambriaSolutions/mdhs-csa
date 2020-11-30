@@ -28,13 +28,13 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-const constructIntentHandlersObject = async (intentName, request, subjectMatter) => {
+const constructIntentHandlersObject = async (intentName: string, request, subjectMatter): Promise<IntentHandlersByName> => {
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
   const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
-  const intentHandler = await getIntentHandler(subjectMatter)(intentName)
+  const intentHandler: IntentHandler = await getIntentHandler(subjectMatter)(intentName)
 
   const genericIntentHandler = async (_agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
@@ -103,18 +103,15 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
       ]
 
       // Check to see if we need to override the target intent
-      // In case of Start Over and Go Back this may be needed during parameter entry.
-      // Home and Start Over are essentially the same button, but which we
-      // receive is based the version of the front end plug in. That is why we check for both
+      // In case of Start Over, Go Back, and Home this may be needed during parameter entry.
       if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       }
 
-      await localRestart(agent, intentHandlers, subjectMatter)
-
       await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, subjectMatter, resetBackIntentList, 'go-back')
+      await localRestart(agent, intentHandlers, subjectMatter)
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
       await savingRequest

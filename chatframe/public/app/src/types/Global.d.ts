@@ -15,13 +15,14 @@ interface State {
   conversation: {
     client: null;
     clientName: null;
-    messages: never[];
+    messages: any[];
     webhookPayload: null;
     disableInput: boolean;
     lastUpdateTime: string;
     currentTime: string;
     timer: null;
     conversationStarted: boolean;
+    suggestions: string[]
   },
   buttonBar: {
     paginationPage: any;

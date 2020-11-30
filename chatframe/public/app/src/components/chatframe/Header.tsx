@@ -119,8 +119,6 @@ class Header extends PureComponent<any> {
 
       // We search for it and use it instead of hard coding because we want
       // to persist the casing that we get back from server
-      // The 'start over' and 'home' buttons are essentially the same,
-      // but which we receive is dependent on the back end version, so we check for both.
       startOverButtonLabel = find(suggestions, x => x.toLowerCase() === 'start over')
     }
 
@@ -134,7 +132,7 @@ class Header extends PureComponent<any> {
           <Tooltip title='Return to subject selection' placement='bottom'>
             <StartOverButton
               theme={theme}
-              onClick={() => sendQuickReply('START-OVER', true)}
+              onClick={() => sendQuickReply('START OVER', true)}
             >
               Start Over
             </StartOverButton>

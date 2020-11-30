@@ -54,7 +54,7 @@ export function sendMessage(message, isEvent = false) {
   }
 }
 
-export function createUserResponse(text, isEvent = false) {
+export function sendQuickReply(text, isEvent = false) {
   return (dispatch, getState) => {
     const numMessages = getState().conversation.messages.length
     const systemTime = format(new Date(), sysTimeFormat)
@@ -67,11 +67,5 @@ export function createUserResponse(text, isEvent = false) {
     dispatch({ type: SAVE_USER_RESPONSE, response })
     dispatch({ type: HIDE_BUTTON_BAR })
     dispatch(sendMessage(text, isEvent))
-  }
-}
-
-export function sendQuickReply(text, isEvent = false) {
-  return dispatch => {
-    dispatch(createUserResponse(text, isEvent))
   }
 }

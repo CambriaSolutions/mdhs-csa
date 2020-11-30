@@ -261,8 +261,7 @@ const sendDialogflowRequest = (requestFunction, payload) => {
   }
 }
 
-// Type must equal 'textRequest' or 'eventRequest'
-const sendToDialogflow = (type: string, payload: any) => {
+const sendToDialogflow = (type: 'textRequest' | 'eventRequest', payload: any) => {
   return (dispatch, getState) => {
     const { client } = getState().conversation
 
