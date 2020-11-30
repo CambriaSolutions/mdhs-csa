@@ -28,6 +28,34 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
+const constructIntentHandlersObject = async (intentName: string, request, subjectMatter): Promise<IntentHandlersByName> => {
+
+  const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
+
+  const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
+
+  const intentHandler: IntentHandler = await getIntentHandler(subjectMatter)(intentName)
+
+  const genericIntentHandler = async (_agent) => {
+    const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
+    const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
+
+    await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
+
+    if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
+      const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
+      await handleEndConversation(_agent)
+    }
+  }
+
+  return ({
+    // The current intent always needs a handler, so we create a default placeholder
+    // If the intent has an actual handler, the default will be overwritten by the proceeding
+    // spread objects
+    [intentName]: intentHandler ? intentHandler : genericIntentHandler
+  })
+}
+
 export const dialogflowFirebaseFulfillment = async (request, response) => {
   try {
     if (request.method === 'GET' && request.query.healthCheck) {
@@ -38,17 +66,9 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
       const { WebhookClient } = await import('dialogflow-fulfillment')
       const { back } = await import('../intentHandlers/back')
       const { globalRestart } = await import('../intentHandlers/globalRestart')
-      const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
-      const { globalIntentHandlers } = await import('../intentHandlers/globalIntentHandlers')
-      const { commonIntentHandlers } = await import('../intentHandlers/commonIntentHandlers')
-      const { childSupportIntentHandlers } = await import('../intentHandlers/childSupportIntentHandlers')
-      const { tanfIntentHandlers } = await import('../intentHandlers/tanfIntentHandlers')
-      const { snapIntentHandlers } = await import('../intentHandlers/snapIntentHandlers')
-      const { wfdIntentHandlers } = await import('../intentHandlers/wfdIntentHandlers')
-      const { mapDeliverMap, mapDeliverMapAndCountyOffice } = await import('../intentHandlers/common/map')
+      const { localRestart } = await import('../intentHandlers/localRestart')
+
       const { getSubjectMatter } = await import('../utils/getSubjectMatter')
-      const { subjectMatterLocations } = await import('../constants/constants')
-      const { getTextResponses, getSuggestions, genericHandler, shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
       if (request.body.queryResult.fulfillmentMessages) {
         // If request contains a custom payload, it is necessary that each object in the fulfillmentMessages array
@@ -67,29 +87,7 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
 
       const intentName = request.body.queryResult.intent.displayName
 
-      const intentHandlers = {
-        // The current intent always needs a handler, so we create a default placeholder
-        // If the intent has an actual handler, the default will be overwritten by the proceeding
-        // spread objects
-        [intentName]: async (_agent) => {
-          const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
-          const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
-
-          await genericHandler(_agent, dialogflowTextResponses, dialogflowSuggestions)
-
-          if (shouldHandleEndConversation(request.body.queryResult.fulfillmentMessages)) {
-            await handleEndConversation(_agent)
-          }
-        },
-        ...globalIntentHandlers,
-        ...commonIntentHandlers,
-        ...childSupportIntentHandlers,
-        ...tanfIntentHandlers,
-        ...snapIntentHandlers,
-        ...wfdIntentHandlers,
-        'map-deliver-map': mapDeliverMap(subjectMatter, subjectMatterLocations[subjectMatter]),
-        'map-deliver-map-county-office': mapDeliverMapAndCountyOffice(subjectMatter, subjectMatterLocations[subjectMatter])
-      }
+      const intentHandlers = await constructIntentHandlersObject(intentName, request, subjectMatter)
 
       // List of intents what will reset the back button context
       const resetBackIntentList = [
@@ -105,16 +103,15 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
       ]
 
       // Check to see if we need to override the target intent
-      // In case of Start Over and Go Back this may be needed during parameter entry.
-      // Home and Start Over are essentially the same button, but which we
-      // receive is based the version of the front end plug in. That is why we check for both
-      if ((isActionRequested(request.body, 'Start Over') || isActionRequested(request.body, 'Home')) && agent.context.get('waiting-global-restart') !== undefined) {
+      // In case of Start Over, Go Back, and Home this may be needed during parameter entry.
+      if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
         agent.intent = 'global-restart'
       } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
         agent.intent = 'go-back'
       }
 
-      await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, resetBackIntentList, 'go-back')
+      await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, subjectMatter, resetBackIntentList, 'go-back')
+      await localRestart(agent, intentHandlers, subjectMatter)
       await globalRestart(agent, intentHandlers, resetStartOverIntentList)
 
       await savingRequest

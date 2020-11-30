@@ -1,15 +1,16 @@
 import { format } from 'date-fns'
+import { reportError } from '../reportError'
 import {
   SAVE_USER_RESPONSE,
   DISPLAY_ERROR,
   HIDE_BUTTON_BAR,
 } from './actionTypes'
-import { setupDialogflow, sendMessageWithDialogflow } from './dialogflow'
+import { setupDialogflow, sendMessageWithDialogflow, sendEvent } from './dialogflow'
 // Date Format
 import { sysTimeFormat } from '../config/dateFormats'
 
 export function setupClient(client, clientOptions) {
-  return dispatch => {
+  return (dispatch, getState) => {
     try {
       if (!client) {
         throw new Error('No conversation provider selected.')
@@ -26,25 +27,24 @@ export function setupClient(client, clientOptions) {
         throw new Error(`${client} is not a recognized conversation provider.`)
       }
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      reportError(error, getState().config.reportErrorUrl).then()
     }
   }
 }
-export function sendMessage(message) {
+export function sendMessage(message, isEvent = false) {
   return (dispatch, getState) => {
     const { clientName } = getState().conversation
     try {
       if (clientName.toLowerCase() === 'dialogflow') {
-        dispatch(sendMessageWithDialogflow(message))
+        dispatch(isEvent ? sendEvent(message.replace(' ', '-')) : sendMessageWithDialogflow(message))
       } else {
         throw new Error(
           `${clientName} is not a recognized conversation provider.`
         )
       }
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      reportError(error, getState().config.reportErrorUrl).then()
+
       // Unrecognized client
       dispatch({
         type: DISPLAY_ERROR,
@@ -54,7 +54,7 @@ export function sendMessage(message) {
   }
 }
 
-export function createUserResponse(text) {
+export function sendQuickReply(text, isEvent = false) {
   return (dispatch, getState) => {
     const numMessages = getState().conversation.messages.length
     const systemTime = format(new Date(), sysTimeFormat)
@@ -66,12 +66,6 @@ export function createUserResponse(text) {
     }
     dispatch({ type: SAVE_USER_RESPONSE, response })
     dispatch({ type: HIDE_BUTTON_BAR })
-    dispatch(sendMessage(text))
-  }
-}
-
-export function sendQuickReply(text) {
-  return dispatch => {
-    dispatch(createUserResponse(text))
+    dispatch(sendMessage(text, isEvent))
   }
 }

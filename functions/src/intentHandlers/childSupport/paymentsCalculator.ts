@@ -3,7 +3,7 @@ import isNumber from 'lodash/isNumber'
 import {
   validateIncomeAndDeductions,
   calculatePayment,
-} from './calculatePayment.js'
+} from './calculatePayment'
 import {
   handleEndConversation,
   formatCurrency,

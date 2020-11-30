@@ -1,13 +1,15 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 import { map, first, filter, find } from 'lodash'
-import { genericHandler } from '../utils/fulfillmentMessages.js'
+import { genericHandler } from '../utils/fulfillmentMessages'
 
 /************************************************************************************************
  * The snapshotCurrentState takes the agent as a parameter and continually appends the current
  *  intent information to the userConversationPath parameter of the 'previous-agent-states' context.
  ************************************************************************************************/
 
-const snapshotCurrentState = async (agent, fulfillmentMessages) => {
+const snapshotCurrentState = async (agent, subjectMatter: SubjectMatter, fulfillmentMessages) => {
+  const { shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
+
   // Grab all the existing contexts except for 'previous-agent-states'
   const currentContexts = []
   await agent.contexts.forEach(context => {
@@ -23,7 +25,10 @@ const snapshotCurrentState = async (agent, fulfillmentMessages) => {
     contexts: currentContexts,
     content: map(filter(fulfillmentMessages, fm => fm.text && fm.text.text[0]), fm => first(fm.text.text)),
     suggestions: find(fulfillmentMessages, fm => fm.payload) ? find(fulfillmentMessages, fm => fm.payload).payload.suggestions : [],
+    subjectMatter,
+    handleEndConversation: shouldHandleEndConversation(fulfillmentMessages)
   }
+
   // Get the 'previous-intent' context
   const previousContexts = agent.context.get('previous-agent-states')
 
@@ -56,12 +61,12 @@ const snapshotCurrentState = async (agent, fulfillmentMessages) => {
 }
 
 /************************************************************************************************
- * backFunction takes the webhookClient and the dialogflow intentMap and returns an async
+ * backFunction takes the webhookClient and returns an async
  * function that sets previous webhookClient state (intent, parameters, and context) and calls
  * the function that is associated with that intent.
  ************************************************************************************************/
 
-const backFunction = (agent, intentMap) => {
+const backFunction = (agent): IntentHandler => {
   return async () => {
     try {
       const userConversationPath = agent.context.get('previous-agent-states')
@@ -95,12 +100,22 @@ const backFunction = (agent, intentMap) => {
           agent.context.set(context)
         }
       })
+      const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
+
+      const lastIntentHandler = await getIntentHandler(lastIntent.subjectMatter)(lastIntent.name)
 
       // Intent handler may not exist for this intent because content and 
       // suggestions are set directly in dialogflow. So we "handle" the intent 
       // using the "content" and "suggestions" data stored in the last intent
       // in "userConversationPath"
-      const previousIntent = intentMap[lastIntent.name] ? intentMap[lastIntent.name] : genericHandler(agent, lastIntent.content, lastIntent.suggestions)
+      const previousIntent = lastIntentHandler ? lastIntentHandler : async (_agent) => {
+        await genericHandler(_agent, lastIntent.content, lastIntent.suggestions)
+
+        if (lastIntent.handleEndConversation) {
+          const { handleEndConversation } = await import('../intentHandlers/globalFunctions')
+          await handleEndConversation(_agent)
+        }
+      }
 
       await previousIntent(agent)
     } catch (err) {
@@ -116,12 +131,12 @@ const backFunction = (agent, intentMap) => {
  * for the back button functionality.
  ************************************************************************************************/
 
-const fulfillmentWrapper = (agent, intentMap) => {
-  const currentIntentFullfillmentFunction = intentMap[agent.intent]
+const fulfillmentWrapper = (agent, intentMap: { [name: string]: IntentHandler }) => {
+  const currentIntentFulfillmentFunction = intentMap[agent.intent]
   const prevIntents = agent.context.get('previous-agent-states')
 
-  const maskFunction = async agent => {
-    await currentIntentFullfillmentFunction(agent)
+  const maskFunction: IntentHandler = async agent => {
+    await currentIntentFulfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
       lifespan: 999,
@@ -143,9 +158,9 @@ const fulfillmentWrapper = (agent, intentMap) => {
  * training phrase and create 'Go Back' suggestion button.
  ************************************************************************************************/
 
-const backIntentCycle = async (agent, intentMap, name, fulfillmentMessages) => {
-  await snapshotCurrentState(agent, fulfillmentMessages)
-  const back = backFunction(agent, intentMap)
+const backIntentCycle = async (agent, intentMap: IntentHandlersByName, subjectMatter: SubjectMatter, name, fulfillmentMessages) => {
+  await snapshotCurrentState(agent, subjectMatter, fulfillmentMessages)
+  const back = backFunction(agent)
   intentMap[name] = back
   fulfillmentWrapper(agent, intentMap)
 }
@@ -168,18 +183,18 @@ const backIntentCycle = async (agent, intentMap, name, fulfillmentMessages) => {
  *
  ************************************************************************************************/
 
-
 export const back = async (
-  agent,
-  intentMap,
-  fulfillmentMessages,
-  resetBackButtonIntentList = [],
-  backIntentName = 'go-back'
+  agent: any,
+  intentMap: IntentHandlersByName,
+  fulfillmentMessages: any,
+  subjectMatter: SubjectMatter,
+  resetBackButtonIntentList: any = [],
+  backIntentName: any = 'go-back'
 ) => {
   const currentIntent = agent.intent
   if (resetBackButtonIntentList.includes(currentIntent)) {
     agent.context.delete('previous-agent-states')
   } else {
-    await backIntentCycle(agent, intentMap, backIntentName, fulfillmentMessages)
+    await backIntentCycle(agent, intentMap, subjectMatter, backIntentName, fulfillmentMessages)
   }
 }

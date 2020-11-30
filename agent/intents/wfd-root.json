@@ -70,7 +70,8 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "SKILLS2WORK"
+              "SKILLS2WORK",
+              "WORK DEVELOPMENT PARTNERS"
             ]
           },
           "textToSpeech": "",
@@ -85,7 +86,11 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [],
+  "events": [
+    {
+      "name": "home"
+    }
+  ],
   "conditionalResponses": [],
   "condition": "",
   "conditionalFollowupEvents": []

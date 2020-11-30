@@ -98,6 +98,8 @@ jobs:
         type: string
       feedbackURL:
         type: string
+      reportError:
+        type: string
     steps:
       - checkout
       - restore_cache:
@@ -116,7 +118,9 @@ jobs:
 
             REACT_APP_TEXT_URL=<< parameters.textUrl >>
 
-            REACT_APP_FEEDBACK_URL=<< parameters.feedbackURL >>" > .env
+            REACT_APP_FEEDBACK_URL=<< parameters.feedbackURL >>
+
+            REACT_APP_REPORT_ERROR_URL=<< parameters.reportError >>" > .env
 
       - run:
           name: "Add env variables to chatframe/public/app folder"
@@ -202,6 +206,7 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-dev.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-dev.cloudfunctions.net/storeFeedback
+          reportError: https://us-central1-mdhs-csa-dev.cloudfunctions.net/reportError
           filters:
             branches:
               only:
@@ -246,6 +251,7 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/storeFeedback
+          reportError: https://us-central1-mdhs-csa-isd-273818.cloudfunctions.net/reportError
           filters:
             branches:
               only:
@@ -290,6 +296,7 @@ workflows:
           eventUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/eventRequest
           textUrl: https://us-central1-mdhs-csa-stage.cloudfunctions.net/textRequest
           feedbackURL: https://us-central1-mdhs-csa-stage.cloudfunctions.net/storeFeedback
+          reportError: https://us-central1-mdhs-csa-stage.cloudfunctions.net/reportError
           filters:
             branches:
               only:

@@ -8,15 +8,19 @@ const _cors = cors({
   origin: true
 })
 
+// Register HTTP Triggers
 import { dialogflowFirebaseFulfillment } from './httpTriggers/dialogflowFirebaseFulfillment'
 import { eventRequest } from './httpTriggers/eventRequest'
-
-// Register HTTP Triggers
+import { reportError } from './httpTriggers/reportError'
 import { textRequest } from './httpTriggers/textRequest'
 import { downloadExport } from './httpTriggers/downloadExport'
 import { storeFeedback } from './httpTriggers/storeFeedback'
+
+// Database Triggers
 import { trainAgent } from './databaseTriggers/trainAgent'
 import { storeAnalytics } from './databaseTriggers/storeAnalytics'
+
+// Scheduled Triggers
 import { importDataset } from './scheduledTriggers/importDataset'
 import { trainModels } from './scheduledTriggers/trainModels'
 import { healthCheck } from './scheduledTriggers/healthCheck'
@@ -36,6 +40,7 @@ const runtimeOpts: functions.RuntimeOptions = {
 const httpTriggers = {
   dialogflowFirebaseFulfillment: { handler: dialogflowFirebaseFulfillment, corsEnabled: false },
   eventRequest: { handler: eventRequest, corsEnabled: true },
+  reportError: { handler: reportError, corsEnabled: true },
   textRequest: { handler: textRequest, corsEnabled: true },
   downloadExport: { handler: downloadExport, corsEnabled: true },
   storeFeedback: { handler: storeFeedback, corsEnabled: true },

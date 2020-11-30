@@ -35,6 +35,7 @@ module.exports = {
     'no-undefined': 'off',
     'no-unused-expressions': 'off',
     'no-unused-vars': 'warn',
+    'no-case-declarations': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off'
   }

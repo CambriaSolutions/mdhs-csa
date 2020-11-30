@@ -19,9 +19,9 @@ import {
   handleContactCollection,
   formatCardText,
   formatSummary,
-} from './supportHelperFunctions.js'
+} from './supportHelperFunctions'
 
-import { sendToServiceDesk } from './postToServiceDesk.js'
+import { sendToServiceDesk } from './postToServiceDesk'
 
 export const supportRoot = async agent => {
   await startSupportConvo(agent)
@@ -189,7 +189,7 @@ const formatRequest = (supportType) => {
 /**
  * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
  */
-export const supportType = async (agent, supportType) => {
+export const supportType = async (agent, supportType = null) => {
   try {
     const _supportType = supportType ? supportType : (agent.parameters.supportType ? agent.parameters.supportType.toLowerCase() : 'inquiry')
     const formattedRequest = formatRequest(supportType)

@@ -2,12 +2,19 @@
   "id": "f87e320b-6ee6-471c-a15f-0b99a7068adc",
   "name": "cse-support-parent-receiving-cooperation-q2",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "cse-subject-matter"
+  ],
   "responses": [
     {
       "resetContexts": false,
       "action": "",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
+        }
+      ],
       "parameters": [],
       "messages": [
         {

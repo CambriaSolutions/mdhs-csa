@@ -1,6 +1,7 @@
 import { format, parse, differenceInMilliseconds } from 'date-fns'
 import { v4 as uuidv4 } from 'uuid'
 import { get, find, omit } from 'lodash'
+import { reportError } from '../reportError'
 import {
   SAVE_CLIENT,
   SAVE_RESPONSE,
@@ -66,7 +67,7 @@ export function saveResponse(data) {
 }
 
 export function getMessageFromDialogflow(response) {
-  return dispatch => {
+  return (dispatch, getState) => {
     function mapMessageTypeToDescriptor(type) {
       switch (type) {
         case 'text':
@@ -108,7 +109,7 @@ export function getMessageFromDialogflow(response) {
         const payload: any = {}
         if (type === 'payload') {
           const rawPayload = get(msg, 'payload.fields', {})
-          for (const [field, data] of <any>Object.entries(rawPayload)) {
+          for (const [field, data] of Object.entries(rawPayload) as any) {
             if (data.kind === 'stringValue') {
               try {
                 // Attempt to parse data.stringValue as JSON in case it is
@@ -159,8 +160,7 @@ export function getMessageFromDialogflow(response) {
         }
       })
     } catch (error) {
-      // TODO: log error to analytics
-      console.log(error)
+      reportError(error, getState().config.reportErrorUrl).then()
     }
 
     let responses
@@ -261,12 +261,12 @@ const sendDialogflowRequest = (requestFunction, payload) => {
   }
 }
 
-// Type must equal 'textRequest' or 'eventRequest'
-const sendToDialogflow = (type: string, payload: any) => {
+const sendToDialogflow = (type: 'textRequest' | 'eventRequest', payload: any) => {
   return (dispatch, getState) => {
     const { client } = getState().conversation
 
     dispatch({ type: INITIATE_LOADING })
+    dispatch({ type: DISABLE_INPUT })
 
     sendDialogflowRequest(client[type], payload)
       .then(response => {
@@ -288,8 +288,7 @@ const sendToDialogflow = (type: string, payload: any) => {
         throw new Error(error)
       })
       .catch(error => {
-        // TODO: log error to analytics
-        console.log(error)
+        reportError(error, getState().config.reportErrorUrl).then()
         dispatch({
           type: DISPLAY_ERROR,
           error: 'Unable to connect to the chat provider. Please try again.',

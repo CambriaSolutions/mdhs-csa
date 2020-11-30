@@ -11,6 +11,7 @@ const initialState = {
   privacyPolicy:
     'Please do not enter any personally identifiable information such as SSN, Date of Birth, Case Number or last name.',
   feedbackUrl: '',
+  reportErrorUrl: ''
 }
 
 function config(state = initialState, action) {
@@ -50,6 +51,9 @@ function config(state = initialState, action) {
 
     case t.SET_FEEDBACK_URL:
       return { ...state, feedbackUrl: action.feedbackUrl }
+
+    case t.SET_REPORT_ERROR_URL:
+      return { ...state, reportErrorUrl: action.reportErrorUrl }
 
     default:
       return state

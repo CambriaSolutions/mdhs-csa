@@ -1,9 +1,10 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 
-export const globalRestart = async (agent, intentMap, exclusionList = []) => {
+export const globalRestart = async (agent, intentMap: { [name: string]: IntentHandler }, exclusionList = []) => {
   const currentIntent = agent.intent
   const currentIntentFunction = intentMap[currentIntent]
-  const globalRestartFunction = async () => {
+
+  const globalRestartFunction: IntentHandler = async () => {
     await currentIntentFunction(agent)
     if (!exclusionList.includes(agent.intent)) {
       await agent.add(new Suggestion('Start Over'))
