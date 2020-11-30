@@ -7,7 +7,7 @@ import { genericHandler } from '../utils/fulfillmentMessages'
  *  intent information to the userConversationPath parameter of the 'previous-agent-states' context.
  ************************************************************************************************/
 
-const snapshotCurrentState = async (agent, subjectMatter: subjectMatter, fulfillmentMessages) => {
+const snapshotCurrentState = async (agent, subjectMatter: SubjectMatter, fulfillmentMessages) => {
   const { shouldHandleEndConversation } = await import('../utils/fulfillmentMessages')
 
   // Grab all the existing contexts except for 'previous-agent-states'
@@ -66,7 +66,7 @@ const snapshotCurrentState = async (agent, subjectMatter: subjectMatter, fulfill
  * the function that is associated with that intent.
  ************************************************************************************************/
 
-const backFunction = (agent) => {
+const backFunction = (agent): IntentHandler => {
   return async () => {
     try {
       const userConversationPath = agent.context.get('previous-agent-states')
@@ -131,11 +131,11 @@ const backFunction = (agent) => {
  * for the back button functionality.
  ************************************************************************************************/
 
-const fulfillmentWrapper = (agent, intentMap) => {
+const fulfillmentWrapper = (agent, intentMap: { [name: string]: IntentHandler }) => {
   const currentIntentFulfillmentFunction = intentMap[agent.intent]
   const prevIntents = agent.context.get('previous-agent-states')
 
-  const maskFunction = async agent => {
+  const maskFunction: IntentHandler = async agent => {
     await currentIntentFulfillmentFunction(agent)
     await agent.context.set({
       name: 'waiting-go-back',
@@ -158,7 +158,7 @@ const fulfillmentWrapper = (agent, intentMap) => {
  * training phrase and create 'Go Back' suggestion button.
  ************************************************************************************************/
 
-const backIntentCycle = async (agent, intentMap, subjectMatter: subjectMatter, name, fulfillmentMessages) => {
+const backIntentCycle = async (agent, intentMap: IntentHandlersByName, subjectMatter: SubjectMatter, name, fulfillmentMessages) => {
   await snapshotCurrentState(agent, subjectMatter, fulfillmentMessages)
   const back = backFunction(agent)
   intentMap[name] = back
@@ -183,12 +183,11 @@ const backIntentCycle = async (agent, intentMap, subjectMatter: subjectMatter, n
  *
  ************************************************************************************************/
 
-
 export const back = async (
   agent: any,
-  intentMap: any,
+  intentMap: IntentHandlersByName,
   fulfillmentMessages: any,
-  subjectMatter: subjectMatter,
+  subjectMatter: SubjectMatter,
   resetBackButtonIntentList: any = [],
   backIntentName: any = 'go-back'
 ) => {

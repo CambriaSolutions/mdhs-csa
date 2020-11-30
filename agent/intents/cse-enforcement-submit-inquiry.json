@@ -13,7 +13,7 @@
       "affectedContexts": [
         {
           "name": "waiting-support-collect-first-name",
-          "lifespan": 3,
+          "lifespan": 1,
           "parameters": {}
         },
         {
