@@ -60,7 +60,7 @@ export const pmtMethodsCantMakeQualifyingHelp = async agent => {
   }
 }
 
-export const pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal) => {
+export const pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal = false) => {
   try {
     await agent.add(
       `Please mail to:  
