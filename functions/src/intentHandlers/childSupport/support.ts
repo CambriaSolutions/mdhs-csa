@@ -46,7 +46,7 @@ export const supportHandleEmploymentStatus = async agent => {
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
-      lifespan: 3,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -72,11 +72,11 @@ export const supportCollectNewEmployerName = async agent => {
     await agent.add('What is the new employer\'s phone number?')
     await agent.context.set({
       name: 'waiting-support-collect-new-employer-phone',
-      lifespan: 3,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'waiting-support-new-employer-unknown-phone',
-      lifespan: 3,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -97,7 +97,7 @@ export const supportNoNewEmployer = async agent => {
     await agent.add('Please describe your request.')
     await agent.context.set({
       name: 'waiting-support-collect-issue',
-      lifespan: 10,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -128,7 +128,7 @@ export const supportCollectNewEmployerPhone = async agent => {
       })
       await agent.context.set({
         name: 'waiting-support-collect-issue',
-        lifespan: 10,
+        lifespan: 1,
       })
     } catch (err) {
       console.error(err.message, err)
@@ -140,7 +140,7 @@ export const supportCollectNewEmployerPhone = async agent => {
       )
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-phone',
-        lifespan: 3,
+        lifespan: 1,
       })
     } catch (err) {
       console.error(err.message, err)
@@ -148,7 +148,7 @@ export const supportCollectNewEmployerPhone = async agent => {
   }
 }
 
-export const supportNewEmployerUnkownPhone = async agent => {
+export const supportNewEmployerUnknownPhone = async agent => {
   const newEmployerPhone = 'Unknown phone number'
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -158,7 +158,7 @@ export const supportNewEmployerUnkownPhone = async agent => {
     await agent.add('Please describe your request.')
     await agent.context.set({
       name: 'waiting-support-collect-issue',
-      lifespan: 10,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -199,7 +199,7 @@ export const supportType = async (agent, supportType = null) => {
     )
     await agent.context.set({
       name: 'waiting-support-collect-first-name',
-      lifespan: 3,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -278,7 +278,7 @@ export const supportCollectFirstName = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-collect-last-name',
-      lifespan: 3,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
@@ -448,7 +448,7 @@ export const supportEmail = async agent => {
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
-          lifespan: 3,
+          lifespan: 1,
         })
 
         await agent.context.set({
@@ -516,7 +516,7 @@ export const supportNoEmail = async agent => {
 
         await agent.context.set({
           name: 'waiting-support-collect-company',
-          lifespan: 3,
+          lifespan: 1,
         })
 
         await agent.context.set({
@@ -582,7 +582,7 @@ export const supportCollectCompanyName = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-collect-issue',
-      lifespan: 10,
+      lifespan: 1,
     })
     await agent.context.set({
       name: 'ticketinfo',
