@@ -58,7 +58,15 @@ const constructIntentHandlersObject = async (intentName: string, request, subjec
 
 export const dialogflowFirebaseFulfillment = async (request, response) => {
   try {
-    if (request.method === 'GET' && request.query.healthCheck) {
+    if (request.method === 'GET' && request.query.coldStart) {
+      console.log('Importing packages and modules as part of cold start call')
+
+      const { importPackages } = await import('../utils/importPackages')
+
+      console.log('Finished Importing packages and modules as part of cold start call')
+
+      await importPackages()
+
       // Using a health check endpoint to keep the function warm
       response.status(200).send()
     } else {
