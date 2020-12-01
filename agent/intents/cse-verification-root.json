@@ -12,12 +12,12 @@
       "affectedContexts": [
         {
           "name": "waiting-support-submitSupportRequest-verification",
-          "lifespan": 2,
+          "lifespan": 1,
           "parameters": {}
         },
         {
           "name": "waiting-feedback-root",
-          "lifespan": 2,
+          "lifespan": 1,
           "parameters": {}
         },
         {
