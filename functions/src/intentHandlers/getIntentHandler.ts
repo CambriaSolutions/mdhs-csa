@@ -151,8 +151,8 @@ export const getIntentHandler = (subjectMatter: SubjectMatter) => async (intentN
       const { supportNoNewEmployer } = await import('./childSupport/support')
       return supportNoNewEmployer
     case 'cse-support-new-employer-unknown-phone':
-      const { supportNewEmployerUnkownPhone } = await import('./childSupport/support')
-      return supportNewEmployerUnkownPhone
+      const { supportNewEmployerUnknownPhone } = await import('./childSupport/support')
+      return supportNewEmployerUnknownPhone
     case 'cse-support-collect-new-employer-phone':
       const { supportCollectNewEmployerPhone } = await import('./childSupport/support')
       return supportCollectNewEmployerPhone

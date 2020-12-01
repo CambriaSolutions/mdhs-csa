@@ -108,11 +108,11 @@ export const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       await agent.add('What is the new employer\'s name?')
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-name',
-        lifespan: 3,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'waiting-support-no-new-employer',
-        lifespan: 3,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -126,7 +126,7 @@ export const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       await agent.add(`${descriptionText}`)
       await agent.context.set({
         name: 'waiting-support-collect-issue',
-        lifespan: 10,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -212,7 +212,7 @@ const requestCompany = async agent => {
 
     await agent.context.set({
       name: 'waiting-support-collect-company',
-      lifespan: 3,
+      lifespan: 1,
     })
   } catch (err) {
     console.error(err.message, err)
