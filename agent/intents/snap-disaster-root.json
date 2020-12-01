@@ -21,7 +21,7 @@
       ],
       "parameters": [
         {
-          "id": "b7a3818c-2cc0-43f1-815f-8c025c4a8fce",
+          "id": "658d1ec5-f887-4c41-9a78-22e8251f33d4",
           "name": "date-period",
           "required": false,
           "dataType": "@sys.date-period",
@@ -35,11 +35,25 @@
           "outputDialogContexts": []
         },
         {
-          "id": "a43149ee-2942-4ea0-b5a9-b731e37d685f",
+          "id": "d89e1030-5d22-4a95-8890-bfddbcb9173c",
           "name": "unit-length",
           "required": false,
           "dataType": "@sys.unit-length",
           "value": "$unit-length",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "e0f72c0a-c3e6-4854-955e-a081e2a60d21",
+          "name": "person",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
