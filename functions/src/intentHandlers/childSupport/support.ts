@@ -685,7 +685,7 @@ export const supportCollectIssue = async agent => {
   }
 }
 
-export const supportSumbitIssue = async agent => {
+export const supportSubmitIssue = async agent => {
   const ticketinfo = agent.context.get('ticketinfo').parameters
   const filteredRequests = ticketinfo.requestSummary
   const firstName = ticketinfo.firstName
@@ -720,8 +720,8 @@ export const supportSumbitIssue = async agent => {
 
   if (issueKey) {
     try {
-      // Get appropriate confirmation reponse
-      const confirmationRespone = await formatConfirmationResponse(agent)
+      // Get appropriate confirmation response
+      const confirmationResponse = await formatConfirmationResponse(agent)
       const cardText = formatCardText(ticketinfo, filteredRequests)
       await agent.add(
         new Card({
@@ -730,7 +730,7 @@ export const supportSumbitIssue = async agent => {
         })
       )
 
-      await agent.add(confirmationRespone)
+      await agent.add(confirmationResponse)
       // Clear out context for ticket info
       await agent.context.set({
         name: 'requests',
