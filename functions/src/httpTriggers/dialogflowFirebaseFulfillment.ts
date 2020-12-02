@@ -61,7 +61,7 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
     if (request.method === 'GET' && request.query.coldStart) {
       console.log('Importing packages and modules as part of cold start call')
 
-      const { importPackages } = await import('../utils/importPackages')
+      const { importPackages } = await import('../utils/importPackages.js')
 
       console.log('Finished Importing packages and modules as part of cold start call')
 
