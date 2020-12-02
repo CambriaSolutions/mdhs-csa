@@ -196,8 +196,8 @@ export const getIntentHandler = (subjectMatter: SubjectMatter) => async (intentN
       const { supportCollectIssue } = await import('./childSupport/support')
       return supportCollectIssue
     case 'cse-support-submit-issue':
-      const { supportSumbitIssue } = await import('./childSupport/support')
-      return supportSumbitIssue
+      const { supportSubmitIssue } = await import('./childSupport/support')
+      return supportSubmitIssue
     case 'cse-support-edit-provider-employment':
       const { supportEditProviderEmployment } = await import('./childSupport/support')
       return supportEditProviderEmployment
