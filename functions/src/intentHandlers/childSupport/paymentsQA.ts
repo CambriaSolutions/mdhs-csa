@@ -5,9 +5,6 @@ import {
   supportReviewPayments
 } from './support'
 
-// TODO ----- VERY IMPORTANT
-// THIS INTENT HANDLER SEEMS TO BE USED FOR AN INTENT THAT CAN ONLY BE REACHED WITH TRAINING PHRASES. NO BUTTONS. 
-// ALSO, THE CONTENT IN THIS HANDLER IS NOWHERE TO BE FOUND IN LUCIDCHART. NEED TO REVIEW. 
 export const pmtQAHaventReceived = async agent => {
   try {
     await agent.add(
