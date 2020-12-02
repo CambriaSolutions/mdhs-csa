@@ -208,8 +208,7 @@ class ButtonBar extends PureComponent<Props> {
     let backButtonLabel: any = null
     let homeButtonLabel: any = null
     let isSelectingSubjectMatter = false
-    console.log('lastMessageWithSuggestions:', lastMessageWithSuggestions)
-    console.log('buttonBar suggestions:', suggestions)
+
     if (lastMessageWithSuggestions) {
       // Some buttons are treated as special cases and are removed from the normal suggestions
       const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'home' && x.toLowerCase() !== 'start over')
@@ -255,9 +254,6 @@ class ButtonBar extends PureComponent<Props> {
     const activeSuggestionPage = paginationPages[paginationPage - 1]
       ? paginationPages[paginationPage - 1]
       : paginationPages[0]
-
-    console.log('paginationPage, numberOfNavigationPages', paginationPage, numberOfNavigationPages)
-    console.log('homeButtonLabel', homeButtonLabel)
 
     return (
       (suggestionElements.length > 0 || backButtonLabel || homeButtonLabel) ?
@@ -357,7 +353,6 @@ class ButtonBar extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: State) => {
-  console.log('mapStateToProps state.conversation.suggestions:', state.conversation.suggestions)
   return {
     visible: state.buttonBar.visible,
     messages: state.conversation.messages,
