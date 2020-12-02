@@ -4,11 +4,6 @@ import fetch from 'node-fetch'
 
 dotenv.config()
 
-const options = {
-  method: 'GET',
-  url: process.env.HEALTH_CHECK_URL
-}
-
 const testJiraConnection = async () => {
   const rp = await import('request-promise')
 
@@ -104,12 +99,7 @@ const testPredictCategories = async (query) => {
 }
 
 export const healthCheck = async () => {
-  const rp = await import('request-promise')
-
   try {
-    // Test dialogflow fulfillment
-    await rp.default(options)
-
     await testPredictCategories('This is a test')
     await testGoogleMaps('201 South Lamar St., Jackson, MS 39201')
     await testJiraConnection()

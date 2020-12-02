@@ -1,6 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,

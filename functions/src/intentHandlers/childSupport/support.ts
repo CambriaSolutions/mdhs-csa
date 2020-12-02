@@ -169,7 +169,7 @@ export const supportNewEmployerUnknownPhone = async (agent: Agent) => {
   }
 }
 
-const formatRequest = (supportType) => {
+const formatRequest = (supportType: SupportType) => {
   let formattedRequest
   if (supportType === 'request contempt action') {
     formattedRequest = 'request for a contempt action'
@@ -189,7 +189,7 @@ const formatRequest = (supportType) => {
 /**
  * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
  */
-export const supportType = async (agent, supportType = null) => {
+export const supportType = async (agent: Agent, supportType: SupportType = null) => {
   try {
     const _supportType = supportType ? supportType : (agent.parameters.supportType ? agent.parameters.supportType.toLowerCase() : 'inquiry')
     const formattedRequest = formatRequest(supportType)
@@ -211,7 +211,7 @@ export const supportType = async (agent, supportType = null) => {
   }
 }
 
-export const supportSubmitSupportRequestInquiry = async (agent) => {
+export const supportSubmitSupportRequestInquiry = async (agent: Agent) => {
   try {
     await supportType(agent, 'inquiry')
   } catch (err) {
@@ -219,7 +219,7 @@ export const supportSubmitSupportRequestInquiry = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestCooperation = async (agent) => {
+export const supportSubmitSupportRequestCooperation = async (agent: Agent) => {
   try {
     await supportType(agent, 'cooperation')
   } catch (err) {
@@ -227,7 +227,7 @@ export const supportSubmitSupportRequestCooperation = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestSafety = async (agent) => {
+export const supportSubmitSupportRequestSafety = async (agent: Agent) => {
   try {
     await supportType(agent, 'safety')
   } catch (err) {
@@ -235,7 +235,7 @@ export const supportSubmitSupportRequestSafety = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestGoodCause = async (agent) => {
+export const supportSubmitSupportRequestGoodCause = async (agent: Agent) => {
   try {
     await supportType(agent, 'good cause')
   } catch (err) {
@@ -243,7 +243,7 @@ export const supportSubmitSupportRequestGoodCause = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestVerification = async (agent) => {
+export const supportSubmitSupportRequestVerification = async (agent: Agent) => {
   try {
     await supportType(agent, 'verification')
   } catch (err) {
@@ -251,7 +251,7 @@ export const supportSubmitSupportRequestVerification = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
+export const supportSubmitSupportRequestRequestPaymentHistory = async (agent: Agent) => {
   try {
     await supportType(agent, 'request payment history')
   } catch (err) {
@@ -259,7 +259,7 @@ export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) =>
   }
 }
 
-export const supportSubmitSupportRequestInterstate = async (agent) => {
+export const supportSubmitSupportRequestInterstate = async (agent: Agent) => {
   try {
     await supportType(agent, 'interstate')
   } catch (err) {
@@ -685,7 +685,7 @@ export const supportCollectIssue = async (agent: Agent) => {
   }
 }
 
-export const supportSumbitIssue = async (agent: Agent) => {
+export const supportSubmitIssue = async (agent: Agent) => {
   const ticketinfo = agent.context.get('ticketinfo').parameters
   const filteredRequests = ticketinfo.requestSummary
   const firstName = ticketinfo.firstName
@@ -720,8 +720,8 @@ export const supportSumbitIssue = async (agent: Agent) => {
 
   if (issueKey) {
     try {
-      // Get appropriate confirmation reponse
-      const confirmationRespone = await formatConfirmationResponse(agent)
+      // Get appropriate confirmation response
+      const confirmationResponse = await formatConfirmationResponse(agent)
       const cardText = formatCardText(ticketinfo, filteredRequests)
       await agent.add(
         new Card({
@@ -730,7 +730,7 @@ export const supportSumbitIssue = async (agent: Agent) => {
         })
       )
 
-      await agent.add(confirmationRespone)
+      await agent.add(confirmationResponse)
       // Clear out context for ticket info
       await agent.context.set({
         name: 'requests',
