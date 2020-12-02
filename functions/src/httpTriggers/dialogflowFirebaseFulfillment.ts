@@ -28,7 +28,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-const constructIntentHandlersObject = async (intentName: string, request, subjectMatter): Promise<IntentHandlersByName> => {
+const constructIntentHandlersObject = async (intentName: string, request: Request, subjectMatter: SubjectMatter): Promise<IntentHandlersByName> => {
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
@@ -36,7 +36,7 @@ const constructIntentHandlersObject = async (intentName: string, request, subjec
 
   const intentHandler: IntentHandler = await getIntentHandler(subjectMatter)(intentName)
 
-  const genericIntentHandler = async (_agent) => {
+  const genericIntentHandler = async (_agent: Agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
     const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
 

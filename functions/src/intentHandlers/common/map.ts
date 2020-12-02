@@ -47,7 +47,7 @@ const determiningGeocode = async (agent: Agent) => {
   // validate zip code before defining it in userZip
   const zipParamter = agent.parameters.userZip || agent.parameters['zip-code']
   if (zipParamter) {
-    if (validator.isPostalCode(`${zipParamter}`, 'US')) {
+    if ((validator as any).isPostalCode(`${zipParamter}`, 'US')) {
       userZip = zipParamter
     }
   }

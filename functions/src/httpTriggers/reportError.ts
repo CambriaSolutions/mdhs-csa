@@ -1,4 +1,4 @@
-export const reportError = async (req, res) => {
+export const reportError = async (req: Request, res: Response) => {
   try {
     if (!req.body || !req.body.error) {
       res.status(400).send('The "error" parameter is required')
