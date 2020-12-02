@@ -8,7 +8,7 @@ const db = admin.firestore()
 
 const getSessionIdFromPath = path => /[^/]*$/.exec(path)[0]
 
-export const handleEndConversation = async agent => {
+export const handleEndConversation = async (agent: Agent) => {
   const helpMessage = 'Is there anything else I can help you with today?'
 
   await agent.add(helpMessage)
@@ -24,13 +24,13 @@ export const handleEndConversation = async agent => {
   })
 }
 
-export const tbd = async agent => {
+export const tbd = async (agent: Agent) => {
   const tbdMessage = 'At this time, I am not able to answer specific questions about your case. If you are seeking information MDHS programs, please visit www.mdhs.ms.gov or contact us <a href="https://www.mdhs.ms.gov/contact/" target="_blank">here</a>'
   await agent.add(tbdMessage)
   await handleEndConversation(agent)
 }
 
-export const setContext = async agent => {
+export const setContext = async (agent: Agent) => {
   const sessionId = getSessionIdFromPath(agent.session)
   const preloadedContexts = await db.collection('preloadedContexts').doc(sessionId).get()
   if (preloadedContexts.exists) {
@@ -148,7 +148,7 @@ export const formatCurrency = num => {
 }
 
 // Send a payload to disable user input and require suggestion selection
-export const disableInput = async agent => {
+export const disableInput = async (agent: Agent) => {
   try {
     await agent.add(
       new Payload(
@@ -166,7 +166,7 @@ export const disableInput = async agent => {
 }
 
 // Directs the user to Casey
-export const caseyHandoff = async agent => {
+export const caseyHandoff = async (agent: Agent) => {
   try {
     await agent.add(
       'Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual'
@@ -178,7 +178,7 @@ export const caseyHandoff = async agent => {
 }
 
 // Handles default unhandled intent when no categories are found
-export const defaultFallback = async agent => {
+export const defaultFallback = async (agent: Agent) => {
   try {
     const subjectMatter = getSubjectMatter(agent)
     // This is the default message, but it should never be used. There should always be a subject matter
@@ -204,7 +204,7 @@ export const defaultFallback = async agent => {
   }
 }
 
-export const restartConversation = async agent => {
+export const restartConversation = async (agent: Agent) => {
   try {
     await startRootConversation(agent)
   } catch (err) {
@@ -212,7 +212,7 @@ export const restartConversation = async agent => {
   }
 }
 
-export const globalRestart = async agent => {
+export const globalRestart = async (agent: Agent) => {
   try {
     await startRootConversation(agent)
   } catch (err) {
@@ -221,7 +221,7 @@ export const globalRestart = async agent => {
 }
 
 
-export const welcome = async agent => {
+export const welcome = async (agent: Agent) => {
   const termsAndConditionsLink = 'https://www.mdhs.ms.gov/privacy-disclaimer'
 
   try {
@@ -250,7 +250,7 @@ export const welcome = async agent => {
   }
 }
 
-export const selectSubjectMatter = async agent => {
+export const selectSubjectMatter = async (agent: Agent) => {
   await disableInput(agent)
 
   // Add a suggestion for each of the system's subject matters
@@ -292,7 +292,7 @@ export const selectSubjectMatter = async agent => {
   await Promise.all([...suggestionPromises, ...contextPromises])
 }
 
-export const acknowledgePrivacyStatement = async agent => {
+export const acknowledgePrivacyStatement = async (agent: Agent) => {
   try {
     await agent.add('Great! Select one of the options below.')
     await selectSubjectMatter(agent)
@@ -303,7 +303,7 @@ export const acknowledgePrivacyStatement = async agent => {
 }
 
 // Handle startOfConversation
-export const startRootConversation = async agent => {
+export const startRootConversation = async (agent: Agent) => {
   try {
     await agent.add('Select one of the options below.')
     await selectSubjectMatter(agent)

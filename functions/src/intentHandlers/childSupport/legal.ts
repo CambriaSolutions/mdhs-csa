@@ -1,4 +1,4 @@
-export const legal = async agent => {
+export const legal = async (agent: Agent) => {
   const { tbd } = await import('../globalFunctions')
 
   try {

@@ -1,4 +1,4 @@
-export const closeCSCQACloseCase = async agent => {
+export const closeCSCQACloseCase = async (agent: Agent) => {
   const { supportType } = await import('./support')
 
   try {

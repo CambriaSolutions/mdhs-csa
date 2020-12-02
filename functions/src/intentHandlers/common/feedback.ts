@@ -4,7 +4,7 @@ import {
   disableInput,
 } from '../globalFunctions'
 
-export const feedbackRoot = async agent => {
+export const feedbackRoot = async (agent: Agent) => {
   try {
     const { Suggestion } = await import('dialogflow-fulfillment')
 
@@ -25,7 +25,7 @@ export const feedbackRoot = async agent => {
   }
 }
 
-export const feedbackNotHelpful = async agent => {
+export const feedbackNotHelpful = async (agent: Agent) => {
   try {
     const feedback = JSON.stringify({
       helpful: false,
@@ -68,7 +68,7 @@ export const feedbackNotHelpful = async agent => {
   }
 }
 
-export const feedbackHelpful = async agent => {
+export const feedbackHelpful = async (agent: Agent) => {
   try {
     const feedback = JSON.stringify({
       helpful: true,
@@ -110,7 +110,7 @@ export const feedbackHelpful = async agent => {
   }
 }
 
-export const feedbackComplete = async agent => {
+export const feedbackComplete = async (agent: Agent) => {
   try {
     await agent.add('To start over just say hello!')
   } catch (err) {
