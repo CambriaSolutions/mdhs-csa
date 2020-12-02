@@ -160,7 +160,6 @@ class Header extends PureComponent<any> {
             <HeaderButton
               theme={theme}
               onClick={(e) => {
-                console.log('maximize clicked')
                 showFullscreen(e)
               }}
               aria-label='Fullscreen'
