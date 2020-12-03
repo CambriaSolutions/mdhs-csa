@@ -6,7 +6,7 @@ import {
   disableInput,
 } from '../globalFunctions'
 
-export const iwoConfirmEstimate = async agent => {
+export const iwoConfirmEstimate = async (agent: Agent) => {
   try {
     await agent.add(
       'Please note that this is only an estimate. Each case is unique, but I can help get you an estimate. If you need to know the exact amount you need to withhold, please call <a href="tel:+18778824916">1-877-882-4916</a>.'
@@ -23,7 +23,7 @@ export const iwoConfirmEstimate = async agent => {
   }
 }
 
-export const iwoIsSupporting = async agent => {
+export const iwoIsSupporting = async (agent: Agent) => {
   const isSupporting = agent.parameters.isSupporting.toLowerCase() === 'yes'
   try {
     await agent.add('Is your employee in arrears greater than 12 weeks?')
@@ -44,7 +44,7 @@ export const iwoIsSupporting = async agent => {
   }
 }
 
-export const iwoInArrears = async agent => {
+export const iwoInArrears = async (agent: Agent) => {
   const inArrears = agent.parameters.inArrears.toLowerCase() === 'yes'
   const isSupporting = await agent.context.get('iwo-factors').parameters
     .isSupporting
@@ -81,8 +81,8 @@ export const iwoInArrears = async agent => {
   }
 }
 
-export const iwoDisposableIncome = async agent => {
-  const disposableIncome = agent.parameters.disposableIncome
+export const iwoDisposableIncome = async (agent: Agent) => {
+  const disposableIncome: any = agent.parameters.disposableIncome
   const percentToWithhold = await agent.context.get('iwo-factors').parameters
     .percentage
   const amountToWithhold = (
@@ -107,7 +107,7 @@ export const iwoDisposableIncome = async agent => {
   }
 }
 
-export const iwoQAArrearsBalance = async agent => {
+export const iwoQAArrearsBalance = async (agent: Agent) => {
   try {
     const { supportType } = await import('./support')
 

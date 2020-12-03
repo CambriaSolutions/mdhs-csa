@@ -4,7 +4,7 @@ import {
   supportType,
 } from './support'
 
-export const caseQAIncreaseReview = async agent => {
+export const caseQAIncreaseReview = async (agent: Agent) => {
   try {
     await supportReviewPayments(agent)
   } catch (err) {
@@ -12,7 +12,7 @@ export const caseQAIncreaseReview = async agent => {
   }
 }
 
-export const caseQAGeneralSupportRequest = async agent => {
+export const caseQAGeneralSupportRequest = async (agent: Agent) => {
   try {
     await supportInquiries(agent)
   } catch (err) {
@@ -20,7 +20,7 @@ export const caseQAGeneralSupportRequest = async agent => {
   }
 }
 
-export const caseQAChangePersonalInfo = async agent => {
+export const caseQAChangePersonalInfo = async (agent: Agent) => {
   try {
     await supportType(agent, 'change personal information')
   } catch (err) {
@@ -28,7 +28,7 @@ export const caseQAChangePersonalInfo = async agent => {
   }
 }
 
-export const caseQAComplianceSupportRequest = async agent => {
+export const caseQAComplianceSupportRequest = async (agent: Agent) => {
   try {
     await supportInquiries(agent)
   } catch (err) {

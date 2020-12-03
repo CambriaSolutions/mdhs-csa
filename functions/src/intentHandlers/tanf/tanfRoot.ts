@@ -1,6 +1,6 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 
-export const tanfRoot = async agent => {
+export const tanfRoot = async (agent: Agent) => {
   try {
     await agent.add('What can I help you with?')
 

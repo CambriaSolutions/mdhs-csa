@@ -2,7 +2,7 @@ import validator from 'validator'
 import { Suggestion } from 'dialogflow-fulfillment'
 
 // Used to handle restarting and starting conversations for support requests
-export const startSupportConvo = async agent => {
+export const startSupportConvo = async (agent: Agent) => {
   try {
     await agent.add('Which of the following are you?')
     await agent.add(
@@ -37,7 +37,7 @@ export const startSupportConvo = async agent => {
 }
 
 // Format the confirmation responses based on type of support request
-export const formatConfirmationResponse = async agent => {
+export const formatConfirmationResponse = async (agent: Agent) => {
   const supportType = await agent.context
     .get('ticketinfo')
     .parameters.supportType.toLowerCase()
@@ -174,7 +174,7 @@ export const supportMoreOptions = async (agent, option) => {
 }
 
 // Checks for the inclusion of lump sum in order to change the conversation
-export const checkForLumpSum = async agent => {
+export const checkForLumpSum = async (agent: Agent) => {
   const supportType = await agent.context.get('ticketinfo').parameters
     .supportType
 
@@ -186,7 +186,7 @@ export const checkForLumpSum = async agent => {
 }
 
 // Used to request the case number
-const requestCaseNumber = async agent => {
+const requestCaseNumber = async (agent: Agent) => {
   try {
     await agent.add(
       'What is your case number? Please do not provide your social security number.'
@@ -206,7 +206,7 @@ const requestCaseNumber = async agent => {
 }
 
 // Used to request a company for a lump sum notification
-const requestCompany = async agent => {
+const requestCompany = async (agent: Agent) => {
   try {
     await agent.add('What is the name of your company/employer?')
 

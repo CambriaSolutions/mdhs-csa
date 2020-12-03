@@ -1,4 +1,4 @@
-export const eppiFees = async agent => {
+export const eppiFees = async (agent: Agent) => {
   try {
     const { Card } = await import('dialogflow-fulfillment')
     const { handleEndConversation } = await import('../globalFunctions')

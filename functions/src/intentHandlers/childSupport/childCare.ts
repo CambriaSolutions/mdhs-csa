@@ -1,4 +1,4 @@
-export const childCare = async agent => {
+export const childCare = async (agent: Agent) => {
   const { tbd } = await import('../globalFunctions')
 
   try {

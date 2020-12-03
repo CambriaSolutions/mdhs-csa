@@ -2,7 +2,7 @@ import { Suggestion } from 'dialogflow-fulfillment'
 import { handleEndConversation } from '../globalFunctions'
 import { supportInquiries, supportReviewPayments } from './support'
 
-export const pmtMethodsCantMakeQualifying = async agent => {
+export const pmtMethodsCantMakeQualifying = async (agent: Agent) => {
   try {
     const qualifying = agent.parameters.qualifying
     if (qualifying === 'yes') {
@@ -31,7 +31,7 @@ export const pmtMethodsCantMakeQualifying = async agent => {
   }
 }
 
-export const pmtMethodsCantMakeQualifyingNoHelp = async agent => {
+export const pmtMethodsCantMakeQualifyingNoHelp = async (agent: Agent) => {
   try {
     const needsInquiry = agent.parameters.needsInquiry
     if (needsInquiry === 'yes') {
@@ -47,7 +47,7 @@ export const pmtMethodsCantMakeQualifyingNoHelp = async agent => {
   }
 }
 
-export const pmtMethodsCantMakeQualifyingHelp = async agent => {
+export const pmtMethodsCantMakeQualifyingHelp = async (agent: Agent) => {
   try {
     const needsHelp = agent.parameters.needsHelp
     if (needsHelp === 'yes') {
@@ -81,7 +81,7 @@ export const pmtMethodsCheckOrMoneyOrder = async (agent, isGlobal = false) => {
 }
 
 // This is for the mail address intent
-export const pmtMethodsMailAddress = async agent => {
+export const pmtMethodsMailAddress = async (agent: Agent) => {
   const isGlobal = true
   await pmtMethodsCheckOrMoneyOrder(agent, isGlobal)
 }
