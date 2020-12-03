@@ -20,7 +20,22 @@
           "lifespan": 0
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "ccc59e2b-7b65-4f62-8180-778c36792ab6",
+          "name": "geo-city",
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "value": "$geo-city",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
       "messages": [
         {
           "type": "0",
@@ -56,8 +71,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
-            "handleEndConversation": true
+            "handleEndConversation": true,
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",
