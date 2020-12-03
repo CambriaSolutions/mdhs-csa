@@ -28,7 +28,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Please  \u003ca href\u003d\"https://www.access.ms.gov/Application\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to start a new TANF application."
+            "Please  \u003ca href\u003d\"https://www.access.ms.gov/Application\" target\u003d\"_blank\"\u003eclick here\u003c/a\u003e to start a new TANF application. If you have limited internet access you can submit your application over the phone at \u003ca href\u003d\"tel:+ 1-877-833-2550\"\u003e 1-877-833-2550\u003c/a\u003e."
           ],
           "condition": ""
         },
