@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "99c63026-a877-4829-9937-694efda4d005",
+          "id": "1328ffd4-a217-466d-aa18-096693063a37",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -31,25 +31,11 @@
           "outputDialogContexts": []
         },
         {
-          "id": "59caf17b-f640-43c5-be49-0da0d3bf83da",
+          "id": "9727d24c-3b5b-42b3-abd1-b383c1940d51",
           "name": "cadence",
           "required": false,
           "dataType": "@cadence",
           "value": "$cadence",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        },
-        {
-          "id": "7c63b487-e8d8-430b-80d5-5a62297ad440",
-          "name": "dont-know",
-          "required": false,
-          "dataType": "@dont-know",
-          "value": "$dont-know",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -74,8 +60,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
-            "handleEndConversation": true
+            "handleEndConversation": true,
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",
