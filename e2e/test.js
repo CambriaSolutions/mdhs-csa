@@ -17,46 +17,47 @@ const sessionClient = new dialogflow.SessionsClient();
 const sessions = {}
 
 const startSessionsAndPreloadContexts = async (intents) => {
-    const promises = []
-    Object.entries(intents).forEach(([intentName, intentData]) => {
-        intentData.trainingPhrases.forEach(phrase => {
-            const sessionId = uuidv4();
-            sessions[intentName + "::" + phrase] = sessionId
-            promises.push(db.collection('preloadedContexts').doc(sessionId).set({
-                contexts: intentData.inputContexts
-            }))
-        })
+  const promises = []
+  Object.entries(intents).forEach(([intentName, intentData]) => {
+    intentData.trainingPhrases.forEach(phrase => {
+      const sessionId = uuidv4();
+      sessions[intentName + "::" + phrase] = sessionId
+      promises.push(db.collection('preloadedContexts').doc(sessionId).set({
+        contexts: intentData.inputContexts
+      }))
     })
+  })
 
-    await Promise.all(promises)
+  await Promise.all(promises)
 }
 
 const askGen = async (intentName, phrase, intentData) => {
-    it(`Gen should reply with the [${intentName}] intent when asked [${phrase}] with input contexts [${intentData.inputContexts}]`, async () => {
-        const sessionId = sessions[intentName + "::" + phrase]
-        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-        if (intentData.inputContexts.length > 0) {
-            await ask(sessionClient, sessionPath, 'set-context');
-        }
+  it(`Gen should reply with the [${intentName}] intent when asked [${phrase}] with input contexts [${intentData.inputContexts}]`, async () => {
+    const sessionId = sessions[intentName + "::" + phrase]
+    const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+    if (intentData.inputContexts.length > 0) {
+      await ask(sessionClient, sessionPath, 'set-context');
+    }
 
-        const reply = await ask(sessionClient, sessionPath, phrase);
-        reply.intent.should.equal(intentName)
-    })
+    const reply = await ask(sessionClient, sessionPath, phrase);
+    // const reply = 'this is the reply'
+    reply.intent.should.equal(intentName)
+  })
 }
 
 describe('Gen Regression Testing', async () => {
-    const intents = parseIntentDataFromExcelDocument('./Master spreadsheet.xlsx', 'intent_context_content')
+  const intents = parseIntentDataFromExcelDocument('./Master spreadsheet.xlsx', 'intent_context_content')
 
-    before(async () => {
-        console.log('Preloading...')
-        await startSessionsAndPreloadContexts(intents)
-    })
+  before(async () => {
+    console.log('Preloading...')
+    await startSessionsAndPreloadContexts(intents)
+  })
 
-    describe('Running tests', async () => {
-        Object.entries(intents).forEach(([intentName, intentData]) => {
-            intentData.trainingPhrases.forEach(phrase => {
-                askGen(intentName, phrase, intentData)
-            })
-        })
+  describe('Running tests', async () => {
+    Object.entries(intents).forEach(([intentName, intentData]) => {
+      intentData.trainingPhrases.forEach(phrase => {
+        askGen(intentName, phrase, intentData)
+      })
     })
+  })
 })
