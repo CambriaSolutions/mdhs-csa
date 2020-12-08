@@ -17,35 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "c9f08ec0-47c9-460a-a2c8-7e0ecd3e9ebf",
-          "name": "cadence",
-          "required": false,
-          "dataType": "@cadence",
-          "value": "$cadence",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        },
-        {
-          "id": "e81b4b5f-b0df-4039-b316-4b8d180099f2",
-          "name": "dont-know",
-          "required": false,
-          "dataType": "@dont-know",
-          "value": "$dont-know",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        },
-        {
-          "id": "0e5a0ec8-ed8f-47dc-945c-d7efd41666cd",
+          "id": "ec66c333-fb2e-4b49-a448-5386f9e00705",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -74,8 +46,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
-            "handleEndConversation": true
+            "handleEndConversation": true,
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",
