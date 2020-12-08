@@ -23,19 +23,19 @@ import {
 
 import { sendToServiceDesk } from './postToServiceDesk'
 
-export const supportRoot = async agent => {
+export const supportRoot = async (agent: Agent) => {
   await startSupportConvo(agent)
 }
 
-export const supportParentReceivingMore = async agent => {
+export const supportParentReceivingMore = async (agent: Agent) => {
   await supportMoreOptions(agent, 'receiving')
 }
 
-export const supportParentPayingMore = async agent => {
+export const supportParentPayingMore = async (agent: Agent) => {
   await supportMoreOptions(agent, 'paying')
 }
 
-export const supportHandleEmploymentStatus = async agent => {
+export const supportHandleEmploymentStatus = async (agent: Agent) => {
   const formattedEmploymentStatus = toTitleCase(
     agent.parameters.employmentStatus
   )
@@ -61,7 +61,7 @@ export const supportHandleEmploymentStatus = async agent => {
   }
 }
 
-export const supportCollectNewEmployerName = async agent => {
+export const supportCollectNewEmployerName = async (agent: Agent) => {
   const newEmployerName = agent.parameters.newEmployerName
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -87,7 +87,7 @@ export const supportCollectNewEmployerName = async agent => {
   }
 }
 
-export const supportNoNewEmployer = async agent => {
+export const supportNoNewEmployer = async (agent: Agent) => {
   const newEmployerName = 'Unknown new employer'
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -108,7 +108,7 @@ export const supportNoNewEmployer = async agent => {
   }
 }
 
-export const supportCollectNewEmployerPhone = async agent => {
+export const supportCollectNewEmployerPhone = async (agent: Agent) => {
   const newEmployerPhone = agent.parameters.newEmployerPhone
   const formattedPhone = `+1${newEmployerPhone}`
   const isValid = validator.isMobilePhone(formattedPhone, 'en-US')
@@ -148,7 +148,7 @@ export const supportCollectNewEmployerPhone = async agent => {
   }
 }
 
-export const supportNewEmployerUnknownPhone = async agent => {
+export const supportNewEmployerUnknownPhone = async (agent: Agent) => {
   const newEmployerPhone = 'Unknown phone number'
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -169,7 +169,7 @@ export const supportNewEmployerUnknownPhone = async agent => {
   }
 }
 
-const formatRequest = (supportType) => {
+const formatRequest = (supportType: SupportType) => {
   let formattedRequest
   if (supportType === 'request contempt action') {
     formattedRequest = 'request for a contempt action'
@@ -189,7 +189,7 @@ const formatRequest = (supportType) => {
 /**
  * supportType is optional. If no value is passed in, agent.parameters.supportType.toLowerCase() will be used as the support type
  */
-export const supportType = async (agent, supportType = null) => {
+export const supportType = async (agent: Agent, supportType: SupportType = null) => {
   try {
     const _supportType = supportType ? supportType : (agent.parameters.supportType ? agent.parameters.supportType.toLowerCase() : 'inquiry')
     const formattedRequest = formatRequest(supportType)
@@ -211,7 +211,7 @@ export const supportType = async (agent, supportType = null) => {
   }
 }
 
-export const supportSubmitSupportRequestInquiry = async (agent) => {
+export const supportSubmitSupportRequestInquiry = async (agent: Agent) => {
   try {
     await supportType(agent, 'inquiry')
   } catch (err) {
@@ -219,7 +219,7 @@ export const supportSubmitSupportRequestInquiry = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestCooperation = async (agent) => {
+export const supportSubmitSupportRequestCooperation = async (agent: Agent) => {
   try {
     await supportType(agent, 'cooperation')
   } catch (err) {
@@ -227,7 +227,7 @@ export const supportSubmitSupportRequestCooperation = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestSafety = async (agent) => {
+export const supportSubmitSupportRequestSafety = async (agent: Agent) => {
   try {
     await supportType(agent, 'safety')
   } catch (err) {
@@ -235,7 +235,7 @@ export const supportSubmitSupportRequestSafety = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestGoodCause = async (agent) => {
+export const supportSubmitSupportRequestGoodCause = async (agent: Agent) => {
   try {
     await supportType(agent, 'good cause')
   } catch (err) {
@@ -243,7 +243,7 @@ export const supportSubmitSupportRequestGoodCause = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestVerification = async (agent) => {
+export const supportSubmitSupportRequestVerification = async (agent: Agent) => {
   try {
     await supportType(agent, 'verification')
   } catch (err) {
@@ -251,7 +251,7 @@ export const supportSubmitSupportRequestVerification = async (agent) => {
   }
 }
 
-export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) => {
+export const supportSubmitSupportRequestRequestPaymentHistory = async (agent: Agent) => {
   try {
     await supportType(agent, 'request payment history')
   } catch (err) {
@@ -259,7 +259,7 @@ export const supportSubmitSupportRequestRequestPaymentHistory = async (agent) =>
   }
 }
 
-export const supportSubmitSupportRequestInterstate = async (agent) => {
+export const supportSubmitSupportRequestInterstate = async (agent: Agent) => {
   try {
     await supportType(agent, 'interstate')
   } catch (err) {
@@ -267,7 +267,7 @@ export const supportSubmitSupportRequestInterstate = async (agent) => {
   }
 }
 
-export const supportCollectFirstName = async agent => {
+export const supportCollectFirstName = async (agent: Agent) => {
   const firstName = agent.parameters.firstName
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -289,7 +289,7 @@ export const supportCollectFirstName = async agent => {
   }
 }
 
-export const supportCollectLastName = async agent => {
+export const supportCollectLastName = async (agent: Agent) => {
   const lastName = agent.parameters.lastName
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -316,7 +316,7 @@ export const supportCollectLastName = async agent => {
   }
 }
 
-export const supportInquiries = async agent => {
+export const supportInquiries = async (agent: Agent) => {
   try {
     await supportType(agent, 'inquiry')
   } catch (err) {
@@ -324,7 +324,7 @@ export const supportInquiries = async agent => {
   }
 }
 
-export const supportReviewPayments = async agent => {
+export const supportReviewPayments = async (agent: Agent) => {
   try {
     await supportType(agent, 'child support increase or decrease')
   } catch (err) {
@@ -332,7 +332,7 @@ export const supportReviewPayments = async agent => {
   }
 }
 
-export const supportNoPhoneNumber = async agent => {
+export const supportNoPhoneNumber = async (agent: Agent) => {
   const phoneNumber = 'No Phone Number'
   const firstName = agent.context.get('ticketinfo').parameters.firstName
   const ticketInfoParams = {
@@ -361,7 +361,7 @@ export const supportNoPhoneNumber = async agent => {
   }
 }
 
-export const supportPhoneNumber = async agent => {
+export const supportPhoneNumber = async (agent: Agent) => {
   const phoneNumberResponse = agent.parameters.phoneNumber
   const formattedPhone = `+1${phoneNumberResponse}`
   const firstName = agent.context.get('ticketinfo').parameters.firstName
@@ -411,7 +411,7 @@ export const supportPhoneNumber = async agent => {
   }
 }
 
-export const supportEmail = async agent => {
+export const supportEmail = async (agent: Agent) => {
   const email = agent.parameters.email
   const isValid = validator.isEmail(email)
   const isLumpSum = await checkForLumpSum(agent)
@@ -478,7 +478,7 @@ export const supportEmail = async agent => {
   }
 }
 
-export const supportNoEmail = async agent => {
+export const supportNoEmail = async (agent: Agent) => {
   // Check to see if they have provided a phone number
   const phoneNumber = agent.context.get('ticketinfo').parameters.phoneNumber
   const isLumpSum = await checkForLumpSum(agent)
@@ -550,7 +550,7 @@ export const supportNoEmail = async agent => {
   }
 }
 
-export const supportHandlePhoneRetry = async agent => {
+export const supportHandlePhoneRetry = async (agent: Agent) => {
   const isLumpSum = await checkForLumpSum(agent)
   try {
     await handleContactCollection(agent, 'phone', isLumpSum)
@@ -559,7 +559,7 @@ export const supportHandlePhoneRetry = async agent => {
   }
 }
 
-export const supportHandleEmailRetry = async agent => {
+export const supportHandleEmailRetry = async (agent: Agent) => {
   const isLumpSum = await checkForLumpSum(agent)
   try {
     await handleContactCollection(agent, 'email', isLumpSum)
@@ -568,7 +568,7 @@ export const supportHandleEmailRetry = async agent => {
   }
 }
 
-export const supportCollectCompanyName = async agent => {
+export const supportCollectCompanyName = async (agent: Agent) => {
   const companyName = toTitleCase(agent.parameters.companyName)
   const ticketInfoParams = {
     ...agent.context.get('ticketinfo').parameters,
@@ -593,7 +593,7 @@ export const supportCollectCompanyName = async agent => {
   }
 }
 
-export const supportCaseNumber = async agent => {
+export const supportCaseNumber = async (agent: Agent) => {
   const caseNumber = agent.parameters.caseNumber
   const noCaseNumber = agent.parameters.noCaseNumber
   const validCaseNumber = validateCaseNumber(caseNumber)
@@ -630,7 +630,7 @@ export const supportCaseNumber = async agent => {
   }
 }
 
-export const supportNoCaseNumber = async agent => {
+export const supportNoCaseNumber = async (agent: Agent) => {
   // Retrieve what type of issue this is, and change the wording appropriately
   const supportType = agent.context.get('ticketinfo').parameters.supportType
   const descriptionText = formatDescriptionText(supportType)
@@ -641,7 +641,7 @@ export const supportNoCaseNumber = async agent => {
   }
 }
 
-export const supportCollectIssue = async agent => {
+export const supportCollectIssue = async (agent: Agent) => {
   const ticketInfo = await agent.context.get('ticketinfo').parameters
   const request = agent.parameters.request
 
@@ -685,7 +685,7 @@ export const supportCollectIssue = async agent => {
   }
 }
 
-export const supportSubmitIssue = async agent => {
+export const supportSubmitIssue = async (agent: Agent) => {
   const ticketinfo = agent.context.get('ticketinfo').parameters
   const filteredRequests = ticketinfo.requestSummary
   const firstName = ticketinfo.firstName
@@ -755,7 +755,7 @@ export const supportSubmitIssue = async agent => {
   }
 }
 
-export const supportEditProviderEmployment = async agent => {
+export const supportEditProviderEmployment = async (agent: Agent) => {
   try {
     const yesNo = agent.parameters['yes-no']
     if (yesNo === 'yes') {
@@ -776,7 +776,7 @@ export const supportEditProviderEmployment = async agent => {
   }
 }
 
-export const supportReportProviderEmployment = async agent => {
+export const supportReportProviderEmployment = async (agent: Agent) => {
   try {
     const yesNo = agent.parameters['yes-no']
     if (yesNo === 'yes') {

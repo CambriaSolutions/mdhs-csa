@@ -11,16 +11,16 @@ import {
 } from '../globalFunctions'
 
 // User starts calculations process
-export const pmtCalcRoot = async agent => {
+export const pmtCalcRoot = async (agent: Agent) => {
   await startCalculationProcess(agent)
 }
 
 // User restarts calculations process
-export const pmtCalcRootRestart = async agent => {
+export const pmtCalcRootRestart = async (agent: Agent) => {
   await startCalculationProcess(agent)
 }
 
-const startCalculationProcess = async agent => {
+const startCalculationProcess = async (agent: Agent) => {
   try {
     await agent.add(
       'This estimator can help you determine payments based on a single case involving a single biological family. While each case is unique, I can help get you an estimate.'
@@ -41,7 +41,7 @@ const startCalculationProcess = async agent => {
 }
 
 // User has provided the number of children
-export const pmtCalcIncomeTerm = async agent => {
+export const pmtCalcIncomeTerm = async (agent: Agent) => {
   try {
     const numChildren = agent.parameters.numChildren
 
@@ -98,7 +98,7 @@ export const pmtCalcIncomeTerm = async agent => {
 }
 
 // User has provided their income timeframe
-export const pmtCalcGrossIncome = async agent => {
+export const pmtCalcGrossIncome = async (agent: Agent) => {
   try {
     // Save income term in context
     const incomeTerm = agent.parameters.incomeTerm
@@ -130,7 +130,7 @@ export const pmtCalcGrossIncome = async agent => {
 }
 
 // User provided it's gross income
-export const pmtCalcTaxDeductions = async agent => {
+export const pmtCalcTaxDeductions = async (agent: Agent) => {
   try {
     const grossIncome = agent.parameters.grossIncome
 
@@ -190,7 +190,7 @@ export const pmtCalcTaxDeductions = async agent => {
 }
 
 // User provided their tax deductions
-export const pmtCalcSSDeductions = async agent => {
+export const pmtCalcSSDeductions = async (agent: Agent) => {
   try {
     // Save tax deductions in context
     const taxDeductions = agent.parameters.taxDeductions
@@ -226,7 +226,7 @@ export const pmtCalcSSDeductions = async agent => {
   }
 }
 
-const invalidDeductions = async agent => {
+const invalidDeductions = async (agent: Agent) => {
   await agent.add(
     'Your deductions exceed your gross income, please start over with updated values.'
   )
@@ -247,7 +247,7 @@ const invalidDeductions = async agent => {
   await handleEndConversation(agent)
 }
 // User provided their social security deductions
-export const pmtCalcRetirementContributions = async agent => {
+export const pmtCalcRetirementContributions = async (agent: Agent) => {
   try {
     // Save social security deductions in context
     const ssDeductions = agent.parameters.ssDeductions
@@ -286,13 +286,13 @@ export const pmtCalcRetirementContributions = async agent => {
 }
 
 // User stated he contributes to a retirement account
-export const pmtCalcChildSupport = async agent => {
+export const pmtCalcChildSupport = async (agent: Agent) => {
   // Save retirement contributions in context
   await existingChildSupport(agent, agent.parameters.retirementContributions)
 }
 
 // User stated he does not contribute to a retirement account
-export const pmtCalcChildSupportNoRetirement = async agent => {
+export const pmtCalcChildSupportNoRetirement = async (agent: Agent) => {
   await existingChildSupport(agent, 0)
 }
 
@@ -332,14 +332,14 @@ const existingChildSupport = async (agent, retirementContributions) => {
 }
 
 // User is paying for child support for other children, let's calculate the final payment
-export const pmtCalcFinalEstimation = async agent => {
+export const pmtCalcFinalEstimation = async (agent: Agent) => {
   const paymentFactors = await agent.context.get('payment-factors').parameters
   paymentFactors.otherChildSupport = agent.parameters.otherChildSupport
   await finalPaymentCalculation(agent, paymentFactors)
 }
 
 // User is NOT paying for child support for other children. move on to calculations
-export const pmtCalcFinalEstimationNoOtherChildren = async agent => {
+export const pmtCalcFinalEstimationNoOtherChildren = async (agent: Agent) => {
   const paymentFactors = await agent.context.get('payment-factors').parameters
   paymentFactors.otherChildSupport = 0
   await finalPaymentCalculation(agent, paymentFactors)

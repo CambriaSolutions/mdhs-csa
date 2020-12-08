@@ -1,4 +1,4 @@
-export const pebtRoot = async agent => {
+export const pebtRoot = async (agent: Agent) => {
   try {
     const { handleEndConversation } = await import('../globalFunctions')
 

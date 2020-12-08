@@ -28,7 +28,7 @@ const saveRequest = async (reqData, subjectMatter) => {
   return db.collection(`subjectMatters/${currentSubjectMatter}/requests`).add(_reqData)
 }
 
-const constructIntentHandlersObject = async (intentName: string, request, subjectMatter): Promise<IntentHandlersByName> => {
+const constructIntentHandlersObject = async (intentName: string, request: Request, subjectMatter: SubjectMatter): Promise<IntentHandlersByName> => {
 
   const { getIntentHandler } = await import('../intentHandlers/getIntentHandler')
 
@@ -36,7 +36,7 @@ const constructIntentHandlersObject = async (intentName: string, request, subjec
 
   const intentHandler: IntentHandler = await getIntentHandler(subjectMatter)(intentName)
 
-  const genericIntentHandler = async (_agent) => {
+  const genericIntentHandler = async (_agent: Agent) => {
     const dialogflowTextResponses = getTextResponses(request.body.queryResult.fulfillmentMessages)
     const dialogflowSuggestions = getSuggestions(request.body.queryResult.fulfillmentMessages)
 
@@ -56,7 +56,7 @@ const constructIntentHandlersObject = async (intentName: string, request, subjec
   })
 }
 
-export const dialogflowFirebaseFulfillment = async (request, response) => {
+export const dialogflowFirebaseFulfillment: HttpsFunction = async (request, response) => {
   try {
     if (request.method === 'GET' && request.query.coldStart) {
       console.log('Importing packages and modules as part of cold start call')
@@ -87,7 +87,7 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
         }))
       }
 
-      const agent = new WebhookClient({ request, response }) as any
+      const agent = new WebhookClient(({ request, response } as any)) as Agent
 
       const subjectMatter = getSubjectMatter(agent)
 
@@ -112,10 +112,10 @@ export const dialogflowFirebaseFulfillment = async (request, response) => {
 
       // Check to see if we need to override the target intent
       // In case of Start Over, Go Back, and Home this may be needed during parameter entry.
-      if (isActionRequested(request.body, 'Start Over') && agent.context.get('waiting-global-restart') !== undefined) {
-        agent.intent = 'global-restart'
-      } else if (isActionRequested(request.body, 'Go Back') && agent.context.get('waiting-go-back') !== undefined) {
-        agent.intent = 'go-back'
+      if (isActionRequested(request.body, 'Start Over') && (agent as any).context.get('waiting-global-restart') !== undefined) {
+        (agent as any).intent = 'global-restart'
+      } else if (isActionRequested(request.body, 'Go Back') && (agent as any).context.get('waiting-go-back') !== undefined) {
+        (agent as any).intent = 'go-back'
       }
 
       await back(agent, intentHandlers, request.body.queryResult.fulfillmentMessages, subjectMatter, resetBackIntentList, 'go-back')

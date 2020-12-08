@@ -1,6 +1,6 @@
 import { Suggestion } from 'dialogflow-fulfillment'
 
-export const snapRoot = async agent => {
+export const snapRoot = async (agent: Agent) => {
   const spanishGuideLink = 'https://www.mdhs.ms.gov/wp-content/uploads/2020/08/12377.7363_TARGET-Spanish_SNAP-facts-for-language-1.pdf'
   const vietnameseGuideLink = 'https://www.mdhs.ms.gov/wp-content/uploads/2020/08/12377.7363_TARGET-Vietnamese_SNAP-facts-for-language-1.pdf'
 
