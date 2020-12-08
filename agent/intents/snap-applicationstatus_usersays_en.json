@@ -1,29 +1,15 @@
 [
   {
-    "id": "28b0b730-f55c-4361-a389-6ded669b94a9",
+    "id": "e38a0b6c-077d-475b-89fb-ce48364f2b23",
     "data": [
       {
-        "text": "I\u0027m looking for my stamps for my kids for school that received free lunch for the school year, I haven\u0027t received those yet",
+        "text": "I\u0027m looking for my stamps for my kids for school that received free lunch for the school year, I haven\u0027t received those ",
         "userDefined": false
       },
       {
-        "text": "year",
+        "text": "yet",
         "meta": "@cadence",
         "alias": "cadence",
-        "userDefined": false
-      },
-      {
-        "text": " I ",
-        "userDefined": false
-      },
-      {
-        "text": "haven\u0027t received",
-        "meta": "@dont-know",
-        "alias": "dont-know",
-        "userDefined": false
-      },
-      {
-        "text": " those yet",
         "userDefined": false
       }
     ],
