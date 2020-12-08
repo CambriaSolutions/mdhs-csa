@@ -16,7 +16,22 @@
           "parameters": {}
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "42c93c26-4684-4995-a615-4a0b74a81f88",
+          "name": "number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
       "messages": [
         {
           "type": "0",
@@ -32,8 +47,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
-            "handleEndConversation": true
+            "handleEndConversation": true,
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",

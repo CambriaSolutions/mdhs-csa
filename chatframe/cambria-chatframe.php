@@ -11,9 +11,9 @@
  * @package           Cambria_Chatframe
  *
  * @wordpress-plugin
- * Plugin Name:       Gen 2.4.0
+ * Plugin Name:       Gen 2.5.0
  * Description:       A plugin to include Gen's chatframe on specified pages.
- * Version:           2.4.0
+ * Version:           2.5.0
  * Author:            Cambria Solutions
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

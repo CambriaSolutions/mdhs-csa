@@ -1,4 +1,4 @@
-export const contactSupportHandoff = async agent => {
+export const contactSupportHandoff = async (agent: Agent) => {
   const { supportRoot } = await import('./support')
 
   try {

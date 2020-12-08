@@ -146,7 +146,7 @@
     "id": "1cdafd76-58d1-43e0-b65c-bd45cf9249b1",
     "data": [
       {
-        "text": "I already applied for snap have ",
+        "text": "I already applied for tanf have ",
         "userDefined": false
       },
       {
@@ -157,39 +157,6 @@
       },
       {
         "text": " heard back from anyone",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "lang": "en",
-    "updated": 0
-  },
-  {
-    "id": "b2b81efd-9f91-4def-946b-d2525567f5bb",
-    "data": [
-      {
-        "text": "I\u0027m looking for my stamps for my kids for school that received free lunch for the school ",
-        "userDefined": false
-      },
-      {
-        "text": "year",
-        "meta": "@cadence",
-        "alias": "cadence",
-        "userDefined": false
-      },
-      {
-        "text": " I ",
-        "userDefined": false
-      },
-      {
-        "text": "haven\u0027t received",
-        "meta": "@dont-know",
-        "alias": "dont-know",
-        "userDefined": false
-      },
-      {
-        "text": " those yet",
         "userDefined": false
       }
     ],
