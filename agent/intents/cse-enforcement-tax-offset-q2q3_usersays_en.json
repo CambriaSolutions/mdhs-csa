@@ -124,5 +124,18 @@
     "count": 0,
     "lang": "en",
     "updated": 0
-  }
+  },
+  {
+    "id": "d43939cc-f9a6-40e3-985f-22317be16c93",
+    "data": [
+      {
+        "text": "They took my spouse taxes, do you take mine too?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
 ]
