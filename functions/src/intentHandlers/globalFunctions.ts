@@ -169,7 +169,7 @@ export const disableInput = async (agent: Agent) => {
 export const caseyHandoff = async (agent: Agent) => {
   try {
     await agent.add(
-      'Click <a href="https://mdhs-policysearch.cambriasolutionssc.com" target="_blank">Here</a> to search the Child Support Policy Manual'
+      'Click <a href="https://mdhs-policysearch.web.app" target="_blank">Here</a> to search the Child Support Policy Manual'
     )
     await handleEndConversation(agent)
   } catch (err) {
