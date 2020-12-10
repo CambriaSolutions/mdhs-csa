@@ -162,13 +162,17 @@ class Dashboard extends Component<any, any> {
           .filter((i: any) => i.name !== 'Default Welcome Intent')
           .slice(0, 5)
 
+        console.log('this.props.conversationsDurationTotal', this.props.conversationsDurationTotal)
+
+        console.log('this.props.conversationsTotal', this.props.conversationsTotal)
+
         dashboardUI = (
           <Grid container spacing={2} >
             <Grid container spacing={2} >
               <Grid item xs={12} sm >
                 <Card
                   color={colorShades(this.props.mainColor, 50)}
-                  value={this.props.conversationsDurationTotal}
+                  value={this.props.conversationsTotal}
                   label='Total Users'
                   notes=''
                   icon='account_circle'
