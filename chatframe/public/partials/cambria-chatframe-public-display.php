@@ -10,4 +10,4 @@
  */
 ?>
 
-<div id="cambria-wordpress-chatframe"></div>
+<div id="cambria-wordpress-chatframe" data-media-root="<?= str_replace("partials/", "app/build", plugin_dir_url(__FILE__)) ?>"></div>
