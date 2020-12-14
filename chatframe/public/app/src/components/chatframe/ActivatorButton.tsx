@@ -56,7 +56,6 @@ interface Props {
 class ActivatorButton extends PureComponent<Props> {
   render() {
     const {
-      title,
       windowVisible,
       showWindow,
       activationText,
