@@ -93,6 +93,9 @@ const StartOverButton = styled(Button)`
   }
 `
 
+// Improve how this gets pulled in
+const mediaRoot = document.getElementById('cambria-wordpress-chatframe').getAttribute('data-media-root')
+
 class Header extends PureComponent<any> {
   render() {
     const {
@@ -124,7 +127,7 @@ class Header extends PureComponent<any> {
 
     return (
       <Container theme={theme}>
-        <BotAvatar alt={title} src={chatbotAvatar} />
+        <BotAvatar alt={title} src={(mediaRoot || '').concat(chatbotAvatar)} />
         <HeaderText theme={theme} variant='h6'>
           {title}
         </HeaderText>
