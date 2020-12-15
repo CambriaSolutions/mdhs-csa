@@ -1,7 +1,6 @@
 
 var fs = require('fs')
 var archiver = require('archiver')
-var { mapValues } = require('lodash')
 
 var output = fs.createWriteStream('GenBotPlugin.zip')
 var archive = archiver('zip', {
@@ -30,22 +29,6 @@ archive.on('warning', function (err) {
 archive.on('error', function (err) {
   throw err
 })
-
-const assetManifestDirectory = '../../chatframe/public/app/build/asset-manifest.json'
-
-const content = fs.readFileSync(assetManifestDirectory)
-
-const originalAssetManifest = JSON.parse(content)
-
-const wpPluginLocation = './wp-content/plugins/GenBotPlugin-6/public/app/build/'
-
-const newAssetManifest = {
-  ...originalAssetManifest,
-  // The second replace is to make sure that we can run this script back to back without issues
-  files: mapValues(originalAssetManifest.files, val => val.replace('./', wpPluginLocation).replace(wpPluginLocation.replace('./', wpPluginLocation), wpPluginLocation))
-}
-
-fs.writeFileSync(assetManifestDirectory, JSON.stringify(newAssetManifest))
 
 // pipe archive data to the file
 archive.pipe(output)
