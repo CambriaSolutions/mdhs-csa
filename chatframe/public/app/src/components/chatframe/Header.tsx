@@ -12,7 +12,6 @@ import styled from 'styled-components'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import { findLast, find } from 'lodash'
-import { sendQuickReply } from './actions/conversation'
 import chatbotAvatar from './chatbot_avatar.svg'
 
 import {
@@ -21,6 +20,7 @@ import {
   showWindowed,
   showPrivacyPolicy,
 } from './actions/initialization'
+import { sendQuickReply } from './actions/conversation'
 
 const BotAvatar = styled(Avatar)`
   && {
@@ -93,6 +93,9 @@ const StartOverButton = styled(Button)`
   }
 `
 
+// Improve how this gets pulled in
+const mediaRoot = document.getElementById('cambria-wordpress-chatframe').getAttribute('data-media-root')
+
 class Header extends PureComponent<any> {
   render() {
     const {
@@ -119,27 +122,25 @@ class Header extends PureComponent<any> {
 
       // We search for it and use it instead of hard coding because we want
       // to persist the casing that we get back from server
-      // The 'start over' and 'home' buttons are essentially the same,
-      // but which we receive is dependent on the back end version, so we check for both.
-      startOverButtonLabel = find(suggestions, x => x.toLowerCase() === 'home' || x.toLowerCase() === 'start over')
+      startOverButtonLabel = find(suggestions, x => x.toLowerCase() === 'start over')
     }
 
     return (
       <Container theme={theme}>
-        <BotAvatar alt={title} src={chatbotAvatar} />
+        <BotAvatar alt={title} src={(mediaRoot || '').concat(chatbotAvatar)} />
         <HeaderText theme={theme} variant='h6'>
           {title}
         </HeaderText>
-        {startOverButtonLabel && (
+        {startOverButtonLabel ? (
           <Tooltip title='Return to subject selection' placement='bottom'>
             <StartOverButton
               theme={theme}
-              onClick={() => sendQuickReply('START OVER')}
+              onClick={() => sendQuickReply('START OVER', true)}
             >
               Start Over
             </StartOverButton>
           </Tooltip>
-        )}
+        ) : null}
         <Tooltip title='Privacy Policy' placement='bottom'>
           <HeaderButton
             theme={theme}
@@ -162,7 +163,6 @@ class Header extends PureComponent<any> {
             <HeaderButton
               theme={theme}
               onClick={(e) => {
-                console.log('maximize clicked')
                 showFullscreen(e)
               }}
               aria-label='Fullscreen'
@@ -191,7 +191,7 @@ const mapDispatchToProps = dispatch => ({
   showFullscreen: () => dispatch(showFullscreen()),
   showWindowed: () => dispatch(showWindowed()),
   showPrivacyPolicy: () => dispatch(showPrivacyPolicy()),
-  sendQuickReply: text => dispatch(sendQuickReply(text))
+  sendQuickReply: (message: string, isEvent?: boolean) => dispatch(sendQuickReply(message, isEvent))
 })
 
 export default withTheme()(

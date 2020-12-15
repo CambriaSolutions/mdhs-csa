@@ -45,25 +45,24 @@ const findLastMessageWithSuggestions = (messages) => findLast(messages, m => {
   return hasSuggestions
 })
 
-const getSuggestions = (messageWithSuggestions) => messageWithSuggestions.responses.filter(m => m.type === 'suggestion')[0].suggestions
-
 interface Suggestion {
-  label: string,
-  id: string,
-  visible: number,
-  minColumnSpan: number
+  label: string;
+  id: string;
+  visible: number;
+  minColumnSpan: number;
 }
 
 interface Props {
-  visible: State['buttonBar']['visible'],
-  messages: State['conversation']['messages'],
-  paginationPage: State['buttonBar']['paginationPage'],
-  sendQuickReply: (text: string) => void
-  changeSuggestionPage: (newPage: number) => any
+  visible: State['buttonBar']['visible'];
+  messages: State['conversation']['messages'];
+  suggestions: State['conversation']['suggestions'];
+  paginationPage: State['buttonBar']['paginationPage'];
+  sendQuickReply: (text: string, isEvent?: boolean) => void;
+  changeSuggestionPage: (newPage: number) => any;
 }
 
 class ButtonBar extends PureComponent<Props> {
-  minColumnSpan = suggestion => {
+  minColumnSpan = (suggestion: string) => {
     if (suggestion.length >= 18) {
       return 3
     } else if (suggestion.length >= 13 && suggestion.length < 18) {
@@ -200,20 +199,18 @@ class ButtonBar extends PureComponent<Props> {
   }
 
   render() {
-    const { visible, messages, sendQuickReply, paginationPage, changeSuggestionPage } = this.props
+    const { visible, messages, suggestions, sendQuickReply, paginationPage, changeSuggestionPage } = this.props
 
     const lastMessageWithSuggestions = findLastMessageWithSuggestions(messages)
 
     const suggestionElements = []
 
     let backButtonLabel: any = null
+    let homeButtonLabel: any = null
     let isSelectingSubjectMatter = false
 
     if (lastMessageWithSuggestions) {
-      const suggestions = getSuggestions(lastMessageWithSuggestions)
-
-      // Start over and home button are the same, but based on server
-      // code version, we might receive 'home' or 'start over' as suggestion
+      // Some buttons are treated as special cases and are removed from the normal suggestions
       const excludedBackAndStartOver = filter(suggestions, x => x.toLowerCase() !== 'go back' && x.toLowerCase() !== 'home' && x.toLowerCase() !== 'start over')
 
       if (excludedBackAndStartOver.length === 4
@@ -222,6 +219,8 @@ class ButtonBar extends PureComponent<Props> {
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'snap')
         && find(excludedBackAndStartOver, x => x.toLowerCase() === 'workforce development')) {
         isSelectingSubjectMatter = true
+      } else {
+        homeButtonLabel = find(suggestions, x => x.toLowerCase() === 'home')
       }
 
       // We search for it and use it because we want
@@ -257,85 +256,98 @@ class ButtonBar extends PureComponent<Props> {
       : paginationPages[0]
 
     return (
-      (suggestionElements.length > 0 || backButtonLabel) &&
-      (
-        <Container visible={visible}>
-          {/* Start of suggestion rows */}
-          <Grid container>
-            {suggestionElements.length > 0 &&
-              activeSuggestionPage.map((btns, i) => (
-                <Grid
-                  key={`buttonRow_${i}`}
-                  container
-                  item
-                  spacing={8}
-                  xs={12}
-                >
-                  {btns.map((btn, index) => (
-                    <Grid
-                      key={`buttonRow_${i}_${index}`}
-                      item
-                      xs={(12 / btns.length) as any}
-                    >
-                      <Btn
-                        size="small"
-                        color="secondary"
-                        key={`${btn.id}-btn${index}`}
-                        visible={btn.visible.toString()}
-                        navigationbutton="false"
-                        onClick={() => sendQuickReply(btn.label.toUpperCase())}
+      (suggestionElements.length > 0 || backButtonLabel || homeButtonLabel) ?
+        (
+          <Container visible={visible}>
+            {/* Start of suggestion rows */}
+            <Grid container>
+              {suggestionElements.length > 0 ?
+                activeSuggestionPage.map((btns, i) => (
+                  <Grid
+                    key={`buttonRow_${i}`}
+                    container
+                    item
+                    spacing={8}
+                    xs={12}
+                  >
+                    {btns.map((btn, index) => (
+                      <Grid
+                        key={`buttonRow_${i}_${index}`}
+                        item
+                        xs={(12 / btns.length) as any}
                       >
-                        {btn.label.toUpperCase()}
-                      </Btn>
-                    </Grid>
-                  ))}
-                </Grid>
-              ))}
-            {/* Start of navigation row */}
-            <Grid item container xs={12} justify="space-between" spacing={8}>
-              {backButtonLabel && paginationPage === 1 && (
-                <Grid item xs={4}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => sendQuickReply(backButtonLabel.toUpperCase())}
-                  >
-                    {backButtonLabel.toUpperCase()}
-                  </Btn>
-                </Grid>
-              )}
-              {numberOfNavigationPages > 1 && paginationPage > 1 && (
-                <Grid item xs={5}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => changeSuggestionPage(paginationPage - 1)}
-                  >
-                    Previous Options
-                  </Btn>
-                </Grid>
-              )}
-              {numberOfNavigationPages > 1 && paginationPage < numberOfNavigationPages && (
-                <Grid item xs={5}>
-                  <Btn
-                    size="small"
-                    color="secondary"
-                    visible="true"
-                    navigationbutton="true"
-                    onClick={() => changeSuggestionPage(paginationPage + 1)}
-                  >
-                    More Options
-                  </Btn>
-                </Grid>
-              )}
+                        <Btn
+                          size="small"
+                          color="secondary"
+                          key={`${btn.id}-btn${index}`}
+                          visible={btn.visible.toString()}
+                          navigationbutton="false"
+                          onClick={() => sendQuickReply(btn.label.toUpperCase())}
+                        >
+                          {btn.label.toUpperCase()}
+                        </Btn>
+                      </Grid>
+                    ))}
+                  </Grid>
+                )) : null}
+              {/* Start of navigation row */}
+              <Grid item container xs={12} justify="space-between" spacing={8}>
+                {backButtonLabel && paginationPage === 1 ? (
+                  <Grid item xs={4}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => sendQuickReply(backButtonLabel.toUpperCase(), true)}
+                    >
+                      {backButtonLabel.toUpperCase()}
+                    </Btn>
+                  </Grid>
+                ) : null}
+                {numberOfNavigationPages > 1 && paginationPage > 1 ? (
+                  <Grid item xs={5}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => changeSuggestionPage(paginationPage - 1)}
+                    >
+                      Previous Options
+                    </Btn>
+                  </Grid>
+                ) : null}
+                {numberOfNavigationPages > 1 && paginationPage < numberOfNavigationPages ? (
+                  <Grid item xs={5}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => changeSuggestionPage(paginationPage + 1)}
+                    >
+                      More Options
+                    </Btn>
+                  </Grid>
+                ) : null}
+                {(numberOfNavigationPages === 0 || paginationPage === numberOfNavigationPages) && homeButtonLabel ? (
+                  <Grid item xs={4}>
+                    <Btn
+                      size="small"
+                      color="secondary"
+                      visible="true"
+                      navigationbutton="true"
+                      onClick={() => sendQuickReply(homeButtonLabel.toUpperCase(), true)}
+                    >
+                      {homeButtonLabel.toUpperCase()}
+                    </Btn>
+                  </Grid>
+                ) : null}
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      )
+          </Container>
+        ) : null
     )
   }
 }
@@ -344,14 +356,15 @@ const mapStateToProps = (state: State) => {
   return {
     visible: state.buttonBar.visible,
     messages: state.conversation.messages,
+    suggestions: state.conversation.suggestions,
     paginationPage: state.buttonBar.paginationPage
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    sendQuickReply: (text: string) => {
-      dispatch(sendQuickReply(text))
+    sendQuickReply: (text: string, isEvent?: boolean) => {
+      dispatch(sendQuickReply(text, isEvent))
     },
     changeSuggestionPage: (newPage: number) => dispatch({
       type: 'CHANGE_SUGGESTION_PAGE',

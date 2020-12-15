@@ -1,5 +1,4 @@
-
-export const eligibilityChecker = async agent => {
+export const eligibilityChecker = async (agent: Agent) => {
   try {
     const { handleEndConversation } = await import('../globalFunctions')
 

@@ -71,7 +71,7 @@ const categorizeAndPredict = async (db, projectId, subjectMatter, query) => {
 
 }
 
-export const autoMlFallback = async agent => {
+export const autoMlFallback = async (agent: Agent) => {
   try {
     const { Suggestion } = await import('dialogflow-fulfillment')
     const { defaultFallback } = await import('../globalFunctions')

@@ -6,7 +6,6 @@ const retrieveIntentData = async category => {
   const db = admin.firestore()
 
   // Format the category returned from ml models to match our db naming convention
-  // TYPETODO
   const formattedCategory = camelCase.default(category)
 
   // Create a reference for the mlCategory collection and retrieve the intent name
@@ -15,7 +14,6 @@ const retrieveIntentData = async category => {
     const categoryDocRef = db.collection('mlCategories').doc(formattedCategory)
     const categoryDoc = await categoryDocRef.get()
     const categoryData = categoryDoc.data()
-    // TYPETODO
     const suggestionText = get(categoryData, 'suggestionText')
 
     if (suggestionText) {

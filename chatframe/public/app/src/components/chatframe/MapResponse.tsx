@@ -72,6 +72,9 @@ const StyledDistanceTableCell = styled(TableCell)`
   }
 `
 
+// Improve how this gets pulled in
+const mediaRoot = document.getElementById('cambria-wordpress-chatframe').getAttribute('data-media-root')
+
 // Maps documentation: https://tomchentw.github.io/react-google-maps
 function MapResponse(props) {
   const { data, googleMapsKey, className, key } = props
@@ -100,7 +103,7 @@ function MapResponse(props) {
             key={i}
             position={{ lat: row.lat, lng: row.lng }}
             icon={{
-              url: pin,
+              url: (mediaRoot || '').concat(pin),
               scaledSize: iconSize,
             } as any}
             onClick={() => handleMarkerClick(row)}
@@ -112,7 +115,7 @@ function MapResponse(props) {
             lng: data.currentGeocode.lng,
           }}
           icon={{
-            url: personPin,
+            url: (mediaRoot || '').concat(personPin),
             scaledSize: iconSize,
           } as any}
         />

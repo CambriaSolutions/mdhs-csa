@@ -93,7 +93,7 @@ const markdownOptions = {
 
 class Message extends Component<any> {
   state = { isResponseDelayed: false }
-  loadingTimer: number = null
+  loadingTimer: any = null
 
   componentDidMount() {
     const { isLoading } = this.props
@@ -157,29 +157,29 @@ class Message extends Component<any> {
     return (
       <Container entity={entity} className={className} key={key}>
         <ChatBubble entity={entity}>
-          {entity === 'user' &&
+          {entity === 'user' ?
             (
               <UserMessage elevation={1} theme={theme}>
                 {message}
               </UserMessage>
-            )}
-          {entity !== 'user' &&
+            ) : null}
+          {entity !== 'user' ?
             (
               <ExternalMessage elevation={1}>
-                {isLoading && !error && !isResponseDelayed && <Loading />}
-                {isLoading && !error && isResponseDelayed && (
+                {isLoading && !error && !isResponseDelayed ? <Loading /> : null}
+                {isLoading && !error && isResponseDelayed ? (
                   <Markdown options={markdownOptions}>
                     {delayedResponseMessage}
                   </Markdown>
-                )}
-                {isLoading && error && error}
-                {!isLoading && (
+                ) : null}
+                {isLoading && error}
+                {!isLoading ? (
                   <Markdown options={markdownOptions}>
                     {filteredBotMessage[0]}
                   </Markdown>
-                )}
+                ) : null}
               </ExternalMessage>
-            )}
+            ) : null}
         </ChatBubble>
         {showTimestamp ? (
           <Timestamp variant='caption'>{formattedTimestamp}</Timestamp>

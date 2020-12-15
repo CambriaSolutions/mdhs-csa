@@ -1,7 +1,7 @@
 import { Payload } from 'dialogflow-fulfillment'
 import { handleEndConversation } from '../globalFunctions'
 
-export const mapRoot = (subjectMatter) => async agent => {
+export const mapRoot = (subjectMatter) => async (agent: Agent) => {
   try {
     if (subjectMatter === 'wfd') {
       await agent.add('You may contact a MDHS county office between 8:00 am and 5:00 pm, Monday through Friday, excluding holidays, to obtain additional information about S2W.')
@@ -25,8 +25,8 @@ export const mapRoot = (subjectMatter) => async agent => {
   }
 }
 
-const determiningGeocode = async agent => {
-  const { getGeocode } = await import('./calculateGeo.js')
+const determiningGeocode = async (agent: Agent) => {
+  const { getGeocode } = await import('./calculateGeo')
 
   const validator = await import('validator')
 
@@ -47,7 +47,7 @@ const determiningGeocode = async agent => {
   // validate zip code before defining it in userZip
   const zipParamter = agent.parameters.userZip || agent.parameters['zip-code']
   if (zipParamter) {
-    if (validator.isPostalCode(`${zipParamter}`, 'US')) {
+    if ((validator as any).isPostalCode(`${zipParamter}`, 'US')) {
       userZip = zipParamter
     }
   }
@@ -69,9 +69,9 @@ const determiningGeocode = async agent => {
 
 // First pass in the locations to be used in the method. This will return the intent 
 // handler function that you would normally use
-export const mapDeliverMap = (subjectMatter, locations) => async agent => {
+export const mapDeliverMap = (subjectMatter, locations) => async (agent: Agent) => {
   try {
-    const { getNearestThreeLocations } = await import('./calculateGeo.js')
+    const { getNearestThreeLocations } = await import('./calculateGeo')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {
@@ -113,9 +113,9 @@ export const mapDeliverMap = (subjectMatter, locations) => async agent => {
   }
 }
 
-export const mapDeliverMapAndCountyOffice = (subjectMatter, locations) => async agent => {
+export const mapDeliverMapAndCountyOffice = (subjectMatter, locations) => async (agent: Agent) => {
   try {
-    const { getNearestThreeLocations } = await import('./calculateGeo.js')
+    const { getNearestThreeLocations } = await import('./calculateGeo')
     const currentGeocode = await determiningGeocode(agent)
 
     if (currentGeocode) {

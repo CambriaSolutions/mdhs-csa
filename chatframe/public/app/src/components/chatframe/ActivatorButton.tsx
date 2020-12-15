@@ -42,6 +42,8 @@ const BotAvatar = styled(Avatar)`
     border-radius: 50% 50% 0px 50%;
   }
 `
+// Improve how this gets pulled in
+const mediaRoot = document.getElementById('cambria-wordpress-chatframe').getAttribute('data-media-root')
 
 interface Props {
   title: string,
@@ -54,7 +56,6 @@ interface Props {
 class ActivatorButton extends PureComponent<Props> {
   render() {
     const {
-      title,
       windowVisible,
       showWindow,
       activationText,
@@ -63,7 +64,7 @@ class ActivatorButton extends PureComponent<Props> {
 
     const contentToDisplay = activationText ? (
       <>
-        <BotAvatar alt={title} src={chatbotAvatar} />
+        <BotAvatar src={(mediaRoot || '').concat(chatbotAvatar)} />
         <TextContainer theme={theme}>{activationText}</TextContainer>
       </>
     ) : <Chat />

@@ -5,13 +5,10 @@ import {
   supportReviewPayments
 } from './support'
 
-// TODO ----- VERY IMPORTANT
-// THIS INTENT HANDLER SEEMS TO BE USED FOR AN INTENT THAT CAN ONLY BE REACHED WITH TRAINING PHRASES. NO BUTTONS. 
-// ALSO, THE CONTENT IN THIS HANDLER IS NOWHERE TO BE FOUND IN LUCIDCHART. NEED TO REVIEW. 
-export const pmtQAHaventReceived = async agent => {
+export const pmtQAHaventReceived = async (agent: Agent) => {
   try {
     await agent.add(
-      'Parents who pay support have the full month to pay.  If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.'
+      'Parents who pay support have the full month to pay. If you would like more information, then please call <a href="tel:+18778824916">1-877-882-4916</a>.'
     )
     await handleEndConversation(agent)
   } catch (err) {
@@ -19,7 +16,7 @@ export const pmtQAHaventReceived = async agent => {
   }
 }
 
-export const pmtQAPaymentReduction = async agent => {
+export const pmtQAPaymentReduction = async (agent: Agent) => {
   try {
     await agent.add(
       'I can help you submit a request to have your case reviewed to see if a modification is appropriate. Please note that this can modify your payments upwards or downwards. Would you like to continue?'
@@ -36,7 +33,7 @@ export const pmtQAPaymentReduction = async agent => {
   }
 }
 
-export const pmtQAYesPaymentReduction = async agent => {
+export const pmtQAYesPaymentReduction = async (agent: Agent) => {
   try {
     const continuePaymentReduction = agent.parameters.continuePaymentReduction
     if (continuePaymentReduction === 'yes') {
@@ -49,7 +46,7 @@ export const pmtQAYesPaymentReduction = async agent => {
   }
 }
 
-export const pmtQAOver21 = async agent => {
+export const pmtQAOver21 = async (agent: Agent) => {
   try {
     await agent.add(
       'If you owe back child support, you still have to pay that support. There are other special circumstances that may also require continued payments. If you would like more information, I can help you submit a support request.'
@@ -68,7 +65,7 @@ export const pmtQAOver21 = async agent => {
   }
 }
 
-export const pmtQAEmployerPaymentStatus = async agent => {
+export const pmtQAEmployerPaymentStatus = async (agent: Agent) => {
   try {
     await agent.add('Have you reported your employer to CSE?')
     await agent.add(new Suggestion('Yes'))
@@ -83,7 +80,7 @@ export const pmtQAEmployerPaymentStatus = async agent => {
   }
 }
 
-export const pmtQAYesEmployerPaymentStatus = async agent => {
+export const pmtQAYesEmployerPaymentStatus = async (agent: Agent) => {
   try {
     const reportCSE = agent.parameters.reportCSE
 
@@ -113,7 +110,7 @@ export const pmtQAYesEmployerPaymentStatus = async agent => {
   }
 }
 
-export const pmtQANCPPaymentStatus = async agent => {
+export const pmtQANCPPaymentStatus = async (agent: Agent) => {
   try {
     await agent.add('Click <a href="https://www.eppicard.com/" target="_blank">here</a> to check your EPPI card statement.')
     await agent.add('At this time, I cannot answer this question. However, I can help you get the answer to this question through submitting a support ticket.')

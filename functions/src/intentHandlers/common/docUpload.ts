@@ -1,4 +1,4 @@
-export const docUpload = async agent => {
+export const docUpload = async (agent: Agent) => {
   try {
     const { handleEndConversation } = await import('../globalFunctions')
 

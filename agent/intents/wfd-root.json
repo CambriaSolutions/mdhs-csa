@@ -70,7 +70,9 @@
           "title": "",
           "payload": {
             "suggestions": [
-              "SKILLS2WORK"
+              "SKILLS2WORK",
+              "WORK DEVELOPMENT PARTNERS",
+              "TANF WORK PROGRAM (TWP)"
             ]
           },
           "textToSpeech": "",
@@ -85,7 +87,11 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [],
+  "events": [
+    {
+      "name": "home"
+    }
+  ],
   "conditionalResponses": [],
   "condition": "",
   "conditionalFollowupEvents": []

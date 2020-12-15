@@ -1,8 +1,8 @@
 import { handleEndConversation } from '../globalFunctions'
 
-export const apptsOfficeLocationsHandoff = async agent => {
+export const apptsOfficeLocationsHandoff = async (agent: Agent) => {
   try {
-    const { mapRoot } = await import('../common/map.js')
+    const { mapRoot } = await import('../common/map')
 
     const wantsLocation = agent.parameters.wantsLocation
     if (wantsLocation === 'yes') {

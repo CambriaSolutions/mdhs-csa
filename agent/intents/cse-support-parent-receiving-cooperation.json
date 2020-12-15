@@ -2,7 +2,9 @@
   "id": "f310a627-f9fa-4735-85d5-48942848cf32",
   "name": "cse-support-parent-receiving-cooperation",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "cse-subject-matter"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -12,11 +14,15 @@
           "name": "waiting-support-submitSupportRequest-cooperation",
           "lifespan": 1,
           "parameters": {}
+        },
+        {
+          "name": "cse-subject-matter",
+          "lifespan": 99
         }
       ],
       "parameters": [
         {
-          "id": "f7bc55b8-c602-4bea-a0a9-32b44cbfecdd",
+          "id": "2ca05431-366f-4df5-9930-cc8934d1090d",
           "name": "guardianship",
           "required": false,
           "dataType": "@guardianship",
@@ -30,7 +36,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "66cc36cb-c5a6-4220-a445-f9049287cbd3",
+          "id": "59634e6d-1a93-4f1a-9c4a-6564033c8192",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -44,7 +50,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "b85de6c5-2506-4bbc-b888-f00fe32cd526",
+          "id": "d6bf553e-6d7b-49bb-9a5a-bb7e3d6897f0",
           "name": "yes-no1",
           "required": false,
           "dataType": "@yes-no",

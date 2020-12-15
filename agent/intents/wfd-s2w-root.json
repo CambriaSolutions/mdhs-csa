@@ -11,10 +11,6 @@
       "action": "",
       "affectedContexts": [
         {
-          "name": "waiting-restart-conversation",
-          "lifespan": 2
-        },
-        {
           "name": "wfd-subject-matter",
           "lifespan": 99
         }

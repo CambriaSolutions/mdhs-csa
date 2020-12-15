@@ -2,7 +2,7 @@ import validator from 'validator'
 import { Suggestion } from 'dialogflow-fulfillment'
 
 // Used to handle restarting and starting conversations for support requests
-export const startSupportConvo = async agent => {
+export const startSupportConvo = async (agent: Agent) => {
   try {
     await agent.add('Which of the following are you?')
     await agent.add(
@@ -37,55 +37,55 @@ export const startSupportConvo = async agent => {
 }
 
 // Format the confirmation responses based on type of support request
-export const formatConfirmationResponse = async agent => {
+export const formatConfirmationResponse = async (agent: Agent) => {
   const supportType = await agent.context
     .get('ticketinfo')
     .parameters.supportType.toLowerCase()
 
-  let confimationResponse
+  let confirmationResponse
   // Request contempt action
   if (supportType === 'request contempt action') {
-    confimationResponse = 'Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.'
+    confirmationResponse = 'Thanks, your request has been submitted! We will review the case for possible contempt actions. If more information is needed, we will mail you a contempt packet within 1-2 business days.'
   }
   // Child support payment increase or decrease
   else if (supportType === 'child support increase or decrease') {
-    confimationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
+    confirmationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
   }
   // Change of personal information
   else if (supportType === 'change personal information') {
-    confimationResponse = 'Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.'
+    confirmationResponse = 'Thanks, your request has been submitted. A member of our team will reach out to you within 1-2 business days to validate your request.'
   }
   // Change of employment status
   else if (supportType === 'change of employment status') {
-    confimationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
+    confirmationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
   }
   // Request payment history
   else if (supportType === 'request payment history or record' || supportType === 'request payment history') {
-    confimationResponse = 'Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.'
+    confirmationResponse = 'Thanks, your request has been submitted! We will mail you a statement of accounting to the address we have in our system. If we need more information to process this request, we will contact you in the next 1-2 days.'
   }
   // Information about parent who pays child support
   else if (
     supportType === 'Report Information About the Parent who Pays Support'
   ) {
-    confimationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
+    confirmationResponse = 'Thanks, your request has been submitted! A member of our team will process this information. If we need more information, we will contact you at the number provided.'
   }
   // Request case closure
   else if (supportType === 'request case closure') {
-    confimationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
+    confirmationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
   }
   // Employer reports a lump sum payment
   else if (supportType === 'employer report lump sum notification') {
-    confimationResponse = 'Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.'
+    confirmationResponse = 'Thanks, your request has been submitted. A member of our team will reach out within 1-2 business days to respond to your request.'
   }
   // Adding an authorized user to an account
   else if (supportType === 'add authorized user') {
-    confimationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
+    confirmationResponse = 'Thanks, your request has been submitted! A member of our team will reach out within 1-2 business days to validate your request.'
   }
   // Any other type of request
   else {
-    confimationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
+    confirmationResponse = 'Thanks, your request has been submitted and will be reviewed. If we need more information to proceed with your request, we will contact you within 1-2 business days.'
   }
-  return confimationResponse
+  return confirmationResponse
 }
 
 // Responds to case number and sets context appropriately
@@ -108,11 +108,11 @@ export const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       await agent.add('What is the new employer\'s name?')
       await agent.context.set({
         name: 'waiting-support-collect-new-employer-name',
-        lifespan: 3,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'waiting-support-no-new-employer',
-        lifespan: 3,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -126,7 +126,7 @@ export const handleCaseNumber = async (descriptionText, agent, caseNumber) => {
       await agent.add(`${descriptionText}`)
       await agent.context.set({
         name: 'waiting-support-collect-issue',
-        lifespan: 10,
+        lifespan: 1,
       })
       await agent.context.set({
         name: 'ticketinfo',
@@ -174,7 +174,7 @@ export const supportMoreOptions = async (agent, option) => {
 }
 
 // Checks for the inclusion of lump sum in order to change the conversation
-export const checkForLumpSum = async agent => {
+export const checkForLumpSum = async (agent: Agent) => {
   const supportType = await agent.context.get('ticketinfo').parameters
     .supportType
 
@@ -186,7 +186,7 @@ export const checkForLumpSum = async agent => {
 }
 
 // Used to request the case number
-const requestCaseNumber = async agent => {
+const requestCaseNumber = async (agent: Agent) => {
   try {
     await agent.add(
       'What is your case number? Please do not provide your social security number.'
@@ -206,13 +206,13 @@ const requestCaseNumber = async agent => {
 }
 
 // Used to request a company for a lump sum notification
-const requestCompany = async agent => {
+const requestCompany = async (agent: Agent) => {
   try {
     await agent.add('What is the name of your company/employer?')
 
     await agent.context.set({
       name: 'waiting-support-collect-company',
-      lifespan: 3,
+      lifespan: 1,
     })
   } catch (err) {
     console.error(err.message, err)
@@ -366,7 +366,7 @@ export const formatCardText = (ticketinfo, requests) => {
 
 // Format the summary depending on support type
 export const formatSummary = async ({ supportType, employmentChangeType }) => {
-  const { toTitleCase } = await import('../globalFunctions.js')
+  const { toTitleCase } = await import('../globalFunctions')
 
   let supportSummary
   if (supportType === 'child support increase or decrease') {
