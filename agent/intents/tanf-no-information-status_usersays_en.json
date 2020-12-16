@@ -1,11 +1,10 @@
 [
   {
-    "id": "4aafc94e-497f-45f8-b56d-cf62a0164bdb",
+    "id": "e0609dde-6bf9-4e52-89c7-829f555a3a49",
     "data": [
       {
         "text": "NO",
-        "meta": "@yes-no",
-        "alias": "yes-no",
+        "meta": "@sys.ignore",
         "userDefined": false
       }
     ],

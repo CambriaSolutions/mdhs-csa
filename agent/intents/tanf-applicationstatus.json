@@ -13,11 +13,15 @@
         {
           "name": "tanf-subject-matter",
           "lifespan": 99
+        },
+        {
+          "name": "waiting-tanf-applicationstatus",
+          "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "9766f640-6c41-41bd-ae43-e51dd552a536",
+          "id": "2820d871-8c69-4823-a7ef-e0f859ca6910",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",

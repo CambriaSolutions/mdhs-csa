@@ -14,10 +14,6 @@
         {
           "name": "snap-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-snap-applicationstatus",
-          "lifespan": 0
         }
       ],
       "parameters": [],
@@ -43,8 +39,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [],
-            "handleEndConversation": true
+            "handleEndConversation": true,
+            "suggestions": []
           },
           "textToSpeech": "",
           "lang": "en",

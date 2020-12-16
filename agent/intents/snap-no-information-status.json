@@ -16,22 +16,7 @@
           "lifespan": 5
         }
       ],
-      "parameters": [
-        {
-          "id": "fc878a2d-64e6-42e8-95f7-d38821cb2271",
-          "name": "yes-no",
-          "required": false,
-          "dataType": "@yes-no",
-          "value": "$yes-no",
-          "defaultValue": "",
-          "isList": false,
-          "prompts": [],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": []
-        }
-      ],
+      "parameters": [],
       "messages": [
         {
           "type": "0",
