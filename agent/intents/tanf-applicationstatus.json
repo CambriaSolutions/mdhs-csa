@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "ec66c333-fb2e-4b49-a448-5386f9e00705",
+          "id": "9766f640-6c41-41bd-ae43-e51dd552a536",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -38,7 +38,27 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Most applications are processed within 30 days from the date it is received. You should receive an appointment within 10 days of submitting your application. To check the status of your case or view your notices, you can create a MyMDHS account \u003ca href\u003d\"https://my.mdhs.ms.gov/#/landing\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e"
+            "The TANF application process is a maximum of 30 days. A notice will be provided to the parent or caretaker relative within 30 days of applying telling whether the family is approved for TANF benefits, the amount, start date, etc. To check the status of your case or view your notices, you can create a MyMDHS account \u003ca href\u003d\"https://my.mdhs.ms.gov/#/landing\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "During the TANF interview, a worker will determine if the family is eligible according to all TANF eligibility factors. Families must meet both financial and non-financial requirements established in state law. In general, families must include a child under age 18 and be residents of Mississippi. Families with children under age 17 must comply with TANF immunization requirements, and children ages 6 to 17 must attend school and have satisfactory attendance."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Do you want to check other Eligibility Factors and Requirements which must be met?"
           ],
           "condition": ""
         },
@@ -46,8 +66,10 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [
+              "YES",
+              "NO"
+            ]
           },
           "textToSpeech": "",
           "lang": "en",
