@@ -13,11 +13,15 @@
         {
           "name": "snap-subject-matter",
           "lifespan": 99
+        },
+        {
+          "name": "waiting-snap-applicationstatus",
+          "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "1328ffd4-a217-466d-aa18-096693063a37",
+          "id": "001e2ac8-5b53-4cfd-8a9d-911e9bf6d5e1",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -31,7 +35,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "9727d24c-3b5b-42b3-abd1-b383c1940d51",
+          "id": "13b04cf0-9085-40a9-a1c6-3a19c9049a74",
           "name": "cadence",
           "required": false,
           "dataType": "@cadence",
@@ -57,11 +61,33 @@
           "condition": ""
         },
         {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Additional information may be required, based on the household’s circumstances. After the interview and collection of needed information for eligibility determination, the worker will send the household a notice. If the household does not qualify for SNAP, a notice will be provided giving the reasons for ineligibility. If the household is determined to be eligible, the notice will provide the monthly benefit amount and length of the certification period."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "Do you want to check what information will be verified?"
+          ],
+          "condition": ""
+        },
+        {
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [
+              "YES",
+              "NO"
+            ]
           },
           "textToSpeech": "",
           "lang": "en",
