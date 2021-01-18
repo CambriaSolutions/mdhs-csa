@@ -1,5 +1,31 @@
 [
   {
+    "id": "eacaac4b-ff5f-4b69-9648-5e24a6cc4ac3",
+    "data": [
+      {
+        "text": "What information will be verified?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "25acbe0c-3d80-4175-a797-d4ea6cb85299",
+    "data": [
+      {
+        "text": "What happens after I submit a SNAP Application?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
     "id": "e38a0b6c-077d-475b-89fb-ce48364f2b23",
     "data": [
       {

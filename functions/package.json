@@ -23,9 +23,9 @@
     "lint-fix": "npx eslint '**/*.ts' --fix"
   },
   "dependencies": {
-    "@google-cloud/automl": "^2.2.0",
+    "@google-cloud/automl": "^2.3.1",
     "@google-cloud/dialogflow": "^3.3.0",
-    "@google-cloud/storage": "^5.3.0",
+    "@google-cloud/storage": "^5.7.0",
     "@types/date-fns": "^2.6.0",
     "actions-on-google": "^2.13.0",
     "bufferutil": "^4.0.1",
@@ -35,9 +35,9 @@
     "date-fns": "^2.16.1",
     "dialogflow-fulfillment": "github:dialogflow/dialogflow-fulfillment-nodejs",
     "dotenv": "^8.0.0",
-    "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.11.0",
-    "firebase-tools": "^8.10.0",
+    "firebase-admin": "^9.4.2",
+    "firebase-functions": "^3.13.0",
+    "firebase-tools": "^9.0.0",
     "glob": "^7.1.4",
     "grpc": "^1.24.3",
     "libphonenumber-js": "^1.7.58",
@@ -63,7 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "eslint": "^7.11.0",
-    "firebase-functions-test": "^0.2.2",
+    "firebase-functions-test": "^0.2.3",
     "fs": "0.0.1-security",
     "jest": "^26.4.2",
     "typescript": "^4.0.3"
