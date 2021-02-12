@@ -12,11 +12,25 @@
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "ddb6faf6-806c-4447-a180-2ee5925f46ab",
+          "id": "60c53701-503a-4ae7-b2d0-e377374b6bc1",
           "name": "number",
           "required": false,
           "dataType": "@sys.number",
           "value": "$number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "364711d7-9bde-4ee5-b161-97433b8ded1c",
+          "name": "date-period",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "value": "$date-period",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -61,8 +75,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",

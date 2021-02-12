@@ -1,6 +1,6 @@
 {
-  "id": "a0734a08-0341-49bf-8fc2-19d7c62d7684",
-  "name": "snap-applicationstatus",
+  "id": "34ddc62c-dfb0-4383-8177-233187a15907",
+  "name": "snap-myMDHSaccount",
   "auto": true,
   "contexts": [
     "snap-subject-matter"
@@ -13,15 +13,11 @@
         {
           "name": "snap-subject-matter",
           "lifespan": 99
-        },
-        {
-          "name": "waiting-snap-applicationstatus",
-          "lifespan": 1
         }
       ],
       "parameters": [
         {
-          "id": "2adf95cd-0026-498f-9de6-41cfe9927d1f",
+          "id": "80c08a54-f4eb-4c89-a74c-8ba47c025716",
           "name": "yes-no",
           "required": false,
           "dataType": "@yes-no",
@@ -35,7 +31,7 @@
           "outputDialogContexts": []
         },
         {
-          "id": "0d369b8c-3428-4a9d-841d-3a56b2d1891b",
+          "id": "1132e841-6caa-4797-bfcb-92660772fdd0",
           "name": "cadence",
           "required": false,
           "dataType": "@cadence",
@@ -49,11 +45,11 @@
           "outputDialogContexts": []
         },
         {
-          "id": "45dc5168-7a5a-450d-a5d0-8c0cb6b29d55",
-          "name": "date-time",
+          "id": "1e692cb8-25bb-4383-bcb6-c87355df43f7",
+          "name": "geo-state",
           "required": false,
-          "dataType": "@sys.date-time",
-          "value": "$date-time",
+          "dataType": "@sys.geo-state",
+          "value": "$geo-state",
           "defaultValue": "",
           "isList": false,
           "prompts": [],
@@ -70,27 +66,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Most applications are processed within 30 days from the date it is received. You should receive an appointment within 10 days of submitting your application. To check the status of your case or view your notices, you can create a MyMDHS account \u003ca href\u003d\"https://my.mdhs.ms.gov/#/landing\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e"
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Additional information may be required, based on the household’s circumstances. After the interview and collection of needed information for eligibility determination, the worker will send the household a notice. If the household does not qualify for SNAP, a notice will be provided giving the reasons for ineligibility. If the household is determined to be eligible, the notice will provide the monthly benefit amount and length of the certification period."
-          ],
-          "condition": ""
-        },
-        {
-          "type": "0",
-          "title": "",
-          "textToSpeech": "",
-          "lang": "en",
-          "speech": [
-            "Do you want to check what information will be verified?"
+            "To check the status of your case, view notices, or see your SNAP balance as of yesterday, create a MyMDHS account \u003ca href\u003d\"https://my.mdhs.ms.gov/#/landing\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e. To see a record of your purchases, also referred to as a transaction history, you may create an account \u003ca href\u003d\"https://www.connectebt.com/ebtcard/msebt/index.jsp\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e."
           ],
           "condition": ""
         },
@@ -98,10 +74,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "suggestions": [
-              "YES",
-              "NO"
-            ]
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
