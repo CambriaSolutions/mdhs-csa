@@ -17,7 +17,7 @@
       ],
       "parameters": [
         {
-          "id": "67d2aca5-2405-4fc8-8d2d-32a86670a9b0",
+          "id": "53f0ff4b-6218-4a16-9bdd-91b1f14bf0d8",
           "name": "geo-state",
           "required": false,
           "dataType": "@sys.geo-state",
@@ -58,7 +58,7 @@
           "textToSpeech": "",
           "lang": "en",
           "speech": [
-            "Click \u003ca href\u003d\"http://www.mdhs.ms.gov/wp-content/uploads/2020/10/S2W-Partner-Contacts-Info-cg.pdf\" target\u003d\"_blank\"\u003ehere\u003c/a\u003e to find the office locations for SNAP Employment Training Program."
+            "Click \u003ca href\u003d\"https://www.mdhs.ms.gov/wp-content/uploads/2021/02/S2W-Partner-Contacts-Info-cg.pdf\"\u003ehere\u003c/a\u003e to find the office locations for SNAP Employment Training Program."
           ],
           "condition": ""
         },
@@ -66,8 +66,8 @@
           "type": "4",
           "title": "",
           "payload": {
-            "handleEndConversation": true,
-            "suggestions": []
+            "suggestions": [],
+            "handleEndConversation": true
           },
           "textToSpeech": "",
           "lang": "en",
