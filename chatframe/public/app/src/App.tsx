@@ -38,7 +38,7 @@ export const activationText = 'Talk to Gen'
 const App: FC = () => {
     return (
         <Chatframe
-            primaryColor='#9999AD'
+            primaryColor='#6497AD'
             secondaryColor='#6497AD'
             headerColor='#6497AD'
             title='Gen'

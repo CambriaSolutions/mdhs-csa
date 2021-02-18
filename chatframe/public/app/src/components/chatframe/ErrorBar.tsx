@@ -1,31 +1,22 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import red from '@material-ui/core/colors/red'
+import { useSelector } from './ducks/store'
 
 const Container = styled.div`
-  grid-area: errorbar;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  padding: ${(p: any) => (p.visible ? '24px 16px' : '0 16px')};
-  background: ${red[300]};
-  border-top: ${(p: any) => (p.visible ? `1px solid ${red[500]}` : 'none')};
-  color: ${red[700]};
+    grid-area: errorbar;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    padding: ${(p: any) => (p.visible ? '24px 16px' : '0 16px')};
+    background: ${red[300]};
+    border-top: ${(p: any) => (p.visible ? `1px solid ${red[500]}` : 'none')};
+    color: ${red[700]};
 ` as any
 
-class ErrorBar extends PureComponent<{ error: State['error'] }> {
-  render() {
-    const { error } = this.props
+const ErrorBar: FC = () => {
+    const error = useSelector(state => state.error)
     return <Container visible={error !== ''}>{error}</Container>
-  }
 }
-
-const mapStateToProps = state => {
-  return {
-    error: state.error,
-  }
-}
-
-export default connect(mapStateToProps)(ErrorBar)
+export default ErrorBar

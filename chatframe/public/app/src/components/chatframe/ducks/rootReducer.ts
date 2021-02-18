@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import config from '../reducers/configReducer'
+import config from './configSlice'
 import conversation from '../reducers/conversationReducer'
-import buttonBar from '../reducers/buttonBarReducer'
+import buttonBar from './buttonBarSlice'
 import userInput from './userInputSlice'
-import feedbackInput from '../reducers/feedbackInputReducer'
-import error from '../reducers/errorReducer'
+import feedbackInput from './feedbackInputSlice'
+import error from './errorSlice'
 
 const rootReducer = combineReducers({
     config,

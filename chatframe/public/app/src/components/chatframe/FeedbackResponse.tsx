@@ -1,54 +1,55 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, { FC, useEffect } from 'react'
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components'
 import FeedbackInput from './FeedbackInput'
-import { setFeedbackOptions } from './actions/feedbackInput'
+import { setFeedbackOptions } from './ducks/feedbackInputSlice'
+import { useDispatch } from './ducks/store'
 
 const CardContainer = styled(Card)`
-  && {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background: #fff;
-    margin: 15px 16px 15px 16px;
-    white-space: pre-line;
-    scroll-margin: 15px;
-  }
+    && {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background: #fff;
+        margin: 15px 16px 15px 16px;
+        white-space: pre-line;
+        scroll-margin: 15px;
+    }
 `
+interface FeedbackList {
+    value: string
+    checked: boolean
+}
 
-class FeedbackResponse extends PureComponent<any> {
-  componentDidMount() {
-    const { setFeedbackOptions, feedbackData } = this.props
-    setFeedbackOptions(feedbackData)
-  }
+interface FeedbackData {
+    helpful: boolean
+    options: FeedbackList[]
+}
 
-  render() {
-    const { session, className, key } = this.props
+interface FeedbackResponseProps {
+    session?: string
+    className?: string
+    key?: string
+    feedbackData?: FeedbackData
+}
+
+const FeedbackResponse: FC<FeedbackResponseProps> = ({
+    session,
+    className,
+    key,
+    feedbackData,
+}) => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(setFeedbackOptions(feedbackData))
+    }, [dispatch, feedbackData])
+
     return (
-      <CardContainer className={className} key={key}>
-        <FeedbackInput session={session} />
-      </CardContainer>
+        <CardContainer className={className} key={key}>
+            <FeedbackInput session={session} />
+        </CardContainer>
     )
-  }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setFeedbackOptions: value => {
-      dispatch(setFeedbackOptions(value))
-    },
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    feedbackInputs: state.feedbackInput,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FeedbackResponse)
+export default FeedbackResponse
